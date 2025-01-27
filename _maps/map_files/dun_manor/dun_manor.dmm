@@ -8533,6 +8533,13 @@
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
+"hlV" = (
+/obj/structure/fluff/traveltile{
+	aportalgoesto = moor1;
+	aportalid = moor2
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "hlY" = (
 /obj/structure/closet/crate/roguecloset/dark,
 /turf/open/floor/rogue/herringbone,
@@ -66474,9 +66481,9 @@ xOC
 btI
 goI
 sRV
-sRV
+hlV
 uty
-sRV
+hlV
 sRV
 iPj
 wFC
@@ -66631,9 +66638,9 @@ xOC
 iXP
 sRV
 sRV
-sRV
+hlV
 hmb
-sRV
+hlV
 sRV
 sRV
 ulb
