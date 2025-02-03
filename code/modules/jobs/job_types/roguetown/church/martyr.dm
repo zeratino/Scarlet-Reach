@@ -34,7 +34,7 @@
 /datum/component/martyrweapon/process()
 	if(is_active)
 		if(world.time > end_activation)
-			deactivate()
+			handle_end()
 		else
 			var/timer = timehint()
 			switch(current_state)
@@ -42,18 +42,55 @@
 					return
 				if(STATE_MARTYR)
 					if(last_pulse != timer && timer != 0)
-						triggerpulse()
+						trigger_pulse()
 						last_pulse = timer
 				if(STATE_MARTYRULT)
-					var/timeult = (world.time / 10) / 30
+					var/timeult = round((world.time / 10) / 30)
 					if(timeult == 1)	//10 seconds
-						trigger_pulse(range = 7, isfinal = TRUE)
+						trigger_pulse(range = 4, isfinal = TRUE)
 					else if(timeult % 2 == 0)
 						trigger_pulse()
 
 
-/datum/component/martyrweapon/proc/triggerpulse(range = 2, isfinal = FALSE)
-	for(var/mob/M in viewers(range, current_holder))
+/datum/component/martyrweapon/proc/handle_end()
+	deactivate()
+	switch(current_state)
+		if(STATE_SAFE)
+			var/area/A = get_area(current_holder)
+			var/success = FALSE
+			for(var/AR in allowed_areas)
+				if(istype(A, AR))
+					success = TRUE
+					break
+			if(success)
+				to_chat(span_notice("The weapon fizzles out, its energies dissipating across the holy grounds."))
+				deactivate()
+			else
+				to_chat(span_notice("The weapon begins to fizzle out, but the energy has nowhere to go!"))
+				var/mob/living/carbon/C = current_holder
+				C.freak_out()
+				if(prob(35))
+					killhost()
+				deactivate()
+		if(STATE_MARTYR)
+			killhost()
+			deactivate()
+
+		if(STATE_MARTYRULT)
+			killhost()
+			deactivate()
+
+/datum/component/martyrweapon/proc/killhost()
+	var/mob/living/carbon/human/H = current_holder
+	H.apply_damage(1000, OXY)
+	H.apply_damage(1000, TOX)
+	H.apply_damage(1000, BRUTE)
+	H.apply_damage(1000, BURN)
+	H.apply_damage(1000, BRAIN)
+	H.apply_damage(1000, CLONE)
+
+/datum/component/martyrweapon/proc/trigger_pulse(range = 2, isfinal = FALSE)
+	for(var/mob/M in oviewers(range, current_holder))
 		mob_ignite(M)
 		if(isfinal)
 			if(ishuman(M))
@@ -65,7 +102,7 @@
 
 /datum/component/martyrweapon/proc/timehint()
 	var/result = round((end_activation - world.time) / 600)	// Minutes
-	if(result != last_time && result != 0)
+	if(result != last_time)
 		to_chat(current_holder,span_notice("[result + 1] minutes left."))
 		last_time = result
 		return result
@@ -161,7 +198,6 @@
 /datum/component/martyrweapon/proc/on_drop(datum/source, mob/user)
 	UnregisterSignal(user, COMSIG_CLICK_ALT)
 	deactivate()
-	current_holder = null
 
 /datum/component/martyrweapon/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(current_holder)
