@@ -335,7 +335,7 @@
 	embedchance = 50
 	woundclass = BCLASS_STAB
 	flag = "piercing"
-	speed = 0.4
+	speed = 10
 
 #undef ARROW_DAMAGE
 #undef BOLT_DAMAGE

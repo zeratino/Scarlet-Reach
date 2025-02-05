@@ -23,7 +23,7 @@
 	aggro_vision_range = 9
 	retreat_distance = 0
 	minimum_distance = 0
-	limb_destroyer = 1
+	limb_destroyer = 0
 	base_intents = list(/datum/intent/simple/claw/deepone_unarmed)
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -42,8 +42,21 @@
 	ai_controller = /datum/ai_controller/deepone
 
 
+/mob/living/simple_animal/hostile/rogue/deepone/arm
+	name = "Deep One Paladin"
+	desc = ""
+	icon = 'icons/roguetown/mob/monster/fishman.dmi'
+	icon_state = "deep1_arm"
+	health = DEEPONE_HEALTH * 1.4
+	harm_intent_damage = 25
+	melee_damage_lower = 15
+	melee_damage_upper = 30
+	limb_destroyer = 1
+	attack_verb_continuous = "mauls"
+	attack_verb_simple = "maul"
+
 /mob/living/simple_animal/hostile/rogue/deepone/spit
-	name = "Deep One"
+	name = "Deep One Spitter"
 	desc = ""
 	icon = 'icons/roguetown/mob/monster/fishman.dmi'
 	icon_state = "deep1_spit"
@@ -55,6 +68,22 @@
 	retreat_distance = 2
 	minimum_distance = 5
 	ranged_cooldown_time = 40
+	check_friendly_fire = 1
+	ai_controller = /datum/ai_controller/deepone_ranged
+
+/mob/living/simple_animal/hostile/rogue/deepone/wiz
+	name = "Deep One Devout"
+	desc = ""
+	icon = 'icons/roguetown/mob/monster/fishman.dmi'
+	icon_state = "deep1_wiz"
+	icon_living = "deep1_wiz"
+	icon_dead = "deep1_d"
+	projectiletype = /obj/projectile/magic/frostbolt
+	projectilesound = 'sound/magic/fireball.ogg'
+	ranged = 1
+	retreat_distance = 2
+	minimum_distance = 5
+	ranged_cooldown_time = 70
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
 

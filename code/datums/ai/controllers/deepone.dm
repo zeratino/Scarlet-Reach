@@ -33,3 +33,4 @@
 	)
 
 	idle_behavior = /datum/idle_behavior/idle_random_walk
+	
