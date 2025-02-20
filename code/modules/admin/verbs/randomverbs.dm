@@ -45,40 +45,6 @@
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Subtle Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_headset_message(mob/M in GLOB.mob_list)
-	set category = "Special Verbs"
-	set name = "Headset Message"
-	set hidden = 1
-
-	admin_headset_message(M)
-
-/client/proc/admin_headset_message(mob/M in GLOB.mob_list, sender = null)
-	var/mob/living/carbon/human/H = M
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
-		return
-
-	if (!sender)
-		sender = input("Who is the message from?", "Sender") as null|anything in list(RADIO_CHANNEL_CENTCOM,RADIO_CHANNEL_SYNDICATE)
-		if(!sender)
-			return
-
-	message_admins("[key_name_admin(src)] has started answering [key_name_admin(H)]'s [sender] request.")
-	var/input = input("Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from [sender]", "") as text|null
-	if(!input)
-		message_admins("[key_name_admin(src)] decided not to answer [key_name_admin(H)]'s [sender] request.")
-		return
-
-	log_directed_talk(mob, H, input, LOG_ADMIN, "reply")
-	message_admins("[key_name_admin(src)] replied to [key_name_admin(H)]'s [sender] message with: \"[input]\"")
-	to_chat(H, span_hear("I hear something crackle in your ears for a moment before a voice speaks. \"Please stand by for a message from [sender == "Syndicate" ? "your benefactor" : "Central Command"]. Message as follows[sender == "Syndicate" ? ", agent." : ":"] <b>[input].</b> Message ends.\""))
-
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Headset Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, operation)
 	set category = "Special Verbs"
 	set name = "Modify Antagonist Reputation"
@@ -433,23 +399,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Respawn Character") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
 
-/client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Fun"
-	set name = "Add Custom AI law"
-	set hidden = 1
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/input = input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null
-	if(!input)
-		return
-
-	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
-	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]")
-
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Add Custom AI Law") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /client/proc/cmd_admin_rejuvenate(mob/living/M in GLOB.mob_list)
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
@@ -491,7 +440,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(src)] has created a command report: [input]")
 	message_admins("[key_name_admin(src)] has created a command report")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
+/* May have uses?
 /client/proc/cmd_change_command_name()
 	set category = "Special Verbs"
 	set name = "Change Command Name"
@@ -505,7 +454,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	change_command_name(input)
 	message_admins("[key_name_admin(src)] has changed Central Command's name to [input]")
 	log_admin("[key_name(src)] has changed the Central Command name to: [input]")
-
+*/
 /client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
 	set category = "Admin"
 	set name = "Delete"
@@ -646,78 +595,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Change View Range", "[view]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/admin_call_shuttle()
-
-	set category = "Admin"
-	set name = "Call Shuttle"
-	set hidden = 1
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes")
-		return
-
-	SSshuttle.emergency.request()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins(span_adminnotice("[key_name_admin(usr)] admin-called the emergency shuttle."))
-	return
-
-/client/proc/admin_cancel_shuttle()
-	set category = "Admin"
-	set name = "Cancel Shuttle"
-	set hidden = 1
-	if(!check_rights(0))
-		return
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
-		return
-
-	if(EMERGENCY_AT_LEAST_DOCKED)
-		return
-
-	SSshuttle.emergency.cancel()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Cancel Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
-	message_admins(span_adminnotice("[key_name_admin(usr)] admin-recalled the emergency shuttle."))
-
-	return
-
-/client/proc/everyone_random()
-	set category = "Fun"
-	set name = "Make Everyone Random"
-	set desc = ""
-
-	if(SSticker.HasRoundStarted())
-		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
-		return
-
-	var/frn = CONFIG_GET(flag/force_random_names)
-	if(frn)
-		CONFIG_SET(flag/force_random_names, FALSE)
-		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.")
-		to_chat(usr, "Disabled.")
-		return
-
-
-	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
-	if(notifyplayers == "Cancel")
-		return
-
-	log_admin("Admin [key_name(src)] has forced the players to have random appearances.")
-	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.")
-
-	if(notifyplayers == "Yes")
-		to_chat(world, span_adminnotice("Admin [usr.key] has forced the players to have completely random identities!"))
-
-	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
-
-	CONFIG_SET(flag/force_random_names, TRUE)
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Make Everyone Random") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/proc/toggle_random_events()
@@ -734,22 +611,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Random Events", "[new_are ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/client/proc/admin_change_sec_level()
-	set category = "Special Verbs"
-	set name = "Set Security Level"
-	set desc = ""
-	set hidden = 1
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("green","blue","red","delta")
-	if(level)
-
-		log_admin("[key_name(usr)] changed the security level to [level]")
-		message_admins("[key_name_admin(usr)] changed the security level to [level]")
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Security Level [capitalize(level)]") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_combo_hud()
 	set category = "Admin"

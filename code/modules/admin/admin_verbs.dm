@@ -50,8 +50,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
-	/client/proc/secrets,
-	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
+//	/client/proc/secrets,				/* Almost entirely non-functional after Azure Peak Debloatening. Final few are redundant, but keeping just in case */
+//	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
 	/client/proc/reload_admins,
 	/client/proc/reload_whitelist,
 	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
@@ -109,7 +109,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/resetasaycolor,
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
-	/client/proc/discord_id_manipulation,
+	// /client/proc/discord_id_manipulation, /* No Discord implementation? *?
 	/datum/admins/proc/sleep_view,
 	/datum/admins/proc/wake_view,
 	)
