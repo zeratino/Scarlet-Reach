@@ -275,9 +275,10 @@
 				belt = /obj/item/storage/belt/rogue/leather
 				neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 				beltl = /obj/item/rogueweapon/huntingknife
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 			if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
-				armor = /obj/item/clothing/suit/roguetown/armor/leather/bikini
+				armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
 				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 				shoes = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
