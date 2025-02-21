@@ -30,52 +30,274 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.mob_timers["mirrortime"])
-			if(world.time < H.mob_timers["mirrortime"] + 6 MINUTES)
-				var/list/options = list("hairstyle", "facial hairstyle", "hair color", "skin", "detail", "eye color")
-				var/chosen = input(user, "Change what?", "ROGUETOWN")  as null|anything in options
-				var/should_update
-				switch(chosen)
-					if("skin")
-						var/listy = H.dna.species.get_skin_list()
-						var/new_s_tone = input(user, "Choose your character's skin tone:", "Sun")  as null|anything in listy
-						if(new_s_tone)
-							H.skin_tone = listy[new_s_tone]
+		var/list/options = list("hairstyle", "facial hairstyle", "hair color", "facial hair color", "natural gradient", "natural gradient color", "dye gradient", "dye gradient color")
+		var/chosen = input(user, "Change what?", "ROGUETOWN") as null|anything in options
+		var/should_update = FALSE
+		switch(chosen)
+			if("hairstyle")
+				var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+				var/list/valid_hairstyles = list()
+				for(var/hair_type in hair_choice.sprite_accessories)
+					var/datum/sprite_accessory/hair/head/hair = new hair_type()
+					valid_hairstyles[hair.name] = hair_type
+				
+				var/new_style = input(user, "Choose your hairstyle", "Hair Styling") as null|anything in valid_hairstyles
+				if(new_style)
+					var/datum/bodypart_feature/hair/head/hair_feature = new()
+					hair_feature.set_accessory_type(valid_hairstyles[new_style], H.hair_color, H)
+					H.add_bodypart_feature(hair_feature)
+					should_update = TRUE
+
+			if("hair color")
+				var/new_hair_color = color_pick_sanitized_lumi(user, "Choose your hair color", "Hair Color", H.hair_color)
+				if(new_hair_color)
+					var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+					if(head && head.bodypart_features)
+						// Get the customizer choice that handles hair
+						var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+						
+						// Create a temporary customizer entry with the new color
+						var/datum/customizer_entry/hair/hair_entry = new()
+						hair_entry.hair_color = sanitize_hexcolor(new_hair_color, 6, TRUE)
+						
+						// Get current hair feature for its properties
+						var/datum/bodypart_feature/hair/head/current_hair = null
+						for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
+							current_hair = hair_feature
+							break
+						
+						if(current_hair)
+							// Create new feature
+							var/datum/bodypart_feature/hair/head/new_hair = new()
+							
+							// Set accessory type first
+							new_hair.set_accessory_type(current_hair.accessory_type, null, H)
+							
+							// Use the customizer's method to set colors
+							hair_choice.customize_feature(new_hair, H, null, hair_entry)
+							
+							// Update DNA
+							H.hair_color = hair_entry.hair_color
+							H.dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
+							
+							// Remove old and add new feature
+							head.remove_bodypart_feature(current_hair)
+							head.add_bodypart_feature(new_hair)
 							should_update = TRUE
-					if("eye color")
-						var/new_eyes = input(user, "Choose your character's eye color:", "Character Preference","#"+H.eye_color) as color|null
-						if(new_eyes)
-							H.eye_color = sanitize_hexcolor(new_eyes)
+
+			if("facial hair color")
+				var/new_facial_color = color_pick_sanitized_lumi(user, "Choose your facial hair color", "Facial Hair Color", H.facial_hair_color)
+				if(new_facial_color)
+					var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+					if(head && head.bodypart_features)
+						// Get the customizer choice that handles facial hair
+						var/datum/customizer_choice/bodypart_feature/hair/facial/humanoid/facial_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/facial/humanoid)
+						
+						// Create a temporary customizer entry with the new color
+						var/datum/customizer_entry/hair/facial/facial_entry = new()
+						facial_entry.hair_color = sanitize_hexcolor(new_facial_color, 6, TRUE)
+						
+						// Get current facial hair feature for its properties
+						var/datum/bodypart_feature/hair/facial/current_facial = null
+						for(var/datum/bodypart_feature/hair/facial/facial_feature in head.bodypart_features)
+							current_facial = facial_feature
+							break
+						
+						if(current_facial)
+							// Create new feature
+							var/datum/bodypart_feature/hair/facial/new_facial = new()
+							
+							// Set accessory type first
+							new_facial.set_accessory_type(current_facial.accessory_type, null, H)
+							
+							// Use the customizer's method to set colors
+							facial_choice.customize_feature(new_facial, H, null, facial_entry)
+							
+							// Update DNA
+							H.facial_hair_color = facial_entry.hair_color
+							H.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
+							
+							// Remove old and add new feature
+							head.remove_bodypart_feature(current_facial)
+							head.add_bodypart_feature(new_facial)
 							should_update = TRUE
-				if(should_update)
-					H.update_body()
-					H.update_hair()
-					H.update_body_parts()
-/*
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
 
-		//see code/modules/mob/dead/new_player/preferences.dm at approx line 545 for comments!
-		//this is largely copypasted from there.
+			if("natural gradient")
+				var/list/gradient_options = hair_gradient_name_to_type_list()
+				var/new_gradient = input(user, "Choose your natural gradient style", "Hair Gradient") as null|anything in gradient_options
+				if(new_gradient)
+					var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+					if(head && head.bodypart_features)
+						// Get the customizer choice that handles hair
+						var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+						
+						// Create a temporary customizer entry
+						var/datum/customizer_entry/hair/hair_entry = new()
+						
+						// Get current hair feature for its properties
+						var/datum/bodypart_feature/hair/head/current_hair = null
+						for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
+							current_hair = hair_feature
+							break
+						
+						if(current_hair)
+							// Copy existing properties to entry
+							hair_entry.hair_color = current_hair.hair_color
+							hair_entry.natural_gradient = gradient_options[new_gradient]
+							hair_entry.natural_color = current_hair.natural_color
+							hair_entry.dye_gradient = current_hair.hair_dye_gradient
+							hair_entry.dye_color = current_hair.hair_dye_color
+							
+							// Create new feature
+							var/datum/bodypart_feature/hair/head/new_hair = new()
+							
+							// Set accessory type first
+							new_hair.set_accessory_type(current_hair.accessory_type, null, H)
+							
+							// Use the customizer's method to set properties
+							hair_choice.customize_feature(new_hair, H, null, hair_entry)
+							
+							// Remove old and add new feature
+							head.remove_bodypart_feature(current_hair)
+							head.add_bodypart_feature(new_hair)
+							should_update = TRUE
 
-		//handle facial hair (if necessary)
-		if(H.gender != FEMALE)
-			var/new_style = input(user, "Select a facial hairstyle", "Grooming")  as null|anything in GLOB.facial_hairstyles_list
-			if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-				return	//no tele-grooming
-			if(new_style)
-				H.facial_hairstyle = new_style
-		else
-			H.facial_hairstyle = "Shaved"
+			if("natural gradient color")
+				var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your natural gradient color", "Gradient Color", "#FFFFFF")
+				if(new_gradient_color)
+					var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+					if(head && head.bodypart_features)
+						// Get the customizer choice that handles hair
+						var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+						
+						// Create a temporary customizer entry
+						var/datum/customizer_entry/hair/hair_entry = new()
+						
+						// Get current hair feature for its properties
+						var/datum/bodypart_feature/hair/head/current_hair = null
+						for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
+							current_hair = hair_feature
+							break
+						
+						if(current_hair)
+							// Copy existing properties to entry
+							hair_entry.hair_color = current_hair.hair_color
+							hair_entry.natural_gradient = current_hair.natural_gradient
+							hair_entry.natural_color = sanitize_hexcolor(new_gradient_color, 6, TRUE)
+							hair_entry.dye_gradient = current_hair.hair_dye_gradient
+							hair_entry.dye_color = current_hair.hair_dye_color
+							
+							// Create new feature
+							var/datum/bodypart_feature/hair/head/new_hair = new()
+							
+							// Set accessory type first
+							new_hair.set_accessory_type(current_hair.accessory_type, null, H)
+							
+							// Use the customizer's method to set properties
+							hair_choice.customize_feature(new_hair, H, null, hair_entry)
+							
+							// Remove old and add new feature
+							head.remove_bodypart_feature(current_hair)
+							head.add_bodypart_feature(new_hair)
+							should_update = TRUE
 
-		//handle normal hair
-		var/new_style = input(user, "Select a hairstyle", "Grooming")  as null|anything in GLOB.hairstyles_list
-		if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-			return	//no tele-grooming
-		if(new_style)
-			H.hairstyle = new_style
+			if("dye gradient")
+				var/list/gradient_options = hair_gradient_name_to_type_list()
+				var/new_gradient = input(user, "Choose your dye gradient style", "Hair Gradient") as null|anything in gradient_options
+				if(new_gradient)
+					var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+					if(head && head.bodypart_features)
+						// Get the customizer choice that handles hair
+						var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+						
+						// Create a temporary customizer entry
+						var/datum/customizer_entry/hair/hair_entry = new()
+						
+						// Get current hair feature for its properties
+						var/datum/bodypart_feature/hair/head/current_hair = null
+						for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
+							current_hair = hair_feature
+							break
+						
+						if(current_hair)
+							// Copy existing properties to entry
+							hair_entry.hair_color = current_hair.hair_color
+							hair_entry.natural_gradient = current_hair.natural_gradient
+							hair_entry.natural_color = current_hair.natural_color
+							hair_entry.dye_gradient = gradient_options[new_gradient]
+							hair_entry.dye_color = current_hair.hair_dye_color
+							
+							// Create new feature
+							var/datum/bodypart_feature/hair/head/new_hair = new()
+							
+							// Set accessory type first
+							new_hair.set_accessory_type(current_hair.accessory_type, null, H)
+							
+							// Use the customizer's method to set properties
+							hair_choice.customize_feature(new_hair, H, null, hair_entry)
+							
+							// Remove old and add new feature
+							head.remove_bodypart_feature(current_hair)
+							head.add_bodypart_feature(new_hair)
+							should_update = TRUE
 
-		H.update_hair()*/
+			if("dye gradient color")
+				var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your dye gradient color", "Gradient Color", "#FFFFFF")
+				if(new_gradient_color)
+					var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+					if(head && head.bodypart_features)
+						// Get the customizer choice that handles hair
+						var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+						
+						// Create a temporary customizer entry
+						var/datum/customizer_entry/hair/hair_entry = new()
+						
+						// Get current hair feature for its properties
+						var/datum/bodypart_feature/hair/head/current_hair = null
+						for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
+							current_hair = hair_feature
+							break
+						
+						if(current_hair)
+							// Copy existing properties to entry
+							hair_entry.hair_color = current_hair.hair_color
+							hair_entry.natural_gradient = current_hair.natural_gradient
+							hair_entry.natural_color = current_hair.natural_color
+							hair_entry.dye_gradient = current_hair.hair_dye_gradient
+							hair_entry.dye_color = sanitize_hexcolor(new_gradient_color, 6, TRUE)
+							
+							// Create new feature
+							var/datum/bodypart_feature/hair/head/new_hair = new()
+							
+							// Set accessory type first
+							new_hair.set_accessory_type(current_hair.accessory_type, null, H)
+							
+							// Use the customizer's method to set properties
+							hair_choice.customize_feature(new_hair, H, null, hair_entry)
+							
+							// Remove old and add new feature
+							head.remove_bodypart_feature(current_hair)
+							head.add_bodypart_feature(new_hair)
+							should_update = TRUE
+
+			if("facial hairstyle")
+				var/datum/customizer_choice/bodypart_feature/hair/facial/humanoid/facial_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/facial/humanoid)
+				var/list/valid_facial_hairstyles = list()
+				for(var/facial_type in facial_choice.sprite_accessories)
+					var/datum/sprite_accessory/hair/facial/facial = new facial_type()
+					valid_facial_hairstyles[facial.name] = facial_type
+				
+				var/new_style = input(user, "Choose your facial hairstyle", "Hair Styling") as null|anything in valid_facial_hairstyles
+				if(new_style)
+					var/datum/bodypart_feature/hair/facial/facial_feature = new()
+					facial_feature.set_accessory_type(valid_facial_hairstyles[new_style], H.facial_hair_color, H)
+					H.add_bodypart_feature(facial_feature)
+					should_update = TRUE
+
+		if(should_update)
+			H.update_hair()
+			H.update_body()
+			H.update_body_parts()
 
 /obj/structure/mirror/examine_status(mob/user)
 	if(broken)
@@ -245,6 +467,7 @@
 					return
 				if(new_hair_color)
 					H.hair_color = sanitize_hexcolor(new_hair_color)
+					H.facial_hair_color = H.hair_color
 					H.dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
 				if(H.gender == "male")
 					var/new_face_color = input(H, "Choose your facial hair color", "Hair Color","#"+H.facial_hair_color) as color|null
