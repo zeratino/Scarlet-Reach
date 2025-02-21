@@ -269,7 +269,7 @@
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
-				shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+				shoes = /obj/item/clothing/shoes/roguetown/gladiator
 				gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 				backl = /obj/item/storage/backpack/rogue/satchel
 				belt = /obj/item/storage/belt/rogue/leather
@@ -279,9 +279,9 @@
 			if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 				armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
-				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
+				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 				wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-				shoes = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
+				shoes = /obj/item/clothing/shoes/roguetown/gladiator
 				gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 				backl = /obj/item/storage/backpack/rogue/satchel
 				belt = /obj/item/storage/belt/rogue/leather
