@@ -11,6 +11,7 @@
 	var/end_activation = 0
 	var/ignite_chance = 10
 	var/traits_applied = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOMOOD, TRAIT_NOHUNGER, TRAIT_EASYDISMEMBER)
+	var/stat_bonus_martyr = 2
 	var/mob/current_holder
 	var/is_active = FALSE
 	var/allow_all = FALSE
@@ -64,21 +65,17 @@
 					break
 			if(success)
 				to_chat(span_notice("The weapon fizzles out, its energies dissipating across the holy grounds."))
-				deactivate()
 			else
 				to_chat(span_notice("The weapon begins to fizzle out, but the energy has nowhere to go!"))
 				var/mob/living/carbon/C = current_holder
 				C.freak_out()
 				if(prob(35))
 					killhost()
-				deactivate()
 		if(STATE_MARTYR)
 			killhost()
-			deactivate()
 
 		if(STATE_MARTYRULT)
 			killhost()
-			deactivate()
 
 /datum/component/martyrweapon/proc/killhost()
 	var/mob/living/carbon/human/H = current_holder
