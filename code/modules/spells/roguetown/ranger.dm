@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/targeted/conjure_item/conjure_bait
 	name = "Conjure Bait"
-	desc = "Magically conjures a bag of bait to attract wild game."
+	desc = "Prepares a bag of bait to attract wild game."
 	charge_max = 300 SECONDS // 5 minute cooldown
 	clothes_req = FALSE
 	invocation_type = "none"

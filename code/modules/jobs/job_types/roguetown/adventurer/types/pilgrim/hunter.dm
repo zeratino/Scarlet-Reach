@@ -28,8 +28,7 @@
 						)
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
-
-	// Add the conjure bait spell
+	
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/conjure_bait)
 
 	if(H.mind)
