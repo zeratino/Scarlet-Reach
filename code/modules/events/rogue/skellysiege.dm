@@ -29,7 +29,7 @@
 		// Only allow ground-level town areas, no roofs or underground
 		if(!istype(A, /area/rogue/under) && !istype(A, /area/rogue/outdoors/town/roofs))
 			if(istype(A, /area/rogue/indoors/town/tavern) || \
-			   istype(A, /area/rogue/indoors/town/church) || \
+			   istype(A, /area/rogue/indoors/town/church/chapel) || \
 			   istype(A, /area/rogue/indoors/town/manor))
 				indoor_areas += A
 			else if(istype(A, /area/rogue/outdoors/town))
