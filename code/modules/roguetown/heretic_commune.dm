@@ -72,9 +72,9 @@ GLOBAL_VAR_INIT(last_omen, 0)
 	for(var/mob/living/carbon/human/puritan in GLOB.player_list)
 		if(!puritan.client || puritan == src)
 			continue
-		if(HAS_TRAIT(puritan, TRAIT_PURITAN) && prob(10))
+		if(HAS_TRAIT(puritan, TRAIT_PURITAN) && prob(20))
 			to_chat(puritan, "<span class='[span_class]'><b>\[Unknown Commune\]</b></span>")
-			to_chat(puritan, "<span class='[span_class]' style='font-size: 125%;'><i>An anonymous voice:</i> [msg]</span>")
+			to_chat(puritan, "<span class='[span_class]' style='font-size: 125%;'><b>[nickname]:</b> [msg]</span>")
 
 	log_directed_talk(src, msg, LOG_SAY, "heretic commune")
 
