@@ -185,6 +185,10 @@ GLOBAL_VAR_INIT(last_omen, 0)
 	// Add the omen to global list
 	addomen(chosen_omen)
 	
+	// Log the ritual in attack logs
+	first_chanter.log_message("performed a dark chant ritual with [second_chanter] ([ADMIN_FOLLOWLINK(second_chanter)])", LOG_ATTACK)
+	second_chanter.log_message("performed a dark chant ritual with [first_chanter] ([ADMIN_FOLLOWLINK(first_chanter)])", LOG_ATTACK)
+	
 	// Create and properly set up the skeleton siege event
 	var/datum/round_event_control/rogue/skeleton_siege/S = new()
 	// Force the event to be ready
@@ -192,7 +196,8 @@ GLOBAL_VAR_INIT(last_omen, 0)
 	S.earliest_start = 0
 	S.min_players = 0
 	
-	// Debug messages
+	// Debug messages with follow links
+	message_admins("[ADMIN_FOLLOWLINK(first_chanter)] [first_chanter] and [ADMIN_FOLLOWLINK(second_chanter)] [second_chanter] performed dark chant ritual...")
 	message_admins("Dark chant ritual attempting to trigger skeleton siege...")
 	
 	if(S.canSpawnEvent())
