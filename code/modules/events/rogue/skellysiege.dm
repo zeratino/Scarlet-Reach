@@ -19,57 +19,53 @@
 	return TRUE
 
 /datum/round_event/rogue/skeleton_siege/start()
-	if(!SSticker.mode)
-		return
-	var/datum/game_mode/chaosmode/C = SSticker.mode
-	if(!istype(C))
-		return
+	message_admins("Skeleton siege event starting...")
 	
-	// Enable skeletons for ghost respawns
-	C.skeletons = TRUE
-	addtimer(CALLBACK(C, TYPE_PROC_REF(/datum/game_mode/chaosmode, reset_skeletons)), rand(4 MINUTES, 8 MINUTES))
-	for(var/mob/dead/observer/O in GLOB.player_list)
-		addtimer(CALLBACK(O, TYPE_PROC_REF(/mob/dead/observer, horde_respawn)), 1)
-	
-	// Spawn initial wave of NPC skeletons
-	spawn_wave()
-	
-	// Schedule additional waves
-	for(var/i in 1 to waves)
-		addtimer(CALLBACK(src, PROC_REF(spawn_wave)), spawn_delay * i)
-
-/datum/round_event/rogue/skeleton_siege/proc/spawn_wave()
-	// Get all town areas
+	// Get only public town areas
 	var/list/town_areas = list()
-	for(var/area/A in world)
-		if(istype(A, /area/rogue/indoors/town) || istype(A, /area/rogue/outdoors/town))
-			var/area/rogue/R = A
-			if(R.town_area)
-				town_areas += R
-	
+	for(var/area/rogue/A in world)
+		// Only spawn in public town areas, avoid rooftops, vault, underground
+		if(istype(A, /area/rogue/outdoors/town/square) || 
+			istype(A, /area/rogue/outdoors/town/street) ||
+			istype(A, /area/rogue/indoors/town/tavern) ||
+			istype(A, /area/rogue/indoors/town/shop) ||
+			istype(A, /area/rogue/indoors/town/hall))
+			town_areas += A
+			
 	if(!LAZYLEN(town_areas))
-		message_admins("WARNING: No valid town areas found for skeleton siege NPCs")
+		message_admins("WARNING: No valid public town areas found for skeleton siege!")
 		return
+		
+	message_admins("Found [length(town_areas)] valid public town areas")
 	
-	// Pick 3 different areas for this wave
+	// Pick up to 3 areas to spawn in
 	var/list/chosen_areas = list()
 	for(var/i in 1 to min(3, LAZYLEN(town_areas)))
 		var/area/rogue/chosen = pick_n_take(town_areas)
 		chosen_areas += chosen
+		
+	message_admins("Chosen [length(chosen_areas)] areas for skeleton spawns")
 	
-	// Spawn exactly 5 skeletons in each chosen area
-	for(var/area/rogue/A in chosen_areas)
-		var/list/valid_turfs = list()
+	// Spawn waves of skeletons
+	for(var/wave in 1 to waves)
+		message_admins("Spawning wave [wave] of skeletons")
 		
-		// Get all valid floor turfs in the area
-		for(var/turf/T in A.contents)
-			if(isfloorturf(T))
-				valid_turfs += T
-		
-		if(LAZYLEN(valid_turfs) >= spawncount) // Only spawn if we have enough valid turfs
-			for(var/i in 1 to spawncount)
-				var/turf/T = pick(valid_turfs)
-				valid_turfs -= T // Remove used turf to prevent stacking
-				if(T)
-					new /mob/living/simple_animal/hostile/rogue/skeleton(T)
-					sleep(0.2) // Small delay between spawns to prevent server hitching
+		for(var/area/rogue/A in chosen_areas)
+			var/list/valid_turfs = list()
+			
+			// Get all valid floor turfs in the area
+			for(var/turf/T in A.contents)
+				if(isfloorturf(T) && !T.density)
+					valid_turfs += T
+					
+			if(LAZYLEN(valid_turfs) >= spawncount)
+				message_admins("Spawning [spawncount] skeletons in [A]")
+				for(var/i in 1 to spawncount) 
+					var/turf/T = pick(valid_turfs)
+					valid_turfs -= T
+					if(T)
+						var/mob/living/simple_animal/hostile/rogue/skeleton/S = new(T)
+						S.faction = list("skeleton")
+						
+		if(wave < waves)
+			sleep(spawn_delay) // Wait before next wave
