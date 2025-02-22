@@ -22,26 +22,37 @@
 	message_admins("Skeleton siege event starting...")
 	
 	// Get only public town areas
-	var/list/town_areas = list()
+	var/list/indoor_areas = list()
+	var/list/outdoor_areas = list()
+	
 	for(var/area/rogue/A in world)
-		// Only spawn in public town areas, avoid rooftops, vault, underground
-		if(istype(A, /area/rogue/outdoors/town/square) || 
-			istype(A, /area/rogue/outdoors/town/street) ||
-			istype(A, /area/rogue/indoors/town/tavern) ||
-			istype(A, /area/rogue/indoors/town/shop) ||
-			istype(A, /area/rogue/indoors/town/hall))
-			town_areas += A
+		// Only allow ground-level town areas, no roofs or underground
+		if(!istype(A, /area/rogue/under) && !istype(A, /area/rogue/outdoors/town/roofs))
+			if(istype(A, /area/rogue/indoors/town/tavern) || \
+			   istype(A, /area/rogue/indoors/town/church) || \
+			   istype(A, /area/rogue/indoors/town/manor))
+				indoor_areas += A
+			else if(istype(A, /area/rogue/outdoors/town))
+				outdoor_areas += A
 			
-	if(!LAZYLEN(town_areas))
-		message_admins("WARNING: No valid public town areas found for skeleton siege!")
+	if(!LAZYLEN(indoor_areas) && !LAZYLEN(outdoor_areas))
+		message_admins("WARNING: No valid town areas found for skeleton siege!")
 		return
 		
-	message_admins("Found [length(town_areas)] valid public town areas")
+	message_admins("Found [length(indoor_areas)] indoor and [length(outdoor_areas)] outdoor areas")
 	
-	// Pick up to 3 areas to spawn in
+	// Pick areas to spawn in, ensuring at least one outdoor area
 	var/list/chosen_areas = list()
-	for(var/i in 1 to min(3, LAZYLEN(town_areas)))
-		var/area/rogue/chosen = pick_n_take(town_areas)
+	
+	// First, pick an outdoor area
+	if(LAZYLEN(outdoor_areas))
+		var/area/rogue/chosen_outdoor = pick_n_take(outdoor_areas)
+		chosen_areas += chosen_outdoor
+	
+	// Then fill remaining slots with random areas
+	var/list/remaining_areas = indoor_areas + outdoor_areas
+	while(length(chosen_areas) < 3 && LAZYLEN(remaining_areas))
+		var/area/rogue/chosen = pick_n_take(remaining_areas)
 		chosen_areas += chosen
 		
 	message_admins("Chosen [length(chosen_areas)] areas for skeleton spawns")
@@ -64,7 +75,7 @@
 					var/turf/T = pick(valid_turfs)
 					valid_turfs -= T
 					if(T)
-						var/mob/living/simple_animal/hostile/rogue/skeleton/S = new(T)
+						var/mob/living/carbon/human/species/skeleton/S = new /mob/living/carbon/human/species/skeleton/npc(T)
 						S.faction = list("skeleton")
 						
 		if(wave < waves)
