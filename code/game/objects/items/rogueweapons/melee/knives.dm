@@ -441,10 +441,7 @@
 
 /obj/item/rogueweapon/huntingknife/scissors/attack(mob/living/M, mob/living/user)
 	if(user.used_intent.type == /datum/intent/snip)
-		if(istype(M, /obj/item)) // Handle item disassembly
-			var/obj/item/I = M
-			return I.attackby(src, user)
-		else if(ishuman(M)) // Handle hair styling
+		if(ishuman(M)) // Handle hair styling
 			var/mob/living/carbon/human/H = M
 			var/list/options = list("hairstyle", "facial hairstyle")
 			var/chosen = input(user, "What would you like to style?", "Hair Styling") as null|anything in options
@@ -488,7 +485,7 @@
 						H.update_body_parts()
 						playsound(src, 'sound/items/flint.ogg', 50, TRUE)
 						user.visible_message(span_notice("[user] finishes styling [H]'s hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] hair."))
-
+				
 				if("facial hairstyle")
 					if(H.gender != MALE)
 						to_chat(user, span_warning("They don't have facial hair to style!"))
@@ -529,4 +526,35 @@
 						playsound(src, 'sound/items/flint.ogg', 50, TRUE)
 						user.visible_message(span_notice("[user] finishes styling [H]'s facial hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] facial hair."))
 		return
+	return ..()
+
+/obj/item/rogueweapon/huntingknife/scissors/attack_obj(obj/O, mob/living/user)
+	if(user.used_intent.type == /datum/intent/snip && istype(O, /obj/item))
+		var/obj/item/item = O
+		if(item.sewrepair && item.salvage_result) // We can only salvage objects which can be sewn!
+			var/salvage_time = 70
+			salvage_time = (70 - ((user.mind.get_skill_level(/datum/skill/misc/sewing)) * 10))
+			if(!do_after(user, salvage_time, target = user))
+				return
+			
+			if(item.fiber_salvage) //We're getting fiber as base if fiber is present on the item
+				new /obj/item/natural/fibers(get_turf(item))
+			if(istype(item, /obj/item/storage))
+				var/obj/item/storage/bag = item
+				bag.emptyStorage()
+			var/skill_level = user.mind.get_skill_level(/datum/skill/misc/sewing)
+			if(prob(50 - (skill_level * 10))) // We are dumb and we failed!
+				to_chat(user, span_info("I ruined some of the materials due to my lack of skill..."))
+				playsound(item, 'sound/foley/cloth_rip.ogg', 50, TRUE)
+				qdel(item)
+				user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT)) //Getting exp for failing
+				return //We are returning early if the skill check fails!
+			item.salvage_amount -= item.torn_sleeve_number
+			for(var/i = 1; i <= item.salvage_amount; i++) // We are spawning salvage result for the salvage amount minus the torn sleves!
+				var/obj/item/Sr = new item.salvage_result(get_turf(item))
+				Sr.color = item.color
+			user.visible_message(span_notice("[user] salvages [item] into usable materials."))
+			playsound(item, 'sound/items/flint.ogg', 100, TRUE)
+			qdel(item)
+			user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT))
 	return ..()
