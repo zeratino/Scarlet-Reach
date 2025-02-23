@@ -118,6 +118,7 @@
 #define TRAIT_DUALWIELDER "Dual Wielder"
 #define TRAIT_SENTINELOFWITS "Sentinel of Wits"
 #define TRAIT_KEENEARS "Keen Ears"
+#define TRAIT_MIRROR_MAGIC "Mirror Magic"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -213,6 +214,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_SENTINELOFWITS = span_info("My Intelligence aids in my defense. Every 2 points above 10 INT become an additional 10% chance to dodge or parry. Does not count positive buffs from potions or substances."),
 	TRAIT_KEENEARS = span_info("I've a good pair of ears, and can tell who is speaking, even when they're out of sight."),
 	TRAIT_PURITAN = span_info("I can hear the secret whispers of the heretics."),
+	TRAIT_MIRROR_MAGIC = span_info("Mirror, mirror on the wall, who's the fairest of them all?")
 ))
 
 // trait accessor defines
@@ -487,6 +489,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TIMESTOP_TRAIT "timestop"
 #define HUGBOX_TRAIT "hugbox"
 #define ADVENTURER_TRAIT "adventurer"
+#define TRAIT_MIRROR_MAGIC "mirror_magic"
 
 #define TRAIT_I_AM_INVISIBLE_ON_A_BOAT "invisible_on_tram"
 
