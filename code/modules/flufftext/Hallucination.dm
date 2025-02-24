@@ -1,5 +1,6 @@
 #define HAL_LINES_FILE "hallucination.json"
 /* Still needs updating:
+items
 items_other
 hudscrew
 Chat and dangerflash could use polishing*/
@@ -228,7 +229,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 	qdel(src)
 
-/datum/hallucination/items_other
+/*/datum/hallucination/items_other
 
 /datum/hallucination/items_other/New(mob/living/carbon/C, forced = TRUE, item_type)
 	set waitfor = FALSE
@@ -324,7 +325,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				target.playsound_local(H, 'sound/blank.ogg',30,1)
 			target.client.images.Remove(A)
 	qdel(src)
-
+*/
 /datum/hallucination/delusion
 	var/list/image/delusions = list()
 
@@ -657,26 +658,30 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	..()
 	var/turf/source = random_far_turf()
 	if(!sound_type)
-		sound_type = pick("bleed","help","hello","zizo","evil","drill","laughter","creepy")
+		sound_type = pick("bleed","whispers","whispers2","zizo","evil","drill","laughter","creepy")
 	feedback_details += "Type: [sound_type]"
 	//Strange audio
 	switch(sound_type)
 		if("bleed")
-			target.playsound_local(target, 'sound/misc/bleed (1).ogg', 85)
+			target.playsound_local(target, 'sound/misc/bleed (1).ogg', 80)
 			sleep(25)
-			target.playsound_local(target, 'sound/misc/bleed (2).ogg', 75)
+			target.playsound_local(target, 'sound/misc/bleed (2).ogg', 85)
 			sleep(25)
-			target.playsound_local(target, 'sound/misc/bleed (3).ogg', 75)
+			target.playsound_local(target, 'sound/misc/bleed (3).ogg', 90)
 			sleep(25)
-			target.playsound_local(target, 'sound/misc/bleed (1).ogg', 85)
-		if("help")
-			target.playsound_local(target, 'sound/items/carvhelp.ogg', 50)
-		if("hello")
-			target.playsound_local(target, 'sound/items/carvhello.ogg', 50)
+			target.playsound_local(target, 'sound/misc/bleed (1).ogg', 100)
+		if("whispers")
+			target.playsound_local(target, 'sound/misc/carriage1.ogg', 90)
+			sleep(25)
+			target.playsound_local(target, 'sound/misc/carriage3.ogg', 100)
+		if("whispers2")
+			target.playsound_local(target, 'sound/misc/carriage2.ogg', 90)
+			sleep(25)
+			target.playsound_local(target, 'sound/misc/carriage4.ogg', 100)
 		if("zizo")
-			target.playsound_local(target, 'sound/misc/zizo.ogg', 50)
+			target.playsound_local(target, 'sound/misc/zizo.ogg', 70)
 		if("evil")
-			target.playsound_local(target, 'sound/misc/evilevent.ogg', 50)
+			target.playsound_local(target, 'sound/misc/evilevent.ogg', 70)
 		if("drill")
 			target.playsound_local(source, 'sound/misc/TheDrill.ogg', 90)
 		if("laughter")
@@ -729,7 +734,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			SEND_SOUND(target, 'sound/misc/royal_decree.ogg')
 			SEND_SOUND(target, 'sound/vo/mobs/wwolf/howldist (1).ogg')
 
-/datum/hallucination/hudscrew
+/*/datum/hallucination/hudscrew
 
 /datum/hallucination/hudscrew/New(mob/living/carbon/C, forced = TRUE, screwyhud_type)
 	set waitfor = FALSE
@@ -743,7 +748,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	sleep(rand(100,250))
 	target.set_screwyhud(SCREWYHUD_NONE)
 	qdel(src)
-
+*/
 /datum/hallucination/fake_alert
 
 /datum/hallucination/fake_alert/New(mob/living/carbon/C, forced = TRUE, specific, duration = 150)
@@ -755,27 +760,27 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	feedback_details += "Type: [alert_type]"
 	switch(alert_type)
 		if("bleed")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt1, override = TRUE)
+			/*target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt1, override = TRUE)
 			sleep(50)
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt2, override = TRUE)
-			sleep(50)
+			sleep(50)*/
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt3, override = TRUE)
 		if("netted")
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/netted, override = TRUE)
 		if("surrender")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/breedable, override = TRUE)
+		//	target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/breedable, override = TRUE)
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/submissive, override = TRUE)
 		if("nutrition")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/hungryt1, override = TRUE)
+			/*target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/hungryt1, override = TRUE)
 			sleep(50)
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/hungryt2, override = TRUE)
-			sleep(50)
+			sleep(50)*/
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/hungryt3, override = TRUE)
 		if("thirsty")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/thirstyt1, override = TRUE)
+			/*target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/thirstyt1, override = TRUE)
 			sleep(50)
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/thirstyt2, override = TRUE)
-			sleep(50)
+			sleep(50)*/
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/thirstyt3, override = TRUE)
 		if("fire")
 			target.throw_alert(alert_type, /atom/movable/screen/alert/fire, override = TRUE)
@@ -793,8 +798,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.halitem = new
 		var/obj/item/l_hand = target.get_item_for_held_index(1)
 		var/obj/item/r_hand = target.get_item_for_held_index(2)
-		var/l = ui_hand_position(target.get_held_index_of_item(l_hand))
-		var/r = ui_hand_position(target.get_held_index_of_item(r_hand))
+		var/l = rogueui_righthand
+		var/r = rogueui_lefthand
 		var/list/slots_free = list(l,r)
 		if(l_hand)
 			slots_free -= l
@@ -803,11 +808,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(!H.belt)
-				slots_free += ui_belt
+				slots_free += rogueui_backl
 			if(!H.l_store)
-				slots_free += ui_storage1
+				slots_free += rogueui_beltl
 			if(!H.r_store)
-				slots_free += ui_storage2
+				slots_free += rogueui_beltr
 		if(slots_free.len)
 			target.halitem.screen_loc = pick(slots_free)
 			target.halitem.layer = ABOVE_HUD_LAYER
@@ -1093,7 +1098,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 			if(target.client)
 				target.client.images += target.halbody
-			sleep(rand(30,50)) //Only seen for a brief moment.
+			sleep(rand(20,40)) //Only seen for a brief moment.
 			if(target.client)
 				target.client.images -= target.halbody
 			QDEL_NULL(target.halbody)
