@@ -88,7 +88,7 @@
 		if(H.cmode)	//Turn off the music
 			H.toggle_cmode()
 		lightning_strike_heretics(H)
-		addtimer(CALLBACK(src, PROC_REF(killhost)), 60 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(killhost)), 45 SECONDS)
 		for(var/i = 1, i<=count,i++)
 			if(do_after_mob(H, targets, 70, uninterruptible = 1))
 				switch(i)
@@ -120,15 +120,16 @@
 				if(istype(type, /datum/patron/inhumen))
 					H.electrocution_animation(20)
 
+//This gives a countdown to the user, it's pretty hacky
 /datum/component/martyrweapon/proc/timehint()
 	var/result = round((end_activation - world.time) / 600)	//Minutes
-	if(result != last_time && result != 0)
-		to_chat(current_holder,span_notice("[result + 1] minutes left."))
+	if(result != last_time && last_time != 30)
+		to_chat(current_holder,span_notice("[result + 1] minute[result ? "s" : ""] left."))
 		last_time = result
 		return result
 	if(result == 0)
 		var/resultadv = (end_activation - world.time) / 10	//Seconds
-		if(resultadv < 30 && resultadv > 25 && last_time != 30)
+		if(resultadv < 30 && resultadv > 27 && last_time != 30)
 			to_chat(current_holder,span_notice("30 SECONDS!"))
 			last_time = 30
 			return 30
@@ -190,36 +191,41 @@
 
 /datum/component/martyrweapon/proc/altclick(mob/user)
 	if(user == current_holder && !is_active && !is_activating)
-		if(world.time > next_activation)
-			if(!allow_all)
-				var/A = get_area(user)
-				if(A)
-					var/area/testarea = A
-					var/success = FALSE
-					for(var/AR in allowed_areas)
-						if(istype(testarea, AR))
-							success = TRUE
-							break
-					if(success)
-						if(alert("You are within holy grounds. Do you wish to call your god to aid in its defense? (You will live if the duration ends within the Church.)", "Your Oath", "Yes", "No") == "Yes")
-							is_activating = TRUE
-							activate(user, STATE_SAFE)
-					else
-						if(alert("You are trying to activate the weapon outside of holy grounds. Do you wish to fulfill your Oath of Vengeance? (You will die.)", "Your Oath", "Yes", "No") == "Yes")
-							var/choice = alert("You pray to your god. How many minutes will you ask for? (Shorter length means greater boons)","Your Oath (It is up to you if your death is canon)", "Six", "Two", "Nevermind")
-							switch(choice)
-								if("Six")
-									is_activating = TRUE
-									activate(user, STATE_MARTYR)
-								if("Two")
-									is_activating = TRUE
-									activate(user, STATE_MARTYRULT)
-								if("Nevermind")
-									to_chat(user, "You reconsider. It is not the right moment.")
-									return
-			else
-				activate(user)
+		var/holding = user.get_active_held_item()
+		if(holding == parent)
+			if(world.time > next_activation)
+				if(!allow_all)
+					var/A = get_area(user)
+					if(A)
+						var/area/testarea = A
+						var/success = FALSE
+						for(var/AR in allowed_areas)
+							if(istype(testarea, AR))
+								success = TRUE
+								break
+						if(success)
+							if(alert("You are within holy grounds. Do you wish to call your god to aid in its defense? (You will live if the duration ends within the Church.)", "Your Oath", "Yes", "No") == "Yes")
+								is_activating = TRUE
+								activate(user, STATE_SAFE)
+						else
+							if(alert("You are trying to activate the weapon outside of holy grounds. Do you wish to fulfill your Oath of Vengeance? (You will die.)", "Your Oath", "Yes", "No") == "Yes")
+								var/choice = alert("You pray to your god. How many minutes will you ask for? (Shorter length means greater boons)","Your Oath (It is up to you if your death is canon)", "Six", "Two", "Nevermind")
+								switch(choice)
+									if("Six")
+										is_activating = TRUE
+										activate(user, STATE_MARTYR)
+									if("Two")
+										is_activating = TRUE
+										activate(user, STATE_MARTYRULT)
+									if("Nevermind")
+										to_chat(user, "You reconsider. It is not the right moment.")
+										return
+				else
+					activate(user)
+		else
+			to_chat(user, span_info("You must be holding the sword in your active hand!"))
 
+//IF it gets dropped, somehow (likely delimbing), turn it off immediately.
 /datum/component/martyrweapon/proc/on_drop(datum/source, mob/user)
 	UnregisterSignal(user, COMSIG_CLICK_ALT)
 	deactivate()
@@ -258,7 +264,9 @@
 				current_holder.STAINT += stat_bonus_martyr
 				current_holder.STAPER += stat_bonus_martyr
 				current_holder.STALUC += stat_bonus_martyr
-			if(STATE_MARTYRULT)	//Go get 'em, Martyrissimo, it's your last 30 seconds, it's a frag or be fragged world
+				var/mob/living/carbon/human/H = current_holder
+				H.rogstam_add(9999)
+			if(STATE_MARTYRULT)	//This is ONLY accessed during the last 30 seconds of the shorter variant.
 				current_holder.STASTR = 20
 				current_holder.STASPD = 20
 				current_holder.STACON = 20
@@ -266,7 +274,8 @@
 				current_holder.STAINT = 20
 				current_holder.STAPER = 20
 				current_holder.STALUC = 20
-				if(ishuman(current_holder))
+				H.rogstam_add(9999)
+				if(ishuman(current_holder))//Go get 'em, Martyrissimo, it's your last 30 seconds, it's a frag or be fragged world
 					var/mob/living/carbon/human/H = current_holder
 					if(H.mind)
 						H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 6, FALSE)
@@ -278,13 +287,14 @@
 				flash_lightning(current_holder)
 				current_holder.revive(full_heal = TRUE, admin_revive = TRUE)
 
+//This is called regardless of the activated state (safe or not)
 /datum/component/martyrweapon/proc/deactivate()
 	var/obj/item/I = parent
 	if(HAS_TRAIT(parent, TRAIT_NODROP))
-		REMOVE_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)
+		REMOVE_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)	//The weapon can be moved by the Priest again (or used, I suppose)
 	is_active = FALSE
 	I.damtype = BRUTE
-	I.slot_flags = initial(I.slot_flags)
+	I.slot_flags = initial(I.slot_flags)	//Returns its ability to be sheathed
 	adjust_traits(remove = TRUE)
 	adjust_icons(tonormal = TRUE)
 
@@ -326,6 +336,7 @@
 	
 	current_holder.regenerate_icons()
 
+//This is called once all the checks are passed and the options are made by the player to commit.
 /datum/component/martyrweapon/proc/activate(mob/user, status_flag)
 	current_holder.visible_message("[span_notice("[current_holder] begins invoking their Oath!")]", span_notice("You begin to invoke your oath."))
 	switch(status_flag)
@@ -336,7 +347,7 @@
 	if(do_after(user, 50))
 		flash_lightning(user)
 		var/obj/item/I = parent
-		I.damtype = BURN
+		I.damtype = BURN	//Changes weapon damage type to fire
 		I.slot_flags = null	//Can't sheathe a burning sword
 
 		ADD_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)
@@ -352,12 +363,12 @@
 				end_activation = world.time + safe_duration
 			if(STATE_MARTYR)
 				end_activation = world.time + martyr_duration
-				I.max_integrity = 2000
+				I.max_integrity = 2000				//If you're committing, we repair the weapon and give it a boost so it lasts the whole fight
 				I.obj_integrity = I.max_integrity
 				adjust_stats(current_state)
 			if(STATE_MARTYRULT)
 				end_activation = world.time + ultimate_duration
-				I.max_integrity = 9999
+				I.max_integrity = 9999				//why not, they got 2 mins anyway
 				I.obj_integrity = I.max_integrity
 				current_holder.STASTR += stat_bonus_martyr
 				current_holder.STASPD += stat_bonus_martyr
@@ -408,12 +419,11 @@
 	outfit = /datum/outfit/job/roguetown/martyr
 	min_pq = 10 //Cus it's a Martyr of the Ten. Get it.
 	max_pq = null
-	round_contrib_points = 3
+	round_contrib_points = 4
 	total_positions = 1
 	spawn_positions = 1
-	advclass_cat_rolls = list(CTAG_TEMPLAR = 20)
-	display_order = JDO_TEMPLAR
-	undead_not_allowed = TRUE
+	display_order = JDO_MARTYR
+	undead_not_allowed = TRUE	//Restricts it from being picked w/ Deathless / Rotcured / Deadened / Heretic Seer (duh)
 	
 	give_bank_account = TRUE
 
