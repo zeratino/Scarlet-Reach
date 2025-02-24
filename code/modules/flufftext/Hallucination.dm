@@ -11,13 +11,13 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/sounds = 50,
 	/datum/hallucination/battle = 20,
 	/datum/hallucination/dangerflash = 15,
-	/datum/hallucination/hudscrew = 12,
+//	/datum/hallucination/hudscrew = 12,
 	/datum/hallucination/fake_alert = 12,
 	/datum/hallucination/weird_sounds = 8,
-	/datum/hallucination/stationmessage = 7,
-	/datum/hallucination/items_other = 7,
+	/datum/hallucination/townannouncement = 7,
+//	/datum/hallucination/items_other = 7,
 	/datum/hallucination/husks = 7,
-	/datum/hallucination/items = 4,
+//	/datum/hallucination/items = 4,
 	/datum/hallucination/fire = 3,
 	/datum/hallucination/self_delusion = 3,
 	/datum/hallucination/delusion = 2,
@@ -695,9 +695,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 	qdel(src)
 
-/datum/hallucination/stationmessage
+/datum/hallucination/townannouncement
 
-/datum/hallucination/stationmessage/New(mob/living/carbon/C, forced = TRUE, message)
+/datum/hallucination/townannouncement/New(mob/living/carbon/C, forced = TRUE, message)
 	set waitfor = FALSE
 	..()
 	if(!message)
@@ -751,35 +751,36 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/fake_alert/New(mob/living/carbon/C, forced = TRUE, specific, duration = 150)
 	set waitfor = FALSE
 	..()
-	var/alert_type = pick("not_enough_oxy","too_much_tox","nutrition","charge","gravity","fire","locked","hacked","temphot","tempcold","pressure")
+	var/alert_type = pick("bleed","netted","surrender","nutrition","thirsty","fire")
 	if(specific)
 		alert_type = specific
 	feedback_details += "Type: [alert_type]"
 	switch(alert_type)
-		if("not_enough_oxy")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/not_enough_oxy, override = TRUE)
-		if("too_much_tox")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/too_much_tox, override = TRUE)
+		if("bleed")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt1, override = TRUE)
+			sleep(50)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt2, override = TRUE)
+			sleep(50)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt3, override = TRUE)
+		if("netted")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/netted, override = TRUE)
+		if("surrender")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/breedable, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/submissive, override = TRUE)
 		if("nutrition")
-			if(prob(50))
-				target.throw_alert(alert_type, /atom/movable/screen/alert/fat, override = TRUE)
-			else
-				target.throw_alert(alert_type, /atom/movable/screen/alert/starving, override = TRUE)
-		if("gravity")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/weightless, override = TRUE)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/hungryt1, override = TRUE)
+			sleep(50)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/hungryt2, override = TRUE)
+			sleep(50)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/hungryt3, override = TRUE)
+		if("thirsty")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/thirstyt1, override = TRUE)
+			sleep(50)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/thirstyt2, override = TRUE)
+			sleep(50)
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/thirstyt3, override = TRUE)
 		if("fire")
 			target.throw_alert(alert_type, /atom/movable/screen/alert/fire, override = TRUE)
-		if("temphot")
-			alert_type = "temp"
-			target.throw_alert(alert_type, /atom/movable/screen/alert/hot, 3, override = TRUE)
-		if("tempcold")
-			alert_type = "temp"
-			target.throw_alert(alert_type, /atom/movable/screen/alert/cold, 3, override = TRUE)
-		if("pressure")
-			if(prob(50))
-				target.throw_alert(alert_type, /atom/movable/screen/alert/highpressure, 2, override = TRUE)
-			else
-				target.throw_alert(alert_type, /atom/movable/screen/alert/lowpressure, 2, override = TRUE)
 	sleep(duration)
 	target.clear_alert(alert_type, clear_override = TRUE)
 	qdel(src)
@@ -893,7 +894,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	name = "lava"
 
 /obj/effect/hallucination/danger/lava/show_icon()
-	image = image('icons/turf/floors/lava.dmi',src,"smooth",TURF_LAYER)
+	image = image('icons/turf/floors/lava.dmi',src,"unsmooth",TURF_LAYER)
 	if(target.client)
 		target.client.images += image
 
@@ -1068,7 +1069,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			possible_points += F
 		if(possible_points.len)
 			var/turf/open/floor/husk_point = pick(possible_points)
-			switch(rand(1,4))
+			switch(rand(1,12))
 				if(1)
 					var/image/body = image('icons/mob/human.dmi',husk_point,"husk",TURF_LAYER)
 					var/matrix/M = matrix()
@@ -1080,7 +1081,23 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				if(3)
 					target.halbody = image('icons/roguetown/mob/monster/horrors.dmi',husk_point,"headcrab",TURF_LAYER)
 				if(4)
+					target.halbody = image('icons/roguetown/mob/monster/horrors.dmi',husk_point,"horror4",TURF_LAYER)
+				if(5)
+					target.halbody = image('icons/roguetown/maniac/dreamer_mobs.dmi',husk_point,"mom",TURF_LAYER)
+				if(6)
 					target.halbody = image('icons/roguetown/maniac/dreamer_mobs.dmi',husk_point,"M3",TURF_LAYER)
+				if(7)
+					target.halbody = image('icons/roguetown/maniac/creations.dmi',husk_point,"creation1",TURF_LAYER)
+				if(8)
+					target.halbody = image('icons/mob/human.dmi',husk_point,"husk",TURF_LAYER)
+				if(9)
+					target.halbody = image('icons/mob/human.dmi',husk_point,"ghost",TURF_LAYER)
+				if(10)
+					target.halbody = image('icons/mob/human.dmi',husk_point,"body_cloaked",TURF_LAYER)
+				if(11)
+					target.halbody = image('icons/mob/mob.dmi',husk_point,"mist",TURF_LAYER)
+				if(12)
+					target.halbody = image('icons/mob/mob.dmi',husk_point,"revenant_idle",TURF_LAYER)
 
 			if(target.client)
 				target.client.images += target.halbody
