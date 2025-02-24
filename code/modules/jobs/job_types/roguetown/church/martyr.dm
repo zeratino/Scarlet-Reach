@@ -10,9 +10,9 @@
 	var/next_activation = 0
 	var/end_activation = 0
 	var/ignite_chance = 10
-	var/traits_applied = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOMOOD, TRAIT_NOHUNGER, TRAIT_EASYDISMEMBER)
-	var/stat_bonus_martyr = 2
-	var/mob/current_holder
+	var/traits_applied = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOMOOD, TRAIT_NOHUNGER, TRAIT_EASYDISMEMBER, TRAIT_STRONGBITE)
+	var/stat_bonus_martyr = 3
+	var/mob/living/current_holder
 	var/is_active = FALSE
 	var/allow_all = FALSE
 	var/is_activating
@@ -20,7 +20,8 @@
 	var/martyr_duration = 6 MINUTES
 	var/safe_duration = 9 MINUTES
 	var/ultimate_duration = 2 MINUTES
-	var/last_pulse = 0
+	var/is_dying = FALSE
+	var/death_time
 	var/last_time
 
 /datum/component/martyrweapon/Initialize()
@@ -38,23 +39,15 @@
 			handle_end()
 		else
 			var/timer = timehint()
-			switch(current_state)
-				if(STATE_SAFE)
-					return
-				if(STATE_MARTYR)
-					if(last_pulse != timer && timer != 0)
-						trigger_pulse()
-						last_pulse = timer
-				if(STATE_MARTYRULT)
-					var/timeult = round((world.time / 10) / 30)
-					if(timeult == 1)	//10 seconds
-						trigger_pulse(range = 4, isfinal = TRUE)
-					else if(timeult % 2 == 0)
-						trigger_pulse()
-
+			if(timer == 30 && current_state == STATE_MARTYRULT)
+				adjust_stats(STATE_MARTYRULT)
+	if(is_dying)
+		if(world.time > death_time)
+			killhost()
 
 /datum/component/martyrweapon/proc/handle_end()
 	deactivate()
+	var/mob/living/carbon/C = current_holder
 	switch(current_state)
 		if(STATE_SAFE)
 			var/area/A = get_area(current_holder)
@@ -64,27 +57,56 @@
 					success = TRUE
 					break
 			if(success)
-				to_chat(span_notice("The weapon fizzles out, its energies dissipating across the holy grounds."))
+				to_chat(current_holder, span_notice("The weapon fizzles out, its energies dissipating across the holy grounds."))
 			else
-				to_chat(span_notice("The weapon begins to fizzle out, but the energy has nowhere to go!"))
-				var/mob/living/carbon/C = current_holder
+				to_chat(current_holder, span_notice("The weapon begins to fizzle out, but the energy has nowhere to go!"))
 				C.freak_out()
 				if(prob(35))
-					killhost()
+					deathprocess()
+				else
+					to_chat(current_holder, span_notice("You manage to endure it, this time."))
 		if(STATE_MARTYR)
-			killhost()
+			C.freak_out()
+			deathprocess()
 
 		if(STATE_MARTYRULT)
-			killhost()
+			C.freak_out()
+			deathprocess()
+
+/datum/component/martyrweapon/proc/deathprocess()
+	if(current_holder)
+		current_holder.Stun(16000, 1, 1)	//Even if you glitch out to survive you're still permastunned, you are not meant to come back from this
+		current_holder.Knockdown(16000, 1, 1)
+		var/count = 3
+		var/list/targets = list(current_holder)
+		var/mob/living/carbon/human/H = current_holder
+		for(var/i = 1, i<=count,i++)
+			if(do_after_mob(H, targets, 80, uninterruptible = 1))
+				switch(i)
+					if(1)
+						current_holder.visible_message(span_warning("[current_holder] twitches and writhes from godly energies!"), span_warning("You can feel the weapon tap into your very being, pulling apart your body!"))
+						current_holder.playsound_local(current_holder, 'sound/health/fastbeat.ogg', 100)
+					if(2)
+						current_holder.visible_message(span_warning("[current_holder]'s body contorts, bones splitting apart, tearing through flesh and fabric!"), span_warning("Your bones break and crack, splintering from your flesh as the power of [H.patron.name] overwhelms you."))
+						H.emote_scream()
+						playsound(current_holder, pick('sound/combat/fracture/headcrush (1).ogg', 'sound/combat/fracture/fracturewet (1).ogg'), 100)
+					if(3)
+						current_holder.visible_message(span_warning("[current_holder] ceases to move, and lets out one final gasp. It sounds content, despite the state of their body."), span_warning("Your body is nearly gone. Yet a sense of bliss and fulfillment washes over you. [H.patron.name] blessed you with this opportunity. Your Oath is fulfilled."))
+						current_holder.playsound_local(current_holder, 'sound/magic/ahh1.ogg', 100)
+						is_dying = TRUE
+						death_time = world.time += 90 SECONDS
+						var/lastwords = input(current_holder, "Speak your final words (You have 30 seconds)", "LAST WORDS") as text|null
+						if(lastwords)
+							if(H)
+								H.forcesay(lastwords)
+								current_holder.visible_message(span_info("[current_holder] fades away."), span_info("Your life led up to this moment. In the face of the decay of the world, you endured. Now you rest. You feel your soul shed from its mortal coils, and the embrace of [H.patron.name]"))
+								addtimer(CALLBACK(src, PROC_REF(killhost)), 300)
 
 /datum/component/martyrweapon/proc/killhost()
-	var/mob/living/carbon/human/H = current_holder
-	H.apply_damage(1000, OXY)
-	H.apply_damage(1000, TOX)
-	H.apply_damage(1000, BRUTE)
-	H.apply_damage(1000, BURN)
-	H.apply_damage(1000, BRAIN)
-	H.apply_damage(1000, CLONE)
+	if(current_holder)
+		var/mob/living/carbon/human/H = current_holder
+		H.dust(drop_items = TRUE)
+		is_dying = FALSE
 
 /datum/component/martyrweapon/proc/trigger_pulse(range = 2, isfinal = FALSE)
 	for(var/mob/M in oviewers(range, current_holder))
@@ -96,10 +118,9 @@
 				if(istype(type, /datum/patron/inhumen))
 					H.electrocution_animation(20)
 
-
 /datum/component/martyrweapon/proc/timehint()
-	var/result = round((end_activation - world.time) / 600)	// Minutes
-	if(result != last_time)
+	var/result = round((end_activation - world.time) / 600)	//Minutes
+	if(result != last_time && result != 0)
 		to_chat(current_holder,span_notice("[result + 1] minutes left."))
 		last_time = result
 		return result
@@ -108,6 +129,7 @@
 		if(resultadv < 30 && resultadv > 25 && last_time != 30)
 			to_chat(current_holder,span_notice("30 SECONDS!"))
 			last_time = 30
+			return 30
 		else
 			if(resultadv == 10 && last_time != 10)
 				to_chat(current_holder,span_crit("10 SECONDS"))
@@ -154,10 +176,10 @@
 				H.dropItemToGround(parent)
 				return
 			else
-				RegisterSignal(user, COMSIG_CLICK_ALT, PROC_REF(altclick))
+				RegisterSignal(user, COMSIG_CLICK_ALT, PROC_REF(altclick), override = TRUE)
 				current_holder = user
 	else
-		RegisterSignal(user, COMSIG_CLICK_ALT, PROC_REF(altclick))
+		RegisterSignal(user, COMSIG_CLICK_ALT, PROC_REF(altclick), override = TRUE)
 		current_holder = user
 
 /datum/component/martyrweapon/proc/altclick(mob/user)
@@ -215,12 +237,46 @@
 		else
 			REMOVE_TRAIT(current_holder, trait, TRAIT_GENERIC)
 
+/datum/component/martyrweapon/proc/adjust_stats(state)
+	if(current_holder)
+		switch(state)
+			if(STATE_SAFE)
+				return		//no stat buffs for safe martyr
+			if(STATE_MARTYR)
+				current_holder.STASTR += stat_bonus_martyr
+				current_holder.STASPD += stat_bonus_martyr
+				current_holder.STACON += stat_bonus_martyr
+				current_holder.STAEND += stat_bonus_martyr
+				current_holder.STAINT += stat_bonus_martyr
+				current_holder.STAPER += stat_bonus_martyr
+				current_holder.STALUC += stat_bonus_martyr
+			if(STATE_MARTYRULT)	//Go get 'em, Martyrissimo, it's your last 30 seconds, it's a frag or be fragged world
+				current_holder.STASTR = 20
+				current_holder.STASPD = 20
+				current_holder.STACON = 20
+				current_holder.STAEND = 20
+				current_holder.STAINT = 20
+				current_holder.STAPER = 20
+				current_holder.STALUC = 20
+				if(ishuman(current_holder))
+					var/mob/living/carbon/human/H = current_holder
+					if(H.mind)
+						H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 6, FALSE)
+						H.mind.adjust_skillrank(/datum/skill/combat/swords, 6, FALSE)
+						H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 6, FALSE)
+						H.mind.adjust_skillrank(/datum/skill/misc/athletics, 6, FALSE)
+				ADD_TRAIT(current_holder, TRAIT_NOROGSTAM, TRAIT_GENERIC)
+				current_holder.visible_message(span_warning("[current_holder] rises up, empowered once more!"), span_warningbig("I rise again! I can feel my god flow through me!"))
+				flash_lightning(current_holder)
+				current_holder.revive(full_heal = TRUE, admin_revive = TRUE)
+
 /datum/component/martyrweapon/proc/deactivate()
 	var/obj/item/I = parent
 	if(HAS_TRAIT(parent, TRAIT_NODROP))
 		REMOVE_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)
 	is_active = FALSE
 	I.damtype = BRUTE
+	I.slot_flags = initial(I.slot_flags)
 	adjust_traits(remove = TRUE)
 	adjust_icons(tonormal = TRUE)
 
@@ -233,10 +289,25 @@
 	T.Beam(user, icon_state="lightning[rand(1,12)]", time = 5)
 	playsound(user, 'sound/magic/lightning.ogg', 100, FALSE)
 
+/datum/component/martyrweapon/proc/lightning_strike_heretics(mob/user)
+	for(var/mob/living/carbon/human/M in viewers(world.view, user))
+		M.lightning_flashing = TRUE
+		M.update_sight()
+		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, reset_lightning)), 2)
+		if(istype(M.patron, /datum/patron/inhumen))
+			var/turf/T = get_step(get_step(M, NORTH), NORTH)
+			T.Beam(M, icon_state="lightning[rand(1,12)]", time = 5)
+			M.electrocution_animation(20)
+			mob_ignite(M)
+			playsound(M, 'sound/magic/lightning.ogg', 100, FALSE)
+
 /datum/component/martyrweapon/proc/adjust_icons(tonormal = FALSE)
 	var/obj/item/I = parent
 	if(!tonormal)
-		I.toggle_state = "[I.icon_state]_on"
+		if(current_state == STATE_MARTYR || current_state == STATE_MARTYRULT)
+			I.toggle_state = "[I.icon_state]_ulton"
+		else
+			I.toggle_state = "[I.icon_state]_on"
 		I.item_state = "[I.toggle_state]"
 		I.icon_state = "[I.toggle_state]"
 	else
@@ -248,13 +319,17 @@
 
 /datum/component/martyrweapon/proc/activate(mob/user, status_flag)
 	current_holder.visible_message("[span_notice("[current_holder] begins invoking their Oath!")]", span_notice("You begin to invoke your oath."))
-	user.playsound_local(user, 'sound/misc/martyrcharge.ogg', 100, FALSE)
+	switch(status_flag)
+		if(STATE_MARTYR)
+			user.playsound_local(user, 'sound/misc/martyrcharge.ogg', 100, FALSE)
+		if(STATE_MARTYRULT)
+			user.playsound_local(user, 'sound/misc/martyrultcharge.ogg', 100, FALSE)
 	if(do_after(user, 50))
 		flash_lightning(user)
 		var/obj/item/I = parent
 		I.damtype = BURN
+		I.slot_flags = null	//Can't sheathe a burning sword
 
-		adjust_icons()
 		ADD_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)
 
 		last_activation = world.time
@@ -262,20 +337,31 @@
 
 		if(status_flag)
 			current_state = status_flag
+		adjust_icons()
 		switch(current_state)
 			if(STATE_SAFE)
 				end_activation = world.time + safe_duration
 			if(STATE_MARTYR)
 				end_activation = world.time + martyr_duration
+				I.max_integrity = 2000
+				I.obj_integrity = I.max_integrity
+				adjust_stats(current_state)
 			if(STATE_MARTYRULT)
 				end_activation = world.time + ultimate_duration
+				I.max_integrity = 9999
+				I.obj_integrity = I.max_integrity
 			else
 				end_activation = world.time + safe_duration
 
 		if(ishuman(current_holder))
 			var/mob/living/carbon/human/H = current_holder
-			H.cmode_music = 'sound/music/combat_martyr.ogg'
-			SEND_SOUND(H, sound(null))
+			switch(status_flag)
+				if(STATE_MARTYR)
+					SEND_SOUND(H, sound(null))
+					H.cmode_music = 'sound/music/combat_martyr.ogg'
+				if(STATE_MARTYRULT)
+					SEND_SOUND(H, sound(null))
+					H.cmode_music = 'sound/music/combat_martyrult.ogg'
 			adjust_traits(remove = FALSE)
 			if(!H.cmode)
 				H.toggle_cmode()
@@ -289,9 +375,32 @@
 		is_activating = FALSE
 		SEND_SOUND(current_holder, sound(null))
 
+/datum/job/roguetown/martyr
+	title = "Martyr"
+	department_flag = CHURCHMEN
+	faction = "Station"
+	tutorial = "Templars are warriors who have forsaken wealth and title in lieu of service to the church, due to either zealotry or a past shame. They guard the church and its priest while keeping a watchful eye against heresy and nite-creechers. Within troubled dreams, they wonder if the blood they shed makes them holy or stained."
+	allowed_sexes = list(MALE, FEMALE)
+	allowed_races = RACES_ALL_KINDS
+	allowed_patrons = ALL_DIVINE_PATRONS
+	outfit = /datum/outfit/job/roguetown/templar
+	min_pq = 3 //Deus vult, but only according to the proper escalation rules
+	max_pq = null
+	round_contrib_points = 2
+	total_positions = 3
+	spawn_positions = 3
+	advclass_cat_rolls = list(CTAG_TEMPLAR = 20)
+	display_order = JDO_TEMPLAR
+	
+	give_bank_account = TRUE
+
+	cmode_music = 'sound/music/combat_knight.ogg'
+
+
+
 /obj/item/rogueweapon/sword/long/martyr
-	force = 27
-	force_wielded = 32
+	force = 30
+	force_wielded = 36
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "martyrsword"
@@ -300,7 +409,9 @@
 	lefthand_file = 'icons/mob/inhands/weapons/roguemartyr_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguemartyr_righthand.dmi'
 	name = "martyr sword"
-	desc = "A bastard sword that can chop with ease."
+	desc = "A relic from the Holy See's own vaults. It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	max_blade_int = 200
+	max_integrity = 300
 	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
@@ -322,6 +433,15 @@
 /obj/item/rogueweapon/sword/long/martyr/Initialize()
 	AddComponent(/datum/component/martyrweapon)
 	..()
+
+/obj/item/rogueweapon/sword/long/martyr/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen") return list("shrink" = 0.5,"sx" = -14,"sy" = -8,"nx" = 15,"ny" = -7,"wx" = -10,"wy" = -5,"ex" = 7,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -13,"sturn" = 110,"wturn" = -60,"eturn" = -30,"nflip" = 1,"sflip" = 1,"wflip" = 8,"eflip" = 1)
+			if("onback") return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
+			if("wielded") return list("shrink" = 0.6,"sx" = 6,"sy" = -2,"nx" = -4,"ny" = 2,"wx" = -8,"wy" = -1,"ex" = 8,"ey" = 3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 15,"sturn" = -200,"wturn" = -160,"eturn" = -25,"nflip" = 8,"sflip" = 8,"wflip" = 0,"eflip" = 0)
+			if("onbelt") return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 180,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/cloak/martyr
 	name = "martyr cloak"
