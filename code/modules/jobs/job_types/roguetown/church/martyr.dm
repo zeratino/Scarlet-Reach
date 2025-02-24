@@ -5,7 +5,7 @@
 /datum/component/martyrweapon
 	var/list/allowed_areas = list(/area/rogue/indoors/town/church, /area/rogue/indoors/town/church/chapel)
 	var/list/allowed_patrons = list()
-	var/cooldown = 30 SECONDS
+	var/cooldown = 30 MINUTES
 	var/last_activation = 0
 	var/next_activation = 0
 	var/end_activation = 0
@@ -41,7 +41,7 @@
 			var/timer = timehint()
 			if(timer == 30 && current_state == STATE_MARTYRULT)
 				adjust_stats(STATE_MARTYRULT)
-	if(is_dying)
+	if(is_dying && death_time)
 		if(world.time > death_time)
 			killhost()
 
@@ -56,7 +56,12 @@
 				if(istype(A, AR))
 					success = TRUE
 					break
-			if(success)
+			if(!success)
+				for(var/turf/T in view(world.view, C))	//One last mercy check to see if it fizzles out while the church is on-screen.
+					var/mercyarea = get_area(T)
+					for(var/AR in allowed_areas)
+						if(istype(mercyarea, AR))
+							success = TRUE
 				to_chat(current_holder, span_notice("The weapon fizzles out, its energies dissipating across the holy grounds."))
 			else
 				to_chat(current_holder, span_notice("The weapon begins to fizzle out, but the energy has nowhere to go!"))
@@ -80,8 +85,11 @@
 		var/count = 3
 		var/list/targets = list(current_holder)
 		var/mob/living/carbon/human/H = current_holder
+		if(H.cmode)	//Turn off the music
+			H.toggle_cmode()
+		addtimer(CALLBACK(src, PROC_REF(killhost)), 60 SECONDS)
 		for(var/i = 1, i<=count,i++)
-			if(do_after_mob(H, targets, 80, uninterruptible = 1))
+			if(do_after_mob(H, targets, 70, uninterruptible = 1))
 				switch(i)
 					if(1)
 						current_holder.visible_message(span_warning("[current_holder] twitches and writhes from godly energies!"), span_warning("You can feel the weapon tap into your very being, pulling apart your body!"))
@@ -93,18 +101,11 @@
 					if(3)
 						current_holder.visible_message(span_warning("[current_holder] ceases to move, and lets out one final gasp. It sounds content, despite the state of their body."), span_warning("Your body is nearly gone. Yet a sense of bliss and fulfillment washes over you. [H.patron.name] blessed you with this opportunity. Your Oath is fulfilled."))
 						current_holder.playsound_local(current_holder, 'sound/magic/ahh1.ogg', 100)
-						is_dying = TRUE
-						death_time = world.time += 90 SECONDS
-						var/lastwords = input(current_holder, "Speak your final words (You have 30 seconds)", "LAST WORDS") as text|null
-						if(lastwords)
-							if(H)
-								H.forcesay(lastwords)
-								current_holder.visible_message(span_info("[current_holder] fades away."), span_info("Your life led up to this moment. In the face of the decay of the world, you endured. Now you rest. You feel your soul shed from its mortal coils, and the embrace of [H.patron.name]"))
-								addtimer(CALLBACK(src, PROC_REF(killhost)), 300)
 
 /datum/component/martyrweapon/proc/killhost()
 	if(current_holder)
 		var/mob/living/carbon/human/H = current_holder
+		current_holder.visible_message(span_info("[current_holder] fades away."), span_info("Your life led up to this moment. In the face of the decay of the world, you endured. Now you rest. You feel your soul shed from its mortal coils, and the embrace of [H.patron.name]"))
 		H.dust(drop_items = TRUE)
 		is_dying = FALSE
 
@@ -178,6 +179,10 @@
 			else
 				RegisterSignal(user, COMSIG_CLICK_ALT, PROC_REF(altclick), override = TRUE)
 				current_holder = user
+			if(J.title == "Martyr")
+				to_chat(user, span_warning("The blade binds to you."))
+			if(J.title == "Priest")
+				to_chat(user, span_warning("You feel the shocking sensation as the sword attempts to bind to you. You know it will kill you. You can still drop it, and leave it for the Oathed."))
 	else
 		RegisterSignal(user, COMSIG_CLICK_ALT, PROC_REF(altclick), override = TRUE)
 		current_holder = user
@@ -220,11 +225,13 @@
 
 /datum/component/martyrweapon/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(current_holder)
-		examine_list += span_notice("It looks to be bound.")
-	if(!is_active && world.time < last_activation)
+		examine_list += span_notice("It looks to be bound to you. Alt + right click to activate it.")
+	if(!is_active && world.time < next_activation)
 		var/time = last_activation - world.time
 		time = time / 10	//Deciseconds to seconds
-		examine_list += span_notice("The time remaininng until it is prepared: [time] seconds.")
+		examine_list += span_notice("The time remaining until it is prepared: [abs(time)] seconds.")
+	else if(!is_active && world.time > next_activation)
+		examine_list += span_notice("It looks ready to be used again.")
 	if(is_active)
 		examine_list += span_warningbig("It is lit afire by godly energies!")
 		if(user == current_holder)
@@ -350,6 +357,13 @@
 				end_activation = world.time + ultimate_duration
 				I.max_integrity = 9999
 				I.obj_integrity = I.max_integrity
+				current_holder.STASTR += stat_bonus_martyr
+				current_holder.STASPD += stat_bonus_martyr
+				current_holder.STACON += stat_bonus_martyr
+				current_holder.STAEND += stat_bonus_martyr
+				current_holder.STAINT += stat_bonus_martyr
+				current_holder.STAPER += stat_bonus_martyr
+				current_holder.STALUC += stat_bonus_martyr
 			else
 				end_activation = world.time + safe_duration
 
@@ -359,9 +373,15 @@
 				if(STATE_MARTYR)
 					SEND_SOUND(H, sound(null))
 					H.cmode_music = 'sound/music/combat_martyr.ogg'
+					to_chat(H, span_warning("I can feel my muscles nearly burst from power! I can jump great heights!"))
+					ADD_TRAIT(H, TRAIT_ZJUMP, TRAIT_GENERIC)
+					ADD_TRAIT(H, TRAIT_NOFALLDAMAGE2, TRAIT_GENERIC)
 				if(STATE_MARTYRULT)
 					SEND_SOUND(H, sound(null))
 					H.cmode_music = 'sound/music/combat_martyrult.ogg'
+					to_chat(H, span_warning("I can jump great heights!"))
+					ADD_TRAIT(H, TRAIT_ZJUMP, TRAIT_GENERIC)
+					ADD_TRAIT(H, TRAIT_NOFALLDAMAGE2, TRAIT_GENERIC)
 			adjust_traits(remove = FALSE)
 			if(!H.cmode)
 				H.toggle_cmode()
@@ -379,23 +399,66 @@
 	title = "Martyr"
 	department_flag = CHURCHMEN
 	faction = "Station"
-	tutorial = "Templars are warriors who have forsaken wealth and title in lieu of service to the church, due to either zealotry or a past shame. They guard the church and its priest while keeping a watchful eye against heresy and nite-creechers. Within troubled dreams, they wonder if the blood they shed makes them holy or stained."
+	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the belief of the Ten. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	allowed_patrons = ALL_DIVINE_PATRONS
-	outfit = /datum/outfit/job/roguetown/templar
-	min_pq = 3 //Deus vult, but only according to the proper escalation rules
+	outfit = /datum/outfit/job/roguetown/martyr
+	min_pq = 10 //Cus it's a Martyr of the Ten. Get it.
 	max_pq = null
-	round_contrib_points = 2
-	total_positions = 3
-	spawn_positions = 3
+	round_contrib_points = 3
+	total_positions = 1
+	spawn_positions = 1
 	advclass_cat_rolls = list(CTAG_TEMPLAR = 20)
 	display_order = JDO_TEMPLAR
+	undead_not_allowed = TRUE
 	
 	give_bank_account = TRUE
 
-	cmode_music = 'sound/music/combat_knight.ogg'
+	cmode_music = 'sound/music/combat_martyrsafe.ogg'
 
+
+/datum/outfit/job/roguetown/martyr/pre_equip(mob/living/carbon/human/H)
+	..()
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
+	belt = /obj/item/storage/belt/rogue/leather/plaquegold
+	beltr = /obj/item/storage/keyring/priest
+	backr = /obj/item/storage/backpack/rogue/satchel
+	gloves = /obj/item/clothing/gloves/roguetown/chain
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	neck = /obj/item/clothing/neck/roguetown/bevor
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/full/holysee
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
+	pants = /obj/item/clothing/under/roguetown/platelegs/holysee
+	cloak = /obj/item/clothing/cloak/holysee
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee
+
+	//No, they don't get any miracles. Their miracle is being able to use their weapon at all.
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)	//Maybe activating the sword could give them Expert / Master and they stay at Jman by default?
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)
+		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)	//You can't dual wield the unique weapon, this is more to cover for the NODROP weapon that might end up in an off-hand.
+		H.change_stat("strength", 2)
+		H.change_stat("constitution", 3)
+		H.change_stat("endurance", 3)
+		H.change_stat("intelligence", 1)
+		H.change_stat("perception", 1)
+		H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 
 
 /obj/item/rogueweapon/sword/long/martyr
@@ -425,7 +488,7 @@
 	associated_skill = /datum/skill/combat/swords
 	throwforce = 15
 	thrown_bclass = BCLASS_CUT
-	dropshrink = 0.75
+	dropshrink = 1
 	smeltresult = /obj/item/ingot/silver
 	is_silver = TRUE
 	toggle_state = null
@@ -441,11 +504,11 @@
 			if("gen") return list("shrink" = 0.5,"sx" = -14,"sy" = -8,"nx" = 15,"ny" = -7,"wx" = -10,"wy" = -5,"ex" = 7,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -13,"sturn" = 110,"wturn" = -60,"eturn" = -30,"nflip" = 1,"sflip" = 1,"wflip" = 8,"eflip" = 1)
 			if("onback") return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 			if("wielded") return list("shrink" = 0.6,"sx" = 6,"sy" = -2,"nx" = -4,"ny" = 2,"wx" = -8,"wy" = -1,"ex" = 8,"ey" = 3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 15,"sturn" = -200,"wturn" = -160,"eturn" = -25,"nflip" = 8,"sflip" = 8,"wflip" = 0,"eflip" = 0)
-			if("onbelt") return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 180,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+			if("onbelt") return list("shrink" = 0.5,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 180,"sturn" = 180,"wturn" = 0,"eturn" = 90,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/cloak/martyr
 	name = "martyr cloak"
-	desc = "A long vest meant for knights."
+	desc = "An elegant cloak in the colors of Astrata. Looks like it can only fit Humen-sized people."
 	color = null
 	icon_state = "martyrcloak"
 	item_state = "martyrcloak"
@@ -454,3 +517,89 @@
 	boobed = FALSE
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/holysee
+	name = "Holy See's silver plate"
+	desc = "It spent a long trek to get here from the seat of the Holy See, and now it glistens in full defiance of the rot, and its putrid supporters."
+	icon = 'icons/roguetown/clothing/special/martyr.dmi'
+	icon_state = "silverarmor"
+	item_state = "silverarmor"
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
+	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 20, "fire" = 0, "acid" = 0)
+	sellprice = 1000
+	smeltresult = /obj/item/ingot/silver
+	smelt_bar_num = 4
+
+/obj/item/clothing/under/roguetown/platelegs/holysee
+	name = "Holy See's silver platelegs"
+	desc = "Its silver hues glisten majestically under any light. It provides ample, sturdy protection from heretics and vagabonds alike."
+	icon = 'icons/roguetown/clothing/special/martyr.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
+	icon_state = "silverlegs"
+	item_state = "silverlegs"
+	sellprice = 1000
+	smeltresult = /obj/item/ingot/silver
+	smelt_bar_num = 3
+
+/obj/item/clothing/head/roguetown/helmet/heavy/holysee
+	name = "Holy See's silver bascinet"
+	desc = "Branded by the Holy See, it denotes the holiest, most hopeful lot of its kind. Even with the visor closed, this helm will spread hope among the followers of the Ten."
+	icon = 'icons/roguetown/clothing/special/martyr.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyrbascinet.dmi'
+	adjustable = CAN_CADJUST
+	emote_environment = 3
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	icon_state = "silverbascinet"
+	item_state = "silverbascinet"
+	sellprice = 1000
+	smeltresult = /obj/item/ingot/silver
+	smelt_bar_num = 3
+
+/obj/item/clothing/head/roguetown/helmet/heavy/holysee/AdjustClothes(mob/user)
+	if(loc == user)
+		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
+		if(adjustable == CAN_CADJUST)
+			adjustable = CADJUSTED
+			icon_state = "silverbascinet_raised"
+			body_parts_covered = HEAD|EARS|HAIR
+			flags_inv = HIDEEARS
+			flags_cover = null
+			if(ishuman(user))
+				var/mob/living/carbon/H = user
+				H.update_inv_head()
+			block2add = null
+		else if(adjustable == CADJUSTED)
+			ResetAdjust(user)
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_head()
+		user.update_fov_angles()
+
+/obj/item/clothing/cloak/holysee
+	name = "holy see tabard"
+	desc = "A tabard worn by Holy See's most devout. It has silver embroidery woven through the fabric."
+	icon = 'icons/roguetown/clothing/special/martyr.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
+	icon_state = "silvertabard"
+	item_state = "silvertabard"
+	alternate_worn_layer = TABARD_LAYER
+	body_parts_covered = CHEST|GROIN
+	boobed = TRUE
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
+	flags_inv = HIDECROTCH|HIDEBOOB
+	var/overarmor = TRUE
+	sellprice = 100
+
+/obj/item/clothing/cloak/holysee/MiddleClick(mob/user)
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear the tabard over my armor" : "wear the tabard under my armor"]."))
+	if(overarmor)
+		alternate_worn_layer = TABARD_LAYER
+	else
+		alternate_worn_layer = UNDER_ARMOR_LAYER
+	user.update_inv_cloak()
+	user.update_inv_armor()
