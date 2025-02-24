@@ -814,23 +814,23 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.halitem.plane = ABOVE_HUD_PLANE
 			switch(rand(1,5))
 				if(1) //bottlebomb
-					target.halitem.icon = 'icons\roguetown\items\misc.dmi'
+					target.halitem.icon = 'icons/roguetown/items/misc.dmi'
 					target.halitem.icon_state = "bbomb-lit"
 					target.halitem.name = "bottle bomb"
 				if(2) //skull
-					target.halitem.icon = 'icons\roguetown\items\valuable.dmi'
+					target.halitem.icon = 'icons/roguetown/items/valuable.dmi'
 					target.halitem.icon_state = "uw1"
 					target.halitem.name = "!!!"
 				if(3) //crown
-					target.halitem.icon = 'icons\roguetown\clothing\head.dmi'
+					target.halitem.icon = 'icons/roguetown/clothing/head.dmi'
 					target.halitem.icon_state = "serpcrown"
 					target.halitem.name = "Crown of Azure Peak"
 				if(4) //clawl
-					target.halitem.icon = 'icons\roguetown\weapons\32.dmi'
+					target.halitem.icon = 'icons/roguetown/weapons/32.dmi'
 					target.halitem.icon_state = "claw_l"
 					target.halitem.name = "ravager claws"
 				if(5) //clawr
-					target.halitem.icon = 'icons\roguetown\weapons\32.dmi'
+					target.halitem.icon = 'icons/roguetown/weapons/32.dmi'
 					target.halitem.icon_state = "claw_r"
 					target.halitem.name = "ravager claws"
 			feedback_details += "Type: [target.halitem.name]"
