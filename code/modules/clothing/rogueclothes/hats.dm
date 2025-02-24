@@ -1159,7 +1159,7 @@
 		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
 		if(adjustable == CAN_CADJUST)
 			adjustable = CADJUSTED
-			icon_state = "[icon_state]_visor_raised"
+			icon_state = "hounskull_visor_raised"
 			body_parts_covered = HEAD|EARS|HAIR
 			flags_inv = HIDEEARS|HIDEHAIR
 			flags_cover = null
