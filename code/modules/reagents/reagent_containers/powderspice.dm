@@ -201,7 +201,7 @@
 /datum/reagent/ozium
 	name = "Ozium"
 	description = ""
-	color = "#60A584" // rgb: 96, 165, 132
+	color = "#a5606f" // rgb: 96, 165, 132
 	overdose_threshold = 16
 	metabolization_rate = 0.2
 	taste_description = "a bitter numbess"
