@@ -38,11 +38,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	new halpick(src, FALSE)
 
 	next_hallucination = world.time + rand(100, 600)
-/*
+
 /mob/living/carbon/proc/set_screwyhud(hud_type)
 	hal_screwyhud = hud_type
 	update_health_hud()
-*/
+
 /datum/hallucination
 	var/natural = TRUE
 	var/mob/living/carbon/target
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	natural = !forced
 
 /datum/hallucination/proc/wake_and_restore()
-//	target.set_screwyhud(SCREWYHUD_NONE)
+	target.set_screwyhud(SCREWYHUD_NONE)
 	target.SetSleeping(0)
 
 /datum/hallucination/Destroy()
