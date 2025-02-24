@@ -765,6 +765,13 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt2, override = TRUE)
 			sleep(50)*/
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/bleedingt3, override = TRUE)
+			target.playsound_local(target, 'sound/misc/bleed (1).ogg', 80)
+			sleep(5)
+			target.playsound_local(target, 'sound/misc/bleed (2).ogg', 85)
+			sleep(5)
+			target.playsound_local(target, 'sound/misc/bleed (3).ogg', 90)
+			sleep(5)
+			target.playsound_local(target, 'sound/misc/bleed (1).ogg', 100)
 		if("netted")
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/debuff/netted, override = TRUE)
 		if("surrender")
@@ -918,7 +925,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		QDEL_IN(src, 30)
 
 /obj/effect/hallucination/danger/anomaly
-	name = "flux wave anomaly"
+	name = "him."
 
 /obj/effect/hallucination/danger/anomaly/Initialize()
 	. = ..()
