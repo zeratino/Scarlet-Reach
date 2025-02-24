@@ -253,7 +253,7 @@
 
 /datum/component/martyrweapon/proc/adjust_stats(state)
 	if(current_holder)
-	var/mob/living/carbon/human/H = current_holder
+		var/mob/living/carbon/human/H = current_holder
 		switch(state)
 			if(STATE_SAFE)
 				return		//no stat buffs for safe martyr
