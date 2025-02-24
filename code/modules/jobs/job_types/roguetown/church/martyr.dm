@@ -3,7 +3,7 @@
 #define STATE_MARTYRULT		2
 
 /datum/component/martyrweapon
-	var/list/allowed_areas = list(/area/rogue/indoors/town/church, /area/rogue/indoors/town/church/chapel)
+	var/list/allowed_areas = list(/area/rogue/indoors/town/church, /area/rogue/indoors/town/church/chapel, /area/rogue/indoors/town/church/basement)
 	var/list/allowed_patrons = list()
 	var/cooldown = 30 MINUTES
 	var/last_activation = 0
