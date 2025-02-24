@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/townannouncement = 7,
 //	/datum/hallucination/items_other = 7,
 	/datum/hallucination/husks = 7,
-//	/datum/hallucination/items = 4,
+	/datum/hallucination/items = 4,
 	/datum/hallucination/fire = 3,
 	/datum/hallucination/self_delusion = 3,
 	/datum/hallucination/delusion = 2,
@@ -814,33 +814,27 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.halitem.screen_loc = pick(slots_free)
 			target.halitem.layer = ABOVE_HUD_LAYER
 			target.halitem.plane = ABOVE_HUD_PLANE
-			switch(rand(1,6))
-				if(1) //revolver
-					target.halitem.icon = 'icons/obj/guns/projectile.dmi'
-					target.halitem.icon_state = "revolver"
-					target.halitem.name = "Revolver"
-				if(2) //c4
-					target.halitem.icon = 'icons/obj/grenade.dmi'
-					target.halitem.icon_state = "plastic-explosive0"
-					target.halitem.name = "C4"
-					if(prob(25))
-						target.halitem.icon_state = "plasticx40"
-				if(3) //sword
-					target.halitem.icon = 'icons/obj/transforming_energy.dmi'
-					target.halitem.icon_state = "sword0"
-					target.halitem.name = "Energy Sword"
-				if(4) //stun baton
-					target.halitem.icon = 'icons/obj/items_and_weapons.dmi'
-					target.halitem.icon_state = "stunbaton"
-					target.halitem.name = "Stun Baton"
-				if(5) //emag
-					target.halitem.icon = 'icons/obj/card.dmi'
-					target.halitem.icon_state = "emag"
-					target.halitem.name = "Cryptographic Sequencer"
-				if(6) //flashbang
-					target.halitem.icon = 'icons/obj/grenade.dmi'
-					target.halitem.icon_state = "flashbang1"
-					target.halitem.name = "Flashbang"
+			switch(rand(1,5))
+				if(1) //bottlebomb
+					target.halitem.icon = 'icons\roguetown\items\misc.dmi'
+					target.halitem.icon_state = "bbomb-lit"
+					target.halitem.name = "bottle bomb"
+				if(2) //skull
+					target.halitem.icon = 'icons\roguetown\items\valuable.dmi'
+					target.halitem.icon_state = "uw1"
+					target.halitem.name = "!!!"
+				if(3) //crown
+					target.halitem.icon = 'icons\roguetown\clothing\head.dmi'
+					target.halitem.icon_state = "serpcrown"
+					target.halitem.name = "Crown of Azure Peak"
+				if(4) //clawl
+					target.halitem.icon = 'icons\roguetown\weapons\32.dmi'
+					target.halitem.icon_state = "claw_l"
+					target.halitem.name = "ravager claws"
+				if(5) //clawr
+					target.halitem.icon = 'icons\roguetown\weapons\32.dmi'
+					target.halitem.icon_state = "claw_r"
+					target.halitem.name = "ravager claws"
 			feedback_details += "Type: [target.halitem.name]"
 			if(target.client)
 				target.client.screen += target.halitem
