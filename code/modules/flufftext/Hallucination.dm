@@ -38,11 +38,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	new halpick(src, FALSE)
 
 	next_hallucination = world.time + rand(100, 600)
-
+/*
 /mob/living/carbon/proc/set_screwyhud(hud_type)
 	hal_screwyhud = hud_type
 	update_health_hud()
-
+*/
 /datum/hallucination
 	var/natural = TRUE
 	var/mob/living/carbon/target
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	natural = !forced
 
 /datum/hallucination/proc/wake_and_restore()
-	target.set_screwyhud(SCREWYHUD_NONE)
+//	target.set_screwyhud(SCREWYHUD_NONE)
 	target.SetSleeping(0)
 
 /datum/hallucination/Destroy()
@@ -347,8 +347,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			if("shadow")
 				A = image('icons/roguetown/maniac/dreamer_mobs.dmi',H,"M3")
 				A.name = "???"
-				target.playsound_local(target, pick('sound/misc/heroin_rush.ogg'), 60, 1)
-				target.playsound_local(H, pick('sound/vo/mobs/ghost/whisper (1).ogg','sound/vo/mobs/ghost/whisper (2).ogg','sound/vo/mobs/ghost/whisper (3).ogg'), 80, 1)
+				target.playsound_local(target, pick('sound/misc/heroin_rush.ogg'), 80, 1)
+				target.playsound_local(H, pick('sound/vo/mobs/ghost/whisper (1).ogg','sound/vo/mobs/ghost/whisper (2).ogg','sound/vo/mobs/ghost/whisper (3).ogg'), 100, 1)
 			if("monster")//Horror
 				A = image('icons/roguetown/mob/monster/horrors.dmi',H,"horror1")
 				A.name = "ZIZOZIZOZIZO"
@@ -373,7 +373,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				target.playsound_local(H, pick('sound/vo/mobs/plant/attack (1).ogg','sound/vo/mobs/plant/attack (2).ogg','sound/vo/mobs/plant/attack (3).ogg','sound/vo/mobs/plant/attack (4).ogg'), 80, 1)
 			if("demon")//Demon
 				A = image('icons/roguetown/mob/monster/hellkeeper.dmi',H,"hellkeeper")
-				A.name = ""
+				A.name = "RUN"
 				target.playsound_local(H, pick('sound/combat/caught.ogg','sound/misc/astratascream.ogg'), 80, 1)
 				target.playsound_local(target, 'sound/misc/carriage1.ogg', 80, 1)
 			/*if("custom")
