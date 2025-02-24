@@ -309,6 +309,18 @@
 	icon_state = "goblin"
 	color_key_defaults = list(KEY_SKIN_COLOR)
 
+/datum/sprite_accessory/ears/goblin_alt
+	name = "Goblin Alt"
+	icon = 'icons/mob/sprite_accessory/halforc.dmi'
+	icon_state = "goblinalt"
+	color_key_defaults = list(KEY_SKIN_COLOR)
+
+/datum/sprite_accessory/ears/goblin_small
+	name = "Goblin Small"
+	icon = 'icons/mob/sprite_accessory/halforc.dmi'
+	icon_state = "goblinsmall"
+	color_key_defaults = list(KEY_SKIN_COLOR)
+
 /datum/sprite_accessory/ears/big
 	icon = 'icons/mob/sprite_accessory/ears/ears_big.dmi'
 
@@ -329,6 +341,13 @@
 /datum/sprite_accessory/ears/big/acrador_short
 	icon_state = "acrador_short"
 	name = "Acrador (Short)"
+	color_keys = 2
+	color_key_names = list("Ears", "Inner")
+	relevant_layers = list(BODY_ADJ_LAYER)
+
+/datum/sprite_accessory/ears/big/sandfox_large
+	icon_state = "sandfox"
+	name = "Sandfox"
 	color_keys = 2
 	color_key_names = list("Ears", "Inner")
 	relevant_layers = list(BODY_ADJ_LAYER)

@@ -29,7 +29,9 @@
 		TRAIT_CRITICAL_RESISTANCE,
 		TRAIT_HEAVYARMOR,
 		TRAIT_CABAL,
-		TRAIT_DEATHSIGHT
+		TRAIT_DEATHSIGHT,
+		TRAIT_COUNTERCOUNTERSPELL,
+		TRAIT_RITUALIST
 		)
 
 	var/STASTR = 10
@@ -133,6 +135,7 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/bloodlightning)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb)
 	H.ambushable = FALSE
 
@@ -181,6 +184,7 @@
 		SLOT_BELT_R,
 		SLOT_BELT_L,
 		SLOT_HANDS,
+		SLOT_HANDS,
 		SLOT_BACK_L,
 		)
 
@@ -197,6 +201,7 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/manapot,
 		/obj/item/rogueweapon/huntingknife/idagger/steel,
 		/obj/item/rogueweapon/woodstaff/wise,
+		/obj/item/ritechalk,
 		/obj/item/storage/backpack/rogue/satchel,
 	)
 	for (var/i = 1, i <= equipment_slots.len, i++)

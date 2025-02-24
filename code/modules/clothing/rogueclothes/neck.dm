@@ -40,7 +40,19 @@
 					H.update_inv_neck()
 					H.update_inv_head()
 
-
+/obj/item/clothing/neck/roguetown/leather
+	name = "hardened leather gorget"
+	desc = "Sturdy. Durable. Will protect your neck from some good lumbering."
+	icon_state = "lgorget"
+	slot_flags = ITEM_SLOT_NECK
+	blocksound = SOFTHIT
+	body_parts_covered = NECK
+	armor = list("blunt" = 100, "slash" = 70, "stab" = 40, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_SMASH)
+	sewrepair = TRUE
+	max_integrity = 150
+	salvage_result = /obj/item/natural/hide/cured
+	salvage_amount = 1
 
 /obj/item/clothing/neck/roguetown/chaincoif
 	name = "chain coif"
@@ -355,6 +367,26 @@
 	resistance_flags = FIRE_PROOF
 	sellprice = 100
 	anvilrepair = /datum/skill/craft/armorsmithing
+
+/obj/item/clothing/neck/roguetown/ornateamulet/noble
+	var/choicename = FALSE
+	name = "Heirloom Amulet"
+	desc = "An ornate amulet representing a prestigious noble house."
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_WRISTS|ITEM_SLOT_HIP
+	sellprice = 10
+
+/obj/item/clothing/neck/roguetown/ornateamulet/noble/attack_right(mob/user)
+	if(choicename)
+		return
+	var/current_time = world.time
+	var/namechoice = input(user, "Input a new name", "Rename Object")
+	if(namechoice)
+		name = namechoice
+		choicename = TRUE
+	else
+		return
+	if(world.time > (current_time + 30 SECONDS))
+		return
 
 /obj/item/clothing/neck/roguetown/skullamulet
 	name = "Skull Amulet"

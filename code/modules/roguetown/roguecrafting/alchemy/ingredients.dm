@@ -175,6 +175,8 @@
 	force = 7
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
+	grid_width = 32
+	grid_height = 64
 
 	major_pot = /datum/alch_cauldron_recipe/disease_cure
 	med_pot = /datum/alch_cauldron_recipe/health_potion
@@ -187,6 +189,8 @@
 	force = 7
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
+	grid_width = 64
+	grid_height = 64
 
 	major_pot = /datum/alch_cauldron_recipe/str_potion
 	med_pot = /datum/alch_cauldron_recipe/con_potion
@@ -303,6 +307,11 @@
 /obj/item/alch/salvia
 	name = "salvia"
 	icon_state = "salvia"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
+	body_parts_covered = NONE
+	w_class = WEIGHT_CLASS_TINY
+	alternate_worn_layer  = 8.9 //On top of helmet
 
 	major_pot = /datum/alch_cauldron_recipe/con_potion
 	med_pot = /datum/alch_cauldron_recipe/str_potion
@@ -339,6 +348,32 @@
 	major_pot = /datum/alch_cauldron_recipe/lck_potion
 	med_pot = /datum/alch_cauldron_recipe/spd_potion
 	minor_pot = /datum/alch_cauldron_recipe/health_potion
+
+/obj/item/alch/rosa
+	name = "rosa"
+	icon_state = "rosa"
+	item_state = "rosa"
+	icon = 'icons/roguetown/misc/alchemy.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK|ITEM_SLOT_MOUTH
+	body_parts_covered = NONE
+	w_class = WEIGHT_CLASS_TINY
+	spitoutmouth = FALSE
+	muteinmouth = FALSE
+	alternate_worn_layer  = 8.9 //On top of helmet
+
+	major_pot = /datum/alch_cauldron_recipe/rosewater_potion
+	med_pot = /datum/alch_cauldron_recipe/rosewater_potion
+	minor_pot = /datum/alch_cauldron_recipe/rosewater_potion
+
+/obj/item/alch/rosa/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_MOUTH)
+		icon_state = "rosa_mouth"
+		user.update_inv_mouth()
+	else
+		icon_state = "rosa"
+		user.update_icon()
 
 //dust mix crafting
 /datum/crafting_recipe/roguetown/alch/feaudust

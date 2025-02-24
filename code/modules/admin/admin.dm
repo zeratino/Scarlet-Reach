@@ -52,6 +52,14 @@
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=subtract;mob=[REF(M)]'>\[decrease\]</a> "
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=set;mob=[REF(M)]'>\[set\]</a> "
 		body += "<a href='?_src_=holder;[HrefToken()];modantagrep=zero;mob=[REF(M)]'>\[zero\]</a>"
+
+		//PQ
+		body += "<br><br><b>Player Quality:</b> [get_playerquality(M.ckey, FALSE)]"
+		body += "  <a href='?_src_=holder;[HrefToken()];modpq=adjust;mob=[REF(M)]'>\[adjust\]</a>     "
+
+		//Triumphs
+		body += "<b>Triumphs:</b> [M.get_triumphs()]"
+		body += "  <a href='?_src_=holder;[HrefToken()];modtriumphs=adjust;mob=[REF(M)]'>\[adjust\]</a>"
 		var/full_version = "Unknown"
 		if(M.client.byond_version)
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"
@@ -93,7 +101,7 @@
 		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> | "
 		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> | "
 		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> | "
-		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]"
+		body += "<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a> | "
 		body += "(<A href='?_src_=holder;[HrefToken()];mute=[M.ckey];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)"
 
 	body += "<br><br>"
@@ -294,7 +302,8 @@
 	if(!check_rights(0))
 		return
 
-	var/dat = {"
+	var/dat = "<html><meta charset='UTF-8'><head><title>Game Panel</title></head><body>"
+	dat += {"
 		<center><B>Game Panel</B></center><hr>\n
 		<A href='?src=[REF(src)];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
@@ -329,6 +338,7 @@
 	if(marked_datum && istype(marked_datum, /atom))
 		dat += "<A href='?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>Duplicate Marked Datum</A><br>"
 
+	dat += "</body></html>"
 	usr << browse(dat, "window=admin2;size=240x280")
 	return
 
@@ -831,3 +841,37 @@
 
 	var/mob/living/carbon/human/H = mob
 	H.returntolobby()
+
+
+/datum/admins/proc/sleep_view()
+	set name = "inview Sleep"
+	set category = "GameMaster"
+	set hidden = FALSE
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(alert("This will sleep ALL mobs within your view range. Are you sure?",,"Yes","Cancel") == "Cancel")
+		return
+	for(var/mob/living/M in view(usr.client))
+		M.SetSleeping(999999)
+
+	message_admins("[key_name(usr)] used Toggle Sleep In View.")
+
+/datum/admins/proc/wake_view()
+	set name = "inview Wake"
+	set category = "GameMaster"
+	set hidden = FALSE
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(alert("This wake ALL mobs within your view range. Are you sure?",,"Yes","Cancel") == "Cancel")
+		return
+	for(var/mob/living/M in view(usr.client))
+		var/S = M.IsSleeping()
+		if(S)
+			M.remove_status_effect(S)
+			M.set_resting(FALSE, TRUE)
+
+	message_admins("[key_name(usr)] used Toggle Wake In View.")

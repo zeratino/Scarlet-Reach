@@ -43,12 +43,10 @@
 		if (QDELETED(src)) // diseases can qdel the mob via transformations
 			return
 
+		handle_environment()
+
 		//Random events (vomiting etc)
 		handle_random_events()
-		//Handle temperature/pressure differences between body and environment
-		var/datum/gas_mixture/environment = loc?.return_air()
-		if(environment)
-			handle_environment(environment)
 
 		handle_gravity()
 
@@ -108,7 +106,7 @@
 					Stun(110)
 					Knockdown(110)
 
-/mob/living/proc/handle_environment(datum/gas_mixture/environment)
+/mob/living/proc/handle_environment()
 	return
 
 /mob/living/proc/handle_fire()
@@ -129,7 +127,7 @@
 //		return TRUE
 	update_fire()
 	var/turf/location = get_turf(src)
-	location.hotspot_expose(700, 50, 1)
+	location?.hotspot_expose(700, 50, 1)
 
 /mob/living/proc/handle_wounds()
 	if(stat >= DEAD)

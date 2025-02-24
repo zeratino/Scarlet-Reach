@@ -54,7 +54,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
-	pressure_resistance = 4
 	var/obj/item/master = null
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
@@ -210,6 +209,18 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	// Can this be used against a training dummy to learn skills? Prevents dumb exploits.
 	var/istrainable = FALSE
+
+	/// This is what we get when we either tear up or salvage a piece of clothing
+	var/obj/item/salvage_result = null
+
+	/// The amount of salvage we get out of salvaging with scissors
+	var/salvage_amount = 0 //This will be more accurate when sewing recipes get sorted
+
+	/// Temporary snowflake var to be used in the rare cases clothing doesn't require fibers to sew, to avoid material duping
+	var/fiber_salvage = FALSE
+
+	/// Number of torn sleves, important for salvaging calculations and examine text
+	var/torn_sleeve_number = 0
 
 /obj/item/Initialize()
 	. = ..()
@@ -436,16 +447,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(istype(src,/obj/item/clothing))
 			var/obj/item/clothing/C = src
+			inspec += "<br>"
+			inspec += C.defense_examine()
+			if(C.body_parts_covered)
+				inspec += "\n<b>COVERAGE: <br></b>"
+				inspec += " | "
+				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
+					inspec += "<b>[capitalize(zone)]</b> | "
+				inspec += "<br>"
 			if(C.prevent_crits)
 				if(length(C.prevent_crits))
-					inspec += "\n<b>DEFENSE:</b>"
+					inspec += "\n<b>PREVENTS CRITS:</b>"
 					for(var/X in C.prevent_crits)
-						inspec += "\n<b>[X] damage</b>"
-
-			if(C.body_parts_covered)
-				inspec += "\n<b>COVERAGE:</b>"
-				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
-					inspec += "\n<b>[zone]</b>"
+						inspec += ("\n<b>[capitalize(X)]</b>")
+				inspec += "<br>"
 
 //**** General durability
 
@@ -562,6 +577,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!isturf(src.loc))
 		return FALSE
 	for(var/obj/structure/table/T in src.loc)
+		return TRUE
+	for(var/obj/machinery/anvil/A in src.loc)
 		return TRUE
 	return FALSE
 
@@ -1213,3 +1230,19 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/on_embed(obj/item/bodypart/bp)
 	return
+
+/obj/item/proc/defense_examine()
+	var/list/str = list()
+	if(istype(src, /obj/item/clothing))
+		var/obj/item/clothing/C = src
+		if(C.armor)
+			var/defense = "<u><b>ABSORPTION: </b></u><br>"
+			var/datum/armor/def_armor = C.armor
+			defense += "[colorgrade_rating("BLUNT", def_armor.blunt, elaborate = TRUE)] | "
+			defense += "[colorgrade_rating("SLASH", def_armor.slash, elaborate = TRUE)] | "
+			defense += "[colorgrade_rating("STAB", def_armor.stab, elaborate = TRUE)] | "
+			defense += "[colorgrade_rating("PIERCING", def_armor.piercing, elaborate = TRUE)] "
+			str += "[defense]<br>"
+		else
+			str += "NO DEFENSE"
+	return str

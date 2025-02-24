@@ -31,9 +31,12 @@
 	name = "undervestments"
 	desc = ""
 	icon_state = "priestunder"
-	sleeved = null
+	item_state = "priestunder"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	boobed = TRUE
+	flags_inv= HIDEBOOB|HIDECROTCH
 	body_parts_covered = CHEST|GROIN|ARMS|VITALS
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/black
@@ -89,6 +92,7 @@
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 	name = "formal silks"
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	icon_state = "puritan_shirt"
 	allowed_race = CLOTHED_RACES_TYPES
 	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'
@@ -383,8 +387,8 @@
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy
 	slot_flags = ITEM_SLOT_ARMOR
-	name = "dress"
-	desc = ""
+	name = "sheer dress"
+	desc = "A scandalously short dress made of extra fine fibers, making it semi-sheer."
 	body_parts_covered = null
 	icon_state = "sexydress"
 	sleevetype = null

@@ -79,18 +79,16 @@
 							sleepy_mod = 1.5 //Worse than a bedroll, better than nothing.
 			if(sleepy_mod > 0)
 				if(eyesclosed)
-					var/armor_blocked
-					if(ishuman(src))
-						if(stat == CONSCIOUS)
-							var/mob/living/carbon/human/H = src
-							var/list/gear_to_check = list(H.wear_shirt, H.wear_armor, H.head)
-							for(var/obj/item/clothing/gear in gear_to_check)
-								if(gear.armor.blunt > 70)
-									armor_blocked = TRUE
-									if(!fallingas)
-										to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
-									fallingas = TRUE
-									break
+					var/armor_blocked = FALSE
+					if(ishuman(src) && stat == CONSCIOUS)
+						var/mob/living/carbon/human/H = src
+						if(H.head && H.head.armor?.blunt > 70)
+							armor_blocked = TRUE
+						if(H.wear_armor && (H.wear_armor.armor_class in list(ARMOR_CLASS_HEAVY, ARMOR_CLASS_MEDIUM)))
+							armor_blocked = TRUE
+						if(armor_blocked && !fallingas)
+							to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
+							fallingas = TRUE
 					if(!armor_blocked)
 						if(!fallingas)
 							to_chat(src, span_warning("I'll fall asleep soon..."))
@@ -104,18 +102,16 @@
 			// Resting on the ground (not sleeping or with eyes closed and about to fall asleep)
 			else if(!(mobility_flags & MOBILITY_STAND))
 				if(eyesclosed)
-					var/armor_blocked
-					if(ishuman(src))
-						if(stat == CONSCIOUS)
-							var/mob/living/carbon/human/H = src
-							var/list/gear_to_check = list(H.wear_shirt, H.wear_armor, H.head)
-							for(var/obj/item/clothing/gear in gear_to_check)
-								if(gear.armor.blunt > 70)
-									armor_blocked = TRUE
-									if(!fallingas)
-										to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
-									fallingas = TRUE
-									break
+					var/armor_blocked = FALSE
+					if(ishuman(src) && stat == CONSCIOUS)
+						var/mob/living/carbon/human/H = src
+						if(H.head && H.head.armor?.blunt > 70)
+							armor_blocked = TRUE
+						if(H.wear_armor && (H.wear_armor.armor_class in list(ARMOR_CLASS_HEAVY, ARMOR_CLASS_MEDIUM)))
+							armor_blocked = TRUE
+						if(armor_blocked && !fallingas)
+							to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
+							fallingas = TRUE
 					if(!armor_blocked)
 						if(!fallingas)
 							to_chat(src, span_warning("I'll fall asleep soon, although a bed would be more comfortable..."))
@@ -229,10 +225,14 @@
 
 /mob/living/carbon/human/handle_inwater()
 	. = ..()
-	if(!(mobility_flags & MOBILITY_STAND))
-		if(istype(loc, /turf/open/water/bath))
-			if(!wear_armor && !wear_shirt && !wear_pants)
-				add_stress(/datum/stressevent/bathwater)
+	if(istype(loc, /turf/open/water/bath))
+		if(!wear_armor && !wear_shirt && !wear_pants)
+			add_stress(/datum/stressevent/bathwater)
+
+/mob/living/carbon/human/handle_inwater()
+	. = ..()
+	if(istype(loc, /turf/open/water/sewer))
+		add_stress(/datum/stressevent/sewertouched)
 
 /mob/living/carbon/proc/get_complex_pain()
 	var/amt = 0

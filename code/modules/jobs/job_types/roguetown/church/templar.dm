@@ -27,6 +27,7 @@
 	beltr = /obj/item/storage/keyring/churchie
 	id = /obj/item/clothing/ring/silver
 	backl = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(/obj/item/ritechalk)
 	
 /datum/job/roguetown/templar/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
@@ -91,6 +92,18 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
+		ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
+		if(H.patron?.type == /datum/patron/divine/pestra)
+			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 1, TRUE)
+			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+		if(H.patron?.type == /datum/patron/divine/malum)
+			H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
+		H.cmode_music = 'sound/music/combat_holy.ogg'
 		H.change_stat("strength", 3)
 		H.change_stat("endurance", 2)
 		H.change_stat("speed", 2)
@@ -135,10 +148,11 @@
 			cloak = /obj/item/clothing/cloak/templar/necran
 		if(/datum/patron/divine/pestra)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/pestra
-			cloak = /obj/item/clothing/cloak/tabard/crusader/pestra
+			head = /obj/item/clothing/head/roguetown/helmet/heavy/pestran
+			cloak = /obj/item/clothing/cloak/templar/pestran
 		if(/datum/patron/divine/eora) //Eora content from stonekeep
 			wrists = /obj/item/clothing/neck/roguetown/psicross/eora
-			head = /obj/item/clothing/head/roguetown/helmet/sallet
+			head = /obj/item/clothing/head/roguetown/helmet/sallet/eoran
 			cloak = /obj/item/clothing/cloak/tabard/crusader/eora
 		if(/datum/patron/divine/noc)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/noc
@@ -146,12 +160,12 @@
 			cloak = /obj/item/clothing/cloak/tabard/crusader/noc
 		if(/datum/patron/divine/ravox)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/ravox
+			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
 			cloak = /obj/item/clothing/cloak/tabard/crusader/ravox
 		if(/datum/patron/divine/malum)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/malum
-			H.AddSpell(new /obj/effect/proc_holder/spell/invoked/malum_flame_rogue)
 		if(/datum/patron/old_god)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			cloak = /obj/item/clothing/cloak/tabard/crusader/psydon
@@ -176,7 +190,19 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+		ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
+		if(H.patron?.type == /datum/patron/divine/pestra)
+			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 1, TRUE)
+			ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+		if(H.patron?.type == /datum/patron/divine/malum)
+			H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)	//May tone down to 2; seems OK.
+		H.cmode_music = 'sound/music/combat_holy.ogg'
 		H.change_stat("strength", 2)
 		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 3)

@@ -6,6 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar
 	category_tags = list(CTAG_MERCENARY)
 	cmode_music = 'sound/music/warscholar.ogg'
+	traits_applied = list(TRAIT_OUTLANDER)
 
 /datum/outfit/job/roguetown/mercenary/warscholar
 	var/detailcolor
@@ -70,6 +71,7 @@
 			H.change_stat("perception", 1)
 			H.change_stat("intelligence", 3)
 			H.mind.adjust_spellpoints(2)
+			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			r_hand = /obj/item/rogueweapon/woodstaff/naledi
 
