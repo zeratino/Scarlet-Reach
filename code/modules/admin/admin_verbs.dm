@@ -338,7 +338,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
 	set name = "Adminverbs - Hide Most"
-	set category = "Admin"
+	set category = "Prefs - Admin"
 
 	verbs.Remove(/client/proc/hide_most_verbs, GLOB.admin_verbs_hideable)
 	verbs += /client/proc/show_verbs
@@ -349,7 +349,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/hide_verbs()
 	set name = "Adminverbs - Hide All"
-	set category = "Admin"
+	set category = "Prefs - Admin"
 
 	remove_admin_verbs()
 	verbs += /client/proc/show_verbs
@@ -360,7 +360,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/show_verbs()
 	set name = "Adminverbs - Show"
-	set category = "Admin"
+	set category = "Prefs - Admin"
 
 	verbs -= /client/proc/show_verbs
 	add_admin_verbs()
@@ -369,7 +369,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Show Adminverbs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/set_context_menu_enabled()
-	set category = "Admin"
+	set category = "Prefs - Admin"
 	set name = "Toggle Right-Click Menus"
 	if(!holder)
 		return
@@ -396,7 +396,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(mob, "No bounties are currently active.")
 
 /client/proc/toggle_aghost_invis()
-	set category = "GameMaster"
+	set category = "Prefs - Admin"
 	set name = "Aghost (Toggle Invisibility)"
 	if (!holder)
 		return
@@ -404,7 +404,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	to_chat(src, aghost_toggle ? "Aghosting will now turn your mob invisible." : "Aghost will no longer turn your mob invisible.")
 
 /client/proc/admin_ghost()
-	set category = "GameMaster"
+	set category = "Admin"
 	set name = "Aghost"
 	if(!holder)
 		return
@@ -454,7 +454,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/invisimin()
 	set name = "Invisimin"
-	set category = "Admin"
+	set category = "Prefs - Admin"
 	set desc = ""
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
@@ -555,13 +555,14 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 /client/proc/secrets()
 	set name = "Secrets"
 	set category = "Admin"
+	set hidden = 1
 	if (holder)
 		holder.Secrets()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Secrets Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/poll_panel()
 	set name = "Server Poll Management"
-	set category = "Admin"
+	set category = "Server"
 	if(!check_rights(R_POLL))
 		return
 	holder.poll_list_panel()
@@ -587,7 +588,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
 
 /client/proc/stealth()
-	set category = "Admin"
+	set category = "Prefs - Admin"
 	set name = "Stealth Mode"
 	if(holder)
 		if(holder.fakekey)
@@ -763,7 +764,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/deadmin()
 	set name = "Deadmin"
-	set category = "Admin"
+	set category = "Prefs - Admin"
 	set desc = ""
 
 	if(!holder)
@@ -808,6 +809,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set name = "Toggle Admin AI Interact"
 	set category = "Admin"
 	set desc = ""
+	set hidden = 1
 
 	AI_Interact = !AI_Interact
 	if(mob && IsAdminGhost(mob))

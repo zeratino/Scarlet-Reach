@@ -515,6 +515,7 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	set name = "Show/Hide Radio Chatter"
 	set category = "Prefs - Admin"
 	set desc = ""
+	set hidden = 1
 	if(!holder)
 		return
 	prefs.chat_toggles ^= CHAT_RADIO

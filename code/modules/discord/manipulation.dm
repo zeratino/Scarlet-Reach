@@ -2,6 +2,7 @@
 /client/proc/discord_id_manipulation()
 	set name = "Discord Manipulation"
 	set category = "Admin"
+	set hidden = 1
 
 	if(!check_rights(R_ADMIN))
 		return
