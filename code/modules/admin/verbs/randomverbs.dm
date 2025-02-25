@@ -440,10 +440,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(src)] has created a command report: [input]")
 	message_admins("[key_name_admin(src)] has created a command report")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Create Command Report") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-/* May have uses?
+
 /client/proc/cmd_change_command_name()
 	set category = "Special Verbs"
 	set name = "Change Command Name"
+	set hidden = 1 // May have uses?
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -454,7 +455,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	change_command_name(input)
 	message_admins("[key_name_admin(src)] has changed Central Command's name to [input]")
 	log_admin("[key_name(src)] has changed the Central Command name to: [input]")
-*/
+
 /client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
 	set category = "Admin"
 	set name = "Delete"
@@ -616,6 +617,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set name = "Toggle Combo HUD"
 	set desc = ""
+	set hidden = 1 // If somebody loves this, I'm sorry, you can unhide it
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -648,6 +650,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Fun"
 	set name = "Run Weather"
 	set desc = ""
+	set hidden = 1 //Replace by particle weather
 
 	if(!holder)
 		return
