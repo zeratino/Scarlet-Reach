@@ -62,6 +62,7 @@
 					for(var/AR in allowed_areas)
 						if(istype(mercyarea, AR))
 							success = TRUE
+			if(success)
 				to_chat(current_holder, span_notice("The weapon fizzles out, its energies dissipating across the holy grounds."))
 			else
 				to_chat(current_holder, span_notice("The weapon begins to fizzle out, but the energy has nowhere to go!"))
