@@ -110,9 +110,22 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/sleep_view,
 	/datum/admins/proc/wake_view,
 	)
-GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel, /client/proc/check_pq, /client/proc/adjust_pq, /client/proc/getcurrentlogs, /client/proc/getserverlogs))
+GLOBAL_LIST_INIT(admin_verbs_ban, list(
+	/client/proc/unban_panel,
+	/client/proc/ban_panel,
+	/client/proc/stickybanpanel,
+	/client/proc/check_pq,
+	/client/proc/adjust_pq,
+	/client/proc/getcurrentlogs,
+	/client/proc/getserverlogs
+	))
 GLOBAL_PROTECT(admin_verbs_ban)
-GLOBAL_LIST_INIT(admin_verbs_sounds, list(/client/proc/play_local_sound, /client/proc/play_local_sound_variable, /client/proc/play_sound, /client/proc/set_round_end_sound))
+GLOBAL_LIST_INIT(admin_verbs_sounds, list(
+	/client/proc/play_local_sound,
+	/client/proc/play_local_sound_variable,
+	/client/proc/play_sound,
+	/client/proc/set_round_end_sound
+	))
 GLOBAL_PROTECT(admin_verbs_sounds)
 GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/cmd_admin_dress,
@@ -121,13 +134,14 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/set_dynex_scale,
 	/client/proc/drop_dynex_bomb,
 	/client/proc/cinematic,
+//	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/object_say,
 	/client/proc/toggle_random_events,
 	/client/proc/set_ooc,
 	/client/proc/reset_ooc,
 	/client/proc/forceEvent,
-	/client/proc/admin_change_sec_level,
-	/client/proc/run_weather,
+//	/client/proc/admin_change_sec_level,
+//	/client/proc/run_weather,
 	/client/proc/run_particle_weather,
 	/client/proc/run_custom_particle_weather,
 	/client/proc/show_tip,
@@ -146,7 +160,8 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/datum/admins/proc/end_round,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
-	/datum/admins/proc/toggleAI,
+//	/client/proc/everyone_random,
+//	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
 	/client/proc/cmd_debug_del_all,
 	/client/proc/toggle_random_events,
@@ -234,6 +249,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/get_dynex_power,
 	/client/proc/set_dynex_scale,
 	/client/proc/cinematic,
+	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_create_centcom_report,
 	/client/proc/cmd_change_command_name,
 	/client/proc/object_say,
