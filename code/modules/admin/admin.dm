@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
-	set category = "GameMaster"
+	set category = "Admin"
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
@@ -412,7 +412,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Announce") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/set_admin_notice()
-	set category = "Special Verbs"
+	set category = "Server"
 	set name = "Set Admin Notice"
 	set desc ="Set an announcement that appears to everyone who joins the server. Only lasts this round"
 	if(!check_rights(0))
@@ -509,6 +509,7 @@
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
+	set hidden = 1
 	var/alai = CONFIG_GET(flag/allow_ai)
 	CONFIG_SET(flag/allow_ai, !alai)
 	if (alai)
@@ -523,6 +524,7 @@
 	set category = "Server"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
+	set hidden = 1
 	var/new_nores = !CONFIG_GET(flag/norespawn)
 	CONFIG_SET(flag/norespawn, new_nores)
 	if (!new_nores)
@@ -568,7 +570,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /datum/admins/proc/spawn_atom(object as text)
-	set category = "Debug"
+	set category = "GameMaster"
 	set desc = ""
 	set name = "Spawn"
 
@@ -672,6 +674,7 @@
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
+	set hidden = 1
 	var/new_guest_ban = !CONFIG_GET(flag/guest_ban)
 	CONFIG_SET(flag/guest_ban, new_guest_ban)
 	if (new_guest_ban)
@@ -836,7 +839,7 @@
 
 
 /client/proc/returntolobby()
-	set category = "Debug"
+	set category = "Server"
 	set name = "Return to Lobby"
 
 	var/mob/living/carbon/human/H = mob
