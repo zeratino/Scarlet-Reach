@@ -5,7 +5,7 @@
 /datum/component/martyrweapon
 	var/list/allowed_areas = list(/area/rogue/indoors/town/church, /area/rogue/indoors/town/church/chapel, /area/rogue/indoors/town/church/basement)
 	var/list/allowed_patrons = list()
-	var/cooldown = 30 MINUTES
+	var/cooldown = 60 MINUTES
 	var/last_activation = 0
 	var/next_activation = 0
 	var/end_activation = 0
@@ -292,6 +292,8 @@
 		REMOVE_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)	//The weapon can be moved by the Priest again (or used, I suppose)
 	is_active = FALSE
 	I.damtype = BRUTE
+	last_activation = world.time
+	next_activation = last_activation + cooldown
 	I.slot_flags = initial(I.slot_flags)	//Returns its ability to be sheathed
 	adjust_traits(remove = TRUE)
 	adjust_icons(tonormal = TRUE)
@@ -349,9 +351,6 @@
 		I.slot_flags = null	//Can't sheathe a burning sword
 
 		ADD_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)
-
-		last_activation = world.time
-		next_activation = last_activation + cooldown
 
 		if(status_flag)
 			current_state = status_flag
