@@ -102,7 +102,7 @@
 	if(prob(10))
 		head = /obj/item/clothing/head/roguetown/roguehood
 	if(H.gender == FEMALE)
-		H.STASTR = rand(9,12)
+		H.STASTR = rand(14,16)
 	else
 		H.STASTR = rand(14,16)
 	H.STASPD = 8
