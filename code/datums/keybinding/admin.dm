@@ -35,12 +35,12 @@
 	user.holder.player_panel_new()
 	return TRUE
 
-/*
+
 /datum/keybinding/admin/toggle_buildmode_self
 	hotkey_keys = list("F7")
 	name = "toggle_buildmode_self"
 	full_name = "Toggle Buildmode Self"
-	description = "Toggles buildmode"
+	description = "Toggles Buildmode"
 
 /datum/keybinding/admin/toggle_buildmode_self/down(client/user)
 	user.togglebuildmodeself()
@@ -50,7 +50,7 @@
 	hotkey_keys = list("CtrlF8")
 	name = "stealth_mode"
 	full_name = "Stealth mode"
-	description = "Enters stealth mode"
+	description = "Enters stealth mode (Players see you as 'Administrator' instead of your ckey)"
 
 /datum/keybinding/admin/stealthmode/down(client/user)
 	user.stealth()
@@ -60,12 +60,22 @@
 	hotkey_keys = list("F8")
 	name = "invisimin"
 	full_name = "Admin invisibility"
-	description = "Toggles ghost-like invisibility (Don't abuse this)"
+	description = "Toggles ghost-like invisibility on your mob"
 
 /datum/keybinding/admin/invisimin/down(client/user)
 	user.invisimin()
 	return TRUE
 
+/datum/keybinding/admin/rmbcontext
+	hotkey_keys = list("F9")
+	name = "rmbcontext"
+	full_name = "Toggle RMB Context Menu"
+	description = "Toggles opening a context menu with RMB"
+
+/datum/keybinding/admin/rmbcontext/down(client/user)
+	user.set_context_menu_enabled()
+	return TRUE
+/*
 /datum/keybinding/admin/deadsay
 	hotkey_keys = list("F10")
 	name = "dsay"
