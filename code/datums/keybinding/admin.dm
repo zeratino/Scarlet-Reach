@@ -65,7 +65,7 @@
 /datum/keybinding/admin/invisimin/down(client/user)
 	user.invisimin()
 	return TRUE
-
+/* Pending Testing
 /datum/keybinding/admin/rmbcontext
 	hotkey_keys = list("F9")
 	name = "rmbcontext"
