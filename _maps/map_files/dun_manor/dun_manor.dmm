@@ -2819,9 +2819,10 @@
 /area/rogue/outdoors/town)
 "bYl" = (
 /obj/structure/table/wood,
-/obj/item/candle/yellow{
-	pixel_y = 6
+/obj/item/flashlight/flare/torch/lantern{
+	pixel_y = 14
 	},
+/obj/item/storage/belt/rogue/surgery_bag/full,
 /turf/open/floor/rogue/wood/herringbone,
 /area/rogue/indoors/town/church/chapel)
 "bYp" = (

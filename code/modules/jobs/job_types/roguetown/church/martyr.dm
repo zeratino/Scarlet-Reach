@@ -9,8 +9,8 @@
 	var/last_activation = 0
 	var/next_activation = 0
 	var/end_activation = 0
-	var/ignite_chance = 10
-	var/traits_applied = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOMOOD, TRAIT_NOHUNGER, TRAIT_STRONGBITE)
+	var/ignite_chance = 2
+	var/traits_applied = list(TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_NOMOOD, TRAIT_NOHUNGER, TRAIT_STRONGBITE)
 	var/stat_bonus_martyr = 3
 	var/mob/living/current_holder
 	var/is_active = FALSE
@@ -154,7 +154,8 @@
 					if(prob(ignite_chance))
 						mob_ignite(M)
 				if(STATE_MARTYRULT)
-					mob_ignite(M)
+					if(prob(ignite_chance))
+						mob_ignite(M)
 		else
 			return
 	else
@@ -228,16 +229,18 @@
 
 //IF it gets dropped, somehow (likely delimbing), turn it off immediately.
 /datum/component/martyrweapon/proc/on_drop(datum/source, mob/user)
-	UnregisterSignal(user, COMSIG_CLICK_ALT)
-	deactivate()
+	if(current_holder == user)
+		UnregisterSignal(user, COMSIG_CLICK_ALT)
+	if(current_state == STATE_SAFE && is_active)
+		deactivate()
 
 /datum/component/martyrweapon/proc/on_examine(datum/source, mob/user, list/examine_list)
-	if(current_holder)
+	if(current_holder && current_holder == user)
 		examine_list += span_notice("It looks to be bound to you. Alt + right click to activate it.")
 	if(!is_active && world.time < next_activation)
-		var/time = last_activation - world.time
+		var/time = next_activation - world.time
 		time = time / 10	//Deciseconds to seconds
-		examine_list += span_notice("The time remaining until it is prepared: [abs(time)] seconds.")
+		examine_list += span_notice("The time remaining until it is prepared: [round(abs(time) / 60)] minutes.")
 	else if(!is_active && world.time > next_activation)
 		examine_list += span_notice("It looks ready to be used again.")
 	if(is_active)
@@ -256,11 +259,14 @@
 	if(current_holder)
 		var/mob/living/carbon/human/H = current_holder
 		switch(state)
-			if(STATE_SAFE)
-				return		//no stat buffs for safe martyr
+			if(STATE_SAFE) //Lowered damage due to BURN damage type and SAFE activation
+				var/obj/item/I = parent
+				I.force = 20
+				I.force_wielded = 25
+				return		
 			if(STATE_MARTYR)
 				current_holder.STASTR += stat_bonus_martyr
-				current_holder.STASPD += stat_bonus_martyr
+				//current_holder.STASPD += stat_bonus_martyr
 				current_holder.STACON += stat_bonus_martyr
 				current_holder.STAEND += stat_bonus_martyr
 				current_holder.STAINT += stat_bonus_martyr
@@ -293,9 +299,14 @@
 		REMOVE_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)	//The weapon can be moved by the Priest again (or used, I suppose)
 	is_active = FALSE
 	I.damtype = BRUTE
+	I.force = initial(I.force)
+	I.force_wielded = initial(I.force_wielded)
+	I.max_integrity = initial(I.max_integrity)
+	I.slot_flags = initial(I.slot_flags)	//Returns its ability to be sheathed
+	I.obj_integrity = I.max_integrity
+
 	last_activation = world.time
 	next_activation = last_activation + cooldown
-	I.slot_flags = initial(I.slot_flags)	//Returns its ability to be sheathed
 	adjust_traits(remove = TRUE)
 	adjust_icons(tonormal = TRUE)
 
@@ -445,17 +456,17 @@
 
 	//No, they don't get any miracles. Their miracle is being able to use their weapon at all.
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)	//Maybe activating the sword could give them Expert / Master and they stay at Jman by default?
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)
 		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
@@ -507,12 +518,41 @@
 	AddComponent(/datum/component/martyrweapon)
 	..()
 
+/obj/item/rogueweapon/sword/long/martyr/attack_hand(mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/datum/job/J = SSjob.GetJob(H.mind?.assigned_role)
+		if(J.title == "Priest" || J.title == "Martyr")
+			return ..()
+		else if (H.job in GLOB.church_positions)
+			to_chat(user, span_warning("You feel a holy energies just for a split second, and then the sword slips from your grasp! You are not devout enough."))
+			return FALSE
+		else if(istype(H.patron, /datum/patron/inhumen)) //Inhumens are touching this while it's active, very fucking stupid of them
+			var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
+			to_chat(user, span_warning("YOU FOOL! IT IS ANATHEMA TO YOU! GET AWAY!"))
+			H.Stun(40)
+			H.Knockdown(40)
+			if(marty.is_active)
+				visible_message(span_warning("[H] lets out a painful shriek as the sword lashes out at them!"))
+				H.emote("agony")
+				H.adjust_fire_stacks(5)
+				H.IgniteMob()
+			return FALSE
+		else	//Everyone else
+			to_chat(user, span_warning("A painful jolt across your entire body sends you to the ground. You cannot touch this thing."))
+			H.emote("groan")
+			H.Stun(40)
+			H.Knockdown(40)
+			return FALSE
+	else
+		return FALSE
+
 /obj/item/rogueweapon/sword/long/martyr/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
 			if("gen") return list("shrink" = 0.6,"sx" = -14,"sy" = -8,"nx" = 15,"ny" = -7,"wx" = -10,"wy" = -5,"ex" = 7,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -13,"sturn" = 110,"wturn" = -60,"eturn" = -30,"nflip" = 1,"sflip" = 1,"wflip" = 8,"eflip" = 1)
-			if("onback") return list("shrink" = 0.6,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
+			if("onback") return list("shrink" = 0.6,"sx" = -2,"sy" = 3,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 90,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 			if("wielded") return list("shrink" = 0.7,"sx" = 6,"sy" = -2,"nx" = -4,"ny" = 2,"wx" = -8,"wy" = -1,"ex" = 7,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 15,"sturn" = -200,"wturn" = -160,"eturn" = -25,"nflip" = 8,"sflip" = 8,"wflip" = 0,"eflip" = 0)
 			if("onbelt") return list("shrink" = 0.6,"sx" = -2,"sy" = -5,"nx" = 0,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = -3,"ey" = -5,"nturn" = 180,"sturn" = 180,"wturn" = 0,"eturn" = 90,"nflip" = 0,"sflip" = 0,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
