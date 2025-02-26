@@ -3392,9 +3392,6 @@
 /obj/structure/rack/rogue,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
-"cxY" = (
-/turf/open/floor/rogue/hexstone,
-/area/rogue/outdoors/rtfield)
 "cyh" = (
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town/tavern)
@@ -60778,7 +60775,7 @@ vTH
 vTH
 vTH
 vTH
-cxY
+vTH
 vTH
 vTH
 jMT
