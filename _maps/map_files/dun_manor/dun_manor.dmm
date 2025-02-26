@@ -1252,6 +1252,12 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
+"aTE" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/shelter/mountains)
 "aTK" = (
 /obj/structure/chair/bench/couch,
 /obj/structure/roguemachine/atm,
@@ -81501,7 +81507,7 @@ hbs
 ylz
 uuR
 tCF
-jTM
+aTE
 fDO
 xUA
 tCF
@@ -81657,7 +81663,7 @@ hbs
 hbs
 ylz
 uuR
-mlM
+jTM
 hbs
 hbs
 hbs
@@ -83698,7 +83704,7 @@ hbs
 hbs
 dmL
 izn
-hbs
+mlM
 mPD
 mPD
 qNj
