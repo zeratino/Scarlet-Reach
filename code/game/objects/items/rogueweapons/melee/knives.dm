@@ -462,29 +462,42 @@
 						if(!do_after(user, 60 SECONDS, target = H))
 							to_chat(user, span_warning("The styling was interrupted!"))
 							return
-						var/datum/bodypart_feature/hair/head/hair_feature = new()
-						// Get the current hair feature to preserve colors and gradients
+						
 						var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
-						var/datum/bodypart_feature/hair/head/current_hair = null
-						if(head)
-							for(var/datum/bodypart_feature/hair/head/hair in head.bodypart_features)
-								current_hair = hair
+						if(head && head.bodypart_features)
+							var/datum/bodypart_feature/hair/head/current_hair = null
+							for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
+								current_hair = hair_feature
 								break
-						
-						// Set the new hairstyle while preserving colors
-						hair_feature.set_accessory_type(valid_hairstyles[new_style], current_hair?.hair_color || H.hair_color, H)
-						if(current_hair)
-							hair_feature.hair_dye_gradient = current_hair.hair_dye_gradient
-							hair_feature.hair_dye_color = current_hair.hair_dye_color
-							hair_feature.natural_gradient = current_hair.natural_gradient
-							hair_feature.natural_color = current_hair.natural_color
-						
-						H.add_bodypart_feature(hair_feature)
-						H.update_hair()
-						H.update_body()
-						H.update_body_parts()
-						playsound(src, 'sound/items/flint.ogg', 50, TRUE)
-						user.visible_message(span_notice("[user] finishes styling [H]'s hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] hair."))
+							
+							if(current_hair)
+								// Create a new hair entry with the SAME color as the current hair
+								var/datum/customizer_entry/hair/hair_entry = new()
+								hair_entry.hair_color = current_hair.hair_color
+								
+								// Copy all gradient data if it exists
+								if(istype(current_hair, /datum/bodypart_feature/hair/head))
+									hair_entry.natural_gradient = current_hair.natural_gradient
+									hair_entry.natural_color = current_hair.natural_color
+									if(hasvar(current_hair, "hair_dye_gradient"))
+										hair_entry.dye_gradient = current_hair.hair_dye_gradient
+									if(hasvar(current_hair, "hair_dye_color"))
+										hair_entry.dye_color = current_hair.hair_dye_color
+								
+								// Create the new hair with the new style but preserve all color data
+								var/datum/bodypart_feature/hair/head/new_hair = new()
+								new_hair.set_accessory_type(valid_hairstyles[new_style], hair_entry.hair_color, H)
+								
+								// Apply all the color data from the entry
+								hair_choice.customize_feature(new_hair, H, null, hair_entry)
+								
+								head.remove_bodypart_feature(current_hair)
+								head.add_bodypart_feature(new_hair)
+								H.update_hair()
+								H.update_body()
+								H.update_body_parts()
+								playsound(src, 'sound/items/flint.ogg', 50, TRUE)
+								user.visible_message(span_notice("[user] finishes styling [H]'s hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] hair."))
 				
 				if("facial hairstyle")
 					if(H.gender != MALE)
@@ -502,29 +515,42 @@
 						if(!do_after(user, 60 SECONDS, target = H))
 							to_chat(user, span_warning("The styling was interrupted!"))
 							return
-						var/datum/bodypart_feature/hair/facial/facial_feature = new()
-						// Get the current facial hair feature to preserve colors and gradients
+						
 						var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
-						var/datum/bodypart_feature/hair/facial/current_facial = null
-						if(head)
-							for(var/datum/bodypart_feature/hair/facial/facial in head.bodypart_features)
-								current_facial = facial
+						if(head && head.bodypart_features)
+							var/datum/bodypart_feature/hair/facial/current_facial = null
+							for(var/datum/bodypart_feature/hair/facial/facial_feature in head.bodypart_features)
+								current_facial = facial_feature
 								break
-						
-						// Set the new facial hairstyle while preserving colors
-						facial_feature.set_accessory_type(valid_facial_hairstyles[new_style], current_facial?.hair_color || H.facial_hair_color, H)
-						if(current_facial)
-							facial_feature.hair_dye_gradient = current_facial.hair_dye_gradient
-							facial_feature.hair_dye_color = current_facial.hair_dye_color
-							facial_feature.natural_gradient = current_facial.natural_gradient
-							facial_feature.natural_color = current_facial.natural_color
-						
-						H.add_bodypart_feature(facial_feature)
-						H.update_hair()
-						H.update_body()
-						H.update_body_parts()
-						playsound(src, 'sound/items/flint.ogg', 50, TRUE)
-						user.visible_message(span_notice("[user] finishes styling [H]'s facial hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] facial hair."))
+							
+							if(current_facial)
+								// Create a new facial hair entry with the SAME color as the current facial hair
+								var/datum/customizer_entry/hair/facial/facial_entry = new()
+								facial_entry.hair_color = current_facial.hair_color
+								
+								// Copy all gradient data if it exists
+								if(istype(current_facial, /datum/bodypart_feature/hair/facial))
+									facial_entry.natural_gradient = current_facial.natural_gradient
+									facial_entry.natural_color = current_facial.natural_color
+									if(hasvar(current_facial, "hair_dye_gradient"))
+										facial_entry.dye_gradient = current_facial.hair_dye_gradient
+									if(hasvar(current_facial, "hair_dye_color"))
+										facial_entry.dye_color = current_facial.hair_dye_color
+								
+								// Create the new facial hair with the new style but preserve color
+								var/datum/bodypart_feature/hair/facial/new_facial = new()
+								new_facial.set_accessory_type(valid_facial_hairstyles[new_style], facial_entry.hair_color, H)
+								
+								// Apply all the color data from the entry
+								facial_choice.customize_feature(new_facial, H, null, facial_entry)
+								
+								head.remove_bodypart_feature(current_facial)
+								head.add_bodypart_feature(new_facial)
+								H.update_hair()
+								H.update_body()
+								H.update_body_parts()
+								playsound(src, 'sound/items/flint.ogg', 50, TRUE)
+								user.visible_message(span_notice("[user] finishes styling [H]'s facial hair."), span_notice("You finish styling [H == user ? "your" : "[H]'s"] facial hair."))
 		return
 	return ..()
 
