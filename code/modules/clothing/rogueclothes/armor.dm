@@ -268,8 +268,7 @@
 /obj/item/clothing/suit/roguetown/armor/leather
 	name = "leather armor"
 	desc = "Flexible cowhide armor. Lightweight, better than nothing."
-	icon_state = "roguearmor"
-//	color = "#514339"
+	icon_state = "leather"
 	body_parts_covered = CHEST|GROIN|VITALS
 	armor = list("blunt" = 60, "slash" = 50, "stab" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT)
@@ -283,6 +282,12 @@
 	sellprice = 20
 	armor_class = ARMOR_CLASS_LIGHT
 	salvage_result = /obj/item/natural/hide/cured
+
+/obj/item/clothing/suit/roguetown/armor/leather/cuirass
+	name = "leather cuirass"
+	desc = "A cuirass made of leather."
+	icon_state = "roguearmor"
+	max_integrity = 200
 
 /obj/item/clothing/suit/roguetown/armor/leather/hide
 	name = "hide armor"
@@ -328,6 +333,17 @@
 	max_integrity = 300
 	sellprice = 25
 
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket
+	name = "hardened leather jacket"
+	desc = "A heavy leather jacket that covers the arms and protects the vitals."
+	icon_state = "leatherjacketo"
+	item_state = "leatherjacketo"
+	body_parts_covered = CHEST|GROIN|VITALS|ARMS
+	armor = list("blunt" = 100, "slash" = 70, "stab" = 50, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
+	max_integrity = 300
+	sellprice = 25
+
 /obj/item/clothing/suit/roguetown/armor/leather/bikini
 	name = "leather bikini"
 	desc = "Flexible cowhide armor. Lightweight, better than nothing. Now in tasteful bikini shape."
@@ -357,7 +373,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest
 	name = "leather vest"
-	desc = "A leather vest. Not very protective, but fashion."
+	desc = "A leather vest. Not very protective, but fashionable."
 	icon_state = "vest"
 	item_state = "vest"
 	color = "#514339"

@@ -289,6 +289,17 @@
 	sellprice = 36
 	craftdiff = 4
 
+/datum/crafting_recipe/roguetown/leather/heavy_leather_armor/jacket
+	name = "hardened leather jacket"
+	result = /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket
+	reqs = list(
+		/obj/item/natural/hide/cured = 3,
+		/obj/item/reagent_containers/food/snacks/tallow = 1,
+		/obj/item/natural/fibers = 1,
+		)
+	sellprice = 36
+	craftdiff = 4
+
 /datum/crafting_recipe/roguetown/leather/hidebikini
 	name = "hide bikini armor"
 	result = /obj/item/clothing/suit/roguetown/armor/leather/hide/bikini

@@ -119,6 +119,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_SMASH)
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants
 	name = "hardened leather trousers"
@@ -137,7 +138,6 @@
 	l_sleeve_status = SLEEVE_NOMOD
 	resistance_flags = FIRE_PROOF
 	armor_class = ARMOR_CLASS_LIGHT
-	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants/shorts
 	name = "hardened leather shorts"
