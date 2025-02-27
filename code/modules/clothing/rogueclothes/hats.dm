@@ -83,6 +83,11 @@
 	max_integrity = 100
 	sewrepair = TRUE
 
+
+/obj/item/clothing/head/roguetown/roguehood/shalal/equipped(mob/user, slot)//PROC OVERRIDE OTHERWISE IT DOES NOT RESPECT FLAGS IN THE MASK SLOT AND SHOWS HAIR, SNOUTS..ETC..ETC IDUNNO HOW ELSE TO DO THIs
+	user.update_fov_angles()
+	flags_inv = initial(flags_inv)
+
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
 
@@ -160,9 +165,14 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' //Overrides slot icon behavior
 	body_parts_covered = NECK|MOUTH //Jaw bone
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
-	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	flags_inv = HIDEEARS|HIDESNOUT|HIDEHAIR|HIDEFACIALHAIR
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+
+/obj/item/clothing/head/roguetown/necramask/equipped(mob/user, slot)//PROC OVERRIDE OTHERWISE IT DOES NOT RESPECT FLAGS IN THE MASK SLOT AND SHOWS HAIR, SNOUTS..ETC..ETC IDUNNO HOW ELSE TO DO THIs
+	user.update_fov_angles()
+	flags_inv = initial(flags_inv)
+
 
 /obj/item/clothing/head/roguetown/dendormask
 	name = "briarmask"
@@ -861,7 +871,7 @@
 					var/mob/living/carbon/H = user
 					H.update_inv_head()
 		user.update_fov_angles()
-	
+
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard
 	name = "savoyard"
@@ -1042,7 +1052,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 	name = "psydonian armet"
-	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'" 
+	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
 	icon_state = "psydonarmet"
 	item_state = "psydonarmet"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
