@@ -1,3 +1,9 @@
+/*
+Grappling hook! Comes in 3 strict steps w/ unique intents: Grab -> Attach -> Reel.
+Grab grabs onto a floor turf in range, only works for floors ABOVE the user.
+Attach clasps a hook onto the chosen atom (obj / mob, has to be unanchored and not a structure or machinery)
+Reel teleports the attached atom to the grabbed turf.
+*/
 /obj/item/grapplinghook
 	name = "bronze grappler"
 	desc = "A queer device that allows one to attach something, or themselves and have it be reeled upwards. Every duchy needs one."
@@ -21,7 +27,7 @@
 
 /obj/item/grapplinghook/Initialize(mapload)
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSobj, src)	//For preventing hooking / attaching something and walking away.
 
 
 /obj/item/grapplinghook/Destroy()
@@ -55,7 +61,7 @@
 /datum/intent/reel
 	name = "reel"
 	icon_state = "inreel"
-	desc = "Used to reel the attached entity to the grapple tile."
+	desc = "Used to reel the attached entity to the grappled tile."
 
 /obj/item/grapplinghook/examine()
 	. = ..()
@@ -111,12 +117,13 @@
 		reset_tile()
 		reset_target()
 
-/obj/item/grapplinghook/proc/reset_tile()
+/obj/item/grapplinghook/proc/reset_tile(silent = FALSE)
 	if(tile_effect && grappled_turf)
 		grappled_turf.cut_overlay(tile_effect)
 		qdel(tile_effect)
 		grappled_turf = null
-	playsound(src, 'sound/foley/trap.ogg', 100, FALSE , 5)
+	if(!silent)
+		playsound(src, 'sound/foley/trap.ogg', 100, FALSE , 5)
 	is_loaded = FALSE
 	update_icon()
 
@@ -134,16 +141,16 @@
 		if(do_teleport(attached, grappled_turf))
 			playsound(attached, 'sound/misc/grapple_reel.ogg', 100, FALSE)
 			playsound(grappled_turf, 'sound/misc/grapple_reel.ogg', 100, FALSE)
-			reset_tile()
+			reset_tile(silent = TRUE)
 			reset_target()
 			unload(failure = TRUE)
 
 /obj/item/grapplinghook/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	if(istype(user.used_intent, /datum/intent/grapple))
+	if(istype(user.used_intent, /datum/intent/grapple))	//First step, grappling onto a tile. Spawns an indicator on it.
 		if(is_loaded && istype(target, /turf/))
 			var/turf/T = target
-			if(!istransparentturf(T) && T.z > user.z) //we are shooting at a floor turf above
+			if(!istransparentturf(T) && T.z > user.z) //We are shooting at a floor turf above
 				var/reason
 				if(max_range >= get_dist(user, T) && !T.density)
 					to_chat(user, span_info("The grapple lands on the tile!"))
@@ -154,17 +161,18 @@
 				else if (T.density)
 					reason = "It's a wall!"
 				to_chat(user, span_info("The hook fails! "+"[reason]"))
+				playsound(user, 'sound/foley/trap.ogg', 100, FALSE , 5)
 				unload(failure = TRUE)
 			else
 				to_chat(user, span_info("Incorrect target! It needs a clear floor tile above me to grapple onto."))
 		else if(!is_loaded)
 			to_chat(user, span_info("It's been used already."))
-	if(istype(user.used_intent, /datum/intent/attach))
+	if(istype(user.used_intent, /datum/intent/attach))	//Second step. Once we have a turf we've grappled onto, we can use this to attach to an entity.
 		if(in_use && !istype(target, /turf/))
 			var/safe_to_teleport = TRUE
 			if(isobj(target))
 				var/obj/O = target
-				if(O.density || istype(target, /obj/structure) || O.anchored || istype(target, /obj/machinery))
+				if(O.density || istype(target, /obj/structure) || O.anchored || istype(target, /obj/machinery)) //This should cover most (fingers crossed) objects that shouldn't be moved around like this.
 					safe_to_teleport = FALSE
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
@@ -180,7 +188,9 @@
 					attach(target)
 			else
 				to_chat(user, span_warning("[target] is too large or unwieldy to attach!"))
-	if(istype(user.used_intent, /datum/intent/reel))
+		else
+			to_chat(user, span_info("I need to have it hooked onto a tile first."))
+	if(istype(user.used_intent, /datum/intent/reel))	//Last step, we reel in the attached entity to the grappled turf.
 		if(attached && in_use)
 			if(get_dist(attached, grappled_turf) <= max_range)
 				user.visible_message("[user] reels in \the [src]!")
@@ -188,6 +198,8 @@
 					reel()
 			else
 				to_chat(user, span_info("[target] is too far!"))
+		else
+			to_chat(user, span_info("I need to have something attached."))
 
 /obj/item/grapplinghook/proc/attach(atom/A)
 	if(A && !isturf(A))
