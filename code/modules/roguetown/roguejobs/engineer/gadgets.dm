@@ -109,7 +109,7 @@
 	else if(!is_loaded && in_use && grappled_turf && tile_effect)
 		user.visible_message("[user] unhooks from the tile.")
 		reset_tile()
-		reset_target()z
+		reset_target()
 
 /obj/item/grapplinghook/proc/reset_tile()
 	if(tile_effect && grappled_turf)
