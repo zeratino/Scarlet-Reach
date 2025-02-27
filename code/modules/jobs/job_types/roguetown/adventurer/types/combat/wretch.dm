@@ -9,7 +9,7 @@
 	category_tags = list(CTAG_ADVENTURER)
 	classes = list("Deserter" = "You were once a venerated and revered knight - now, a traitor who abandoned your liege. You live the life of an outlaw, shunned and looked down upon by society.",
 					"Outlaw" = "You're a seasoned criminal known for your heinous acts, your face plastered on wanted posters across the region. A life of theft, robbery, and ill-gotten-gains comes naturally to you.",
-					"Poacher" = "You have rejected society and its laws, choosing life in the wilderness instead. Simple thieving highwayman or freedom fighter, you take from those who have and give to the have-nots. Fancy, how that includes yourself!",
+					"Poacher" = "You have rejected society and its laws, choosing life in the wilderness instead. Simple thieving highwayman or freedom fighter, you take from those who have and give to the have-nots. Fancy, how the latter includes yourself!",
 					"Heretic" = "You are a heretic, spurned by the church, cast out from society - frowned upon by Psydon and his children for your faith.",
 					"Necromancer" = "You have been ostracized and hunted by society for your dark magics and perversion of life.",
 					"Raider" = "You are a savage beyond savages - even the barbarians fear your brutality. You live only to pillage, destroy and revel in bloodshed.")
@@ -201,6 +201,9 @@
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 2)
 			GLOB.outlawed_players += H.real_name
+			var/bounty_total
+			bounty_total = rand(151, 250)
+			add_bounty(H.real_name, bounty_total, FALSE, "Poaching", "The Justiciary of Azuria")
 
 		if("Heretic")
 			to_chat(H, span_warning("You are a heretic, spurned by the church, cast out from society - frowned upon by Psydon and his children for your faith."))
@@ -238,6 +241,7 @@
 			H.change_stat("endurance", 1)
 			if (istype (H.patron, /datum/patron/inhumen/zizo))
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
+				ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/black
 			cloak = /obj/item/clothing/cloak/cape/crusader
 			gloves = /obj/item/clothing/gloves/roguetown/chain/blk
@@ -286,6 +290,7 @@
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 4, TRUE)
 			ADD_TRAIT(H, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 			H.cmode_music = 'sound/music/combat_cult.ogg'
 			if(H.age == AGE_OLD)

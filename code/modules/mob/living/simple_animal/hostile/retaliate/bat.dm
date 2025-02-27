@@ -31,6 +31,9 @@
 	mob_size = MOB_SIZE_TINY
 	movement_type = FLYING
 	speak_emote = list("squeaks")
+	base_intents = list(/datum/intent/bite)
+	rot_type = null
+
 	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus
 	var/min_oxy = 0
 	var/max_tox = 0
@@ -58,3 +61,24 @@
 
 	if(zMove(DOWN, TRUE))
 		to_chat(src, span_notice("I fly down."))
+
+/mob/living/simple_animal/hostile/retaliate/bat/crow
+	name = "zad"
+	desc = ""
+	icon = 'icons/roguetown/mob/monster/crow.dmi'
+	icon_state = "crow_flying"
+	icon_living = "crow_flying"
+	icon_dead = "crow1"
+	icon_gib = "crow1"
+	speak_emote = list("caws")
+	base_intents = list(/datum/intent/unarmed/help)
+	harm_intent_damage = 0
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	remains_type = /obj/effect/decal/remains/crow
+
+/obj/effect/decal/remains/crow
+	name = "zad remains"
+	gender = PLURAL
+	icon_state = "crow1"
+	icon = 'icons/roguetown/mob/monster/crow.dmi'
