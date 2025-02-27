@@ -31,6 +31,7 @@
 	mob_size = MOB_SIZE_TINY
 	movement_type = FLYING
 	speak_emote = list("squeaks")
+	base_intents = list(/datum/intent/bite)
 	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus
 	var/min_oxy = 0
 	var/max_tox = 0
@@ -68,3 +69,7 @@
 	icon_dead = "crow1"
 	icon_gib = "crow1"
 	speak_emote = list("caws")
+	base_intents = list(/datum/intent/unarmed/help)
+	harm_intent_damage = 0
+	melee_damage_lower = 0
+	melee_damage_upper = 0
