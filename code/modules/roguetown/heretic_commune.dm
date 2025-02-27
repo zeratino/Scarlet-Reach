@@ -13,6 +13,13 @@ GLOBAL_VAR_INIT(last_omen, 0)
 	if(!mind)
 		return
 		
+	// Check for puritan trait and remove heretic tab if found
+	if(HAS_TRAIT(src, TRAIT_PURITAN))
+		verbs -= /mob/living/carbon/human/verb/commune
+		verbs -= /mob/living/carbon/human/verb/show_heretics
+		verbs -= /mob/living/carbon/human/verb/bad_omen
+		return
+		
 	if(!HAS_TRAIT(src, TRAIT_COMMIE) && !HAS_TRAIT(src, TRAIT_CABAL) && !HAS_TRAIT(src, TRAIT_HORDE) && !HAS_TRAIT(src, TRAIT_DEPRAVED))
 		to_chat(src, span_warning("You have no heretical allegiances to commune with!"))
 		verbs -= /mob/living/carbon/human/verb/commune
@@ -86,9 +93,11 @@ GLOBAL_VAR_INIT(last_omen, 0)
 	if(!mind)
 		return
 		
-	if(!HAS_TRAIT(src, TRAIT_COMMIE) && !HAS_TRAIT(src, TRAIT_CABAL) && !HAS_TRAIT(src, TRAIT_HORDE) && !HAS_TRAIT(src, TRAIT_DEPRAVED))
-		to_chat(src, span_warning("You have no heretical allegiances!"))
+	// Check for puritan trait and remove heretic tab if found
+	if(HAS_TRAIT(src, TRAIT_PURITAN))
+		verbs -= /mob/living/carbon/human/verb/commune
 		verbs -= /mob/living/carbon/human/verb/show_heretics
+		verbs -= /mob/living/carbon/human/verb/bad_omen
 		return
 		
 	var/my_trait
@@ -135,6 +144,13 @@ GLOBAL_VAR_INIT(last_omen, 0)
 	if(!mind)
 		return
 		
+	// Check for puritan trait and remove heretic tab if found
+	if(HAS_TRAIT(src, TRAIT_PURITAN))
+		verbs -= /mob/living/carbon/human/verb/commune
+		verbs -= /mob/living/carbon/human/verb/show_heretics
+		verbs -= /mob/living/carbon/human/verb/bad_omen
+		return
+
 	if(!HAS_TRAIT(src, TRAIT_COMMIE) && !HAS_TRAIT(src, TRAIT_CABAL) && !HAS_TRAIT(src, TRAIT_HORDE) && !HAS_TRAIT(src, TRAIT_DEPRAVED))
 		to_chat(src, span_warning("You have no heretical knowledge of dark chants!"))
 		verbs -= /mob/living/carbon/human/verb/bad_omen

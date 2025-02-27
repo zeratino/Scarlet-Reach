@@ -38,7 +38,7 @@
 		return
 
 	var/should_update = FALSE
-	var/list/choices = list("hairstyle", "facial hairstyle", "tail", "tail color one", "tail color two", "hair color", "facial hair color", "eye color", "skin color", "body type", "penis", "testicles", "breasts", "vagina", "breast size", "penis size", "testicle size")
+	var/list/choices = list("hairstyle", "facial hairstyle", "accessory", "face detail", "tail", "tail color one", "tail color two", "hair color", "facial hair color", "eye color", "natural gradient", "natural gradient color", "dye gradient", "dye gradient color", "penis", "testicles", "breasts", "vagina", "breast size", "penis size", "testicle size")
 	var/chosen = input(user, "Change what?", "Appearance") as null|anything in choices
 	
 	if(!chosen)
@@ -118,14 +118,13 @@
 						should_update = TRUE
 
 		if("facial hair color")
-			var/new_facial_color = color_pick_sanitized_lumi(user, "Choose your facial hair color", "Facial Hair Color", H.facial_hair_color)
-			if(new_facial_color)
+			var/new_facial_hair_color = color_pick_sanitized_lumi(user, "Choose your facial hair color", "Facial Hair Color", H.facial_hair_color)
+			if(new_facial_hair_color)
 				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 				if(head && head.bodypart_features)
 					var/datum/customizer_choice/bodypart_feature/hair/facial/humanoid/facial_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/facial/humanoid)
 					
 					var/datum/customizer_entry/hair/facial/facial_entry = new()
-					facial_entry.hair_color = sanitize_hexcolor(new_facial_color, 6, TRUE)
 					
 					var/datum/bodypart_feature/hair/facial/current_facial = null
 					for(var/datum/bodypart_feature/hair/facial/facial_feature in head.bodypart_features)
@@ -133,93 +132,18 @@
 						break
 					
 					if(current_facial)
-						var/datum/bodypart_feature/hair/facial/new_facial = new()
+						facial_entry.hair_color = sanitize_hexcolor(new_facial_hair_color, 6, TRUE)
+						facial_entry.accessory_type = current_facial.accessory_type
 						
+						var/datum/bodypart_feature/hair/facial/new_facial = new()
+						new_facial.set_accessory_type(current_facial.accessory_type, null, H)
 						facial_choice.customize_feature(new_facial, H, null, facial_entry)
 						
 						H.facial_hair_color = facial_entry.hair_color
 						H.dna.update_ui_block(DNA_FACIAL_HAIR_COLOR_BLOCK)
-						
 						head.remove_bodypart_feature(current_facial)
 						head.add_bodypart_feature(new_facial)
 						should_update = TRUE
-
-		if("skin tone")
-			var/new_s_tone = input(user, "Choose your skin tone:", "Race change") as null|anything in GLOB.skin_tones
-			if(new_s_tone)
-				H.skin_tone = new_s_tone
-				H.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
-				
-				H.dna.features["mcolor"] = sanitize_hexcolor(H.dna.features["skin_color"], 6, TRUE)
-				
-				var/new_color = H.dna.features["mcolor"]
-				
-				var/obj/item/organ/penis/P = H.getorganslot(ORGAN_SLOT_PENIS)
-				if(P)
-					P.Remove(H)
-					P.color = new_color
-					P.Insert(H, TRUE, FALSE)
-				
-				var/obj/item/organ/testicles/T = H.getorganslot(ORGAN_SLOT_TESTICLES)
-				if(T)
-					T.Remove(H)
-					T.color = new_color
-					T.Insert(H, TRUE, FALSE)
-				
-				var/obj/item/organ/breasts/B = H.getorganslot(ORGAN_SLOT_BREASTS)
-				if(B)
-					B.Remove(H)
-					B.color = new_color
-					B.Insert(H, TRUE, FALSE)
-				
-				H.dna.species.handle_body(H)
-				H.update_body()
-				H.update_hair()
-				H.update_body_parts()
-				should_update = TRUE
-
-		if("skin color")
-			var/new_skin_color = color_pick_sanitized_lumi(user, "Choose your skin color", "Skin Color", H.skin_tone)
-			if(new_skin_color)
-				new_skin_color = sanitize_hexcolor(new_skin_color)
-				
-				// Update DNA features
-				H.dna.features["mcolor"] = new_skin_color
-				H.dna.features["skin_color"] = new_skin_color
-				H.skin_tone = new_skin_color
-				H.dna.update_ui_block(DNA_SKIN_TONE_BLOCK)
-				
-				// Update all genital organs using the Remove/Insert method that works
-				var/obj/item/organ/penis/P = H.getorganslot(ORGAN_SLOT_PENIS)
-				if(P)
-					P.Remove(H)
-					P.color = new_skin_color
-					P.Insert(H, TRUE, FALSE)
-				
-				var/obj/item/organ/testicles/T = H.getorganslot(ORGAN_SLOT_TESTICLES)
-				if(T)
-					T.Remove(H)
-					T.color = new_skin_color
-					T.Insert(H, TRUE, FALSE)
-				
-				var/obj/item/organ/breasts/B = H.getorganslot(ORGAN_SLOT_BREASTS)
-				if(B)
-					B.Remove(H)
-					B.color = new_skin_color
-					B.Insert(H, TRUE, FALSE)
-				
-				var/obj/item/organ/vagina/V = H.getorganslot(ORGAN_SLOT_VAGINA)
-				if(V)
-					V.Remove(H)
-					V.color = new_skin_color
-					V.Insert(H, TRUE, FALSE)
-				
-				// Force a full body update
-				H.dna.species.handle_body(H)
-				H.update_body()
-				H.update_hair()
-				H.update_body_parts()
-				should_update = TRUE
 
 		if("eye color")
 			var/new_eye_color = color_pick_sanitized_lumi(user, "Choose your eye color", "Eye Color", H.eye_color)
@@ -233,33 +157,35 @@
 				H.eye_color = new_eye_color
 				H.dna.features["eye_color"] = new_eye_color
 				H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-				H.update_body()
+				H.update_body_parts()
 				should_update = TRUE
 
 		if("natural gradient")
-			var/list/gradient_options = hair_gradient_name_to_type_list()
-			var/new_gradient = input(user, "Choose your natural gradient style", "Hair Gradient") as null|anything in gradient_options
-			if(new_gradient)
+			var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+			var/list/valid_gradients = list()
+			for(var/gradient_type in GLOB.hair_gradients)
+				valid_gradients[gradient_type] = gradient_type
+			
+			var/new_style = input(user, "Choose your natural gradient", "Hair Gradient") as null|anything in valid_gradients
+			if(new_style)
 				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 				if(head && head.bodypart_features)
-					var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
-					
-					var/datum/customizer_entry/hair/hair_entry = new()
-					
 					var/datum/bodypart_feature/hair/head/current_hair = null
 					for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
 						current_hair = hair_feature
 						break
 					
 					if(current_hair)
+						var/datum/customizer_entry/hair/hair_entry = new()
 						hair_entry.hair_color = current_hair.hair_color
-						hair_entry.natural_gradient = gradient_options[new_gradient]
+						hair_entry.natural_gradient = valid_gradients[new_style]
 						hair_entry.natural_color = current_hair.natural_color
 						hair_entry.dye_gradient = current_hair.hair_dye_gradient
 						hair_entry.dye_color = current_hair.hair_dye_color
+						hair_entry.accessory_type = current_hair.accessory_type
 						
 						var/datum/bodypart_feature/hair/head/new_hair = new()
-						
+						new_hair.set_accessory_type(current_hair.accessory_type, null, H)
 						hair_choice.customize_feature(new_hair, H, null, hair_entry)
 						
 						head.remove_bodypart_feature(current_hair)
@@ -267,7 +193,7 @@
 						should_update = TRUE
 
 		if("natural gradient color")
-			var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your natural gradient color", "Gradient Color", "#FFFFFF")
+			var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your natural gradient color", "Natural Gradient Color", H.hair_color)
 			if(new_gradient_color)
 				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 				if(head && head.bodypart_features)
@@ -286,9 +212,10 @@
 						hair_entry.natural_color = sanitize_hexcolor(new_gradient_color, 6, TRUE)
 						hair_entry.dye_gradient = current_hair.hair_dye_gradient
 						hair_entry.dye_color = current_hair.hair_dye_color
+						hair_entry.accessory_type = current_hair.accessory_type
 						
 						var/datum/bodypart_feature/hair/head/new_hair = new()
-						
+						new_hair.set_accessory_type(current_hair.accessory_type, null, H)
 						hair_choice.customize_feature(new_hair, H, null, hair_entry)
 						
 						head.remove_bodypart_feature(current_hair)
@@ -296,29 +223,31 @@
 						should_update = TRUE
 
 		if("dye gradient")
-			var/list/gradient_options = hair_gradient_name_to_type_list()
-			var/new_gradient = input(user, "Choose your dye gradient style", "Hair Gradient") as null|anything in gradient_options
-			if(new_gradient)
+			var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
+			var/list/valid_gradients = list()
+			for(var/gradient_type in GLOB.hair_gradients)
+				valid_gradients[gradient_type] = gradient_type
+			
+			var/new_style = input(user, "Choose your dye gradient", "Hair Gradient") as null|anything in valid_gradients
+			if(new_style)
 				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 				if(head && head.bodypart_features)
-					var/datum/customizer_choice/bodypart_feature/hair/head/humanoid/hair_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/hair/head/humanoid)
-					
-					var/datum/customizer_entry/hair/hair_entry = new()
-					
 					var/datum/bodypart_feature/hair/head/current_hair = null
 					for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
 						current_hair = hair_feature
 						break
 					
 					if(current_hair)
+						var/datum/customizer_entry/hair/hair_entry = new()
 						hair_entry.hair_color = current_hair.hair_color
 						hair_entry.natural_gradient = current_hair.natural_gradient
 						hair_entry.natural_color = current_hair.natural_color
-						hair_entry.dye_gradient = gradient_options[new_gradient]
+						hair_entry.dye_gradient = valid_gradients[new_style]
 						hair_entry.dye_color = current_hair.hair_dye_color
+						hair_entry.accessory_type = current_hair.accessory_type
 						
 						var/datum/bodypart_feature/hair/head/new_hair = new()
-						
+						new_hair.set_accessory_type(current_hair.accessory_type, null, H)
 						hair_choice.customize_feature(new_hair, H, null, hair_entry)
 						
 						head.remove_bodypart_feature(current_hair)
@@ -326,7 +255,7 @@
 						should_update = TRUE
 
 		if("dye gradient color")
-			var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your dye gradient color", "Gradient Color", "#FFFFFF")
+			var/new_gradient_color = color_pick_sanitized_lumi(user, "Choose your dye gradient color", "Dye Gradient Color", H.hair_color)
 			if(new_gradient_color)
 				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 				if(head && head.bodypart_features)
@@ -345,9 +274,10 @@
 						hair_entry.natural_color = current_hair.natural_color
 						hair_entry.dye_gradient = current_hair.hair_dye_gradient
 						hair_entry.dye_color = sanitize_hexcolor(new_gradient_color, 6, TRUE)
+						hair_entry.accessory_type = current_hair.accessory_type
 						
 						var/datum/bodypart_feature/hair/head/new_hair = new()
-						
+						new_hair.set_accessory_type(current_hair.accessory_type, null, H)
 						hair_choice.customize_feature(new_hair, H, null, hair_entry)
 						
 						head.remove_bodypart_feature(current_hair)
@@ -389,7 +319,7 @@
 
 		if("accessory")
 			var/datum/customizer_choice/bodypart_feature/accessory/accessory_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/accessory)
-			var/list/valid_accessories = list()
+			var/list/valid_accessories = list("none")
 			for(var/accessory_type in accessory_choice.sprite_accessories)
 				var/datum/sprite_accessory/accessory/acc = new accessory_type()
 				valid_accessories[acc.name] = accessory_type
@@ -398,20 +328,21 @@
 			if(new_style)
 				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 				if(head && head.bodypart_features)
-					var/datum/bodypart_feature/accessory/accessory_feature = new()
-					
-					accessory_feature.set_accessory_type(valid_accessories[new_style], H.hair_color, H)
-					
+					// Remove existing accessory if any
 					for(var/datum/bodypart_feature/accessory/old_acc in head.bodypart_features)
 						head.remove_bodypart_feature(old_acc)
 						break
 					
-					head.add_bodypart_feature(accessory_feature)
+					// Add new accessory if not "none"
+					if(new_style != "none")
+						var/datum/bodypart_feature/accessory/accessory_feature = new()
+						accessory_feature.set_accessory_type(valid_accessories[new_style], H.hair_color, H)
+						head.add_bodypart_feature(accessory_feature)
 					should_update = TRUE
 
 		if("face detail")
 			var/datum/customizer_choice/bodypart_feature/face_detail/face_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/face_detail)
-			var/list/valid_details = list()
+			var/list/valid_details = list("none")
 			for(var/detail_type in face_choice.sprite_accessories)
 				var/datum/sprite_accessory/face_detail/detail = new detail_type()
 				valid_details[detail.name] = detail_type
@@ -420,67 +351,17 @@
 			if(new_detail)
 				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
 				if(head && head.bodypart_features)
-					var/datum/bodypart_feature/face_detail/detail_feature = new()
-					
-					detail_feature.set_accessory_type(valid_details[new_detail], H.hair_color, H)
-					
+					// Remove existing face detail if any
 					for(var/datum/bodypart_feature/face_detail/old_detail in head.bodypart_features)
 						head.remove_bodypart_feature(old_detail)
 						break
 					
-					head.add_bodypart_feature(detail_feature)
+					// Add new face detail if not "none"
+					if(new_detail != "none")
+						var/datum/bodypart_feature/face_detail/detail_feature = new()
+						detail_feature.set_accessory_type(valid_details[new_detail], H.hair_color, H)
+						head.add_bodypart_feature(detail_feature)
 					should_update = TRUE
-
-		if("body type")
-			var/list/body_types = list("masculine", "feminine")
-			var/new_body_type = input(user, "Choose your body type:", "Body Type") as null|anything in body_types
-			if(new_body_type)
-				switch(new_body_type)
-					if("masculine")
-						H.gender = "male"
-						var/obj/item/organ/penis/penis = H.getorganslot(ORGAN_SLOT_PENIS)
-						var/obj/item/organ/testicles/testicles = H.getorganslot(ORGAN_SLOT_TESTICLES)
-						if(!penis)
-							penis = new()
-							penis.Insert(H, TRUE, FALSE)
-						if(!testicles)
-							testicles = new()
-							testicles.Insert(H, TRUE, FALSE)
-						
-						var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
-						var/obj/item/organ/vagina/vagina = H.getorganslot(ORGAN_SLOT_VAGINA)
-						if(breasts)
-							breasts.Remove(H)
-							qdel(breasts)
-						if(vagina)
-							vagina.Remove(H)
-							qdel(vagina)
-						to_chat(H, span_notice("You feel more masculine."))
-					if("feminine") 
-						H.gender = "female"
-						var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
-						var/obj/item/organ/vagina/vagina = H.getorganslot(ORGAN_SLOT_VAGINA)
-						if(!breasts)
-							breasts = new()
-							breasts.Insert(H, TRUE, FALSE)
-						if(!vagina)
-							vagina = new()
-							vagina.Insert(H, TRUE, FALSE)
-						
-						var/obj/item/organ/penis/penis = H.getorganslot(ORGAN_SLOT_PENIS)
-						var/obj/item/organ/testicles/testicles = H.getorganslot(ORGAN_SLOT_TESTICLES)
-						if(penis)
-							penis.Remove(H)
-							qdel(penis)
-						if(testicles)
-							testicles.Remove(H)
-							qdel(testicles)
-						to_chat(H, span_notice("You feel more feminine."))
-				
-				H.dna.update_ui_block(DNA_GENDER_BLOCK)
-				H.update_body()
-				H.update_body_parts()
-				should_update = TRUE
 
 		if("penis")
 			var/list/valid_penis_types = list("none")
@@ -798,7 +679,7 @@
 	var/mob/living/carbon/human/H = user
 	var/should_update = FALSE
 
-	var/choice = input(user, "Something to change?", "Magical Grooming") as null|anything in list("name", "race", "gender", "hair", "eyes")
+	var/choice = input(user, "Something to change?", "Magical Grooming") as null|anything in list("name", "race", "gender", "hair", "eyes", "accessory", "face detail")
 
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return
@@ -888,8 +769,54 @@
 				H.eye_color = new_eye_color
 				H.dna.features["eye_color"] = new_eye_color
 				H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
-				H.update_body()
+				H.update_body_parts()
 				should_update = TRUE
+
+		if("accessory")
+			var/datum/customizer_choice/bodypart_feature/accessory/accessory_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/accessory)
+			var/list/valid_accessories = list("none")
+			for(var/accessory_type in accessory_choice.sprite_accessories)
+				var/datum/sprite_accessory/accessory/acc = new accessory_type()
+				valid_accessories[acc.name] = accessory_type
+			
+			var/new_style = input(user, "Choose your accessory", "Accessory Styling") as null|anything in valid_accessories
+			if(new_style)
+				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+				if(head && head.bodypart_features)
+					// Remove existing accessory if any
+					for(var/datum/bodypart_feature/accessory/old_acc in head.bodypart_features)
+						head.remove_bodypart_feature(old_acc)
+						break
+					
+					// Add new accessory if not "none"
+					if(new_style != "none")
+						var/datum/bodypart_feature/accessory/accessory_feature = new()
+						accessory_feature.set_accessory_type(valid_accessories[new_style], H.hair_color, H)
+						head.add_bodypart_feature(accessory_feature)
+					should_update = TRUE
+
+		if("face detail")
+			var/datum/customizer_choice/bodypart_feature/face_detail/face_choice = CUSTOMIZER_CHOICE(/datum/customizer_choice/bodypart_feature/face_detail)
+			var/list/valid_details = list("none")
+			for(var/detail_type in face_choice.sprite_accessories)
+				var/datum/sprite_accessory/face_detail/detail = new detail_type()
+				valid_details[detail.name] = detail_type
+			
+			var/new_detail = input(user, "Choose your face detail", "Face Detail") as null|anything in valid_details
+			if(new_detail)
+				var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
+				if(head && head.bodypart_features)
+					// Remove existing face detail if any
+					for(var/datum/bodypart_feature/face_detail/old_detail in head.bodypart_features)
+						head.remove_bodypart_feature(old_detail)
+						break
+					
+					// Add new face detail if not "none"
+					if(new_detail != "none")
+						var/datum/bodypart_feature/face_detail/detail_feature = new()
+						detail_feature.set_accessory_type(valid_details[new_detail], H.hair_color, H)
+						head.add_bodypart_feature(detail_feature)
+					should_update = TRUE
 
 	if(should_update)
 		H.update_body()
