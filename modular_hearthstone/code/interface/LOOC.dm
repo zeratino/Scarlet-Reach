@@ -12,7 +12,7 @@
 
 /client/proc/get_looc()
 	var/msg = input(src, null, "looc \"text\"") as text|null
-	do_looc(msg)
+	do_looc(msg, FALSE)
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
