@@ -48,7 +48,7 @@
 	if(animal_pref)
 		for(var/mob/M as anything in listeners)
 			if(M.client)
-				if(M.client.prefs?.mute_animal_sounds)
+				if(M.client.prefs?.mute_animal_emotes)
 					listeners -= M
 	. = list()
 
