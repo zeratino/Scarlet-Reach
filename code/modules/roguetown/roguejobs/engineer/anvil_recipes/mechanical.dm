@@ -63,6 +63,7 @@
 	req_bar = /obj/item/ingot/bronze
 	created_item = /obj/item/grapplinghook
 	additional_items = list(/obj/item/rogueweapon/pick, /obj/item/roguegear, /obj/item/roguegear, /obj/item/roguegear, /obj/item/ingot/bronze, /obj/item/ingot/bronze)
+	craftdiff = 5
 
 // ------------ PROSTHETICS ----------------
 
