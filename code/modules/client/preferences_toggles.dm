@@ -60,6 +60,17 @@
 		else
 			to_chat(src, "Your character information will no longer be viewable when masked.")
 
+/client/verb/animal_sounds()
+	set category = "Options"
+	set name = "Toggle Animal Noise Emotes"
+	if(prefs)
+		prefs.animal_sounds = !prefs.animal_sounds
+		prefs.save_preferences()
+		if(prefs.animal_sounds)
+			to_chat(src, "You can no longer hear animal sound emotes.")
+		else
+			to_chat(src, "You will now hear animal sound emotes.")
+
 /client/verb/toggle_ERP() // Alters if other people can use the ERP panel ON you.
 	set category = "Options"
 	set name = "Toggle ERP Panel"
