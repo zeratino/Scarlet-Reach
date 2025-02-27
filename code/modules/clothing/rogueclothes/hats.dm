@@ -9,11 +9,12 @@
 	dynamic_hair_suffix = "+generic"
 	bloody_icon_state = "helmetblood"
 	experimental_onhip = TRUE
+	var/mask_override = FALSE //override if we want to always respect our inv flags if the helm is in a mask slot
 
 /obj/item/clothing/head/roguetown/equipped(mob/user, slot)
 	. = ..()
 	user.update_fov_angles()
-	if(slot != SLOT_HEAD)
+	if(slot != SLOT_HEAD && !mask_override)
 		flags_inv = null
 	else
 		flags_inv = initial(flags_inv)
@@ -82,11 +83,7 @@
 	blocksound = SOFTHIT
 	max_integrity = 100
 	sewrepair = TRUE
-
-
-/obj/item/clothing/head/roguetown/roguehood/shalal/equipped(mob/user, slot)//PROC OVERRIDE OTHERWISE IT DOES NOT RESPECT FLAGS IN THE MASK SLOT AND SHOWS HAIR, SNOUTS..ETC..ETC IDUNNO HOW ELSE TO DO THIs
-	user.update_fov_angles()
-	flags_inv = initial(flags_inv)
+	mask_override = TRUE
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
@@ -168,10 +165,7 @@
 	flags_inv = HIDEEARS|HIDESNOUT|HIDEHAIR|HIDEFACIALHAIR
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
-
-/obj/item/clothing/head/roguetown/necramask/equipped(mob/user, slot)//PROC OVERRIDE OTHERWISE IT DOES NOT RESPECT FLAGS IN THE MASK SLOT AND SHOWS HAIR, SNOUTS..ETC..ETC IDUNNO HOW ELSE TO DO THIs
-	user.update_fov_angles()
-	flags_inv = initial(flags_inv)
+	mask_override = TRUE
 
 
 /obj/item/clothing/head/roguetown/dendormask
@@ -245,7 +239,10 @@
 			block2add = FOV_BEHIND
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = null
+			if(mask_override == TRUE)
+				flags_inv = initial(flags_inv)
+			else
+				flags_inv = null
 			if(user)
 				if(ishuman(user))
 					var/mob/living/carbon/H = user
