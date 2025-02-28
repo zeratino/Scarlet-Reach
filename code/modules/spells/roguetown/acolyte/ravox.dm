@@ -15,7 +15,7 @@
 /obj/effect/proc_holder/spell/self/call_to_arms/cast(list/targets,mob/living/user = usr)
 	for(var/mob/living/carbon/target in view(3, get_turf(user)))
 		if(istype(target.patron, /datum/patron/inhumen))
-			target.apply_status_effect(/datum/status_effect/buff/call_to_slaughter)	//Debuffs inhumen worshipers.
+			target.apply_status_effect(/datum/status_effect/debuff/call_to_arms)	//Debuffs inhumen worshipers.
 			return
 		if(istype(target.patron, /datum/patron/old_god))
 			to_chat(target, span_danger("You feel a hot-wave wash over you, leaving as quickly as it came.."))	//No effect on Psydonians!
@@ -40,7 +40,7 @@
 	associated_skill = /datum/skill/magic/holy
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	sound = 'sound/magic/timestop.ogg'
-	invocation = "Ravox guides my strike against the unjust!"
+	invocation = "By Ravox, stand and fight!"
 	invocation_type = "shout"
 	antimagic_allowed = TRUE
 	miracle = TRUE
