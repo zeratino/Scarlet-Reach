@@ -21285,12 +21285,6 @@
 /obj/item/speakerinq,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/church)
-"pAC" = (
-/obj/structure/roguemachine/mail{
-	mailtag = "Bathmaster"
-	},
-/turf/open/floor/rogue/blocks/stonered/tiny,
-/area/rogue/indoors/town/bath)
 "pBa" = (
 /obj/structure/closet/crate/chest/neu,
 /turf/open/floor/rogue/twig,
@@ -24582,6 +24576,10 @@
 /obj/effect/landmark/start/prisonerr,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/cell)
+"rYu" = (
+/obj/structure/roguemachine/bathvend,
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/indoors/town/bath)
 "rYA" = (
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked{
 	pixel_x = -14;
@@ -31806,6 +31804,9 @@
 /area/rogue/indoors/town/garrison)
 "xmj" = (
 /obj/structure/chair/wood/rogue,
+/obj/structure/roguemachine/mail{
+	mailtag = "Bathmaster"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/bath)
 "xmq" = (
@@ -41560,8 +41561,8 @@ heh
 heh
 heh
 pmA
-kAA
-pAC
+rYu
+ktR
 ktR
 ktR
 nJK
