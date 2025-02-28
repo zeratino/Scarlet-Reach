@@ -67,7 +67,8 @@
 		return
 	else
 		var/note_color = "#7f7f7f" // uses MMO item rarity color grading
-		var/list/options = song_list.Copy()
+		var/list/options = list()
+		options += song_list
 		if(user.mind && user.mind.get_skill_level(/datum/skill/misc/music) >= 4)
 			options["Upload New Song"] = "upload"
 		
