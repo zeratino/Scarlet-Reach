@@ -67,8 +67,7 @@
 		return
 	else
 		var/note_color = "#7f7f7f" // uses MMO item rarity color grading
-		var/list/options = list()
-		options += song_list
+		var/list/options = song_list.Copy()
 		if(user.mind && user.mind.get_skill_level(/datum/skill/misc/music) >= 4)
 			options["Upload New Song"] = "upload"
 		
@@ -112,25 +111,32 @@
 		if(!user || playing || !(src in user.held_items))
 			return
 		if(user.mind)
-			soundloop.stress2give = null
 			switch(user.mind.get_skill_level(/datum/skill/misc/music))
 				if(1)
 					stressevent = /datum/stressevent/music
+					soundloop.stress2give = stressevent
 				if(2)
 					note_color = "#ffffff"
 					stressevent = /datum/stressevent/music/two
+					soundloop.stress2give = stressevent
 				if(3)
 					note_color = "#1eff00"
 					stressevent = /datum/stressevent/music/three
+					soundloop.stress2give = stressevent
 				if(4)
 					note_color = "#0070dd"
 					stressevent = /datum/stressevent/music/four
+					soundloop.stress2give = stressevent
 				if(5)
 					note_color = "#a335ee"
 					stressevent = /datum/stressevent/music/five
+					soundloop.stress2give = stressevent
 				if(6)
 					note_color = "#ff8000"
 					stressevent = /datum/stressevent/music/six
+					soundloop.stress2give = stressevent
+				else
+					soundloop.stress2give = stressevent
 		if(!(src in user.held_items))
 			return
 		if(user.get_inactive_held_item())
