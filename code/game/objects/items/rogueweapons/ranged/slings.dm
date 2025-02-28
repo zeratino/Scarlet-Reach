@@ -171,12 +171,11 @@
 		spread = 0
 	for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 		var/obj/projectile/BB = CB.BB
+		BB.embedchance = 0.1 //for some reason, if the embedchance is 0, the reusable projectile will not drop after hitting a mob. so it's a 1/1000 chance now
 		if(user.client.chargedprog < 100)
 			BB.damage = BB.damage - (BB.damage * (user.client.chargedprog / 100))
-			BB.embedchance = 0
 		else
 			BB.damage = BB.damage
-			BB.embedchance = 0
 		BB.damage = BB.damage * (((user.STAPER / 1.25) + (user.STASTR / 5)) / 10) * damfactor + bonus_stone_force
 		// each point of perception is 8% damage. each point of strength is 2% damage. 100% damage at 10 in both. the stone's bonus force is added as a flat amount
 		if (temp_stone != null) //reseting after stone ammo use
