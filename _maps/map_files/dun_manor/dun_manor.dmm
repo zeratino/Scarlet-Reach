@@ -16296,10 +16296,6 @@
 /obj/item/reagent_containers/food/snacks/rogue/meat/salami,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
-"mcq" = (
-/turf/closed/wall/mineral/rogue/stone,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/indoors/town)
 "mcz" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/transparent/openspace,
@@ -69167,7 +69163,7 @@ rjf
 rjf
 rjf
 fJa
-mcq
+fJa
 rJM
 hvn
 hvn
