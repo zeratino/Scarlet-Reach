@@ -841,11 +841,14 @@
 
 	var/mob/living/carbon/human/H = mob
 	var/datum/job/mob_job
+	var/target_job = SSrole_class_handler.get_advclass_by_name(H.advjob)
 
 	if(H.mind)
 		mob_job = SSjob.GetJob(H.mind.assigned_role)
 		if(mob_job)
 			mob_job.current_positions = max(0, mob_job.current_positions - 1)
+		if(target_job)
+			SSrole_class_handler.adjust_class_amount(target_job, -1)
 		H.mind.unknow_all_people()
 		for(var/datum/mind/MF in get_minds())
 			H.mind.become_unknown_to(MF)
