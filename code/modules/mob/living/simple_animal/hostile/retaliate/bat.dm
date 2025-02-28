@@ -33,6 +33,7 @@
 	speak_emote = list("squeaks")
 	base_intents = list(/datum/intent/bite)
 	rot_type = null
+	var/fly_time = 3 SECONDS
 
 	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus
 	var/min_oxy = 0
@@ -48,18 +49,22 @@
 	verbs += list(/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_up,
 	/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_down) 
 
-/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_up()
+/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_up(mob/living/user)
 	set category = "Bat Form"
 	set name = "Move Up"
 
-	if(zMove(UP, TRUE))
-		to_chat(src, span_notice("I fly upwards."))
+	user.visible_message(span_notice("[user] begins to ascend!"), span_notice("You take flight..."))
+	if(do_after(user, fly_time, target))
+		user.zMove(UP, TRUE)
+		to_chat(src, span_notice("I fly up."))
 
-/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_down()
+/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_down(mob/living/user)
 	set category = "Bat Form"
 	set name = "Move Down"
 
-	if(zMove(DOWN, TRUE))
+	user.visible_message(span_notice("[user] begins to descend!"), span_notice("You take flight..."))
+	if(do_after(user, fly_time, target))
+		user.zMove(DOWN, TRUE)
 		to_chat(src, span_notice("I fly down."))
 
 /mob/living/simple_animal/hostile/retaliate/bat/crow
