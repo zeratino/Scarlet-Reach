@@ -1486,6 +1486,24 @@
 		to_chat(usr, span_warning("Your tongue doesn't do that"))
 		return
 
+/datum/emote/living/trill
+	key = "trill"
+	key_third_person = "trills!"
+	message = "trills!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/emote_trill()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Trill"
+		set category = "Noises"
+		emote("trill", intentional = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
 /datum/emote/living/snap
 	key = "snap"
 	key_third_person = "finger snaps!"
