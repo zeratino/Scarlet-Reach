@@ -58,6 +58,13 @@
 	additional_items = list(/obj/item/roguegear, /obj/item/ash)
 	craftdiff = 3		
 
+/datum/anvil_recipe/engineering/bronze/grappler
+	name = "Grappler"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/grapplinghook
+	additional_items = list(/obj/item/rogueweapon/pick, /obj/item/roguegear, /obj/item/roguegear, /obj/item/roguegear, /obj/item/rope/chain)
+	craftdiff = 5
+
 // ------------ PROSTHETICS ----------------
 
 /datum/anvil_recipe/engineering/bronze/prosthetic/bronzeleftarm

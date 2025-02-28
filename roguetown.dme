@@ -1772,6 +1772,7 @@
 #include "code\modules\roguetown\roguejobs\cook\tools\pan.dm"
 #include "code\modules\roguetown\roguejobs\cook\tools\pot.dm"
 #include "code\modules\roguetown\roguejobs\cook\tools\skewer.dm"
+#include "code\modules\roguetown\roguejobs\engineer\gadgets.dm"
 #include "code\modules\roguetown\roguejobs\engineer\items.dm"
 #include "code\modules\roguetown\roguejobs\engineer\prostheticarm.dm"
 #include "code\modules\roguetown\roguejobs\engineer\anvil_recipes\mechanical.dm"
