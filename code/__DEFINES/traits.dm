@@ -55,6 +55,7 @@
 #define TRAIT_STUDENT		"Student"
 #define TRAIT_INTELLECTUAL "Intellectual"
 #define TRAIT_GRAVEROBBER "Experienced Grave Robber"
+#define TRAIT_WITCH "They fear me, but I am useful to them."
 
 
 //Hearthstone port (Tracking)
