@@ -78,6 +78,14 @@
 		else
 			. = list(span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name]."))
 
+		if(HAS_TRAIT(src, TRAIT_WITCH))
+			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
+				. += span_warning("A witch! Their presence brings an unsettling aura.")
+			else if(HAS_TRAIT(user, TRAIT_COMMIE) || HAS_TRAIT(user, TRAIT_CABAL) || HAS_TRAIT(user, TRAIT_HORDE) || HAS_TRAIT(user, TRAIT_DEPRAVED))
+				. += span_notice("A practitioner of the old ways.")
+			else
+				. += span_notice("Something about them seems... different.")
+
 		if(GLOB.lord_titles[name])
 			. += span_notice("[m3] been granted the title of \"[GLOB.lord_titles[name]]\".")
 
@@ -735,14 +743,6 @@
 	var/trait_exam = common_trait_examine()
 	if(!isnull(trait_exam))
 		. += trait_exam
-
-	if(HAS_TRAIT(src, TRAIT_WITCH))
-		if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
-			. += span_warning("A witch! Their presence brings an unsettling aura.")
-		else if(HAS_TRAIT(user, TRAIT_COMMIE) || HAS_TRAIT(user, TRAIT_CABAL) || HAS_TRAIT(user, TRAIT_HORDE) || HAS_TRAIT(user, TRAIT_DEPRAVED))
-			. += span_notice("A practitioner of the old ways.")
-		else
-			. += span_notice("Something about them seems... different. In a bad way.")
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()
