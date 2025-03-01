@@ -57,6 +57,7 @@
 #define TRAIT_GRAVEROBBER "Experienced Grave Robber"
 #define TRAIT_PURITAN "Puritan"
 #define TRAIT_MIRROR_MAGIC "Mirror Magic"
+#define TRAIT_WITCH "They fear me, but I am useful to them."
 
 
 //Hearthstone port (Tracking)
