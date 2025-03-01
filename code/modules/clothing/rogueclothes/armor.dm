@@ -77,7 +77,7 @@
 	icon_state = "gambeson"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
 	armor = list("blunt" = 60, "slash" = 40, "piercing" = 50, "stab" = 30, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT)
+	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT,BCLASS_PICK)
 	blocksound = SOFTUNDERHIT
 	blade_dulling = DULLING_BASHCHOP
 	break_sound = 'sound/foley/cloth_rip.ogg'
@@ -109,7 +109,7 @@
 	icon_state = "fancygamb"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
 	armor = list("blunt" = 80, "slash" = 50, "stab" = 40, "piercing" = 60, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT)
+	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT,BCLASS_PICK)
 	blocksound = SOFTUNDERHIT
 	blade_dulling = DULLING_BASHCHOP
 	break_sound = 'sound/foley/cloth_rip.ogg'
