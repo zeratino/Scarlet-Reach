@@ -1606,6 +1606,10 @@
 "bdW" = (
 /turf/closed/wall/mineral/rogue/stone/window,
 /area/rogue/indoors/town)
+"bdX" = (
+/obj/effect/landmark/start/lunatic,
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/mountains)
 "beo" = (
 /obj/item/rogue/instrument/lute,
 /obj/item/rogue/instrument/harp,
@@ -88433,7 +88437,7 @@ fam
 rcv
 rcv
 rcv
-pdC
+bdX
 lQX
 gpx
 tXZ
