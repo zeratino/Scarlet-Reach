@@ -58,7 +58,7 @@ GLOBAL_VAR_INIT(herald_spawned, FALSE)
 		cloak = /obj/item/clothing/cloak/raincloak/red
 	backl = /obj/item/storage/backpack/rogue/satchel
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/message)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
 
 	H.change_stat("constitution", 1)
 	H.change_stat("speed", 2)
