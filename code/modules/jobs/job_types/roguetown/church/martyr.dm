@@ -453,6 +453,7 @@
 	pants = /obj/item/clothing/under/roguetown/platelegs/holysee
 	cloak = /obj/item/clothing/cloak/holysee
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/holysee
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/silver = 1)
 
 	//No, they don't get any miracles. Their miracle is being able to use their weapon at all.
 	if(H.mind)
@@ -465,7 +466,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)
@@ -510,8 +511,8 @@
 	throwforce = 15
 	thrown_bclass = BCLASS_CUT
 	dropshrink = 1
-	smeltresult = /obj/item/ingot/silver
-	is_silver = TRUE
+	smeltresult = /obj/item/ingot/gold
+	is_silver = FALSE
 	toggle_state = null
 
 /obj/item/rogueweapon/sword/long/martyr/Initialize()
