@@ -1529,6 +1529,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						flavortext = null
 						ShowChoices(user)
 						return
+					flavortext = strip_html_dubious(flavortext)
 					flavortext = new_flavortext
 					to_chat(user, "<span class='notice'>Successfully updated flavortext</span>")
 					log_game("[user] has set their flavortext'.")
@@ -1541,6 +1542,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ooc_notes = null
 						ShowChoices(user)
 						return
+					ooc_notes = strip_html_dubious(ooc_notes)
 					ooc_notes = new_ooc_notes
 					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
 					log_game("[user] has set their OOC notes'.")
