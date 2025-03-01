@@ -28,13 +28,15 @@
 			index = findtext(t, char)
 	return t
 
+// Attempts to preserve some amount of fancy OOC / FTs
+//! !NOT SAFE! DO NOT ASSUME THIS IS SAFE!
 /proc/strip_html_dubious(t)
-	var/list/strip_chars = list("id","href","</a>","onload","srcdoc","javascript","CLASSID","classid","script","OBJECT","div","</title>","[","]","</object>","xmp")
+	var/list/strip_chars = list("id","href","</a>","onload","srcdoc","javascript","CLASSID","classid","script","div","</title>","[","]","</object>","xmp",".svg","getElement","xml","<root","</x")
 	for(var/char in strip_chars)
 		var/index = findtext(t, char)
-		while(index)
-			t = copytext(t, 1, index) + copytext(t, index+1)
-			index = findtext(t, char)
+		if(index)
+			t = strip_html_simple(t)
+			return t
 	return t
 
 // Removes punctuation
