@@ -31,7 +31,7 @@
 // Attempts to preserve some amount of fancy OOC / FTs
 //! !NOT SAFE! DO NOT ASSUME THIS IS SAFE!
 /proc/strip_html_dubious(t)
-	var/list/strip_chars = list("id","href","</a>","onload","srcdoc","javascript","CLASSID","classid","script","div","</title>","[","]","</object>","xmp",".svg","getElement","xml","<root","</x")
+	var/list/strip_chars = list("id","href","</a>","onload","srcdoc","javascript","CLASSID","classid","script","</div","</title>","[","]","</object>","xmp",".svg","getElement","xml","<root","</x")
 	for(var/char in strip_chars)
 		var/index = findtext(t, char)
 		if(index)
