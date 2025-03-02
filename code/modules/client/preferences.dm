@@ -1646,7 +1646,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 									info = "embedded audio."
 						ooc_extra += "</center></div>"
 						to_chat(user, "<span class='notice'>Successfully updated OOC Extra with [info]</span>")
-						log_game("[user] has set their Headshot image to '[ooc_extra_link]'.")
+						log_game("[user] has set their OOC Extra to '[ooc_extra_link]'.")
 				if("loadout_item")
 					var/list/loadouts_available = list("None")
 					for (var/path as anything in GLOB.loadout_items)
