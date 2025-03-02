@@ -741,7 +741,7 @@
 /datum/crafting_recipe/roguetown/sewing/apothpants
 	name = "knitted pants"
 	result = list(/obj/item/clothing/under/roguetown/trou/apothecary)
-	reqs = list(/obj/item/natural/cloth = 1,
+	reqs = list(/obj/item/natural/cloth = 2,
 	            /obj/item/natural/fibers = 2)
 	tools = list(/obj/item/needle)
 	craftdiff = 4

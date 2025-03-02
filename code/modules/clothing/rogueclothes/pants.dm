@@ -110,15 +110,15 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	armor_class = ARMOR_CLASS_LIGHT
 	salvage_amount = 1
-	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/trou/leather
 	name = "leather trousers"
 	armor = list("blunt" = 80, "slash" = 50, "stab" = 40, "fire" = 0, "acid" = 0)
 	icon_state = "leathertrou"
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants
 	name = "hardened leather trousers"
@@ -129,7 +129,7 @@
 	item_state = "roguepants"
 	sewrepair = TRUE
 	armor = list("blunt" = 100, "slash" = 70, "stab" = 50, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
 	max_integrity = 200
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
@@ -145,7 +145,7 @@
 	being less protective than full trousers."
 	icon_state = "rogueshorts"
 	item_state = "rogueshorts"
-	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	body_parts_covered = GROIN
 
 /obj/item/clothing/under/roguetown/trou/otavan
@@ -154,12 +154,13 @@
 	icon_state = "fencerpants"
 	resistance_flags = FIRE_PROOF
 	armor = list("blunt" = 100, "slash" = 70, "stab" = 50, "piercing" = 20, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
 	max_integrity = 200
 	blade_dulling = DULLING_BASHCHOP
 	sewrepair = TRUE
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/trou/leather/mourning
 	name = "mourning trousers"
@@ -195,6 +196,7 @@
 	desc = "Classy leather tights, form-fitting but tasteful."
 	icon_state = "leathertights"
 	item_state = "leathertights"
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/skirt
 	name = "skirt"
@@ -446,3 +448,4 @@
 	icon_state = "monkpants"
 	item_state = "monkpants"
 	naledicolor = TRUE
+	salvage_result = /obj/item/natural/hide/cured
