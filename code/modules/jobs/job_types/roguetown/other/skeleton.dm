@@ -82,10 +82,7 @@
 		beltr = /obj/item/rogueweapon/sword
 		if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 			beltr = /obj/item/rogueweapon/sword/sabre
-	if(H.gender == FEMALE)
-		H.STASTR = 10
-	else
-		H.STASTR = 10
+	H.STASTR = 10
 	H.STASPD = rand(7,10)
 	H.STAINT = 1
 	H.STACON = 3
