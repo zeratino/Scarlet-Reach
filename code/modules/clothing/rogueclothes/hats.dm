@@ -209,6 +209,9 @@
 /obj/item/clothing/head/roguetown/roguehood/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/head/roguetown/roguehood/darkgreen
+	color = "#264d26"
+
 /obj/item/clothing/head/roguetown/roguehood/random/Initialize()
 	color = pick("#544236", "#435436", "#543836", "#79763f")
 	..()
@@ -1424,7 +1427,6 @@
 	name = "shawl"
 	desc = "Keeps the hair in check, and looks proper."
 	icon_state = "shawl"
-	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/roguetown/articap
 	desc = "A sporting cap with a small gear adornment. Popular fashion amongst engineers."
@@ -1440,7 +1442,7 @@
 	desc = "My cure is most effective."
 	icon_state = "feldhood"
 	item_state = "feldhood"
-	body_parts_covered = HEAD|HAIR|EARS|NOSE
+	body_parts_covered = HEAD|EARS|NOSE
 	color = null
 
 //............... Physicians Hood ............... //
@@ -1449,7 +1451,7 @@
 	desc = "My cure is mostly effective."
 	icon_state = "surghood"
 	item_state = "surghood"
-	body_parts_covered = HEAD|HAIR|EARS|NOSE
+	body_parts_covered = HEAD|EARS|NOSE
 	color = null
 
 //............... Eora Helmet ............... //
