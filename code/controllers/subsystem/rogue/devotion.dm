@@ -107,7 +107,7 @@
 	if(!H || !H.mind || !patron)
 		return
 
-	var/list/spelllist = list(/obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1)
+	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1)
 	for(var/spell_type in spelllist)
 		if(!spell_type || H.mind.has_spell(spell_type))
 			continue
@@ -122,8 +122,8 @@
 /datum/devotion/proc/grant_spells_templar(mob/living/carbon/human/H)
 	if(!H || !H.mind || !patron)
 		return
-
-	var/list/spelllist = list(/obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0)
+		
+	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0)
 	if(istype(patron,/datum/patron/divine))
 		spelllist += /obj/effect/proc_holder/spell/targeted/abrogation
 	for(var/spell_type in spelllist)
@@ -154,9 +154,8 @@
 /datum/devotion/proc/grant_spells_priest(mob/living/carbon/human/H)
 	if(!H || !H.mind || !patron)
 		return
-
 	granted_spells = list()
-	var/list/spelllist = list(/obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
+	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
 	for(var/spell_type in spelllist)
 		if(!spell_type || H.mind.has_spell(spell_type))
 			continue
@@ -165,6 +164,7 @@
 		LAZYADD(granted_spells, newspell)
 	level = CLERIC_T4
 	passive_devotion_gain = 1
+	devotion = max_devotion
 	update_devotion(300, CLERIC_REQ_4, silent = TRUE)
 	START_PROCESSING(SSobj, src)
 
@@ -173,7 +173,7 @@
 		return
 
 	granted_spells = list()
-	var/list/spelllist = list(/obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
+	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
 	for(var/spell_type in spelllist)
 		if(!spell_type || H.mind.has_spell(spell_type))
 			continue
@@ -182,6 +182,7 @@
 		LAZYADD(granted_spells, newspell)
 	level = CLERIC_T4
 	passive_devotion_gain = 1
+	devotion = max_devotion
 	update_devotion(300, CLERIC_REQ_4, silent = TRUE)
 	START_PROCESSING(SSobj, src)
 
