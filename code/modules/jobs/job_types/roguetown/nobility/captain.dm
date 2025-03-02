@@ -1,5 +1,5 @@
 /datum/job/roguetown/captain
-	title = "Knight Captain"
+	title = "Knight Captain" //The Knight Captain is clearly not drawn from the ranks of guardsmen, or sergeants. They're drawn from the Knightly ranks.
 	flag = GUARD_CAPTAIN
 	department_flag = NOBLEMEN
 	faction = "Station"
@@ -40,14 +40,14 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(istype(H.cloak, /obj/item/clothing/cloak/cape/guard))
+		if(istype(H.cloak, /obj/item/clothing/cloak/stabard))
 			var/obj/item/clothing/S = H.cloak
 			var/index = findtext(H.real_name, " ")
 			if(index)
 				index = copytext(H.real_name, 1,index)
 			if(!index)
 				index = H.real_name
-			S.name = "captain cape ([index])"
+			S.name = "Captain Tabard ([index])"
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
 		var/honorary = "Ser"
@@ -68,7 +68,7 @@
 
 /datum/advclass/captain/infantry
 	name = "Infantry Captain"
-	tutorial = "You've fought shoulder to shoulder with the realm's worthiest while embedded directly within \
+	tutorial = "You've fought shoulder to shoulder with the realm's worthiest Knights while embedded directly within \
 	massed infantry formations. As a peerless armed combatant and tactician both, you are a formidable presence \
 	on any battlefield."
 	outfit = /datum/outfit/job/roguetown/captain/infantry
@@ -114,7 +114,7 @@
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_KNIGHTSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
-	ADD_TRAIT(H, TRAIT_GOODTRAINER, TRAIT_GENERIC) 		//This guy is supposed to be a Knight, just elevated. He should be able to pass on this knowledge like the other knights.
+	ADD_TRAIT(H, TRAIT_GOODTRAINER, TRAIT_GENERIC) 		//This guy is supposed to be the crème de la crème of knights. He should be able to pass on this knowledge like the other knights.
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
 	H.adjust_blindness(-3)
 	var/weapons = list(
@@ -164,7 +164,7 @@
 /datum/advclass/captain/cavalry
 	name = "Cavalry Captain"
 	tutorial = "As the first among finest you ride at the speartip of cavalier forces, barreling saiga and blades through \
-	the soft flanks of enemy formations."
+	the soft flanks and hard fronts of enemy formations, remember Agincourt, and do not hit the dirt below."
 	outfit = /datum/outfit/job/roguetown/captain/cavalry
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	category_tags = list(CTAG_CAPTAIN)
@@ -210,7 +210,7 @@
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_KNIGHTSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
-	ADD_TRAIT(H, TRAIT_GOODTRAINER, TRAIT_GENERIC) 		//This guy is supposed to be a Knight, just elevated. He should be able to pass on this knowledge like the other knights.
+	ADD_TRAIT(H, TRAIT_GOODTRAINER, TRAIT_GENERIC) 		//This guy is supposed to be the crème de la crème of knights. He should be able to pass on this knowledge like the other knights.
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
 	H.adjust_blindness(-3)
 	var/weapons = list(
