@@ -576,6 +576,8 @@
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverarmor"
 	item_state = "silverarmor"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
+	sleevetype = "silverarmor"
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
 	sellprice = 1000
@@ -587,6 +589,8 @@
 	desc = "Its silver hues glisten majestically under any light. It provides ample, sturdy protection from heretics and vagabonds alike."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
+	sleevetype = "silverlegs"
 	icon_state = "silverlegs"
 	item_state = "silverlegs"
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
@@ -639,6 +643,8 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
 	icon_state = "silvertabard"
 	item_state = "silvertabard"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_cloaks.dmi'
+	sleevetype = "silvertabard"
 	alternate_worn_layer = TABARD_LAYER
 	body_parts_covered = CHEST|GROIN
 	boobed = TRUE
