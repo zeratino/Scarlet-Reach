@@ -5,6 +5,7 @@
 	faction = "Station"
 	total_positions = 50 //shitcode solution until overflow roles are fixed
 	spawn_positions = 50
+	traits_applied = list(TRAIT_SCHIZO_AMBIENCE, TRAIT_NOSTINK, TRAIT_MANIAC_AWOKEN) // Maniac_Awoken no longer has any function other than the flavor text and trait
 
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
