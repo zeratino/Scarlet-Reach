@@ -158,6 +158,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/update_mutant_colors = TRUE
 
 	var/headshot_link
+	var/ooc_extra_link
+	var/ooc_extra
 	var/list/descriptor_entries = list()
 	var/list/custom_descriptors = list()
 
@@ -166,8 +168,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/datum/loadout_item/loadout
 
 	var/flavortext
+	var/flavortext_display
 
 	var/ooc_notes
+	var/ooc_notes_display
 
 /datum/preferences/New(client/C)
 	parent = C
@@ -419,7 +423,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<b>Voice Color: </b><a href='?_src_=prefs;preference=voice;task=input'>Change</a>"
 			dat += "<br><b>Nickname Color: </b> </b><a href='?_src_=prefs;preference=highlight_color;task=input'>Change</a>"
 			dat += "<br><b>Voice Pitch: </b><a href='?_src_=prefs;preference=voice_pitch;task=input'>[voice_pitch]</a>"
-			dat += "<br><b>Accent:</b> <a href='?_src_=prefs;preference=char_accent;task=input'>[char_accent]</a>"
+			//dat += "<br><b>Accent:</b> <a href='?_src_=prefs;preference=char_accent;task=input'>[char_accent]</a>"
 			dat += "<br><b>Features:</b> <a href='?_src_=prefs;preference=customizers;task=menu'>Change</a>"
 			dat += "<br><b>Markings:</b> <a href='?_src_=prefs;preference=markings;task=menu'>Change</a>"
 			dat += "<br><b>Descriptors:</b> <a href='?_src_=prefs;preference=descriptors;task=menu'>Change</a>"
@@ -428,9 +432,12 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(headshot_link != null)
 				dat += "<br><img src='[headshot_link]' width='100px' height='100px'>"
 
-			dat += "<br><b>Flavortext:</b> <a href='?_src_=prefs;preference=flavortext;task=input'>Change</a>"
+			dat += "<br><b>Flavortext:</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=flavortext;task=input'>Change</a>"
 
-			dat += "<br><b>OOC Notes:</b> <a href='?_src_=prefs;preference=ooc_notes;task=input'>Change</a>"
+			dat += "<br><b>OOC Notes:</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=ooc_notes;task=input'>Change</a>"
+
+			dat += "<br><b>OOC Extra:</b> <a href='?_src_=prefs;preference=ooc_extra;task=input'>Change</a>"
+			dat += "<br><a href='?_src_=prefs;preference=ooc_preview;task=input'><b>Preview Examine</b></a>"
 
 			dat += "<br><b>Loadout Item:</b> <a href='?_src_=prefs;preference=loadout_item;task=input'>[loadout ? loadout.name : "None"]</a>"
 			dat += "</td>"
@@ -1520,6 +1527,21 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					headshot_link = new_headshot_link
 					to_chat(user, "<span class='notice'>Successfully updated headshot picture</span>")
 					log_game("[user] has set their Headshot image to '[headshot_link]'.")
+				if("formathelp")
+					var/list/dat = list()
+					dat +="You can use backslash (\\) to escape special characters.<br>"
+					dat += "<br>"
+					dat += "# text : Defines a header.<br>"
+					dat += "|text| : Centers the text.<br>"
+					dat += "**text** : Makes the text <b>bold</b>.<br>"
+					dat += "*text* : Makes the text <i>italic</i>.<br>"
+					dat += "^text^ : Increases the <font size = \"4\">size</font> of the text.<br>"
+					dat += "((text)) : Decreases the <font size = \"1\">size</font> of the text.<br>"
+					dat += "* item : An unordered list item.<br>"
+					dat += "--- : Adds a horizontal rule."
+					var/datum/browser/popup = new(user, "Formatting Help", nwidth = 400, nheight = 300)
+					popup.set_content(dat.Join())
+					popup.open(FALSE)
 				if("flavortext")
 					to_chat(user, "<span class='notice'>["<span class='bold'>Flavortext should not include nonphysical nonsensory attributes such as backstory or the character's internal thoughts.</span>"]</span>")
 					var/new_flavortext = input(user, "Input your character description:", "Flavortext", flavortext) as message|null
@@ -1529,8 +1551,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						flavortext = null
 						ShowChoices(user)
 						return
-					new_flavortext = strip_html_dubious(new_flavortext)
 					flavortext = new_flavortext
+					var/ft = flavortext
+					ft = html_encode(ft)
+					ft = replacetext(parsemarkdown_basic(ft), "\n", "<BR>")
+					flavortext_display = ft
 					to_chat(user, "<span class='notice'>Successfully updated flavortext</span>")
 					log_game("[user] has set their flavortext'.")
 				if("ooc_notes")
@@ -1542,10 +1567,86 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ooc_notes = null
 						ShowChoices(user)
 						return
-					new_ooc_notes = strip_html_dubious(new_ooc_notes)
 					ooc_notes = new_ooc_notes
+					var/ooc = ooc_notes
+					ooc = html_encode(ooc_notes)
+					ooc = replacetext(parsemarkdown_basic(ooc_notes), "\n", "<BR>")
+					ooc_notes_display = ooc
 					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
 					log_game("[user] has set their OOC notes'.")
+				if("ooc_preview")	//Unashamedly copy pasted from human_topic.dm L:7. Sorry!
+					var/list/dat = list()
+					dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[real_name]</b></font></div>"
+					if(valid_headshot_link(null, headshot_link, TRUE))
+						dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
+					if(flavortext)
+						dat += "<div align='left'>[flavortext_display]</div>"
+						if(isnull(flavortext_display))
+							dat += "This user needs to open their flavor text box and press OK and save their character."
+					if(ooc_notes)
+						dat += "<br>"
+						dat += "<div align='center'><b>OOC notes</b></div>"
+						dat += "<div align='left'>[ooc_notes_display]</div>"
+						if(isnull(ooc_notes_display))
+							dat += "This user needs to open their OOC notes text box and press OK and save their character."
+					if(ooc_extra)
+						dat += "[ooc_extra]"
+					var/datum/browser/popup = new(user, "[real_name]", nwidth = 600, nheight = 800)
+					popup.set_content(dat.Join())
+					popup.open(FALSE)
+				if("ooc_extra")
+					to_chat(user, "<span class='notice'>Add a link from a suitable host (catbox, etc) to an mp3, mp4, or jpg / png file to have it embed at the bottom of your OOC notes.</span>")
+					to_chat(user, "<span class='notice'>If the link doesn't show up properly in-game, ensure that it's a direct link that opens properly in a browser.</span>")
+					to_chat(user, "<span class='notice'>Videos will be shrunk to a ~300x300 square. Keep this in mind.</span>")
+					to_chat(user, "<font color = '#d6d6d6'>Leave a single space to delete it from your OOC notes.</font>")
+					to_chat(user, "<font color ='red'>Abuse of this will get you banned.</font>")
+					var/new_extra_link = input(user, "Input the accessory link (https, hosts: gyazo, discord, lensdump, imgbox, catbox):", "OOC Extra", ooc_extra_link) as text|null
+					if(new_extra_link == null)
+						return
+					if(new_extra_link == "")
+						new_extra_link = null
+						ShowChoices(user)
+						return
+					if(new_extra_link == " ")	//Single space to delete
+						ooc_extra_link = null
+						ooc_extra = null
+						to_chat(user, "<span class='notice'>Successfully deleted OOC Extra.</span>")
+					var/static/list/valid_extensions = list("jpg", "png", "jpeg", "mp4", "mp3")
+					if(!valid_headshot_link(user, new_extra_link, TRUE, valid_extensions))
+						new_extra_link = null
+						ShowChoices(user)
+						return
+
+					var/list/value_split = splittext(new_extra_link, ".")
+
+					// extension will always be the last entry
+					var/extension = value_split[length(value_split)]
+					var/info
+					if((extension in valid_extensions))
+						ooc_extra_link = new_extra_link
+						ooc_extra = "<div align ='center'><center>"
+						if(extension == "jpg" || extension == "png" || extension == "jpeg")
+							ooc_extra += "<br>"
+							ooc_extra += "<img src='[ooc_extra_link]'/>"
+							info = "an embedded image."
+						else 
+							switch(extension)
+								if("mp4")
+									ooc_extra = "<br>"
+									ooc_extra += "<video width=["288"] height=["288"] controls=["true"]>"
+									ooc_extra += "<source src='[ooc_extra_link]' type=["video/mp4"]>"
+									ooc_extra += "</video>"
+									info = "a video."
+								if("mp3")
+									ooc_extra = "<br>"
+									ooc_extra += "<audio controls>"
+									ooc_extra += "<source src='[ooc_extra_link]' type=["audio/mp3"]>"
+									ooc_extra += "Your browser does not support the audio element."
+									ooc_extra += "</audio>"
+									info = "embedded audio."
+						ooc_extra += "</center></div>"
+						to_chat(user, "<span class='notice'>Successfully updated OOC Extra with [info]</span>")
+						log_game("[user] has set their Headshot image to '[ooc_extra_link]'.")
 				if("loadout_item")
 					var/list/loadouts_available = list("None")
 					for (var/path as anything in GLOB.loadout_items)
@@ -2230,9 +2331,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		reset_body_marking_colors()
 		reset_all_customizer_accessory_colors()
 
-/proc/valid_headshot_link(mob/user, value, silent = FALSE)
+/proc/valid_headshot_link(mob/user, value, silent = FALSE, list/valid_extensions = list("jpg", "png", "jpeg"))
 	var/static/link_regex = regex("i.gyazo.com|a.l3n.co|b.l3n.co|c.l3n.co|images2.imgbox.com|thumbs2.imgbox.com|files.catbox.moe") //gyazo, discord, lensdump, imgbox, catbox
-	var/static/list/valid_extensions = list("jpg", "png", "jpeg") // Regex works fine, if you know how it works
 
 	if(!length(value))
 		return FALSE
