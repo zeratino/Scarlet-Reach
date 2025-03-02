@@ -128,6 +128,7 @@
 	icon_state = "roguepants"
 	item_state = "roguepants"
 	sewrepair = TRUE
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = list("blunt" = 100, "slash" = 70, "stab" = 50, "piercing" = 15, "fire" = 0, "acid" = 0)
 
 	blocksound = SOFTHIT
