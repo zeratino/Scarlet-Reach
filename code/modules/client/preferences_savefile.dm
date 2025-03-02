@@ -478,6 +478,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["ooc_notes_display"]	>> ooc_notes_display
 	S["ooc_extra"]			>> ooc_extra
 	S["ooc_extra_link"]		>> ooc_extra_link
+	S["is_legacy"]			>> is_legacy
 
 	S["char_accent"]		>> char_accent
 	if (!char_accent)
@@ -632,6 +633,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["ooc_notes_display"], ooc_notes_display)
 	WRITE_FILE(S["ooc_extra"],	ooc_extra)
 	WRITE_FILE(S["ooc_extra_link"],	ooc_extra_link)
+	WRITE_FILE(S["is_legacy"], is_legacy)
 	WRITE_FILE(S["char_accent"] , char_accent)
 	WRITE_FILE(S["voice_type"] , voice_type)
 	WRITE_FILE(S["pronouns"] , pronouns)

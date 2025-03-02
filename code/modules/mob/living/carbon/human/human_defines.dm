@@ -113,6 +113,7 @@
 	var/ooc_notes_display = null
 	var/ooc_extra_link
 	var/ooc_extra
+	var/is_legacy = FALSE
 	var/received_resident_key = FALSE
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
