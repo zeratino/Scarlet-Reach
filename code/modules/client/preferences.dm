@@ -1611,7 +1611,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ooc_extra_link = null
 						ooc_extra = null
 						to_chat(user, "<span class='notice'>Successfully deleted OOC Extra.</span>")
-					var/static/list/valid_extensions = list("jpg", "png", "jpeg", "mp4", "mp3")
+					var/static/list/valid_extensions = list("jpg", "png", "jpeg", "gif", "mp4", "mp3")
 					if(!valid_headshot_link(user, new_extra_link, TRUE, valid_extensions))
 						new_extra_link = null
 						ShowChoices(user)
@@ -1625,7 +1625,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if((extension in valid_extensions))
 						ooc_extra_link = new_extra_link
 						ooc_extra = "<div align ='center'><center>"
-						if(extension == "jpg" || extension == "png" || extension == "jpeg")
+						if(extension == "jpg" || extension == "png" || extension == "jpeg" || extension == "gif")
 							ooc_extra += "<br>"
 							ooc_extra += "<img src='[ooc_extra_link]'/>"
 							info = "an embedded image."
