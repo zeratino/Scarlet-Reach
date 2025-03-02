@@ -548,6 +548,13 @@
 	else
 		return FALSE
 
+/obj/item/rogueweapon/sword/long/martyr/Destroy()
+	var/datum/component/martyr = GetComponent(/datum/component/martyrweapon)
+	if(martyr)
+		martyr.RemoveComponent()
+	return ..()
+
+
 /obj/item/rogueweapon/sword/long/martyr/getonmobprop(tag)
 	. = ..()
 	if(tag)
