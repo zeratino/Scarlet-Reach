@@ -116,7 +116,7 @@
 	name = "leather trousers"
 	armor = list("blunt" = 80, "slash" = 50, "stab" = 40, "fire" = 0, "acid" = 0)
 	icon_state = "leathertrou"
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
 	salvage_result = /obj/item/natural/hide/cured
@@ -130,7 +130,7 @@
 	item_state = "roguepants"
 	sewrepair = TRUE
 	armor = list("blunt" = 100, "slash" = 70, "stab" = 50, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
 	max_integrity = 200
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
@@ -145,7 +145,7 @@
 	being less protective than full trousers."
 	icon_state = "rogueshorts"
 	item_state = "rogueshorts"
-	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	body_parts_covered = GROIN
 
 /obj/item/clothing/under/roguetown/trou/otavan
@@ -154,7 +154,7 @@
 	icon_state = "fencerpants"
 	resistance_flags = FIRE_PROOF
 	armor = list("blunt" = 100, "slash" = 70, "stab" = 50, "piercing" = 20, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = SOFTHIT
 	max_integrity = 200
 	blade_dulling = DULLING_BASHCHOP

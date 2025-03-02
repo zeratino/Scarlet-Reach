@@ -268,7 +268,7 @@
 /obj/item/clothing/suit/roguetown/armor/leather
 	name = "leather armor"
 	desc = "Flexible cowhide armor. Lightweight, better than nothing."
-	icon_state = "leather"
+	icon_state = "roguearmor"
 	body_parts_covered = CHEST|GROIN|VITALS
 	armor = list("blunt" = 60, "slash" = 50, "stab" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT,BCLASS_BLUNT)
@@ -286,7 +286,7 @@
 /obj/item/clothing/suit/roguetown/armor/leather/cuirass
 	name = "leather cuirass"
 	desc = "A cuirass made of leather."
-	icon_state = "roguearmor"
+	icon_state = "leather"
 	max_integrity = 200
 
 /obj/item/clothing/suit/roguetown/armor/leather/hide
