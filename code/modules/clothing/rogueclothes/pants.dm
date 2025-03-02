@@ -196,6 +196,7 @@
 	desc = "Classy leather tights, form-fitting but tasteful."
 	icon_state = "leathertights"
 	item_state = "leathertights"
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/skirt
 	name = "skirt"
@@ -447,3 +448,4 @@
 	icon_state = "monkpants"
 	item_state = "monkpants"
 	naledicolor = TRUE
+	salvage_result = /obj/item/natural/hide/cured

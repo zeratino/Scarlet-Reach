@@ -399,7 +399,7 @@
 /datum/crafting_recipe/roguetown/leather/leathertights
 	name = "leather tights"
 	result = list(/obj/item/clothing/under/roguetown/trou/leathertights)
-	reqs = list(/obj/item/natural/hide/cured = 1)
+	reqs = list(/obj/item/natural/hide/cured = 2)
 	tools = list(/obj/item/needle)
 	craftdiff = 3
 	sellprice = 10
