@@ -437,7 +437,7 @@
 	boobed = TRUE
 	detail_tag = "_detail"
 	detail_color = CLOTHING_WHITE
-	armor = list("blunt" = 40, "slash" = 30, "stab" = 30, "fire" = 0, "acid" = 0) //gambeson stats
+	armor = list("blunt" = 60, "slash" = 40, "stab" = 30, "piercing" = 50, "fire" = 0, "acid" = 0) //Actually has gambeson stats now
 	max_integrity = 250
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
