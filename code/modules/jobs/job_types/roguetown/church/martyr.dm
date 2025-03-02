@@ -52,7 +52,7 @@
 		if(STATE_SAFE)
 			var/area/A = get_area(current_holder)
 			var/success = FALSE
-			for(var/AR in allowed_areas)
+			for(var/AR in allowed_areas)	//Are we in a whitelisted area? (Church, mainly)
 				if(istype(A, AR))
 					success = TRUE
 					break
@@ -201,15 +201,15 @@
 					if(A)
 						var/area/testarea = A
 						var/success = FALSE
-						for(var/AR in allowed_areas)
+						for(var/AR in allowed_areas)	//We check if we're in a whitelisted area (Church)
 							if(istype(testarea, AR))
 								success = TRUE
 								break
-						if(success)
+						if(success)	//The SAFE option
 							if(alert("You are within holy grounds. Do you wish to call your god to aid in its defense? (You will live if the duration ends within the Church.)", "Your Oath", "Yes", "No") == "Yes")
 								is_activating = TRUE
 								activate(user, STATE_SAFE)
-						else
+						else	//The NOT SAFE option
 							if(alert("You are trying to activate the weapon outside of holy grounds. Do you wish to fulfill your Oath of Vengeance? (You will die.)", "Your Oath", "Yes", "No") == "Yes")
 								var/choice = alert("You pray to your god. How many minutes will you ask for? (Shorter length means greater boons)","Your Oath (It is up to you if your death is canon)", "Six", "Two", "Nevermind")
 								switch(choice)
@@ -304,6 +304,7 @@
 	I.max_integrity = initial(I.max_integrity)
 	I.slot_flags = initial(I.slot_flags)	//Returns its ability to be sheathed
 	I.obj_integrity = I.max_integrity
+	last_time = null	//Refreshes the countdown tracker
 
 	last_activation = world.time
 	next_activation = last_activation + cooldown
@@ -362,19 +363,20 @@
 		I.damtype = BURN	//Changes weapon damage type to fire
 		I.slot_flags = null	//Can't sheathe a burning sword
 
-		ADD_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)
+		ADD_TRAIT(parent, TRAIT_NODROP, TRAIT_GENERIC)	//You're committed, now.
 
-		if(status_flag)
+		if(status_flag)	//Important to switch this early.
 			current_state = status_flag
 		adjust_icons()
 		switch(current_state)
 			if(STATE_SAFE)
-				end_activation = world.time + safe_duration
+				end_activation = world.time + safe_duration	//Only a duration and nothing else.
+				adjust_stats(current_state)	//Lowers the damage of the sword due to safe activation.
 			if(STATE_MARTYR)
 				end_activation = world.time + martyr_duration
 				I.max_integrity = 2000				//If you're committing, we repair the weapon and give it a boost so it lasts the whole fight
 				I.obj_integrity = I.max_integrity
-				adjust_stats(current_state)
+				adjust_stats(current_state)	//Gives them extra stats.
 			if(STATE_MARTYRULT)
 				end_activation = world.time + ultimate_duration
 				I.max_integrity = 9999				//why not, they got 2 mins anyway
@@ -405,9 +407,9 @@
 					ADD_TRAIT(H, TRAIT_ZJUMP, TRAIT_GENERIC)
 					ADD_TRAIT(H, TRAIT_NOFALLDAMAGE2, TRAIT_GENERIC)
 			adjust_traits(remove = FALSE)
-			if(!H.cmode)
+			if(!H.cmode)	//Turns on combat mode (it syncs up the audio neatly)
 				H.toggle_cmode()
-			else
+			else		//Gigajank to reset your combat music
 				H.toggle_cmode()
 				H.toggle_cmode()
 
