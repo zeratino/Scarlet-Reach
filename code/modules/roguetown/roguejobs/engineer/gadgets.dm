@@ -6,7 +6,7 @@ Reel teleports the attached atom to the grabbed turf.
 */
 /obj/item/grapplinghook
 	name = "bronze grappler"
-	desc = "A queer device that allows one to attach something, or themselves and have it be reeled upwards. Every duchy needs one."
+	desc = "The finest innovation in industrial dwarven Engineering. Used to haul crates and kegs in shafts too steep for railcarts. Can be used on people who aren't too large."
 	icon = 'icons/roguetown/misc/gadgets.dmi'
 	icon_state = "grappler_used"
 	item_state = "grappler"
@@ -71,6 +71,7 @@ Reel teleports the attached atom to the grabbed turf.
 		. += span_warning("It's expended. It must be reloaded.")
 	else if(!is_loaded && grappled_turf && in_use)
 		. += span_warning("It's deployed. You can <b>ATTACH</b> a hook to an entity.")
+		. += span_info("I may activate this in my hand to reset.")
 	if(attached && grappled_turf && in_use && !is_loaded)
 		. += span_warning("It's ready to use. You may <b>REEL</b> in \the [attached].")
 
@@ -95,6 +96,8 @@ Reel teleports the attached atom to the grabbed turf.
 				stat += (user.STASTR - 10) * 2
 		else
 			stat = 0
+		stat += (user.mind?.get_skill_level(/datum/skill/craft/engineering)) * 5	//And finally their Engineering level.
+		stat = clamp(stat, 10, 70)	//Clamp to a very loud second just in case you're a superhuman engineer
 		user.visible_message(span_info("[user] begins cranking the [src]..."))
 		playsound(user, 'sound/misc/grapple_crank.ogg', 100, FALSE, 3)
 		if(do_after(user, (70 - stat)))
@@ -104,7 +107,7 @@ Reel teleports the attached atom to the grabbed turf.
 			update_icon()
 		else
 			user.visible_message(span_info("[user] gets interrupted!"))
-	else if(istype(user.used_intent, /datum/intent/reel))
+	else if(istype(user.used_intent, /datum/intent/reel))	//Alternative to clicking on an empty tile. You can self-use it to reel instead.
 		if(attached && in_use)
 			if(get_dist(attached, grappled_turf) <= max_range)
 				user.visible_message("[user] reels in the [src]!")
@@ -112,21 +115,23 @@ Reel teleports the attached atom to the grabbed turf.
 					reel()
 			else
 				to_chat(user, span_info("[attached] is too far!"))
-	else if(!is_loaded && in_use && grappled_turf && tile_effect)
+	else if(!is_loaded && in_use && grappled_turf && tile_effect)	//Reset option.
 		user.visible_message("[user] unhooks from the tile.")
 		reset_tile()
 		reset_target()
 
+//Resets the tile effect and the grappled turf. Generally called with reset_target()
 /obj/item/grapplinghook/proc/reset_tile(silent = FALSE)
 	if(tile_effect && grappled_turf)
 		grappled_turf.cut_overlay(tile_effect)
 		qdel(tile_effect)
 		grappled_turf = null
-	if(!silent)
+	if(!silent)	//Silent is used during a successful reel because it has its own distinct sounds
 		playsound(src, 'sound/foley/trap.ogg', 100, FALSE , 5)
 	is_loaded = FALSE
 	update_icon()
 
+//Resets the target effect overlay and the attached atom. Generally called with reset_tile()
 /obj/item/grapplinghook/proc/reset_target()
 	if(attached && target_effect)
 		attached.cut_overlay(target_effect)
@@ -146,7 +151,6 @@ Reel teleports the attached atom to the grabbed turf.
 			unload(failure = TRUE)
 
 /obj/item/grapplinghook/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
 	if(istype(user.used_intent, /datum/intent/grapple))	//First step, grappling onto a tile. Spawns an indicator on it.
 		if(is_loaded && istype(target, /turf/))
 			var/turf/T = target
@@ -168,15 +172,16 @@ Reel teleports the attached atom to the grabbed turf.
 		else if(!is_loaded)
 			to_chat(user, span_info("It's been used already."))
 	if(istype(user.used_intent, /datum/intent/attach))	//Second step. Once we have a turf we've grappled onto, we can use this to attach to an entity.
-		if(in_use && !istype(target, /turf/))
+		if(in_use && !istype(target, /turf/))	//Can't use the feature unless it's grappled already
 			var/safe_to_teleport = TRUE
 			if(isobj(target))
 				var/obj/O = target
-				if(O.density || istype(target, /obj/structure) || O.anchored || istype(target, /obj/machinery)) //This should cover most (fingers crossed) objects that shouldn't be moved around like this.
-					safe_to_teleport = FALSE
+				if(!istype(target, /obj/structure/closet/crate) && !istype(target, /obj/structure/fermenting_barrel))	//We DO want to move crates & barrels
+					if(O.density || istype(target, /obj/structure) || O.anchored || istype(target, /obj/machinery)) //This should cover most (fingers crossed) objects that shouldn't be moved around like this.
+						safe_to_teleport = FALSE
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
-				if(HAS_TRAIT(H, TRAIT_BIGGUY))
+				if(HAS_TRAIT(H, TRAIT_BIGGUY))	//Too fat.
 					safe_to_teleport = FALSE
 			if(safe_to_teleport)
 				to_chat(user, span_info("I begin to attach the hook..."))
@@ -200,7 +205,9 @@ Reel teleports the attached atom to the grabbed turf.
 				to_chat(user, span_info("[target] is too far!"))
 		else
 			to_chat(user, span_info("I need to have something attached."))
+	. = ..()
 
+//Attaches a hook to an atom. Used with the "ATTACH" intent.
 /obj/item/grapplinghook/proc/attach(atom/A)
 	if(A && !isturf(A))
 		if(target_effect && attached)
@@ -211,6 +218,7 @@ Reel teleports the attached atom to the grabbed turf.
 		target_effect = mutable_appearance(icon = 'icons/effects/effects.dmi', icon_state = "aimwarn", layer = 20)
 		attached.add_overlay(target_effect)
 
+//Hooks onto a turf. Used with the "GRAB" intent.
 /obj/item/grapplinghook/proc/grapple_to(turf/T)
 	unload()
 	playsound(T, 'sound/misc/grapple_land.ogg', 100, FALSE, 5)
@@ -218,11 +226,13 @@ Reel teleports the attached atom to the grabbed turf.
 	grappled_turf = T
 	grappled_turf.add_overlay(tile_effect)
 
+//Reloads the grappler.
 /obj/item/grapplinghook/proc/load()
 	is_loaded = TRUE
 	in_use = FALSE
 	update_icon()
 
+//Unloads the grappler after a successful, or not, attempt to use on a turf.
 /obj/item/grapplinghook/proc/unload(failure)
 	if(!failure)
 		is_loaded = FALSE
