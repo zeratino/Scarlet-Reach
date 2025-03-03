@@ -433,6 +433,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
 			if(headshot_link != null)
 				dat += "<br><img src='[headshot_link]' width='100px' height='100px'>"
+			if(is_legacy)
+				dat += "<br><i><font size = 1>(Legacy)<a href='?_src_=prefs;preference=legacyhelp;task=input'>(?)</a></font></i>"
 
 			dat += "<br><b>Flavortext:</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=flavortext;task=input'>Change</a>"
 
@@ -1529,6 +1531,16 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					headshot_link = new_headshot_link
 					to_chat(user, "<span class='notice'>Successfully updated headshot picture</span>")
 					log_game("[user] has set their Headshot image to '[headshot_link]'.")
+				if("legacyhelp")
+					var/list/dat = list()
+					dat += "This slot was around since before major Flavortext / OOC changes.<br>"
+					dat += "Due to this, it's been grandfathered in to keep its old profile layout and formatting, including html.<br>"
+					dat += "However, <b>you cannot edit it anymore.</b><br>"
+					dat += "ANY edit will <b>irreversibly</b> override all html, and remove the legacy status of the slot.<br>"
+					dat += "There are no exceptions. Have fun!"
+					var/datum/browser/popup = new(user, "Legacy Help", nwidth = 400, nheight = 200)
+					popup.set_content(dat.Join())
+					popup.open(FALSE)
 				if("formathelp")
 					var/list/dat = list()
 					dat +="You can use backslash (\\) to escape special characters.<br>"
