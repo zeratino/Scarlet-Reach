@@ -132,7 +132,7 @@
 		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
 		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
 		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
-		"Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Visored Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
 		"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
@@ -204,7 +204,7 @@
 		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
 		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
 		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
-		"Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Visored Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
 		"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
@@ -282,7 +282,7 @@
 		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
 		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
 		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
-		"Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Visored Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
 		"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
