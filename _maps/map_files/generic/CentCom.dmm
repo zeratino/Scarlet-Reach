@@ -1961,7 +1961,9 @@
 /area/rogue/outdoors/banditcamp)
 "wA" = (
 /obj/structure/rack/rogue,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
+/obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
+/obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
+/obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "wB" = (
@@ -2056,10 +2058,6 @@
 /obj/item/clothing/mask/rogue/ragmask,
 /obj/item/clothing/mask/rogue/ragmask,
 /obj/item/clothing/mask/rogue/ragmask,
-/obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
-/obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
-/obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
-/obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "yz" = (
@@ -2090,6 +2088,7 @@
 /obj/structure/fluff/walldeco/med6{
 	pixel_x = 32
 	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
 "zs" = (
@@ -2181,6 +2180,9 @@
 /area/rogue/outdoors/woods)
 "Cj" = (
 /obj/item/candle/skull,
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "CA" = (
@@ -2561,6 +2563,13 @@
 "Ph" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors)
+"Pp" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/needle/thorn,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/banditcamp)
 "Pq" = (
 /obj/structure/roguewindow/stained,
 /obj/structure/roguewindow,
@@ -6377,7 +6386,7 @@ XW
 vp
 HD
 vb
-Zt
+Pp
 vp
 ky
 cw
