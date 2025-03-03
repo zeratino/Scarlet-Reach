@@ -1536,7 +1536,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					dat += "This slot was around since before major Flavortext / OOC changes.<br>"
 					dat += "Due to this, it's been grandfathered in to keep its old profile layout and formatting, including html.<br>"
 					dat += "However, <b>you cannot edit it anymore.</b><br>"
-					dat += "ANY edit will <b>irreversibly</b> override all html, and remove the legacy status of the slot.<br>"
+					dat += "ANY edit (Even pressing OK on an unchanged FT / OOC notes) will <font color ='red'><b>irreversibly</b></font> override all html, and remove the legacy status of the slot.<br>"
 					dat += "There are no exceptions. Have fun!"
 					var/datum/browser/popup = new(user, "Legacy Help", nwidth = 400, nheight = 200)
 					popup.set_content(dat.Join())
