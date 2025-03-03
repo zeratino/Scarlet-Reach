@@ -1597,8 +1597,10 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors/banditcamp)
 "kR" = (
-/obj/structure/stairs/d,
-/turf/open/floor/rogue/cobblerock,
+/obj/structure/pillory{
+	lockid = list("bandit")
+	},
+/turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/banditcamp)
 "lw" = (
 /turf/open/floor/rogue/cobble,
@@ -2095,6 +2097,9 @@
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
+"zB" = (
+/turf/open/floor/rogue/concrete,
+/area/rogue/outdoors/banditcamp)
 "zD" = (
 /obj/structure/chair/freedomchair,
 /turf/closed/mineral/rogue/bedrock,
@@ -2782,21 +2787,19 @@
 /turf/open/water/swamp,
 /area/rogue/outdoors)
 "Wc" = (
-/obj/structure/pillory{
-	lockid = list("bandit")
+/obj/structure/fluff/railing/fence{
+	icon_state = "fence";
+	dir = 4
 	},
-/turf/open/floor/rogue/ruinedwood,
+/turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "Wf" = (
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors/banditcamp)
 "Wg" = (
-/obj/structure/fluff/railing/border{
-	dir = 1;
-	icon_state = "border"
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/banditcamp)
+/obj/structure/fluff/walldeco/chains,
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/banditcamp)
 "Wp" = (
 /obj/machinery/light/rogue/campfire,
 /turf/open/floor/rogue/dirt/road,
@@ -2920,7 +2923,12 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
 "Zx" = (
-/turf/open/floor/rogue/ruinedwood,
+/obj/structure/fluff/railing/fence,
+/obj/structure/fluff/railing/fence{
+	icon_state = "fence";
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "ZM" = (
 /obj/machinery/light/rogue/firebowl/stump,
@@ -3785,7 +3793,7 @@ Te
 bz
 bz
 vp
-Hi
+Wg
 Hi
 ec
 Hi
@@ -5490,10 +5498,10 @@ cw
 cw
 cw
 cw
-cw
 jg
 jg
 jg
+ky
 ky
 ky
 jg
@@ -5618,10 +5626,10 @@ ky
 cw
 cw
 cw
-cw
 ZM
 jg
 jg
+on
 ky
 ky
 kx
@@ -5630,7 +5638,7 @@ ky
 ky
 on
 jg
-xF
+kq
 Te
 Te
 Te
@@ -5748,19 +5756,19 @@ ww
 cw
 cw
 cw
-cw
 OC
 PU
 jg
 ky
+ky
 kx
 kx
 kx
 kx
 ky
 jg
-jg
-xF
+ky
+kq
 Te
 Te
 Te
@@ -5879,18 +5887,18 @@ cw
 cw
 cw
 kR
-Wc
 AA
 jg
+ky
 kx
 kx
 kx
 kx
 kx
+ky
 jg
-jg
-wu
-fI
+Wc
+Zx
 Te
 Te
 UR
@@ -6008,17 +6016,17 @@ Ra
 YR
 cw
 cw
-kR
-Zx
-Wg
-ky
-kx
-kx
-kx
-kx
+zB
+AA
 ky
 ky
-xF
+kx
+kx
+kx
+kx
+ky
+ky
+kq
 Te
 Te
 Te
@@ -6139,8 +6147,8 @@ cw
 cw
 cw
 kR
-Wc
-Wg
+AA
+ky
 ky
 ky
 kx
@@ -6268,12 +6276,12 @@ Vb
 cw
 cw
 cw
-cw
 GR
 IM
 ky
 ky
-jg
+ky
+ky
 on
 ky
 jg
@@ -6398,9 +6406,9 @@ ky
 cw
 cw
 cw
-cw
 ZM
 jg
+ky
 ky
 ky
 jg
