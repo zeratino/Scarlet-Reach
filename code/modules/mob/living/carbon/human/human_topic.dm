@@ -11,7 +11,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		var/list/dat = list()
 		dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[src]</b></font></div>"
 		if(is_legacy)
-			dat += dat += "<center><i><font color = '#e7e7e7'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
+			dat += "<center><i><font color = '#e7e7e7'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
 		if(valid_headshot_link(null, headshot_link, TRUE))
 			dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
 		if(flavortext)
