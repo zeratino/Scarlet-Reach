@@ -1535,9 +1535,10 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/list/dat = list()
 					dat += "This slot was around since before major Flavortext / OOC changes.<br>"
 					dat += "Due to this, it's been grandfathered in to keep its old profile layout and formatting, including html.<br>"
-					dat += "However, <b>you cannot edit it anymore.</b><br>"
-					dat += "ANY edit (Even pressing OK on an unchanged FT / OOC notes) will <font color ='red'><b>irreversibly</b></font> override all html, and remove the legacy status of the slot.<br>"
+					dat += "If you wish to keep it as it is, <b>you cannot edit it anymore.</b><br><br>"
+					dat += "ANY edit (Even pressing OK on an unchanged Flavortext / OOC notes) will <font color ='red'><b>irreversibly</b></font> override all html, and remove the legacy status of the slot.<br>"
 					dat += "There are no exceptions. Have fun!"
+					dat += "(You can still add an OOC Extra)"
 					var/datum/browser/popup = new(user, "Legacy Help", nwidth = 450, nheight = 250)
 					popup.set_content(dat.Join())
 					popup.open(FALSE)
@@ -1563,6 +1564,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						return
 					if(new_flavortext == "")
 						flavortext = null
+						flavortext_display = null
+						is_legacy = FALSE
 						ShowChoices(user)
 						return
 					flavortext = new_flavortext
@@ -1580,12 +1583,14 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						return
 					if(new_ooc_notes == "")
 						ooc_notes = null
+						ooc_notes_display = null
+						is_legacy = FALSE
 						ShowChoices(user)
 						return
 					ooc_notes = new_ooc_notes
 					var/ooc = ooc_notes
-					ooc = html_encode(ooc_notes)
-					ooc = replacetext(parsemarkdown_basic(ooc_notes), "\n", "<BR>")
+					ooc = html_encode(ooc)
+					ooc = replacetext(parsemarkdown_basic(ooc), "\n", "<BR>")
 					ooc_notes_display = ooc
 					is_legacy = FALSE
 					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
@@ -1593,21 +1598,23 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("ooc_preview")	//Unashamedly copy pasted from human_topic.dm L:7. Sorry!
 					var/list/dat = list()
 					dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[real_name]</b></font></div>"
+					if(isnull(flavortext_display) && !isnull(flavortext))
+						is_legacy = TRUE
+						flavortext_display = replacetext(flavortext, "\n", "<BR>")
+					if(isnull(ooc_notes_display) && !isnull(ooc_notes))
+						is_legacy = TRUE
+						ooc_notes_display = replacetext(ooc_notes, "\n", "<BR>")
+						ShowChoices(user)
+						return
 					if(is_legacy)
-						dat += "<center><i><font color = '#e7e7e7'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
+						dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
 					if(valid_headshot_link(null, headshot_link, TRUE))
 						dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
-					if(flavortext)
-						if(isnull(flavortext_display))
-							is_legacy = TRUE
-							flavortext_display = replacetext(flavortext, "\n", "<BR>")
+					if(flavortext && flavortext_display)
 						dat += "<div align='left'>[flavortext_display]</div>"
-					if(ooc_notes)
+					if(ooc_notes && ooc_notes_display)
 						dat += "<br>"
 						dat += "<div align='center'><b>OOC notes</b></div>"
-						if(isnull(ooc_notes_display))
-							is_legacy = TRUE
-							ooc_notes_display = replacetext(ooc_notes, "\n", "<BR>")
 						dat += "<div align='left'>[ooc_notes_display]</div>"
 					if(ooc_extra)
 						dat += "[ooc_extra]"
@@ -2288,7 +2295,17 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	character.flavortext = flavortext
 
+	character.flavortext_display = flavortext_display
+	
 	character.ooc_notes = ooc_notes
+
+	character.ooc_notes_display = ooc_notes_display
+
+	character.is_legacy = is_legacy
+
+	character.ooc_extra_link = ooc_extra_link
+
+	character.ooc_extra = ooc_extra
 	// LETHALSTONE ADDITION BEGIN: additional customizations
 
 	character.pronouns = pronouns
