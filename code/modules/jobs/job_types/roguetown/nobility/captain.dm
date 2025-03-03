@@ -114,7 +114,6 @@
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_KNIGHTSMAN, TRAIT_GENERIC) 		//The knightly-est knight to ever knight in the realm.
-	ADD_TRAIT(H, TRAIT_GOODTRAINER, TRAIT_GENERIC) 		//This guy is supposed to be the crème de la crème of knights. He should be able to pass on this knowledge like the other knights.
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
 	H.adjust_blindness(-3)
 	var/weapons = list(
@@ -159,7 +158,7 @@
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
-	head = helmets[helmchoice]
+		head = helmets[helmchoice]
 
 /datum/advclass/captain/cavalry
 	name = "Cavalry Captain"
@@ -246,7 +245,7 @@
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
-	head = helmets[helmchoice]
+		head = helmets[helmchoice]
 
 /obj/effect/proc_holder/spell/self/convertrole
 	name = "Recruit Beggar"
