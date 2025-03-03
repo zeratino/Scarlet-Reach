@@ -2354,7 +2354,9 @@
 "HD" = (
 /obj/machinery/anvil,
 /obj/item/rogueweapon/hammer,
-/turf/open/floor/rogue/hexstone,
+/turf/open/floor/rogue/tile{
+	icon_state = "chess"
+	},
 /area/rogue/indoors/banditcamp)
 "HH" = (
 /obj/effect/landmark/start/bandit{
@@ -2568,7 +2570,9 @@
 	icon_state = "tablewood1"
 	},
 /obj/item/needle/thorn,
-/turf/open/floor/rogue/hexstone,
+/turf/open/floor/rogue/tile{
+	icon_state = "chess"
+	},
 /area/rogue/indoors/banditcamp)
 "Pq" = (
 /obj/structure/roguewindow/stained,
@@ -2730,7 +2734,9 @@
 /area/rogue/outdoors/banditcamp)
 "UC" = (
 /obj/structure/fluff/statue/evil,
-/turf/open/floor/rogue/hexstone,
+/turf/open/floor/rogue/tile{
+	icon_state = "chess"
+	},
 /area/rogue/indoors/banditcamp)
 "UR" = (
 /obj/structure/flora/newtree,
@@ -6385,7 +6391,7 @@ vp
 XW
 vp
 HD
-vb
+xK
 Pp
 vp
 ky
@@ -7294,9 +7300,9 @@ Mi
 vp
 XW
 vp
-vb
+xK
 UC
-vb
+xK
 vp
 ZM
 ky
