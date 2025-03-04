@@ -618,16 +618,50 @@
 	VV_DROPDOWN_OPTION(VV_HK_REAPPLY_PREFS, "Reapply Preferences")
 	VV_DROPDOWN_OPTION(VV_HK_COPY_OUTFIT, "Copy Outfit")
 	VV_DROPDOWN_OPTION(VV_HK_SET_SPECIES, "Set Species")
+	VV_DROPDOWN_OPTION(VV_HK_PURGE_PARTOF_SLOT, "Purge Part of Slot")
 	VV_DROPDOWN_OPTION(VV_HK_PURGE_SLOT, "Purge Slot")
 
 /mob/living/carbon/human/vv_do_topic(list/href_list)
 	. = ..()
+	if(href_list[VV_HK_PURGE_PARTOF_SLOT])
+		if(!check_rights(R_SPAWN))
+			return
+		if(!client || !client.prefs)
+			return
+		if(alert(usr,"This will irreversibly an INDIVIDUAL PORTION of this slot. Is this what you want?","DON'T FATFINGER THIS","PURGE","Nevermind") == "PURGE")
+			if(alert(usr,"The next prompt will not have a Nevermind option. Are you sure you want this?","ITS NOT REVERSIBLE","Yes","Nevermind") == "Yes")
+				var/choice = alert(usr,"What would you like to purge?","ITS TOO LATE NOW","Flavor","Notes","Extra")
+				if(choice)
+					switch(choice)
+						if("Flavor")
+							is_legacy = FALSE
+							flavortext = null
+							flavortext_display = null
+							client.prefs?.flavortext = null
+							client.prefs?.flavortext_display = null
+						if("Notes")
+							is_legacy = FALSE
+							ooc_notes = null
+							ooc_notes_display = null
+							client.prefs?.ooc_notes = null
+							client.prefs?.ooc_notes_display = null
+						if("Extra")
+							is_legacy = FALSE
+							ooc_extra_link = null
+							ooc_extra = null
+							client.prefs?.ooc_extra = null
+							client.prefs?.ooc_extra_link = null
+						else
+							return
+					client.prefs?.save_preferences()
+					client.prefs?.save_character()
+
 	if(href_list[VV_HK_PURGE_SLOT])
 		if(!check_rights(R_SPAWN))
 			return
 		if(!client || !client.prefs)
 			return
-		if(alert(usr,"This will irreversibly purge this character's slot (OOC, FT, OOC Ex.)","PURGE","PURGE","Nevermind") == "PURGE")
+		if(alert(usr,"This will irreversibly purge this ENTIRE character's slot (OOC, FT, OOC Ex.)","PURGE","PURGE","Nevermind") == "PURGE")
 			if(alert(usr,"This cannot be undone. Are you sure?","DON'T FATFINGER THIS","Yes","No") == "Yes")
 				flavortext = null
 				flavortext_display = null
