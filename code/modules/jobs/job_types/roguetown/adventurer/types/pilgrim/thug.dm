@@ -15,7 +15,6 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE) //see above
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE) //cudgel, my beloved, my one true love. A child has a teddy bear. A thug has a cudgel.
 	H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) //Physically demanding job of being a meathead lunk
 	H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE) // Dockhand work makes one acquainted with swimming when they fuck up
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE) 
