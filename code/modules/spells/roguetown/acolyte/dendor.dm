@@ -120,9 +120,8 @@
 	name = "Beast Form"
 	desc = "Take on the form of one of Dendor's sacred beasts."
 	overlay_state = "tamebeast"
-	releasedrain = 30
-	charge_max = 30 SECONDS
-	req_items = list(/obj/item/clothing/neck/roguetown/psicross/dendor)
+	releasedrain = 60
+	charge_max = 60 SECONDS
 	invocation = "Treefather grant me your form!"
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
