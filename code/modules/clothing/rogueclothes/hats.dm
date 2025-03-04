@@ -49,7 +49,7 @@
 	item_state = "basichood"
 	icon = 'icons/roguetown/clothing/head.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' //Overrides slot icon behavior
-	alternate_worn_layer = MASK_LAYER //Under helmets (And HAIR)
+	alternate_worn_layer  = 8.9 //On top of helmet
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	sleevetype = null
@@ -93,7 +93,6 @@
 	desc = "Flowing like blood from a wound, this tithe of cloth-and-silk spills out to the shoulders. It carries the telltale mark of Naledian stitcheries."
 	item_state = "hijab"
 	icon_state = "deserthood"
-	alternate_worn_layer = MASK_LAYER //Under helmets (And HAIR)
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	name = "heavy hood"
