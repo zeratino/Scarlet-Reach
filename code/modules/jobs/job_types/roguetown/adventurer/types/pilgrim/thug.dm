@@ -1,6 +1,6 @@
 /datum/advclass/thug
 	name = "Thug"
-	tutorial = "You might not have ever been the smartest person in town. But you have a solid build. Good enough for soilers to pay you to cart around saigashit. Good enough for miners to offload some of their work to you. Good enough for a carpenter who doesnt want to pay top dollar for fine cut wood. And good enough for anyone who just wants a meathead to look scary."
+	tutorial = "You might not have ever been the smartest person in town. But you may have been the sturdiest. Good enough for soilers to pay you to cart around saigashit. Good enough for miners to offload some of their work to you. Good enough for a carpenter who doesnt want to pay top dollar for fine cut wood. And good enough for anyone who just wants a meathead to look scary."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/thug
