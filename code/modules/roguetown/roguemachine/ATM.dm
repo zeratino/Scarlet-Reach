@@ -112,8 +112,8 @@
 				to_chat(user, "<font color='red'>I don't know what I'm doing with this thing!</font>")
 				return
 			var/can_anyone_know = FALSE
-			for(var/mob/living/carbon/human/H in GLOB.player_list)
-				if(H.job == "Steward" || H.job == "Grand Duke")
+			for(var/mob/living/carbon/human/HJ in GLOB.player_list)
+				if(HJ.job == "Steward" || HJ.job == "Grand Duke")
 					can_anyone_know = TRUE
 			if(!can_anyone_know)
 				to_chat(user, span_info("There is no one important for the transaction to flow through."))
