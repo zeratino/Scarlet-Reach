@@ -178,6 +178,12 @@
 	},
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors/town)
+"aew" = (
+/obj/structure/roguemachine/atm{
+	location_tag = "Tailor"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/town)
 "aez" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -1281,7 +1287,9 @@
 /area/rogue/indoors/town)
 "aTK" = (
 /obj/structure/chair/bench/couch,
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Keep Sideroom"
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "aUo" = (
@@ -3544,7 +3552,9 @@
 	},
 /area/rogue/indoors/town/physician)
 "cAM" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Stewardry"
+	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town)
 "cBd" = (
@@ -3963,7 +3973,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "cRT" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Steward Desk"
+	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "cSc" = (
@@ -5879,7 +5891,9 @@
 /area/rogue/indoors/town/physician)
 "ekn" = (
 /obj/structure/flora/roguegrass,
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Southern Gate"
+	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "ekq" = (
@@ -6144,7 +6158,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "euY" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Tavern Backroom"
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/tavern)
 "evf" = (
@@ -12021,7 +12037,9 @@
 /obj/structure/fluff/railing/border{
 	dir = 4
 	},
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Tavern Lobby"
+	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
 "jbj" = (
@@ -12194,7 +12212,9 @@
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/exposed/town/keep)
 "jgO" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Merchant"
+	},
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/shop)
 "jgQ" = (
@@ -12325,7 +12345,9 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains)
 "jlQ" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Archivist"
+	},
 /obj/structure/roguemachine/scomm/l,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
@@ -12886,7 +12908,8 @@
 /area/rogue/outdoors/town)
 "jKm" = (
 /obj/structure/roguemachine/atm{
-	mammonsiphoned = 250
+	mammonsiphoned = 250;
+	location_tag = "the Bathhouse"
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
@@ -13036,7 +13059,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "jOp" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Apothecary"
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/physician)
 "jOv" = (
@@ -14269,7 +14294,8 @@
 "kIf" = (
 /obj/structure/roguemachine/atm{
 	pixel_x = -32;
-	pixel_y = 0
+	pixel_y = 0;
+	location_tag = "Soilson Stall"
 	},
 /obj/effect/decal/cobbleedge{
 	dir = 6
@@ -19387,7 +19413,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/garrison)
 "oin" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Mercenary House"
+	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/rtfield)
 "oiA" = (
@@ -23738,7 +23766,9 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "rrb" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Throne Room"
+	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
 "rrk" = (
@@ -23908,7 +23938,9 @@
 /obj/structure/bars/passage/shutter{
 	redstone_id = "artificer_shutter"
 	},
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Artificer"
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "rys" = (
@@ -27743,7 +27775,8 @@
 "ukV" = (
 /obj/structure/roguemachine/atm{
 	pixel_x = -32;
-	pixel_y = 0
+	pixel_y = 0;
+	location_tag = "Far West of Town"
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
@@ -27844,7 +27877,9 @@
 /area/rogue/indoors/town)
 "unU" = (
 /obj/structure/roguemachine/scomm/l,
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Tailor's Interior"
+	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "uoG" = (
@@ -29525,7 +29560,9 @@
 /area/rogue/outdoors/town/roofs)
 "vJu" = (
 /obj/item/roguebin/water,
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Keep Front Gate"
+	},
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -29621,7 +29658,9 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/manor)
 "vOh" = (
-/obj/structure/roguemachine/atm,
+/obj/structure/roguemachine/atm{
+	location_tag = "Blacksmith"
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
 "vPT" = (
@@ -68080,7 +68119,7 @@ hvn
 kPr
 oyZ
 waT
-vOh
+aew
 hvn
 liZ
 aQw
