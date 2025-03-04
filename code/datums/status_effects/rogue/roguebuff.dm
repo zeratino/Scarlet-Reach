@@ -130,6 +130,8 @@
 	effectedstats = list("speed" = -5, "endurance" = 4, "intelligence" = -3, "constitution" = 3)
 	duration = 80 SECONDS
 	var/originalcmode = ""
+	var/hadcritres = FALSE
+	var/hadpainres = FALSE
 
 /datum/status_effect/buff/purified_ozium/nextmove_modifier()
 	return 1.2
@@ -137,15 +139,23 @@
 /datum/status_effect/buff/purified_ozium/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/ozium)
-	ADD_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
-	ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	if(!HAS_TRAIT(owner, TRAIT_NOPAIN))
+		ADD_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	else
+		hadpainres = TRUE
+	if(!HAS_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE))
+		ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	else
+		hadcritres = TRUE
 	originalcmode = owner.cmode_music
 	owner.cmode_music = 'sound/music/combat_ozium.ogg'
 
 /datum/status_effect/buff/purified_ozium/on_remove()
 	owner.remove_stress(/datum/stressevent/ozium)
-	REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
-	REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	if(!hadpainres)
+		REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	if(!hadcritres)
+		REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	owner.cmode_music = originalcmode
 	. = ..()
 
@@ -155,6 +165,8 @@
 	effectedstats = list("speed" = 4, "endurance" = 4, "intelligence" = -3, "constitution" = -3)
 	duration = 80 SECONDS
 	var/originalcmode = ""
+	var/haddodge = FALSE
+	var/haddarkvision = FALSE
 
 /datum/status_effect/buff/starsugar/nextmove_modifier()
 	return 0.7
@@ -162,8 +174,14 @@
 /datum/status_effect/buff/starsugar/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/starsugar)
-	ADD_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	if(!HAS_TRAIT(owner, TRAIT_DODGEEXPERT))
+		ADD_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	else
+		haddodge = TRUE
+	if(!HAS_TRAIT(owner, TRAIT_DARKVISION))
+		ADD_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	else
+		haddarkvision = TRUE
 	if(owner.has_status_effect(/datum/status_effect/debuff/sleepytime))
 		owner.remove_status_effect(/datum/status_effect/debuff/sleepytime)
 	originalcmode = owner.cmode_music
@@ -171,8 +189,10 @@
 
 
 /datum/status_effect/buff/starsugar/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	REMOVE_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	if(!haddodge)
+		REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	if(!haddarkvision)
+		REMOVE_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
 	owner.remove_stress(/datum/stressevent/starsugar)
 	owner.cmode_music = originalcmode
 	. = ..()
