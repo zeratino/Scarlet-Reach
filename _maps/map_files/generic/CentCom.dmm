@@ -302,9 +302,8 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue)
 "aH" = (
-/obj/structure/fluff/railing/border{
-	dir = 4;
-	icon_state = "border"
+/mob/living/simple_animal/pet/cat/rogue/black{
+	name = "Mischief"
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
@@ -562,6 +561,9 @@
 "bj" = (
 /obj/structure/stairs{
 	dir = 1
+	},
+/obj/structure/fluff/railing/border{
+	dir = 5
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
@@ -1496,6 +1498,16 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors)
+"gG" = (
+/obj/effect/landmark/start/banditlate,
+/obj/structure/fluff/railing/border{
+	icon_state = "border";
+	dir = 6
+	},
+/turf/open/floor/rogue/tile{
+	icon_state = "chess"
+	},
+/area/rogue/indoors/banditcamp)
 "hr" = (
 /obj/item/roguebin/water,
 /turf/open/floor/rogue/hexstone,
@@ -2036,10 +2048,8 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
 "xS" = (
-/mob/living/simple_animal/pet/cat/rogue/black{
-	name = "Mischief"
-	},
-/turf/open/floor/rogue/herringbone,
+/obj/structure/fluff/statue/gargoyle,
+/turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
 "yu" = (
 /obj/structure/roguemachine/scomm,
@@ -2098,14 +2108,11 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/banditcamp)
 "zD" = (
-/obj/effect/landmark/start/banditlate,
 /obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 6
+	dir = 4;
+	icon_state = "border"
 	},
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
+/turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "zK" = (
 /obj/effect/landmark/start/bandit,
@@ -2115,10 +2122,6 @@
 /turf/closed/wall/mineral/rogue/tent{
 	dir = 4
 	},
-/area/rogue/indoors/banditcamp)
-"Ad" = (
-/obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
 "As" = (
 /obj/structure/closet/crate/roguecloset,
@@ -2192,6 +2195,10 @@
 /area/rogue/indoors/banditcamp)
 "Ce" = (
 /obj/structure/stairs,
+/obj/structure/fluff/railing/border{
+	icon_state = "border";
+	dir = 10
+	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "Cj" = (
@@ -2356,6 +2363,12 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
+"Hb" = (
+/obj/structure/fluff/railing/border{
+	dir = 5
+	},
+/turf/open/floor/rogue/herringbone,
+/area/rogue/indoors/banditcamp)
 "Hc" = (
 /obj/effect/landmark/start/bandit{
 	icon_state = "arrow";
@@ -2506,12 +2519,6 @@
 /obj/machinery/light/rogue/wallfire/candle/r,
 /obj/item/needle,
 /turf/open/floor/rogue/hexstone,
-/area/rogue/indoors/banditcamp)
-"Mf" = (
-/obj/structure/fluff/railing/border{
-	dir = 5
-	},
-/turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "Mi" = (
 /turf/open/floor/rogue/dirt,
@@ -2674,6 +2681,14 @@
 "Sc" = (
 /obj/structure/flora/roguetree/stump/log,
 /turf/open/water/cleanshallow,
+/area/rogue/outdoors/woods)
+"Tb" = (
+/obj/structure/stairs,
+/obj/structure/fluff/railing/border{
+	icon_state = "border";
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "Te" = (
 /turf/open/floor/rogue/dirt,
@@ -2927,6 +2942,15 @@
 	dir = 9
 	},
 /turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/woods)
+"Zj" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "Zl" = (
 /turf/open/floor/rogue/herringbone,
@@ -4207,7 +4231,7 @@ xC
 vp
 rN
 Ue
-xS
+aH
 Hi
 vF
 Ie
@@ -4596,10 +4620,10 @@ xC
 Qr
 vp
 xK
+gG
 zD
-aH
-aH
-Mf
+zD
+Hb
 Hi
 Hi
 Hi
@@ -5360,7 +5384,7 @@ Ce
 vI
 vI
 vI
-bj
+Zj
 vQ
 vQ
 vQ
@@ -5486,7 +5510,7 @@ vQ
 vQ
 vQ
 vQ
-Ce
+Tb
 ek
 ek
 ek
@@ -6541,7 +6565,7 @@ Mi
 iD
 HL
 Ay
-Ad
+xS
 Mi
 vp
 xC
@@ -7191,7 +7215,7 @@ Mi
 iD
 HL
 Ay
-Ad
+xS
 Mi
 vp
 xC
