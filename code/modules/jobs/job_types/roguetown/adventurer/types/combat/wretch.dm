@@ -92,7 +92,7 @@
 			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 			cloak = /obj/item/clothing/cloak/raincloak/mortus
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			backl = /obj/item/storage/backpack/rogue/satchel
 			belt = /obj/item/storage/belt/rogue/leather
@@ -156,7 +156,7 @@
 			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak/darkgreen
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 			backl = /obj/item/storage/backpack/rogue/satchel
 			belt = /obj/item/storage/belt/rogue/leather
 			neck = /obj/item/clothing/neck/roguetown/gorget
@@ -291,11 +291,11 @@
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/black
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/reagent_containers/glass/bottle/rogue/manapot
-			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+			neck = /obj/item/clothing/neck/roguetown/gorget
 			beltl = /obj/item/rogueweapon/huntingknife
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/woodstaff
-			backpack_contents = list(/obj/item/spellbook_unfinished/pre_arcyne = 1, /obj/item/roguegem/amethyst = 1, /obj/item/roguekey/inhumen = 1, /obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(/obj/item/spellbook_unfinished/pre_arcyne = 1, /obj/item/roguegem/amethyst = 1, /obj/item/roguekey/inhumen = 1, /obj/item/flashlight/flare/torch = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
