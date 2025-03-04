@@ -302,7 +302,7 @@
 /turf/open/floor/rogue/carpet,
 /area/rogue)
 "aH" = (
-/obj/structure/fluff/statue/gargoyle/candles,
+/obj/structure/fluff/statue/gargoyle,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors/banditcamp)
 "aI" = (
@@ -6652,8 +6652,8 @@ Ay
 aH
 Ay
 wQ
-Wf
-Wf
+Ay
+Ay
 Ay
 wQ
 jg
@@ -7043,8 +7043,8 @@ aH
 Ay
 DN
 Ay
-Wf
-Wf
+Ay
+Ay
 DN
 jg
 jg
