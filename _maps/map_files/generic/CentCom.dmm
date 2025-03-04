@@ -950,7 +950,7 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors)
 "cw" = (
-/obj/structure/stairs/d,
+/obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "cx" = (
@@ -1464,9 +1464,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors)
 "fI" = (
-/obj/structure/fluff/railing/fence{
-	dir = 1
-	},
+/obj/structure/well,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "fY" = (
@@ -1673,7 +1671,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/woods)
 "on" = (
-/obj/machinery/light/rogue/torchholder/r,
+/obj/structure/stairs/d,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "or" = (
@@ -1947,7 +1945,9 @@
 	},
 /area/rogue/indoors/banditcamp)
 "wu" = (
-/obj/structure/well,
+/obj/structure/fluff/railing/fence{
+	dir = 1
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "ww" = (
@@ -4174,7 +4174,7 @@ Te
 Te
 Te
 Te
-fI
+wu
 ky
 vp
 xC
@@ -4304,7 +4304,7 @@ Te
 Te
 UR
 Te
-fI
+wu
 ky
 vp
 yu
@@ -4434,7 +4434,7 @@ Te
 Te
 Te
 Te
-fI
+wu
 ky
 vp
 AK
@@ -4564,7 +4564,7 @@ Te
 bz
 Te
 Te
-fI
+wu
 ky
 vp
 YH
@@ -4694,7 +4694,7 @@ Te
 Te
 Te
 Te
-fI
+wu
 ky
 vp
 or
@@ -4824,7 +4824,7 @@ Te
 Te
 Te
 Te
-fI
+wu
 ky
 vp
 vp
@@ -5864,7 +5864,7 @@ Te
 Te
 Te
 Te
-fI
+wu
 ky
 ky
 vp
@@ -5879,7 +5879,7 @@ vp
 Ov
 jg
 jg
-cw
+on
 kR
 AA
 ky
@@ -6009,7 +6009,7 @@ vp
 Ra
 YR
 jg
-cw
+on
 zB
 AA
 ky
@@ -6139,7 +6139,7 @@ vp
 if
 jg
 jg
-cw
+on
 kR
 AA
 ky
@@ -6794,9 +6794,9 @@ jg
 jg
 jg
 jg
-on
+cw
 jg
-on
+cw
 jg
 jg
 jg
@@ -7051,7 +7051,7 @@ jg
 jg
 ky
 ky
-wu
+fI
 UC
 ky
 zQ
@@ -7179,7 +7179,7 @@ vp
 jg
 jg
 ky
-ky
+jw
 ky
 ky
 ky
