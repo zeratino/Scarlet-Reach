@@ -88,18 +88,21 @@
 
 		if("Outlaw")
 			to_chat(H, span_warning("You're a seasoned criminal known for your heinous acts, your face plastered on wanted posters across the region. A life of theft, robbery, and ill-gotten-gains comes naturally to you."))
-			pants = /obj/item/clothing/under/roguetown/trou/leather
+			head = /obj/item/clothing/head/roguetown/helmet/kettle
+			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 			cloak = /obj/item/clothing/cloak/raincloak/mortus
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			backl = /obj/item/storage/backpack/rogue/satchel
 			belt = /obj/item/storage/belt/rogue/leather
 			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 			shoes = /obj/item/clothing/shoes/roguetown/boots
-			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			beltl = /obj/item/lockpickring/mundane
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			neck = /obj/item/clothing/neck/roguetown/gorget
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
+			mask = /obj/item/clothing/mask/rogue/facemask/steel
+			beltl = /obj/item/quiver/bolts
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/lockpickring/mundane = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 5, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -149,18 +152,20 @@
 		if("Poacher")
 			to_chat(H, span_warning("You have rejected society and its laws, choosing life in the wilderness instead. Simple thieving highwayman or freedom fighter, you take from those who have and give to the have-nots. Fancy, how the latter includes yourself!"))
 			head = /obj/item/clothing/head/roguetown/roguehood/darkgreen
-			pants = /obj/item/clothing/under/roguetown/trou/leather
+			mask = /obj/item/clothing/mask/rogue/wildguard
+			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak/darkgreen
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 			backl = /obj/item/storage/backpack/rogue/satchel
 			belt = /obj/item/storage/belt/rogue/leather
+			neck = /obj/item/clothing/neck/roguetown/gorget
 			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 			shoes = /obj/item/clothing/shoes/roguetown/boots
-			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			beltl = /obj/item/quiver/arrows
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/bait = 1, /obj/item/rogueweapon/huntingknife = 1)
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/bait = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
@@ -250,13 +255,13 @@
 				ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/black
 			cloak = /obj/item/clothing/cloak/cape/crusader
-			gloves = /obj/item/clothing/gloves/roguetown/chain/blk
-			pants = /obj/item/clothing/under/roguetown/chainlegs/blk
+			gloves = /obj/item/clothing/gloves/roguetown/chain
+			pants = /obj/item/clothing/under/roguetown/chainlegs
 			neck = /obj/item/clothing/neck/roguetown/gorget
 			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-			armor = /obj/item/clothing/suit/roguetown/armor/plate/blk
+			armor = /obj/item/clothing/suit/roguetown/armor/plate
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
-			shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blk
+			shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 			belt = /obj/item/storage/belt/rogue/leather/steel
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/shield/tower/metal
@@ -280,9 +285,9 @@
 			to_chat(H, span_warning("You have been ostracized and hunted by society for your dark magics and perversion of life."))
 			head = /obj/item/clothing/head/roguetown/roguehood/black
 			shoes = /obj/item/clothing/shoes/roguetown/boots
-			pants = /obj/item/clothing/under/roguetown/trou/leather
-			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
+			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/black
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/reagent_containers/glass/bottle/rogue/manapot
