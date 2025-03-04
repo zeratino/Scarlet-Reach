@@ -950,7 +950,7 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors)
 "cw" = (
-/obj/machinery/light/rogue/torchholder/r,
+/obj/structure/stairs/d,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "cx" = (
@@ -1464,8 +1464,8 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors)
 "fI" = (
-/obj/structure/well,
-/turf/open/floor/rogue/dirt,
+/obj/machinery/light/rogue/torchholder/r,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "fY" = (
 /obj/machinery/light/rogue/torchholder/l,
@@ -1671,8 +1671,8 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/woods)
 "on" = (
-/obj/structure/stairs/d,
-/turf/open/floor/rogue/dirt/road,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "or" = (
 /obj/structure/table/wood{
@@ -1945,9 +1945,7 @@
 	},
 /area/rogue/indoors/banditcamp)
 "wu" = (
-/obj/structure/fluff/railing/fence{
-	dir = 1
-	},
+/obj/structure/well,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "ww" = (
@@ -2730,11 +2728,13 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "Uy" = (
-/obj/structure/fluff/statue/evil,
+/obj/structure/fluff/railing/fence{
+	dir = 1
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "UC" = (
-/obj/item/reagent_containers/glass/bucket,
+/obj/structure/fluff/statue/evil,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "UR" = (
@@ -4174,7 +4174,7 @@ Te
 Te
 Te
 Te
-wu
+Uy
 ky
 vp
 xC
@@ -4304,7 +4304,7 @@ Te
 Te
 UR
 Te
-wu
+Uy
 ky
 vp
 yu
@@ -4434,7 +4434,7 @@ Te
 Te
 Te
 Te
-wu
+Uy
 ky
 vp
 AK
@@ -4564,7 +4564,7 @@ Te
 bz
 Te
 Te
-wu
+Uy
 ky
 vp
 YH
@@ -4694,7 +4694,7 @@ Te
 Te
 Te
 Te
-wu
+Uy
 ky
 vp
 or
@@ -4824,7 +4824,7 @@ Te
 Te
 Te
 Te
-wu
+Uy
 ky
 vp
 vp
@@ -5864,7 +5864,7 @@ Te
 Te
 Te
 Te
-wu
+Uy
 ky
 ky
 vp
@@ -5879,14 +5879,14 @@ vp
 Ov
 jg
 jg
-on
+cw
 kR
 AA
 ky
 kx
 kx
 kx
-Uy
+UC
 ky
 ky
 ky
@@ -6009,7 +6009,7 @@ vp
 Ra
 YR
 jg
-on
+cw
 zB
 AA
 ky
@@ -6139,7 +6139,7 @@ vp
 if
 jg
 jg
-on
+cw
 kR
 AA
 ky
@@ -6794,9 +6794,9 @@ jg
 jg
 jg
 jg
-cw
+fI
 jg
-cw
+fI
 jg
 jg
 jg
@@ -7051,8 +7051,8 @@ jg
 jg
 ky
 ky
-fI
-UC
+wu
+on
 ky
 zQ
 dl
@@ -7306,7 +7306,7 @@ xK
 HD
 xK
 vp
-ZM
+JM
 ky
 ky
 ky
