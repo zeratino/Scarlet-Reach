@@ -100,7 +100,7 @@
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			neck = /obj/item/clothing/neck/roguetown/gorget
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
-			mask = /obj/item/clothing/mask/rogue/facemask/steel
+			mask = /obj/item/clothing/mask/rogue/ragmask/black
 			beltr = /obj/item/quiver/bolts
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/lockpickring/mundane = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 5, TRUE)
