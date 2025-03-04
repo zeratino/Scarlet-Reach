@@ -4,6 +4,7 @@
 	icon = 'icons/roguetown/clothing/neck.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
 	bloody_icon_state = "bodyblood"
+	experimental_inhand = FALSE
 
 /obj/item/clothing/neck/roguetown/coif
 	name = "coif"
