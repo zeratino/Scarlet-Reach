@@ -1640,7 +1640,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ooc_extra = null
 						to_chat(user, "<span class='notice'>Successfully deleted OOC Extra.</span>")
 					var/static/list/valid_extensions = list("jpg", "png", "jpeg", "gif", "mp4", "mp3")
-					if(!valid_headshot_link(user, new_extra_link, TRUE, valid_extensions))
+					if(!valid_headshot_link(user, new_extra_link, FALSE, valid_extensions))
 						new_extra_link = null
 						ShowChoices(user)
 						return
@@ -1652,6 +1652,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/info
 					if((extension in valid_extensions))
 						ooc_extra_link = new_extra_link
+						ooc_extra = null
 						ooc_extra = "<div align ='center'><center>"
 						if(extension == "jpg" || extension == "png" || extension == "jpeg" || extension == "gif")
 							ooc_extra += "<br>"
@@ -2381,7 +2382,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 			to_chat(user, "<span class='warning'>Your link must be https!</span>")
 		return FALSE
 
-	if(!findtext(value, "."))
+	if(!findtext(value, ".") || findtext(value, "<") || findtext(value, ">"))	//there is no link in the world that would ever need < or >
 		if(!silent)
 			to_chat(user, "<span class='warning'>Invalid link!</span>")
 		return FALSE
