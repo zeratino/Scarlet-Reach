@@ -950,7 +950,7 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors)
 "cw" = (
-/obj/structure/stairs/d,
+/obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "cx" = (
@@ -1464,8 +1464,10 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors)
 "fI" = (
-/obj/machinery/light/rogue/torchholder/r,
-/turf/open/floor/rogue/dirt/road,
+/obj/structure/fluff/railing/fence{
+	dir = 1
+	},
+/turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "fY" = (
 /obj/machinery/light/rogue/torchholder/l,
@@ -1671,7 +1673,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/woods)
 "on" = (
-/obj/item/reagent_containers/glass/bucket,
+/obj/structure/well,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
 "or" = (
@@ -1945,8 +1947,8 @@
 	},
 /area/rogue/indoors/banditcamp)
 "wu" = (
-/obj/structure/well,
-/turf/open/floor/rogue/dirt,
+/obj/structure/stairs/d,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
 "ww" = (
 /obj/structure/fluff/railing/border{
@@ -2565,14 +2567,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors)
 "Pp" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/needle/thorn,
-/turf/open/floor/rogue/tile{
-	icon_state = "chess"
-	},
-/area/rogue/indoors/banditcamp)
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/banditcamp)
 "Pq" = (
 /obj/structure/roguewindow/stained,
 /obj/structure/roguewindow,
@@ -2728,15 +2725,18 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue)
 "Uy" = (
-/obj/structure/fluff/railing/fence{
-	dir = 1
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/banditcamp)
-"UC" = (
 /obj/structure/fluff/statue/evil,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/banditcamp)
+"UC" = (
+/obj/item/needle/thorn,
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/turf/open/floor/rogue/tile{
+	icon_state = "chess"
+	},
+/area/rogue/indoors/banditcamp)
 "UR" = (
 /obj/structure/flora/newtree,
 /turf/open/floor/rogue/dirt,
@@ -4174,7 +4174,7 @@ Te
 Te
 Te
 Te
-Uy
+fI
 ky
 vp
 xC
@@ -4304,7 +4304,7 @@ Te
 Te
 UR
 Te
-Uy
+fI
 ky
 vp
 yu
@@ -4434,7 +4434,7 @@ Te
 Te
 Te
 Te
-Uy
+fI
 ky
 vp
 AK
@@ -4564,7 +4564,7 @@ Te
 bz
 Te
 Te
-Uy
+fI
 ky
 vp
 YH
@@ -4694,7 +4694,7 @@ Te
 Te
 Te
 Te
-Uy
+fI
 ky
 vp
 or
@@ -4824,7 +4824,7 @@ Te
 Te
 Te
 Te
-Uy
+fI
 ky
 vp
 vp
@@ -5864,7 +5864,7 @@ Te
 Te
 Te
 Te
-Uy
+fI
 ky
 ky
 vp
@@ -5879,14 +5879,14 @@ vp
 Ov
 jg
 jg
-cw
+wu
 kR
 AA
 ky
 kx
 kx
 kx
-UC
+Uy
 ky
 ky
 ky
@@ -6009,7 +6009,7 @@ vp
 Ra
 YR
 jg
-cw
+wu
 zB
 AA
 ky
@@ -6139,7 +6139,7 @@ vp
 if
 jg
 jg
-cw
+wu
 kR
 AA
 ky
@@ -6393,7 +6393,7 @@ vp
 XW
 vp
 xK
-Pp
+HD
 xK
 vp
 ky
@@ -6794,9 +6794,9 @@ jg
 jg
 jg
 jg
-fI
+cw
 jg
-fI
+cw
 jg
 jg
 jg
@@ -7051,8 +7051,8 @@ jg
 jg
 ky
 ky
-wu
 on
+Pp
 ky
 zQ
 dl
@@ -7303,7 +7303,7 @@ vp
 XW
 vp
 xK
-HD
+UC
 xK
 vp
 JM
