@@ -10,11 +10,11 @@
 	if(!used)
 		switch(soundin)
 			if("chuckle")
-				used = list('sound/vo/female/goblin/chuckle (1).ogg','sound/vo/female/goblin/chuckle (2).ogg','sound/vo/female/goblin/chuckle (3).ogg','sound/vo/female/goblin/chuckle (4).ogg')
+				used = list('sound/vo/female/goblin/chuckle (1).ogg','sound/vo/female/goblin/chuckle (3).ogg','sound/vo/female/goblin/chuckle (4).ogg')
 			if("giggle")
-				used = list('sound/vo/female/goblin/giggle (1).ogg','sound/vo/female/goblin/giggle (2).ogg','sound/vo/female/goblin/giggle (3).ogg','sound/vo/female/goblin/giggle (4).ogg','sound/vo/female/goblin/giggle (5).ogg','sound/vo/female/goblin/giggle (6).ogg')
+				used = list('sound/vo/female/goblin/giggle (1).ogg','sound/vo/female/goblin/giggle (4).ogg','sound/vo/female/goblin/giggle (6).ogg')
 			if("laugh")
-				used = list('sound/vo/female/goblin/laugh (1).ogg','sound/vo/female/goblin/laugh (2).ogg','sound/vo/female/goblin/laugh (3).ogg','sound/vo/female/goblin/laugh (4).ogg','sound/vo/female/goblin/laugh (5).ogg')
+				used = list('sound/vo/female/goblin/laugh (1).ogg','sound/vo/female/goblin/laugh (2).ogg','sound/vo/female/goblin/laugh (4).ogg')
 
 
 	if(!used) //we haven't found a racial specific sound so use generic
