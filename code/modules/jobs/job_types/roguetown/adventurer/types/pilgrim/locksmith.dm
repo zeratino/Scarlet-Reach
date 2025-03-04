@@ -33,6 +33,7 @@
 	mouth = /obj/item/rogueweapon/huntingknife
 	beltr = /obj/item/rogueweapon/hammer/claw
 	beltl = /obj/item/rogueweapon/tongs
+	backpack_contents = list(/obj/item/lockpickring/mundane = 1)
 	H.change_stat("intelligence", 1) //overall +5 to stats, nowhere near as good as miner or other towners, but not as ass as comically ass as thug used to be
 	H.change_stat("perception", 2) 
 	H.change_stat("speed", 2)
