@@ -301,10 +301,6 @@
 /obj/item/clothing/under/roguetown/tights,
 /turf/open/floor/rogue/carpet,
 /area/rogue)
-"aH" = (
-/obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/rogue/blocks,
-/area/rogue/indoors/banditcamp)
 "aI" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -2097,9 +2093,9 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/banditcamp)
 "zD" = (
-/obj/structure/chair/freedomchair,
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/outdoors/woods)
+/obj/structure/fluff/statue/gargoyle,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "zK" = (
 /obj/effect/landmark/start/bandit,
 /turf/open/floor/rogue/herringbone,
@@ -6519,7 +6515,7 @@ Mi
 iD
 HL
 Ay
-aH
+zD
 Mi
 vp
 xC
@@ -7169,7 +7165,7 @@ Mi
 iD
 HL
 Ay
-aH
+zD
 Mi
 vp
 xC
@@ -7570,7 +7566,7 @@ kB
 kB
 kB
 kB
-zD
+kB
 kB
 kB
 kB
