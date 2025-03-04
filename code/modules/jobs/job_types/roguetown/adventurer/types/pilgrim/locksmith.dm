@@ -28,10 +28,8 @@
 	pants = /obj/item/clothing/under/roguetown/trou
 	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 	backr = /obj/item/storage/backpack/rogue/satchel
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
-	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	armor = /obj/item/clothing/suit/roguetown/armor/workervest
+	neck = /obj/item/storage/belt/rogue/pouch/coins/mid //Learned profession, makes sense they'd have some actual money
 	mouth = /obj/item/rogueweapon/huntingknife
 	beltr = /obj/item/rogueweapon/hammer/claw
 	beltl = /obj/item/rogueweapon/tongs
