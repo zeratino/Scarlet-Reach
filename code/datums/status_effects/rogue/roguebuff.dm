@@ -13,6 +13,28 @@
 	desc = ""
 	icon_state = "drunk"
 
+/atom/movable/screen/alert/status_effect/buff/drunkmurk
+	name = "Murk-Knowledge"
+	desc = ""
+	icon_state = "drunk"
+
+/atom/movable/screen/alert/status_effect/buff/drunknoc
+	name = "Noc-Shine Strength"
+	desc = ""
+	icon_state = "drunk"
+
+/datum/status_effect/buff/murkwine
+	id = "murkwine"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/drunkmurk
+	effectedstats = list("intelligence" = 5)
+	duration = 2 MINUTES
+
+/datum/status_effect/buff/nocshine
+	id = "nocshine"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/drunknoc
+	effectedstats = list("strength" = 1, "endurance" = 1)
+	duration = 2 MINUTES
+
 /datum/status_effect/buff/foodbuff
 	id = "foodbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/foodbuff
@@ -101,6 +123,59 @@
 /datum/status_effect/buff/moondust_purest/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/moondust_purest)
+
+/datum/status_effect/buff/purified_ozium
+	id = "purified_ozium"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
+	effectedstats = list("speed" = -5, "endurance" = 4, "intelligence" = -3, "constitution" = 3)
+	duration = 80 SECONDS
+	var/originalcmode = ""
+
+/datum/status_effect/buff/purified_ozium/nextmove_modifier()
+	return 1.2
+
+/datum/status_effect/buff/purified_ozium/on_apply()
+	. = ..()
+	owner.add_stress(/datum/stressevent/ozium)
+	ADD_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	originalcmode = owner.cmode_music
+	owner.cmode_music = 'sound/music/combat_ozium.ogg'
+
+/datum/status_effect/buff/purified_ozium/on_remove()
+	owner.remove_stress(/datum/stressevent/ozium)
+	REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	owner.cmode_music = originalcmode
+	. = ..()
+
+/datum/status_effect/buff/starsugar
+	id = "starsugar"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
+	effectedstats = list("speed" = 4, "endurance" = 4, "intelligence" = -3, "constitution" = -3)
+	duration = 80 SECONDS
+	var/originalcmode = ""
+
+/datum/status_effect/buff/starsugar/nextmove_modifier()
+	return 0.7
+
+/datum/status_effect/buff/starsugar/on_apply()
+	. = ..()
+	owner.add_stress(/datum/stressevent/starsugar)
+	ADD_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	ADD_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	if(owner.has_status_effect(/datum/status_effect/debuff/sleepytime))
+		owner.remove_status_effect(/datum/status_effect/debuff/sleepytime)
+	originalcmode = owner.cmode_music
+	owner.cmode_music = 'sound/music/combat_starsugar.ogg'
+
+
+/datum/status_effect/buff/starsugar/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	REMOVE_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	owner.remove_stress(/datum/stressevent/starsugar)
+	owner.cmode_music = originalcmode
+	. = ..()
 
 /datum/status_effect/buff/weed
 	id = "weed"
