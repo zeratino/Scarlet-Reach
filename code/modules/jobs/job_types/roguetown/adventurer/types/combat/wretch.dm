@@ -101,7 +101,7 @@
 			neck = /obj/item/clothing/neck/roguetown/gorget
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			mask = /obj/item/clothing/mask/rogue/facemask/steel
-			beltl = /obj/item/quiver/bolts
+			beltr = /obj/item/quiver/bolts
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/lockpickring/mundane = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 5, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
@@ -128,13 +128,13 @@
 			switch(weapon_choice)
 				if("Rapier")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-					beltr = /obj/item/rogueweapon/sword/rapier
+					beltl = /obj/item/rogueweapon/sword/rapier
 				if("Dagger")
 					H.mind.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-					beltr = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
+					beltl = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 				if ("Whip")
 					H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-					beltr = /obj/item/rogueweapon/whip
+					beltl = /obj/item/rogueweapon/whip
 			H.change_stat("strength", -1)
 			H.change_stat("constitution", 1)
 			H.change_stat("endurance", 2)
