@@ -156,7 +156,7 @@
 		drilling = FALSE
 		has_reported = FALSE
 		return
-	if(mammonsiphoned >499) // The cap variable for siphoning. 
+	if(mammonsiphoned >199) // The cap variable for siphoning. 
 		new /obj/item/coveter(loc)
 		loc.visible_message(span_warning("Maximum withdrawal reached! The meister weeps."))
 		playsound(src, 'sound/misc/DrillDone.ogg', 70, TRUE)
@@ -173,11 +173,11 @@
 		playsound(src, 'sound/misc/TheDrill.ogg', 70, TRUE)
 		spawn(100) // The time it takes to complete an interval. If you adjust this, please adjust the sound too. It's 'about' perfect at 100. Anything less It'll start overlapping.
 			loc.visible_message(span_warning("The meister spills its bounty!"))
-			SStreasury.treasury_value -= 50 // Takes from the treasury
-			mammonsiphoned += 50
-			budget2change(50, null, "SILVER")
+			SStreasury.treasury_value -= 20 // Takes from the treasury
+			mammonsiphoned += 20
+			budget2change(20, null, "SILVER")
 			playsound(src, 'sound/misc/coindispense.ogg', 70, TRUE)
-			SStreasury.log_to_steward("-[50] exported mammon to the Freefolks!")
+			SStreasury.log_to_steward("-[20] exported mammon to the Freefolks!")
 			drill(src)
 
 /obj/structure/roguemachine/atm/attack_right(mob/living/carbon/human/user)
