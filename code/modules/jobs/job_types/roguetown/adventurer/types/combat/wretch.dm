@@ -255,13 +255,13 @@
 				ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/black
 			cloak = /obj/item/clothing/cloak/cape/crusader
-			gloves = /obj/item/clothing/gloves/roguetown/chain
-			pants = /obj/item/clothing/under/roguetown/chainlegs
+			gloves = /obj/item/clothing/gloves/roguetown/chain/blk
+			pants = /obj/item/clothing/under/roguetown/chainlegs/blk
 			neck = /obj/item/clothing/neck/roguetown/gorget
 			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-			armor = /obj/item/clothing/suit/roguetown/armor/plate
+			armor = /obj/item/clothing/suit/roguetown/armor/plate/blk
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
-			shoes = /obj/item/clothing/shoes/roguetown/boots/armor
+			shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blk
 			belt = /obj/item/storage/belt/rogue/leather/steel
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/shield/tower/metal
