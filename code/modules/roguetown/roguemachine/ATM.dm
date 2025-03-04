@@ -252,7 +252,7 @@
 						if(do_after(user, 25))
 							SStreasury.bank_accounts[H] -= fast_drain
 							sum += fast_drain
-							new /obj/item/roguecoin/gold(T, fast_drain)
+							new /obj/item/roguecoin/gold(T, fast_drain / 10)
 							SStreasury.log_to_steward("-[fast_drain] exported mammon to the Freefolks!")
 							if(prob(needed_cycles*2))
 								drain_effect_fast(H)
@@ -280,10 +280,10 @@
 					H.apply_damage(10, BRUTE, head)
 					for(var/i = 1,i<=needed_cycles,i++)
 						if(do_after(user, 10))
-							SStreasury.bank_accounts[H] -= fast_drain
-							sum += fast_drain
-							new /obj/item/roguecoin/gold(T, fast_drain)
-							SStreasury.log_to_steward("-[fast_drain] exported mammon to the Freefolks!")
+							SStreasury.bank_accounts[H] -= slow_drain
+							sum += slow_drain
+							new /obj/item/roguecoin/gold(T, slow_drain / 10)
+							SStreasury.log_to_steward("-[slow_drain] exported mammon to the Freefolks!")
 							if(prob(needed_cycles*2))
 								drain_effect_fast(H)
 							if(i == needed_cycles)	//Last cycle.
