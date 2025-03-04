@@ -303,7 +303,7 @@
 /area/rogue)
 "aH" = (
 /obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/rogue/cobblerock,
+/turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
 "aI" = (
 /obj/structure/table/wood{
@@ -6387,7 +6387,7 @@ Te
 eS
 eS
 vp
-Mi
+XW
 Mi
 vp
 XW
@@ -6517,9 +6517,9 @@ Te
 eS
 Mi
 iD
-Ay
 HL
 Ay
+aH
 Mi
 vp
 xC
@@ -6649,7 +6649,7 @@ vp
 Ay
 aP
 Ay
-aH
+Ay
 Ay
 wQ
 Ay
@@ -7039,7 +7039,7 @@ vp
 Ay
 aP
 Ay
-aH
+Ay
 Ay
 DN
 Ay
@@ -7169,7 +7169,7 @@ Mi
 iD
 HL
 Ay
-Ay
+aH
 Mi
 vp
 xC
@@ -7297,7 +7297,7 @@ Te
 eS
 eS
 vp
-Mi
+XW
 Mi
 vp
 XW
