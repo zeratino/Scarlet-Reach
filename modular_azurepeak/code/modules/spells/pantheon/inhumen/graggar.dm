@@ -1,32 +1,24 @@
-//Dirty Fighting - POCKET SAND!!!!
-/obj/effect/proc_holder/spell/invoked/projectile/pocket_sand
-	name = "Dirty Fighting"
-	desc = "Graggar cares not for the rules of battle, merely the slaughter of it. Blind your target, throw forth a cocktail of sediment into your enemy's eyes!"
-	clothes_req = FALSE
-	range = 3	//It's literally pocket sand.
-	associated_skill = /datum/skill/magic/arcane
-	projectile_type = /obj/projectile/magic/pocket_sand
-	chargedloop = /datum/looping_sound/invokeholy
+//Revel in Slaughter - Self-healing by consuming blood around you; large healing, has delay though.
+/obj/effect/proc_holder/spell/self/revel_in_slaughter
+	name = "Revel in Slaughter"
+	desc = "The blood of your enemy rejuvinates you, Gaggar's gifts fusing your blood with the blood around you."
+	overlay_state = "bloodsteal"
+	charge_max = 5 MINUTES
+	invocation = "MURDER REJUNVIATES!"
+	invocation_type = "shout"
+	sound = 'sound/magic/unmagnet.ogg'
 	releasedrain = 30
-	chargedrain = 0
-	chargetime = 15
-	charge_max = 10 SECONDS
-	invocation = "A BLINDED LITTLE LAMB, HAHAHA!"
+	miracle = TRUE
+	devotion_cost = 70
 
-/obj/projectile/magic/pocket_sand
-	name = "unholy sand"
-	icon_state = "spark"
-	damage = 5	//Sand ouchie.
-	damage_type = BRUTE
-	nodamage = FALSE
-
-/obj/projectile/magic/pocket_sand/on_hit(target, mob/living/M)
-	if(!istype(M))
-		return
-	if(target)
-		M.blind_eyes(2)
-		M.blur_eyes(5)
-		to_chat(target, span_warning("Gah! Sand in my eyes!"))
+/obj/effect/proc_holder/spell/self/revel_in_slaughter/cast(atom/A, mob/living/user = usr)
+	. = ..()
+	for(var/obj/effect/decal/cleanable/blood/B in view(3, user))
+		var/turf/open/T = A
+		for(var/obj/effect/decal/cleanable/blood/target in T)
+			qdel(target)
+	var/healing = 3		//Longer duration than normal lesser healing.
+	user.apply_status_effect(/datum/status_effect/buff/healing, healing)
 
 //Call to Slaughter - AoE buff for all people surrounding you.
 /obj/effect/proc_holder/spell/self/call_to_slaughter
@@ -93,23 +85,3 @@
 		C.apply_status_effect(/datum/status_effect/debuff/netted)
 		playsound(src, 'sound/combat/caught.ogg', 50, TRUE)
 
-//Revel in Slaughter - Self-healing by consuming blood around you; large healing, has delay though.
-/obj/effect/proc_holder/spell/self/revel_in_slaughter
-	name = "Revel in Slaughter"
-	desc = "The blood of your enemy rejuvinates you, Gaggar's gifts fusing your blood with the blood around you."
-	overlay_state = "bloodsteal"
-	charge_max = 5 MINUTES
-	invocation = "MURDER REJUNVIATES!"
-	invocation_type = "shout"
-	sound = 'sound/magic/unmagnet.ogg'
-	releasedrain = 30
-	miracle = TRUE
-	devotion_cost = 70
-
-/obj/effect/proc_holder/spell/self/revel_in_slaughter/cast(atom/A, mob/living/user = usr)
-	for(var/obj/effect/decal/cleanable/blood/B in view(3, user))
-		var/turf/open/T = A
-		for(var/obj/effect/decal/cleanable/blood/target in T)
-			qdel(target)
-	user.adjustBruteLoss(-50)
-	user.adjustFireLoss(-50)
