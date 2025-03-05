@@ -434,11 +434,15 @@
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JDO_MARTYR
-	undead_not_allowed = TRUE	//Restricts it from being picked w/ Deathless / Rotcured / Deadened / Heretic Seer (duh)
 	
 	give_bank_account = TRUE
 
 	cmode_music = 'sound/music/combat_martyrsafe.ogg'
+
+	//No undeath-adjacent virtues for a role that can sacrifice itself. The Ten like their sacrifices 'pure'. (I actually didn't want to code returning those virtue traits post-sword use)
+	//They get those traits during sword activation, anyway. 
+	//Dual wielder is there to stand-in for ambidextrous in case they activate their sword in their off-hand.
+	virtue_restrictions = list(/datum/virtue/combat/rotcured, /datum/virtue/utility/deadened, /datum/virtue/utility/deathless, /datum/virtue/heretic/seer, /datum/virtue/combat/dualwielder)
 
 
 /datum/outfit/job/roguetown/martyr/pre_equip(mob/living/carbon/human/H)

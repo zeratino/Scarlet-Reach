@@ -839,9 +839,40 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(!job.required && !isnull(job.max_pq) && (get_playerquality(user.ckey) > job.max_pq))
 				HTML += "<font color=#a59461>[used_name] (Max PQ: [job.max_pq])</font></td> <td> </td></tr>"
 				continue
-			if(job.undead_not_allowed)
-				if(virtue.is_undead || virtuetwo.is_undead)
-					HTML += "<font color=#a59461>[used_name] (Disallowed by Virtues)</font></td> <td> </td></tr>"
+			if(length(job.virtue_restrictions) && length(job.vice_restrictions))
+				var/name
+				if(virtue.type in job.virtue_restrictions)
+					name = virtue.name
+				if(virtuetwo?.type in job.virtue_restrictions)
+					if(name)
+						name += ", "
+						name += virtuetwo.name
+					else
+						name = virtuetwo.name
+				if(charflaw.type in job.vice_restrictions)
+					if(name)
+						name += ", "
+						name += charflaw.name
+					else
+						name += charflaw.name
+				if(!isnull(name))
+					HTML += "<font color='#a561a5'>[used_name] (Disallowed by Virtues / Vice: [name])</font></td> <td> </td></tr>"
+			if(length(job.virtue_restrictions))
+				var/name
+				if(virtue.type in job.virtue_restrictions)
+					name = virtue.name
+				if(virtuetwo?.type in job.virtue_restrictions)
+					if(name)
+						name += ", "
+						name += virtuetwo.name
+					else
+						name = virtuetwo.name
+				if(!isnull(name))
+					HTML += "<font color='#a59461'>[used_name] (Disallowed by Virtue: [name])</font></td> <td> </td></tr>"
+					continue
+			if(length(job.vice_restrictions))
+				if(charflaw.type in job.vice_restrictions)
+					HTML += "<font color='#a56161'>[used_name] (Disallowed by Vice: [charflaw.name])</font></td> <td> </td></tr>"
 					continue
 			var/job_unavailable = JOB_AVAILABLE
 			if(isnewplayer(parent?.mob))
@@ -1738,11 +1769,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if (result)
 						var/datum/virtue/virtue_chosen = virtue_choices[result]
 						virtue = virtue_chosen
-						if (virtue.desc)
+						if(virtue.desc)
 							to_chat(user, span_purple(virtue.desc))
-						if(virtue.is_undead)
-							ResetJobs()
-							to_chat(user, "<font color='red'>Classes reset.</font>")
 
 				if("virtuetwo")
 					var/list/virtue_choices = list()
@@ -1762,9 +1790,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						virtuetwo = virtue_chosen
 						if (virtuetwo.desc)
 							to_chat(user, span_purple(virtuetwo.desc))
-						if(virtuetwo.is_undead)
-							ResetJobs()
-							to_chat(user, "<font color='red'>Classes reset.</font>")
 					/*	if (statpack.type != /datum/statpack/wildcard/virtuous)
 							statpack = new /datum/statpack/wildcard/virtuous
 							to_chat(user, span_purple("Your statpack has been set to virtuous (no stats) due to selecting a virtue.")) */
