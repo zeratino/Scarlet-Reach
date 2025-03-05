@@ -75,7 +75,7 @@
 /datum/keybinding/admin/rmbcontext/down(client/user)
 	user.set_context_menu_enabled()
 	return TRUE
-/*
+
 /datum/keybinding/admin/deadsay
 	hotkey_keys = list("F10")
 	name = "dsay"
