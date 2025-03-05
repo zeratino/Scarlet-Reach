@@ -130,6 +130,8 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	
+	var/transformed = FALSE
+	var/transforming = FALSE
 	var/revert_on_death = TRUE
 	var/die_with_shapeshifted_form = FALSE
 	var/convert_damage = FALSE
@@ -434,33 +436,40 @@ var/static/list/druid_forms = list(
 	
 	var/was_dead = shape.stat == DEAD
 	
-	// Store visibility
+	// Store visibility and apply it
 	var/oldinv = shape.invisibility
 	shape.invisibility = INVISIBILITY_MAXIMUM
-	
-	// Transformation effects and messages
-	shape.flash_fullscreen("redflash3")
-	to_chat(shapeshift_holder.stored, span_userdanger("Your bones painfully snap back as you return to your original form!"))
-	shape.visible_message(span_warning("[shape]'s bestial form begins to recede!"), \
-						 span_warning("The transformation back is just as painful!"))
 	
 	// Add transformation effects
 	playsound(shape.loc, pick('sound/combat/gib (1).ogg','sound/combat/gib (2).ogg'), 200, FALSE, 3)
 	shape.spawn_gibs(FALSE)
 	
+	// Set transforming state
+	transforming = TRUE
+	
 	// Restore original form
 	shapeshift_holder.restore()
 	
-	// Reset visibility on restored mob
-	var/mob/living/restored = shapeshift_holder.stored
-	if(restored)
-		restored.invisibility = oldinv
+	// Reset transformation flags
+	transformed = FALSE         // No longer transformed
+	transforming = FALSE       // Not in transformation process
+	
+	// Reset visibility
+	shape.invisibility = oldinv
 	
 	if(was_dead)
 		charge_counter = 0
 		charge_max = death_cooldown
-		start_recharge()
-		to_chat(restored, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
+	else
+		charge_counter = 0  // Start the normal cooldown
+		recharging = TRUE   // Enable recharging
+	
+	start_recharge()  // Start the recharge process
+	if(action)
+		action.UpdateButtonIcon()
+	
+	if(was_dead)
+		to_chat(shape, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
 
 /mob/living/simple_animal/hostile/retaliate/rogue/proc/attack_target(atom/A)
 	if(ismob(A))
