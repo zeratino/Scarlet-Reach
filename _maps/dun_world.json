@@ -1,6 +1,6 @@
 {
     "map_name": "Dun World",
-    "map_path": "map_files/dunworld",
+    "map_path": "map_files/dun_world",
     "map_file": "dun_world.dmm",
 	"traits": [{"Up": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Down": true}],
 	"minetype": null,
