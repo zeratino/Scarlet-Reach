@@ -3738,8 +3738,7 @@
 /area/rogue/indoors/town/dwarfin)
 "bOu" = (
 /obj/effect/landmark/mapGenerator/rogue/mountain{
-	endTurfX = 155;
-	endTurfY = 155
+	endTurfY = 450
 	},
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave)
@@ -8317,6 +8316,13 @@
 /obj/structure/mineral_door/wood/window,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
+"edb" = (
+/obj/effect/landmark/mapGenerator/rogue/beach{
+	endTurfX = 255;
+	endTurfY = 450
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/under/cave)
 "edi" = (
 /obj/structure/chair/bench/couchablack,
 /obj/structure/fluff/walldeco/bigpainting,
@@ -10123,6 +10129,12 @@
 /obj/item/roguekey/dungeon,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/garrison)
+"eRw" = (
+/obj/effect/landmark/mapGenerator/rogue/forest{
+	endTurfY = 450
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/under/cavewet/bogcaves)
 "eRy" = (
 /obj/structure/table/wood,
 /obj/structure/lever{
@@ -13613,8 +13625,8 @@
 /area/rogue/under/town/basement)
 "gEl" = (
 /obj/effect/landmark/mapGenerator/rogue/cave{
-	endTurfX = 155;
-	endTurfY = 155
+	endTurfX = 255;
+	endTurfY = 450
 	},
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cavewet/bogcaves)
@@ -20580,9 +20592,12 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/cave/mazedungeon)
 "jRl" = (
-/obj/effect/landmark/mapGenerator/rogue/roguetownfield,
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/rtfield)
+/obj/effect/landmark/mapGenerator/rogue/roguetownfield{
+	endTurfX = 255;
+	endTurfY = 450
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/under/cave)
 "jRD" = (
 /obj/structure/fluff/railing/fence,
 /obj/structure/flora/roguegrass/bush/wall,
@@ -24397,6 +24412,12 @@
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
+"lHQ" = (
+/obj/effect/landmark/mapGenerator/rogue/bog{
+	endTurfY = 450
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/under/cave)
 "lHT" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/rogue/blocks,
@@ -37078,8 +37099,7 @@
 /area/rogue/indoors/shelter/woods)
 "rFb" = (
 /obj/effect/landmark/mapGenerator/rogue/forest{
-	endTurfY = 155;
-	endTurfX = 155
+	endTurfY = 450
 	},
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave)
@@ -37954,6 +37974,13 @@
 /obj/structure/bars,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
+"sbL" = (
+/obj/effect/landmark/mapGenerator/rogue/cave{
+	endTurfX = 255;
+	endTurfY = 450
+	},
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/under/cave)
 "scf" = (
 /obj/structure/closet/crate/chest{
 	locked = 1;
@@ -43811,7 +43838,10 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/town/church/chapel)
 "uPj" = (
-/obj/effect/landmark/mapGenerator/rogue/beach,
+/obj/effect/landmark/mapGenerator/rogue/beach{
+	endTurfX = 255;
+	endTurfY = 450
+	},
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cavewet/bogcaves)
 "uPv" = (
@@ -48046,9 +48076,11 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
 "wTH" = (
-/obj/effect/landmark/mapGenerator/rogue/beach,
+/obj/effect/landmark/mapGenerator/rogue/decap{
+	endTurfY = 450
+	},
 /turf/closed/mineral/rogue/bedrock,
-/area/rogue/outdoors/beach/forest)
+/area/rogue/under/cave)
 "wTL" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
@@ -52130,7 +52162,7 @@ abA
 abA
 abA
 uXv
-uXv
+eRw
 "}
 (4,1,1) = {"
 qmf
@@ -166939,7 +166971,7 @@ ogs
 ogs
 ogs
 ogs
-ogs
+edb
 "}
 (3,1,2) = {"
 qmf
@@ -167391,7 +167423,7 @@ qHj
 qHj
 ogs
 ogs
-ogs
+sbL
 "}
 (4,1,2) = {"
 qmf
@@ -167843,7 +167875,7 @@ qHj
 qHj
 qHj
 ogs
-ogs
+jRl
 "}
 (5,1,2) = {"
 qmf
@@ -211523,7 +211555,7 @@ nBX
 nBX
 nBX
 nBX
-jRl
+nBX
 ogs
 ogs
 ogs
@@ -282200,7 +282232,7 @@ ogs
 ogs
 ogs
 ogs
-ogs
+lHQ
 "}
 (3,1,3) = {"
 qmf
@@ -282652,7 +282684,7 @@ qHj
 qHj
 qHj
 ogs
-ogs
+rFb
 "}
 (4,1,3) = {"
 qmf
@@ -283104,7 +283136,7 @@ qHj
 qHj
 qHj
 ogs
-ogs
+sbL
 "}
 (5,1,3) = {"
 qmf
@@ -283556,7 +283588,7 @@ qHj
 qHj
 qHj
 ogs
-ogs
+edb
 "}
 (6,1,3) = {"
 qmf
@@ -397461,7 +397493,7 @@ ogs
 ogs
 ogs
 ogs
-ogs
+edb
 "}
 (3,1,4) = {"
 wHi
@@ -397913,7 +397945,7 @@ bhJ
 bhJ
 bhJ
 ogs
-ogs
+wTH
 "}
 (4,1,4) = {"
 wHi
@@ -398365,7 +398397,7 @@ bhJ
 bhJ
 bhJ
 ogs
-ogs
+sbL
 "}
 (5,1,4) = {"
 wHi
@@ -454091,7 +454123,7 @@ gBM
 gBM
 gBM
 gBM
-wTH
+gBM
 gBM
 gBM
 gBM
