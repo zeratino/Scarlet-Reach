@@ -109,7 +109,7 @@
 			var/turf/underT = get_step_multiz(src, DOWN)
 			if(underT && isopenturf(underT) && mastert)
 				var/area/rogue/underA = underT.loc
-				if(underA && !underA.ceiling_protected)
+				if((underA && !underA.ceiling_protected) || !underA)
 					attacking_shovel.heldclod = new(attacking_shovel)
 					attacking_shovel.update_icon()
 					playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
