@@ -370,7 +370,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/set_context_menu_enabled()
 	set category = "Prefs - Admin"
-	set name = "Toggle Right-Click Menus"
+	set name = "Toggle Context Menu"
 	if(!holder)
 		return
 	show_popup_menus = !show_popup_menus
@@ -465,7 +465,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			to_chat(mob, span_adminnotice("<b>Invisimin on. You are now as invisible as a ghost.</b>"))
 
 /client/proc/check_antagonists()
-	set name = "Check Antagonists"
+	set name = "Check Antags"
 	set category = "GameMaster"
 	if(holder)
 		holder.check_antagonists()
@@ -616,8 +616,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_bomb()
-	set category = "Special Verbs"
-	set name = "Drop Bomb"
+	set category = "Fun"
+	set name = "Bomb..."
 	set desc = ""
 
 	var/list/choices = list("Small Bomb (1, 2, 3, 3)", "Medium Bomb (2, 3, 4, 4)", "Big Bomb (3, 5, 7, 5)", "Maxcap", "Custom Bomb")
@@ -658,8 +658,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Drop Bomb") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_dynex_bomb()
-	set category = "Special Verbs"
-	set name = "Drop DynEx Bomb"
+	set category = "Fun"
+	set name = "Bomb - DynEx..."
 	set desc = ""
 
 	var/ex_power = input("Explosive Power:") as null|num
@@ -753,7 +753,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins(span_adminnotice("[key_name_admin(usr)] made [O] at [AREACOORD(O)]. say \"[message]\""))
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Object Say") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /client/proc/togglebuildmodeself()
-	set name = "Toggle Build Mode Self"
+	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if (!(holder.rank.rights & R_BUILD))
 		return

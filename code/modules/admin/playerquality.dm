@@ -90,7 +90,7 @@
 
 /client/proc/check_pq()
 	set category = "Special Verbs"
-	set name = "CheckPQ"
+	set name = "PQ - Check"
 	if(!holder)
 		return
 	var/selection = alert(src, "Check VIA...", "Check PQ", "Character List", "Player List", "Player Name")
@@ -150,7 +150,7 @@
 
 /client/proc/adjust_pq()
 	set category = "Special Verbs"
-	set name = "AdjustPQ"
+	set name = "PQ - Adjust"
 	if(!holder)
 		return
 	var/selection = alert(src, "Adjust VIA...", "MODIFY PQ", "Character List", "Player List", "Player Name")

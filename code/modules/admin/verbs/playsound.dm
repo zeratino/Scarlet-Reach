@@ -1,6 +1,6 @@
 /client/proc/play_sound(S as sound)
 	set category = "Fun"
-	set name = "Play Global Sound"
+	set name = "Sound - Global"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -108,7 +108,7 @@
 
 /client/proc/play_local_sound(S as sound)
 	set category = "Fun"
-	set name = "Play Local Sound"
+	set name = "Sound - Local"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -119,7 +119,7 @@
 
 /client/proc/play_local_sound_variable(S as sound)
 	set category = "Fun"
-	set name = "Play Variable Distance Sound"
+	set name = "Sound - Variable Distance"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -135,7 +135,7 @@
 
 /client/proc/play_web_sound()
 	set category = "Fun"
-	set name = "Play Internet Sound"
+	set name = "Sound - Internet"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -217,7 +217,7 @@
 
 /client/proc/set_round_end_sound(S as sound)
 	set category = "Fun"
-	set name = "Set Round End Sound"
+	set name = "Sound - Round End"
 	if(!check_rights(R_SOUND))
 		return
 
@@ -229,7 +229,7 @@
 
 /client/proc/stop_sounds()
 	set category = "Fun"
-	set name = "Stop All Playing Sounds"
+	set name = "Sound - Stop All Playing"
 	if(!src.holder)
 		return
 

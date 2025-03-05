@@ -70,7 +70,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /client/proc/cmd_assume_direct_control(mob/M in GLOB.mob_list)
 	set category = "Admin"
-	set name = "Assume direct control"
+	set name = "Direct control..."
 	set desc = ""
 
 	if(M.ckey)

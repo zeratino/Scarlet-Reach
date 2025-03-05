@@ -39,7 +39,7 @@
 /datum/keybinding/admin/toggle_buildmode_self
 	hotkey_keys = list("F7")
 	name = "toggle_buildmode_self"
-	full_name = "Toggle Buildmode Self"
+	full_name = "Toggle Build Mode Self"
 	description = "Toggles Buildmode"
 
 /datum/keybinding/admin/toggle_buildmode_self/down(client/user)

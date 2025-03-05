@@ -332,7 +332,7 @@
 
 /client/proc/run_particle_weather()
 	set category = "GameMaster"
-	set name = "Run Particle Weather"
+	set name = "Weather - Particle"
 	set desc = "Triggers a particle weather"
 
 
@@ -351,7 +351,7 @@
 
 /client/proc/run_custom_particle_weather()
 	set category = "GameMaster"
-	set name = "Run Custom Color Particle Weather"
+	set name = "Weather - Color Particle"
 	set desc = "Triggers a particle weather"
 
 
