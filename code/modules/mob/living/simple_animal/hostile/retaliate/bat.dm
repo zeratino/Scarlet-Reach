@@ -33,6 +33,7 @@
 	speak_emote = list("squeaks")
 	base_intents = list(/datum/intent/bite)
 	rot_type = null
+	var/fly_time = 5 //5 ticks because vampire bats are agile
 
 	var/max_co2 = 0 //to be removed once metastation map no longer use those for Sgt Araneus
 	var/min_oxy = 0
@@ -45,22 +46,38 @@
 
 /mob/living/simple_animal/hostile/retaliate/bat/Initialize()
 	. = ..()
-	verbs += list(/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_up,
-	/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_down) 
+	verbs += list(/mob/living/simple_animal/hostile/retaliate/bat/proc/fly_up,
+	/mob/living/simple_animal/hostile/retaliate/bat/proc/fly_down) 
 
-/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_up()
-	set category = "Bat Form"
-	set name = "Move Up"
+/mob/living/simple_animal/hostile/retaliate/bat/proc/fly_up()
+	set category = "Winged Form"
+	set name = "Fly Up"
 
-	if(zMove(UP, TRUE))
-		to_chat(src, span_notice("I fly upwards."))
+	if(src.pulledby != null)
+		to_chat(src, span_notice("I can't fly away while being grabbed!"))
+		return
+	src.visible_message(span_notice("[src] begins to ascend!"), span_notice("You take flight..."))
+	if(do_after(src, fly_time, target))
+		if(src.pulledby == null)
+			src.zMove(UP, TRUE)
+			to_chat(src, span_notice("I fly up."))
+		else
+			to_chat(src, span_notice("I can't fly away while being grabbed!"))
 
-/mob/living/simple_animal/hostile/retaliate/bat/proc/bat_down()
-	set category = "Bat Form"
-	set name = "Move Down"
+/mob/living/simple_animal/hostile/retaliate/bat/proc/fly_down()
+	set category = "Winged Form"
+	set name = "Fly Down"
 
-	if(zMove(DOWN, TRUE))
-		to_chat(src, span_notice("I fly down."))
+	if(src.pulledby != null)
+		to_chat(src, span_notice("I can't fly away while being grabbed!"))
+		return
+	src.visible_message(span_notice("[src] begins to descend!"), span_notice("You take flight..."))
+	if(do_after(src, fly_time, target))
+		if(src.pulledby == null)
+			src.zMove(DOWN, TRUE)
+			to_chat(src, span_notice("I fly down."))
+		else
+			to_chat(src, span_notice("I can't fly away while being grabbed!"))
 
 /mob/living/simple_animal/hostile/retaliate/bat/crow
 	name = "zad"
@@ -76,6 +93,7 @@
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	remains_type = /obj/effect/decal/remains/crow
+	fly_time = 3 SECONDS // slowing down crow for witches
 
 /obj/effect/decal/remains/crow
 	name = "zad remains"
