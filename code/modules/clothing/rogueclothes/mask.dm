@@ -3,8 +3,8 @@
 	icon = 'icons/roguetown/clothing/masks.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/masks.dmi'
 	body_parts_covered = FACE
-	alternate_worn_layer = MASK_LAYER
 	slot_flags = ITEM_SLOT_MASK
+	experimental_inhand = FALSE
 
 /obj/item/clothing/mask/rogue/spectacles
 	name = "spectacles"
