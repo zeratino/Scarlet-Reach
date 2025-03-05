@@ -45,10 +45,10 @@
 
 /datum/mapGeneratorModule/boggrass
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
-	allowed_turfs = list(/turf/open/floor/rogue/grass)
+	allowed_turfs = list(/turf/open/floor/rogue/grass, /turf/open/water/swamp, /turf/open/floor/rogue/dirt, /turf/open/water/swamp/deep)
 	excluded_turfs = list()
 	allowed_areas = list(/area/rogue/outdoors/bog)
-	spawnableAtoms = list(/obj/structure/glowshroom = 5,
+	spawnableAtoms = list(/obj/structure/glowshroom = 44,
 							/obj/structure/flora/roguetree = 30,
 							/obj/structure/flora/roguetree/wise=1,
 							/obj/structure/flora/roguegrass/bush = 25,
