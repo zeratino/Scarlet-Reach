@@ -93,7 +93,7 @@
 
 /client/proc/cmd_admin_mod_triumphs(mob/M in GLOB.mob_list, operation)
 	set category = "Special Verbs"
-	set name = "Adjust Triumphs"
+	set name = "Adjust Triumphs..."
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -118,7 +118,8 @@
 
 /client/proc/cmd_admin_mod_pq(mob/M in GLOB.mob_list, operation)
 	set category = "Special Verbs"
-	set name = "Adjust Player Quality"
+	set name = "Adjust PQ"
+	set hidden = 1
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -144,7 +145,7 @@
 
 /client/proc/cmd_admin_world_narrate()
 	set category = "Special Verbs"
-	set name = "Global Narrate"
+	set name = "Narrate - Global"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -160,7 +161,7 @@
 
 /client/proc/cmd_admin_direct_narrate(mob/M)
 	set category = "Special Verbs"
-	set name = "Direct Narrate"
+	set name = "Narrate - Direct"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -185,7 +186,7 @@
 
 /client/proc/cmd_admin_local_narrate(atom/A)
 	set category = "Special Verbs"
-	set name = "Local Narrate"
+	set name = "Narrate - Local"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -301,7 +302,7 @@ Works kind of like entering the game with a new character. Character receives a 
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
 /client/proc/respawn_character()
-	set category = "Special Verbs"
+	set category = "Debug"
 	set name = "Respawn Character"
 	set desc = ""
 	if(!check_rights(R_ADMIN))
@@ -458,7 +459,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
 	set category = "GameMaster"
-	set name = "Delete"
+	set name = "Delete..."
 
 	if(!check_rights(R_SPAWN|R_DEBUG))
 		return
@@ -537,7 +538,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_gib(mob/M in GLOB.mob_list)
 	set category = "Special Verbs"
-	set name = "Gib"
+	set name = "Gib..."
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -650,7 +651,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Fun"
 	set name = "Run Weather"
 	set desc = ""
-	set hidden = 1 //Replace by particle weather
+	set hidden = 1 //Replaced by particle weather
 
 	if(!holder)
 		return

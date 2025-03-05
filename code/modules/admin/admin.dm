@@ -14,8 +14,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
-	set category = "Admin"
-	set name = "Show Player Panel"
+	set category = "Debug"
+	set name = "Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
 	if(!check_rights())
@@ -196,7 +196,7 @@
 
 
 /datum/admins/proc/admin_heal(mob/living/M in GLOB.mob_list)
-	set name = "Heal Mob"
+	set name = "Mob - Heal"
 	set desc = "Heal a mob to full health"
 	set category = "GameMaster"
 
@@ -208,7 +208,7 @@
 	log_admin("[key_name(usr)] healed [key_name(M)].")
 
 /datum/admins/proc/admin_revive(mob/living/M in GLOB.mob_list)
-	set name = "Revive Mob"
+	set name = "Mob - Revive"
 	set desc = "Resuscitate a mob"
 	set category = "GameMaster"
 
@@ -268,9 +268,10 @@
 	SSvote.initiate_vote(type, usr.key)
 
 /datum/admins/proc/adjustpq(mob/living/M in GLOB.mob_list)
-	set name = "Adjust PQ"
+	set name = "Adjust PQ of Anything"
 	set desc = "Adjust a player's PQ"
-	set category = null
+	set category = "GameMaster"
+	set hidden = 1
 
 	if(!check_rights())
 		return
@@ -572,7 +573,7 @@
 /datum/admins/proc/spawn_atom(object as text)
 	set category = "GameMaster"
 	set desc = ""
-	set name = "Spawn"
+	set name = "Spawn..."
 
 	if(!check_rights(R_SPAWN) || !object)
 		return
@@ -763,7 +764,7 @@
 
 /datum/admins/proc/create_or_modify_area()
 	set category = "Debug"
-	set name = "Create or modify area"
+	set name = "Create/Modify area"
 	create_area(usr)
 
 //
@@ -839,8 +840,8 @@
 
 
 /client/proc/returntolobby()
-	set category = "Server"
-	set name = "Return to Lobby"
+	set category = "Special Verbs"
+	set name = "Back to Lobby"
 
 	var/mob/living/carbon/human/H = mob
 	H.returntolobby()
