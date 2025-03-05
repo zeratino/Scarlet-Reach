@@ -164,15 +164,19 @@ var/static/list/druid_forms = list(
 		"level" = 2
 	),
 	"mossback" = list(
-				"path" = /mob/living/simple_animal/hostile/retaliate/rogue/mossback,
+		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/mossback,
 		"level" = 3
 	),
 	"mole" = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/mole,
 		"level" = 3
 	),
-	// Advanced forms (Level 6)
-	"dragon" = list(
+	"saiga" = list(
+		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/saiga,
+		"level" = 3
+	),
+	// Advanced forms (Level 6) - Commented out
+	/*"dragon" = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/dragon,
 		"level" = 6
 	),
@@ -183,11 +187,7 @@ var/static/list/druid_forms = list(
 	"troll" = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/troll,
 		"level" = 6
-	),
-	"saiga" = list(
-		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/saiga,
-		"level" = 3
-	),
+	),*/
 )
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/Initialize()
@@ -322,7 +322,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw/troll, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 40
 			shape.melee_damage_upper = 60
-			
+
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/dragon)
 			shape.attack_verb_continuous = "tears into"
 			shape.attack_verb_simple = "tear into"
