@@ -1,6 +1,6 @@
 //Heretic Commune! Communicate with fellow believers!
 
-GLOBAL_VAR_INIT(last_omen, 0)
+/*GLOBAL_VAR_INIT(last_omen, 0)
 
 /mob/living/carbon/human
 	var/chanting = FALSE
@@ -232,4 +232,4 @@ GLOBAL_VAR_INIT(last_omen, 0)
 		priority_announce("Heretics [first_chanter.real_name] and [second_chanter.real_name] have performed a dark ritual in [A]!", "Bad Omen", 'sound/misc/evilevent.ogg')
 	else
 		R.badomen(chosen_omen)
-		priority_announce("A dark ritual has been performed in [A]!", "Bad Omen", 'sound/misc/evilevent.ogg')
+		priority_announce("A dark ritual has been performed in [A]!", "Bad Omen", 'sound/misc/evilevent.ogg')*/

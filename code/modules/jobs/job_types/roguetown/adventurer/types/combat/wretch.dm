@@ -362,7 +362,7 @@
 			H.change_stat("constitution", 2)
 			H.change_stat("intelligence", -2)
 			H.change_stat("perception", -2)
-			H.change_stat("speed", 3)
+			H.change_stat("speed", 2)
 			if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
 				H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 				head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm

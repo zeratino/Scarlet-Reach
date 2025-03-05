@@ -500,7 +500,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //for ai
 #define TRAIT_SUBTREE_REQUIRED_OPERATIONAL_DATUM "element-required"
 
-/mob/living/proc/on_trait_gain(trait, source)
+/*/mob/living/proc/on_trait_gain(trait, source)
 	SEND_SIGNAL(src, COMSIG_TRAIT_GAIN, trait, source)
 	switch(trait)
 		if(TRAIT_COMMIE, TRAIT_CABAL, TRAIT_HORDE, TRAIT_DEPRAVED)
@@ -514,4 +514,4 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 		if(TRAIT_COMMIE, TRAIT_CABAL, TRAIT_HORDE, TRAIT_DEPRAVED)
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
-				H.update_heretic_commune()
+				H.update_heretic_commune()*/
