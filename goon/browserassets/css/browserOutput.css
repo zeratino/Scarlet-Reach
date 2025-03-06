@@ -74,6 +74,11 @@ body {
   src: url('lupian.ttf'); 
 }
 
+@font-face { 
+  font-family: "Notredame"; 
+  src: url('otavan.ttf'); 
+}
+
 /* */
 
 em {
@@ -430,6 +435,7 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 .beast					{font-family: "Thief by The Riddler", Pterra;}
 .reptile				{font-family: "Kingthings Petrock", Pterra; font-size: 120%;}
 .lupian					{font-family: "Emperialisme", Pterra; font-size: 120%;}
+.otavan					{font-family: "Notredame", Pterra; font-size: 200%;}
 
 .torture				{color: #42ff20}
 

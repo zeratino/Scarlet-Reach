@@ -104,5 +104,7 @@
 	backl = /obj/item/rogueweapon/shield/tower/metal
 	backpack_contents = list(/obj/item/roguekey/mercenary)
 
+	H.grant_language(/datum/language/otavan)
+	
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)

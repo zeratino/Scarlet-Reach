@@ -81,6 +81,8 @@
 /datum/species/human/northern/proc/languages(mob/living/carbon/human/foreign)
 	if(foreign.skin_tone == SKIN_COLOR_GRENZELHOFT)
 		foreign.grant_language(/datum/language/grenzelhoftian)
+	if(foreign.skin_tone == SKIN_COLOR_OTAVA)
+		foreign.grant_language(/datum/language/otavan)
 
 /datum/species/human/northern/get_skin_list()
 	return list(
