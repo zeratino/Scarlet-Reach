@@ -306,6 +306,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 25
 			shape.melee_damage_upper = 35
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/wolf)
 			shape.attack_verb_continuous = "mauls"
@@ -314,6 +315,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 30
 			shape.melee_damage_upper = 40
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/troll)
 			shape.attack_verb_continuous = "crushes"
@@ -322,6 +324,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw/troll, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 40
 			shape.melee_damage_upper = 60
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/dragon)
 			shape.attack_verb_continuous = "tears into"
@@ -330,6 +333,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 45
 			shape.melee_damage_upper = 65
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/spider)
 			shape.attack_verb_continuous = "bites"
@@ -338,6 +342,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 20
 			shape.melee_damage_upper = 30
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/mossback)
 			shape.attack_verb_continuous = "slashes"
@@ -346,6 +351,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 25
 			shape.melee_damage_upper = 35
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/bigrat)
 			shape.attack_verb_continuous = "bites"
@@ -354,6 +360,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 15
 			shape.melee_damage_upper = 25
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab)
 			shape.attack_verb_continuous = "pinches"
@@ -362,6 +369,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 10
 			shape.melee_damage_upper = 20
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/pet/cat)
 			shape.attack_verb_continuous = "claws"
@@ -370,6 +378,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 5
 			shape.melee_damage_upper = 10
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/minotaur)
 			shape.attack_verb_continuous = "gores"
@@ -378,6 +387,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw/troll, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 40
 			shape.melee_damage_upper = 60
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/saiga)
 			shape.attack_verb_continuous = "rams"
@@ -386,6 +396,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 25
 			shape.melee_damage_upper = 35
+			shape.rot_type = null
 			
 		else // Default animal form setup
 			shape.attack_verb_continuous = "attacks"
@@ -394,6 +405,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 15
 			shape.melee_damage_upper = 25
+			shape.rot_type = null
 	
 	
 	// Combat setup
