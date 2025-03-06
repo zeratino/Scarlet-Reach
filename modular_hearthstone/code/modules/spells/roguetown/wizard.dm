@@ -229,7 +229,7 @@
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
 		/obj/effect/proc_holder/spell/invoked/mirror_transform,
-		/obj/effect/proc_holder/spell/invoked/skeleton_ambush
+		/obj/effect/proc_holder/spell/invoked/mindlink
 
 		
 	)
@@ -1539,71 +1539,6 @@
 	if(!QDELETED(H))
 		REMOVE_TRAIT(H, TRAIT_MIRROR_MAGIC, TRAIT_GENERIC)
 		to_chat(H, span_warning("Your connection to mirrors fades away."))
-
-/obj/effect/proc_holder/spell/invoked/skeleton_ambush
-	name = "Skeleton Ambush"
-	desc = "Summon forth a horde of skeletons to ambush your foes! The skeletons will ignore you and attack your enemies. This is Necromancy, and will be punished by the inquisition."
-	clothes_req = FALSE
-	overlay_state = "skeleton_ambush"
-	associated_skill = /datum/skill/magic/arcane
-	cost = 5
-	xp_gain = TRUE
-	charge_max = 3 MINUTES
-	invocation = "RISE AND SERVE YOUR MASTER!"
-	invocation_type = "shout"
-	
-	// Charged spell variables
-	chargedloop = /datum/looping_sound/invokegen
-	chargedrain = 1
-	chargetime = 30
-	releasedrain = 35
-	no_early_release = TRUE
-	movement_interrupt = FALSE
-	charging_slowdown = 3
-	warnie = "spellwarning"
-
-/obj/effect/proc_holder/spell/invoked/skeleton_ambush/cast(list/targets, mob/living/user)
-	. = ..()
-	if(!istype(user))
-		return
-	
-	user.visible_message(span_danger("[user] raises their arms and chants an arcane incantation. The ground trembles and cracks..."), span_notice("I call forth my skeletal minions to ambush the living!"))
-	playsound(user, 'sound/magic/magnet.ogg', 50, TRUE)
-	
-	var/list/spawn_turfs = list()
-	for(var/turf/T in view(7, user))
-		if(!T.density)
-			spawn_turfs += T
-	
-	var/num_skeletons = rand(3, 5)
-	for(var/i in 1 to num_skeletons)
-		var/turf/spawn_turf = pick_n_take(spawn_turfs)
-		if(!spawn_turf)
-			break
-			
-		var/skeleton_roll = rand(1,100)
-		var/mob/living/simple_animal/hostile/rogue/skeleton/S
-		
-		switch(skeleton_roll)
-			if(1 to 20)
-				S = new /mob/living/simple_animal/hostile/rogue/skeleton/axe(spawn_turf, user)
-			if(21 to 40)
-				S = new /mob/living/simple_animal/hostile/rogue/skeleton/spear(spawn_turf, user)
-			if(41 to 60)
-				S = new /mob/living/simple_animal/hostile/rogue/skeleton/guard(spawn_turf, user)
-			if(61 to 80)
-				S = new /mob/living/simple_animal/hostile/rogue/skeleton/bow(spawn_turf, user)
-			if(81 to 100)
-				S = new /mob/living/simple_animal/hostile/rogue/skeleton(spawn_turf, user)
-		
-		S.faction |= user.faction
-		
-		// Find a target that isn't the caster
-		for(var/mob/living/L in view(7, user))
-			if(L != user && !(L.faction & S.faction))
-				S.GiveTarget(L)
-				break
-	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/mindlink
 	name = "Mindlink"
