@@ -10,7 +10,7 @@
 	dropmessage = "I release my minor arcyne focus."
 	school = "transmutation"
 	overlay_state = "prestidigitation"
-	chargedrain = 0
+	chargeddrain = 0
 	chargetime = 0
 	releasedrain = 5 // this influences -every- cost involved in the spell's functionality, if you want to edit specific features, do so in handle_cost
 	chargedloop = /datum/looping_sound/invokegen
@@ -189,7 +189,7 @@
 	desc = "Weave a new spell"
 	school = "transmutation"
 	overlay_state = "book1"
-	chargedrain = 0
+	chargeddrain = 0
 	chargetime = 0
 
 /obj/effect/proc_holder/spell/self/learnspell/cast(list/targets, mob/user = usr)
@@ -228,7 +228,9 @@
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
+		/obj/effect/proc_holder/spell/invoked/skeleton_ambush
+
 		
 	)
 	for(var/i = 1, i <= spell_choices.len, i++)
@@ -259,7 +261,7 @@
 	desc = "Conjure a wall of arcyne force, preventing anyone and anything other than you from moving through it."
 	school = "transmutation"
 	releasedrain = 30
-	chargedrain = 1
+	chargeddrain = 1
 	chargetime = 15
 	charge_max = 35 SECONDS
 	warnie = "spellwarning"
@@ -1538,8 +1540,145 @@
 		REMOVE_TRAIT(H, TRAIT_MIRROR_MAGIC, TRAIT_GENERIC)
 		to_chat(H, span_warning("Your connection to mirrors fades away."))
 
+/obj/effect/proc_holder/spell/invoked/skeleton_ambush
+	name = "Skeleton Ambush"
+	desc = "Summon forth a horde of skeletons to ambush your foes! The skeletons will ignore you and attack your enemies. This is Necromancy, and will be punished by the inquisition."
+	clothes_req = FALSE
+	overlay_state = "skeleton_ambush"
+	associated_skill = /datum/skill/magic/arcane
+	cost = 5
+	xp_gain = TRUE
+	charge_max = 3 MINUTES
+	invocation = "RISE AND SERVE YOUR MASTER!"
+	invocation_type = "shout"
+	
+	// Charged spell variables
+	chargedloop = /datum/looping_sound/invokegen
+	chargedrain = 1
+	chargetime = 30
+	releasedrain = 35
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 3
+	warnie = "spellwarning"
+
+/obj/effect/proc_holder/spell/invoked/skeleton_ambush/cast(list/targets, mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return
+	
+	user.visible_message(span_danger("[user] raises their arms and chants an arcane incantation. The ground trembles and cracks..."), span_notice("I call forth my skeletal minions to ambush the living!"))
+	playsound(user, 'sound/magic/magnet.ogg', 50, TRUE)
+	
+	var/list/spawn_turfs = list()
+	for(var/turf/T in view(7, user))
+		if(!T.density)
+			spawn_turfs += T
+	
+	var/num_skeletons = rand(3, 5)
+	for(var/i in 1 to num_skeletons)
+		var/turf/spawn_turf = pick_n_take(spawn_turfs)
+		if(!spawn_turf)
+			break
+			
+		var/skeleton_roll = rand(1,100)
+		var/mob/living/simple_animal/hostile/rogue/skeleton/S
+		
+		switch(skeleton_roll)
+			if(1 to 20)
+				S = new /mob/living/simple_animal/hostile/rogue/skeleton/axe(spawn_turf, user)
+			if(21 to 40)
+				S = new /mob/living/simple_animal/hostile/rogue/skeleton/spear(spawn_turf, user)
+			if(41 to 60)
+				S = new /mob/living/simple_animal/hostile/rogue/skeleton/guard(spawn_turf, user)
+			if(61 to 80)
+				S = new /mob/living/simple_animal/hostile/rogue/skeleton/bow(spawn_turf, user)
+			if(81 to 100)
+				S = new /mob/living/simple_animal/hostile/rogue/skeleton(spawn_turf, user)
+		
+		S.faction |= user.faction
+		
+		// Find a target that isn't the caster
+		for(var/mob/living/L in view(7, user))
+			if(L != user && !(L.faction & S.faction))
+				S.GiveTarget(L)
+				break
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/mindlink
+	name = "Mindlink"
+	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
+	clothes_req = FALSE
+	overlay_state = "mindlink"
+	associated_skill = /datum/skill/magic/arcane
+	cost = 2
+	xp_gain = TRUE
+	charge_max = 2 MINUTES
+	invocation = "MENTIS NEXUS!"
+	invocation_type = "whisper"
+	
+	// Charged spell variables
+	chargedloop = /datum/looping_sound/invokegen
+	chargedrain = 1
+	chargetime = 20
+	releasedrain = 25
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	warnie = "spellwarning"
+
+/obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return
+	
+	var/list/possible_targets = list()
+	for(var/mob/living/L in GLOB.player_list)
+		if(L.client && (L in user.mind?.known_people || L == user))
+			possible_targets += L
+
+	if(!length(possible_targets))
+		to_chat(user, span_warning("You have no known people to establish a mindlink with!"))
+		return FALSE
+
+	var/mob/living/first_target = input(user, "Choose the first person to link", "Mindlink") as null|anything in possible_targets
+	if(!first_target)
+		return FALSE
+		
+	var/mob/living/second_target = input(user, "Choose the second person to link", "Mindlink") as null|anything in possible_targets
+	if(!second_target)
+		return FALSE
+
+	if(first_target == second_target)
+		to_chat(user, span_warning("You cannot link someone to themselves!"))
+		return FALSE
+
+	user.visible_message(span_notice("[user] touches their temples and concentrates..."), span_notice("I establish a mental connection between [first_target] and [second_target]..."))
+	
+	// Create the mindlink
+	var/datum/mindlink/link = new(first_target, second_target)
+	GLOB.mindlinks += link
+	
+	to_chat(first_target, span_notice("A mindlink has been established with [second_target]! Use ,y before a message to communicate telepathically."))
+	to_chat(second_target, span_notice("A mindlink has been established with [first_target]! Use ,y before a message to communicate telepathically."))
+	
+	addtimer(CALLBACK(src, PROC_REF(break_link), link), 1 MINUTES)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/mindlink/proc/break_link(datum/mindlink/link)
+	if(!link)
+		return
+	
+	to_chat(link.owner, span_warning("The mindlink with [link.target] fades away..."))
+	to_chat(link.target, span_warning("The mindlink with [link.owner] fades away..."))
+	
+	GLOB.mindlinks -= link
+	qdel(link)
+
+
 
 
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
 #undef PRESTI_MOTE
+
