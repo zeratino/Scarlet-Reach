@@ -2145,6 +2145,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/orcdungeon)
+"op" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/beach/forest)
 "oq" = (
 /obj/effect/decal/remains/saiga,
 /turf/open/floor/rogue/dirt/road,
@@ -3445,6 +3449,10 @@
 	dir = 8
 	},
 /area/rogue/under/cave/dukecourt)
+"xk" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/shelter)
 "xl" = (
 /obj/structure/stairs/stone{
 	dir = 4
@@ -6713,6 +6721,10 @@
 /obj/structure/closet/crate/coffin,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/cave)
+"Tz" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach/forest)
 "TA" = (
 /obj/structure/bars,
 /turf/open/floor/rogue/blocks,
@@ -7103,6 +7115,10 @@
 /obj/item/roguecoin/silver,
 /turf/open/water/sewer,
 /area/rogue/under/cave/dukecourt)
+"Wh" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/cave)
 "Wi" = (
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/materials,
@@ -18274,7 +18290,7 @@ kX
 eJ
 UR
 RL
-ms
+Wh
 ms
 ms
 ms
@@ -57978,7 +57994,7 @@ rb
 rb
 rb
 rb
-pz
+op
 pz
 pz
 pz
@@ -66286,7 +66302,7 @@ AX
 AX
 AX
 KR
-KR
+xk
 KR
 KR
 KR
@@ -66780,7 +66796,7 @@ pz
 pz
 pz
 pz
-pz
+op
 pZ
 "}
 (72,1,4) = {"
@@ -67263,7 +67279,7 @@ BA
 BA
 BA
 BA
-BA
+Tz
 BA
 BA
 BA

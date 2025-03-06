@@ -6781,6 +6781,10 @@
 "eSe" = (
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
+"eSp" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/mountains)
 "eSz" = (
 /obj/structure/bookcase/random/reference,
 /turf/open/floor/rogue/cobble,
@@ -18568,6 +18572,10 @@
 	icon_state = "horzw"
 	},
 /area/rogue/outdoors/town)
+"nxi" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/town)
 "nxD" = (
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/dwarfin)
@@ -18715,6 +18723,10 @@
 	},
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/town/tavern)
+"nEy" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/mountains)
 "nEQ" = (
 /obj/structure/chair/arrestchair,
 /turf/open/floor/rogue/concrete,
@@ -23983,6 +23995,10 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
+"rrZ" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "rss" = (
 /obj/structure/fermenting_barrel/random/beer,
 /turf/open/floor/rogue/cobble,
@@ -41478,7 +41494,7 @@ uBR
 hWI
 hWI
 hWI
-azO
+rrZ
 azO
 azO
 "}
@@ -52954,7 +52970,7 @@ hWI
 hWI
 hWI
 azO
-azO
+rrZ
 azO
 hWI
 uBR
@@ -86202,7 +86218,7 @@ tXZ
 rcv
 tQp
 tQp
-tQp
+nEy
 tQp
 rcv
 rcv
@@ -95345,7 +95361,7 @@ hoU
 rcv
 rcv
 rcv
-hoU
+eSp
 hoU
 ent
 tXZ
@@ -107466,7 +107482,7 @@ kFF
 hHZ
 lYg
 iLI
-cep
+nxi
 cep
 cep
 fhc
@@ -108388,7 +108404,7 @@ hbs
 gZS
 cuR
 cuR
-tQp
+nEy
 tQp
 tXZ
 tXZ
