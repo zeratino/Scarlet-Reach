@@ -250,6 +250,7 @@
 
 		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(torture_lines), spans = list("torture"))
+		H.emote("agony", forced = TRUE)
 
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
@@ -295,6 +296,7 @@
 
 		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(faith_lines), spans = list("torture"))
+		H.emote("agony", forced = TRUE)
 
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
