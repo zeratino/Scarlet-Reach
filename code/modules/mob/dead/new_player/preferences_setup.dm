@@ -14,7 +14,7 @@
 	eye_color = random_eye_color()
 	is_legacy = FALSE
 	flavortext = null
-	flavortext_display = null
+	flavortext_display = " "
 	ooc_notes_display = " "
 	ooc_extra_link = null
 	ooc_extra = null
