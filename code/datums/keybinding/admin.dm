@@ -39,7 +39,7 @@
 /datum/keybinding/admin/toggle_buildmode_self
 	hotkey_keys = list("F7")
 	name = "toggle_buildmode_self"
-	full_name = "Toggle Build Mode Self"
+	full_name = "Toggle Buildmode Self"
 	description = "Toggles Buildmode"
 
 /datum/keybinding/admin/toggle_buildmode_self/down(client/user)
@@ -56,15 +56,6 @@
 	user.stealth()
 	return TRUE
 
-/datum/keybinding/admin/invisimin
-	hotkey_keys = list("F8")
-	name = "invisimin"
-	full_name = "Admin invisibility"
-	description = "Toggles ghost-like invisibility on your mob"
-
-/datum/keybinding/admin/invisimin/down(client/user)
-	user.invisimin()
-	return TRUE
 /* Pending Testing
 /datum/keybinding/admin/rmbcontext
 	hotkey_keys = list("F9")
@@ -86,3 +77,14 @@
 	user.get_dead_say()
 	return TRUE
 */
+
+/datum/keybinding/admin/invisimin
+	hotkey_keys = list("F8")
+	name = "invisimin"
+	full_name = "Admin invisibility"
+	description = "Toggles ghost-like invisibility on your mob"
+
+/datum/keybinding/admin/invisimin/down(client/user)
+	user.invisimin()
+	return TRUE
+
