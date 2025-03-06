@@ -235,6 +235,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Templar"
 	icon_state = "arrow"
 
+/obj/effect/landmark/start/martyr
+	name = "Martyr"
+	icon_state = "arrow"
+
 /obj/effect/landmark/start/puritan
 	name = "Inquisitor"
 	icon_state = "arrow"
@@ -386,6 +390,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 /obj/effect/landmark/start/courtagent
 	name = "Court Agent"
+	icon_state = "arrow"
+
+/obj/effect/landmark/start/lunatic
+	name = "Lunatic"
 	icon_state = "arrow"
 
 //yrf

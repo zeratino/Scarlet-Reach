@@ -641,13 +641,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	icon_state = "tavern"
 	ambientsounds = AMB_INGEN
 	ambientnight = AMB_INGEN
-	droning_sound = null
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/exposed/tavern
 /area/rogue/outdoors/exposed/tavern
 	icon_state = "tavern"
-	droning_sound = null
+	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 
@@ -667,6 +667,13 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/indoors/town/church/chapel
 	icon_state = "chapel"
 	first_time_text = "THE HOUSE OF THE TEN"
+
+/area/rogue/indoors/town/church/basement
+	icon_state = "church"
+	droning_sound = 'sound/music/area/catacombs.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	first_time_text = "THE CRYPT OF THE TEN"
 
 /area/rogue/indoors/town/fire_chamber
 	name = "incinerator"
