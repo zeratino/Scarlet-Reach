@@ -1548,7 +1548,7 @@
 	charge_counter = 3 MINUTES
 	clothes_req = FALSE
 	cost = 1
-	invocation = "Guide me home!"
+	invocation = "There's no place like home!"
 	invocation_type = "whisper"
 	cooldown_min = 3 MINUTES
 	associated_skill = /datum/skill/magic/arcane
@@ -1569,14 +1569,21 @@
 		var/turf/T = get_turf(H)
 		marked_location = T
 		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
-		start_recharge()  // Start cooldown after marking
+		start_recharge()
 		return
 		
 	// Subsequent casts - begin channeling
 	H.visible_message(span_warning("[H] closes [H.p_their()] eyes and begins to focus intently..."))
 	if(do_after(H, recall_delay, target = H, progress = TRUE))
-		// Teleport if channel completes
-		do_teleport(H, marked_location, no_effects = FALSE, channel = TELEPORT_CHANNEL_MAGIC)
+		// Get any grabbed mobs
+		var/list/to_teleport = list(H)
+		if(H.pulling && isliving(H.pulling))
+			to_teleport += H.pulling
+			
+		// Teleport caster and grabbed mob if any
+		for(var/mob/living/L in to_teleport)
+			do_teleport(L, marked_location, no_effects = FALSE, channel = TELEPORT_CHANNEL_MAGIC)
+			
 		H.visible_message(span_warning("[H] vanishes in a swirl of energy!"))
 		playsound(H, 'sound/magic/unmagnet.ogg', 50, TRUE)
 		
@@ -1584,10 +1591,10 @@
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(3, marked_location)
 		smoke.start()
-		start_recharge()  // Start cooldown after successful channel
+		start_recharge()
 	else
 		to_chat(H, span_warning("Your concentration was broken!"))
-		revert_cast()  // Reset cooldown if channel fails
+		revert_cast()
 
 
 
