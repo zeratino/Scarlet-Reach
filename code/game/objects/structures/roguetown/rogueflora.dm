@@ -628,3 +628,33 @@
 			if(!looty3.len)
 				to_chat(user, "<span class='warning'>Picked clean... I should try later.</span>")
 #endif
+
+// cute underdark mushrooms from dreamkeep
+
+/obj/structure/flora/rogueshroom/happy
+	name = "underdark mushroom"
+	icon_state = "happymush1"
+	icon = 'icons/roguetown/misc/foliagetall.dmi'
+	desc = "Mushrooms might be the happiest beings in this god forsaken place."
+
+/obj/structure/flora/rogueshroom/happy/mushroom2
+	icon_state = "happymush2"
+
+/obj/structure/flora/rogueshroom/happy/mushroom3
+	icon_state = "happymush3"
+
+/obj/structure/flora/rogueshroom/happy/mushroom4
+	icon_state = "happymush4"
+
+/obj/structure/flora/rogueshroom/happy/mushroom5
+	icon_state = "happymush5"
+
+/obj/structure/flora/rogueshroom/happy/random
+
+/obj/structure/flora/rogueshroom/happy/random/Initialize()
+	. = ..()
+	icon_state = "happymush[rand(1,5)]"
+
+/obj/structure/flora/rogueshroom/happy/New(loc)
+	..()
+	set_light(3, 3, 3, l_color ="#5D3FD3")

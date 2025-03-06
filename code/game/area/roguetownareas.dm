@@ -372,8 +372,38 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/troll = 15)
 	converted_type = /area/rogue/outdoors/caves
 
+/area/rogue/under/cavewet/underdark
+	name = "Deep Underdark"
+	icon_state = "cavewet"
+	warden_area = FALSE
+	first_time_text = "Deep Underdark"
+	ambientsounds = AMB_CAVEWATER
+	ambientnight = AMB_CAVEWATER
+	spookysounds = SPOOKY_CAVE
+	spookynight = SPOOKY_CAVE
+	droning_sound = 'sound/music/area/underdark.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	ambush_times = list("night","dawn","dusk","day")
+	ambush_types = list(
+				/turf/open/floor/rogue/dirt)
+	ambush_mobs = list(
+				/mob/living/carbon/human/species/skeleton/npc = 20,
+				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 25,
+				/mob/living/carbon/human/species/goblin/npc/ambush/moon = 30,
+				/mob/living/simple_animal/hostile/retaliate/rogue/troll = 15)
+	converted_type = /area/rogue/outdoors/caves
+
 /area/rogue/under/cavewet/bogcaves
 	first_time_text = "The Undergrove"
+
+/area/rogue/under/cavewet/bogcaves/sunkencity
+	first_time_text = "MELTED UNDERCITY"
+	spookysounds = SPOOKY_MYSTICAL
+	spookynight = SPOOKY_MYSTICAL
+	droning_sound = 'sound/music/area/underdark.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
 
 /area/rogue/under/cave/spider
 	icon_state = "spider"
