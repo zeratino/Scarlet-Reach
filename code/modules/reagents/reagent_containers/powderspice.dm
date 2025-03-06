@@ -5,6 +5,8 @@
 	icon_state = "spice"
 	item_state = "spice"
 	possible_transfer_amounts = list()
+	grid_width = 32
+	grid_height = 32
 	volume = 15
 	sellprice = 10
 
@@ -230,6 +232,8 @@
 	list_reagents = list(/datum/reagent/moondust = 15)
 	grind_results = list(/datum/reagent/moondust = 15)
 	sellprice = 5
+	grid_width = 32
+	grid_height = 32
 
 /datum/reagent/moondust/overdose_process(mob/living/M)
 	M.adjustToxLoss(3, 0)
