@@ -337,11 +337,11 @@
 	var/obj/item/I = parent
 	if(!tonormal)
 		if(current_state == STATE_MARTYR || current_state == STATE_MARTYRULT)
-			I.toggle_state = "[I.icon_state]_ulton"
+			I.toggle_state = "[initial(I.icon_state)]_ulton"
 		else
-			I.toggle_state = "[I.icon_state]_on"
-		I.item_state = "[I.toggle_state]"
-		I.icon_state = "[I.toggle_state]"
+			I.toggle_state = "[initial(I.icon_state)]_on"
+		I.item_state = "[I.toggle_state][I.wielded ? "1" : ""]"
+		I.icon_state = "[I.toggle_state][I.wielded ? "1" : ""]"
 	else
 		I.icon_state = initial(I.icon_state)
 		I.item_state = initial(I.item_state)
