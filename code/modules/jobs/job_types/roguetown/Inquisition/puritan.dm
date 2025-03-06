@@ -221,6 +221,7 @@
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()
+	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
 		return
@@ -234,6 +235,10 @@
 	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
+	for(var/obj/structure/fluff/psycross/N in oview(5, src))
+		found = N
+	if(!found)
+		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
 	if(!H.stat)
 		var/static/list/torture_lines = list(
 			"CONFESS!",
@@ -255,6 +260,7 @@
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()
+	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
 		return
@@ -267,6 +273,11 @@
 		return
 	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
+		return
+	for(var/obj/structure/fluff/psycross/N in oview(5, src))
+		found = N
+	if(!found)
+		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
 		return
 	if(!H.stat)
 		var/static/list/faith_lines = list(
