@@ -202,14 +202,6 @@ var/static/list/druid_forms = list(
 	if(!user)
 		return FALSE
 	
-	var/has_psicross = FALSE
-	for(var/obj/item/clothing/neck/roguetown/psicross/dendor/P in user)
-		has_psicross = TRUE
-		break
-	if(!has_psicross)
-		to_chat(user, span_warning("You need Dendor's psicross to cast this spell!"))
-		return FALSE
-		
 	if(!saved_form)
 		var/list/animal_list = list()
 		var/druidic_level = user.mind?.get_skill_level(/datum/skill/magic/druidic) || 0
