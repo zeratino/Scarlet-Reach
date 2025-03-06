@@ -10,7 +10,7 @@
 	dropmessage = "I release my minor arcyne focus."
 	school = "transmutation"
 	overlay_state = "prestidigitation"
-	chargeddrain = 0
+	chargedrain = 0
 	chargetime = 0
 	releasedrain = 5 // this influences -every- cost involved in the spell's functionality, if you want to edit specific features, do so in handle_cost
 	chargedloop = /datum/looping_sound/invokegen
@@ -189,7 +189,7 @@
 	desc = "Weave a new spell"
 	school = "transmutation"
 	overlay_state = "book1"
-	chargeddrain = 0
+	chargedrain = 0
 	chargetime = 0
 
 /obj/effect/proc_holder/spell/self/learnspell/cast(list/targets, mob/user = usr)
@@ -261,7 +261,7 @@
 	desc = "Conjure a wall of arcyne force, preventing anyone and anything other than you from moving through it."
 	school = "transmutation"
 	releasedrain = 30
-	chargeddrain = 1
+	chargedrain = 1
 	chargetime = 15
 	charge_max = 35 SECONDS
 	warnie = "spellwarning"
