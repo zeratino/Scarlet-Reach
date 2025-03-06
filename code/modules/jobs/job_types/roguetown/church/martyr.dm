@@ -481,6 +481,8 @@
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_NOSEGRAB, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)	//You can't dual wield the unique weapon, this is more to cover for the NODROP weapon that might end up in an off-hand.
 		H.change_stat("strength", 2)
 		H.change_stat("constitution", 3)
@@ -533,7 +535,7 @@
 		if(J.title == "Priest" || J.title == "Martyr")
 			return ..()
 		else if (H.job in GLOB.church_positions)
-			to_chat(user, span_warning("You feel a holy energies just for a split second, and then the sword slips from your grasp! You are not devout enough."))
+			to_chat(user, span_warning("You feel a jolt of holy energies just for a split second, and then the sword slips from your grasp! You are not devout enough."))
 			return FALSE
 		else if(istype(H.patron, /datum/patron/inhumen)) 
 			var/datum/component/martyrweapon/marty = GetComponent(/datum/component/martyrweapon)
@@ -549,8 +551,7 @@
 		else	//Everyone else
 			to_chat(user, span_warning("A painful jolt across your entire body sends you to the ground. You cannot touch this thing."))
 			H.emote("groan")
-			H.Stun(40)
-			H.Knockdown(40)
+			H.Stun(10)
 			return FALSE
 	else
 		return FALSE
@@ -585,8 +586,8 @@
 	flags_inv = HIDECROTCH|HIDEBOOB
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/holysee
-	name = "Holy See's silver plate"
-	desc = "It spent a long trek to get here from the seat of the Holy See, and now it glistens in full defiance of the rot, and its putrid supporters."
+	name = "holy silver plate"
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverarmor"
 	item_state = "silverarmor"
@@ -599,8 +600,8 @@
 	smelt_bar_num = 4
 
 /obj/item/clothing/under/roguetown/platelegs/holysee
-	name = "Holy See's silver platelegs"
-	desc = "Its silver hues glisten majestically under any light. It provides ample, sturdy protection from heretics and vagabonds alike."
+	name = "holy silver chausses"
+	desc = "Plate leggings of silver forged for the Holy See's forces. A sea of silver to descend upon evil."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
@@ -613,8 +614,8 @@
 	smelt_bar_num = 3
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee
-	name = "Holy See's silver bascinet"
-	desc = "Branded by the Holy See, it denotes the holiest, most hopeful lot of its kind. Even with the visor closed, this helm will spread hope among the followers of the Ten."
+	name = "holy silver bascinet"
+	desc = "Branded by the Holy See, these helms are worn by it's chosen warriors. A bastion of hope in the dark nite."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyrbascinet.dmi'
 	adjustable = CAN_CADJUST
@@ -651,8 +652,8 @@
 		user.update_fov_angles()
 
 /obj/item/clothing/cloak/holysee
-	name = "holy see tabard"
-	desc = "A tabard worn by Holy See's most devout. It has silver embroidery woven through the fabric."
+	name = "holy silver vestments"
+	desc = "A set of vestments worn by the Holy See's forces, silver embroidery and seals of light ordain it as a bastion against evil."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
 	icon_state = "silvertabard"

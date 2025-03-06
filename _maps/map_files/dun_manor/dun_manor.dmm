@@ -20426,16 +20426,6 @@
 "oLM" = (
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/shelter/mountains)
-"oLU" = (
-/obj/structure/fluff/railing/border{
-	dir = 6
-	},
-/obj/effect/decal/cobbleedge{
-	dir = 10;
-	icon_state = "cobbleedge-e"
-	},
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/town)
 "oMI" = (
 /obj/item/roguebin/water,
 /turf/open/floor/rogue/carpet,
@@ -25601,6 +25591,9 @@
 /obj/item/clothing/cloak/templar/pestran,
 /obj/item/clothing/cloak/templar/necran,
 /obj/item/clothing/cloak/templar/necran,
+/obj/item/clothing/cloak/templar/eoran,
+/obj/item/clothing/cloak/templar/eoran,
+/obj/item/clothing/cloak/templar/eoran,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
