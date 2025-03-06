@@ -192,7 +192,6 @@ var/static/list/druid_forms = list(
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/Initialize()
 	. = ..()
-	START_PROCESSING(SSfastprocess, src)
 	charge_type = "recharge"
 	charge_counter = charge_max
 	charge_max = 30 SECONDS
@@ -200,53 +199,38 @@ var/static/list/druid_forms = list(
 	still_recharging_msg = span_warning("[name] is still recharging!")
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/cast(mob/living/carbon/human/user)
-	to_chat(user, span_notice("DEBUG: Starting shapeshift cast"))
-	
-	// Keep existing psicross check for initial transformation
-	var/obj/shapeshift_holder/H = locate() in user
-	if(H)
-		// Remove psicross requirement for restoration
-		to_chat(user, span_notice("DEBUG: Found existing shapeshift, restoring"))
-		do_restore(user)
+	if(!user)
 		return FALSE
-		
-	// Check for required items only for initial transformation
+	
 	var/has_psicross = FALSE
-	for(var/obj/item/clothing/neck/roguetown/psicross/dendor/P in user.get_equipped_items())
+	for(var/obj/item/clothing/neck/roguetown/psicross/dendor/P in user)
 		has_psicross = TRUE
 		break
 	if(!has_psicross)
 		to_chat(user, span_warning("You need Dendor's psicross to cast this spell!"))
 		return FALSE
 		
-	// Only show form selection if we haven't picked one before
 	if(!saved_form)
 		var/list/animal_list = list()
 		var/druidic_level = user.mind?.get_skill_level(/datum/skill/magic/druidic) || 0
-		to_chat(user, span_notice("DEBUG: Druidic level is [druidic_level]"))
 		
 		for(var/animal_name in druid_forms)
 			var/list/animal_data = druid_forms[animal_name]
 			if(animal_data["level"] <= druidic_level)
 				animal_list[animal_name] = animal_data["path"]
-				to_chat(user, span_notice("DEBUG: Added [animal_name] to available forms"))
 				
 		if(!length(animal_list))
 			to_chat(user, span_warning("Your druidic knowledge is insufficient to take on any beast forms!"))
 			return FALSE
 			
-		to_chat(user, span_notice("DEBUG: Opening form selection menu"))
 		var/new_shapeshift_type = input(user, "Choose Your Animal Form! (Druidic Level: [druidic_level])", "It's Morphing Time!", null) as null|anything in sortList(animal_list)
 		if(!new_shapeshift_type)
-			to_chat(user, span_warning("DEBUG: No form selected"))
 			return FALSE
 			
-		to_chat(user, span_notice("DEBUG: Selected form [new_shapeshift_type]"))
 		saved_form = animal_list[new_shapeshift_type]
 	
 	selected_form = saved_form
 	if(selected_form)
-		to_chat(user, span_notice("DEBUG: Attempting shapeshift"))
 		do_shapeshift(user)
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/proc/do_shapeshift(mob/living/caster)
