@@ -247,7 +247,13 @@
 			"YOU WILL SPEAK!",
 			"TELL ME!",
 		)
+
+		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(torture_lines), spans = list("torture"))
+
+		if(!(do_mob(src, H, 10 SECONDS)))
+			return
+
 		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("antag")
 		qdel(S)
@@ -286,7 +292,13 @@
 			"ARE YOU FAITHFUL?",
 			"WHO IS YOUR SHEPHERD?",
 		)
+
+		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(faith_lines), spans = list("torture"))
+
+		if(!(do_mob(src, H, 10 SECONDS)))
+			return
+
 		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("patron")
 		qdel(S)
