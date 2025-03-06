@@ -1634,12 +1634,17 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("ooc_preview")	//Unashamedly copy pasted from human_topic.dm L:7. Sorry!
 					var/list/dat = list()
 					dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[real_name]</b></font></div>"
-					if(isnull(flavortext_display) && !isnull(flavortext))
+					var/legacy_check = FALSE
+					if(isnull(flavortext_display) && !isnull(flavortext))	//If there's an FT already in the slot, but no _display, that means it's a legacy slot.
 						is_legacy = TRUE
+						legacy_check = TRUE
 						flavortext_display = replacetext(flavortext, "\n", "<BR>")
 					if(isnull(ooc_notes_display) && !isnull(ooc_notes))
 						is_legacy = TRUE
+						legacy_check = TRUE
 						ooc_notes_display = replacetext(ooc_notes, "\n", "<BR>")
+					if(legacy_check)
+						save_character()
 						ShowChoices(user)
 						return
 					if(is_legacy)
