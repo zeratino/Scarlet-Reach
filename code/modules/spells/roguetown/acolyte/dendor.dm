@@ -228,7 +228,8 @@ var/static/list/druid_forms = list(
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/proc/do_shapeshift(mob/living/caster)
 	var/obj/shapeshift_holder/shapeshift_holder = locate() in caster
 	if(shapeshift_holder)
-		to_chat(caster, span_warning("You're already shapeshifted!"))
+		// If already shapeshifted, restore to human form
+		do_restore(caster)
 		return
 	
 	// Store original state and paralyze briefly during transformation TO beast form only
