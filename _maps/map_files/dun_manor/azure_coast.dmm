@@ -384,6 +384,12 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
+"bw" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/rooftop{
+	dir = 1
+	},
+/area/rogue/outdoors/beach/forest)
 "bF" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/floor/rogue/naturalstone,
@@ -65095,7 +65101,7 @@ BA
 BA
 BA
 ub
-ub
+bw
 ub
 ub
 ub
@@ -66796,7 +66802,7 @@ pz
 pz
 pz
 pz
-op
+pz
 pZ
 "}
 (72,1,4) = {"
