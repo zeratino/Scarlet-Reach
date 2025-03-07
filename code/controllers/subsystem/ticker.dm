@@ -567,8 +567,7 @@ SUBSYSTEM_DEF(ticker)
 			if(ishuman(living))
 				try_apply_character_post_equipment(living)
 		else
-			message_admins("DEBUG: null player found in new_player_list")
-
+			continue
 	if(livings.len)
 		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)
 

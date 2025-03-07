@@ -52,7 +52,7 @@
 			return
 
 
-	msg = emoji_parse(msg)
+	//msg = emoji_parse(msg)
 
 	var/prefix = ""
 
