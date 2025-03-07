@@ -124,8 +124,8 @@
 	. = ..()
 	owner.add_stress(/datum/stressevent/moondust_purest)
 
-/datum/status_effect/buff/purified_ozium
-	id = "purified_ozium"
+/datum/status_effect/buff/herozium
+	id = "herozium"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
 	effectedstats = list("speed" = -5, "endurance" = 4, "intelligence" = -3, "constitution" = 3)
 	duration = 80 SECONDS
@@ -133,10 +133,10 @@
 	var/hadcritres = FALSE
 	var/hadpainres = FALSE
 
-/datum/status_effect/buff/purified_ozium/nextmove_modifier()
+/datum/status_effect/buff/herozium/nextmove_modifier()
 	return 1.2
 
-/datum/status_effect/buff/purified_ozium/on_apply()
+/datum/status_effect/buff/herozium/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/ozium)
 	if(!HAS_TRAIT(owner, TRAIT_NOPAIN))
@@ -150,7 +150,7 @@
 	originalcmode = owner.cmode_music
 	owner.cmode_music = 'sound/music/combat_ozium.ogg'
 
-/datum/status_effect/buff/purified_ozium/on_remove()
+/datum/status_effect/buff/herozium/on_remove()
 	owner.remove_stress(/datum/stressevent/ozium)
 	if(!hadpainres)
 		REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
