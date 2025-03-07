@@ -39,7 +39,7 @@
 	worshippers = "Druids, Beasts, Madmen"
 	mob_traits = list(TRAIT_KNEESTINGER_IMMUNITY)
 	t1 = /obj/effect/proc_holder/spell/targeted/blesscrop
-	t2 = /obj/effect/proc_holder/spell/targeted/beasttame
+	t2 = /obj/effect/proc_holder/spell/self/dendor_shapeshift
 	t3 = /obj/effect/proc_holder/spell/targeted/conjure_glowshroom
 	t4 = /obj/effect/proc_holder/spell/self/howl/call_of_the_moon
 	confess_lines = list(
@@ -68,7 +68,7 @@
 	domain = "God of Justice, Glory, Battle"
 	desc = "Stalwart warrior, glorious justicier; legends say he came down to the Basin to repel the vile hordes of demons with his own hands, and that he seeks warriors for his divine army among mortals."
 	worshippers = "Warriors, Sellswords & those who seek Justice"
-	mob_traits = list(TRAIT_SHARPER_BLADES)
+	mob_traits = list(TRAIT_SHARPER_BLADES, TRAIT_JUSTICARSIGHT)
 	t1 = /obj/effect/proc_holder/spell/self/call_to_arms
 	t2 = /obj/effect/proc_holder/spell/self/divine_strike
 	t3 = /obj/effect/proc_holder/spell/invoked/persistence

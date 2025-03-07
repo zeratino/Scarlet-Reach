@@ -65,17 +65,17 @@
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/necra
 			shirt = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 			cloak = /obj/item/clothing/cloak/raincloak/mortus
-		if(/datum/patron/divine/pestra) //PLEASE add leper gear later, this SUCKS dude
-			head = /obj/item/clothing/head/roguetown/necrahood
+		if(/datum/patron/divine/pestra)
 			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			pants = /obj/item/clothing/under/roguetown/trou/leather/mourning
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/necra
+			cloak = /obj/item/clothing/cloak/templar/pestran
 		if(/datum/patron/divine/eora) //Eora content from Stonekeep
 			head = /obj/item/clothing/head/roguetown/eoramask
 			neck = /obj/item/clothing/neck/roguetown/psicross/eora
 			shoes = /obj/item/clothing/shoes/roguetown/sandals
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/eora
+			cloak = /obj/item/clothing/cloak/templar/eoran
 		if(/datum/patron/divine/malum)
 			head = /obj/item/clothing/head/roguetown/roguehood
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
@@ -97,6 +97,7 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
 		ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 		if(H.patron?.type == /datum/patron/divine/pestra)
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
