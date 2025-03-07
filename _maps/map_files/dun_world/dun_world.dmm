@@ -963,6 +963,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
+"asJ" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "asP" = (
 /obj/structure/bed/rogue/inn/double,
 /obj/item/bedsheet/rogue/double_pelt,
@@ -4216,6 +4220,9 @@
 /obj/structure/fluff/railing/wood,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
+"bNY" = (
+/turf/open/floor/rogue/rooftop,
+/area/rogue/outdoors/beach)
 "bOb" = (
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/mace/goden/steel,
@@ -6059,6 +6066,16 @@
 	},
 /turf/open/floor/rogue/tile/masonic/single,
 /area/rogue/indoors/town/manor)
+"cFo" = (
+/obj/structure/fluff/railing/border,
+/obj/item/natural/worms,
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "horzw"
+	},
+/area/rogue/outdoors/beach)
 "cFy" = (
 /obj/structure/fluff/railing/border{
 	dir = 9;
@@ -7267,6 +7284,10 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/mountains)
+"dgu" = (
+/obj/item/roguebin/water,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "dgv" = (
 /turf/open/floor/rogue/woodturned,
 /area/rogue/outdoors/mountains)
@@ -7775,6 +7796,10 @@
 	},
 /turf/open/floor/rogue/grassyel,
 /area/rogue/indoors/cave)
+"drU" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "drY" = (
 /obj/structure/chair/wood/rogue{
 	dir = 1
@@ -8702,6 +8727,10 @@
 /obj/structure/fluff/statue/knight/r,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/manor)
+"dOd" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "dOo" = (
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
@@ -9578,6 +9607,12 @@
 /mob/living/simple_animal/hostile/rogue/skeleton/guard,
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/town/basement)
+"eia" = (
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "horzw"
+	},
+/area/rogue/outdoors/beach)
 "eib" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -10139,6 +10174,9 @@
 "euf" = (
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
+"euk" = (
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "euq" = (
 /obj/structure/closet/crate/chest,
 /obj/item/reagent_containers/food/snacks/egg,
@@ -13679,6 +13717,10 @@
 /obj/machinery/tanningrack,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/tavern)
+"fPh" = (
+/obj/structure/flora/newtree,
+/turf/open/floor/rogue/sand,
+/area/rogue/outdoors/beach)
 "fPq" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -14858,6 +14900,10 @@
 	icon_state = "weird1"
 	},
 /area/rogue/under/cave/dukecourt)
+"grb" = (
+/obj/effect/spawner/lootdrop/roguetown/dungeon,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "grg" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/rogue/wood/nosmooth,
@@ -15119,6 +15165,13 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
+"gxy" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/effect/spawner/lootdrop/roguetown/dungeon,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "gxF" = (
 /obj/machinery/light/roguestreet/midlamp,
 /turf/open/floor/rogue/metal/barograte/open,
@@ -17283,6 +17336,12 @@
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"hvh" = (
+/obj/structure/roguewindow/openclose/reinforced{
+	dir = 1
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "hvn" = (
 /obj/structure/table/wood{
 	dir = 8;
@@ -18818,6 +18877,12 @@
 /obj/effect/landmark/start/villager,
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/town/tavern)
+"icf" = (
+/obj/structure/chair/stool/rogue,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "horzw"
+	},
+/area/rogue/outdoors/beach)
 "icp" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach)
@@ -18998,6 +19063,12 @@
 	},
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/basement/keep)
+"ifx" = (
+/obj/item/fishingrod,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "horzw"
+	},
+/area/rogue/outdoors/beach)
 "ifB" = (
 /obj/structure/fluff/walldeco/customflag,
 /turf/closed/wall/mineral/rogue/stone/window,
@@ -25508,6 +25579,10 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town)
+"kRn" = (
+/obj/item/natural/rock/gem,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "kRr" = (
 /obj/structure/flora/roguegrass/herb/random,
 /turf/open/floor/rogue/dirt,
@@ -27066,6 +27141,10 @@
 /obj/item/roguekey/armory,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town)
+"lAw" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/water/ocean/deep,
+/area/rogue/outdoors/beach)
 "lAx" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/grassyel,
@@ -27268,6 +27347,13 @@
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"lGc" = (
+/obj/structure/bed/rogue/shit,
+/obj/structure/fluff/walldeco/rpainting/forest{
+	pixel_y = 32
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "lGf" = (
 /obj/structure/stairs,
 /turf/open/floor/rogue/cobble,
@@ -28763,6 +28849,10 @@
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
+"mqv" = (
+/obj/item/natural/stone,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "mqJ" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear,
 /obj/item/chair/stool/bar/rogue,
@@ -29669,6 +29759,14 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
+"mLP" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/closet/crate/chest,
+/obj/effect/spawner/lootdrop/roguetown/dungeon,
+/obj/effect/spawner/lootdrop/roguetown/dungeon,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/money,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "mMi" = (
 /obj/item/restraints/legcuffs/beartrap/armed/camouflage,
 /turf/open/floor/rogue/dirt,
@@ -32052,6 +32150,10 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/rtfield)
+"nJa" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "nJk" = (
 /obj/structure/bars/pipe{
 	dir = 1;
@@ -32460,6 +32562,10 @@
 /obj/structure/closet/crate/chest/lootbox,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/cave)
+"nRy" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/floor/rogue/sand,
+/area/rogue/outdoors/beach)
 "nRJ" = (
 /obj/structure/table/wood{
 	icon_state = "longtable";
@@ -33067,6 +33173,11 @@
 "ogU" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red,
 /area/rogue/indoors/shelter/mountains)
+"ogX" = (
+/obj/structure/fluff/railing/border,
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/water/ocean/deep,
+/area/rogue/outdoors/beach)
 "ogZ" = (
 /obj/structure/spacevine,
 /turf/open/floor/rogue/dirt,
@@ -33492,6 +33603,13 @@
 /mob/living/carbon/human/species/goblin/npc/sea,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
+"oqp" = (
+/obj/structure/mineral_door/wood/deadbolt{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "oqv" = (
 /obj/structure/closet/crate/chest/neu,
 /obj/item/storage/backpack/rogue/satchel,
@@ -33845,6 +33963,10 @@
 /obj/effect/spawner/lootdrop/potion_ingredient,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"oyw" = (
+/obj/item/natural/stone,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "oyy" = (
 /obj/structure/fluff/railing/border{
 	dir = 6
@@ -36008,6 +36130,12 @@
 /obj/machinery/light/rogue/wallfire/candle/blue/r,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/undeadmanor)
+"ptb" = (
+/obj/structure/mineral_door/wood/deadbolt{
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "ptg" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /obj/structure/table/wood/fancy/black,
@@ -37380,6 +37508,10 @@
 "pVa" = (
 /turf/closed/wall/mineral/rogue/roofwall/outercorner,
 /area/rogue/indoors/town/shop)
+"pVf" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/headless,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "pVj" = (
 /obj/item/rope/chain,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/armor,
@@ -39492,6 +39624,13 @@
 /obj/structure/fluff/psycross,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
+"qPt" = (
+/obj/effect/decal/cleanable/dirt/cobweb{
+	dir = 1
+	},
+/obj/machinery/light/rogue/hearth,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "qPv" = (
 /turf/closed/mineral/random/rogue,
 /area/rogue/indoors/cave)
@@ -43627,6 +43766,12 @@
 "swK" = (
 /turf/open/floor/rogue/carpet/lord/right,
 /area/rogue/under/cave/licharena)
+"swQ" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia{
+	dir = 8
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "sxs" = (
 /obj/structure/closet/crate/chest,
 /obj/machinery/light/rogue/torchholder/r,
@@ -43689,6 +43834,10 @@
 	icon_state = "roofg"
 	},
 /area/rogue/outdoors/mountains)
+"syt" = (
+/obj/structure/roguewindow/openclose/reinforced,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "syx" = (
 /obj/effect/decal/remains/saiga,
 /turf/open/floor/rogue/herringbone,
@@ -52244,6 +52393,11 @@
 /obj/structure/ladder,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
+"wjk" = (
+/obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "wjy" = (
 /obj/structure/closet/dirthole/closed/loot,
 /turf/open/floor/rogue/dirt/road,
@@ -53296,6 +53450,12 @@
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/basement)
+"wHW" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia{
+	dir = 4
+	},
+/turf/open/floor/rogue/sand,
+/area/rogue/outdoors/beach)
 "wIq" = (
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm,
@@ -53918,6 +54078,10 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
+"wYF" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "wYI" = (
 /obj/structure/spider/stickyweb{
 	dir = 4;
@@ -55707,6 +55871,11 @@
 /obj/effect/decal/cobbleedge,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
+"xKi" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/beach)
 "xKk" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
@@ -55748,6 +55917,10 @@
 	},
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/town)
+"xLY" = (
+/turf/closed/wall/mineral/rogue/wooddark/vertical,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/outdoors/beach)
 "xMk" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
@@ -56810,6 +56983,9 @@
 "ykE" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/under/cavewet/bogcaves)
+"ykG" = (
+/turf/open/floor/rogue/sand,
+/area/rogue/outdoors/beach)
 "ykK" = (
 /obj/structure/roguewindow/openclose/reinforced{
 	dir = 4
@@ -160852,8 +161028,8 @@ tXb
 tXb
 tXb
 tXb
-tXb
-tXb
+gfw
+icf
 tXb
 tXb
 tXb
@@ -161304,8 +161480,8 @@ tXb
 tXb
 tXb
 tXb
-tXb
-tXb
+gfw
+ifx
 tXb
 tXb
 tXb
@@ -161756,19 +161932,19 @@ tXb
 tXb
 tXb
 tXb
+gfw
+cFo
+ykG
+ykG
+nRy
+lAw
 tXb
 tXb
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+fce
+fce
+fce
 tXb
 tXb
 tXb
@@ -162208,20 +162384,20 @@ tXb
 tXb
 tXb
 tXb
+ogX
+eia
+nRy
+ykG
+ykG
+nRy
+lAw
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+fce
+bfY
+bfY
+fce
+fce
 tXb
 tXb
 tXb
@@ -162659,21 +162835,21 @@ tXb
 tXb
 tXb
 tXb
+csA
+xLY
+ptb
+uNt
+csA
+svv
+ykG
+ykG
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+fce
+euk
+oyw
+euk
+fce
 tXb
 tXb
 tXb
@@ -163111,22 +163287,22 @@ tXb
 tXb
 tXb
 tXb
+uNt
+lGc
+uYI
+grb
+uNt
+svv
+svv
+ykG
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+bfY
+oyw
+drU
+wjk
+euk
+fce
 tXb
 tXb
 tXb
@@ -163563,23 +163739,23 @@ tXb
 tXb
 tXb
 tXb
+syt
+mLP
+pVf
+uYI
+hvh
+asJ
+mqv
+ykG
+ykG
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+bfY
+wYF
+euk
+kRn
+euk
+fce
+fce
 tXb
 tXb
 tXb
@@ -163593,8 +163769,8 @@ fce
 fce
 fce
 icp
-fce
-fce
+icp
+icp
 fce
 fce
 tXb
@@ -164015,23 +164191,23 @@ tXb
 tXb
 tXb
 tXb
+syt
+qPt
+gxy
+uYI
+oqp
+nJa
+svv
+svv
+ykG
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+fce
+bfY
+xKi
+swQ
+oyw
+bfY
+fce
 tXb
 tXb
 tXb
@@ -164467,23 +164643,23 @@ tXb
 tXb
 tXb
 tXb
+csA
+wqz
+csA
+wqz
+csA
+svv
+svv
+svv
+ykG
+ykG
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+fce
+fce
+euk
+euk
+bfY
+fce
 tXb
 tXb
 tXb
@@ -164920,21 +165096,21 @@ tXb
 tXb
 tXb
 tXb
+lAw
+nRy
+dgu
+svv
+svv
+svv
+svv
+ykG
+nRy
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+fce
+bfY
+fce
+fce
 tXb
 tXb
 tXb
@@ -165373,19 +165549,19 @@ tXb
 tXb
 tXb
 tXb
+nRy
+nRy
+dOd
+svv
+svv
+svv
+ykG
+nRy
 tXb
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+fce
+fce
 tXb
 tXb
 tXb
@@ -165826,13 +166002,13 @@ tXb
 tXb
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+ykG
+ykG
+mqv
+svv
+svv
+fPh
+nRy
 tXb
 tXb
 tXb
@@ -166278,13 +166454,13 @@ tXb
 tXb
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+wHW
+ykG
+ykG
+ykG
+ykG
+ykG
+ykG
 tXb
 tXb
 tXb
@@ -166730,13 +166906,13 @@ tXb
 tXb
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+lAw
+nRy
+fPh
+ykG
+ykG
+ykG
+nRy
 tXb
 tXb
 tXb
@@ -167183,12 +167359,12 @@ tXb
 tXb
 tXb
 tXb
-tXb
-tXb
-tXb
-tXb
-tXb
-tXb
+lAw
+nRy
+ykG
+ykG
+nRy
+lAw
 tXb
 tXb
 tXb
@@ -167638,8 +167814,8 @@ tXb
 tXb
 tXb
 tXb
-tXb
-tXb
+lAw
+lAw
 tXb
 tXb
 tXb
@@ -277920,11 +278096,11 @@ jrj
 jrj
 jrj
 jrj
-jrj
-jrj
-jrj
-jrj
-jrj
+bNY
+bNY
+bNY
+bNY
+bNY
 jrj
 jrj
 jrj
@@ -278372,11 +278548,11 @@ jrj
 jrj
 jrj
 jrj
-jrj
-jrj
-jrj
-jrj
-jrj
+bNY
+bNY
+bNY
+bNY
+bNY
 jrj
 jrj
 jrj
@@ -278824,11 +279000,11 @@ jrj
 jrj
 jrj
 jrj
-jrj
-jrj
-jrj
-jrj
-jrj
+bNY
+bNY
+bNY
+bNY
+bNY
 jrj
 jrj
 jrj
@@ -279276,11 +279452,11 @@ jrj
 jrj
 jrj
 jrj
-jrj
-jrj
-jrj
-jrj
-jrj
+bNY
+bNY
+bNY
+bNY
+bNY
 jrj
 jrj
 jrj
@@ -279728,11 +279904,11 @@ jrj
 jrj
 jrj
 jrj
-jrj
-jrj
-jrj
-jrj
-jrj
+bNY
+bNY
+bNY
+bNY
+bNY
 jrj
 jrj
 jrj
