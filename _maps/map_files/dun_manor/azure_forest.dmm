@@ -2736,6 +2736,10 @@
 "wv" = (
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/roofs)
+"ww" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/woods)
 "wz" = (
 /obj/structure/rack/rogue,
 /turf/open/floor/rogue/ruinedwood,
@@ -4269,6 +4273,13 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
+"IE" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/rooftop{
+	dir = 2;
+	icon_state = "roofg"
+	},
+/area/rogue/outdoors/town/roofs)
 "II" = (
 /obj/structure/far_travel,
 /turf/open/floor/rogue/cobblerock,
@@ -5000,6 +5011,10 @@
 "Pf" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors)
+"Pg" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cavewet/bogcaves)
 "Pi" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/cobble,
@@ -6030,6 +6045,10 @@
 "Xw" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
+"Xy" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cave)
 "Xz" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/town/roofs)
@@ -28006,7 +28025,7 @@ Iu
 Iu
 Iu
 EU
-iY
+Pg
 JT
 Iu
 Iu
@@ -35260,7 +35279,7 @@ gU
 fd
 GH
 GH
-lg
+Xy
 xk
 xk
 xk
@@ -40564,7 +40583,7 @@ gC
 gC
 Vn
 Vh
-Vh
+ww
 pC
 pC
 pC
@@ -88052,7 +88071,7 @@ rj
 rj
 hh
 hh
-hh
+IE
 bS
 Zk
 ZN

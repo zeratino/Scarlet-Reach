@@ -1310,6 +1310,10 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/roofs)
+"aUP" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/mountains)
 "aUU" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
@@ -1607,6 +1611,15 @@
 /obj/item/natural/cloth,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
+"bcZ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 9
+	},
+/obj/structure/fluff/railing/border{
+	dir = 6
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "bdg" = (
 /obj/structure/fluff/walldeco/med6{
 	pixel_y = 32
@@ -2641,6 +2654,13 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town)
+"bQu" = (
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	pixel_y = 1
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "bQC" = (
 /obj/structure/table/wood{
 	dir = 1;
@@ -9431,15 +9451,6 @@
 /obj/structure/fluff/walldeco/artificerflag,
 /turf/closed/wall/mineral/rogue/decowood,
 /area/rogue/indoors/town)
-"gVr" = (
-/obj/structure/fluff/railing/border{
-	dir = 4
-	},
-/obj/effect/decal/cobbleedge{
-	dir = 8
-	},
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/town)
 "gVB" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/structure/fluff/railing/wood{
@@ -11168,6 +11179,10 @@
 	},
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/shop)
+"ipk" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/mountains)
 "ipp" = (
 /obj/structure/fluff/railing/border,
 /obj/machinery/light/rogue/torchholder/c,
@@ -12673,13 +12688,6 @@
 /obj/structure/bars,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/bath)
-"jtX" = (
-/obj/effect/decal/cobbleedge{
-	dir = 10;
-	pixel_y = 1
-	},
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/town)
 "juT" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/blocks,
@@ -16908,6 +16916,10 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors/town)
+"mrh" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/town)
 "mrj" = (
 /obj/effect/decal/cobbleedge{
 	dir = 1;
@@ -19535,6 +19547,15 @@
 	icon_state = "greenstone"
 	},
 /area/rogue/indoors/town/manor)
+"ogN" = (
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 8
+	},
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/outdoors/town)
 "ohs" = (
 /obj/machinery/light/rogue/torchholder/c{
 	pixel_y = -32
@@ -20634,6 +20655,10 @@
 /obj/structure/roguemachine/scomm/l,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"oSt" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "oSV" = (
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/garrison)
@@ -32779,15 +32804,6 @@
 /obj/item/cooking/pan,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
-"xKt" = (
-/obj/effect/decal/cobbleedge{
-	dir = 9
-	},
-/obj/structure/fluff/railing/border{
-	dir = 6
-	},
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/town)
 "xKL" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -41491,7 +41507,7 @@ uBR
 hWI
 hWI
 hWI
-azO
+oSt
 azO
 azO
 "}
@@ -52967,7 +52983,7 @@ hWI
 hWI
 hWI
 azO
-azO
+oSt
 azO
 hWI
 uBR
@@ -71862,9 +71878,9 @@ pJn
 pJn
 pJn
 pJn
-xKt
-gVr
-jtX
+bcZ
+ogN
+bQu
 hvn
 hvn
 hvn
@@ -86215,7 +86231,7 @@ tXZ
 rcv
 tQp
 tQp
-tQp
+ipk
 tQp
 rcv
 rcv
@@ -95358,7 +95374,7 @@ hoU
 rcv
 rcv
 rcv
-hoU
+aUP
 hoU
 ent
 tXZ
@@ -107479,7 +107495,7 @@ kFF
 hHZ
 lYg
 iLI
-cep
+mrh
 cep
 cep
 fhc
@@ -108401,7 +108417,7 @@ hbs
 gZS
 cuR
 cuR
-tQp
+ipk
 tQp
 tXZ
 tXZ
