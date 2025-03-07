@@ -477,6 +477,15 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1
 
+/area/rogue/under/cave/licharena
+	name = "licharena"
+	icon_state = "under"
+	first_time_text = "LICH'S DOMAIN"
+	droning_sound = 'sound/music/area/dragonden.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	converted_type = /area/rogue/outdoors/dungeon1
+
 /area/rogue/under/cave/dragonden
 	name = "dragonnest"
 	icon_state = "under"
