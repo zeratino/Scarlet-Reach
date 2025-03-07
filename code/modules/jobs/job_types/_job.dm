@@ -127,6 +127,7 @@
 	/// This job is immune to species-based swapped gender locks
 	var/immune_to_genderswap = FALSE
 
+
 /*
 	How this works, its CTAG_DEFINE = amount_to_attempt_to_role
 	EX: advclass_cat_rolls = list(CTAG_PILGRIM = 5, CTAG_ADVENTURER = 5)
@@ -138,6 +139,9 @@
 	How this works, they get one extra roll on every category per PQ amount
 */
 	var/PQ_boost_divider = 0
+
+	var/list/virtue_restrictions
+	var/list/vice_restrictions
 
 
 /datum/job/proc/special_job_check(mob/dead/new_player/player)
