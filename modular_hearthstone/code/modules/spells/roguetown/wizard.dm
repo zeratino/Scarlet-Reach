@@ -1568,10 +1568,14 @@
 		return
 	
 	var/list/possible_targets = list()
-	for(var/mob/living/L in GLOB.player_list)
-		if(L.client && (L in user.mind?.known_people || L == user))
-			possible_targets += L
-
+	if(user.client)
+		possible_targets += user  // Always add self first
+		
+	if(user.mind?.known_people)  // Only check known_people if it exists
+		for(var/mob/living/L in GLOB.player_list)
+			if(L.client && L != user && L.real_name in user.mind.known_people)
+				possible_targets += L
+	
 	if(!length(possible_targets))
 		to_chat(user, span_warning("You have no known people to establish a mindlink with!"))
 		return FALSE
@@ -1597,7 +1601,7 @@
 	to_chat(first_target, span_notice("A mindlink has been established with [second_target]! Use ,y before a message to communicate telepathically."))
 	to_chat(second_target, span_notice("A mindlink has been established with [first_target]! Use ,y before a message to communicate telepathically."))
 	
-	addtimer(CALLBACK(src, PROC_REF(break_link), link), 1 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(break_link), link), 3 MINUTES)
 	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/mindlink/proc/break_link(datum/mindlink/link)
