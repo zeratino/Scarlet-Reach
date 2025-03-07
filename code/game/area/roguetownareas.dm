@@ -372,8 +372,8 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/troll = 15)
 	converted_type = /area/rogue/outdoors/caves
 
-/area/rogue/under/cavewet/underdark
-	name = "Deep Underdark"
+/area/rogue/under/underdark
+	name = "The Underdark"
 	icon_state = "cavewet"
 	warden_area = FALSE
 	first_time_text = "Deep Underdark"
@@ -388,7 +388,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	ambush_types = list(
 				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
-				/mob/living/carbon/human/species/skeleton/npc = 20,
+				/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated = 20,
 				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 25,
 				/mob/living/carbon/human/species/goblin/npc/ambush/moon = 30,
 				/mob/living/simple_animal/hostile/retaliate/rogue/troll = 15)
