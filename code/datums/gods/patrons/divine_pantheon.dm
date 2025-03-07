@@ -69,8 +69,8 @@
 	desc = "Stalwart warrior, glorious justicier; legends say he came down to the Basin to repel the vile hordes of demons with his own hands, and that he seeks warriors for his divine army among mortals."
 	worshippers = "Warriors, Sellswords & those who seek Justice"
 	mob_traits = list(TRAIT_SHARPER_BLADES, TRAIT_JUSTICARSIGHT)
-	t1 = /obj/effect/proc_holder/spell/self/call_to_arms
-	t2 = /obj/effect/proc_holder/spell/self/divine_strike
+	t1 = /obj/effect/proc_holder/spell/self/divine_strike
+	t2 = /obj/effect/proc_holder/spell/self/call_to_arms
 	t3 = /obj/effect/proc_holder/spell/invoked/persistence
 	confess_lines = list(
 		"RAVOX IS JUSTICE!",

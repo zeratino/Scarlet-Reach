@@ -1,31 +1,4 @@
-//Call to Arms - AoE buff for all people surrounding you.
-/obj/effect/proc_holder/spell/self/call_to_arms
-	name = "Call to Arms"
-	desc = "Grants you and all allies nearby a buff to their strength, endurance, and constitution."
-	overlay_state = "call_to_arms"
-	charge_max = 5 MINUTES
-	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
-	invocation = "FOR GLORY AND HONOR!"
-	invocation_type = "shout"
-	sound = 'sound/magic/timestop.ogg'
-	releasedrain = 30
-	miracle = TRUE
-	devotion_cost = 40
-
-/obj/effect/proc_holder/spell/self/call_to_arms/cast(list/targets,mob/living/user = usr)
-	for(var/mob/living/carbon/target in view(3, get_turf(user)))
-		if(istype(target.patron, /datum/patron/inhumen))
-			target.apply_status_effect(/datum/status_effect/debuff/call_to_arms)	//Debuffs inhumen worshipers.
-			return
-		if(istype(target.patron, /datum/patron/old_god))
-			to_chat(target, span_danger("You feel a hot-wave wash over you, leaving as quickly as it came.."))	//No effect on Psydonians!
-			return
-		if(!user.faction_check_mob(target))
-			continue
-		if(target.mob_biotypes & MOB_UNDEAD)
-			continue
-		target.apply_status_effect(/datum/status_effect/buff/call_to_arms)
-	return ..()
+//These are all Vanderlin ports, simply redone values and additions to fit Azure. Credit for the code and idea goes to them!
 
 //Divine Strike - Enhance your held weapon to have the next strike do extra damage and slow the target. Undead debuffed more.
 /obj/effect/proc_holder/spell/self/divine_strike
@@ -102,6 +75,36 @@
 	H.visible_message(span_warning("The strike from [M]'s fist causes [H] to go stiff!"), vision_distance = COMBAT_MESSAGE_RANGE)
 	qdel(src)
 
+//Call to Arms - AoE buff for all people surrounding you.
+/obj/effect/proc_holder/spell/self/call_to_arms
+	name = "Call to Arms"
+	desc = "Grants you and all allies nearby a buff to their strength, endurance, and constitution."
+	overlay_state = "call_to_arms"
+	charge_max = 5 MINUTES
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	invocation = "FOR GLORY AND HONOR!"
+	invocation_type = "shout"
+	sound = 'sound/magic/timestop.ogg'
+	releasedrain = 30
+	miracle = TRUE
+	devotion_cost = 40
+
+/obj/effect/proc_holder/spell/self/call_to_arms/cast(list/targets,mob/living/user = usr)
+	for(var/mob/living/carbon/target in view(3, get_turf(user)))
+		if(istype(target.patron, /datum/patron/inhumen))
+			target.apply_status_effect(/datum/status_effect/debuff/call_to_arms)	//Debuffs inhumen worshipers.
+			return
+		if(istype(target.patron, /datum/patron/old_god))
+			to_chat(target, span_danger("You feel a hot-wave wash over you, leaving as quickly as it came.."))	//No effect on Psydonians!
+			return
+		if(!user.faction_check_mob(target))
+			continue
+		if(target.mob_biotypes & MOB_UNDEAD)
+			continue
+		target.apply_status_effect(/datum/status_effect/buff/call_to_arms)
+	return ..()
+
+//Persistence - Harms the shit out of an undead mob/player while causing bleeding/pain wounds to clot at higher rate for living ones. Basically a 'shittier' yet still good greater heal effect.
 /obj/effect/proc_holder/spell/invoked/persistence
 	name = "Persistence"
 	overlay_state = "astrata"
