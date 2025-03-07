@@ -55,7 +55,7 @@
 	clothes_req = FALSE
 	overlay_state = "unholy_grasp"
 	range = 3	//It's a net, so low range.
-	associated_skill = /datum/skill/magic/arcane
+	associated_skill = /datum/skill/magic/holy
 	projectile_type = /obj/projectile/magic/unholy_grasp
 	chargedloop = /datum/looping_sound/invokeholy
 	releasedrain = 30
