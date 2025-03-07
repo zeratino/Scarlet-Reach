@@ -12,6 +12,16 @@
 	user.get_admin_say()
 	return TRUE
 
+/datum/keybinding/admin/rmbcontext
+	hotkey_keys = list("F4")
+	name = "rmbcontext"
+	full_name = "Admin RMB Context Toggle"
+	description = "Toggles opening a context menu with RMB"
+
+/datum/keybinding/admin/rmbcontext/down(client/user)
+	user.set_context_menu_enabled()
+	return TRUE
+
 /datum/keybinding/admin/admin_ghost
 	hotkey_keys = list("F5")
 	name = "admin_ghost"
@@ -39,7 +49,7 @@
 /datum/keybinding/admin/toggle_buildmode_self
 	hotkey_keys = list("F7")
 	name = "toggle_buildmode_self"
-	full_name = "Toggle Buildmode Self"
+	full_name = "Admin Buildmode"
 	description = "Toggles Buildmode"
 
 /datum/keybinding/admin/toggle_buildmode_self/down(client/user)
@@ -47,28 +57,18 @@
 	return TRUE
 
 /datum/keybinding/admin/stealthmode
-	hotkey_keys = list("CtrlF8")
+	hotkey_keys = list("F8")
 	name = "stealth_mode"
-	full_name = "Stealth mode"
+	full_name = "Admin Stealth mode"
 	description = "Enters stealth mode (Players see you as 'Administrator' instead of your ckey)"
 
 /datum/keybinding/admin/stealthmode/down(client/user)
 	user.stealth()
 	return TRUE
 
-/* Pending Testing
-/datum/keybinding/admin/rmbcontext
-	hotkey_keys = list("F9")
-	name = "rmbcontext"
-	full_name = "Toggle RMB Context Menu"
-	description = "Toggles opening a context menu with RMB"
-
-/datum/keybinding/admin/rmbcontext/down(client/user)
-	user.set_context_menu_enabled()
-	return TRUE
-
+/* Irrelevant to RT
 /datum/keybinding/admin/deadsay
-	hotkey_keys = list("F10")
+	hotkey_keys = list("F9")
 	name = "dsay"
 	full_name = "deadsay"
 	description = "Allows you to send a message to dead chat"
@@ -76,10 +76,10 @@
 /datum/keybinding/admin/deadsay/down(client/user)
 	user.get_dead_say()
 	return TRUE
-*/
+
 
 /datum/keybinding/admin/invisimin
-	hotkey_keys = list("F8")
+	hotkey_keys = list("F10")
 	name = "invisimin"
 	full_name = "Admin invisibility"
 	description = "Toggles ghost-like invisibility on your mob"
@@ -87,4 +87,4 @@
 /datum/keybinding/admin/invisimin/down(client/user)
 	user.invisimin()
 	return TRUE
-
+*/
