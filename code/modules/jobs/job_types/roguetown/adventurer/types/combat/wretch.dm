@@ -11,14 +11,13 @@
 					"Outlaw" = "You're a seasoned criminal known for your heinous acts, your face plastered on wanted posters across the region. A life of theft, robbery, and ill-gotten-gains comes naturally to you.",
 					"Poacher" = "You have rejected society and its laws, choosing life in the wilderness instead. Simple thieving highwayman or freedom fighter, you take from those who have and give to the have-nots. Fancy, how the latter includes yourself!",
 					"Heretic" = "You are a heretic, spurned by the church, cast out from society - frowned upon by Psydon and his children for your faith.",
-					"Necromancer" = "You have been ostracized and hunted by society for your dark magics and perversion of life.",
-					"Raider" = "You are a savage beyond savages - even the barbarians fear your brutality. You live only to pillage, destroy and revel in bloodshed.")
+					"Necromancer" = "You have been ostracized and hunted by society for your dark magics and perversion of life.")
 
 
 /datum/outfit/job/roguetown/adventurer/wretch/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	var/classes = list("Deserter","Outlaw","Poacher","Heretic","Necromancer","Raider")
+	var/classes = list("Deserter","Outlaw","Poacher","Heretic","Necromancer")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
 	switch(classchoice)
