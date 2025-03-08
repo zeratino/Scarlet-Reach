@@ -3,10 +3,10 @@
 	tutorial = "Although a set of lockpicks typically means a bad actor, there are genuine reasons to have one, and your career is one of those reasons. You're no artificer, and certainly no blacksmith, but you know the fineries of metal work when it comes to small mechanical contraptions."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
-	outfit = /datum/outfit/job/roguetown/adventurer/thug
+	outfit = /datum/outfit/job/roguetown/adventurer/locksmith
 	category_tags = list(CTAG_TOWNER)
 
-/datum/outfit/job/roguetown/adventurer/thug/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/adventurer/locksmith/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
