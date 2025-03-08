@@ -13,16 +13,15 @@
 
 /obj/effect/proc_holder/spell/self/revel_in_slaughter/cast(atom/A, mob/living/user = usr)
 	. = ..()
+	var/success = 0
 	for(var/obj/effect/decal/cleanable/blood/B in view(3, user))
-		var/turf/open/T = A
-		for(var/obj/effect/decal/cleanable/blood/target in T)
-			qdel(target)
-			var/healing = 3		//Longer duration than normal lesser healing.
-			user.apply_status_effect(/datum/status_effect/buff/healing, healing)
-			return TRUE
-	for(var/obj/effect/decal/cleanable/blood/B in view(3, user) == FALSE)
+		success++
+		qdel(B)
+	if(!success)
 		to_chat(user, span_warning("I need blood near me to heal!"))
 		return FALSE
+	user.apply_status_effect(/datum/status_effect/buff/healing, success)
+	return TRUE
 	
 
 //Call to Slaughter - AoE buff for all people surrounding you.
