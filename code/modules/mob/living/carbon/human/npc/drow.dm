@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.txt"))
+
 /mob/living/carbon/human/species/elf/dark/drowraider
 	aggressive=1
 	mode = AI_IDLE
@@ -14,10 +16,14 @@
 	wander = TRUE
 
 /mob/living/carbon/human/species/elf/dark/drowraider/retaliate(mob/living/L)
+	var/newtarg = target
 	.=..()
 	if(target)
 		aggressive=1
 		wander = TRUE
+	if(target != newtarg)
+		say(pick(GLOB.drowraider_aggro))
+		linepoint(target)
 
 /mob/living/carbon/human/species/elf/dark/drowraider/should_target(mob/living/L)
 	if(L.stat != CONSCIOUS)
@@ -103,7 +109,7 @@
 
 /mob/living/carbon/human/species/elf/dark/drowraider/handle_combat()
 	if(mode == AI_HUNT)
-		if(prob(10))
+		if(prob(5))
 			emote("laugh")
 	. = ..()
 
