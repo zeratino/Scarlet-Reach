@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "The Underdark"
 	icon_state = "cavewet"
 	warden_area = FALSE
-	first_time_text = "Deep Underdark"
+	first_time_text = "The Underdark"
 	ambientsounds = AMB_CAVEWATER
 	ambientnight = AMB_CAVEWATER
 	spookysounds = SPOOKY_CAVE
@@ -389,6 +389,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
 				/mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated = 20,
+				/mob/living/carbon/human/species/elf/dark/drowraider/ambush = 10,
 				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 25,
 				/mob/living/carbon/human/species/goblin/npc/ambush/moon = 30,
 				/mob/living/simple_animal/hostile/retaliate/rogue/troll = 15)
@@ -447,10 +448,10 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	ambush_types = list(
 				/turf/open/floor/rogue/dirt)
 	ambush_mobs = list(
-				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 30,
-				/mob/living/carbon/human/species/skeleton/npc = 10,
-				/mob/living/carbon/human/species/goblin/npc/hell = 20,
-				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 5)
+				/mob/living/simple_animal/hostile/retaliate/rogue/bigrat = 10,
+				/mob/living/carbon/human/species/skeleton/npc/ambush = 20,
+				/mob/living/carbon/human/species/goblin/npc/hell = 25,
+				/mob/living/simple_animal/hostile/retaliate/rogue/minotaur = 15)
 	droning_sound = 'sound/music/area/decap.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null

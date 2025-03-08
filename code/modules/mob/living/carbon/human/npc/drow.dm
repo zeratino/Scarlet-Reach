@@ -38,24 +38,50 @@
 	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/elf/dark/drowraider)
+	gender = pick(MALE, FEMALE)
+	regenerate_icons()
 
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
 	var/obj/item/organ/ears/organ_ears = getorgan(/obj/item/organ/ears)
+	var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
+	var/hairf = pick(list(/datum/sprite_accessory/hair/head/himecut, 
+						/datum/sprite_accessory/hair/head/countryponytailalt, 
+						/datum/sprite_accessory/hair/head/stacy, 
+						/datum/sprite_accessory/hair/head/kusanagi_alt))
+	var/hairm = pick(list(/datum/sprite_accessory/hair/head/ponytailwitcher, 
+						/datum/sprite_accessory/hair/head/dave, 
+						/datum/sprite_accessory/hair/head/emo, 
+						/datum/sprite_accessory/hair/head/sabitsuki))
+
+	var/datum/bodypart_feature/hair/head/new_hair = new()
+
+	if(gender == FEMALE)
+		new_hair.set_accessory_type(hairf, null, src)
+	else
+		new_hair.set_accessory_type(hairm, null, src)
+
+	new_hair.accessory_colors = "#DDDDDD"
+	new_hair.hair_color = "#DDDDDD"
+	hair_color = "#DDDDDD"
+
+	head.add_bodypart_feature(new_hair)
+
+	dna.update_ui_block(DNA_HAIR_COLOR_BLOCK)
+	dna.species.handle_body(src)
 
 	if(organ_eyes)
-		organ_eyes.eye_color = pick("#FFBF00","#C41E3A")
-		organ_eyes.accessory_colors = pick("#FFBF00","#C41E3A")
+		organ_eyes.eye_color = "#FFBF00"
+		organ_eyes.accessory_colors = "#FFBF00#FFBF00"
 	
 	if(organ_ears)
 		organ_ears.accessory_colors = "#5f5f70"
 	
-	skin_tone = "#5f5f70"
+	skin_tone = "5f5f70"
 
 	if(gender == FEMALE)
 		real_name = pick(world.file2list("strings/rt/names/elf/elfdf.txt"))
 	else
 		real_name = pick(world.file2list("strings/rt/names/elf/elfdm.txt"))
-
 	update_hair()
 	update_body()
 
@@ -83,10 +109,10 @@
 
 /datum/outfit/job/roguetown/human/species/elf/dark/drowraider/pre_equip(mob/living/carbon/human/H)
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/half/iron
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/black
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	if(prob(50))
 		wrists = /obj/item/clothing/wrists/roguetown/bracers
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
