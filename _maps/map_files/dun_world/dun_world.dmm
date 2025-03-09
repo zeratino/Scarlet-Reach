@@ -26154,7 +26154,9 @@
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/under/cavewet/bogcaves)
 "kZQ" = (
-/obj/structure/mineral_door/wood/donjon/stone,
+/obj/structure/mineral_door/wood/donjon/stone{
+	locked = 1
+	},
 /turf/closed,
 /area/rogue/outdoors/mountains/decap)
 "kZU" = (
@@ -56814,10 +56816,6 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
-"xTF" = (
-/obj/structure/fluff/statue/myth,
-/turf/closed,
-/area/rogue/outdoors/mountains/decap)
 "xTQ" = (
 /obj/effect/spawner/lootdrop/roguetown/dungeon,
 /turf/open/floor/rogue/concrete{
@@ -320341,7 +320339,7 @@ sQC
 lfO
 lfO
 lfO
-xTF
+aLe
 gXq
 gXq
 gXq
