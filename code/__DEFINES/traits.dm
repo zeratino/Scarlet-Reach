@@ -29,8 +29,8 @@
 #define TRAIT_INHUMEN_ANATOMY "Inhumen Anatomy" //can't wear hats and shoes
 #define TRAIT_NASTY_EATER "Inhumen Digestion" //can eat rotten food, organs, poison berries, and drink murky water
 #define TRAIT_WILD_EATER "Beastly Digestion" //can eat raw and rotten food and drink murky water
-#define TRAIT_NOFALLDAMAGE1 "Minor fall damage immunity"
-#define TRAIT_NOFALLDAMAGE2 "Total fall damage immunity"
+#define TRAIT_NOFALLDAMAGE1 "Fall Damage Reduction"
+#define TRAIT_NOFALLDAMAGE2 "Fall Damage Immunity"
 #define TRAIT_MISSING_NOSE "Missing Nose" //halved stamina regeneration
 #define TRAIT_DISFIGURED "Disfigured"
 #define TRAIT_SPELLCOCKBLOCK "Bewitched" //prevents spellcasting
@@ -55,6 +55,8 @@
 #define TRAIT_STUDENT		"Student"
 #define TRAIT_INTELLECTUAL "Intellectual"
 #define TRAIT_GRAVEROBBER "Experienced Grave Robber"
+#define TRAIT_PURITAN "Puritan"
+#define TRAIT_MIRROR_MAGIC "Mirror Magic"
 #define TRAIT_WITCH "They fear me, but I am useful to them."
 
 
@@ -80,6 +82,7 @@
 #define TRAIT_ABYSSOR_SWIM "Blessing of Abyssor" //less base fatigue drain when swimming
 #define TRAIT_XYLIX "Blessing of Xylix" //secret thieves cant language
 #define TRAIT_FORGEBLESSED "Blessing of Malum" //Reduces the fatigue cost of smithing a bit.
+#define TRAIT_JUSTICARSIGHT "Blessing of Ravox" //Allows seeing bounties and crimes when examining outlaws.
 
 // ASCENDANT CULTIST TRAITS (all of them recognize each other)
 #define TRAIT_COMMIE "Blessing of Matthios" //recognized by bandits as an ally
@@ -87,7 +90,7 @@
 #define TRAIT_HORDE "Anointed" //Graggarites also recognize each other
 #define TRAIT_DEPRAVED "Fallen" //Baothans also recognize each other
 
-#define TRAIT_BASHDOORS "bashdoors"
+#define TRAIT_BASHDOORS "Door Basher"
 #define TRAIT_NOMOOD "no_mood"
 #define TRAIT_BAD_MOOD "Bad Mood"
 #define TRAIT_NIGHT_OWL "Night Owl"
@@ -96,14 +99,14 @@
 #define TRAIT_BANDITCAMP "banditcamp"
 #define TRAIT_VAMPMANSION "vampiremansion"
 #define TRAIT_VAMP_DREAMS "vamp_dreams"
-#define TRAIT_LIMPDICK "limp_dick"
+#define TRAIT_LIMPDICK "Limp Dick"
 #define TRAIT_SEXPASS "sexpass"
-#define TRAIT_STEELHEARTED "steelhearted" //no bad mood from dismembering or seeing this
+#define TRAIT_STEELHEARTED "Steelhearted" //no bad mood from dismembering or seeing this
 #define TRAIT_IWASREVIVED "iwasrevived" //prevents PQ gain from reviving the same person twice
 #define TRAIT_IWASUNZOMBIFIED "iwasunzombified" //prevents PQ gain from curing a zombie twice
 #define TRAIT_IWASHAUNTED "iwashaunted" //prevents spawning a haunt from a decapitated body twice
-#define TRAIT_SCHIZO_AMBIENCE "schizo_ambience" //replaces all ambience with creepy shit
-#define TRAIT_SCREENSHAKE "screenshake" //screen will always be shaking, you cannot stop it
+#define TRAIT_SCHIZO_AMBIENCE "Schizo Ambience" //replaces all ambience with creepy shit
+#define TRAIT_SCREENSHAKE "Tremors" //screen will always be shaking, you cannot stop it
 #define TRAIT_NORUN "Decayed Flesh"
 #define TRAIT_PUNISHMENT_CURSE "PunishmentCurse"
 #define TRAIT_LEPROSY "Leprosy"
@@ -119,6 +122,7 @@
 #define TRAIT_DUALWIELDER "Dual Wielder"
 #define TRAIT_SENTINELOFWITS "Sentinel of Wits"
 #define TRAIT_KEENEARS "Keen Ears"
+#define TRAIT_CICERONE "Cicerone"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -180,6 +184,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_COMMIE = span_bloody("I can recognize other free men, and they can recognize me too."),
 	TRAIT_NORUN = span_warning("My body has atrophied in my state of decay; my leg joints just don't have the strength or durability for running anymore"),
 	TRAIT_GOODLOVER = span_love("It's a lucky thing to share my bed."),
+	TRAIT_LIMPDICK = span_crit("My soldier refuses to rise to attention! Curses!"),
 	TRAIT_SEEDKNOW = span_info("I know which seeds grow which crops."),
 	TRAIT_PERFECT_TRACKER = span_info("I am the perfect tracker. No tracks will deceive my eyes, nor will they hide their secrets from me."),//Hearthstone port.
 	TRAIT_NOCSIGHT = span_info("Noc blesses my eyes to be unburdened by the night."), //Hearthstone change.
@@ -213,7 +218,12 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_DUALWIELDER = span_info("If I wield two identical weapons, I  roll twice for my attacks, and so will the enemy against me. I do not suffer penalties from using my off-hand in combat."),
 	TRAIT_SENTINELOFWITS = span_info("My Intelligence aids in my defense. Every 2 points above 10 INT become an additional 10% chance to dodge or parry. Does not count positive buffs from potions or substances."),
 	TRAIT_KEENEARS = span_info("I've a good pair of ears, and can tell who is speaking, even when they're out of sight."),
+	TRAIT_SCREENSHAKE = span_suicide("I don't feel very steady anymore..."),
 	TRAIT_GRAVEROBBER = span_info("My experience with 'post-mortem artifact recovery' has allowed me to resist Necra's curse placed upon those who disturb resting places."),
+	TRAIT_PURITAN = span_info("I can hear the secret whispers of the heretics."),
+	TRAIT_MIRROR_MAGIC = span_info("Mirror, mirror on the wall, who's the fairest of them all?"),
+	TRAIT_JUSTICARSIGHT = span_info("I am able to remember someone's crimes by looking at them, and how much their bounty is."),
+	TRAIT_CICERONE = span_info("I am well-versed in the differences of brews and spirits, and can tell them apart at a glance."),
 ))
 
 // trait accessor defines
@@ -294,10 +304,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_DUMB				"dumb"
 #define TRAIT_MONKEYLIKE		"monkeylike" //sets IsAdvancedToolUser to FALSE
 #define TRAIT_PACIFISM			"pacifism"
-#define TRAIT_IGNORESLOWDOWN	"ignoreslow"
-#define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
-#define TRAIT_DEATHCOMA			"deathcoma" //Causes death-like unconsciousness
-#define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
+#define TRAIT_IGNORESLOWDOWN	"Ignore Slow"
+#define TRAIT_IGNOREDAMAGESLOWDOWN "Ignore Damage Slowdown"
+#define TRAIT_DEATHCOMA			"Death Coma" //Causes death-like unconsciousness
+#define TRAIT_FAKEDEATH			"Fake Death" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_STUNRESISTANCE    "stun_resistance"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
@@ -312,14 +322,14 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_RESISTLOWPRESSURE	"resist_low_pressure"
 #define TRAIT_RADIMMUNE			"rad_immunity"
 #define TRAIT_VIRUSIMMUNE		"virus_immunity"
-#define TRAIT_PIERCEIMMUNE		"pierce_immunity"
-#define TRAIT_NODISMEMBER		"dismember_immunity"
+#define TRAIT_PIERCEIMMUNE		"Pierce Immunity"
+#define TRAIT_NODISMEMBER		"Dismember Immunity"
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
-#define TRAIT_NOHUNGER			"no_hunger"
+#define TRAIT_NOHUNGER			"No Hunger"
 #define TRAIT_NOMETABOLISM		"no_metabolism"
-#define TRAIT_TOXIMMUNE			"toxin_immune"
-#define TRAIT_HARDDISMEMBER		"hard_dismember"
+#define TRAIT_TOXIMMUNE			"Toxin Immune"
+#define TRAIT_HARDDISMEMBER		"Hard Dismember"
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
@@ -444,10 +454,10 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define INNATE_TRAIT "innate"
 
 // unique trait sources, still defines
-#define TRAIT_GUIDANCE "guidance"
-#define TRAIT_FORTITUDE "fortitude"
-#define TRAIT_LONGSTRIDER "longstrider"
-#define TRAIT_DARKVISION "darkvision"
+#define TRAIT_GUIDANCE "Guidance"
+#define TRAIT_FORTITUDE "Fortitude"
+#define TRAIT_LONGSTRIDER "Longstrider"
+#define TRAIT_DARKVISION "Darkvision"
 #define CLONING_POD_TRAIT "cloning-pod"
 #define STATUE_MUTE "statue"
 #define CHANGELING_DRAIN "drain"
@@ -493,3 +503,19 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 
 //for ai
 #define TRAIT_SUBTREE_REQUIRED_OPERATIONAL_DATUM "element-required"
+
+/*/mob/living/proc/on_trait_gain(trait, source)
+	SEND_SIGNAL(src, COMSIG_TRAIT_GAIN, trait, source)
+	switch(trait)
+		if(TRAIT_COMMIE, TRAIT_CABAL, TRAIT_HORDE, TRAIT_DEPRAVED)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.update_heretic_commune()
+
+/mob/living/proc/on_trait_loss(trait, source)
+	SEND_SIGNAL(src, COMSIG_TRAIT_LOSS, trait, source)
+	switch(trait)
+		if(TRAIT_COMMIE, TRAIT_CABAL, TRAIT_HORDE, TRAIT_DEPRAVED)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.update_heretic_commune()*/
