@@ -1220,6 +1220,13 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"axG" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/rooftop{
+	dir = 2;
+	icon_state = "roofg"
+	},
+/area/rogue/outdoors/town/roofs)
 "axN" = (
 /turf/open/water/swamp,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
@@ -2148,6 +2155,10 @@
 	icon_state = "greenstone"
 	},
 /area/rogue/indoors/shelter)
+"aUJ" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/dirt,
+/area/rogue/outdoors/beach/forest)
 "aUN" = (
 /obj/structure/closet/dirthole/closed/loot,
 /obj/effect/spawner/lootdrop/roguetown/sewers,
@@ -2795,6 +2806,10 @@
 "bhJ" = (
 /turf/closed/mineral/random/rogue,
 /area/rogue/under/cave)
+"bhP" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/mountains)
 "bhT" = (
 /obj/structure/fluff/railing/border,
 /obj/structure/closet/crate/chest/wicker,
@@ -5399,6 +5414,10 @@
 /obj/item/seeds/wheat,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/beach/forest)
+"cpm" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/grasscold,
+/area/rogue/outdoors/mountains)
 "cpH" = (
 /obj/structure/fluff/railing/border{
 	dir = 9
@@ -9710,6 +9729,10 @@
 /obj/structure/roguemachine/scomm,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
+"ehx" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/woods)
 "ehB" = (
 /obj/effect/decal/cobbleedge{
 	dir = 1
@@ -20871,6 +20894,12 @@
 /obj/item/natural/rock/salt,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap)
+"iNm" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/rooftop{
+	dir = 1
+	},
+/area/rogue/outdoors/beach/forest)
 "iNq" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/reagent_containers/glass/bucket/pot/stone,
@@ -21995,6 +22024,10 @@
 	icon_state = "weird1"
 	},
 /area/rogue/under/town/basement/keep)
+"jjC" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cavewet/bogcaves)
 "jjT" = (
 /obj/structure/well,
 /turf/open/floor/rogue/cobble/mossy,
@@ -25581,6 +25614,10 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"kKT" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cave)
 "kLa" = (
 /obj/machinery/light/rogue/oven/south,
 /obj/machinery/light/rogue/hearth,
@@ -29260,6 +29297,10 @@
 /obj/structure/bars/pipe,
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"mtr" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/cave)
 "mtv" = (
 /obj/structure/fluff/walldeco/painting,
 /turf/closed/wall/mineral/rogue/decostone,
@@ -30212,6 +30253,10 @@
 /obj/structure/roguemachine/scomm,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
+"mOp" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/beach/forest)
 "mOr" = (
 /obj/structure/mineral_door/wood/red{
 	locked = 1
@@ -50500,6 +50545,10 @@
 /obj/structure/closet/crate/chest/lootbox,
 /turf/open/floor/rogue/wood,
 /area/rogue/under/town/basement)
+"veV" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/shelter)
 "veW" = (
 /obj/effect/decal/cobbleedge,
 /obj/structure/fluff/railing/border{
@@ -50585,6 +50634,10 @@
 	max_integrity = 99999
 	},
 /area/rogue/under/cave/licharena)
+"vio" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach)
 "vip" = (
 /obj/structure/fluff/railing/border{
 	dir = 9
@@ -51867,6 +51920,10 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
+/area/rogue/indoors/town)
+"vLT" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town)
 "vLU" = (
 /turf/open/floor/rogue/rooftop/green{
@@ -125328,7 +125385,7 @@ miF
 bhJ
 bhJ
 bhJ
-svv
+vio
 svv
 svv
 svv
@@ -142195,7 +142252,7 @@ mVO
 mVO
 mVO
 iZz
-xMv
+jjC
 tSN
 mVO
 mVO
@@ -151826,7 +151883,7 @@ mMU
 uPw
 ujm
 qPv
-acF
+mtr
 acF
 acF
 acF
@@ -158182,7 +158239,7 @@ bhJ
 bhJ
 bhJ
 svv
-svv
+vio
 svv
 bhJ
 miF
@@ -186366,7 +186423,7 @@ ogs
 miF
 bhJ
 bhJ
-toJ
+kKT
 rpv
 rpv
 rpv
@@ -201405,7 +201462,7 @@ bmi
 bmi
 eXH
 ixl
-ixl
+ehx
 cAO
 cAO
 cAO
@@ -344527,7 +344584,7 @@ aBB
 vvB
 fZN
 fZN
-fZN
+bhP
 fZN
 vvB
 vvB
@@ -351641,7 +351698,7 @@ tAO
 nbF
 mMm
 nbF
-nbF
+cpm
 nbF
 aBB
 aBB
@@ -428678,7 +428735,7 @@ aBB
 aBB
 lVb
 lVb
-lVb
+axG
 tVb
 dof
 hRZ
@@ -451111,7 +451168,7 @@ bAa
 oxW
 dnT
 bAY
-puO
+vLT
 puO
 puO
 ipn
@@ -453803,7 +453860,7 @@ jYP
 fvq
 abc
 abc
-fZN
+bhP
 fZN
 aBB
 aBB
@@ -462274,7 +462331,7 @@ gTH
 gTH
 gTH
 gTH
-dCq
+aUJ
 dCq
 dCq
 dCq
@@ -488119,7 +488176,7 @@ vMR
 vMR
 spw
 spw
-spw
+iNm
 spw
 spw
 spw
@@ -491190,7 +491247,7 @@ xEG
 xEG
 xEG
 hlW
-hlW
+veV
 hlW
 hlW
 hlW
@@ -494421,7 +494478,7 @@ vMR
 vMR
 vMR
 vMR
-vMR
+mOp
 vMR
 vMR
 vMR
