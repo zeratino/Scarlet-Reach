@@ -854,14 +854,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap)
-"aqp" = (
-/obj/structure/mineral_door/wood/fancywood{
-	lockid = "manor";
-	name = "Council Office";
-	locked = 1
-	},
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/town/basement/keep)
 "aqw" = (
 /obj/machinery/light/rogue/wallfire/candle/blue{
 	pixel_y = 0;
@@ -7576,6 +7568,11 @@
 /obj/machinery/light/rogue/oven/north,
 /turf/closed/wall/mineral/rogue/decowood,
 /area/rogue/indoors/town)
+"dkt" = (
+/obj/structure/table/wood,
+/obj/item/book/rogue/law,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "dkC" = (
 /obj/structure/spider/stickyweb{
 	dir = 4;
@@ -10693,6 +10690,13 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"ezM" = (
+/obj/structure/fluff/walldeco/rpainting{
+	pixel_y = 32
+	},
+/obj/structure/closet/crate/roguecloset/dark,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/under/town/basement/keep)
 "ezQ" = (
 /obj/machinery/light/rogue/hearth,
 /obj/item/reagent_containers/glass/bucket/pot,
@@ -17275,9 +17279,13 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cavewet/bogcaves)
 "hqc" = (
-/obj/structure/bed/rogue/inn,
-/obj/item/bedsheet/rogue/fabric,
-/obj/effect/landmark/start/councillor,
+/obj/structure/closet/crate/drawer/random{
+	pixel_y = 0
+	},
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/carpet/inn,
 /area/rogue/under/town/basement/keep)
 "hqd" = (
@@ -23391,13 +23399,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/under/cave/dukecourt)
-"jPg" = (
-/obj/structure/table/wood,
-/obj/item/paper,
-/obj/item/paper,
-/obj/item/paper,
-/turf/open/floor/rogue/tile/masonic/inverted,
-/area/rogue/under/town/basement/keep)
 "jPs" = (
 /obj/machinery/light/roguestreet{
 	dir = 1
@@ -25865,11 +25866,8 @@
 /turf/open/water/ocean,
 /area/rogue/outdoors/beach)
 "kRO" = (
-/obj/structure/fluff/walldeco/rpainting{
-	pixel_y = 32
-	},
-/obj/structure/closet/crate/roguecloset/dark,
-/turf/open/floor/rogue/tile/masonic/inverted,
+/obj/structure/roguemachine/scomm,
+/turf/open/floor/carpet/red,
 /area/rogue/under/town/basement/keep)
 "kRP" = (
 /obj/structure/stairs{
@@ -27447,6 +27445,11 @@
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/town)
+"lAF" = (
+/obj/structure/toilet,
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/under/town/basement/keep)
 "lAO" = (
 /obj/structure/roguemachine/bounty,
 /turf/open/floor/rogue/concrete,
@@ -28606,9 +28609,10 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cavewet/bogcaves)
 "mcU" = (
-/obj/structure/toilet,
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/tile/masonic/inverted,
+/obj/structure/bed/rogue/inn,
+/obj/item/bedsheet/rogue/fabric,
+/obj/effect/landmark/start/councillor,
+/turf/open/floor/carpet/inn,
 /area/rogue/under/town/basement/keep)
 "mdh" = (
 /obj/structure/fluff/railing/border{
@@ -32765,6 +32769,14 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
+"nOC" = (
+/obj/structure/mineral_door/wood/fancywood{
+	lockid = "manor";
+	name = "Council Office";
+	locked = 1
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "nOD" = (
 /obj/structure/flora/roguetree/burnt,
 /turf/open/floor/rogue/grassyel,
@@ -36896,16 +36908,6 @@
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/town)
-"pAp" = (
-/obj/structure/closet/crate/drawer/random{
-	pixel_y = 0
-	},
-/obj/structure/fluff/railing/border{
-	dir = 1
-	},
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/carpet/inn,
-/area/rogue/under/town/basement/keep)
 "pAq" = (
 /obj/effect/decal/cobbleedge{
 	dir = 8
@@ -40440,6 +40442,11 @@
 /obj/effect/decal/remains/wolf,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"qXJ" = (
+/obj/structure/table/wood,
+/obj/item/book/rogue/tales1,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/under/town/basement/keep)
 "qXK" = (
 /obj/item/rogueweapon/shovel,
 /turf/open/floor/rogue/dirt,
@@ -43036,10 +43043,6 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
-"saZ" = (
-/obj/structure/mineral_door/wood/deadbolt,
-/turf/closed,
-/area/rogue/under/town/basement/keep)
 "sbd" = (
 /obj/structure/fluff/railing/border{
 	dir = 6
@@ -45438,10 +45441,6 @@
 /obj/structure/fluff/walldeco/chains,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/town/sewer)
-"sZo" = (
-/obj/structure/roguemachine/scomm,
-/turf/open/floor/carpet/red,
-/area/rogue/under/town/basement/keep)
 "sZq" = (
 /obj/structure/lever/wall{
 	redstone_id = "entryduke"
@@ -46324,11 +46323,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
-"trE" = (
-/obj/structure/table/wood,
-/obj/item/book/rogue/law,
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/town/basement/keep)
 "trN" = (
 /obj/structure/rack/rogue/shelf/big{
 	icon_state = "shelf_biggest";
@@ -51723,6 +51717,10 @@
 /obj/structure/closet/crate/roguecloset,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/manor)
+"vIv" = (
+/obj/structure/mirror,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/under/town/basement/keep)
 "vIy" = (
 /obj/structure/bed/rogue/inn/hay,
 /obj/machinery/light/rogue/wallfire/candle/r,
@@ -53061,7 +53059,9 @@
 /area/rogue/outdoors/exposed/town/keep)
 "wkx" = (
 /obj/structure/table/wood,
-/obj/item/book/rogue/tales1,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/town/basement/keep)
 "wkO" = (
@@ -54948,10 +54948,6 @@
 /obj/structure/bed/rogue/inn/wool,
 /obj/item/bedsheet/rogue/fabric,
 /turf/open/floor/carpet/royalblack,
-/area/rogue/under/town/basement/keep)
-"xdC" = (
-/obj/structure/mirror,
-/turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/town/basement/keep)
 "xdG" = (
 /turf/open/floor/rogue/blocks/stonered/tiny,
@@ -163656,7 +163652,7 @@ oVj
 wCC
 wCC
 iad
-kRO
+ezM
 rTT
 qdH
 iad
@@ -164108,7 +164104,7 @@ pSy
 wCC
 wCC
 iad
-xdC
+vIv
 gmR
 gmR
 iad
@@ -164559,10 +164555,10 @@ rDC
 rnI
 rnI
 rnI
-aqp
+nOC
 ebP
-pAp
 hqc
+mcU
 vtx
 fAL
 opX
@@ -165008,7 +165004,7 @@ iad
 iad
 iad
 iad
-sZo
+kRO
 rnI
 rnI
 iad
@@ -165463,7 +165459,7 @@ rDC
 rnI
 rnI
 rnI
-saZ
+hmJ
 ebP
 ebP
 ebP
@@ -165913,12 +165909,12 @@ gmR
 rTT
 iad
 iCz
-trE
+dkt
 iCz
 iad
-jPg
-mcU
 wkx
+lAF
+qXJ
 iad
 xAN
 ylh
