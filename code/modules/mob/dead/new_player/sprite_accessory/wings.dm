@@ -42,6 +42,10 @@
 	name = "Bat"
 	icon_state = "bat"
 
+/datum/sprite_accessory/wings/featheryv2
+	name = "Feathery v2"
+	icon_state = "featheryv2"
+
 /datum/sprite_accessory/wings/moth
 	abstract_type = /datum/sprite_accessory/wings/moth
 	icon = 'icons/mob/sprite_accessory/wings/moth_wings.dmi'
