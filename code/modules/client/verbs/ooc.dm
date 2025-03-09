@@ -48,7 +48,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(!msg)
 		return
 
-	msg = emoji_parse(msg)
+	//msg = emoji_parse(msg)
 
 
 	if(!holder)
@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(!msg)
 		return
 
-	msg = emoji_parse(msg)
+	//msg = emoji_parse(msg)
 
 
 	if(!holder)
