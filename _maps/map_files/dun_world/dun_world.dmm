@@ -1519,6 +1519,16 @@
 /obj/structure/stairs,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
+"aHD" = (
+/obj/structure/closet/crate/drawer/random{
+	pixel_y = 0
+	},
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/carpet/inn,
+/area/rogue/under/town/basement/keep)
 "aHK" = (
 /obj/structure/roguerock,
 /turf/open/floor/rogue/dirt/road,
@@ -11276,6 +11286,13 @@
 /obj/structure/closet/crate/drawer,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/tavern)
+"eKy" = (
+/obj/structure/table/wood,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/under/town/basement/keep)
 "eKA" = (
 /obj/structure/fluff/statue/knight/interior{
 	layer = 4.2
@@ -17267,12 +17284,9 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cavewet/bogcaves)
 "hqc" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "longtable_mid"
-	},
-/obj/item/paper/scroll,
-/turf/open/floor/carpet/red,
+/obj/structure/toilet,
+/obj/machinery/light/rogue/wallfire/candle/r,
+/turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/town/basement/keep)
 "hqd" = (
 /obj/structure/fluff/railing/wood{
@@ -25852,12 +25866,11 @@
 /turf/open/water/ocean,
 /area/rogue/outdoors/beach)
 "kRO" = (
-/obj/structure/table/wood{
-	icon_state = "longtable";
-	dir = 1
+/obj/structure/fluff/walldeco/rpainting{
+	pixel_y = 32
 	},
-/obj/item/natural/feather,
-/turf/open/floor/carpet/red,
+/obj/structure/closet/crate/roguecloset/dark,
+/turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/under/town/basement/keep)
 "kRP" = (
 /obj/structure/stairs{
@@ -26355,6 +26368,10 @@
 "lew" = (
 /turf/open/floor/rogue/woodturned/nosmooth,
 /area/rogue/under/underdark)
+"leB" = (
+/obj/structure/mineral_door/wood/deadbolt,
+/turf/closed,
+/area/rogue/under/town/basement/keep)
 "leD" = (
 /obj/machinery/light/rogue/oven/south,
 /turf/open/floor/rogue/tile{
@@ -28594,12 +28611,9 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cavewet/bogcaves)
 "mcU" = (
-/obj/structure/table/wood{
-	dir = 2;
-	icon_state = "longtable"
-	},
-/obj/item/candle/skull/lit,
-/turf/open/floor/carpet/red,
+/obj/structure/table/wood,
+/obj/item/book/rogue/law,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "mdh" = (
 /obj/structure/fluff/railing/border{
@@ -28980,6 +28994,10 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
+"mlU" = (
+/obj/structure/roguemachine/scomm,
+/turf/open/floor/carpet/red,
+/area/rogue/under/town/basement/keep)
 "mma" = (
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/ruinedwood{
@@ -44462,6 +44480,12 @@
 /obj/structure/flora/newleaf,
 /turf/open/transparent/openspace,
 /area/rogue/indoors/shelter/woods)
+"sCu" = (
+/obj/structure/bed/rogue/inn,
+/obj/item/bedsheet/rogue/fabric,
+/obj/effect/landmark/start/councillor,
+/turf/open/floor/carpet/inn,
+/area/rogue/under/town/basement/keep)
 "sCx" = (
 /turf/open/floor/rogue/concrete{
 	dir = 4
@@ -48663,6 +48687,14 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"urW" = (
+/obj/structure/mineral_door/wood/fancywood{
+	lockid = "manor";
+	name = "Council Office";
+	locked = 1
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "urY" = (
 /obj/structure/fluff/railing/border{
 	dir = 8;
@@ -53028,9 +53060,11 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/exposed/town/keep)
 "wkx" = (
-/obj/structure/chair/stool/rogue,
-/obj/effect/landmark/start/councillor,
-/turf/open/floor/carpet/red,
+/obj/structure/mineral_door/wood{
+	locked = 1;
+	lockid = "manor"
+	},
+/turf/closed,
 /area/rogue/under/town/basement/keep)
 "wkO" = (
 /obj/structure/mineral_door/wood/deadbolt/shutter{
@@ -55219,6 +55253,10 @@
 /obj/effect/landmark/start/monk,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church/chapel)
+"xiR" = (
+/obj/structure/mirror,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/under/town/basement/keep)
 "xiY" = (
 /obj/structure/fluff/railing/fence,
 /turf/open/floor/rogue/grass,
@@ -55668,6 +55706,11 @@
 /obj/machinery/light/rogue/hearth,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/town/sewer)
+"xrU" = (
+/obj/structure/table/wood,
+/obj/item/book/rogue/tales1,
+/turf/open/floor/rogue/tile/masonic/inverted,
+/area/rogue/under/town/basement/keep)
 "xrV" = (
 /obj/item/natural/fibers,
 /turf/open/floor/rogue/cobble/mossy,
@@ -162713,8 +162756,8 @@ vtx
 iad
 iad
 iad
-vtx
-vtx
+esm
+esm
 iad
 iad
 eHY
@@ -163165,7 +163208,7 @@ iad
 iad
 iad
 iad
-iad
+wkx
 iad
 iad
 iad
@@ -163620,11 +163663,11 @@ oVj
 wCC
 wCC
 iad
-dlK
-ylh
-mMx
-ylh
-dlK
+kRO
+rTT
+qdH
+iad
+ogs
 ogs
 ogs
 ogs
@@ -164071,12 +164114,12 @@ iad
 pSy
 wCC
 wCC
-vtx
-xAN
-ylh
-mMx
-ylh
-xAN
+iad
+xiR
+gmR
+gmR
+iad
+ogs
 ogs
 ogs
 ogs
@@ -164520,15 +164563,15 @@ bhE
 fiP
 ebP
 rDC
-wCC
 rnI
-mcU
+rnI
+rnI
+urW
+ebP
+aHD
+sCu
 vtx
-xAN
-vVx
-dVJ
-vVx
-pby
+fAL
 opX
 opX
 opX
@@ -164972,15 +165015,15 @@ iad
 iad
 iad
 iad
-iRq
-wkx
-hqc
+mlU
+rnI
+rnI
 iad
+iad
+iad
+vtx
+vtx
 xAN
-ylh
-mMx
-ylh
-ylh
 urZ
 ylh
 ylh
@@ -165424,16 +165467,16 @@ wTi
 ebP
 ebP
 rDC
-wCC
 rnI
-kRO
+rnI
+rnI
+leB
+ebP
+ebP
+ebP
 iad
 xAN
 ylh
-mMx
-mMx
-mMx
-mMx
 mMx
 mMx
 mMx
@@ -165876,17 +165919,17 @@ mDc
 gmR
 rTT
 iad
-wCC
-wCC
 iCz
+mcU
+iCz
+iad
+eKy
+hqc
+xrU
 iad
 xAN
 ylh
 mMx
-ylh
-ylh
-ylh
-ylh
 urZ
 urZ
 ylh
@@ -166332,15 +166375,15 @@ iad
 iad
 iad
 iad
+iad
+iad
+iad
+iad
 xAN
 ylh
 mMx
 ylh
 fAL
-opX
-opX
-opX
-opX
 opX
 opX
 opX
@@ -166783,16 +166826,16 @@ vtx
 dlK
 opX
 opX
-opX
+dlK
+vVx
+dVJ
+vVx
+dlK
 xSV
 ylh
 mMx
 ylh
 xAN
-ogs
-ogs
-ogs
-ogs
 ogs
 ogs
 ogs
@@ -167237,14 +167280,14 @@ ylh
 ylh
 sMT
 urZ
+mMx
+ylh
+ylh
+ylh
 ylh
 mMx
 ylh
 xAN
-ogs
-ogs
-ogs
-ogs
 ogs
 ogs
 ogs
@@ -167691,14 +167734,14 @@ mMx
 mMx
 mMx
 mMx
+mMx
+mMx
+mMx
+mMx
 ylh
 xAN
 ogs
 ogs
-ogs
-ogs
-ogs
-svv
 ogs
 svv
 svv
@@ -168139,18 +168182,18 @@ xCK
 vVx
 urZ
 ylh
-dxA
+ylh
 ylh
 ylh
 ylh
 urZ
+ylh
+ylh
+ylh
+ylh
 xAN
 ogs
 ogs
-ogs
-ogs
-ogs
-svv
 svv
 svv
 svv
@@ -168596,12 +168639,12 @@ opX
 opX
 opX
 opX
+opX
+opX
+opX
+opX
 xSV
 ogs
-ogs
-ogs
-ogs
-svv
 svv
 svv
 svv
@@ -169051,9 +169094,9 @@ ogs
 ogs
 ogs
 ogs
-svv
-svv
-svv
+ogs
+ogs
+ogs
 svv
 svv
 svv
@@ -169507,7 +169550,7 @@ svv
 svv
 svv
 svv
-fce
+svv
 fce
 fce
 fce
@@ -169956,9 +169999,9 @@ svv
 svv
 svv
 svv
-fce
-fce
-fce
+svv
+svv
+svv
 fce
 fce
 fce
@@ -284314,7 +284357,7 @@ rZO
 rZO
 aoe
 aoe
-ebU
+aoe
 ebU
 ebU
 ebU
