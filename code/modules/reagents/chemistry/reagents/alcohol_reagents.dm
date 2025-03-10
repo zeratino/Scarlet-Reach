@@ -2230,7 +2230,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/beer/nocshine/on_mob_life(mob/living/carbon/M)
 	M.apply_status_effect(/datum/status_effect/buff/nocshine)
-	M.adjustToxLoss(1, 0)
+	if(HAS_TRAIT(M, TRAIT_CRACKHEAD))
+		M.adjustToxLoss(0.2, 0)
+	else
+		M.adjustToxLoss(1.2, 0)
 	..()
 	. = 1
 
