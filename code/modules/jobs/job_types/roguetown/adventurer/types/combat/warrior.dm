@@ -223,10 +223,17 @@
 			ADD_TRAIT(H, TRAIT_NOPAIN, TRAIT_GENERIC) 
 			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_BREADY, TRAIT_GENERIC)
 			
-			H.change_stat("constitution", 7)
+			H.change_stat("constitution", 11)
 			H.change_stat("intelligence", -2)
+			H.change_stat("perception", -2)
 			
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/damage_transfer)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/affliction_transfer)  
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/damage_link)
