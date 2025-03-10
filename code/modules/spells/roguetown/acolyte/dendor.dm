@@ -268,8 +268,14 @@ var/static/list/druid_forms = list(
 	// Enable combat capabilities
 	shape.dextrous = TRUE
 	shape.held_items = list(null, null)
+	
+	// Disable AI completely to prevent wandering
 	shape.can_have_ai = FALSE
 	shape.AIStatus = AI_OFF
+	shape.ai_controller = null  // Remove any AI controller
+	shape.stop_automated_movement = TRUE  // Stop automated movement
+	shape.stop_automated_movement_when_pulled = TRUE  // Stop movement when pulled
+	shape.wander = FALSE  // Disable wandering
 	shape.stat_attack = CONSCIOUS
 	shape.environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	ADD_TRAIT(shape, TRAIT_BASHDOORS, TRAIT_GENERIC)
