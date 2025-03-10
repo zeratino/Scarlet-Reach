@@ -234,9 +234,10 @@
 			H.change_stat("perception", -2)
 			
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/damage_transfer)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/affliction_transfer)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/burden_exchange)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_transfer)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/affliction_transfer)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/burden_exchange)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_link)
 			
 			shirt = /obj/item/clothing/suit/roguetown/shirt/rags
 			pants = /obj/item/clothing/under/roguetown/tights/black
