@@ -118,7 +118,7 @@
 		return
 	var/mob/living/carbon/human/H = user
 	if(givingto == H && !H.get_active_held_item()) //take item being offered
-		if(world.time > lastgibto + 100) //time out give after a while
+		if(world.time > lastgibto + 300) //time out give after a while
 			givingto = null
 			return
 		var/obj/item/I = get_active_held_item()
