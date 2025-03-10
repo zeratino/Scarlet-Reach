@@ -2233,7 +2233,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(HAS_TRAIT(M, TRAIT_CRACKHEAD))
 		M.adjustToxLoss(0.2, 0)
 	else
-		M.adjustToxLoss(1, 0)
+		M.adjustToxLoss(0.75, 0)
 	..()
 	. = 1
 
