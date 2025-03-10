@@ -97,16 +97,18 @@
 
 /datum/species/goblinp/get_skin_list()
 	return list(
-		"Green" = "317e3c",
-		"Forest" = "244f1b",
-		"Red" = "87312a",
-		"Bronze" = "75533b",
-		"Teal" = "0d8f68",
-		"Viridian" = "0f8a4a",
-		"Jade" = "53a16d",
-		"Lime" = "518a2d",
-		"Moss" = "538a0f",
-		"Olive" = "6b8a08",
+		"Ochre" = SKIN_COLOR_OCHRE,
+		"Meadow" = SKIN_COLOR_MEADOW,
+		"Olive" = SKIN_COLOR_OLIVE,
+		"Green" = SKIN_COLOR_GREEN,
+		"Moss" = SKIN_COLOR_MOSS,
+		"Taiga" = SKIN_COLOR_TAIGA,
+		"Bronze" = SKIN_COLOR_BRONZE,
+		"Red" = SKIN_COLOR_RED,
+		"Frost" = SKIN_COLOR_FROST,
+		"Abyss" = SKIN_COLOR_ABYSS,
+		"Teal" = SKIN_COLOR_TEAL,
+		"Hadal" = SKIN_COLOR_HADAL
 	)
 
 /datum/species/goblinp/on_species_gain(mob/living/carbon/C, datum/species/old_species)
