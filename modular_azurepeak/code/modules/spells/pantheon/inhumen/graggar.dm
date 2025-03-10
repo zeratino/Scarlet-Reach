@@ -49,7 +49,7 @@
 			continue
 		if(target.mob_biotypes & MOB_UNDEAD)
 			continue
-		target.apply_status_effect(/datum/status_effect/debuff/call_to_slaughter)
+		target.apply_status_effect(/datum/status_effect/debuff/call_to_slaughter)	//Debuffs non-inhumens/psydonians
 	return ..()
 
 //Unholy Grasp - Throws disappearing net made of viscera at enemy. Creates blood on impact.

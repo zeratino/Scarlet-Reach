@@ -30,7 +30,7 @@
 
 /obj/effect/proc_holder/spell/invoked/baothablessings/proc/remove_buff(mob/living/carbon/target)
 	REMOVE_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_GENERIC)							
-	to_chat(target, span_warning("I feel my connection to the arcyne surround me once more."))
+	to_chat(target, span_warning("I see everything clearly once more.."))
 	target.visible_message("[target]'s eyes appear to return to normal.")
 
 //Enrapturing Powder - T2, basically a crackhead blowing cocaine in your face.
