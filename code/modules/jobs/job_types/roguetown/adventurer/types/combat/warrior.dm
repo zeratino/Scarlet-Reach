@@ -234,17 +234,12 @@
 			H.change_stat("perception", -2)
 			
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_transfer)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/affliction_transfer)  
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_link)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/burden_exchange)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/damage_transfer)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/affliction_transfer)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/burden_exchange)
 			
-			armor = /obj/item/clothing/suit/roguetown/armor/leather
-			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-			pants = /obj/item/clothing/under/roguetown/trou/leather
-			shoes = /obj/item/clothing/shoes/roguetown/boots
-			belt = /obj/item/storage/belt/rogue/leather
-			beltr = /obj/item/rogueweapon/whip
-			neck = /obj/item/clothing/neck/roguetown/psicross
-			backl = /obj/item/storage/backpack/rogue/satchel
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			shirt = /obj/item/clothing/suit/roguetown/shirt/rags
+			pants = /obj/item/clothing/under/roguetown/tights/black
+			backl = /obj/item/storage/backpack/rogue/satchel   
+			belt = /obj/item/storage/belt/rogue/leather        
+			beltr = /obj/item/rogueweapon/whip                

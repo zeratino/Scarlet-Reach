@@ -1,7 +1,9 @@
 // Define the signals needed for the flagellant spells
 #define COMSIG_MOB_APPLY_DAMAGE "mob_apply_damage"
+// Define bleeding flag since it's not available in this codebase
+#define BODYPART_BLEEDING (1<<1)
 
-/obj/effect/proc_holder/spell/invoked/damage_transfer
+/obj/effect/proc_holder/spell/targeted/damage_transfer
 	name = "Vicarious Suffering"
 	desc = "Transfer any damage your target receives to yourself instead, taking their pain as your own for 2 minutes."
 	clothes_req = FALSE
@@ -9,41 +11,52 @@
 	charge_max = 1200  // 2 minutes cooldown
 	cooldown_min = 600 // 1 minute minimum cooldown
 	range = -1        // Infinite range
-	invocation_type = "none"
+	invocation = "Your pain shall be mine!"
+	invocation_type = "shout"
 	action_icon_state = "damage_transfer"
 	school = "holy"
 	
-/obj/effect/proc_holder/spell/invoked/damage_transfer/cast(atom/target, mob/user)
-	if(!isliving(target))
-		to_chat(user, span_warning("You can only cast this on living beings!"))
+/obj/effect/proc_holder/spell/targeted/damage_transfer/cast(list/targets, mob/user)
+	if(!targets.len)
+		to_chat(user, span_warning("No target found in range!"))
+		return
+		
+	var/mob/living/carbon/target = targets[1]
+	if(!istype(target))
+		to_chat(user, span_warning("You can only cast this on people!"))
 		return
 	
-	var/mob/living/carbon/target_mob = target
-	
-	if(target_mob.stat == DEAD)
-		to_chat(user, span_warning("[target_mob] is dead!"))
+	if(target.stat == DEAD)
+		to_chat(user, span_warning("[target] is dead!"))
 		return
 	
-	to_chat(user, span_notice("You prepare to take [target_mob]'s suffering as your own..."))
-	to_chat(target_mob, span_warning("[user] begins a ritual to take your suffering!"))
+	to_chat(user, span_notice("You prepare to take [target]'s suffering as your own..."))
+	to_chat(target, span_warning("[user] begins a ritual to take your suffering!"))
 	
-	if(do_after(user, 30, target = target_mob))
-		to_chat(user, span_notice("You are now bound to [target_mob]'s pain for 2 minutes."))
-		to_chat(target_mob, span_notice("[user] has bound themselves to your suffering."))
+	if(do_after(user, 30, target = target))
+		to_chat(user, span_notice("You are now bound to [target]'s pain for 2 minutes."))
+		to_chat(target, span_notice("[user] has bound themselves to your suffering."))
 		
-		RegisterSignal(target_mob, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_target_damaged))
+		RegisterSignal(target, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(on_target_damaged))
+		RegisterSignal(target, list(COMSIG_LIVING_DEATH, COMSIG_LIVING_STATUS_UNCONSCIOUS), PROC_REF(on_target_incap))
 		
-		addtimer(CALLBACK(src, PROC_REF(end_damage_transfer), target_mob), 2 MINUTES)
-	
-/obj/effect/proc_holder/spell/invoked/damage_transfer/proc/end_damage_transfer(mob/living/carbon/target)
+		addtimer(CALLBACK(src, PROC_REF(end_damage_transfer), target), 2 MINUTES)
+
+/obj/effect/proc_holder/spell/targeted/damage_transfer/proc/on_target_incap(datum/source)
+	var/mob/living/carbon/target = source
+	to_chat(usr, span_warning("Your connection to [target] has been broken by their condition!"))
+	to_chat(target, span_notice("[usr]'s connection to your suffering has been broken!"))
+	end_damage_transfer(target)
+
+/obj/effect/proc_holder/spell/targeted/damage_transfer/proc/end_damage_transfer(mob/living/carbon/target)
 	if(QDELETED(target))
 		return
 	
-	UnregisterSignal(target, COMSIG_MOB_APPLY_DAMAGE)
+	UnregisterSignal(target, list(COMSIG_MOB_APPLY_DAMAGE, COMSIG_LIVING_DEATH, COMSIG_LIVING_STATUS_UNCONSCIOUS))
 	to_chat(usr, span_warning("Your connection to [target]'s pain has faded."))
 	to_chat(target, span_notice("[usr] is no longer bound to your suffering."))
 
-/obj/effect/proc_holder/spell/invoked/damage_transfer/proc/on_target_damaged(datum/source, damage, damagetype, def_zone)
+/obj/effect/proc_holder/spell/targeted/damage_transfer/proc/on_target_damaged(datum/source, damage, damagetype, def_zone)
 	if(!damage || !isliving(source))
 		return
 	
@@ -51,51 +64,113 @@
 	var/mob/living/carbon/human/H = usr
 	
 	if(L && H && iscarbon(L))
+		// Transfer the damage
 		H.apply_damage(damage, damagetype, def_zone)
 		L.adjustBruteLoss(-damage) // Negate the damage on the target
+		
+		// Transfer bleeding status if applicable
+		if(iscarbon(L) && iscarbon(H))
+			var/mob/living/carbon/C_target = L
+			var/mob/living/carbon/C_user = H
+			
+			// Check if the target has bleeding wounds
+			var/obj/item/bodypart/affected_limb = C_target.get_bodypart(def_zone)
+			if(affected_limb && affected_limb.get_damage() > 0)
+				// Find the corresponding bodypart on the flagellant
+				var/obj/item/bodypart/user_limb = C_user.get_bodypart(def_zone)
+				if(user_limb)
+					// Check if the limb is bleeding
+					var/target_bleeding = C_target.get_bleed_rate() > 0
+					if(target_bleeding)
+						// Make the target stop bleeding
+						C_target.suppress_bloodloss(5 MINUTES)
+						// Make the user start bleeding
+						C_user.bleed(2)
+						to_chat(H, span_warning("You take on [L]'s bleeding wounds!"))
+						to_chat(L, span_notice("Your bleeding wounds transfer to [H]!"))
+		
 		to_chat(L, span_notice("Your wounds are taken by [H]!"))
 		to_chat(H, span_warning("You feel [L]'s pain!"))
 		new /obj/effect/temp_visual/heal(get_turf(L), "#FF0000")
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF0000")
 
-/obj/effect/proc_holder/spell/invoked/affliction_transfer
+/obj/effect/proc_holder/spell/targeted/affliction_transfer
 	name = "Burden of Martyrdom"
-	desc = "Take on the afflictions of your target, healing their wounds and restoring missing limbs at great cost to yourself."
+	desc = "Take on the afflictions of your target, healing their wounds and restoring missing limbs at great cost to yourself. If used on the dead, you can sacrifice your own life to restore theirs."
 	clothes_req = FALSE
 	human_req = TRUE
 	charge_max = 3000  // 5 minutes cooldown
 	cooldown_min = 1800 // 3 minutes minimum cooldown
 	range = -1         // Infinite range
-	invocation_type = "none"
+	invocation = "I shall bear your wounds as my own!"
+	invocation_type = "shout"
 	action_icon_state = "affliction_transfer"
 	school = "holy"
 	
-/obj/effect/proc_holder/spell/invoked/affliction_transfer/cast(atom/target, mob/user)
-	if(!isliving(target))
-		to_chat(user, span_warning("You can only cast this on living beings!"))
+/obj/effect/proc_holder/spell/targeted/affliction_transfer/cast(list/targets, mob/user)
+	if(!targets.len)
 		return
 	
+	var/mob/living/carbon/human/H_target = targets[1]
 	var/mob/living/carbon/human/H_user = user
-	var/mob/living/carbon/human/H_target = target
 	
 	if(!istype(H_user) || !istype(H_target))
 		to_chat(user, span_warning("This spell only works on humans!"))
 		return
 	
-	if(H_target.stat == DEAD)
-		to_chat(user, span_warning("[H_target] is dead!"))
-		return
+	var/is_dead = (H_target.stat == DEAD)
+	if(is_dead)
+		to_chat(user, span_warning("[H_target] is dead. Your sacrifice could restore them, but it will cost your life!"))
+		to_chat(H_target, span_warning("[user] begins a ritual of ultimate sacrifice to restore you!"))
+	else
+		to_chat(user, span_notice("You prepare to take [H_target]'s afflictions as your own..."))
+		to_chat(H_target, span_warning("[user] begins a ritual to take your afflictions!"))
 	
-	to_chat(user, span_notice("You prepare to take [H_target]'s afflictions as your own..."))
-	to_chat(H_target, span_warning("[user] begins a ritual to take your afflictions!"))
-	
-	if(do_after(user, 60, target = H_target))
-		// Heal target's damage
+	if(do_after(user, is_dead ? 100 : 60, target = H_target))
+		// Handle revival case
+		if(is_dead)
+			// Final warning
+			if(alert(user, "Are you sure you want to sacrifice your life to restore [H_target]?", "Ultimate Sacrifice", "Yes", "No") != "Yes")
+				to_chat(user, span_warning("You stop the ritual."))
+				return
+				
+			// Dramatic effects
+			new /obj/effect/temp_visual/heal(get_turf(H_user), "#FF0000")
+			new /obj/effect/temp_visual/heal(get_turf(H_target), "#FFFFFF")
+			
+			// Revive target
+			H_target.revive(full_heal = TRUE, admin_revive = FALSE)
+			H_target.grab_ghost(force = TRUE)
+			
+			// Messages
+			to_chat(H_target, span_notice("You feel life surge back into your body as [H_user] sacrifices themselves for you!"))
+			to_chat(H_user, span_warning("Your life force drains away as you restore [H_target] to life!"))
+			
+			// Kill the user
+			H_user.death()
+			return
+			
+		// Normal healing case continues as before...
 		var/brute_to_heal = H_target.getBruteLoss()
 		var/burn_to_heal = H_target.getFireLoss()
 		var/tox_to_heal = H_target.getToxLoss()
 		var/oxy_to_heal = H_target.getOxyLoss()
 		
+		// Transfer bleeding status from all bodyparts
+		if(iscarbon(H_target) && iscarbon(H_user))
+			var/mob/living/carbon/C_target = H_target
+			var/mob/living/carbon/C_user = H_user
+			
+			// Check if target is bleeding
+			if(C_target.get_bleed_rate() > 0)
+				// Stop target bleeding
+				C_target.suppress_bloodloss(5 MINUTES)
+				// Make user bleed
+				C_user.bleed(5)
+				to_chat(H_user, span_warning("You take on [H_target]'s bleeding wounds!"))
+				to_chat(H_target, span_notice("Your bleeding wounds transfer to [H_user]!"))
+		
+		// Apply existing healing effects
 		H_target.adjustBruteLoss(-brute_to_heal)
 		H_target.adjustFireLoss(-burn_to_heal)
 		H_target.adjustToxLoss(-tox_to_heal)
@@ -115,7 +190,7 @@
 				var/obj/item/bodypart/user_bp = H_user.get_bodypart(BP.body_zone)
 				if(user_bp)
 					user_bp.receive_damage(brute=30)
-				
+		
 		// Restore missing limbs by sacrificing the flagellant's own
 		var/list/missing_limbs = list()
 		if(!H_target.get_bodypart(BODY_ZONE_L_ARM))
@@ -208,7 +283,8 @@
 	charge_max = 600  // 1 minute cooldown
 	cooldown_min = 300 // 30 seconds minimum cooldown
 	range = -1        // Infinite range
-	invocation_type = "none"
+	invocation = "Share in my suffering!"
+	invocation_type = "shout"
 	action_icon_state = "damage_link"
 	school = "holy"
 	
@@ -217,9 +293,8 @@
 		to_chat(user, span_warning("You can only cast this on living beings!"))
 		return
 	
-	var/mob/living/carbon/human/H_user = user
 	var/mob/living/carbon/human/H_target = target
-	
+	var/mob/living/carbon/human/H_user = user
 	if(!istype(H_user) || !istype(H_target))
 		to_chat(user, span_warning("This spell only works on humans!"))
 		return
@@ -266,7 +341,7 @@
 			H_user.adjustOxyLoss(-oxy_damage)
 			H_target.adjustOxyLoss(oxy_damage)
 
-/obj/effect/proc_holder/spell/invoked/burden_exchange
+/obj/effect/proc_holder/spell/targeted/burden_exchange
 	name = "Exchange of Burdens"
 	desc = "Switch places with your target, taking their physical burden upon yourself."
 	clothes_req = FALSE
@@ -274,17 +349,17 @@
 	charge_max = 300  // 30 seconds cooldown
 	cooldown_min = 150 // 15 seconds minimum cooldown
 	range = -1        // Infinite range
-	invocation_type = "none"
+	invocation = "Let us trade places in this trial!"
+	invocation_type = "shout"
 	action_icon_state = "burden_exchange"
 	school = "holy"
 	
-/obj/effect/proc_holder/spell/invoked/burden_exchange/cast(atom/target, mob/user)
-	if(!isliving(target))
-		to_chat(user, span_warning("You can only cast this on living beings!"))
+/obj/effect/proc_holder/spell/targeted/burden_exchange/cast(list/targets, mob/user)
+	if(!targets.len)
 		return
-	
+		
+	var/mob/living/carbon/human/H_target = targets[1]
 	var/mob/living/carbon/human/H_user = user
-	var/mob/living/carbon/human/H_target = target
 	
 	if(!istype(H_user) || !istype(H_target))
 		to_chat(user, span_warning("This spell only works on humans!"))
