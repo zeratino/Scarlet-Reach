@@ -3,6 +3,7 @@
 	return
 
 /mob/living/carbon/get_bodypart(zone)
+	RETURN_TYPE(/obj/item/bodypart)
 	if(!zone)
 		zone = BODY_ZONE_CHEST
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
@@ -38,7 +39,6 @@
 					return FALSE
 			return L
 	return FALSE
-
 
 
 /mob/proc/has_left_hand(check_disabled = TRUE)
