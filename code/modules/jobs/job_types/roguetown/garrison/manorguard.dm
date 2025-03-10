@@ -110,7 +110,7 @@
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardcastle)
 	H.verbs |= /mob/proc/haltyell
 
-// Ranged weapons and daggers on the slide - lighter armor, but fleet!
+// Ranged weapons and daggers on the side - lighter armor, but fleet!
 /datum/advclass/manorguard/skirmisher
 	name = "Skirmisher"
 	tutorial = "You are a professional soldier of the realm, specializing in ranged implements. You sport a keen eye, looking for your enemies weaknesses."
@@ -134,6 +134,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
@@ -164,7 +165,7 @@
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		if("Sling")
-			beltr = /obj/item/quiver/sling
+			beltr = /obj/item/quiver/sling/iron
 			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling // Both are belt slots and it's not worth setting where the cugel goes for everyone else, sad.
 			H.mind.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
 
@@ -188,7 +189,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)			// We discourage horse archers, though.
 	H.mind.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) // You fuel your antelope-horse.
+	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE) 
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
