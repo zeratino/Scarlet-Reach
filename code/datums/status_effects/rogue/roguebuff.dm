@@ -13,6 +13,28 @@
 	desc = ""
 	icon_state = "drunk"
 
+/atom/movable/screen/alert/status_effect/buff/drunkmurk
+	name = "Murk-Knowledge"
+	desc = ""
+	icon_state = "drunk"
+
+/atom/movable/screen/alert/status_effect/buff/drunknoc
+	name = "Noc-Shine Strength"
+	desc = ""
+	icon_state = "drunk"
+
+/datum/status_effect/buff/murkwine
+	id = "murkwine"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/drunkmurk
+	effectedstats = list("intelligence" = 5)
+	duration = 2 MINUTES
+
+/datum/status_effect/buff/nocshine
+	id = "nocshine"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/drunknoc
+	effectedstats = list("strength" = 1, "endurance" = 1)
+	duration = 2 MINUTES
+
 /datum/status_effect/buff/foodbuff
 	id = "foodbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/foodbuff
@@ -101,6 +123,79 @@
 /datum/status_effect/buff/moondust_purest/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/moondust_purest)
+
+/datum/status_effect/buff/purified_ozium
+	id = "purified_ozium"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
+	effectedstats = list("speed" = -5, "endurance" = 4, "intelligence" = -3, "constitution" = 3)
+	duration = 80 SECONDS
+	var/originalcmode = ""
+	var/hadcritres = FALSE
+	var/hadpainres = FALSE
+
+/datum/status_effect/buff/purified_ozium/nextmove_modifier()
+	return 1.2
+
+/datum/status_effect/buff/purified_ozium/on_apply()
+	. = ..()
+	owner.add_stress(/datum/stressevent/ozium)
+	if(!HAS_TRAIT(owner, TRAIT_NOPAIN))
+		ADD_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	else
+		hadpainres = TRUE
+	if(!HAS_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE))
+		ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	else
+		hadcritres = TRUE
+	originalcmode = owner.cmode_music
+	owner.cmode_music = 'sound/music/combat_ozium.ogg'
+
+/datum/status_effect/buff/purified_ozium/on_remove()
+	owner.remove_stress(/datum/stressevent/ozium)
+	if(!hadpainres)
+		REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	if(!hadcritres)
+		REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	owner.cmode_music = originalcmode
+	. = ..()
+
+/datum/status_effect/buff/starsugar
+	id = "starsugar"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
+	effectedstats = list("speed" = 4, "endurance" = 4, "intelligence" = -3, "constitution" = -3)
+	duration = 80 SECONDS
+	var/originalcmode = ""
+	var/haddodge = FALSE
+	var/haddarkvision = FALSE
+
+/datum/status_effect/buff/starsugar/nextmove_modifier()
+	return 0.7
+
+/datum/status_effect/buff/starsugar/on_apply()
+	. = ..()
+	owner.add_stress(/datum/stressevent/starsugar)
+	if(!HAS_TRAIT(owner, TRAIT_DODGEEXPERT))
+		ADD_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	else
+		haddodge = TRUE
+	if(!HAS_TRAIT(owner, TRAIT_DARKVISION))
+		ADD_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	else
+		haddarkvision = TRUE
+	if(owner.has_status_effect(/datum/status_effect/debuff/sleepytime))
+		owner.remove_status_effect(/datum/status_effect/debuff/sleepytime)
+	originalcmode = owner.cmode_music
+	owner.cmode_music = 'sound/music/combat_starsugar.ogg'
+
+
+/datum/status_effect/buff/starsugar/on_remove()
+	if(!haddodge)
+		REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	if(!haddarkvision)
+		REMOVE_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	owner.remove_stress(/datum/stressevent/starsugar)
+	owner.cmode_music = originalcmode
+	. = ..()
 
 /datum/status_effect/buff/weed
 	id = "weed"
@@ -379,25 +474,33 @@
 	to_chat(owner, span_warning("The weight of the world rests upon my shoulders once more."))
 	REMOVE_TRAIT(owner, TRAIT_FORTITUDE, MAGIC_TRAIT)
 
+#define GUIDANCE_FILTER "guidance_glow"
 /atom/movable/screen/alert/status_effect/buff/guidance
 	name = "Guidance"
 	desc = "Arcyne assistance guides my hands."
 	icon_state = "buff"
 
 /datum/status_effect/buff/guidance
+	var/outline_colour ="#f58e2d"
 	id = "guidance"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guidance
 	duration = 1 MINUTES
 
 /datum/status_effect/buff/guidance/on_apply()
 	. = ..()
+	var/filter = owner.get_filter(GUIDANCE_FILTER)
+	if (!filter)
+		owner.add_filter(GUIDANCE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
 	to_chat(owner, span_warning("The arcyne aides me in battle."))
 	ADD_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
 
 /datum/status_effect/buff/guidance/on_remove()
 	. = ..()
 	to_chat(owner, span_warning("My feeble mind muddies my warcraft once more."))
+	owner.remove_filter(GUIDANCE_FILTER)
 	REMOVE_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
+
+#undef GUIDANCE_FILTER
 
 #define CRANKBOX_FILTER "crankboxbuff_glow"
 /atom/movable/screen/alert/status_effect/buff/churnerprotection

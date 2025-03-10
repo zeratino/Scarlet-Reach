@@ -264,9 +264,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					B.remove()
 					B.generate_appearance()
 					B.apply()
+			if(toggle_state)
+				icon_state = "[toggle_state]1"
 			return
 		if(gripsprite)
-			icon_state = initial(icon_state)
+			if(!toggle_state)
+				icon_state = initial(icon_state)
+			else
+				icon_state = "[toggle_state]"
 			var/datum/component/decal/blood/B = GetComponent(/datum/component/decal/blood)
 			if(B)
 				B.remove()
@@ -454,6 +459,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				if(length(C.prevent_crits))
 					inspec += "\n<b>PREVENTS CRITS:</b>"
 					for(var/X in C.prevent_crits)
+						if(X == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
+							X = "pick"
 						inspec += ("\n<b>[capitalize(X)]</b>")
 				inspec += "<br>"
 
