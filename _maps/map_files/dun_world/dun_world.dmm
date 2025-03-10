@@ -32819,7 +32819,7 @@
 "nOC" = (
 /obj/structure/mineral_door/wood/fancywood{
 	lockid = "manor";
-	name = "Council Office";
+	name = "Councilor's Chambers";
 	locked = 1
 	},
 /turf/open/floor/rogue/cobble,
@@ -42016,12 +42016,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town)
-"rDC" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 1
-	},
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/town/basement/keep)
 "rDI" = (
 /obj/structure/fluff/railing/fence{
 	dir = 8
@@ -164606,7 +164600,7 @@ iad
 bhE
 fiP
 ebP
-rDC
+nOC
 rnI
 rnI
 rnI
@@ -165510,7 +165504,7 @@ iad
 wTi
 ebP
 ebP
-rDC
+nOC
 rnI
 rnI
 rnI
