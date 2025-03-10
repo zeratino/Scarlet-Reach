@@ -120,6 +120,7 @@
 		"Nessyss" = SKIN_COLOR_NESSYSS,
 		"Helixia" = SKIN_COLOR_HELIXIA,
 		"Nymsea" = SKIN_COLOR_NYMSEA,
+		"Vodyanev" = SKIN_COLOR_ABYSS,
 		"Calvus" = SKIN_COLOR_CALVUS,
 		"Voibion" = SKIN_COLOR_VOIBION,
 		"Chyerno" = SKIN_COLOR_CHYERNO
