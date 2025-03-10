@@ -202,14 +202,6 @@ var/static/list/druid_forms = list(
 	if(!user)
 		return FALSE
 	
-	var/has_psicross = FALSE
-	for(var/obj/item/clothing/neck/roguetown/psicross/dendor/P in user)
-		has_psicross = TRUE
-		break
-	if(!has_psicross)
-		to_chat(user, span_warning("You need Dendor's psicross to cast this spell!"))
-		return FALSE
-		
 	if(!saved_form)
 		var/list/animal_list = list()
 		var/druidic_level = user.mind?.get_skill_level(/datum/skill/magic/druidic) || 0
@@ -236,7 +228,8 @@ var/static/list/druid_forms = list(
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/proc/do_shapeshift(mob/living/caster)
 	var/obj/shapeshift_holder/shapeshift_holder = locate() in caster
 	if(shapeshift_holder)
-		to_chat(caster, span_warning("You're already shapeshifted!"))
+		// If already shapeshifted, restore to human form
+		do_restore(caster)
 		return
 	
 	// Store original state and paralyze briefly during transformation TO beast form only

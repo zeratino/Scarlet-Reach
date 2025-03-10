@@ -28,6 +28,7 @@
 			return TRUE
 
 		if(L.electrocute_act(30, src))
+			src.take_damage(15)
 			L.consider_ambush()
 			if(L.throwing)
 				L.throwing.finalize(FALSE)
