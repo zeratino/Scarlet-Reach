@@ -74,6 +74,7 @@
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +2 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
@@ -134,7 +135,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
@@ -194,6 +195,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE) // Like the other horselords.
+	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
