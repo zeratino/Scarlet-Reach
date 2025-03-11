@@ -229,9 +229,11 @@
 			ADD_TRAIT(H, TRAIT_IGNORESLOWDOWN, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_BREADY, TRAIT_GENERIC)
 			
-			H.change_stat("constitution", 11)
+			H.change_stat("constitution", 15)
 			H.change_stat("intelligence", -2)
 			H.change_stat("perception", -2)
+			H.change_stat("endurance", -2)
+			H.change_stat("stregnth", -2)
 			
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_transfer)
