@@ -3,8 +3,8 @@
 	desc = "A beacon."
 	icon_state = "shrunkenlamp"
 	item_state = "shrunkenlamp"
-	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
+	lefthand_file = 'icons/roguetown/underworld/enigma_husks.dmi'
+	righthand_file = 'icons/roguetown/underworld/enigma_husks.dmi'
 	light_outer_range = 4
 	light_power = 20
 	light_color = LIGHT_COLOR_BLOOD_MAGIC

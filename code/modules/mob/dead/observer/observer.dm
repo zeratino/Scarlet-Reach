@@ -243,7 +243,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/CanPass(atom/movable/mover, turf/target)
 	return 1
 
-
 /mob/dead/observer/rogue/CanPass(atom/movable/mover, turf/target)
 	if(!isinhell)
 		if(istype(mover, /mob/dead/observer/rogue))
