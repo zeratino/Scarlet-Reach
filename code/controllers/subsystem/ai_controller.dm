@@ -10,10 +10,6 @@ SUBSYSTEM_DEF(ai_controllers)
 	var/list/ai_subtrees = list()
 	///List of all ai controllers currently running
 	var/list/active_ai_controllers = list()
-	///List of all AI controllers that are not running
-	var/list/inactive_ai_controllers = list()
-
-#define AI_STATUS_OFF_MAX_TIME 5 SECONDS
 
 /datum/controller/subsystem/ai_controllers/Initialize(timeofday)
 	setup_subtrees()
@@ -38,5 +34,3 @@ SUBSYSTEM_DEF(ai_controllers)
 		ai_controller.SelectBehaviors(wait * 0.1)
 		if(!LAZYLEN(ai_controller.current_behaviors)) //Still no plan
 			COOLDOWN_START(ai_controller, failed_planning_cooldown, AI_FAILED_PLANNING_COOLDOWN)
-
-#undef AI_STATUS_OFF_MAX_TIME

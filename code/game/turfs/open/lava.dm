@@ -47,8 +47,6 @@
 /turf/open/lava/MakeDry(wet_setting = TURF_WET_WATER)
 	return
 
-/turf/open/lava/airless
-
 /turf/open/lava/Entered(atom/movable/AM)
 	if(!AM.throwing)
 		if(burn_stuff(AM))
@@ -150,6 +148,7 @@
 
 //			L.adjustFireLoss(50)
 			if(L) //mobs turning into object corpses could get deleted here.
+				L.adjustFireLoss(10)
 				L.adjust_fire_stacks(100)
 				L.IgniteMob()
 				if(L.health <= 0)
