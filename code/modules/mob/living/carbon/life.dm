@@ -20,6 +20,10 @@
 	handle_embedded_objects()
 	handle_blood()
 	handle_roguebreath()
+	var/bprv = handle_bodyparts()
+	if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
+		update_stamina() //needs to go before updatehealth to remove stamcrit
+		updatehealth()
 	update_stress()
 	handle_nausea()
 	if((blood_volume > BLOOD_VOLUME_SURVIVE) || HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE))
