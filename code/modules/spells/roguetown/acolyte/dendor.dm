@@ -272,7 +272,6 @@ var/static/list/druid_forms = list(
 	// Disable AI completely to prevent wandering
 	shape.can_have_ai = FALSE
 	shape.AIStatus = AI_OFF
-	shape.ai_controller = null  // Remove any AI controller
 	shape.stop_automated_movement = TRUE  // Stop automated movement
 	shape.stop_automated_movement_when_pulled = TRUE  // Stop movement when pulled
 	shape.wander = FALSE  // Disable wandering
