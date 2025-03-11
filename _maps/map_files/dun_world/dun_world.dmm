@@ -15616,10 +15616,6 @@
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/shelter/mountains)
-"gCq" = (
-/obj/item/roguebin/water,
-/turf/open/floor/rogue/tile/bfloorz,
-/area/rogue/under/town/basement/keep)
 "gCF" = (
 /obj/structure/table/wood,
 /obj/item/book/rogue/law{
@@ -148941,8 +148937,8 @@ iad
 iad
 iad
 iad
+iad
 ogs
-bYC
 bYC
 aoH
 bHv
@@ -149391,10 +149387,10 @@ aSm
 pZw
 iad
 jlB
-bRl
+iBO
+haq
 iad
 ogs
-bYC
 vtx
 tfP
 eWv
@@ -149843,9 +149839,9 @@ drE
 drE
 djh
 iBO
-haq
+iBO
+ykd
 iad
-ogs
 ogs
 vtx
 tir
@@ -150295,9 +150291,9 @@ dNO
 mFr
 iad
 iBO
-ykd
+iBO
+bRl
 iad
-ogs
 ogs
 ogs
 bYC
@@ -150747,7 +150743,7 @@ iad
 iad
 iad
 ygd
-gCq
+iBO
 iad
 iad
 iad
