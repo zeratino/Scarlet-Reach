@@ -4422,6 +4422,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "bRl" = (
+/obj/structure/fluff/walldeco/rpainting{
+	pixel_y = 32
+	},
 /obj/structure/closet/crate/drawer,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/town/basement/keep)
@@ -15079,9 +15082,6 @@
 "gpv" = (
 /obj/structure/table/wood,
 /obj/item/book/rogue/law,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
-/obj/item/clothing/mask/cigarette/rollie/nicotine,
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/under/town/basement/keep)
 "gpR" = (
@@ -16703,7 +16703,10 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "haq" = (
-/obj/structure/roguemachine/scomm,
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette/rollie/nicotine,
+/obj/item/clothing/mask/cigarette/rollie/nicotine,
+/obj/item/clothing/mask/cigarette/rollie/nicotine,
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/under/town/basement/keep)
 "has" = (
@@ -16998,15 +17001,12 @@
 /turf/open/floor/rogue/church,
 /area/rogue/indoors/town/church/chapel)
 "hhi" = (
-/obj/structure/closet/crate/chest,
-/obj/item/rope/chain,
-/obj/item/rope/chain,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/obj/item/needle/thorn,
-/obj/item/needle/thorn,
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/tile/bfloorz,
+/obj/structure/closet/crate/roguecloset,
+/obj/item/clothing/head/roguetown/jester,
+/obj/item/clothing/shoes/roguetown/jester,
+/obj/item/clothing/suit/roguetown/shirt/jester,
+/obj/item/clothing/under/roguetown/tights/jester,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "hhm" = (
 /obj/structure/rack/rogue/shelf,
@@ -22138,12 +22138,8 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
 "jlB" = (
-/obj/structure/closet/crate/roguecloset,
-/obj/item/flashlight/flare/torch/lantern,
-/obj/structure/fluff/walldeco/rpainting{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/carpet/lord/center,
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "jlN" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -33726,6 +33722,7 @@
 	icon_state = "largetable";
 	dir = 9
 	},
+/obj/item/natural/feather,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/town/basement/keep)
 "ois" = (
@@ -42854,7 +42851,6 @@
 	icon_state = "largetable"
 	},
 /obj/item/paper/scroll,
-/obj/item/natural/feather,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/town/basement/keep)
 "rSK" = (
@@ -54072,6 +54068,19 @@
 /obj/item/clothing/wrists/roguetown/wrappings,
 /turf/open/floor/carpet/purple,
 /area/rogue/indoors/town/shop)
+"wEd" = (
+/obj/structure/closet/crate/chest,
+/obj/item/needle/thorn,
+/obj/item/needle/thorn,
+/obj/item/needle/thorn,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
+/turf/open/floor/rogue/tile/bfloorz,
+/area/rogue/under/town/basement/keep)
 "wEn" = (
 /obj/structure/chair/bench/ultimacouch,
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -57781,7 +57790,9 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap)
 "ykd" = (
-/turf/closed/mineral/rogue/bedrock,
+/obj/machinery/light/rogue/wallfire/candle,
+/obj/structure/roguemachine/scomm/l,
+/turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/under/town/basement/keep)
 "ykm" = (
 /obj/effect/decal/cobbleedge{
@@ -148917,14 +148928,14 @@ vVx
 dlK
 ogs
 ogs
-vtx
-vTb
-aSm
-pZw
-vtx
-hhi
-gpv
-bYC
+iad
+iad
+iad
+iad
+iad
+iad
+iad
+iad
 ogs
 bYC
 bYC
@@ -149369,14 +149380,14 @@ ylh
 xAN
 ogs
 ogs
-vtx
-ffL
-drE
-drE
-djh
-iBO
-iBO
-bYC
+iad
+vTb
+aSm
+pZw
+iad
+ykd
+gpv
+iad
 ogs
 bYC
 vtx
@@ -149822,13 +149833,13 @@ xAN
 ogs
 ogs
 iad
-syz
-dNO
-mFr
+ffL
+drE
+drE
+djh
+iBO
+haq
 iad
-iBO
-iBO
-bYC
 ogs
 ogs
 vtx
@@ -150274,16 +150285,16 @@ dlK
 ogs
 ogs
 iad
+syz
+dNO
+mFr
 iad
-iad
-iad
-iad
-ygd
 iBO
-bYC
-bYC
-vtx
-vtx
+wEd
+iad
+ogs
+ogs
+ogs
 bYC
 bYC
 iRq
@@ -150726,17 +150737,17 @@ iad
 ogs
 ogs
 iad
-vTb
-aSm
-pZw
 iad
-iBO
-iBO
 iad
-vTb
-loz
-pZw
-bYC
+iad
+iad
+ygd
+gCq
+iad
+iad
+iad
+iad
+iad
 bYC
 mOB
 eRG
@@ -151178,16 +151189,16 @@ iad
 iad
 iad
 iad
-ffL
-drE
-drE
-djh
+vTb
+aSm
+pZw
+iad
 iBO
 iBO
-djh
-drE
-drE
-drE
+iad
+vTb
+loz
+pZw
 iad
 vtx
 olC
@@ -151630,16 +151641,16 @@ aoD
 tYZ
 nWc
 iad
-tlQ
-dNO
-mFr
-iad
-rLn
-gCq
-iad
-jlB
-gFm
-bRl
+ffL
+drE
+drE
+djh
+iBO
+iBO
+djh
+drE
+drE
+drE
 iad
 vtx
 lhB
@@ -152082,16 +152093,16 @@ aoD
 nWc
 nWc
 iad
+tlQ
+dNO
+mFr
 iad
-iad
-iad
-iad
-haq
+rLn
 jdv
 iad
-iad
-iad
-iad
+bRl
+gFm
+mFr
 iad
 vtx
 kTj
@@ -152534,17 +152545,17 @@ hzA
 nWc
 nWc
 iad
-ykd
+iad
 iad
 iad
 fXM
 mbG
 iad
 iad
-ogs
-ogs
-ogs
-ogs
+iad
+iad
+iad
+iad
 vtx
 owe
 ilI
@@ -152986,15 +152997,15 @@ jnt
 xCr
 nWc
 iad
-ykd
+ogs
 iad
 bkj
 uWU
 wCC
 bkj
 iad
-iad
-iad
+kAF
+hhi
 iad
 iad
 bYC
@@ -153445,9 +153456,9 @@ wCC
 wCC
 eWv
 iad
-kAF
+jlB
+eWv
 dZz
-qrX
 iad
 bYC
 wCC
