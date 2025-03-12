@@ -38,6 +38,16 @@
 	desc = "I'm a resident of Azure Peak. I have an account in the city's treasury and a home in the city."
 	added_traits = list(TRAIT_RESIDENT)
 
+/datum/virtue/utility/failed_squire
+	name = "Failed Squire"
+	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair."
+	added_traits = list(TRAIT_SQUIRE_REPAIR)
+	added_stashed_items = list("Worker's Hammer" = /obj/item/rogueweapon/hammer)
+	
+/datum/virtue/utility/failed_squire/apply_to_human(mob/living/carbon/human/recipient)
+	to_chat(recipient, span_notice("Though you failed to become a knight, your training in equipment maintenance and repair remains useful."))
+	to_chat(recipient, span_notice("You can retrieve your hammer from a tree, statue, or clock."))
+
 /datum/virtue/utility/linguist
 	name = "Intellectual"
 	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess.(+1 INT, 3 Languages, Stashed Book, Ability to Assess)"
