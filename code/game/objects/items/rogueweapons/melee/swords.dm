@@ -576,13 +576,13 @@
 	wbalance = 1
 
 /datum/intent/sword/cut/sabre
-	clickcd = 10	//Faster than sword by 2, slower than rapier stab by 2
-	damfactor = 1.1	//Opposite of rapier, 10% better than base
+	clickcd = 10		//Faster than sword by 2, slower than rapier stab by 2
+	damfactor = 1.15	//Opposite of rapier, 15% better than base
 
 /datum/intent/sword/thrust/sabre
-	clickcd = 9		//Fast but still not as fast as rapier n' shittier.
-	damfactor = 0.9	//10% worse	than base
-	penfactor = 15	//5 less than base
+	clickcd = 9			//Fast but still not as fast as rapier n' shittier.
+	damfactor = 0.9		//10% worse	than base
+	penfactor = 15		//5 less than base
 
 /obj/item/rogueweapon/sword/sabre/dec
 	icon_state = "decsaber"
