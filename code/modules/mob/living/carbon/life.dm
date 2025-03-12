@@ -545,75 +545,94 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 /mob/living/carbon/proc/handle_sleep()
 	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
 		return
-	var/cant_fall_asleep = FALSE
-	var/cause = " I just can't..."
-	for(var/obj/item/clothing/thing in get_equipped_items(FALSE))
-		if(thing.clothing_flags & CANT_SLEEP_IN)
-			cant_fall_asleep = TRUE
-			cause = " \The [thing] bothers me..."
-			break
-
 	//Healing while sleeping in a bed
-	if(stat >= UNCONSCIOUS)
-		var/sleepy_mod = buckled?.sleepy || 0.5
-		var/bleed_rate = get_bleed_rate()
+	if(IsSleeping())
+		var/sleepy_mod = 0.5
 		var/yess = HAS_TRAIT(src, TRAIT_NOHUNGER)
+		if(buckled?.sleepy)
+			sleepy_mod = buckled.sleepy
+		else if(isturf(loc)) //No illegal tech.
+			var/obj/structure/bed/rogue/bed = locate() in loc
+			if(bed)
+				sleepy_mod = bed.sleepy
 		if(nutrition > 0 || yess)
-			rogstam_add(sleepy_mod * (maxrogstam * 0.02))
-		if(HAS_TRAIT(src, TRAIT_BETTER_SLEEP))
-			rogstam_add(sleepy_mod * (maxrogstam * 0.004))
-		if(locate(/obj/item/bedsheet) in get_turf(src))
-			rogstam_add(sleepy_mod * (maxrogstam * 0.004))
-		if(HAS_TRAIT(src, TRAIT_OUTDOORSMAN))
-			var/obj/structure/flora/newbranch/branch = locate() in loc
-			if(branch)
-				sleepy_mod = 1.5 //Worse than a bedroll, better than nothing.
+			rogstam_add(sleepy_mod * 15)
 		if(hydration > 0 || yess)
 			if(!bleed_rate)
 				blood_volume = min(blood_volume + (4 * sleepy_mod), BLOOD_VOLUME_NORMAL)
 			for(var/obj/item/bodypart/affecting as anything in bodyparts)
-				//for context, it takes 5 small cuts (0.4 x 5) or 3 normal cuts (0.8 x 3) for a bodypart to not be able to heal itself
-				if(affecting.get_bleed_rate() >= 2)
+				//for context, it takes 5 small cuts (0.2 x 5) or 3 normal cuts (0.4 x 3) for a bodypart to not be able to heal itself
+				if(affecting.get_bleed_rate() >= 1)
 					continue
-				if(affecting.heal_damage(sleepy_mod * 1.5, sleepy_mod * 1.5, required_status = BODYPART_ORGANIC)) // multiplier due to removing healing from sleep effect
+				if(affecting.heal_damage(sleepy_mod, sleepy_mod, required_status = BODYPART_ORGANIC))
 					src.update_damage_overlays()
 				for(var/datum/wound/wound as anything in affecting.wounds)
 					if(!wound.sleep_healing)
 						continue
 					wound.heal_wound(wound.sleep_healing * sleepy_mod)
-			adjustToxLoss( - ( sleepy_mod * 0.5) )
+			adjustToxLoss(-sleepy_mod)
 			if(eyesclosed && !HAS_TRAIT(src, TRAIT_NOSLEEP))
 				Sleeping(300)
-		tiredness = 0
 	else if(!IsSleeping() && !HAS_TRAIT(src, TRAIT_NOSLEEP))
 		// Resting on a bed or something
+		var/sleepy_mod = 0
 		if(buckled?.sleepy)
-			if(eyesclosed && !cant_fall_asleep || (eyesclosed && !(fallingas >= 10 && cant_fall_asleep)))
-				if(!fallingas)
-					to_chat(src, span_warning("I'll fall asleep soon..."))
-				fallingas++
-				if(fallingas > 15)
-					Sleeping(300)
-			else if(eyesclosed && fallingas >= 10 && cant_fall_asleep)
-				if(fallingas != 13)
-					to_chat(src, span_boldwarning("I can't sleep...[cause]"))
-				fallingas -= 5
+			sleepy_mod = buckled.sleepy
+		else if(isturf(loc) && !(mobility_flags & MOBILITY_STAND))
+			var/obj/structure/bed/rogue/bed = locate() in loc
+			if(bed)
+				sleepy_mod = bed.sleepy
 			else
-				rogstam_add(buckled.sleepy * (maxrogstam * 0.01))
+				if(HAS_TRAIT(src, TRAIT_OUTDOORSMAN))
+					var/obj/structure/flora/newbranch/branch = locate() in loc
+					if(branch)
+						sleepy_mod = 1.5 //Worse than a bedroll, better than nothing.
+		if(sleepy_mod > 0)
+			if(eyesclosed)
+				var/armor_blocked = FALSE
+				if(ishuman(src) && stat == CONSCIOUS)
+					var/mob/living/carbon/human/H = src
+					if(H.head && H.head.armor?.blunt > 70)
+						armor_blocked = TRUE
+					if(H.wear_armor && (H.wear_armor.armor_class in list(ARMOR_CLASS_HEAVY, ARMOR_CLASS_MEDIUM)))
+						armor_blocked = TRUE
+					if(armor_blocked && !fallingas)
+						to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
+						fallingas = TRUE
+				if(!armor_blocked)
+					if(!fallingas)
+						to_chat(src, span_warning("I'll fall asleep soon..."))
+					fallingas++
+					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
+						fallingas++
+					if(fallingas > 15)
+						Sleeping(300)
+			else
+				rogstam_add(sleepy_mod * 10)
 		// Resting on the ground (not sleeping or with eyes closed and about to fall asleep)
 		else if(!(mobility_flags & MOBILITY_STAND))
-			if(eyesclosed && !cant_fall_asleep || (eyesclosed && !(fallingas >= 10 && cant_fall_asleep)))
-				if(!fallingas)
-					to_chat(src, span_warning("I'll fall asleep soon, although a bed would be more comfortable..."))
-				fallingas++
-				if(fallingas > 25)
-					Sleeping(300)
-			else if(eyesclosed && fallingas >= 10 && cant_fall_asleep)
-				if(fallingas != 13)
-					to_chat(src, span_boldwarning("I can't sleep...[cause]"))
-				fallingas -= 5
+			if(eyesclosed)
+				var/armor_blocked = FALSE
+				if(ishuman(src) && stat == CONSCIOUS)
+					var/mob/living/carbon/human/H = src
+					if(H.head && H.head.armor?.blunt > 70)
+						armor_blocked = TRUE
+					if(H.wear_armor && (H.wear_armor.armor_class in list(ARMOR_CLASS_HEAVY, ARMOR_CLASS_MEDIUM)))
+						armor_blocked = TRUE
+					if(armor_blocked && !fallingas)
+						to_chat(src, span_warning("I can't sleep like this. My armor is burdening me."))
+						fallingas = TRUE
+				if(!armor_blocked)
+					if(!fallingas)
+						to_chat(src, span_warning("I'll fall asleep soon, although a bed would be more comfortable..."))
+					fallingas++
+					if(HAS_TRAIT(src, TRAIT_FASTSLEEP))
+						fallingas++
+					if(fallingas > 25)
+						Sleeping(300)
 			else
-				rogstam_add((maxrogstam * 0.01))
+				rogstam_add(10)
 		else if(fallingas)
 			fallingas = 0
-		tiredness = min(tiredness + 1, 100)
+	else if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !(mobility_flags & MOBILITY_STAND))
+		rogstam_add(5)
