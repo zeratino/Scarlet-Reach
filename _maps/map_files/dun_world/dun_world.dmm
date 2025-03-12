@@ -862,7 +862,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 4
 	},
-/obj/structure/roguemachine/scomm,
+/obj/structure/fluff/wallclock,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "aqA" = (
@@ -45677,6 +45677,12 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
+"sZH" = (
+/obj/structure/roguemachine/scomm/r,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/under/town/basement/keep)
 "sZK" = (
 /obj/item/kitchen/spoon,
 /obj/item/kitchen/rollingpin,
@@ -155794,7 +155800,7 @@ uoI
 iad
 iad
 oic
-aal
+sZH
 rSJ
 iad
 ogs
