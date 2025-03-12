@@ -375,6 +375,14 @@
 			user.put_in_hands(sammich)
 			qdel(I)
 			qdel(src)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/bacon/fried))
+		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 50, TRUE, -1)
+		if(do_after(user,short_cooktime, target = src))
+			user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+			var/obj/item/reagent_containers/food/snacks/rogue/sandwich/bacon/sammich= new(get_turf(user))
+			user.put_in_hands(sammich)
+			qdel(I)
+			qdel(src)
 	else
 		return ..()
 
@@ -445,6 +453,11 @@
 	icon_state = "bread_salo"
 	foodtype = GRAIN | MEAT
 
+/obj/item/reagent_containers/food/snacks/rogue/sandwich/bacon
+	tastes = list("bacon" = 1)
+	name = "bacon bread"
+	icon_state = "bread_bacon"
+	foodtype = GRAIN | MEAT
 
 
 /*	.................   Bread bun   ................... */
@@ -459,7 +472,7 @@
 	bitesize = 2
 	rotprocess = SHELFLIFE_EXTREME
 
-/obj/item/reagent_containers/food/snacks/rogue/bun/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/food/snacks/rogue/bun/attackby(obj/item/I, mob/living/user, params)
 	if(user.mind)
 		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
 		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
@@ -469,6 +482,14 @@
 		if(do_after(user,short_cooktime, target = src))
 			var/obj/item/reagent_containers/food/snacks/rogue/bun_grenz/hotdog= new(get_turf(user))
 			user.put_in_hands(hotdog)
+			qdel(I)
+			qdel(src)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge))
+		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 100, TRUE, -1)
+		to_chat(user, "<span class='notice'>Stuffing the bun with cheese...</span>")
+		if(do_after(user,short_cooktime, target = src))
+			user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+			new /obj/item/reagent_containers/food/snacks/rogue/bun_raston(loc)
 			qdel(I)
 			qdel(src)
 	else
@@ -543,6 +564,12 @@
 	tastes = list("crispy butterdough" = 1, "raisins" = 1)
 	eat_effect = /datum/status_effect/buff/foodbuff
 
+/obj/item/reagent_containers/food/snacks/rogue/cookie		//It's a biscuit.......
+	name = "cookie of smiles"
+	icon_state = "cookie"
+	color = "#ecce61"
+	w_class = WEIGHT_CLASS_NORMAL
+	eat_effect = null
 
 /*	.................   Prezzel   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/prezzel_raw
