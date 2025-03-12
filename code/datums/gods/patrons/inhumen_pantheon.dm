@@ -30,9 +30,9 @@
 	desc = "Orc turned deity, said by the Holy Ecclesial to have been blessed by Ravox himself. He took his blessings to rampage and tear down the Old Ten. Though some Graggarites might care for 'honor', most do not- what matters are results, and victory at any cost."
 	worshippers = "Prisoners, Murderers and the Cruel"
 	mob_traits = list(TRAIT_HORDE, TRAIT_ORGAN_EATER)
-	t0 = /obj/effect/proc_holder/spell/self/revel_in_slaughter
 	t1 = /obj/effect/proc_holder/spell/self/call_to_slaughter
 	t2 = /obj/effect/proc_holder/spell/invoked/projectile/blood_net
+	t3 = /obj/effect/proc_holder/spell/invoked/revel_in_slaughter
 	confess_lines = list(
 		"GRAGGAR IS THE BEAST I WORSHIP!",
 		"THROUGH VIOLENCE, DIVINITY!",

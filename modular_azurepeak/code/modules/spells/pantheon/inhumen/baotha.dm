@@ -55,6 +55,7 @@
 	nodamage = TRUE	//No effect because it's drugs.
 
 /obj/projectile/magic/blowingdust/on_hit(target, mob/living/M)
+	. = ..()
 	if(!istype(M))
 		return
 	if(target)
@@ -93,5 +94,5 @@
 		phy.pain_mod *= 0.5	//Literally halves your pain modifier.
 		addtimer(VARSET_CALLBACK(phy, pain_mod, phy.pain_mod /= 0.5), 20 SECONDS)	//Adds back the 0.5 of pain, basically setting it back to 1.
 		target.apply_status_effect(/datum/status_effect/buff/vitae)					//Basically lowers fortune by 2 but +3 speed, it's powerful. Drugs cus Baotha.
-
+		return TRUE
 
