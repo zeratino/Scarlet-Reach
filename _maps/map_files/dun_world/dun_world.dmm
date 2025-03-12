@@ -862,7 +862,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 4
 	},
-/obj/structure/fluff/wallclock,
+/obj/structure/roguemachine/scomm,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "aqA" = (
@@ -4443,6 +4443,9 @@
 /obj/item/rope/chain,
 /obj/item/rope/chain,
 /obj/item/rope/chain,
+/obj/structure/fluff/walldeco/customflag{
+	pixel_y = -32
+	},
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/under/town/basement/keep)
 "bRr" = (
@@ -16716,6 +16719,9 @@
 /obj/item/book/rogue/law,
 /obj/structure/table/wood{
 	icon_state = "longtable"
+	},
+/obj/structure/fluff/walldeco/customflag{
+	pixel_y = -32
 	},
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/under/town/basement/keep)
@@ -45671,13 +45677,6 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
-"sZH" = (
-/obj/machinery/light/rogue/torchholder/l,
-/obj/structure/roguemachine/scomm{
-	pixel_y = -32
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/town/basement/keep)
 "sZK" = (
 /obj/item/kitchen/spoon,
 /obj/item/kitchen/rollingpin,
@@ -156244,7 +156243,7 @@ iqX
 bkj
 wCC
 wCC
-sZH
+bkj
 iad
 iad
 iad
