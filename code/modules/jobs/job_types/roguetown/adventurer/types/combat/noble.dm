@@ -66,9 +66,9 @@
 			"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
 			"Hounskull Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
 			"None"
-		)
-		var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
-		if(helmchoice != "None")
+			)
+			var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+			if(helmchoice != "None")
 			head = helmets[helmchoice]
 			gloves = /obj/item/clothing/gloves/roguetown/chain
 			pants = /obj/item/clothing/under/roguetown/chainlegs
