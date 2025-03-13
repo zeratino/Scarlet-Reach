@@ -309,6 +309,31 @@
 			if("onbelt")
 				return list("shrink" = 0.1,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
+/obj/item/rogueweapon/knuckles/bronzeknuckles
+	name = "bronze knuckles"
+	desc = "A mean looking pair of bronze knuckles. Mildly heavier than it's steel counterpart, making it a solid defensive option, if less wieldy."
+	force = 13
+	possible_item_intents = list(/datum/intent/knuckles/strike,/datum/intent/knuckles/smash)
+	icon = 'icons/roguetown/weapons/32.dmi'
+	icon_state = "bronzeknuckle"
+	gripsprite = FALSE
+	wlength = WLENGTH_SHORT
+	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_HIP
+	parrysound = list('sound/combat/parry/pugilism/unarmparry (1).ogg','sound/combat/parry/pugilism/unarmparry (2).ogg','sound/combat/parry/pugilism/unarmparry (3).ogg')
+	sharpness = IS_BLUNT
+	max_integrity = 300
+	swingsound = list('sound/combat/wooshes/punch/punchwoosh (1).ogg','sound/combat/wooshes/punch/punchwoosh (2).ogg','sound/combat/wooshes/punch/punchwoosh (3).ogg')
+	associated_skill = /datum/skill/combat/unarmed
+	throwforce = 12
+	wdefense = 5
+	wbalance = 1
+	blade_dulling = DULLING_BASHCHOP
+	anvilrepair = /datum/skill/craft/weaponsmithing
+	smeltresult = /obj/item/ingot/bronze
+	grid_width = 32
+	grid_height = 32
+
 /datum/intent/knuckles
 	clickcd = 8
 

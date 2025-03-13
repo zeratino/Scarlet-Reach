@@ -430,6 +430,12 @@
 	created_item = /obj/item/rogueweapon/spear/bronze
 	craftdiff = 0
 
+/datum/anvil_recipe/weapons/bronze/bronzeknuckle
+	name = "Bronze Knuckle"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/knuckles/bronzeknuckles
+	craftdiff = 2
+
 /// SHIELDS
 /datum/anvil_recipe/weapons/steel/kiteshield
 	name = "Kite Shield (+1 Steel, +1 Cured Leather)"
