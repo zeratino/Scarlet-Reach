@@ -299,11 +299,6 @@
 	underlays += mutable_appearance('icons/obj/structures.dmi', "grille")
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating")
 
-/turf/closed/indestructible/fakedoor
-	name = "CentCom Access"
-	icon = 'icons/obj/doors/airlocks/centcom/centcom.dmi'
-	icon_state = "fake_door"
-
 /turf/closed/indestructible/rock
 	name = "granite"
 	desc = ""
