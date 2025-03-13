@@ -8,8 +8,8 @@
 	density = TRUE
 	anchored = TRUE
 	opacity = FALSE
-	max_integrity = 100
-	integrity_failure = 0.1
+	max_integrity = 200
+	integrity_failure = 0.5
 	var/base_state = "window-solid"
 	var/lockdir = 0
 	var/brokenstate = 0
@@ -51,7 +51,7 @@
 	icon_state = null
 	base_state = null
 	opacity = TRUE
-	max_integrity = 100 
+	max_integrity = 200 
 	integrity_failure = 0.5
 
 /obj/structure/roguewindow/stained/silver
@@ -70,7 +70,7 @@
 	icon_state = "woodwindowdir"
 	base_state = "woodwindow"
 	opacity = TRUE
-	max_integrity = 100
+	max_integrity = 200
 	integrity_failure = 0.5
 
 /obj/structure/roguewindow/openclose/reinforced
