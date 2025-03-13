@@ -275,7 +275,7 @@
 	force = 20
 
 
-/obj/item/rogueweapon/knuckles // no actual sprite for this yet so its just the basis for the eora knuckles + for later futureproofing
+/obj/item/rogueweapon/knuckles
 	name = "steel knuckles"
 	desc = "A mean looking pair of steel knuckles."
 	force = 15
@@ -285,6 +285,7 @@
 	gripsprite = FALSE
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_HIP
 	parrysound = list('sound/combat/parry/pugilism/unarmparry (1).ogg','sound/combat/parry/pugilism/unarmparry (2).ogg','sound/combat/parry/pugilism/unarmparry (3).ogg')
 	max_blade_int = 150
 	max_integrity = 300
@@ -296,6 +297,8 @@
 	blade_dulling = DULLING_BASHCHOP
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
+	grid_width = 32
+	grid_height = 32
 
 /obj/item/rogueweapon/knuckles/getonmobprop(tag)
 	. = ..()
