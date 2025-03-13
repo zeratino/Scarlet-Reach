@@ -791,6 +791,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/xylix_joy
 	effectedstats = list("fortune" = 1)
 	duration = 5 MINUTES
+	status_type = STATUS_EFFECT_REFRESH
 
 /datum/status_effect/buff/xylix_joy/on_apply()
 	. = ..()
