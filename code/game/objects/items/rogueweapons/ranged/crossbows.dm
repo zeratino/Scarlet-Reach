@@ -54,7 +54,7 @@
 		//per block
 		newtime = newtime + 20
 		newtime = newtime - ((mastermob.STAPER)*1.5)
-		if(newtime > 0)
+		if(newtime > 10)
 			return newtime
 		else
 			return 10
