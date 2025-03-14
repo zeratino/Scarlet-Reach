@@ -578,6 +578,7 @@
 	resistance_flags = FIRE_PROOF
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 20, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	clothing_flags = CANT_SLEEP_IN
 	dynamic_hair_suffix = "+generic"
 	bloody_icon_state = "helmetblood"
 	anvilrepair = /datum/skill/craft/armorsmithing

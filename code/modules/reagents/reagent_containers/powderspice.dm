@@ -201,9 +201,10 @@
 /datum/reagent/ozium
 	name = "Ozium"
 	description = ""
-	color = "#60A584" // rgb: 96, 165, 132
+	color = "#a5606f" // rgb: 96, 165, 132
 	overdose_threshold = 16
 	metabolization_rate = 0.2
+	taste_description = "a bitter numbess"
 
 /datum/reagent/ozium/overdose_process(mob/living/M)
 	M.adjustToxLoss(3, 0)
@@ -222,7 +223,7 @@
 
 /obj/item/reagent_containers/powder/moondust
 	name = "moondust"
-	desc = ""
+	desc = "a mound of iridescent white powder with an acrid, potent scent that numbs your nostrils"
 	icon = 'icons/roguetown/items/produce.dmi'
 	icon_state = "moondust"
 	possible_transfer_amounts = list()
@@ -230,6 +231,14 @@
 	list_reagents = list(/datum/reagent/moondust = 15)
 	grind_results = list(/datum/reagent/moondust = 15)
 	sellprice = 5
+
+/datum/reagent/moondust
+	name = "moondust"
+	description = ""
+	color = "#f9e5fd"
+	overdose_threshold = 24
+	metabolization_rate = 0.2
+	taste_description = "numbness and the moon"
 
 /datum/reagent/moondust/overdose_process(mob/living/M)
 	M.adjustToxLoss(3, 0)
@@ -261,7 +270,7 @@
 
 /obj/item/reagent_containers/powder/moondust_purest
 	name = "moondust"
-	desc = ""
+	desc = "a spectacularly glittering pile of flaky, iridescent powder"
 	icon = 'icons/roguetown/items/produce.dmi'
 	icon_state = "moondust_purest"
 	possible_transfer_amounts = list()
@@ -273,9 +282,10 @@
 /datum/reagent/moondust_purest
 	name = "Purest Moondust"
 	description = ""
-	color = "#bfc3b5"
+	color = "#e7ade9"
 	overdose_threshold = 20
 	metabolization_rate = 0.2
+	taste_description = "sheer, unadulterated energy"
 
 /datum/reagent/moondust_purest/overdose_process(mob/living/M)
 	M.adjustToxLoss(3, 0)
@@ -352,7 +362,7 @@
 	M.AdjustImmobilized(-40, FALSE)
 	M.adjustStaminaLoss(-2, 0)
 	M.Jitter(2)
-	if(M.reagents.has_reagent(/datum/reagent/purified_ozium))
+	if(M.reagents.has_reagent(/datum/reagent/herozium))
 		if(!HAS_TRAIT(M, TRAIT_CRACKHEAD))
 			M.Sleeping(40, 0)
 	if(prob(5))
@@ -382,27 +392,27 @@
 	M.adjustToxLoss(4, 0)
 	. = 1
 
-/datum/reagent/purified_ozium
-	name = "purified ozium"
+/datum/reagent/herozium
+	name = "herozium"
 	description = ""
 	reagent_state = LIQUID
 	color = "#ff6207"
 	overdose_threshold = 20
 	metabolization_rate = 0.5
 
-/obj/item/reagent_containers/powder/purified_ozium
-	name = "Herozium"
+/obj/item/reagent_containers/powder/herozium
+	name = "herozium"
 	desc = "Sweet unfeeling. Do you like to hurt other people? Outright banned and controlled in most regions."
 	icon = 'icons/roguetown/items/produce.dmi'
-	icon_state = "purified_ozium"
-	item_state = "purified_ozium"
+	icon_state = "herozium"
+	item_state = "herozium"
 	possible_transfer_amounts = list()
 	volume = 15
-	list_reagents = list(/datum/reagent/purified_ozium = 15)
-	grind_results = list(/datum/reagent/purified_ozium = 15)
+	list_reagents = list(/datum/reagent/herozium = 15)
+	grind_results = list(/datum/reagent/herozium = 15)
 	sellprice = 30
 
-/atom/movable/screen/fullscreen/purified_ozium
+/atom/movable/screen/fullscreen/herozium
 	icon = 'icons/roguetown/maniac/fullscreen_wakeup.dmi'
 	icon_state = "wake_up"
 	plane = FLOOR_PLANE
@@ -411,13 +421,13 @@
 	show_when_dead = FALSE
 
 
-/datum/reagent/purified_ozium/on_mob_life(mob/living/carbon/M)
+/datum/reagent/herozium/on_mob_life(mob/living/carbon/M)
 	M.jitteriness = 0
 	M.confused = 0
 	M.disgust = 0
 	M.set_drugginess(30)
-	M.overlay_fullscreen("purifiedozium", /atom/movable/screen/fullscreen/purified_ozium)
-	M.apply_status_effect(/datum/status_effect/buff/purified_ozium)
+	M.overlay_fullscreen("herozium", /atom/movable/screen/fullscreen/herozium)
+	M.apply_status_effect(/datum/status_effect/buff/herozium)
 	if(M.reagents.has_reagent(/datum/reagent/ozium))
 		if(!HAS_TRAIT(M, TRAIT_CRACKHEAD))
 			M.Sleeping(80, 0)
@@ -432,15 +442,15 @@
 	. = 1
 	
 
-/datum/reagent/purified_ozium/on_mob_end_metabolize(mob/living/M)
-	M.clear_fullscreen("purifiedozium")
+/datum/reagent/herozium/on_mob_end_metabolize(mob/living/M)
+	M.clear_fullscreen("herozium")
 	M.set_drugginess(0)
-	M.remove_status_effect(/datum/status_effect/buff/purified_ozium)
+	M.remove_status_effect(/datum/status_effect/buff/herozium)
 	if(M.client)
 		SSdroning.play_area_sound(get_area(M), M.client)
 	M.update_body_parts_head_only()
 
-/datum/reagent/purified_ozium/overdose_process(mob/living/M)
+/datum/reagent/herozium/overdose_process(mob/living/M)
 	if(prob(30))
 		var/reaction = rand(1,3)
 		switch(reaction)
