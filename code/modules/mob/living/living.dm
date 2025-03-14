@@ -1911,7 +1911,7 @@
 	if(STAPER > 5)
 		ttime = 10 - (STAPER - 5)
 		if(ttime < 0)
-			ttime = 0
+			ttime = 1
 	if(STAPER <= 10)
 		var/offset = (10 - STAPER) * 2
 		if(STAPER == 10)
@@ -1932,6 +1932,8 @@
 			_y = min(0,_y)
 	else if(STAPER > 11)
 		var/offset = STAPER - 10
+		if(offset > 5)	//Caps the bonus at 15 PER, which is a whole extra screen in an orthogonal direction. Anymore will get disorienting.
+			offset = 5
 		if(STAPER >= 12)
 			message = span_info("[src] easily peers afar.")
 		if(_x > 0)
