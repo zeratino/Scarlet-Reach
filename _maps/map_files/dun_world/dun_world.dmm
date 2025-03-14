@@ -31320,7 +31320,6 @@
 /obj/effect/landmark/start/prince{
 	dir = 1
 	},
-/obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -394446,8 +394445,8 @@ vdy
 oHt
 rzo
 uQS
+foa
 tGy
-vxe
 vxe
 vmi
 vmi
@@ -394900,7 +394899,7 @@ vxe
 lfz
 vxe
 vxe
-vmi
+vxe
 vmi
 vmi
 vmi
@@ -510161,7 +510160,7 @@ lMc
 lMc
 lMc
 lMc
-vmi
+lMc
 vmi
 vmi
 vmi
