@@ -51,8 +51,6 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/obj/effect/baseturf_helper)
 	//See above
 	ignore += typesof(/obj/effect/timestop)
-	//Our system doesn't support it without warning spam from unregister calls on things that never registered
-	ignore += typesof(/obj/docking_port)
 	//Expects a mob to holderize, we have nothing to give
 	ignore += typesof(/obj/item/clothing/head/mob_holder)
 	//Needs cards passed into the initilazation args
