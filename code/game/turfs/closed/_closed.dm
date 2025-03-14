@@ -217,11 +217,6 @@
 	to_be_destroyed = FALSE
 	return src
 
-/turf/closed/indestructible/oldshuttle
-	name = "strange shuttle wall"
-	icon = 'icons/turf/shuttleold.dmi'
-	icon_state = "block"
-
 /turf/closed/indestructible/sandstone
 	name = "sandstone wall"
 	desc = ""
