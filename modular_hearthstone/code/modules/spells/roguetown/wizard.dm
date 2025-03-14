@@ -1557,7 +1557,6 @@
 	var/turf/destination_turf
 	var/turf/user_turf
 	var/mutable_appearance/tile_effect
-	var/leash_range = 7
 	var/mutable_appearance/target_effect
 	var/datum/looping_sound/invokeshadow/shadowloop
 
