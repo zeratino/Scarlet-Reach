@@ -42,7 +42,7 @@
 /datum/virtue/utility/linguist
 	name = "Intellectual"
 	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess."
-	custom_text = "Maximizes and adds bonus Assess benefits. Allows the choice of 3 languages to learn at roundstart."
+	custom_text = "Maximizes and adds bonus Assess benefits. Allows the choice of 3 languages to learn upon joining."
 	added_traits = list(TRAIT_INTELLECTUAL)
 	added_skills = list(list(/datum/skill/misc/reading, 3, 6))
 	added_stashed_items = list(
