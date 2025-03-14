@@ -31155,15 +31155,6 @@
 /obj/structure/fluff/walldeco/bsmith,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
-"wHQ" = (
-/obj/structure/fluff/railing/border{
-	dir = 9;
-	pixel_y = 6
-	},
-/turf/open/floor/rogue/rooftop{
-	icon_state = "roofg"
-	},
-/area/rogue/outdoors/mountains)
 "wIc" = (
 /obj/structure/table/wood,
 /obj/item/rogueore/coal,
@@ -87457,7 +87448,7 @@ rjf
 fJa
 fJa
 bCE
-wHQ
+cjg
 rFX
 fLL
 wzp
@@ -115406,7 +115397,7 @@ bmI
 wzp
 wzp
 fLL
-meY
+cjg
 cjg
 cjg
 tXZ
