@@ -6831,11 +6831,6 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap/stepbelow)
-"cSN" = (
-/turf/open/water/bath/pool{
-	dir = 5
-	},
-/area/rogue/indoors/town/bath)
 "cTd" = (
 /obj/structure/roguewindow/openclose,
 /turf/open/floor/rogue/blocks,
@@ -9409,11 +9404,6 @@
 	icon_state = "bfloorz"
 	},
 /area/rogue/outdoors/mountains/decap/stepbelow)
-"dZh" = (
-/turf/open/water/bath/pool{
-	dir = 8
-	},
-/area/rogue/indoors/town/bath)
 "dZj" = (
 /obj/item/reagent_containers/food/snacks/smallrat,
 /turf/open/floor/rogue/concrete,
@@ -14378,11 +14368,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
-"fZb" = (
-/turf/open/water/bath/pool{
-	dir = 4
-	},
-/area/rogue/indoors/town/bath)
 "fZe" = (
 /obj/structure/stairs{
 	dir = 8
@@ -18542,11 +18527,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
-"hPb" = (
-/turf/open/water/bath/pool{
-	dir = 10
-	},
-/area/rogue/indoors/town/bath)
 "hPd" = (
 /obj/structure/table/wood{
 	icon_state = "map3"
@@ -21330,11 +21310,6 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
-"iUD" = (
-/turf/open/water/bath/pool{
-	dir = 1
-	},
-/area/rogue/indoors/town/bath)
 "iUW" = (
 /obj/machinery/light/rogue/wallfire{
 	pixel_x = 16;
@@ -28267,11 +28242,6 @@
 /obj/item/roguekey/velder,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
-"lOk" = (
-/turf/open/water/bath/pool{
-	dir = 6
-	},
-/area/rogue/indoors/town/bath)
 "lOl" = (
 /obj/structure/fermenting_barrel/water,
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -31840,11 +31810,6 @@
 "nsa" = (
 /turf/open/floor/rogue/rooftop,
 /area/rogue/under/underdark)
-"nsj" = (
-/turf/open/water/bath/pool{
-	dir = 9
-	},
-/area/rogue/indoors/town/bath)
 "nso" = (
 /obj/structure/fluff/walldeco/stone{
 	pixel_y = 32
@@ -55652,9 +55617,6 @@
 	icon_state = "chess"
 	},
 /area/rogue/under/cave/mazedungeon)
-"xlv" = (
-/turf/open/water/bath/pool,
-/area/rogue/indoors/town/bath)
 "xlx" = (
 /obj/item/natural/stone{
 	pixel_y = 16;
@@ -113782,13 +113744,13 @@ rqY
 cBX
 eMv
 eMv
-nsj
-dZh
-dZh
-dZh
-dZh
-dZh
-hPb
+sBA
+sBA
+sBA
+sBA
+sBA
+sBA
+sBA
 eMv
 bFq
 alu
@@ -114233,7 +114195,7 @@ rqY
 gLe
 eMv
 eMv
-nsj
+sBA
 sBA
 haH
 haH
@@ -114241,7 +114203,7 @@ haH
 haH
 haH
 sBA
-hPb
+sBA
 eMv
 eMv
 iBX
@@ -114684,7 +114646,7 @@ rqY
 kgj
 vHZ
 eMv
-nsj
+sBA
 sBA
 haH
 haH
@@ -114694,7 +114656,7 @@ haH
 haH
 haH
 sBA
-hPb
+sBA
 eMv
 dYG
 alu
@@ -115135,7 +115097,7 @@ rqY
 qsF
 iBX
 eMv
-nsj
+sBA
 sBA
 haH
 haH
@@ -115147,7 +115109,7 @@ haH
 haH
 haH
 sBA
-hPb
+sBA
 sea
 alu
 rqY
@@ -115587,7 +115549,7 @@ rqY
 fNF
 eMv
 eMv
-xlv
+sBA
 haH
 haH
 haH
@@ -115599,7 +115561,7 @@ uLG
 haH
 haH
 haH
-iUD
+sBA
 eMv
 eMv
 kgj
@@ -116039,7 +116001,7 @@ rqY
 siL
 eMv
 eMv
-xlv
+sBA
 haH
 haH
 haH
@@ -116051,7 +116013,7 @@ tbw
 haH
 haH
 haH
-iUD
+sBA
 eMv
 eMv
 iBX
@@ -116491,7 +116453,7 @@ vTq
 iBX
 eMv
 eMv
-xlv
+sBA
 haH
 haH
 haH
@@ -116503,7 +116465,7 @@ haH
 haH
 haH
 haH
-iUD
+sBA
 eMv
 eMv
 iBX
@@ -116943,7 +116905,7 @@ rqY
 iBX
 eMv
 eMv
-xlv
+sBA
 haH
 haH
 haH
@@ -116955,7 +116917,7 @@ dNs
 haH
 haH
 haH
-iUD
+sBA
 eMv
 eMv
 iBX
@@ -117395,7 +117357,7 @@ rqY
 kgj
 eMv
 eMv
-xlv
+sBA
 haH
 haH
 haH
@@ -117407,7 +117369,7 @@ uLG
 haH
 haH
 haH
-iUD
+sBA
 eMv
 eMv
 kgj
@@ -117847,7 +117809,7 @@ rqY
 rqY
 oKD
 eMv
-cSN
+sBA
 sBA
 haH
 haH
@@ -117859,7 +117821,7 @@ haH
 haH
 haH
 sBA
-lOk
+sBA
 eMv
 ajY
 rqY
@@ -118300,7 +118262,7 @@ rqY
 rAu
 eMv
 eMv
-cSN
+sBA
 sBA
 haH
 haH
@@ -118310,7 +118272,7 @@ haH
 haH
 haH
 sBA
-lOk
+sBA
 eMv
 eMv
 hTk
@@ -118753,7 +118715,7 @@ rqY
 cBX
 eMv
 eMv
-cSN
+sBA
 sBA
 haH
 haH
@@ -118761,7 +118723,7 @@ haH
 haH
 haH
 sBA
-lOk
+sBA
 eMv
 eMv
 hTk
@@ -119206,13 +119168,13 @@ wAR
 iBX
 eMv
 eMv
-cSN
-fZb
-fZb
-fZb
-fZb
-fZb
-lOk
+sBA
+sBA
+sBA
+sBA
+sBA
+sBA
+sBA
 eMv
 eMv
 hTk
