@@ -1620,6 +1620,10 @@
 		var/reason
 		if(max_range >= get_dist(user, T) && !T.density)
 			if(check_path(get_turf(user), T))	//We check for opaque turfs or non-climbable windows in the way via a simple pathfind.
+				if(get_dist(user, T) < 2 && user.z == T.z)
+					to_chat(user, span_info("Too close!"))
+					revert_cast()
+					return
 				to_chat(user, span_info("I begin to meld with the shadows.."))
 				lockon(T, user)
 				if(do_after(user, 70))
