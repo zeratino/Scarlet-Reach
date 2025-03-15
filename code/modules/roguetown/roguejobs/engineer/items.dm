@@ -5,9 +5,9 @@
 	icon_state = "gear"
 	w_class = WEIGHT_CLASS_SMALL
 	smeltresult = null
-	grid_width = 32
-	grid_height = 32
 	var/obj/structure/linking
+	grid_width = 64
+	grid_height = 32
 
 /obj/item/roguegear/Destroy()
 	if(linking)
