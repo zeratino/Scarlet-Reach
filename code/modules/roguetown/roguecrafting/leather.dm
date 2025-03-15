@@ -223,7 +223,7 @@
 	sellprice = 27
 
 /datum/crafting_recipe/roguetown/leather/helmet/advanced
-	name = "hardened leather helmet (leather, fiber; MASTER)"
+	name = "hardened leather helmet"
 	result = /obj/item/clothing/head/roguetown/helmet/leather/advanced
 	reqs = list(/obj/item/natural/hide/cured = 1,
 				/obj/item/natural/fibers = 1,
