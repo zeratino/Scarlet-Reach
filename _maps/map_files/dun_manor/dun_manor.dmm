@@ -226,13 +226,6 @@
 /obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/chapel)
-"afN" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	lockid = "garrison"
-	},
-/turf/closed,
-/area/rogue/indoors/town)
 "agq" = (
 /obj/effect/decal/cobbleedge{
 	dir = 8
@@ -94040,7 +94033,7 @@ rjf
 iYA
 mZc
 pOc
-afN
+qRW
 lcT
 lcT
 lcT
