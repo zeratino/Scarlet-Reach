@@ -20,6 +20,7 @@
 	H.mind.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/labor/lumberjacking, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
+	head = /obj/item/clothing/head/roguetown/roguehood/random 
 	belt = /obj/item/storage/belt/rogue/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	pants = /obj/item/clothing/under/roguetown/tights/random
