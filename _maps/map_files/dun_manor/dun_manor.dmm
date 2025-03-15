@@ -5709,6 +5709,10 @@
 /obj/effect/spawner/roguemap/stump,
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/town)
+"dSO" = (
+/obj/structure/chair/wood/rogue/chair3,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/town/garrison)
 "dTw" = (
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/ruinedwood{
@@ -5981,15 +5985,6 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town)
-"eeg" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1;
-	icon_state = "borderfall"
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
-/area/rogue/indoors/town/garrison)
 "eeB" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/carpet/royalblack,
@@ -16873,6 +16868,15 @@
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors)
+"mdd" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/indoors/town/garrison)
 "mdf" = (
 /obj/structure/closet/crate/roguecloset/inn,
 /obj/item/clothing/cloak/apron/cook{
@@ -28762,14 +28766,6 @@
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave)
-"usn" = (
-/obj/structure/toilet,
-/obj/effect/decal/cobbleedge{
-	dir = 10;
-	icon_state = "cobbleedge-w"
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/indoors/town/garrison)
 "usq" = (
 /obj/item/natural/rock,
 /turf/open/floor/rogue/naturalstone,
@@ -31147,10 +31143,6 @@
 /obj/item/natural/feather,
 /turf/open/floor/carpet/stellar,
 /area/rogue/indoors/town/magician)
-"wnH" = (
-/obj/structure/chair/wood/rogue/chair3,
-/turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/garrison)
 "wnS" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/rogue/grass,
@@ -33631,6 +33623,14 @@
 /obj/structure/bearpelt,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town)
+"xPy" = (
+/obj/structure/toilet,
+/obj/effect/decal/cobbleedge{
+	dir = 10;
+	icon_state = "cobbleedge-w"
+	},
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/town/garrison)
 "xPC" = (
 /obj/structure/fermenting_barrel/random/water{
 	color = "#8f7f62"
@@ -100823,7 +100823,7 @@ tYX
 oUz
 oUz
 hZW
-eeg
+mdd
 vSF
 nrC
 ufp
@@ -100980,7 +100980,7 @@ tYX
 oUz
 wDI
 tIW
-eeg
+mdd
 vSF
 amw
 amw
@@ -101137,7 +101137,7 @@ tYX
 oUz
 wfp
 tIW
-eeg
+mdd
 vSF
 amw
 amw
@@ -101294,7 +101294,7 @@ tYX
 oUz
 oUz
 fDV
-eeg
+mdd
 vSF
 nrC
 ufp
@@ -123438,7 +123438,7 @@ jFf
 jFf
 jFf
 oUz
-wnH
+dSO
 oSV
 oSV
 oUz
@@ -123763,7 +123763,7 @@ nSd
 mbQ
 jGs
 tYX
-tYX
+hCZ
 oUz
 oUz
 dZn
@@ -123920,8 +123920,8 @@ mbQ
 mbQ
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 oUz
 ybe
 oUz
@@ -124077,8 +124077,8 @@ cvw
 oUz
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -124234,8 +124234,8 @@ cba
 oUz
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -124391,8 +124391,8 @@ jTc
 oUz
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -124539,7 +124539,7 @@ lpp
 tIW
 mkN
 oUz
-usn
+xPy
 oUz
 ufK
 rQG
@@ -124548,8 +124548,8 @@ joX
 oUz
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -124705,8 +124705,8 @@ cba
 oUz
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -124862,8 +124862,8 @@ cvw
 oUz
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -125019,8 +125019,8 @@ oUz
 oUz
 jGs
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -125176,8 +125176,8 @@ wsA
 gJP
 opV
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -125333,8 +125333,8 @@ tYX
 tYX
 tYX
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -125490,8 +125490,8 @@ tYX
 tYX
 tYX
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -125647,8 +125647,8 @@ tYX
 tYX
 tYX
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
@@ -125804,8 +125804,8 @@ tYX
 tYX
 tYX
 tYX
-tYX
-tYX
+hCZ
+hCZ
 hCZ
 hCZ
 mvx
