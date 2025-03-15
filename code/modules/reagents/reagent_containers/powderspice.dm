@@ -5,10 +5,10 @@
 	icon_state = "spice"
 	item_state = "spice"
 	possible_transfer_amounts = list()
-	grid_width = 32
-	grid_height = 32
 	volume = 15
 	sellprice = 10
+	grid_width = 32
+	grid_height = 32
 
 /obj/item/reagent_containers/powder/spice
 	name = "spice"
