@@ -126,6 +126,16 @@
 #define TRAIT_KEENEARS "Keen Ears"
 #define TRAIT_CICERONE "Cicerone"
 #define TRAIT_BETTER_SLEEP	"Better Sleep" //Recover more energy (blue bar) when sleeping
+#define TRAIT_EASYDISMEMBER	"Easy Dismember"
+#define TRAIT_NOPAIN	"Painless"
+#define TRAIT_NOPAINSTUN	"Enduring"
+#define TRAIT_NOBREATH	"Breathless"
+#define TRAIT_TOXIMMUNE	"Poison Immune"
+#define TRAIT_ROTMAN "Rotman"
+#define TRAIT_ZOMBIE_IMMUNE "Deadite Immunity" //immune to deadite infection
+#define TRAIT_NOHUNGER	"Foodless"
+#define TRAIT_DARKVISION "Darksight"
+#define TRAIT_LIGHT_STEP	"Light Step"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -150,15 +160,15 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NUTCRACKER = "I love kicking idiots on the nuts!",
 	TRAIT_SEEPRICES = "I can tell the prices of things down to the zenny.",
 	TRAIT_SEEPRICES_SHITTY = "I can tell the prices of things... <i>Kind of</i>.",
-	TRAIT_STRONGBITE = "Stronger bites, critical bite attacks.",
+	TRAIT_STRONGBITE = span_info("Stronger bites, critical bite attacks."),
 	TRAIT_NOBLE = span_blue("I'm of noble blood."),
-	TRAIT_EMPATH = "I can notice when people are in pain.",
-	TRAIT_BREADY = "Defensive stance does not passively fatigue me.",
-	TRAIT_MEDIUMARMOR = "I can move freely in medium armor.",
-	TRAIT_HEAVYARMOR = "I can move freely in heavy armor.",
-	TRAIT_DODGEEXPERT = "I can dodge easily while only wearing light armor.",
-	TRAIT_MAGEARMOR = "My magics can protect me from a blow every so often.",
-	TRAIT_DECEIVING_MEEKNESS = "People look at me and think I am a weakling. They are mistaken. I've learned how to feint, and how to avoid theirs.",
+	TRAIT_EMPATH = span_info("I can notice when people are in pain."),
+	TRAIT_BREADY = span_info("Defensive stance does not passively fatigue me."),
+	TRAIT_MEDIUMARMOR = span_info("I can move freely in medium armor."),
+	TRAIT_HEAVYARMOR = span_info("I can move freely in heavy armor."),
+	TRAIT_DODGEEXPERT = span_info("I can dodge easily while only wearing light armor."),
+	TRAIT_MAGEARMOR = span_info("My magics can protect me from a blow every so often."),
+	TRAIT_DECEIVING_MEEKNESS = span_info("People look at me and think I am a weakling. They are mistaken. I've learned feinting, and how to hide my vices and heretical beliefs."),
 	TRAIT_CRITICAL_RESISTANCE = "I am resistant to wounds that would be life threatening to others.",
 	TRAIT_CRITICAL_WEAKNESS = span_danger("I am weak to wounds that others could survive."),
 	TRAIT_MANIAC_AWOKEN = span_danger("I am <b>WAKING UP</b> and the sheeple know this. They will resist."),
@@ -196,8 +206,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_SQUIRE_REPAIR = span_info("I know my way around my Master's tools."),
 	TRAIT_WATERBREATHING = span_info("I do not drown in bodies of water."),
 	TRAIT_NUDE_SLEEPER = span_warning("I can't fall asleep unless I'm nude and in bed."),
-	TRAIT_ABYSSOR_SWIM = "I get far less tired when swimming than my peers.",
-	TRAIT_LONGSTRIDER = "Each of my steps finds it's footing no matter how treacherous the terrain is.",
+	TRAIT_ABYSSOR_SWIM = span_info("I get far less tired when swimming than my peers."),
+	TRAIT_LONGSTRIDER = span_info("Each of my steps finds it's footing no matter how treacherous the terrain is."),
 	TRAIT_TRAINED_SMITH = span_info("I've spent long training, and with some more, I will be able to smith legendary items."),
 	TRAIT_DEATHSIGHT = span_info("I can feel when someone nearby draws the Undermaiden's attention."),
 	TRAIT_FORGEBLESSED = span_info("Countless long nights spent forging metal have honed my endurance, allowing me to work an anvil far longer than most without tiring."),
@@ -212,7 +222,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_SILVER_BLESSED = span_info("I am anointed with holy silver, which preserves me from curses that bite."),
 	TRAIT_GOODTRAINER = span_info("I am a good teacher, and when it comes to weaponry I can train others to be just as skilled as I am."),
 	TRAIT_SEA_DRINKER = span_info("As a denizen of the deep, I can drink salty ocean water safely."),
-	TRAIT_BIGGUY = span_info("My immense frame and size allows me to smash through wooden doors, and into people with more effectiveness."),
+	TRAIT_BIGGUY = span_info("My immense frame and size allows me to smash through wooden doors, and throw people more easily."),
 	TRAIT_OUTDOORSMAN = span_info("My experience in the wilds allows me to fall asleep on surfaces like treebranches as if they were beds."),
 	TRAIT_STUDENT =  span_info("I am overwhelmed by all this knowledge!"),
 	TRAIT_LEGENDARY_ALCHEMIST = span_info("An expert in the art of finding herbs in the wild."),
@@ -222,7 +232,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_HERETIC_SEER = span_info("I can tell other Ascendant followers without sharing their faith."),
 	TRAIT_DUALWIELDER = span_info("If I wield two identical weapons, I  roll twice for my attacks, and so will the enemy against me. I do not suffer penalties from using my off-hand in combat."),
 	TRAIT_SENTINELOFWITS = span_info("My Intelligence aids in my defense. Every 2 points above 10 INT become an additional 10% chance to dodge or parry. Does not count positive buffs from potions or substances."),
-	TRAIT_KEENEARS = span_info("I've a good pair of ears, and can tell who is speaking, even when they're out of sight."),
+	TRAIT_KEENEARS = span_info("I've a good pair of ears, and can tell who is speaking, even when they're out of sight. I can also hear whispers from further away."),
 	TRAIT_SCREENSHAKE = span_suicide("I don't feel very steady anymore..."),
 	TRAIT_GRAVEROBBER = span_info("My experience with 'post-mortem artifact recovery' has allowed me to resist Necra's curse placed upon those who disturb resting places."),
 	TRAIT_PURITAN = span_info("I can hear the secret whispers of the heretics."),
@@ -230,6 +240,17 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_JUSTICARSIGHT = span_info("I am able to remember someone's crimes by looking at them, and how much their bounty is."),
 	TRAIT_CICERONE = span_info("I am well-versed in the differences of brews and spirits, and can tell them apart at a glance."),
 	TRAIT_BETTER_SLEEP = span_info("I recover more energy when sleeping."),
+	TRAIT_ROTMAN = span_info("I am partially undead. My heart does not beat."),
+	TRAIT_EASYDISMEMBER = span_info("My limbs are frail and fragile. They can be dismembered with greater ease."),
+	TRAIT_NOPAIN = span_info("I feel no pain."),
+	TRAIT_NOPAINSTUN = span_info("Pain does not impair me."),
+	TRAIT_NOBREATH = span_info("I do not breathe."),
+	TRAIT_TOXIMMUNE = span_info("Poisons do nothing to me."),
+	TRAIT_ZOMBIE_IMMUNE = span_info("Deadite bites cannot infect me."),
+	TRAIT_NOHUNGER = span_info("I do not hunger, or thirst."),
+	TRAIT_DARKVISION = span_info("I can see better in the dark."),
+	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in Azure Peak."),
+	TRAIT_LIGHT_STEP = span_info("My steps are light and swift. I make less noise while sneaking, and can sneak much quicker.")
 ))
 
 // trait accessor defines
@@ -320,7 +341,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PUSHIMMUNE		"push_immunity"
 #define TRAIT_STABLEHEART		"stable_heart"
 #define TRAIT_STABLELIVER		"stable_liver"
-#define TRAIT_NOPAINSTUN		"no_pain-stun"
 #define TRAIT_RESISTHEAT		"resist_heat"
 #define TRAIT_RESISTHEATHANDS	"resist_heat_handsonly" //For when you want to be able to touch hot things, but still want fire to be an issue.
 #define TRAIT_RESISTCOLD		"resist_cold"
@@ -332,16 +352,12 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NODISMEMBER		"Dismember Immunity"
 #define TRAIT_NOFIRE			"nonflammable"
 #define TRAIT_NOGUNS			"no_guns"
-#define TRAIT_NOHUNGER			"No Hunger"
 #define TRAIT_NOMETABOLISM		"no_metabolism"
-#define TRAIT_TOXIMMUNE			"Toxin Immune"
 #define TRAIT_HARDDISMEMBER		"Hard Dismember"
-#define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
 #define TRAIT_EASYLIMBDISABLE	"easy_limb_disable"
 #define TRAIT_TOXINLOVER		"toxinlover"
-#define TRAIT_NOBREATH			"no_breath"
 #define TRAIT_HOLDBREATH		"hold_breath"
 #define TRAIT_HOLY				"holy"
 #define TRAIT_DEPRESSION		"depression"
@@ -387,12 +403,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_PASSTABLE			"passtable"
 #define TRAIT_NOFLASH			"noflash" //Makes you immune to flashes
 #define TRAIT_XENO_IMMUNE		"xeno_immune"//prevents xeno huggies implanting skeletons
-#define TRAIT_NOPAIN			"no_pain"
 #define TRAIT_DRUQK				"druqk"
 #define TRAIT_BURIED_COIN_GIVEN "buried_coin_given" // prevents a human corpse from being used for a corpse multiple times
 #define TRAIT_BLOODLOSS_IMMUNE "bloodloss_immune" // can bleed, but will never die from blood loss
-#define TRAIT_ROTMAN "rotman" //you are a rotman and need occasional maintenance
-#define TRAIT_ZOMBIE_IMMUNE "zombie_immune" //immune to zombie infection
 #define TRAIT_NO_BITE "no_bite" //prevents biting
 #define TRAIT_LEGENDARY_ALCHEMIST		"Expert Herb Finder"
 
@@ -412,7 +425,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_AGEUSIA			"ageusia"
 #define TRAIT_HEAVY_SLEEPER		"heavy_sleeper"
 #define TRAIT_NIGHT_VISION		"night_vision"
-#define TRAIT_LIGHT_STEP		"light_step"
 #define TRAIT_SPIRITUAL			"spiritual"
 #define TRAIT_FAN_CLOWN			"fan_clown"
 #define TRAIT_FAN_MIME			"fan_mime"
@@ -463,7 +475,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_GUIDANCE "Guidance"
 #define TRAIT_FORTITUDE "Fortitude"
 #define TRAIT_LONGSTRIDER "Longstrider"
-#define TRAIT_DARKVISION "Darkvision"
 #define CLONING_POD_TRAIT "cloning-pod"
 #define STATUE_MUTE "statue"
 #define CHANGELING_DRAIN "drain"
