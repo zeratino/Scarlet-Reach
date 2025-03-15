@@ -582,7 +582,6 @@
 /datum/intent/sword/thrust/sabre
 	clickcd = 9			//Fast but still not as fast as rapier n' shittier.
 	damfactor = 0.9		//10% worse	than base
-	penfactor = 15		//5 less than base
 
 /obj/item/rogueweapon/sword/sabre/dec
 	icon_state = "decsaber"
