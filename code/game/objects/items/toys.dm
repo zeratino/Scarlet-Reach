@@ -111,10 +111,10 @@
 	deckstyle = "syndicate"
 	icon_state = "deck_syndicate_full"
 	w_class = WEIGHT_CLASS_SMALL
-	grid_width = 32
-	grid_height = 32
 	var/cooldown = 0
 	var/list/cards = list()
+	grid_width = 32
+	grid_height = 32
 
 /obj/item/toy/cards/deck/Initialize()
 	. = ..()
