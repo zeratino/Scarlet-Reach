@@ -226,7 +226,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	..()
 
 /datum/objective/maroon/check_completion()
-	return !target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndieBase())
+	return !target || !considered_alive(target) || (!target.current.onCentCom())
 
 /datum/objective/maroon/update_explanation_text()
 	if(target && target.current)
@@ -315,20 +315,6 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	var/list/datum/mind/owners = get_owners()
 	for(var/datum/mind/M in owners)
 		if(!considered_escaped(M))
-			return FALSE
-	return TRUE
-
-/datum/objective/escape/boat
-	name = "escape"
-	explanation_text = "Escape on the last boat out of ROGUETOWN."
-	team_explanation_text = "Escape on the last boat out of ROGUETOWN."
-
-/datum/objective/escape/boat/check_completion()
-	if(SSshuttle.emergency.mode != SHUTTLE_ENDGAME)
-		return FALSE
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(!considered_escaped(M) || !SSshuttle.emergency.shuttle_areas[get_area(M.current)])
 			return FALSE
 	return TRUE
 
