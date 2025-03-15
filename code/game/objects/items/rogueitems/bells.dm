@@ -10,12 +10,12 @@
 	throwforce = 5
 	damtype = BRUTE
 	force = 5
-	grid_width = 32
-	grid_height = 32
 	hitsound = 'sound/items/bsmith1.ogg'
 	var/cooldown = 3 SECONDS
 	var/ringing = FALSE
 	resistance_flags = FIRE_PROOF
+	grid_width = 32
+	grid_height = 64
 
 /obj/item/handheld_bell/attack_self(mob/user)
 	. = ..()
@@ -103,9 +103,9 @@
 	icon_state = "bells"
 	throwforce = 5
 	dropshrink = 0.5
-	grid_width = 32
-	grid_height = 32
 	drop_sound = SFX_JINGLE_BELLS
+	grid_width = 64
+	grid_height = 32
 
 /obj/item/jingle_bells/Initialize()
 	. = ..()
