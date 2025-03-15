@@ -1801,6 +1801,7 @@
 	icon_state = "welfhead"
 	item_state = "welfhead"
 	block2add = FOV_BEHIND
+	bloody_icon = 'icons/effects/blood64.dmi'
 	smeltresult = /obj/item/rogueore/coal
 	max_integrity = 300
 	blocksound = SOFTHIT
