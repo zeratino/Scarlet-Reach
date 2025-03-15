@@ -1540,8 +1540,24 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "aZZ" = (
-/obj/machinery/light/rogue/wallfire{
-	pixel_y = 32
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/obj/structure/rack/rogue/shelf,
+/obj/structure/rack/rogue/shelf/big,
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = 5;
+	pixel_y = 39
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = -5;
+	pixel_y = 39
+	},
+/obj/item/cooking/platter{
+	pixel_y = 10
+	},
+/obj/item/cooking/platter{
+	pixel_y = 12
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -27156,7 +27172,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "tms" = (
-/obj/structure/rogue/trophy/deer,
+/obj/effect/decal/cobbleedge{
+	pixel_y = 1
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -30513,10 +30531,13 @@
 	},
 /area/rogue/indoors/town/garrison)
 "vSI" = (
+/obj/machinery/light/rogue/hearth,
 /obj/machinery/light/rogue/oven/south,
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
+/obj/effect/decal/cobbleedge{
+	dir = 10
 	},
+/obj/item/cooking/pan,
+/turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "vTk" = (
 /obj/structure/stairs{
@@ -60442,9 +60463,9 @@ ymg
 cHT
 ymg
 fsP
-lyQ
-fJa
-vSI
+xqr
+xqr
+dby
 xmq
 xmq
 vaQ
@@ -60599,8 +60620,8 @@ ymg
 cHT
 ymg
 ymg
-lyQ
-fJa
+xqr
+vSI
 tms
 xmq
 xmq
@@ -60756,8 +60777,8 @@ ymg
 uSj
 cHT
 ymg
-lyQ
-fJa
+xqr
+xqr
 aZZ
 xmq
 xmq
@@ -84778,7 +84799,7 @@ tXZ
 tXZ
 tXZ
 tXZ
-tXZ
+apZ
 sby
 kDt
 xRB
@@ -84935,7 +84956,7 @@ tXZ
 tXZ
 tXZ
 tXZ
-tXZ
+xqr
 mbj
 dhs
 eSe
@@ -85092,7 +85113,7 @@ tXZ
 tXZ
 tXZ
 tXZ
-tXZ
+apZ
 sby
 xmq
 xmq
@@ -108801,10 +108822,10 @@ tXZ
 tXZ
 tXZ
 tXZ
-cjg
-cjg
-cjg
-cjg
+wzp
+wzp
+wzp
+pIG
 cjg
 cjg
 cjg
@@ -108958,10 +108979,10 @@ tXZ
 tXZ
 tXZ
 tXZ
-cjg
-cjg
-cjg
-cjg
+wzp
+wzp
+wzp
+pIG
 cjg
 cjg
 cjg
@@ -109114,11 +109135,11 @@ tXZ
 tXZ
 tXZ
 tXZ
-tXZ
-cjg
-cjg
-cjg
-cjg
+wzp
+wzp
+wzp
+wzp
+pIG
 cjg
 cjg
 cjg
@@ -109271,11 +109292,11 @@ tXZ
 tXZ
 tXZ
 tXZ
-tXZ
-cjg
-cjg
-cjg
-cjg
+meY
+wzp
+wzp
+wzp
+pIG
 cjg
 cjg
 cjg
@@ -109428,11 +109449,11 @@ tXZ
 tXZ
 tXZ
 tXZ
-tXZ
-cjg
-cjg
-cjg
-cjg
+wzp
+wzp
+wzp
+wzp
+pIG
 cjg
 cjg
 cjg
@@ -109586,10 +109607,10 @@ tXZ
 tXZ
 tXZ
 tXZ
-cjg
-cjg
-cjg
-cjg
+wzp
+wzp
+wzp
+pIG
 cjg
 cjg
 cjg
@@ -109743,10 +109764,10 @@ tXZ
 tXZ
 tXZ
 tXZ
-cjg
-cjg
-cjg
-cjg
+wzp
+wzp
+wzp
+pIG
 cjg
 cjg
 cjg
