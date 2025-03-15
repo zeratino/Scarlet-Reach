@@ -226,7 +226,8 @@
 	name = "hardened leather helmet (leather, fiber; MASTER)"
 	result = /obj/item/clothing/head/roguetown/helmet/leather/advanced
 	reqs = list(/obj/item/natural/hide/cured = 1,
-				/obj/item/natural/fibers = 1)
+				/obj/item/natural/fibers = 1,
+				/obj/item/reagent_containers/food/snacks/tallow = 1)
 	craftdiff = 4
 	sellprice = 40
 
