@@ -313,7 +313,7 @@
 		my_crime = "crimes against the Crown"
 	var/bounty_total
 	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "the Holy See")
+	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Holy See")
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 
@@ -371,4 +371,4 @@
 		my_crime = "crimes against the Crown"
 	var/bounty_total
 	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "the Holy See")
+	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Holy See")

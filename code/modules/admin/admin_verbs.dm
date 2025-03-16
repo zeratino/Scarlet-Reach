@@ -35,6 +35,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/adminwho,
 	/client/proc/admin_spread_effect,
 	/client/proc/open_bounty_menu,
+	/client/proc/remove_bounty,
 	// RATWOOD MODULAR START
 	/client/proc/bunker_bypass,
 	// RATWOOD MODULAR END
@@ -854,3 +855,30 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	else
 		to_chat(src, span_notice("Either the book file doesn't exist or you have failed to type something in properly (you can look up the file name by the verb 'database book file names'"))
 
+/client/proc/remove_bounty()
+	set category = "Admin"
+	set name = "Remove Bounty"
+	if(!holder)
+		return
+	var/list/bounty_list = list()
+
+	for(var/datum/bounty/removable_bounties in GLOB.head_bounties)
+		bounty_list += removable_bounties.target
+
+	if(!bounty_list.len)
+		to_chat(src, "There are no active bounties to remove.")
+		return
+
+	var/target_name = input(src, "Whose name shall be struck from the wanted list?", src) as null|anything in bounty_list
+	if(!target_name)
+		return
+
+	to_chat(src,"Removing [target_name] from bounty list...")
+
+	for(var/datum/bounty/removing_bounty in GLOB.head_bounties)
+		if(removing_bounty.target == target_name)
+			GLOB.head_bounties -= removing_bounty
+			scom_announce("An unknown force has erased the bounty on [target_name]. The gods are displeased.")
+			message_admins("[ADMIN_LOOKUPFLW(src)] has removed the bounty on [ADMIN_LOOKUPFLW(target_name)]")
+			return
+	to_chat(src, "Error. Bounty no longer active.") 
