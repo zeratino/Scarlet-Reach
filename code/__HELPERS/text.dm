@@ -28,16 +28,6 @@
 			index = findtext(t, char)
 	return t
 
-// Attempts to preserve some amount of fancy OOC / FTs
-//! !NOT SAFE! DO NOT ASSUME THIS IS SAFE!
-/proc/strip_html_dubious(t)
-	var/list/strip_chars = list("id=","href","</a>","onload","srcdoc","javascript","classid","script","<script","</div","</title>","]","</object>","xmp",".svg","getelementbyid","xml","<root","</x>,</label","datasrc","dataformatas","iframe","<comment","targetelement")
-	for(var/char in strip_chars)
-		var/index = findtext(t, char)
-		if(index)
-			t = sanitize_simple(t, list(","="", "."="", "/"="", "\\"="", "?"="", "%"="", "*"="", ":"="", "|"="", "\""="", "<"="", ">"=""))
-			return t
-	return t
 
 // Removes punctuation
 /proc/strip_punctuation(t,limit=MAX_MESSAGE_LEN)
@@ -534,16 +524,19 @@ GLOBAL_LIST_INIT(binary, list("0","1"))
 
 	// Parse most rules
 
-	t = replacetext(t, regex("\\*(\[^\\*\]*)\\*", "g"), "<i>$1</i>")
-	t = replacetext(t, regex("_(\[^_\]*)_", "g"), "<i>$1</i>")
-	t = replacetext(t, "<i></i>", "!")
-	t = replacetext(t, "</i><i>", "!")
-	t = replacetext(t, regex("\\!(\[^\\!\]+)\\!", "g"), "<b>$1</b>")
-	if(!barebones)
+	if(!barebones)	//Barebones swaps * for + and | for bold and italics respectively, used in say / emote code, mostly.
+		t = replacetext(t, regex("\\*(\[^\\*\]*)\\*", "g"), "<i>$1</i>")
+		t = replacetext(t, regex("_(\[^_\]*)_", "g"), "<i>$1</i>")
+		t = replacetext(t, "<i></i>", "!")
+		t = replacetext(t, "</i><i>", "!")
+		t = replacetext(t, regex("\\!(\[^\\!\]+)\\!", "g"), "<b>$1</b>")
 		t = replacetext(t, regex("\\^(\[^\\^\]+)\\^", "g"), "<font size=\"4\">$1</font>")
-	if(!barebones)
 		t = replacetext(t, regex("\\|(\[^\\|\]+)\\|", "g"), "<center>$1</center>")
-	t = replacetext(t, "!", "</i><i>")
+		t = replacetext(t, "!", "</i><i>")
+	else
+		t = replacetext(t, regex("\\+(\[^\\+\]+)\\+", "g"), "<b>$1</b>")
+		t = replacetext(t, regex("\\|(\[^\\|\]+)\\|", "g"), "<i>$1</i>")
+		t = replacetext(t, regex("\\_(\[^\\_\]+)\\_", "g"), "<u>$1</u>")
 
 	return t
 

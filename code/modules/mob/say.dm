@@ -86,7 +86,7 @@
 		return 1
 
 /mob/proc/check_whisper(message, forced)
-	if(copytext_char(message, 1, 2) == "+")
+	if(copytext_char(message, 1, 2) == "#")
 		whisper(copytext_char(message, 2),sanitize = FALSE)//already sani'd
 		return 1
 
