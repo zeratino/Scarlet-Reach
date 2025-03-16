@@ -3584,6 +3584,10 @@
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"byn" = (
+/obj/machinery/light/rogue/wallfire/candle/blue,
+/turf/open/floor/rogue/tile,
+/area/rogue/outdoors/exposed/bath/vault)
 "byp" = (
 /obj/structure/fluff/walldeco/painting/seraphina{
 	pixel_x = 32
@@ -5777,7 +5781,7 @@
 /obj/item/clothing/ring/silver,
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "cuD" = (
 /obj/structure/gate{
 	gid = "dungeondoor";
@@ -9525,7 +9529,7 @@
 "dYL" = (
 /obj/structure/closet/crate/chest/gold,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "dYM" = (
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/outdoors/beach)
@@ -11886,6 +11890,9 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
+"eTd" = (
+/turf/closed/wall/mineral/rogue/craftstone,
+/area/rogue/outdoors/exposed/bath/vault)
 "eTk" = (
 /obj/structure/chair/bench/coucha,
 /obj/structure/fluff/walldeco/bigpainting{
@@ -39004,7 +39011,7 @@
 	lockid = "nightman"
 	},
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "qeW" = (
 /obj/structure/rack/rogue/shelf,
 /obj/item/reagent_containers/glass/bottle/rogue{
@@ -40015,7 +40022,7 @@
 "qAk" = (
 /obj/item/reagent_containers/glass/cup/golden,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "qAP" = (
 /obj/structure/bars/steel,
 /turf/open/floor/rogue/dirt/road,
@@ -42452,7 +42459,7 @@
 "ryN" = (
 /obj/structure/bars,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "ryS" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 8;
@@ -46229,7 +46236,7 @@
 /obj/structure/closet/crate/chest/gold,
 /obj/item/roguegem/violet,
 /turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
+/area/rogue/outdoors/exposed/bath/vault)
 "tad" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/structure/fermenting_barrel/water,
@@ -49161,6 +49168,9 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/exposed/town/keep)
+"ulQ" = (
+/turf/open/floor/rogue/tile,
+/area/rogue/outdoors/exposed/bath/vault)
 "ulV" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -126699,10 +126709,10 @@ rqY
 rqY
 rqY
 rqY
-rqY
-rqY
-rqY
-rqY
+eTd
+eTd
+eTd
+eTd
 fqU
 mtL
 vsI
@@ -127151,10 +127161,10 @@ sIe
 rqY
 wBv
 wpA
-rqY
-wTG
+eTd
+byn
 qAk
-rqY
+eTd
 fyg
 pNJ
 vsI
@@ -127604,9 +127614,9 @@ xMk
 kXw
 kXw
 ryN
-iBX
-iBX
-rqY
+ulQ
+ulQ
+eTd
 fqU
 hSR
 vsI
@@ -128056,9 +128066,9 @@ rqY
 kXw
 kXw
 qeI
-iBX
+ulQ
 dYL
-rqY
+eTd
 hSR
 hSR
 vsI
@@ -128508,9 +128518,9 @@ rqY
 ckq
 ckq
 ryN
-iBX
-iBX
-rqY
+ulQ
+ulQ
+eTd
 xPZ
 yiO
 ehj
@@ -128959,10 +128969,10 @@ ckq
 rqY
 xBh
 dcf
-rqY
+eTd
 cuz
 taa
-rqY
+eTd
 xPZ
 onr
 vsI
@@ -129411,10 +129421,10 @@ rqY
 rqY
 rqY
 rqY
-rqY
-rqY
-rqY
-rqY
+eTd
+eTd
+eTd
+eTd
 xPZ
 onr
 vsI
