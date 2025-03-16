@@ -35,6 +35,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/adminwho,
 	/client/proc/admin_spread_effect,
 	/client/proc/open_bounty_menu,
+	/client/proc/remove_bounty,
 	// RATWOOD MODULAR START
 	/client/proc/bunker_bypass,
 	// RATWOOD MODULAR END
@@ -92,8 +93,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/jumptokey,				/*allows us to jump to the location of a mob with a certain ckey*/
 	/client/proc/jumptomob,				/*allows us to jump to a specific mob*/
 	/client/proc/jumptoturf,			/*allows us to jump to a specific turf*/
-	/client/proc/admin_call_shuttle,	/*allows us to call the emergency shuttle*/
-	/client/proc/admin_cancel_shuttle,	/*allows us to cancel the emergency shuttle, sending it back to centcom*/
 	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
 	/client/proc/cmd_admin_local_narrate,	/*sends text to all mobs within view of atom*/
@@ -102,7 +101,6 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/cmd_admin_check_player_exp, /* shows players by playtime */
 	/client/proc/toggle_combo_hud, // toggle display of the combination pizza antag and taco sci/med/eng hud
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
-	/datum/admins/proc/open_shuttlepanel, /* Opens shuttle manipulator UI */
 	/client/proc/deadchat,
 	/client/proc/toggleprayers,
 	/client/proc/toggle_prayer_sound,
@@ -188,7 +186,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/map_template_load,
 	/client/proc/map_template_upload,
 	/client/proc/jump_to_ruin,
-	/client/proc/clear_dynamic_transit,
 	/client/proc/toggle_medal_disable,
 	/client/proc/view_runtimes,
 	/client/proc/pump_random_event,
@@ -223,8 +220,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_headset_message,
 	/client/proc/cmd_admin_check_contents,
-	/client/proc/admin_call_shuttle,
-	/client/proc/admin_cancel_shuttle,
 	/client/proc/cmd_admin_direct_narrate,
 	/client/proc/cmd_admin_world_narrate,
 	/client/proc/cmd_admin_local_narrate,
@@ -860,3 +855,30 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	else
 		to_chat(src, span_notice("Either the book file doesn't exist or you have failed to type something in properly (you can look up the file name by the verb 'database book file names'"))
 
+/client/proc/remove_bounty()
+	set category = "Admin"
+	set name = "Remove Bounty"
+	if(!holder)
+		return
+	var/list/bounty_list = list()
+
+	for(var/datum/bounty/removable_bounties in GLOB.head_bounties)
+		bounty_list += removable_bounties.target
+
+	if(!bounty_list.len)
+		to_chat(src, "There are no active bounties to remove.")
+		return
+
+	var/target_name = input(src, "Whose name shall be struck from the wanted list?", src) as null|anything in bounty_list
+	if(!target_name)
+		return
+
+	to_chat(src,"Removing [target_name] from bounty list...")
+
+	for(var/datum/bounty/removing_bounty in GLOB.head_bounties)
+		if(removing_bounty.target == target_name)
+			GLOB.head_bounties -= removing_bounty
+			scom_announce("An unknown force has erased the bounty on [target_name]. The gods are displeased.")
+			message_admins("[ADMIN_LOOKUPFLW(src)] has removed the bounty on [ADMIN_LOOKUPFLW(target_name)]")
+			return
+	to_chat(src, "Error. Bounty no longer active.") 

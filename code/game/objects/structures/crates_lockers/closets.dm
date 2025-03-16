@@ -304,7 +304,7 @@
 		return
 	else
 		var/obj/item/roguekey/K = I
-		if(K.lockhash == lockhash)
+		if(K.lockhash == lockhash || istype(K, /obj/item/roguekey/lord))
 			togglelock(user)
 			return
 		else

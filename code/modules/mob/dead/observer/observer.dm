@@ -184,11 +184,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(!T)
 		testing("NO T")
-		var/list/turfs = get_area_turfs(/area/shuttle/arrival)
-		if(turfs.len)
-			T = pick(turfs)
-		else
-			T = SSmapping.get_station_center()
+		T = SSmapping.get_station_center()
 
 	forceMove(T)
 
@@ -828,10 +824,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/living/target = input("Your new life begins today!", "Possess Mob", null, null) as null|anything in sortNames(possessible)
 
 	if(!target)
-		return FALSE
-
-	if(ismegafauna(target))
-		to_chat(src, span_warning("This creature is too powerful for you to possess!"))
 		return FALSE
 
 	if(can_reenter_corpse && mind?.current)
