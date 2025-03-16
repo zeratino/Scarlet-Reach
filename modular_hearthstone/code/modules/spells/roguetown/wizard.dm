@@ -1590,7 +1590,7 @@
 			success = TRUE
 			var/list/cont = Tstep.GetAllContents(/obj/structure/roguewindow)
 			for(var/obj/structure/roguewindow/W in cont)
-				if(W.climbable && !W.opacity)	//It's climable and can be seen through
+				if(W.climbable && !W.opacity)	//It's climbable and can be seen through
 					success = TRUE
 					continue
 				else if(!W.climbable)
@@ -1606,6 +1606,7 @@
 /obj/effect/proc_holder/spell/invoked/shadowstep/proc/tp(mob/user)
 	if(destination_turf)
 		if(do_teleport(user, destination_turf, no_effects=TRUE))
+			log_admin("[user.real_name]([key_name(user)] Shadowstepped from X:[user_turf.x] Y:[user_turf.y] Z:[user_turf.z] to X:[destination_turf.x] Y:[destination_turf.y] Z:[destination_turf.z] in area: [get_area(destination_turf)]")
 			if(user.m_intent == MOVE_INTENT_SNEAK)
 				playsound(user_turf, 'sound/magic/shadowstep.ogg', 20, FALSE)
 				playsound(destination_turf, 'sound/magic/shadowstep.ogg', 20, FALSE)
