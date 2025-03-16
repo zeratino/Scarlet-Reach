@@ -163,12 +163,12 @@
 		ADD_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
 		if(HAS_TRAIT(user, TRAIT_RITUALIST))
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
-		var/timer = 30 MINUTES
+		var/timer = 20 SECONDS
 
 		if(bounty_amount >= 100)
 			var/additional_time = bounty_amount * 0.1
 			additional_time = round(additional_time)
-			timer += additional_time MINUTES
+			timer += additional_time SECONDS
 
 		var/timer_minutes = timer / 600
 
