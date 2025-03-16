@@ -20,7 +20,6 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 	pants = /obj/item/clothing/under/roguetown/trou/leather
-	// /obj/item/clothing/neck/roguetown/chaincoif
 	var/classes = list("Melee (Polearms)", "Ranged (Bows)")
 	var/classchoice = input("Choose your archetype", "Available archetypes") as anything in classes
 	switch(classchoice)
