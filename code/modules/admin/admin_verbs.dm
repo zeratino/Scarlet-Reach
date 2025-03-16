@@ -878,7 +878,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	for(var/datum/bounty/removing_bounty in GLOB.head_bounties)
 		if(removing_bounty.target == target_name)
 			GLOB.head_bounties -= removing_bounty
-			scom_announce("Ravox is displeased! The bounty posting on [target_name] has been struck down by the gods!")
+			scom_announce("An unknown force has erased the bounty on [target_name]. The gods are displeased.")
 			message_admins("[ADMIN_LOOKUPFLW(src)] has removed the bounty on [ADMIN_LOOKUPFLW(target_name)]")
 			return
 	to_chat(src, "Error. Bounty no longer active.") 
