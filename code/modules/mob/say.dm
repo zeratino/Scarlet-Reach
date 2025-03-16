@@ -79,15 +79,14 @@
 
 	return // RTCHANGE
 
-///Check if this message is an emote -- Deprecated due to chat formatting.
+///Check if this message is an emote
 /mob/proc/check_emote(message, forced)
-	return 0
-//	if(copytext_char(message, 1, 2) == "*")
-//		emote(copytext_char(message, 2), intentional = !forced, custom_me = TRUE)
-//		return 1
+	if(copytext_char(message, 1, 2) == "*")
+		emote(copytext_char(message, 2), intentional = !forced, custom_me = TRUE)
+		return 1
 
 /mob/proc/check_whisper(message, forced)
-	if(copytext_char(message, 1, 2) == "#")
+	if(copytext_char(message, 1, 2) == "+")
 		whisper(copytext_char(message, 2),sanitize = FALSE)//already sani'd
 		return 1
 
@@ -111,3 +110,8 @@
 	var/key = copytext_char(message, 1, 2)
 	if(key == "#")
 		return MODE_WHISPER
+	else if(key == ";")
+		return MODE_HEADSET
+	else if(length(message) > 2 && (key in GLOB.department_radio_prefixes))
+		var/key_symbol = lowertext(copytext_char(message, 2, 3))
+		return GLOB.department_radio_keys[key_symbol]
