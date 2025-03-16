@@ -9656,8 +9656,8 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/town)
 "gVJ" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
-/turf/open/floor/carpet/red,
+/obj/structure/roguemachine/bounty,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "gVU" = (
 /obj/structure/roguewindow/openclose/reinforced{
@@ -19005,6 +19005,12 @@
 /obj/structure/fluff/canopy/booth/booth_green,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
+"nyE" = (
+/obj/structure/rack/rogue,
+/obj/item/clothing/shoes/roguetown/boots,
+/obj/item/clothing/shoes/roguetown/boots,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/sewer)
 "nyM" = (
 /obj/effect/decal/cobbleedge{
 	dir = 6
@@ -22948,9 +22954,7 @@
 /area/rogue/under/town/basement)
 "qnG" = (
 /obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
-/obj/structure/rack/rogue,
-/obj/item/clothing/shoes/roguetown/boots,
-/obj/item/clothing/shoes/roguetown/boots,
+/obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "qol" = (
@@ -46684,13 +46688,13 @@ cVE
 cVE
 heh
 pmA
-oYS
+lEv
 wGj
 wGj
 wGj
 wGj
 bHA
-lEv
+oYS
 pmA
 exi
 exi
@@ -46998,13 +47002,13 @@ cVE
 cVE
 heh
 pmA
-bHA
-bHA
+hZC
+hZC
 itN
 itN
 itN
-bHA
-bHA
+hZC
+hZC
 pmA
 exi
 exi
@@ -47155,13 +47159,13 @@ vrR
 cVE
 heh
 pmA
-hZC
-hZC
+fQy
+kDA
 itN
-gVJ
 itN
-hZC
-hZC
+itN
+tnr
+osY
 pmA
 exi
 exi
@@ -47312,13 +47316,13 @@ pmA
 cVE
 heh
 pmA
-fQy
-kDA
+oGp
+sSf
 itN
 itN
 itN
-tnr
-osY
+mGX
+fDU
 pmA
 exi
 sjE
@@ -47469,13 +47473,13 @@ pmA
 cVE
 heh
 pmA
-oGp
-sSf
+qGv
+qGv
 itN
 itN
 itN
-mGX
-fDU
+qGv
+qGv
 pmA
 exi
 exi
@@ -47626,13 +47630,13 @@ pmA
 cVE
 heh
 pmA
-qGv
-qGv
+bHA
+bHA
 itN
 itN
 itN
-qGv
-qGv
+bHA
+bHA
 pmA
 exi
 exi
@@ -47783,13 +47787,13 @@ pmA
 xsI
 heh
 pmA
-bHA
+gVJ
 bHA
 itN
 itN
 itN
 bHA
-bHA
+nyE
 pmA
 exi
 exi
@@ -47945,8 +47949,8 @@ bHA
 bHA
 bHA
 bHA
+bHA
 oBK
-oYS
 pmA
 exi
 exi
