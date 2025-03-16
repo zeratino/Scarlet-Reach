@@ -100,7 +100,7 @@
 	var/bleed_rate = 0
 	if(bandage && !HAS_BLOOD_DNA(bandage))
 		return 0
-	for(var/datum/wound/wound as anything in wounds)
+	for(var/datum/wound/wound in wounds)
 		bleed_rate += wound.bleed_rate
 	for(var/obj/item/embedded as anything in embedded_objects)
 		if(!embedded.embedding.embedded_bloodloss)
