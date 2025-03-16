@@ -6275,7 +6275,8 @@
 /area/rogue/indoors/town/tavern)
 "ewa" = (
 /obj/structure/mineral_door/bars{
-	lockid = "artificer"
+	lockid = "artificer";
+	name = "artificery's iron door"
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
@@ -10691,7 +10692,8 @@
 /area/rogue/indoors/town/dwarfin)
 "hUK" = (
 /obj/structure/mineral_door/bars{
-	lockid = "mason"
+	lockid = "blacksmith";
+	name = "smithy's iron door"
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
