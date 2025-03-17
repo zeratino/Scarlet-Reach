@@ -196,7 +196,7 @@
 	wdefense = 3
 	resistance_flags = FLAMMABLE
 	grid_width = 32
-	grid_height = 64
+	grid_height = 96
 
 /obj/item/rogueweapon/mace/cudgel/justice
 	name = "'Justice'"
@@ -211,8 +211,6 @@
 	wbalance = 4
 	minstr = 7
 	wdefense = 5
-	grid_width = 32
-	grid_height = 64
 
 /obj/item/rogueweapon/mace/cudgel/getonmobprop(tag)
 	. = ..()
