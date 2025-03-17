@@ -1,7 +1,6 @@
 /obj/item/key
 	name = "key"
 	desc = ""
-	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "key"
 	w_class = WEIGHT_CLASS_TINY
 

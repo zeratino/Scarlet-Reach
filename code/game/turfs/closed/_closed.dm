@@ -217,11 +217,6 @@
 	to_be_destroyed = FALSE
 	return src
 
-/turf/closed/indestructible/oldshuttle
-	name = "strange shuttle wall"
-	icon = 'icons/turf/shuttleold.dmi'
-	icon_state = "block"
-
 /turf/closed/indestructible/sandstone
 	name = "sandstone wall"
 	desc = ""
@@ -258,40 +253,17 @@
 	icon_state = "riveted"
 	smooth = SMOOTH_TRUE
 
-/turf/closed/indestructible/syndicate
-	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	icon_state = "map-shuttle"
-	smooth = SMOOTH_MORE
-
-/turf/closed/indestructible/riveted/uranium
-	icon = 'icons/turf/walls/uranium_wall.dmi'
-	icon_state = "uranium"
-
 /turf/closed/indestructible/abductor
 	icon_state = "alien1"
 
 /turf/closed/indestructible/opshuttle
 	icon_state = "wall3"
 
-/turf/closed/indestructible/fakeglass
-	name = "window"
-	icon_state = "fake_window"
-	opacity = 0
-	smooth = SMOOTH_TRUE
-	icon = 'icons/obj/smooth_structures/reinforced_window.dmi'
-
 /turf/closed/indestructible/fakeglass/Initialize()
 	. = ..()
 	icon_state = null //set the icon state to null, so our base state isn't visible
 	underlays += mutable_appearance('icons/obj/structures.dmi', "grille") //add a grille underlay
 	underlays += mutable_appearance('icons/turf/floors.dmi', "plating") //add the plating underlay, below the grille
-
-/turf/closed/indestructible/opsglass
-	name = "window"
-	icon_state = "plastitanium_window"
-	opacity = 0
-	smooth = SMOOTH_TRUE
-	icon = 'icons/obj/smooth_structures/plastitanium_window.dmi'
 
 /turf/closed/indestructible/opsglass/Initialize()
 	. = ..()
@@ -354,9 +326,3 @@
 	underlay_appearance.icon = 'icons/turf/floors.dmi'
 	underlay_appearance.icon_state = "basalt"
 	return TRUE
-
-/turf/closed/indestructible/riveted/hierophant
-	name = "wall"
-	desc = ""
-	icon = 'icons/turf/walls/hierophant_wall.dmi'
-	icon_state = "wall"

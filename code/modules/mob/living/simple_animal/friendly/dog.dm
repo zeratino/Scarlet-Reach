@@ -196,13 +196,6 @@
 	..()
 	update_corgi_fluff()
 
-/mob/living/simple_animal/pet/dog/corgi/mob_pickup(mob/living/L)
-	var/obj/item/clothing/head/mob_holder/holder = new(get_turf(src), src, "corgi", null, 'icons/mob/pets_held_lh.dmi', 'icons/mob/pets_held_rh.dmi', FALSE)
-	if(!L.put_in_hands(holder))
-		qdel(holder)
-	else
-		L.visible_message("<span class='warning'>[L] scoops up [src]!</span>")
-
 /mob/living/simple_animal/pet/dog/corgi/Topic(href, href_list)
 	if(!(iscarbon(usr) || !usr.canUseTopic(src, BE_CLOSE, FALSE, NO_TK)))
 		usr << browse(null, "window=mob[REF(src)]")

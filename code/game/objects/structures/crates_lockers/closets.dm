@@ -1,7 +1,6 @@
 /obj/structure/closet
 	name = "closet"
 	desc = ""
-	icon = 'icons/obj/closet.dmi'
 	icon_state = "generic"
 	density = TRUE
 	drag_slowdown = 1.5		// Same as a prone mob
@@ -304,7 +303,7 @@
 		return
 	else
 		var/obj/item/roguekey/K = I
-		if(K.lockhash == lockhash)
+		if(K.lockhash == lockhash || istype(K, /obj/item/roguekey/lord))
 			togglelock(user)
 			return
 		else

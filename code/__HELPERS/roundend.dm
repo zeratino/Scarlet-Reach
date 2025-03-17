@@ -1,6 +1,5 @@
 #define POPCOUNT_SURVIVORS "survivors"					//Not dead at roundend
 #define POPCOUNT_ESCAPEES "escapees"					//Not dead and on centcom/shuttles marked as escaped
-#define POPCOUNT_SHUTTLE_ESCAPEES "shuttle_escapees" 	//Emergency shuttle only.
 
 /datum/controller/subsystem/ticker/proc/gather_roundend_feedback()
 	gather_antag_data()
@@ -8,10 +7,6 @@
 	var/list/file_data = list("escapees" = list("humans" = list(), "silicons" = list(), "others" = list(), "npcs" = list()), "abandoned" = list("humans" = list(), "silicons" = list(), "others" = list(), "npcs" = list()), "ghosts" = list(), "additional data" = list())
 	var/num_survivors = 0
 	var/num_escapees = 0
-	var/num_shuttle_escapees = 0
-	var/list/area/shuttle_areas
-	if(SSshuttle && SSshuttle.emergency)
-		shuttle_areas = SSshuttle.emergency.shuttle_areas
 	for(var/mob/m in GLOB.mob_list)
 		var/escaped
 		var/category
@@ -35,11 +30,9 @@
 				category = "others"
 				mob_data += list("typepath" = m.type)
 		if(!escaped)
-			if(EMERGENCY_ESCAPED_OR_ENDGAMED && (m.onCentCom() || m.onSyndieBase()))
+			if((m.onCentCom()))
 				escaped = "escapees"
 				num_escapees++
-				if(shuttle_areas[get_area(m)])
-					num_shuttle_escapees++
 			else
 				escaped = "abandoned"
 		if(!m.mind && (!ishuman(m)))
@@ -66,7 +59,6 @@
 	. = list()
 	.[POPCOUNT_SURVIVORS] = num_survivors
 	.[POPCOUNT_ESCAPEES] = num_escapees
-	.[POPCOUNT_SHUTTLE_ESCAPEES] = num_shuttle_escapees
 
 /datum/controller/subsystem/ticker/proc/gather_antag_data()
 	var/team_gid = 1
@@ -364,22 +356,20 @@
 
 	return parts.Join()
 
-/datum/controller/subsystem/ticker/proc/survivor_report(popcount)
+/datum/controller/subsystem/ticker/proc/survivor_report(client/C, popcount)
 	var/list/parts = list()
-	var/station_evacuated = EMERGENCY_ESCAPED_OR_ENDGAMED
+	var/station_evacuated = round_end
 
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
 	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[FOURSPACES]Station Integrity: <B>[mode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
 		parts+= "[FOURSPACES]Total Population: <B>[total_players]</B>"
 		if(station_evacuated)
 			parts += "<BR>[FOURSPACES]Evacuation Rate: <B>[popcount[POPCOUNT_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_ESCAPEES]/total_players)]%)</B>"
-			parts += "[FOURSPACES](on emergency shuttle): <B>[popcount[POPCOUNT_SHUTTLE_ESCAPEES]] ([PERCENT(popcount[POPCOUNT_SHUTTLE_ESCAPEES]/total_players)]%)</B>"
 		parts += "[FOURSPACES]Survival Rate: <B>[popcount[POPCOUNT_SURVIVORS]] ([PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%)</B>"
 		if(SSblackbox.first_death)
 			var/list/ded = SSblackbox.first_death
@@ -425,20 +415,16 @@
 	var/mob/M = C.mob
 	if(M.mind && !isnewplayer(M))
 		if(M.stat != DEAD && !isbrain(M))
-			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
-				if(!M.onCentCom() && !M.onSyndieBase())
-					parts += "<div class='panel stationborder'>"
-					parts += span_marooned("I managed to survive, but were marooned on [station_name()]...")
-				else
-					parts += "<div class='panel greenborder'>"
-					parts += span_greentext("I managed to survive the events on [station_name()] as [M.real_name].")
+			if(round_end)
+				parts += "<div class='panel greenborder'>"
+				parts += "<span class='greentext'>I managed to survive the events on [station_name()] as [M.real_name].</span>"
 			else
 				parts += "<div class='panel greenborder'>"
-				parts += span_greentext("I managed to survive the events on [station_name()] as [M.real_name].")
+				parts += "<span class='greentext'>I managed to survive the events on [station_name()] as [M.real_name].</span>"
 
 		else
 			parts += "<div class='panel redborder'>"
-			parts += span_redtext("I did not survive the events on [station_name()]...")
+			parts += "<span class='redtext'>I did not survive the events on [station_name()]...</span>"
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"

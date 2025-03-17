@@ -7,6 +7,8 @@
 	possible_transfer_amounts = list()
 	volume = 15
 	sellprice = 10
+	grid_width = 32
+	grid_height = 32
 
 /obj/item/reagent_containers/powder/spice
 	name = "spice"
@@ -147,6 +149,15 @@
 	grind_results = list(/datum/reagent/floure = 10)
 	volume = 1
 	sellprice = 0
+
+/obj/item/reagent_containers/powder/rocknut
+	name = "rocknut powder"
+	desc = ""
+	gender = PLURAL
+	icon_state = "rocknut"
+	volume = 1
+	sellprice = 0
+
 /datum/reagent/floure
 	name = "flour"
 	description = ""
