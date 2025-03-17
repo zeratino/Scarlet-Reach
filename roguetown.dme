@@ -1420,6 +1420,7 @@
 #include "code\modules\language\roguetown\fae.dm"
 #include "code\modules\language\roguetown\grenzelhoftian.dm"
 #include "code\modules\language\roguetown\otavan.dm"
+#include "code\modules\language\roguetown\etruscan.dm"
 #include "code\modules\language\roguetown\hellspeak.dm"
 #include "code\modules\language\roguetown\lupian.dm"
 #include "code\modules\language\roguetown\orc.dm"
