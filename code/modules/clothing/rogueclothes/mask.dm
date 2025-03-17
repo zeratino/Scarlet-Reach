@@ -308,6 +308,8 @@
 	body_parts_covered = EYES
 	sewrepair = TRUE
 	tint = 3
+	mob_overlay_icon = 'icons/mob/clothing/eyes.dmi'
+	icon = 'icons/obj/clothing/glasses.dmi'
 
 /obj/item/clothing/mask/rogue/blindfold/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
