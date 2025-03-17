@@ -443,6 +443,8 @@
 	item_state = "feldcollar"
 	resistance_flags = FIRE_PROOF
 	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE
 
 /obj/item/clothing/neck/roguetown/collar/surgcollar
 	name = "surgcollar"
@@ -451,3 +453,5 @@
 	item_state = "surgcollar"
 	resistance_flags = FIRE_PROOF
 	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE
