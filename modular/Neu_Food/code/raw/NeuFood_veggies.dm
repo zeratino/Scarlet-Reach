@@ -65,6 +65,34 @@
 	tastes = list("airy apple" = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 
+/*	..................   Carrot   ................... */
+/obj/item/reagent_containers/food/snacks/grown/carrot
+	desc = "A long vegetable said to help with eyesight."
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked
+	tastes = list("carrot" = 1)
+	dropshrink = 0.75
+
+/*	..................   Cucumber   ................... */
+/obj/item/reagent_containers/food/snacks/grown/cucumber
+	slices_num = 1
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/veg/cucumber_sliced
+	tastes = list("cucumber" = 1)
+	chopping_sound = TRUE
+
+/obj/item/reagent_containers/food/snacks/rogue/veg/cucumber_sliced
+	name = "cucumber slice"
+	icon_state = "cucumber_slices"
+	desc = ""
+	tastes = list("airy apple" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+
+/*	..................   Eggplant   ................... */
+/obj/item/reagent_containers/food/snacks/grown/eggplant
+	slices_num = 1
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/eggplantcarved
+	w_class = WEIGHT_CLASS_NORMAL
+	slice_sound = TRUE
+
 /*	..................   Garlick   ................... */
 /obj/item/reagent_containers/food/snacks/grown/garlick/rogue
 	desc = "Hated by the foule vampyres that lurk in the dark. Garlick."

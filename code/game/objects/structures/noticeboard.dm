@@ -1,7 +1,6 @@
 /obj/structure/noticeboard
 	name = "notice board"
 	desc = ""
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
 	density = FALSE
 	anchored = TRUE
