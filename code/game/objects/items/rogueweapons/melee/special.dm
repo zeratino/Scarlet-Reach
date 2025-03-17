@@ -297,7 +297,7 @@
 	blade_dulling = DULLING_BASHCHOP
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
-	grid_width = 32
+	grid_width = 64
 	grid_height = 32
 
 /obj/item/rogueweapon/knuckles/getonmobprop(tag)
@@ -331,8 +331,6 @@
 	blade_dulling = DULLING_BASHCHOP
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/bronze
-	grid_width = 32
-	grid_height = 32
 
 /datum/intent/knuckles
 	clickcd = 8
