@@ -200,6 +200,20 @@
 	valid_input = /obj/item/alch/rosa
 	valid_outputs = list(/obj/item/herbseed/rosa = 1)
 
+/datum/alch_grind_recipe/puresalt
+	valid_input = /obj/item/reagent_containers/powder/salt
+	valid_outputs = list(/obj/item/alch/puresalt = 1)
+
+/datum/alch_grind_recipe/mineraldust
+	valid_input = /obj/item/natural/stone
+	valid_outputs = list(/obj/item/alch/mineraldust)
+	bonus_chance_outputs = list(/obj/item/alch/earthdust = 25)
+
+/datum/alch_grind_recipe/berrypowder
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/berries/rogue
+	valid_outputs = list(/obj/item/alch/berrypowder = 1)
+	bonus_chance_outputs = list(/obj/item/alch/waterdust = 25)
+
 /datum/alch_grind_recipe/transistus
 	valid_input = list(/obj/item/alch/artemisia,/obj/item/alch/benedictus,/obj/item/alch/hypericum,/obj/item/alch/salvia,/obj/item/alch/atropa,/obj/item/alch/taraxacum)
 	valid_outputs = list(/obj/item/alch/transisdust = 1)
