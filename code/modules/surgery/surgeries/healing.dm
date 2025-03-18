@@ -21,7 +21,8 @@
 	requires_tech = TRUE
 	replaced_by = /datum/surgery_step
 	repeating = TRUE
-	surgery_flags = SURGERY_BLOODY | SURGERY_INCISED | SURGERY_CLAMPED
+	repeatingonfail = TRUE
+	surgery_flags = SURGERY_BLOODY | SURGERY_CLAMPED
 	skill_min = SKILL_LEVEL_APPRENTICE
 	skill_median = SKILL_LEVEL_APPRENTICE
 	success_sound = 'sound/surgery/retractor2.ogg'
