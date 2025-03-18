@@ -192,7 +192,7 @@
 //Blessed Ingots
 /obj/item/ingot/steelholy/
 	name = "holy steel bar"
-	desc = "This ingot of steel has been touched by malum. It radiates heat, even when outside a forge."
+	desc = "This ingot of steel has been touched by Malum. It radiates heat, even when outside a forge."
 	icon_state = "ingotsteelholy"
 	smeltresult = /obj/item/ingot/steel //Smelting it removes the blessing
 	sellprice = 60
