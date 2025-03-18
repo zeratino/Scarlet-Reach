@@ -237,17 +237,17 @@
 	icon_state = "transisdust"
 
 	major_pot = /datum/alch_cauldron_recipe/antidote
-	med_pot = /datum/alch_cauldron_recipe/big_mana_potion
-	minor_pot = /datum/alch_cauldron_recipe/disease_cure
+	med_pot = /datum/alch_cauldron_recipe/disease_cure
+	minor_pot = /datum/alch_cauldron_recipe/big_mana_potion
 
 /obj/item/alch/mineraldust
 	name = "mineral dusts"
-	desc = "Elements of stone ground and sifted of impurities to help draw out its useful alchemical minerals."
+	desc = "Elements of gems ground and sifted of impurities to help draw out its useful alchemical minerals."
 	icon_state = "mineraldust"
 
 	major_pot = /datum/alch_cauldron_recipe/doompoison
-	med_pot = /datum/alch_cauldron_recipe/big_stam_poison
-	minor_pot = /datum/alch_cauldron_recipe/str_potion
+	med_pot = /datum/alch_cauldron_recipe/big_mana_potion
+	minor_pot = /datum/alch_cauldron_recipe/big_stam_poison
 
 /obj/item/alch/berrypowder
 	name = "berry powder"
