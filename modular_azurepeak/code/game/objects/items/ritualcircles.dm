@@ -200,6 +200,7 @@
 /obj/structure/ritualcircle/malum
 	name = "Rune of Forge"
 	desc = "A Holy Rune of Malum"
+	icon_state = "malum_chalky"
 var/forgerites = list("Ritual of Blessed Reforgance")
 
 /obj/structure/ritualcircle/malum/attack_hand(mob/living/user)
@@ -223,14 +224,14 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 						user.say("Grant unto me the metals in which to forge great works!")
 						to_chat(user,span_danger("You feel a sudden heat rising within you, burning within your chest.."))
 						if(do_after(user, 30))
-							//icon_state = "malum_active" Someone should sprite something for this! 
+							icon_state = "malum_active"
 							user.say("From your forge, may these creations be remade!!")
 							loc.visible_message(span_warning("A wave of heat rushes out from the ritual circle before [user]. The metal is reforged in a flash of light!"))
 							playsound(loc, 'sound/magic/churn.ogg', 100, FALSE, -1)
 							holyreforge(src)
 							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
-							//spawn(120) No unique sprite yet
-							//	icon_state = "malum_chalky"
+							spawn(120)
+								icon_state = "malum_chalky"
 
 /obj/structure/ritualcircle/malum/proc/holyreforge(src)
 	var/ritualtargets = view(7, loc)
