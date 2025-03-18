@@ -15539,6 +15539,12 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town)
+"lnY" = (
+/obj/effect/decal/cobbleedge{
+	dir = 4
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "log" = (
 /turf/open/floor/rogue/grass,
 /turf/open/floor/rogue/grassyel,
@@ -27692,7 +27698,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "tXf" = (
-/turf/closed,
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/shield/buckler,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "tXs" = (
 /obj/structure/stairs{
@@ -49427,7 +49435,7 @@ qnd
 rcD
 rcD
 uBp
-iuO
+lnY
 aSd
 kEe
 diY
