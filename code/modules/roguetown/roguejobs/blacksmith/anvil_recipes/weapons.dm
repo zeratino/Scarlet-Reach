@@ -525,8 +525,16 @@
 	created_item = /obj/item/rogueweapon/mace/warhammer
 	i_type = "Weapons"
 
-//Church Weapons/Weapons forged from Blessed Steel
+//Church Weapons forged from Holy Steel
 
+/datum/anvil_recipe/weapons/holy/malum_sword
+	name = "Forgefiend (+1 H. Steel)"
+	req_bar = /obj/item/ingot/steelholy
+	craftdiff = 3
+	additional_items = list(/obj/item/ingot/steelholy)
+	created_item = /obj/item/rogueweapon/sword/long/malumflamm
+	i_type = "Weapons"
+/*
 /datum/anvil_recipe/weapons/holy/abyssor_katar
 	name = "Barotrauma"
 	req_bar = /obj/item/ingot/steelholy
@@ -563,14 +571,6 @@
 	created_item = /obj/item/rogueweapon/huntingknife/idagger/steel/pestrasickle
 	i_type = "Weapons"
 
-/datum/anvil_recipe/weapons/holy/malum_sword
-	name = "Forgefiend (+1 H. Steel)"
-	req_bar = /obj/item/ingot/steelholy
-	craftdiff = 3
-	additional_items = list(/obj/item/ingot/steelholy)
-	created_item = /obj/item/rogueweapon/sword/long/malumflamm
-	i_type = "Weapons"
-
 /datum/anvil_recipe/weapons/holy/dendor_scythe
 	name = "Summer Scythe (+1 H. Steel, +1 Small Log)"
 	req_bar = /obj/item/ingot/steelholy
@@ -600,7 +600,7 @@
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/knuckles/eora
 	i_type = "Weapons"
-
+*/
 //Psydonian weapon smithing
 /datum/anvil_recipe/weapons/psy/axe
 	name = "Psydonian War Axe (+1 B. Silver, +1 Stick)"
