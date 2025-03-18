@@ -18996,7 +18996,7 @@
 /area/rogue/indoors/town)
 "nOO" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/stoneaxe/battle,
+/obj/item/rogueweapon/halberd/bardiche,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "nOU" = (
@@ -21601,8 +21601,9 @@
 /area/rogue/outdoors/town)
 "pFe" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/halberd/bardiche,
 /obj/machinery/light/rogue/torchholder/c,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/halberd,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "pFo" = (
