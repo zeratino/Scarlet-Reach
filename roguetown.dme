@@ -517,6 +517,7 @@
 #include "code\datums\components\jousting.dm"
 #include "code\datums\components\knockback.dm"
 #include "code\datums\components\knockoff.dm"
+#include "code\datums\components\layer_armor.dm"
 #include "code\datums\components\lifesteal.dm"
 #include "code\datums\components\lockon_aiming.dm"
 #include "code\datums\components\magnetic_catch.dm"

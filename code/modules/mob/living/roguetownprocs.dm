@@ -204,6 +204,8 @@
 					prob2defend += sentinel
 
 			prob2defend = clamp(prob2defend, 5, 90)
+			if(HAS_TRAIT(src, TRAIT_HARDSHELL))
+				prob2defend = clamp(prob2defend, 5, 60)
 
 			//Dual Wielding
 			var/attacker_dualw
