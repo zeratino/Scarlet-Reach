@@ -1,7 +1,6 @@
 /datum/customizer/organ/horns
 	abstract_type = /datum/customizer/organ/horns
 	name = "Horns"
-	feature_key = null
 
 /datum/customizer_choice/organ/horns
 	abstract_type = /datum/customizer_choice/organ/horns
@@ -164,13 +163,12 @@
 	name = "Tusks"
 	customizer_choices = list(/datum/customizer_choice/organ/horns/tusks)
 	allows_disabling = TRUE
+	default_disabled =  TRUE
 
 /datum/customizer_choice/organ/horns/tusks
 	name = "Tusks"
-	organ_type = /obj/item/organ/horns/tusks
-	organ_slot = ORGAN_SLOT_TUSKS
+	organ_type = /obj/item/organ/horns
 	sprite_accessories = list(
-		/datum/sprite_accessory/none,
 		/datum/sprite_accessory/horns/halforc,
 		/datum/sprite_accessory/horns/longtusk
 		)

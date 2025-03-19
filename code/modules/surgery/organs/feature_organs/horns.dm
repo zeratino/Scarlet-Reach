@@ -11,9 +11,3 @@
 /obj/item/organ/horns/halforc
 	name = "halforc horns"
 	accessory_type = /datum/sprite_accessory/horns/halforc
-
-/obj/item/organ/horns/tusks
-	name = "tusks"
-	desc = "A pair of tusks. Sharp and intimidating."
-	slot = ORGAN_SLOT_TUSKS
-	accessory_type = /datum/sprite_accessory/horns/halforc
