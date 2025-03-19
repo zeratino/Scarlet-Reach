@@ -9,7 +9,7 @@
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/grudgebearer
 	category_tags = list(CTAG_MERCENARY)
-	cmode_music = 'sound/music/combat_blackoak.ogg'
+	cmode_music = 'sound/music/combat_grudgebearer.ogg'
 
 /datum/outfit/job/roguetown/mercenary/grudgebearer/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -22,14 +22,14 @@
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
-	backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer)
+	backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/book/rogue/grudge, /obj/item/natural/feather)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
@@ -47,6 +47,7 @@
 			H.change_stat("endurance", 4)
 			H.change_stat("strength", 2)
 			H.change_stat("speed", -2)
+			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	var/weapons = list("Axe", "Mace")
 	var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
 	switch(wepchoice)
@@ -55,7 +56,6 @@
 		if("Mace")
 			backr = /obj/item/rogueweapon/mace/goden/steel
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 
 
@@ -74,7 +74,7 @@
 	equip_delay_other = 4 SECONDS
 	strip_delay = 12 SECONDS
 	smelt_bar_num = 4
-	max_integrity = 5000	//They have their own unique integrity
+	max_integrity = 6000	//They have their own unique integrity
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven/ComponentInitialize()
 	. = ..()
@@ -94,7 +94,7 @@
 	block2add = FOV_BEHIND
 	bloody_icon = 'icons/effects/blood64.dmi'
 	smeltresult = /obj/item/ingot/steel
-	max_integrity = 2000
+	max_integrity = 3000
 
 /obj/item/clothing/head/roguetown/helmet/heavy/dwarven/ComponentInitialize()
 	. = ..()
@@ -109,7 +109,7 @@
 	icon_state = "dwarfhand"
 	item_state = "dwarfhand"
 	armor = list("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 90, "fire" = 0, "acid" = 0)
-	max_integrity = 2000
+	max_integrity = 3000
 
 /obj/item/clothing/gloves/roguetown/plate/dwarven/ComponentInitialize()
 	. = ..()
@@ -126,7 +126,7 @@
 	armor = list("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 90, "fire" = 0, "acid" = 0)
 	max_integrity = 2000
 
-/obj/item/clothing/under/roguetown/platelegs/dwarven/ComponentInitialize()
+/obj/item/clothing/shoes/roguetown/boots/armor/dwarven/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/peelarmor/grudgebearer/limbs)
 
@@ -172,18 +172,18 @@
 
 	hits_per_layer = list(
 		"100" 	= 5,
-		"90" 	= 5,
-		"80" 	= 5,
-		"70" 	= 5,
-		"60" 	= 5,
-		"50"	= 10,
-		"40"	= 10,
-		"30"	= 20,
-		"20"	= 20,
-		"10"	= 30,
+		"90" 	= 10,
+		"80" 	= 10,
+		"70" 	= 15,
+		"60" 	= 15,
+		"50"	= 20,
+		"40"	= 20,
+		"30"	= 30,
+		"20"	= 30,
+		"10"	= 40,
 	)
 
-	peel_amt = 20	//Limbs lose 2 grades per layer peel.
+	peel_amt = 20	//Limbs lose 2 grades per layer peel, but also repair 4.
 
 	repair_items = list(
 		/obj/item/ingot/silver,

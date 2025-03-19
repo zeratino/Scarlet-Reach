@@ -234,7 +234,7 @@
 	var/obj/item/I = parent
 	if(I.armor)
 		I.armor.vars[damtype] += peel_amt * layer_repair
-		I.armor.vars[damtype] = min(I.armor.vars[damtype], 100)
+		I.armor.vars[damtype] = min(I.armor.vars[damtype], 100, layer_max[damtype])	//Make sure it's never above 100, or the layer_max of that type.
 		adjusthits(damtype, I.armor.vars[damtype])
 
 /datum/component/peelarmor/proc/repair_check()
