@@ -15,3 +15,21 @@
 	icon_state = "laciedress"
 	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
+
+//Strudles donator item - mage vest (same as base leather)
+/obj/item/clothing/suit/roguetown/armor/leather/vest/sofiavest
+	name = "grenzelhoftian mages vest"
+	desc = "A vest often worn by those of the Grenzelhoftian mages college."
+	icon_state = "sofiavest"
+	item_state = "sofiavest"
+	sleevetype = "sofiavest"
+	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
+	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
+	sleeved = 'modular_azurepeak/icons/clothing/onmob/donor_sleeves_armor.dmi'
+
+/obj/item/rogue/instrument/harp/handcarved
+	name = "handcrafted harp"
+	desc = "A handcrafted harp."
+	icon_state = "batharp"
+	icon = 'modular_azurepeak/icons/obj/items/donor_objects.dmi'
+
