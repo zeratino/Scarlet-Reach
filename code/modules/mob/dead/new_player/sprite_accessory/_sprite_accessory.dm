@@ -209,6 +209,8 @@
 /datum/sprite_accessory/proc/default_define_for_color_key(index)
 	switch(index)
 		if(1)
+			if(color_key_name == "Tusks")
+				return "tusk_color"
 			return KEY_MUT_COLOR_ONE
 		if(2)
 			return KEY_MUT_COLOR_TWO
@@ -221,6 +223,7 @@
 	sources[KEY_MUT_COLOR_ONE] = features["mcolor"]
 	sources[KEY_MUT_COLOR_TWO] = features["mcolor2"]
 	sources[KEY_MUT_COLOR_THREE] = features["mcolor3"]
+	sources["tusk_color"] = features["tusk_color"]
 	/// Read specific organ entries to deduce eye, hair and facial hair color
 	if(MUTCOLORS in prefs.pref_species.species_traits)
 		sources[KEY_SKIN_COLOR] = sources[KEY_MUT_COLOR_ONE]
@@ -237,12 +240,16 @@
 
 /proc/color_key_source_list_from_carbon(mob/living/carbon/carbon)
 	var/datum/dna/dna = carbon.dna
-	var/datum/species/species = dna.species
-	var/list/features = dna.features
+	var/datum/species/species = dna?.species
+	var/list/features = dna?.features
 	var/list/sources = list()
-	sources[KEY_MUT_COLOR_ONE] = features["mcolor"]
-	sources[KEY_MUT_COLOR_TWO] = features["mcolor2"]
-	sources[KEY_MUT_COLOR_THREE] = features["mcolor3"]
+	
+	// Read mutant colors or use defaults
+	if(features)
+		sources[KEY_MUT_COLOR_ONE] = features["mcolor"]
+		sources[KEY_MUT_COLOR_TWO] = features["mcolor2"]
+		sources[KEY_MUT_COLOR_THREE] = features["mcolor3"]
+		sources["tusk_color"] = features["tusk_color"]
 	/// Read specific organ DNA entries to deduce eye, hair and facial hair color
 	if(ishuman(carbon))
 		var/mob/living/carbon/human/human = carbon

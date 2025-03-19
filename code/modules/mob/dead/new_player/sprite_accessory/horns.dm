@@ -184,13 +184,15 @@
 	icon_state = "tiebhornsalt"
 
 /datum/sprite_accessory/horns/halforc
-	name = "Orc"
+	name = "Half-Orc Tusks"
 	icon = 'icons/mob/sprite_accessory/halforc.dmi'
 	icon_state = "orctusk"
 	default_colors = list("#F4F4BE")
+	color_key_name = "Tusks"
 
 /datum/sprite_accessory/horns/longtusk
-	name = "Long"
+	name = "Long Tusks"
 	icon = 'icons/mob/sprite_accessory/halforc.dmi'
 	icon_state = "longtusk"
 	default_colors = list("#F4F4BE")
+	color_key_name = "Tusks"

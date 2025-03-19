@@ -47,6 +47,8 @@
 /datum/customizer/organ
 	abstract_type = /datum/customizer/organ
 	name = "Organ"
+	/// The feature key that defines what color to use for this organ (if any)
+	var/feature_key
 
 /datum/customizer/bodypart_feature
 	abstract_type = /datum/customizer/bodypart_feature
