@@ -16,10 +16,10 @@
 		"blunt" = 5,
 		"slash" = 5,
 		"stab" = 5,
-		"piercing" = 9,
+		"piercing" = 10,
 	)
 
-	/// Total hits accrued by a given damage tier until it gets peeled. Resets to 0 when matches the entry from hits_to_peel
+	/// Total hits accrued by a given damage tier until it gets peeled. Resets to 0 when matches the entry from hits_to_peel.
 	var/list/hit_count = list(
 		"blunt" = 0,
 		"slash" = 0,
@@ -27,7 +27,7 @@
 		"piercing" = 0,
 	)
 
-	/// Armor rating a given damage type can be repaired up to
+	/// Armor rating a given damage type can be repaired up to.
 	var/list/layer_max = list(
 		"blunt" = 100,
 		"slash" = 100,
@@ -35,7 +35,7 @@
 		"piercing" = 100,
 	)
 
-	/// New hit count requirements per peeled layer. ex. going from 100 to 90 will require 10 hits, 90 to 80 will require 15, etc.
+	/// New hit count requirements per peeled layer. ex. going from 100 to 90 will require 5 hits, 90 to 80 will require 10, etc.
 	/// MAKE SURE THE VALUES CORRELATE WITH YOUR PEEL_AMT AND STARTING ARMOR VALUES IF YOU WISH TO USE THIS
 	var/list/hits_per_layer = list(
 		"100" 	= 5,
@@ -43,22 +43,22 @@
 		"80" 	= 20,
 		"70" 	= 25,
 		"60" 	= 30,
-		"50"	= 40,
-		"40"	= 60,
-		"30"	= 100,
-		"20"	= 200,
-		"10"	= 300,
+		"50"	= 30,
+		"40"	= 30,
+		"30"	= 30,
+		"20"	= 50,
+		"10"	= 100,
 	)
 
 	/// A multiplier to a damage type. One hit from that type will equal this number if it's bigger than 1. ONLY USE WHOLE NUMBERS.
 	var/list/damtype_peel_ratio = list(
 		"blunt" = 1,
-		"slash" = 1,
+		"slash" = 3,
 		"stab" = 1,
-		"piercing" = 3,
+		"piercing" = 10,
 	)
 
-	/// Populated during repair_check()
+	/// Populated during repair_check(), leave empty.
 	var/list/repairable_damtypes = list()
 
 	/// How much armor is lost when a layer is peeled off. Increments of 10 are recommended, as they correspond to letter tiers on examine (S -> A+ -> A -> B+ etc)
@@ -183,7 +183,6 @@
 									to_chat(user,span_warn("There's nothing to repair."))
 							else
 								to_chat(user,span_warn("I'm not skilled enough for this, but I could be."))
-
 					else
 						to_chat(user,span_warn("This craft is far too fine for my level of intelligence."))
 			else
@@ -210,7 +209,7 @@
 		if(I.armor.vars[damtype] > 0)
 			I.armor.vars[damtype] -= peel_amt
 		playsound(I, peel_sound, 100)
-		I.visible_message(span_warning("A [capitalize(damtype)] layer peels off of [I]!"))
+		I.visible_message(span_warning("A <b>[damtype]</b> layer peels off of [I]!"))
 		adjusthits(damtype, I.armor.vars[damtype])
 
 /datum/component/peelarmor/proc/adjusthits(damtype, newarmor)

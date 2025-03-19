@@ -38,16 +38,15 @@
 	var/classchoice = input("Choose your archetype", "Available archetypes") as anything in classes
 	switch(classchoice)
 		if("Strong")
-			H.change_stat("strength", 5)
-			H.change_stat("endurance", 2)
+			H.change_stat("strength", 4)
 			H.change_stat("constitution", 1)
+			H.change_stat("endurance", 1)
 			H.change_stat("speed", -2)
 		if("Hardy")
 			H.change_stat("constitution", 5)
 			H.change_stat("endurance", 4)
 			H.change_stat("strength", 2)
 			H.change_stat("speed", -2)
-			ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	var/weapons = list("Axe", "Mace")
 	var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
 	switch(wepchoice)
@@ -124,7 +123,7 @@
 	icon_state = "dwarfshoe"
 	item_state = "dwarfshoe"
 	armor = list("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 90, "fire" = 0, "acid" = 0)
-	max_integrity = 2000
+	max_integrity = 3000
 
 /obj/item/clothing/shoes/roguetown/boots/armor/dwarven/ComponentInitialize()
 	. = ..()
