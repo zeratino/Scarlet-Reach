@@ -98,7 +98,8 @@
 		/obj/item/rope = 1,
 		/obj/item/candle = 1,
 		/obj/item/rogueweapon/whip = 1,
-		/obj/item/clothing/mask/rogue/blindfold = 1
+		/obj/item/clothing/mask/rogue/blindfold = 1,
+		/obj/item/roguekey/nightmaiden = 1
 	)
 	
 	if(H.mind)
