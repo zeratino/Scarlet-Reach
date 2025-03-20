@@ -175,6 +175,7 @@
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/rogueweapon/huntingknife/idagger
 			beltl = /obj/item/flashlight/flare/torch/lantern
+			backr = /obj/item/storage/backpack/rogue/satchel
 			head = /obj/item/clothing/head/roguetown/jester
 			neck = /obj/item/storage/belt/rogue/pouch/coins/mid
 			H.cmode_music = 'sound/music/combat_jester.ogg'
