@@ -10,7 +10,8 @@
 					"Brewer" = "You make your coin peddling imported alcohols from all over the world, though you're no stranger to the craft, and have experience brewing your own ale in a pinch.",
 					"Jeweler" = "You make your coin peddling exotic jewelry, gems, and shiny things.",
 					"Doomsayer" = "THE WORLD IS ENDING!!! At least, that's what you want your clients to believe. You'll offer them a safe place in the new world, of course - built by yours truly.",
-					"Scholar" = "You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels.")
+					"Scholar" = "You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels."
+					"Harlequin" = "You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made.")
 
 /datum/outfit/job/roguetown/adventurer/trader/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -166,6 +167,30 @@
 			H.change_stat("speed", 1)
 			H.change_stat("endurance", 1)
 
+		if ("Harlequin")
+			to_chat(H, spawn_warning ("You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."))
+			hoes = /obj/item/clothing/shoes/roguetown/jester
+			pants = /obj/item/clothing/under/roguetown/tights
+			armor = /obj/item/clothing/suit/roguetown/shirt/jester
+			belt = /obj/item/storage/belt/rogue/leather
+			beltr = /obj/item/rogueweapon/huntingknife/idagger
+			beltl = /obj/item/flashlight/flare/torch/lantern
+			head = /obj/item/clothing/head/roguetown/jester
+			neck = /obj/item/storage/belt/rogue/pouch/coins/mid
+			H.cmode_music = 'sound/music/combat_jester.ogg'
+			backpack_contents = list(/obj/item/smokebomb = 3, /obj/item/storage/pill_bottle/dice = 1, /obj/item/toy/cards/deck = 1)
+			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 2, TRUE)
+			ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
+			H.change_stat("intelligence", 1)
+			H.change_stat("perception", 1)
+			H.change_stat("endurance", 1)
+			H.change_stat("speed", 2)
 
 /obj/item/clothing/mask/rogue/ragmask/black
 	color = CLOTHING_BLACK
