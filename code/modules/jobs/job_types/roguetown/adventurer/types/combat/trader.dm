@@ -16,7 +16,7 @@
 /datum/outfit/job/roguetown/adventurer/trader/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	var/classes = list("Peddler","Brewer","Jeweler","Doomsayer","Scholar")
+	var/classes = list("Peddler","Brewer","Jeweler","Doomsayer","Scholar","Harlequin")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 
 	switch(classchoice)
