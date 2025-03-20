@@ -233,7 +233,7 @@
 			H.change_stat("intelligence", -2)
 			H.change_stat("perception", -2)
 			H.change_stat("endurance", -2)
-			H.change_stat("stregnth", -2)
+			H.change_stat("strength", -2)
 			
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_transfer)
