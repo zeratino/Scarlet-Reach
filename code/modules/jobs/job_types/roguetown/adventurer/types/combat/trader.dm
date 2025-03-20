@@ -175,7 +175,7 @@
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/rogueweapon/huntingknife/idagger
 			beltl = /obj/item/flashlight/flare/torch/lantern
-			backr = /obj/item/storage/backpack/rogue/satchel
+			backl = /obj/item/storage/backpack/rogue/satchel
 			head = /obj/item/clothing/head/roguetown/jester
 			neck = /obj/item/storage/belt/rogue/pouch/coins/mid
 			H.cmode_music = 'sound/music/combat_jester.ogg'
@@ -192,6 +192,24 @@
 			H.change_stat("perception", 1)
 			H.change_stat("endurance", 1)
 			H.change_stat("speed", 2)
+			var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman")
+			var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+			H.set_blindness(0)
+			switch(weapon_choice)
+				if("Harp")
+					backr = /obj/item/rogue/instrument/harp
+				if("Lute")
+					backr = /obj/item/rogue/instrument/lute
+				if("Accordion")
+					backr = /obj/item/rogue/instrument/accord
+				if("Guitar")
+					backr = /obj/item/rogue/instrument/guitar
+				if("Hurdy-Gurdy")
+					backr = /obj/item/rogue/instrument/hurdygurdy
+				if("Viola")
+					backr = /obj/item/rogue/instrument/viola
+				if("Vocal Talisman")
+					backr = /obj/item/rogue/instrument/vocals
 
 /obj/item/clothing/mask/rogue/ragmask/black
 	color = CLOTHING_BLACK
