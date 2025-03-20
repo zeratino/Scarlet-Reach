@@ -12003,7 +12003,7 @@
 	icon_state = "wcv";
 	locked = 1;
 	lockid = "manor";
-	name = "royal guard quarters"
+	name = "knights quarters"
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
