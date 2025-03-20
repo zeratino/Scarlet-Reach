@@ -325,7 +325,7 @@
 	H.change_stat("intelligence", 1)
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Rapier + Longbow","Estoc + Recurve Bow","Sabre + Buckler","Dagger + Crossbow")
+	var/weapons = list("Rapier + Longbow","Estoc + Recurve Bow","Sabre + Buckler","Whip + Crossbow")
 	var/armor_options = list("Light Armor", "Medium Armor")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	var/armor_choice = input("Choose your armor.", "TAKE UP ARMS") as anything in armor_options
@@ -351,8 +351,8 @@
 			backl = /obj/item/rogueweapon/shield/buckler
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 
-		if("Dagger + Crossbow")
-			beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+		if("Whip + Crossbow")
+			beltl = /obj/item/rogueweapon/whip
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			beltr = /obj/item/quiver/bolts
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
