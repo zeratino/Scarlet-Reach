@@ -78,10 +78,10 @@
 
 /datum/outfit/job/roguetown/knight/heavy/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE) //Polearms are pretty much explicitly a two-handed weapon, so I gave them a polearm option.
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE) //Polearms are pretty much explicitly a two-handed weapon, so I gave them a polearm option.
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)	//Too heavy for horses.
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
@@ -109,21 +109,16 @@
 		if("Zweihander")
 			r_hand = /obj/item/rogueweapon/greatsword/zwei
 			backl = /obj/item/gwstrap
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Great Mace")
 			r_hand = /obj/item/rogueweapon/mace/goden/steel
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 		if("Battle Axe")
 			r_hand = /obj/item/rogueweapon/stoneaxe/battle
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
 		if("Estoc")
 			r_hand = /obj/item/rogueweapon/estoc
 			backl = /obj/item/gwstrap
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Lucerne")
 			r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
 			backl = /obj/item/gwstrap
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
@@ -154,9 +149,9 @@
 
 /datum/outfit/job/roguetown/knight/footknight/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE) 
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE) 
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)	
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
@@ -182,13 +177,10 @@
 	switch(weapon_choice)
 		if("Bastard Sword")
 			beltr = /obj/item/rogueweapon/sword/long
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Flail")
 			beltr = /obj/item/rogueweapon/flail/sflail
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 		if ("Warhamer")
-			beltr = /obj/item/rogueweapon/mace/warhammer 
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE) //Iron warhammer. This is one-handed and pairs well with shields. They can upgrade to steel in-round.
+			beltr = /obj/item/rogueweapon/mace/warhammer //Iron warhammer. This is one-handed and pairs well with shields. They can upgrade to steel in-round.
 
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates	
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
@@ -222,12 +214,12 @@
 
 /datum/outfit/job/roguetown/knight/mountedknight/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
@@ -254,21 +246,15 @@
 			beltl = /obj/item/rogueweapon/sword/long
 			beltr = /obj/item/quiver/bolts
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
 		if("Billhook + Recurve Bow")
 			r_hand = /obj/item/rogueweapon/spear/billhook
 			backl = /obj/item/gwstrap
 			beltr = /obj/item/quiver/arrows
 			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		if("Grand Mace + Longbow")
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 			beltr = /obj/item/quiver/arrows
 			beltl = /obj/item/rogueweapon/mace/goden/steel
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
@@ -300,13 +286,13 @@
 
 /datum/outfit/job/roguetown/knight/irregularknight/pre_equip(mob/living/carbon/human/H)
 	..()	
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE) //Swords and knives class.
-	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)	
-	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE) //Whips can work as a light class weapon.	
-	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)		
-	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)		
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE) //Bows fit a light/speedy class pretty well, gave them ranged options.
-	H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE) //Swords and knives class.
+	H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)	
+	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE) //Whips can work as a light class weapon.	
+	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)	
+	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)	
+	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE) //Bows fit a light/speedy class pretty well, gave them ranged options.
+	H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)		
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
@@ -335,28 +321,21 @@
 			beltl = /obj/item/rogueweapon/sword/rapier
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
 			beltr = /obj/item/quiver/arrows
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 
 		if("Estoc + Recurve Bow")
 			r_hand = /obj/item/rogueweapon/estoc
 			backl = /obj/item/gwstrap
 			beltr = /obj/item/quiver/arrows
 			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		
 		if("Sabre + Buckler")
 			beltl = /obj/item/rogueweapon/sword/sabre
 			backl = /obj/item/rogueweapon/shield/buckler
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 
 		if("Whip + Crossbow")
 			beltl = /obj/item/rogueweapon/whip
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			beltr = /obj/item/quiver/bolts
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
 
 	switch(armor_choice)
 		if("Light Armor")
