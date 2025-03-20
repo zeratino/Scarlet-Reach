@@ -117,7 +117,7 @@
 		var/ratio = 1
 		if(damtype_peel_ratio[type] > 1)
 			ratio = damtype_peel_ratio[type]
-		var/val = round(((hits_to_peel[type] - hit_count[type]) / ratio), 1)	//Round it to a multiple of 1 in case of multipliers.
+		var/val = ROUND_UP(((hits_to_peel[type] - hit_count[type]) / ratio))	//Round it up so it doesn't lie (ex 3.1 would actually still require 4 hits to peel)
 		var/color 
 		switch(val)
 			if(1 to 6)
@@ -173,16 +173,11 @@
 								if(H.mind.get_skill_level(skill) < repair_skills[skill])	//Checking their skill level vs skill threshold
 									skillcheck = FALSE
 							if(skillcheck)
-								if(repair_check())
-									var/choice = input(user,"Which layer would you like to fix?", "REPAIR CHOICE") as anything in repairable_damtypes
-									if(choice)
-										to_chat(user,span_warn("I repair the [choice] layers."))
-										add_layer(choice, layer_repair)
-										qdel(I)
-								else
-									to_chat(user,span_warn("There's nothing to repair."))
+								try_repair(user, I)
 							else
 								to_chat(user,span_warn("I'm not skilled enough for this, but I could be."))
+						else	//Fringe case of there being items to repair layers with, but no skill requirement. 
+							try_repair(user, I)
 					else
 						to_chat(user,span_warn("This craft is far too fine for my level of intelligence."))
 			else
@@ -190,6 +185,16 @@
 				return
 	else
 		return
+
+/datum/component/peelarmor/proc/try_repair(mob/user, obj/item/I)
+	if(repair_check())
+		var/choice = input(user,"Which layer would you like to fix?", "REPAIR CHOICE") as anything in repairable_damtypes
+		if(choice)
+			user.visible_message(span_warn("[user] repairs the [choice] layers on [parent]."), span_warn("I repair the [choice] layers."))
+			add_layer(choice, layer_repair)
+			qdel(I)
+	else
+		to_chat(user,span_warn("There's nothing to repair."))
 
 /datum/component/peelarmor/proc/add_hit(damtype)
 	if(damtype in damtypes)
