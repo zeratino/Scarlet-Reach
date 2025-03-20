@@ -16728,6 +16728,10 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/mountains)
+"lMV" = (
+/turf/open/floor/rogue/ruinedwood/spiral,
+/turf/open/floor/rogue/blocks/stonered,
+/area/rogue/indoors)
 "lNb" = (
 /obj/structure/rack/rogue,
 /obj/item/clothing/under/roguetown/heavy_leather_pants,
@@ -53466,7 +53470,7 @@ sSz
 bRO
 bRO
 iEe
-bRO
+iEe
 fNC
 qZy
 bId
@@ -77957,7 +77961,7 @@ xpd
 jHr
 jHr
 jHr
-bRO
+lMV
 ppS
 fax
 ppS
