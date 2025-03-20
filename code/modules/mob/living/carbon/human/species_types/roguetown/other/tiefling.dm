@@ -20,7 +20,6 @@
 	inherent_traits = list(TRAIT_NOMOBSWAP)
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
-	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = NONE
 	liked_food = NONE
 	possible_ages = ALL_AGES_LIST
@@ -120,7 +119,10 @@
 		"Nessyss" = SKIN_COLOR_NESSYSS,
 		"Helixia" = SKIN_COLOR_HELIXIA,
 		"Nymsea" = SKIN_COLOR_NYMSEA,
-		"Calvus" = SKIN_COLOR_CALVUS
+		"Vodyanev" = SKIN_COLOR_ABYSS,
+		"Calvus" = SKIN_COLOR_CALVUS,
+		"Voibion" = SKIN_COLOR_VOIBION,
+		"Chyerno" = SKIN_COLOR_CHYERNO
 	)
 
 /datum/species/tieberian/get_hairc_list()

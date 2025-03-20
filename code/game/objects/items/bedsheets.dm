@@ -7,9 +7,6 @@ LINEN BINS
 /obj/item/bedsheet
 	name = "bedsheet"
 	desc = ""
-	icon = 'icons/obj/bedsheets.dmi'
-	lefthand_file = 'icons/mob/inhands/misc/bedsheet_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/bedsheet_righthand.dmi'
 	icon_state = "sheetwhite"
 	item_state = "sheetwhite"
 	layer = MOB_LAYER
@@ -83,21 +80,18 @@ LINEN BINS
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "cloth_bedsheet"
 	item_state = "cloth_bedsheet"
-	pixel_y = 5
 
 /obj/item/bedsheet/rogue/pelt
 	desc = ""
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "pelt_bedsheet"
 	item_state = "pelt_bedsheet"
-	pixel_y = 5
 
 /obj/item/bedsheet/rogue/wool
 	desc = ""
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "wool_bedsheet"
 	item_state = "wool_bedsheet"
-	pixel_y = 5
 
 /obj/item/bedsheet/rogue/double_pelt
 	desc = ""
@@ -110,7 +104,6 @@ LINEN BINS
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "fabric_bedsheet"
 	item_state = "fabric_bedsheet"
-	pixel_y = 5
 
 /obj/item/bedsheet/rogue/fabric_double
 	desc = ""

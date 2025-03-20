@@ -76,7 +76,7 @@
 
 	var/list/datum/bioware = list()
 
-	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/parrot))
+	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human))
 	var/lastpuke = 0
 	var/last_fire_update
 	var/account_id
@@ -108,7 +108,12 @@
 
 	var/headshot_link = null
 	var/flavortext = null
+	var/flavortext_display = null
 	var/ooc_notes = null
+	var/ooc_notes_display = null
+	var/ooc_extra_link
+	var/ooc_extra
+	var/is_legacy = FALSE
 	var/received_resident_key = FALSE
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\

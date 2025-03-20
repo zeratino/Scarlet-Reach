@@ -24,7 +24,6 @@
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
 	possible_ages = ALL_AGES_LIST
-	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = NONE
 	liked_food = NONE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT

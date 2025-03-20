@@ -471,6 +471,17 @@
 	verbage = "constructs"
 	skillcraft = /datum/skill/craft/carpentry
 
+/datum/crafting_recipe/roguetown/structure/coolingtable
+	name = "Cooling Table"
+	result = /obj/structure/table/cooling
+	reqs = list(/obj/item/grown/log/tree/small = 1,
+				/obj/item/ingot/iron = 1,
+				/obj/item/roguegear = 1)
+	verbage_simple = "engineer"
+	verbage = "engineers"
+	skillcraft = /datum/skill/craft/engineering
+	craftdiff = 4
+
 /datum/crafting_recipe/roguetown/structure/operatingtable
 	name = "operating table"
 	result = /obj/structure/table/optable

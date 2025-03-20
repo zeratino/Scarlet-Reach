@@ -189,6 +189,12 @@
 			// Randomize con roll from -1 to +1 to make it less consistent
 			self_points += rand(-1, 1)
 
+			//Safety check for changing direction at the last step
+			if(src.dir != src.sprint_dir)
+				self_points -= 99
+				instafail = TRUE
+				to_chat(src, span_warning("I changed direction too late!"))
+
 			if(self_points > target_points)
 				L.Knockdown(1)
 			if(self_points < target_points)
@@ -575,7 +581,7 @@
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IS_IN_STASIS(src)))
+	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (!ignore_restraints && restrained(ignore_grab)))
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -738,6 +744,9 @@
 		clear_alert("not_enough_oxy")
 		reload_fullscreen()
 		remove_client_colour(/datum/client_colour/monochrome)
+		// Add message about struggling to recall death circumstances
+		to_chat(src, "<span class='notice'><b>As you return to life, you struggle to recall the circumstances of your death...</b></span>")
+		to_chat(src, "<span class='italic'>Your memories of your final moments are hazy and fragmented.</span>")
 		. = TRUE
 		if(mind)
 			if(admin_revive)
@@ -861,6 +870,7 @@
 
 	if(m_intent == MOVE_INTENT_RUN)
 		sprinted_tiles++
+		sprint_dir = dir
 
 	if(wallpressed)
 		update_wallpress(T, newloc, direct)
@@ -1485,7 +1495,7 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src) && (has_arms || ignore_legs || has_legs)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
@@ -1896,16 +1906,51 @@
 	var/_x = T.x-loc.x
 	var/_y = T.y-loc.y
 	var/dist = get_dist(src, T)
+	var/message = span_info("[src] looks into the distance.")
 	if(dist > 7 || dist  <= 2)
 		return
 	hide_cone()
-	var/ttime = 10
+	var/ttime = 11
 	if(STAPER > 5)
 		ttime = 10 - (STAPER - 5)
 		if(ttime < 0)
-			ttime = 0
+			ttime = 1
+	if(STAPER <= 10)
+		var/offset = (10 - STAPER) * 2
+		if(STAPER == 10)
+			offset = 1
+		else
+			message = span_info("[src] struggles to look ahead.")
+		if(_x > 0)
+			_x -= offset
+			_x = max(0, _x)
+		else if(_x != 0)
+			_x += offset
+			_x = min(0, _x)
+		if(_y > 0)
+			_y -= offset
+			_y = max(0,_y)
+		else if(_y != 0)
+			_y += offset
+			_y = min(0,_y)
+	else if(STAPER > 11)
+		var/offset = STAPER - 10
+		if(offset > 5)	//Caps the bonus at 15 PER, which is a whole extra screen in an orthogonal direction. Anymore will get disorienting.
+			offset = 5
+		if(STAPER >= 12)
+			message = span_info("[src] easily peers afar.")
+		if(_x > 0)
+			_x += offset
+		else if(_x != 0)
+			_x -= offset
+		if(_y > 0)
+			_y += offset
+		else if(_y != 0)
+			_y -= offset
 	if(m_intent != MOVE_INTENT_SNEAK)
-		visible_message(span_info("[src] looks into the distance."))
+		if(_y == 0 && _x == 0)	//Their PER was too low to see anything.
+			message = span_info("[src] oafishly stares in front of themselves.")
+		visible_message(message)
 	animate(client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, ttime)
 //	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 	update_cone_show()

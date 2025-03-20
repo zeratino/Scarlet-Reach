@@ -59,7 +59,7 @@
 	head = /obj/item/clothing/head/roguetown/puritan
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	beltl = /obj/item/rogueweapon/sword/rapier
-	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver)
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver, /obj/item/grapplinghook = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
@@ -91,6 +91,7 @@
 	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_PURITAN, JOB_TRAIT)
 
 ///The dirty, violent side of the Inquisition. Meant for confrontational, conflict-driven situations as opposed to simply sneaking around and asking questions. Templar with none of the miracles, but with all the muscles and more. 
 
@@ -147,6 +148,7 @@
 	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_PURITAN, JOB_TRAIT)
 
 /obj/item/clothing/gloves/roguetown/chain/blk
 		color = CLOTHING_GREY
@@ -182,7 +184,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
 	beltl = /obj/item/rogueweapon/sword/rapier
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
-	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver)
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver, /obj/item/grapplinghook = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
@@ -211,6 +213,7 @@
 	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_PURITAN, JOB_TRAIT)
 
 /mob/living/carbon/human/proc/torture_victim()
 	set name = "Extract Confession"
@@ -218,6 +221,7 @@
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()
+	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
 		return
@@ -231,6 +235,10 @@
 	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
+	for(var/obj/structure/fluff/psycross/N in oview(5, src))
+		found = N
+	if(!found)
+		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
 	if(!H.stat)
 		var/static/list/torture_lines = list(
 			"CONFESS!",
@@ -239,7 +247,14 @@
 			"YOU WILL SPEAK!",
 			"TELL ME!",
 		)
+
+		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(torture_lines), spans = list("torture"))
+		H.emote("agony", forced = TRUE)
+
+		if(!(do_mob(src, H, 10 SECONDS)))
+			return
+
 		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("antag")
 		qdel(S)
@@ -252,6 +267,7 @@
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
 	var/obj/item/S = get_inactive_held_item()
+	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
 		return
@@ -265,14 +281,26 @@
 	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
+	for(var/obj/structure/fluff/psycross/N in oview(5, src))
+		found = N
+	if(!found)
+		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
+		return
 	if(!H.stat)
 		var/static/list/faith_lines = list(
-			"DO YOU DENY THE TEN?",
+			"DO YOU DENY THE ALLFATHER?",
 			"WHO IS YOUR GOD?",
 			"ARE YOU FAITHFUL?",
 			"WHO IS YOUR SHEPHERD?",
 		)
+
+		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(faith_lines), spans = list("torture"))
+		H.emote("agony", forced = TRUE)
+
+		if(!(do_mob(src, H, 10 SECONDS)))
+			return
+
 		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("patron")
 		qdel(S)

@@ -127,6 +127,7 @@
 	/// This job is immune to species-based swapped gender locks
 	var/immune_to_genderswap = FALSE
 
+
 /*
 	How this works, its CTAG_DEFINE = amount_to_attempt_to_role
 	EX: advclass_cat_rolls = list(CTAG_PILGRIM = 5, CTAG_ADVENTURER = 5)
@@ -138,6 +139,9 @@
 	How this works, they get one extra roll on every category per PQ amount
 */
 	var/PQ_boost_divider = 0
+
+	var/list/virtue_restrictions
+	var/list/vice_restrictions
 
 
 /datum/job/proc/special_job_check(mob/dead/new_player/player)
@@ -172,7 +176,7 @@
 		for(var/S in spells)
 			H.mind.AddSpell(new S)
 
-	if(H.gender == FEMALE)
+	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 		if(jobstats_f)
 			for(var/S in jobstats_f)
 				H.change_stat(S, jobstats_f[S])
@@ -211,7 +215,7 @@
 	if(cmode_music)
 		H.cmode_music = cmode_music
 
-	if(H.mind.special_role == "Court Agent" || H.mind.assigned_role == "Bandit")	//For obfuscating Court Agents & Bandits in Actors list
+	if(H.mind.special_role == "Court Agent" || H.mind.assigned_role == "Bandit" || H.mind.assigned_role == "Wretch") //For obfuscating Court Agents & Bandits in Actors list
 		GLOB.actors_list[H.mobid] = "[H.real_name] as Adventurer<BR>"
 	else
 		GLOB.actors_list[H.mobid] = "[H.real_name] as [H.mind.assigned_role]<BR>"
@@ -288,7 +292,7 @@
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 	if(!outfit_override && visualsOnly && visuals_only_outfit)
 		outfit_override = visuals_only_outfit
-	if(H.gender == FEMALE)
+	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 		if(outfit_override || outfit_female)
 			H.equipOutfit(outfit_override ? outfit_override : outfit_female, visualsOnly)
 		else

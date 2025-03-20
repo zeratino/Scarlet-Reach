@@ -303,7 +303,6 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, AddComponent), /datum/component/beauty, 500), 0)
 
 /obj/item/twohanded/required/kirbyplants/random
-	icon = 'icons/obj/flora/_flora.dmi'
 	icon_state = "random_plant"
 	var/list/static/states
 

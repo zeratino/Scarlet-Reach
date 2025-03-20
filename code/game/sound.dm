@@ -2,7 +2,7 @@
 	var/list/played_loops = list() //uses dlink to link to the sound
 
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel, pressure_affected = FALSE, ignore_walls = TRUE, soundping = FALSE, repeat)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel, pressure_affected = FALSE, ignore_walls = TRUE, soundping = FALSE, repeat, animal_pref = FALSE)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -45,6 +45,11 @@
 			listeners += SSmobs.dead_players_by_zlevel[below_turf.z]
 
 	listeners += SSmobs.dead_players_by_zlevel[source_z]
+	if(animal_pref)
+		for(var/mob/M as anything in listeners)
+			if(M.client)
+				if(M.client.prefs?.mute_animal_emotes)
+					listeners -= M
 	. = list()
 
 	for(var/mob/M as anything in listeners)
@@ -396,5 +401,11 @@
 							'sound/items/jinglebell2.ogg',
 							'sound/items/jinglebell3.ogg',
 							'sound/items/jinglebell4.ogg',
+							)
+			if(SFX_WOOD_ARMOR)
+				soundin = pick(
+							'sound/foley/footsteps/armor/woodarmor (1).ogg',
+							'sound/foley/footsteps/armor/woodarmor (2).ogg',
+							'sound/foley/footsteps/armor/woodarmor (3).ogg',
 							)
 	return soundin

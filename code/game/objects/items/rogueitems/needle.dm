@@ -13,6 +13,7 @@
 	max_integrity = 20
 	anvilrepair = /datum/skill/craft/blacksmithing
 	tool_behaviour = TOOL_SUTURE
+	experimental_inhand = FALSE
 	/// Amount of uses left
 	var/stringamt = 20
 	var/maxstring = 20
@@ -73,6 +74,8 @@
 	return ..()
 
 /obj/item/needle/attack_obj(obj/O, mob/living/user)
+	if(!isitem(O))
+		return
 	var/obj/item/I = O
 	if(can_repair)
 		if(stringamt < 1)

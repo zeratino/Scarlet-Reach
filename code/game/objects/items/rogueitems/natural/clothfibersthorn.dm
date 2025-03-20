@@ -14,6 +14,7 @@
 	muteinmouth = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 	bundletype = /obj/item/natural/bundle/fibers
 
 /obj/item/natural/fibers/attack_right(mob/user)
@@ -56,6 +57,7 @@
 	muteinmouth = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 	bundletype = /obj/item/natural/bundle/silk
 
 /obj/item/natural/silk/attack_right(mob/user)
@@ -110,6 +112,7 @@
 	muteinmouth = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 	bundletype = /obj/item/natural/bundle/cloth
 	var/wet = 0
 	/// Effectiveness when used as a bandage, how much bloodloss we can staunch
@@ -249,7 +252,8 @@
 		if(L.m_intent == MOVE_INTENT_RUN)
 			prob2break = 100
 		if(prob(prob2break))
-			playsound(src,'sound/items/seedextract.ogg', 100, FALSE)
+			if(!(HAS_TRAIT(L, TRAIT_AZURENATIVE) && L.m_intent != MOVE_INTENT_RUN))
+				playsound(src,'sound/items/seedextract.ogg', 100, FALSE)
 			qdel(src)
 			if (L.alpha == 0 && L.rogue_sneaking) // not anymore you're not
 				L.update_sneak_invis(TRUE)
@@ -272,6 +276,7 @@
 	muteinmouth = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 	stacktype = /obj/item/natural/fibers
 	icon1step = 3
 	icon2step = 6
@@ -317,6 +322,7 @@
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 	stacktype = /obj/item/natural/cloth
 	stackname = "cloth"
 	icon1 = "clothroll1"
@@ -339,6 +345,7 @@
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 	stacktype = /obj/item/grown/log/tree/stick
 	stackname = "sticks"
 	icon1 = "stickbundle1"
@@ -398,6 +405,7 @@
 	muteinmouth = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 	stacktype = /obj/item/natural/bone
 	stackname = "bones"
 	icon1 = "bonestack1"
@@ -442,6 +450,7 @@
 	muteinmouth = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	spitoutmouth = FALSE
+	experimental_inhand = FALSE
 
 /obj/item/natural/bundle/worms
 	name = "worms"

@@ -4,6 +4,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/masks.dmi'
 	body_parts_covered = FACE
 	slot_flags = ITEM_SLOT_MASK
+	experimental_inhand = FALSE
 
 /obj/item/clothing/mask/rogue/spectacles
 	name = "spectacles"
@@ -160,8 +161,9 @@
 		to_chat(user, span_warning("This accursed mask pacifies me!"))
 		ADD_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
 		ADD_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
-
-		var/timer = 30 MINUTES
+		if(HAS_TRAIT(user, TRAIT_RITUALIST))
+			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+		var/timer = 20 MINUTES
 
 		if(bounty_amount >= 100)
 			var/additional_time = bounty_amount * 0.1

@@ -1,4 +1,4 @@
-/datum/advclass/forlorn
+/datum/advclass/mercenary/forlorn
 	name = "Forlorn Hope Mercenary"
 	tutorial = "The Order of the Forlorn Hope, a order formed off the back of a Ranesheni slave revolt. Drawing from all walks of life, this mercenary company now takes ranks from both purchased and liberated slaves. Coin is power, and power is the path to freedom."
 	allowed_sexes = list(MALE, FEMALE)
@@ -45,4 +45,3 @@
 		H.change_stat("endurance", 3) // tuff boys
 		H.change_stat("constitution", 2) 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)

@@ -137,6 +137,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	slot_flags = ITEM_SLOT_MOUTH
 	obj_flags = null
 	w_class = WEIGHT_CLASS_TINY
+	experimental_inhand = FALSE
 	/// If our stone is magical, this lets us know -how- magical. Maximum is 15.
 	var/magic_power = 0
 
@@ -292,7 +293,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 		if(L.m_intent == MOVE_INTENT_RUN)
 			L.visible_message(span_warning("[L] trips over the rock!"),span_warning("I trip over the rock!"))
 			L.Knockdown(10)
-			L.consider_ambush()
+			L.consider_ambush(always = TRUE)
 	..()
 
 /obj/item/natural/rock/deconstruct(disassembled = FALSE)

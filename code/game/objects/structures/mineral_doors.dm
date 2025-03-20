@@ -8,7 +8,7 @@
 	opacity = TRUE
 	layer = CLOSED_DOOR_LAYER
 
-	icon = 'icons/obj/doors/mineral_doors.dmi'
+	icon = 'icons/roguetown/misc/doors.dmi'
 	icon_state = "metal"
 	max_integrity = 1000
 	integrity_failure = 0.5
@@ -946,3 +946,7 @@
 /obj/structure/mineral_door/wood/towner/hunter
 	resident_advclass = /datum/advclass/hunter
 	lockid = "towner_hunter"
+
+/obj/structure/mineral_door/wood/towner/witch
+	resident_advclass = /datum/advclass/witch
+	lockid = "towner_witch"

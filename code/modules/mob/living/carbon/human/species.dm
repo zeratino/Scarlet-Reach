@@ -1015,7 +1015,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	switch(H.hydration)
 //		if(HYDRATION_LEVEL_WATERLOGGED to INFINITY)
 //			H.apply_status_effect(/datum/status_effect/debuff/waterlogged)
-		if(HYDRATION_LEVEL_SMALLTHIRST to HYDRATION_LEVEL_FULL)
+		if(HYDRATION_LEVEL_HYDRATED to INFINITY)
+			H.add_stress(/datum/stressevent/hydrated)
+		if(HYDRATION_LEVEL_SMALLTHIRST to HYDRATION_LEVEL_HYDRATED)
 			H.remove_stress_list(list(/datum/stressevent/drym,/datum/stressevent/thirst,/datum/stressevent/parched))
 		if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_SMALLTHIRST)
 			H.add_stress(/datum/stressevent/drym)
@@ -2064,8 +2066,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/action/innate/flight
 	name = "Toggle Flight"
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_STUN
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "flight"
+	button_icon_state = ""
 
 /datum/action/innate/flight/Activate()
 	var/mob/living/carbon/human/H = owner

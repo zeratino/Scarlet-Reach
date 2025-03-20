@@ -15,6 +15,7 @@
 	drop_sound = 'sound/items/gems (1).ogg'
 	anvilrepair = /datum/skill/craft/blacksmithing
 	resistance_flags = FIRE_PROOF
+	experimental_inhand = FALSE
 
 	grid_height = 32
 	grid_width = 32
@@ -122,7 +123,7 @@
 	lockid = "vault"
 
 /obj/item/roguekey/sheriff
-	name = "guard captain's key"
+	name = "Knight Captain's key"
 	desc = "This key belongs to the captain of the guard."
 	icon_state = "cheesekey"
 	lockid = "sheriff"
