@@ -276,6 +276,16 @@
 
 // ----------------- BLACKSTEEL END -----------------------
 
+/obj/item/clothing/shoes/roguetown/anklets
+	name = "golden anklets"
+	desc = "Luxurious anklets made of the finest gold. They leave the feet bare while adding an exotic flair."
+	gender = PLURAL
+	icon_state = "anklets"
+	item_state = "anklets"
+	is_barefoot = TRUE
+	sewrepair = TRUE
+	armor = list("blunt" = 5, "slash" = 5, "stab" = 5, "piercing" = 0, "fire" = 0, "acid" = 0)
+
 /obj/item/clothing/shoes/roguetown/boots/leather/elven_boots
 	name = "woad elven boots"
 	desc = "The living trunks still blossom in the spring. They let water through, but it is never cold."
