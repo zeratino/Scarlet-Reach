@@ -10,7 +10,7 @@
 					"Brewer" = "You make your coin peddling imported alcohols from all over the world, though you're no stranger to the craft, and have experience brewing your own ale in a pinch.",
 					"Jeweler" = "You make your coin peddling exotic jewelry, gems, and shiny things.",
 					"Doomsayer" = "THE WORLD IS ENDING!!! At least, that's what you want your clients to believe. You'll offer them a safe place in the new world, of course - built by yours truly.",
-					"Scholar" = "You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels."
+					"Scholar" = "You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels.",
 					"Harlequin" = "You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made.")
 
 /datum/outfit/job/roguetown/adventurer/trader/pre_equip(mob/living/carbon/human/H)
