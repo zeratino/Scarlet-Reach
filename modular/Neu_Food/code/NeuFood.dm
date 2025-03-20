@@ -570,7 +570,9 @@ What it does:
 
 /obj/item/cooking/platter/attack(mob/living/M, mob/living/user, def_zone)
 	if(contents.len > 0)
-		contents[1].attack(M,user,def_zone)
+		if(istype(contents[1],  /obj/item/reagent_containers/food/snacks/))
+			var/obj/item/reagent_containers/food/snacks/S = contents[1]
+			S.attack(M,user,def_zone)
 		update_icon()
 
 
@@ -597,7 +599,8 @@ What it does:
 		desc = contents[1].desc
 		//Need something better than this in future like a buff
 		if(istype(contents[1],  /obj/item/reagent_containers/food/snacks/))
-			contents[1].bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+			var/obj/item/reagent_containers/food/snacks/S = contents[1]
+			S.bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	else
 		vis_contents = 0
 		name = initial(name)
@@ -616,10 +619,12 @@ What it does:
 			contents[1].icon_state = initial(contents[1].icon_state)
 			//sometimes food puts an item in its place!!
 			if(istype(contents[1],  /obj/item/reagent_containers/food/snacks/))
-				contents[1].bonus_reagents = list()
+				var/obj/item/reagent_containers/food/snacks/S = contents[1]
+				S.bonus_reagents = list()
 			to_chat(user, span_info("I remove \the [contents[1].name] from \the [initial(name)]"))
 			if(!usr.put_in_hands(contents[1]))
-				contents[1].forceMove(get_turf(src))
+				var/atom/movable/S = contents[1]
+				S.forceMove(get_turf(src))
 
 	update_icon()
 
