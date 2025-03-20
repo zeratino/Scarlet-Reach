@@ -195,7 +195,7 @@
 						return
 					bandinstrumentsband.playing = TRUE
 					bandinstrumentsband.groupplaying = TRUE
-					bandinstrumentsband.soundloop.mid_sounds = list(bandinstrumentsband.curfile)
+					bandinstrumentsband.soundloop.mid_sounds = bandinstrumentsband.curfile
 					bandinstrumentsband.soundloop.cursound = null
 					bandinstrumentsband.soundloop.start()
 					for(var/mob/living/carbon/human/A in bandmates)

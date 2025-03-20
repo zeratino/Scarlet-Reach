@@ -7,6 +7,7 @@
 	anchored = TRUE
 	var/atom/movable/inserted
 	var/activecolor = "#FFFFFF"
+	var/activecolor_detail = "#FFFFFF"
 	/// Allow holder'd mobs
 	var/allow_mobs = TRUE
 
@@ -109,8 +110,16 @@
 		dat += "Item inserted: [inserted]<HR>"
 		dat += "<A href='?src=\ref[src];select=1'>Select new color.</A><BR>"
 		dat += "Color: <font color='[activecolor]'>&#9899;</font>"
-		dat += "<A href='?src=\ref[src];paint=1'>Apply new color.</A><BR><BR>"
+		dat += "<A href='?src=\ref[src];paint=1'>Apply new color.</A> | "
 		dat += "<A href='?src=\ref[src];clear=1'>Remove paintjob.</A><BR><BR>"
+		if(istype(inserted,/obj/item))
+			var/obj/item/inserted_item = inserted
+			if(inserted_item.detail_color)
+				dat += "<A href='?src=\ref[src];select_detail=1'>Select new detail color.</A><BR>"
+				dat += "Detail Color: <font color='[activecolor_detail]'>&#9899;</font>"
+				dat += "<A href='?src=\ref[src];paint_detail=1'>Apply new color.</A> | "
+				dat += "<A href='?src=\ref[src];clear_detail=1'>Remove paintjob.</A><BR><BR>"
+		
 		dat += "<A href='?src=\ref[src];eject=1'>Eject item.</A><BR><BR>"
 
 	var/datum/browser/menu = new(user, "colormate","Dye Station", 400, 400, src)
@@ -134,6 +143,13 @@
 		activecolor = selectable_colors[choice]
 		updateUsrDialog()
 
+	if(href_list["select_detail"])
+		var/choice = input(usr,"Choose your dye:","Dyes",null) as null|anything in selectable_colors
+		if(!choice)
+			return
+		activecolor_detail = selectable_colors[choice]
+		updateUsrDialog()
+
 	if(href_list["paint"])
 		if(!inserted)
 			return
@@ -141,10 +157,30 @@
 		playsound(src, "bubbles", 50, 1)
 		updateUsrDialog()
 
+	if(href_list["paint_detail"])
+		if(!inserted)
+			return
+		var/obj/item/inserted_item = inserted
+		inserted_item.detail_color = activecolor_detail
+		inserted_item.update_icon()
+		if(inserted_item in GLOB.lordcolor) //Prevent a latejoining duke from changing this color
+			GLOB.lordcolor -= inserted_item
+		playsound(src, "bubbles", 50, 1)
+		updateUsrDialog()
+
 	if(href_list["clear"])
 		if(!inserted)
 			return
 		inserted.remove_atom_colour(FIXED_COLOUR_PRIORITY)
+		playsound(src, "bubbles", 50, 1)
+		updateUsrDialog()
+
+	if(href_list["clear_detail"])
+		if(!inserted)
+			return
+		var/obj/item/inserted_item = inserted
+		inserted_item.detail_color = initial(inserted_item.detail_color)
+		inserted_item.update_icon()
 		playsound(src, "bubbles", 50, 1)
 		updateUsrDialog()
 

@@ -775,6 +775,18 @@
 				)
 	craftdiff = 0
 
+/datum/crafting_recipe/roguetown/feldcollar
+	name = "feldcollar"
+	result = /obj/item/clothing/neck/roguetown/collar/feldcollar
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/surgcollar
+	name = "surgcollar"
+	result = /obj/item/clothing/neck/roguetown/collar/surgcollar
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0
+	
 // BOUQUETS & CROWNS
 
 /datum/crafting_recipe/roguetown/bouquet_rosa
