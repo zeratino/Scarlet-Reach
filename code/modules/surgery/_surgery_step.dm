@@ -84,6 +84,7 @@
 	var/replaced_by
 	/// Repeatable surgery steps will repeat until failure
 	var/repeating = FALSE
+	var/repeatingonfail = FALSE
 	var/preop_sound //Sound played when the step is started
 	var/success_sound //Sound played if the step succeeded
 	var/failure_sound //Sound played if the step fails
@@ -301,6 +302,8 @@
 				to_chat(user, span_warning("Intentional surgery fail... [success_prob]%"))
 			else
 				to_chat(user, span_warning("Surgery fail... [success_prob]%"))
+		if(repeatingonfail && can_do_step(user, target, target_zone, tool, intent, try_to_fail))
+			initiate(user, target, target_zone, tool, intent, try_to_fail)
 		return FALSE
 
 	return FALSE

@@ -75,6 +75,22 @@
 	grind_results = list(/datum/reagent/floure = 10)
 	mill_result = /obj/item/reagent_containers/powder/flour
 
+/obj/item/reagent_containers/food/snacks/grown/rice
+	seed = /obj/item/seeds/rice
+	name = "rice grain"
+	desc = ""
+	icon = 'icons/roguetown/items/produce.dmi'
+	icon_state = "rice"
+	gender = PLURAL
+	filling_color = "#f0f0f0"
+	bitesize_mod = 2
+	foodtype = GRAIN
+	tastes = list("rice" = 1)
+	can_distill = TRUE
+	distill_reagent = /datum/reagent/consumable/ethanol/sake
+	distill_amt = 12
+	grind_results = list(/datum/reagent/floure = 10)
+
 /obj/item/reagent_containers/food/snacks/grown/apple
 	seed = /obj/item/seeds/apple
 	name = "apple"
@@ -185,6 +201,19 @@
 	list_reagents = list(/datum/reagent/berrypoison = 5, /datum/reagent/consumable/nutriment = 3, /datum/reagent/water = 5)
 	grind_results = list(/datum/reagent/berrypoison = 5)
 	color_index = "bad"
+
+/obj/item/reagent_containers/food/snacks/grown/nut
+	name = "rocknut"
+	desc = "a nut with mild stimulant properties"
+	seed = /obj/item/seeds/nut
+	icon_state = "nut"
+	tastes = list("nutty" = 1)
+	filling_color = "#6b4d18"
+	bitesize = 1
+	foodtype = FRUIT
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/acorn_powder = 4, /datum/reagent/drug/nicotine = 1)
+	grind_results = list(/datum/reagent/consumable/acorn_powder = 4)
+	mill_result = /obj/item/reagent_containers/powder/rocknut
 
 //pyroclastic flowers - stonekeep port
 /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius

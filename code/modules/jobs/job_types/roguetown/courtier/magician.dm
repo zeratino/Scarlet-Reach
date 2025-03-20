@@ -27,6 +27,7 @@
 	neck = /obj/item/clothing/neck/roguetown/talkstone
 	cloak = /obj/item/clothing/cloak/black_cloak
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/black
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights/random
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/plaquesilver

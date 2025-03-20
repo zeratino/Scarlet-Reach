@@ -412,9 +412,14 @@ All foods are distributed among various categories. Use common sense.
 
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/kitchen/fork))
+		if(do_after(user, 0.5 SECONDS))
+			attack(user, user, user.zone_selected)
+
 	if(istype(W, /obj/item/storage))
 		..() // -> item/attackby()
 		return 0
+
 /*	if(istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/S = W
 		if(custom_food_type && ispath(custom_food_type))
