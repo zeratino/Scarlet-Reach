@@ -165,7 +165,7 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
 
-	H.change_stat("strength", 1) //Tanky, less strength, more con/end.
+	H.change_stat("strength", 1) //Tanky, less strength, but high con/end.
 	H.change_stat("constitution", 3)
 	H.change_stat("endurance", 3)
 	H.change_stat("intelligence", 1)
