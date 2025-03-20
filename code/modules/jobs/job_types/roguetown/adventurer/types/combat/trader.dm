@@ -169,7 +169,7 @@
 
 		if ("Harlequin")
 			to_chat(H, spawn_warning ("You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."))
-			hoes = /obj/item/clothing/shoes/roguetown/jester
+			shoes = /obj/item/clothing/shoes/roguetown/jester
 			pants = /obj/item/clothing/under/roguetown/tights
 			armor = /obj/item/clothing/suit/roguetown/shirt/jester
 			belt = /obj/item/storage/belt/rogue/leather
