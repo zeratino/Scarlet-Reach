@@ -321,6 +321,13 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/bascinet
 	craftdiff = 2
 
+/datum/anvil_recipe/armor/steel/etruscanbascinet
+	name = "Etruscan Bascinet (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan
+	craftdiff = 3
+
 /datum/anvil_recipe/armor/steel/helmetknight
 	name = "Knight's Helmet (+1 Steel)"
 	req_bar = /obj/item/ingot/steel
