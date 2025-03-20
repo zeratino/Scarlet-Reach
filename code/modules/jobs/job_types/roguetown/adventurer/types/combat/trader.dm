@@ -168,7 +168,7 @@
 			H.change_stat("endurance", 1)
 
 		if ("Harlequin")
-			to_chat(H, spawn_warning ("You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."))
+			to_chat(H, span_warning ("You are a travelling entertainer - a jester by trade. Where you go, chaos follows - and mischief is made."))
 			shoes = /obj/item/clothing/shoes/roguetown/jester
 			pants = /obj/item/clothing/under/roguetown/tights
 			armor = /obj/item/clothing/suit/roguetown/shirt/jester
