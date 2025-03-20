@@ -96,7 +96,7 @@
 	H.verbs |= /mob/proc/haltyell
 
 
-	H.change_stat("strength", 3) //Heavy hitters. Less con/end.
+	H.change_stat("strength", 3) //Heavy hitters. Less con/end, high strength.
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 1)
 	H.change_stat("intelligence", 1)
@@ -187,8 +187,8 @@
 			beltr = /obj/item/rogueweapon/flail/sflail
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 		if ("Warhamer")
-			beltr = /obj/item/rogueweapon/mace/warhammer
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+			beltr = /obj/item/rogueweapon/mace/warhammer 
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE) //Iron warhammer. This is one-handed and pairs well with shields. They can upgrade to steel in-round.
 
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates	
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
@@ -300,12 +300,12 @@
 
 /datum/outfit/job/roguetown/knight/irregularknight/pre_equip(mob/living/carbon/human/H)
 	..()	
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE) //Swords and knives class. Can have bows as well, as a treat.
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE) //Swords and knives class.
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)	
 	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE) //Whips can work as a light class weapon.	
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)		
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)		
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE) //Bows fit a light/speedy class pretty well.
+	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE) //Bows fit a light/speedy class pretty well, gave them ranged options.
 	H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)		
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
