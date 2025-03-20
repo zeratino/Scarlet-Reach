@@ -299,14 +299,12 @@
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	sewrepair = TRUE
 	adjustable = CAN_CADJUST
-	toggle_icon_state = TRUE
+	toggle_icon_state = FALSE
 
 /obj/item/clothing/mask/rogue/exoticsilkmask/AdjustClothes(mob/user)
 	if(loc == user)
 		if(adjustable == CAN_CADJUST)
 			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
 			flags_inv = null
 			body_parts_covered = NECK
 			to_chat(user, span_notice("You pull down the [src] to expose your face."))
