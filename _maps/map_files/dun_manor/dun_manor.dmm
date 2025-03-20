@@ -24135,6 +24135,13 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"qTW" = (
+/obj/structure/mineral_door/wood/donjon/stone{
+	locked = 1;
+	lockid = "inquisition"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town/church/basement)
 "qUy" = (
 /obj/structure/roguemachine/scomm/l,
 /obj/structure/fluff/walldeco/customflag{
@@ -33000,6 +33007,17 @@
 /obj/item/bedsheet/rogue/cloth,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
+"xfj" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/obj/machinery/light/rogue/torchholder{
+	pixel_y = 26
+	},
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "horzw"
+	},
+/area/rogue/outdoors/town)
 "xfv" = (
 /obj/structure/table/wood{
 	dir = 9;
@@ -33019,17 +33037,6 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/basement)
-"xfj" = (
-/obj/structure/fluff/railing/border{
-	dir = 1
-	},
-/obj/machinery/light/rogue/torchholder{
-	pixel_y = 26
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
-/area/rogue/outdoors/town)
 "xfA" = (
 /obj/structure/bars,
 /turf/open/floor/rogue/hexstone,
@@ -42962,7 +42969,7 @@ iIt
 iIt
 iIt
 iIt
-fTQ
+qTW
 gnM
 gnM
 cSA
@@ -43590,7 +43597,7 @@ svY
 exe
 exe
 iIt
-fTQ
+qTW
 gnM
 gnM
 cSA
@@ -44218,7 +44225,7 @@ kmP
 uPv
 iIt
 iIt
-fTQ
+qTW
 gnM
 gnM
 cSA
