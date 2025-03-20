@@ -70,8 +70,8 @@
 	/// Minimum damage applied to the armor required to trigger peeling.
 	var/minimum_damage_req = 15
 
-	/// How many layers get repaired
-	var/layer_repair = 2
+	/// Layer repair multiplier applied to peel_amt when fixing layers.
+	var/layer_repair = 1
 
 	/// Sound that is played when a layer is peeled off.
 	var/peel_sound = 'sound/misc/layer_peel.ogg'

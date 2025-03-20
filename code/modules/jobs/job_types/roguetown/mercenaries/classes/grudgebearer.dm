@@ -1,6 +1,6 @@
 //Dwarf-exclusive mercenary class with unique armor setups.
 /datum/advclass/mercenary/grudgebearer
-	name = "Grudgebearer Clan"
+	name = "Grudgebearer"
 	tutorial = "Bound by eternal grudges of eons past that have not been forgotten, the Grudgebearers are left to wander the surface, as every other clan has a grudge against you, and you against them. This putrid swampland of a Duchy has also wronged you and your people, you care little for it. Coins are a means to an end -- something you can mine and forge yourself. Trinkets -- made by true smiths, now that will carry respect among your clan. However, such artifacts might not buy you food, or a roof."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = list(
@@ -13,48 +13,69 @@
 
 /datum/outfit/job/roguetown/mercenary/grudgebearer/pre_equip(mob/living/carbon/human/H)
 	..()
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
-	cloak = /obj/item/clothing/cloak/forrestercloak/snow
-	belt = /obj/item/storage/belt/rogue/leather/black
-	backl = /obj/item/storage/backpack/rogue/satchel
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-	gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
-	pants = /obj/item/clothing/under/roguetown/trou/leather
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
-	backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/book/rogue/grudge, /obj/item/natural/feather)
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-	var/classes = list("Strong", "Hardy")
-	var/classchoice = input("Choose your archetype", "Available archetypes") as anything in classes
-	switch(classchoice)
-		if("Strong")
-			H.change_stat("strength", 4)
-			H.change_stat("constitution", 1)
-			H.change_stat("endurance", 1)
-			H.change_stat("speed", -2)
-		if("Hardy")
-			H.change_stat("constitution", 5)
-			H.change_stat("endurance", 4)
-			H.change_stat("strength", 2)
-			H.change_stat("speed", -2)
-	var/weapons = list("Axe", "Mace")
-	var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
-	switch(wepchoice)
-		if("Axe")
-			backr = /obj/item/rogueweapon/stoneaxe/battle
-		if("Mace")
-			backr = /obj/item/rogueweapon/mace/goden/steel
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+		var/classes = list("Smith", "Soldier")
+		var/classchoice = input("Choose your archetype", "Available archetypes") as anything in classes
+		switch(classchoice)
+			if("Smith")
+				H.change_stat("intelligence", 3)
+				H.change_stat("perception", 3)	//"Strikes deftly" is based on PER
+				H.change_stat("endurance", 3)
+				H.change_stat("strength", 1)
+				H.change_stat("speed", -2)
+				H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/smelting, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
+				cloak = /obj/item/clothing/cloak/forrestercloak/snow
+				belt = /obj/item/storage/belt/rogue/leather/black
+				backl = /obj/item/storage/backpack/rogue/satchel
+				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
+				pants = /obj/item/clothing/under/roguetown/trou/leather
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/half
+				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/book/rogue/grudge, /obj/item/natural/feather, /obj/item/rogueweapon/tongs = 1)
+				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+			if("Soldier")
+				H.change_stat("constitution", 5)
+				H.change_stat("endurance", 4)
+				H.change_stat("strength", 2)
+				H.change_stat("speed", -2)
+				H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
+				cloak = /obj/item/clothing/cloak/forrestercloak/snow
+				belt = /obj/item/storage/belt/rogue/leather/black
+				backl = /obj/item/storage/backpack/rogue/satchel
+				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
+				pants = /obj/item/clothing/under/roguetown/trou/leather
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven
+				head = /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
+				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/book/rogue/grudge, /obj/item/natural/feather)
+				var/weapons = list("Axe", "Mace")
+				var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
+				switch(wepchoice)
+					if("Axe")
+						backr = /obj/item/rogueweapon/stoneaxe/battle
+					if("Mace")
+						backr = /obj/item/rogueweapon/mace/goden/steel
+				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 
 
@@ -130,6 +151,21 @@
 	AddComponent(/datum/component/peelarmor/grudgebearer/limbs)
 
 /datum/component/peelarmor/grudgebearer
+	layer_repair = 2
+
+	hits_per_layer = list(
+		"100" 	= 10,
+		"90" 	= 10,
+		"80" 	= 25,
+		"70" 	= 25,
+		"60" 	= 30,
+		"50"	= 30,
+		"40"	= 30,
+		"30"	= 40,
+		"20"	= 50,
+		"10"	= 100,
+	)
+
 	repair_items = list(
 		/obj/item/ingot/silver,
 		/obj/item/ingot/gold,
@@ -170,19 +206,27 @@
 	)
 
 	hits_per_layer = list(
-		"100" 	= 5,
-		"90" 	= 10,
-		"80" 	= 10,
-		"70" 	= 15,
-		"60" 	= 15,
-		"50"	= 20,
-		"40"	= 20,
+		"100" 	= 6,
+		"90" 	= 12,
+		"80" 	= 12,
+		"70" 	= 18,
+		"60" 	= 18,
+		"50"	= 24,
+		"40"	= 24,
 		"30"	= 30,
 		"20"	= 30,
 		"10"	= 40,
 	)
 
+	damtype_peel_ratio = list(
+		"blunt" = 2,
+		"slash" = 2,
+		"stab" = 2,
+		"piercing" = 3,
+	)
+	
 	peel_amt = 20	//Limbs lose 2 grades per layer peel, but also repair 4.
+	layer_repair = 2
 
 	repair_items = list(
 		/obj/item/ingot/silver,
@@ -193,6 +237,6 @@
 	repair_skills = list(
 		/datum/skill/craft/armorsmithing = 4,
 		/datum/skill/craft/blacksmithing = 4,
-		/datum/skill/craft/smelting = 4,
+		/datum/skill/craft/smelting = 3,
 	)
 	applied_trait = null
