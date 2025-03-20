@@ -159,10 +159,10 @@ have ways of interacting with a specific atom and control it. They posses a blac
 		return AI_STATUS_ON
 
 	var/mob/living/mob_pawn = pawn
-	if(!continue_processing_when_client && mob_pawn.client) // under player control
+	if(!continue_processing_when_client && mob_pawn.client)
 		return AI_STATUS_OFF
 
-	if(mob_pawn.stat == DEAD) // they're dead
+	if(mob_pawn.stat == DEAD)
 		return AI_STATUS_OFF
 
 	var/turf/pawn_turf = get_turf(mob_pawn)

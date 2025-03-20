@@ -109,6 +109,8 @@
 /obj/item/organ/proc/on_life()	//repair organ damage if the organ is not failing
 	if(organ_flags & ORGAN_FAILING)
 		return
+	if(isnull(owner))
+		return
 	///Damage decrements by a percent of its maxhealth
 	var/healing_amount = -(maxHealth * healing_factor)
 	///Damage decrements again by a percent of its maxhealth, up to a total of 4 extra times depending on the owner's health
@@ -144,6 +146,12 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/organpoison = 1)
 	foodtype = RAW | MEAT | GROSS
 	eat_effect = /datum/status_effect/debuff/uncookedfood
+
+/obj/item/reagent_containers/food/snacks/organ/On_Consume(mob/living/eater)		//Graggarites looove eating organs, they loooove eating organs!
+	if(HAS_TRAIT(eater, TRAIT_ORGAN_EATER))
+		eat_effect = /datum/status_effect/buff/foodbuff
+	. = ..()
+	eat_effect = initial(eat_effect)
 
 /obj/item/organ/Initialize()
 	. = ..()

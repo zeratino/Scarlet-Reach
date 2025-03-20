@@ -194,7 +194,7 @@ var/static/list/druid_forms = list(
 	. = ..()
 	charge_type = "recharge"
 	charge_counter = charge_max
-	charge_max = 30 SECONDS
+	charge_max = 60 SECONDS
 	recharging = FALSE
 	still_recharging_msg = span_warning("[name] is still recharging!")
 
@@ -268,8 +268,13 @@ var/static/list/druid_forms = list(
 	// Enable combat capabilities
 	shape.dextrous = TRUE
 	shape.held_items = list(null, null)
+	
+	// Disable AI completely to prevent wandering
 	shape.can_have_ai = FALSE
 	shape.AIStatus = AI_OFF
+	shape.stop_automated_movement = TRUE  // Stop automated movement
+	shape.stop_automated_movement_when_pulled = TRUE  // Stop movement when pulled
+	shape.wander = FALSE  // Disable wandering
 	shape.stat_attack = CONSCIOUS
 	shape.environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	ADD_TRAIT(shape, TRAIT_BASHDOORS, TRAIT_GENERIC)
@@ -411,7 +416,9 @@ var/static/list/druid_forms = list(
 	// Start cooldown
 	if(action)
 		action.UpdateButtonIcon()
-	start_recharge()
+	recharging = TRUE  // Set recharging flag to true
+	charge_counter = 0 // Reset counter to 0
+	START_PROCESSING(SSfastprocess, src)  // Ensure the spell is being processed
 	
 	return shape
 
@@ -446,11 +453,12 @@ var/static/list/druid_forms = list(
 	if(was_dead)
 		charge_counter = 0
 		charge_max = death_cooldown
+		recharging = TRUE  // Ensure recharging is set to true
 	else
 		charge_counter = 0  // Start the normal cooldown
 		recharging = TRUE   // Enable recharging
 	
-	start_recharge()  // Start the recharge process
+	START_PROCESSING(SSfastprocess, src)  // Ensure the spell is being processed
 	if(action)
 		action.UpdateButtonIcon()
 	
@@ -466,27 +474,27 @@ var/static/list/druid_forms = list(
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/process(delta_time)
 	if(recharging && charge_type == "recharge")
-		charge_counter += delta_time
+		charge_counter += delta_time * 1  // Change from 10 to 1 since SECONDS macro already handles conversion
 		if(charge_counter >= charge_max)
 			charge_counter = charge_max
 			recharging = FALSE
+			STOP_PROCESSING(SSfastprocess, src)  // Stop processing when cooldown is complete
 			if(action)
 				action.UpdateButtonIcon()
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/perform(list/targets, recharge = TRUE, mob/user = usr)
-    before_cast(targets)
-    invocation(user)
-    if(user?.ckey)
-        user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
-    if(cast(user))
-        if(sound)
-            playMagSound()
-        after_cast(targets)
-        if(action)
-            action.UpdateButtonIcon()
-        start_recharge() // Only start recharge after successful cast
-        return TRUE
-    return FALSE
+	before_cast(targets)
+	invocation(user)
+	if(user?.ckey)
+		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
+	if(cast(user))
+		if(sound)
+			playMagSound()
+		after_cast(targets)
+		if(action)
+			action.UpdateButtonIcon()
+		return TRUE
+	return FALSE
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/can_cast(mob/user)
 	if(!..())
@@ -500,21 +508,23 @@ var/static/list/druid_forms = list(
 	return TRUE
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/proc/handle_death(mob/living/shape)
-    SIGNAL_HANDLER
-    
-    var/obj/shapeshift_holder/H = locate() in shape
-    if(!H)
-        return
-    
-    // Set cooldown before restoration
-    charge_counter = 0
-    charge_max = death_cooldown  // Set to long cooldown
-    recharging = TRUE  // This was missing!
-    if(action)
-        action.UpdateButtonIcon()  // Update the button to show recharging
-    
-    // Restore form and notify
-    to_chat(H.stored, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
-    do_restore(shape)
-    
-    UnregisterSignal(shape, COMSIG_LIVING_DEATH)
+	SIGNAL_HANDLER
+	
+	var/obj/shapeshift_holder/H = locate() in shape
+	if(!H)
+		return
+	
+	// Set cooldown before restoration
+	charge_counter = 0
+	charge_max = death_cooldown  // Set to long cooldown
+	recharging = TRUE  // Ensure recharging is set to true
+	START_PROCESSING(SSfastprocess, src)  // Ensure the spell is being processed
+	
+	if(action)
+		action.UpdateButtonIcon()  // Update the button to show recharging
+	
+	// Restore form and notify
+	to_chat(H.stored, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
+	do_restore(shape)
+	
+	UnregisterSignal(shape, COMSIG_LIVING_DEATH)

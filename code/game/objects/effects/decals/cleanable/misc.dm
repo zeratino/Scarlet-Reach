@@ -83,7 +83,6 @@
 	name = "chemical pile"
 	desc = ""
 	gender = NEUTER
-	icon = 'icons/obj/objects.dmi'
 	icon_state = "ash"
 
 /obj/effect/decal/cleanable/shreds

@@ -1,6 +1,5 @@
 /obj/structure/displaycase
 	name = "display case"
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox0"
 	desc = ""
 	density = TRUE
@@ -73,18 +72,6 @@
 	..()
 
 /obj/structure/displaycase/update_icon()
-	var/icon/I
-	if(open)
-		I = icon('icons/obj/stationobjs.dmi',"glassbox_open")
-	else
-		I = icon('icons/obj/stationobjs.dmi',"glassbox0")
-	if(broken)
-		I = icon('icons/obj/stationobjs.dmi',"glassboxb0")
-	if(showpiece)
-		var/icon/S = getFlatIcon(showpiece)
-		S.Scale(17,17)
-		I.Blend(S,ICON_UNDERLAY,8,8)
-	src.icon = I
 	return
 
 /obj/structure/displaycase/attackby(obj/item/W, mob/user, params)

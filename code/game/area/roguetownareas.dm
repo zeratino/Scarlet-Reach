@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	var/town_area = FALSE
 	var/keep_area = FALSE
 	var/warden_area = FALSE
+	var/ceiling_protected = FALSE //Prevents tunneling into these from above
 
 /area/rogue/Entered(mob/living/carbon/human/guy)
 
@@ -498,6 +499,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1
+	ceiling_protected = TRUE
 
 /area/rogue/under/cave/orcdungeon
 	name = "orcdungeon"
@@ -507,6 +509,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/dungeon1
+	ceiling_protected = TRUE
 
 /area/rogue/under/cave/dukecourt
 	name = "dukedungeon"
@@ -612,6 +615,10 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 /area/rogue/outdoors/exposed/bath
 	icon_state = "bath"
 	droning_sound = 'sound/music/area/bath.ogg'
+
+/area/rogue/outdoors/exposed/bath/vault
+	name = "Bathmaster vault"
+	icon_state = "bath"
 
 /area/rogue/indoors/town/garrison
 	name = "Garrison"

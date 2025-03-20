@@ -161,8 +161,9 @@
 		to_chat(user, span_warning("This accursed mask pacifies me!"))
 		ADD_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
 		ADD_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
-
-		var/timer = 30 MINUTES
+		if(HAS_TRAIT(user, TRAIT_RITUALIST))
+			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+		var/timer = 20 MINUTES
 
 		if(bounty_amount >= 100)
 			var/additional_time = bounty_amount * 0.1
@@ -289,3 +290,32 @@
 	icon_state = "naledimask"
 	desc = "Runes and wards, meant for daemons; the gold has somehow rusted in unnatural, impossible agony. The most prominent of these etchings is in the shape of the Naledian psycross."
 	sellprice = 0
+
+/obj/item/clothing/mask/rogue/exoticsilkmask
+	name = "exotic silk mask"
+	icon_state = "exoticsilkmask"
+	flags_inv = HIDEFACE|HIDEFACIALHAIR
+	body_parts_covered = NECK|MOUTH
+	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
+	sewrepair = TRUE
+
+/obj/item/clothing/mask/rogue/blindfold
+	name = "blindfold"
+	desc = "A strip of cloth tied around the eyes to block vision."
+	icon_state = "blindfold"
+	item_state = "blindfold"
+	flags_inv = HIDEFACE
+	body_parts_covered = EYES
+	sewrepair = TRUE
+	tint = 3
+	mob_overlay_icon = 'icons/mob/clothing/eyes.dmi'
+	icon = 'icons/obj/clothing/glasses.dmi'
+
+/obj/item/clothing/mask/rogue/blindfold/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_MASK)
+		user.become_blind("blindfold_[REF(src)]")
+
+/obj/item/clothing/mask/rogue/blindfold/dropped(mob/living/carbon/human/user)
+	..()
+	user.cure_blind("blindfold_[REF(src)]")

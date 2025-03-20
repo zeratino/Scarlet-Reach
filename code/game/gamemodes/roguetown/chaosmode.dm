@@ -245,7 +245,7 @@
 	"Veteran",
 	"Acolyte",
 	"Cleric",
-	"Guard Captain")
+	"Knight Captain")
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
 	var/datum/mind/villain = pick_n_take(antag_candidates)
 	if(villain)
@@ -270,7 +270,7 @@
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_vampires()
-	restricted_jobs = list("Acolyte","Priest","Adventurer","Confessor","Watchman","Veteran","Man at Arms","Guard Captain")
+	restricted_jobs = list("Acolyte","Priest","Adventurer","Confessor","Watchman","Veteran","Man at Arms","Knight Captain")
 /*	var/num_vampires = rand(1,3)
 #ifdef TESTSERVER
 	num_vampires = 100
@@ -297,7 +297,7 @@
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_werewolves()
-	restricted_jobs = list("Acolyte","Priest","Adventurer","Confessor","Watchman","Veteran","Man at Arms","Guard Captain")
+	restricted_jobs = list("Acolyte","Priest","Adventurer","Confessor","Watchman","Veteran","Man at Arms","Knight Captain")
 /*	var/num_werewolves = rand(1,3)
 #ifdef TESTSERVER
 	num_werewolves = 100
@@ -406,3 +406,58 @@
 		if(!vampyr)
 			return "werewolf"
 */
+
+// Roguelite mode - a lighter version of roguemode, only including bandits and werewolves
+/datum/game_mode/chaosmode/roguelite
+	name = "roguelite"
+	config_tag = "roguelite"
+	report_type = "roguelite"
+	false_report_weight = 0
+	required_players = 0
+	required_enemies = 0
+	recommended_enemies = 0
+	enemy_minimum_age = 0
+	votable = 1
+	probability = 99
+
+	announce_span = "danger"
+	announce_text = "The town has been infiltrated by bandits and werewolves! Watch your back..."
+
+// Override after_DO to only use bandits and werewolves
+/datum/game_mode/chaosmode/roguelite/after_DO()
+	if(allmig || roguefight)
+		return TRUE
+	
+	// Always pick bandits and werewolves for this mode
+	pick_bandits()
+	pick_werewolves()
+	log_game("Antagonists: Roguelite Mode - Bandits and Werewolves")
+	
+	return TRUE
+
+// Override post_setup to only process bandits and werewolves
+/datum/game_mode/chaosmode/roguelite/post_setup()
+	set waitfor = FALSE
+
+	// Process werewolves
+	for(var/datum/mind/werewolf_mind in pre_werewolves)
+		var/datum/antagonist/new_antag = new /datum/antagonist/werewolf()
+		werewolf_mind.add_antag_datum(new_antag)
+		werewolves += werewolf_mind
+		GLOB.pre_setup_antags -= werewolf_mind
+
+	// Process bandits
+	for(var/datum/mind/bandito_mind in pre_bandits)
+		bandits += bandito_mind
+		GLOB.pre_setup_antags -= bandito_mind
+		SSrole_class_handler.bandits_in_round = TRUE
+
+	return TRUE
+
+// Override generate_report to provide roguelite-specific report
+/datum/game_mode/chaosmode/roguelite/generate_report()
+	return {"<span class='header'>Town Intelligence Report</span><br>
+			<span class='alert'>Roguelite Mode</span><br>
+			<span class='alert'>Recent intelligence suggests potential hostile activity from bandits and werewolves.</span><br>
+			<span class='alert'>Be vigilant and report suspicious activity to the town authorities.</span>
+	"}

@@ -347,7 +347,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /proc/colorgrade_rating(input, rating, elaborate = FALSE)
 	var/str
 	switch(rating)
-		if(0)
+		if(0 to 9)
 			var/color = "#f81a1a"
 			str = elaborate ? "<font color = '[color]'>[input] (F)</font>" : "<font color = '[color]'>[input] (F)</font>"
 		if(10 to 19)
