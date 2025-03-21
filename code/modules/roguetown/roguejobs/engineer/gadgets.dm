@@ -22,6 +22,7 @@ Reel teleports the attached atom to the grabbed turf.
 	var/mutable_appearance/target_effect
 	var/max_range = 3
 	var/leash_range = 7
+	var/list/obj_to_destroy = list()
 	grid_height = 32
 	grid_width = 64
 
@@ -140,15 +141,53 @@ Reel teleports the attached atom to the grabbed turf.
 	in_use = FALSE
 	update_icon()
 
+/obj/item/grapplinghook/proc/check_path(turf/Tu, turf/Tt)
+	var/dist = get_dist(Tt, Tu)
+	var/last_dir
+	var/turf/last_step = get_step_multiz(Tu, UP)
+	var/success = FALSE
+	for(var/i = 0, i <= dist, i++)
+		last_dir = get_dir(last_step, Tt)
+		var/turf/Tstep = get_step(last_step, last_dir)
+		if(!Tstep.density)
+			success = TRUE
+			var/list/cont = Tstep.GetAllContents(/obj/structure/roguewindow)
+			for(var/obj/structure/roguewindow/W in cont)
+				if(W.climbable && !W.opacity)	//It's climable and can be seen through
+					success = TRUE
+					LAZYADD(obj_to_destroy, W)
+					continue
+				else if(!W.climbable)
+					success = FALSE
+					return success
+		else
+			success = FALSE
+			return success
+		last_step = Tstep
+	return success
+
+	
+
 //Successful reel, complete reset.
 /obj/item/grapplinghook/proc/reel()
 	if(attached && in_use && grappled_turf)
 		if(do_teleport(attached, grappled_turf))
 			playsound(attached, 'sound/misc/grapple_reel.ogg', 100, FALSE)
 			playsound(grappled_turf, 'sound/misc/grapple_reel.ogg', 100, FALSE)
+			destroy_eligible_objects()
 			reset_tile(silent = TRUE)
 			reset_target()
 			unload(failure = TRUE)
+
+/obj/item/grapplinghook/proc/destroy_eligible_objects()
+	if(length(obj_to_destroy))
+		for(var/obj/O in obj_to_destroy)
+			if(istype(O,/obj/structure/roguewindow))
+				var/obj/structure/roguewindow/W = O
+				if(!W.climbable)
+					O.obj_integrity = 1	//Keeps it from being destroyed
+					O.obj_break()
+		LAZYCLEARLIST(obj_to_destroy)
 
 /obj/item/grapplinghook/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(istype(user.used_intent, /datum/intent/grapple))	//First step, grappling onto a tile. Spawns an indicator on it.
@@ -157,9 +196,13 @@ Reel teleports the attached atom to the grabbed turf.
 			if(!istransparentturf(T) && T.z > user.z) //We are shooting at a floor turf above
 				var/reason
 				if(max_range >= get_dist(user, T) && !T.density)
-					to_chat(user, span_info("The grapple lands on the tile!"))
-					grapple_to(T)
-					return
+					if(check_path(get_turf(user), T))	//We check for opaque turfs or non-climbable windows in the way via a simple pathfind.
+						to_chat(user, span_info("The grapple lands on the tile!"))
+						grapple_to(T)
+						return
+					else
+						to_chat(user, span_info("The path is blocked!"))
+						return
 				else if(get_dist(user, T) > max_range)
 					reason = "It's too far."
 				else if (T.density)

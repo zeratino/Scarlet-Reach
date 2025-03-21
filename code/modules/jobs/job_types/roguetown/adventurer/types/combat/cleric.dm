@@ -54,7 +54,15 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-			ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+			var/weapons = list("Katar","Knuckle Dusters","MY BARE HANDS!!!")
+			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+			switch(weapon_choice)
+				if("Katar")
+					backpack_contents += list(/obj/item/rogueweapon/katar = 1)
+				if("Knuckle Dusters")
+					backpack_contents += list(/obj/item/rogueweapon/knuckles = 1)
+				if("MY BARE HANDS!!!")
+					ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
 					cloak = /obj/item/clothing/cloak/psydontabard

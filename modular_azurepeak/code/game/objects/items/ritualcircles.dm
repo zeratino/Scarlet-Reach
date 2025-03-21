@@ -295,7 +295,7 @@
 /obj/structure/ritualcircle/zizo
 	name = "Rune of Progress"
 	desc = "A Holy Rune of ZIZO"
-// icon_state = zizo_chalky - when we have it.
+	icon_state = "zizo_chalky"
 	var/zizorites = list("Rite of Armaments")
 
 /obj/structure/ritualcircle/zizo/attack_hand(mob/living/user)
@@ -318,10 +318,11 @@
 					if(do_after(user, 50))
 						user.say("ZIZO! ZIZO! ARMS TO SLAY THE IGNORANT!!")
 						if(do_after(user, 50))
-						//	icon_state = "zizo_active"
+							icon_state = "zizo_active"
 							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 							zizoarmaments(src)
-//							icon_state = zizo_chalky - whip these bad boys out when we actually have the sprites + add a spawn timer to set the chalk state back.
+							spawn(120)
+								icon_state = "zizo_chalky"
 
 /obj/structure/ritualcircle/zizo/proc/zizoarmaments(src)
 	var/onrune = view(0, loc)

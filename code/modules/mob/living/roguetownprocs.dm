@@ -216,7 +216,7 @@
 				extradefroll = prob(prob2defend)
 				defender_dualw = TRUE
 
-			//dual-wielder attack advantage
+			//Dual Wielder attack advantage
 			var/obj/item/mainh = user.get_active_held_item()
 			var/obj/item/offh = user.get_inactive_held_item()
 			if(mainh && offh && HAS_TRAIT(user, TRAIT_DUALWIELDER))
@@ -230,22 +230,22 @@
 					if(defender_dualw && attacker_dualw)
 						text += " Our dual wielding cancels out!"
 					else//If we're defending against or as a dual wielder, we roll disadv. But if we're both dual wielding it cancels out.
-						text += " Twice! Disadvantage!"
+						text += " Twice! Disadvantage! ([(prob2defend / 100) * (prob2defend / 100) * 100]%)"
 				to_chat(src, span_info("[text]"))
 			
 			var/attacker_feedback 
-			if(user.client?.prefs.showrolls && attacker_dualw)
-				attacker_feedback = "Attacking with advantage."
+			if(user.client?.prefs.showrolls && (attacker_dualw || defender_dualw))
+				attacker_feedback = "Attacking with advantage. ([100 - ((prob2defend / 100) * (prob2defend / 100) * 100)]%)"
 
 			var/parry_status = FALSE
 			if((defender_dualw && attacker_dualw) || (!defender_dualw && !attacker_dualw)) //They cancel each other out
 				if(attacker_feedback)
-					attacker_feedback += " Cancelled out!"
+					attacker_feedback = "Advantage cancelled out!"
 				if(prob(prob2defend))
 					parry_status = TRUE
 			else if(attacker_dualw)
-				if(!prob(prob2defend) || !extraattroll)
-					parry_status = FALSE
+				if(prob(prob2defend) && extraattroll)
+					parry_status = TRUE
 			else if(defender_dualw)
 				if(prob(prob2defend) && extradefroll)
 					parry_status = TRUE
@@ -517,14 +517,15 @@
 
 		prob2defend = clamp(prob2defend, 5, 90)
 
-		//------------Duel Wielding Checks------------
+		//------------Dual Wielding Checks------------
 		var/attacker_dualw
 		var/defender_dualw
 		var/extraattroll
 		var/extradefroll
 		var/mainhand = L.get_active_held_item()
 		var/offhand	= L.get_inactive_held_item()
-		//Duel Wielder defense disadvantage
+
+		//Dual Wielder defense disadvantage
 		if(mainhand && offhand)
 			if(HAS_TRAIT(src, TRAIT_DUALWIELDER) && istype(offhand, mainhand))
 				extradefroll = prob(prob2defend)
@@ -539,23 +540,34 @@
 				attacker_dualw = TRUE
 		//----------Dual Wielding check end---------
 
+		var/attacker_feedback 
+		if(user.client?.prefs.showrolls && (attacker_dualw || defender_dualw))
+			attacker_feedback = "Attacking with advantage. ([100 - ((prob2defend / 100) * (prob2defend / 100) * 100)]%)"
 
-		if(client?.prefs.showrolls)
+		if(src.client?.prefs.showrolls)
 			var/text = "Roll to dodge... [prob2defend]%"
-			if(defender_dualw)
-				text += " Twice! Disadvantage!"
+			if((defender_dualw || attacker_dualw))
+				if(defender_dualw && attacker_dualw)
+					text += " Our dual wielding cancels out!"
+				else//If we're defending against or as a dual wielder, we roll disadv. But if we're both dual wielding it cancels out.
+					text += " Twice! Disadvantage! ([(prob2defend / 100) * (prob2defend / 100) * 100]%)"
 			to_chat(src, span_info("[text]"))
 
 		var/dodge_status = FALSE
-		if((defender_dualw && attacker_dualw) || (!defender_dualw && !attacker_dualw)) //They cancel each other out
+		if((!defender_dualw && !attacker_dualw) || (defender_dualw && attacker_dualw)) //They cancel each other out
+			if(attacker_feedback)
+				attacker_feedback = "Advantage cancelled out!"
 			if(prob(prob2defend))
 				dodge_status = TRUE
 		else if(attacker_dualw)
-			if(!prob(prob2defend) || !extraattroll)
-				dodge_status = FALSE
+			if(prob(prob2defend) && extraattroll)
+				dodge_status = TRUE
 		else if(defender_dualw)
 			if(prob(prob2defend) && extradefroll)
 				dodge_status = TRUE
+
+		if(attacker_feedback)
+			to_chat(user, span_info("[attacker_feedback]"))
 
 		if(!dodge_status)
 			return FALSE
