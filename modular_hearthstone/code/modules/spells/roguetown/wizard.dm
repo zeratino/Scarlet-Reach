@@ -229,7 +229,6 @@
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
 		/obj/effect/proc_holder/spell/invoked/mirror_transform,
-		/obj/effect/proc_holder/spell/invoked/blink,
 		/obj/effect/proc_holder/spell/invoked/mindlink
 
 		
@@ -1664,6 +1663,7 @@
 	destination_turf = T
 	user_turf.add_overlay(target_effect)
 	destination_turf.add_overlay(tile_effect)
+/*
 /obj/effect/proc_holder/spell/invoked/blink
 	name = "Blink"
 	desc = "Teleport to a targeted location within your field of view."
@@ -1698,7 +1698,7 @@
 		turf_list.len--
 	
 	for(var/turf/turf in turf_list)
-		if(turf.density)
+		if(turf.density || structure.density)
 			to_chat(user, span_warning("I cannot blink through walls!"))
 			revert_cast()
 			return
@@ -1708,7 +1708,6 @@
 	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
 	return TRUE
 
-/*	-Teleport to lumby
 /obj/effect/proc_holder/spell/self/recall
 	name = "Recall"
 	desc = "Memorize your current location, allowing you to return to it after a delay."
