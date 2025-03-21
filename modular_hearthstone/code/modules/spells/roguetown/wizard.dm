@@ -340,7 +340,7 @@
 	charge_max = 25 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
-	movement_interrupt = FALSE
+	movement_interrupt = FALSE	
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -1682,6 +1682,8 @@
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "blink"
 	xp_gain = TRUE
+	invocation = "SHIFT THROUGH SPACE!"
+	invocation_type = "shout"
 
 /obj/effect/proc_holder/spell/invoked/blink/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
@@ -1691,6 +1693,10 @@
 		to_chat(user, span_warning("Invalid target location!"))
 		revert_cast()
 		return
+	
+	// Display a more obvious preparation message
+	user.visible_message(span_warning("<b>[user]'s body begins to shimmer with arcane energy as [user.p_they()] prepare[user.p_s()] to blink!</b>"), 
+						span_notice("<b>I focus my arcane energy, preparing to blink across space!</b>"))
 		
 	// Check if there's a wall in the way, but exclude the target turf
 	var/list/turf_list = getline(start, T)
@@ -1703,9 +1709,35 @@
 			to_chat(user, span_warning("I cannot blink through walls!"))
 			revert_cast()
 			return
+			
+	// Check for doors in the path
+	for(var/turf/traversal_turf in turf_list)
+		// Check for mineral doors
+		for(var/obj/structure/mineral_door/door in traversal_turf.contents)
+			if(door.density)
+				to_chat(user, span_warning("I cannot blink through doors!"))
+				revert_cast()
+				return
+				
+		// Check for windows
+		for(var/obj/structure/roguewindow/window in traversal_turf.contents)
+			if(window.density)
+				to_chat(user, span_warning("I cannot blink through windows!"))
+				revert_cast()
+				return
+	
+	// Add sparkle effect before teleporting
+	var/datum/effect_system/spark_spread/sparks = new()
+	sparks.set_up(5, 1, user)
+	sparks.start()
 	
 	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
-	user.visible_message(span_notice("[user] blinks away!"))
+	
+	// Add sparkle effect after teleporting
+	sparks.set_up(5, 1, user)
+	sparks.start()
+	
+	user.visible_message(span_danger("<b>[user] vanishes in a brilliant flash of sparks!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
 	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
 	return TRUE
 
@@ -1719,8 +1751,8 @@
 	charge_counter = 0 // Changed from 3 MINUTES
 	clothes_req = FALSE
 	cost = 2
-	invocation = "There's no place like home!"
-	invocation_type = "whisper"
+	invocation = "RETURN TO MY MARKED GROUND!"
+	invocation_type = "shout"
 	cooldown_min = 0 // Changed from 3 MINUTES
 	associated_skill = /datum/skill/magic/arcane
 	xp_gain = TRUE
@@ -1739,12 +1771,34 @@
 	if(!marked_location)
 		var/turf/T = get_turf(H)
 		marked_location = T
-		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
+		
+		// Add sparkle effect when marking location
+		var/datum/effect_system/spark_spread/sparks = new()
+		sparks.set_up(3, 1, H)
+		sparks.start()
+		
+		H.visible_message(span_warning("<b>[H] begins to glow slightly as [H.p_they()] mark[H.p_s()] [H.p_their()] location!</b>"), 
+						span_notice("<b>I imprint this location into my arcane memory. I can now recall to this spot.</b>"))
 		return TRUE
 		
 	// Subsequent casts - begin channeling
-	H.visible_message(span_warning("[H] closes [H.p_their()] eyes and begins to focus intently..."))
+	H.visible_message(span_warning("<b>[H] closes [H.p_their()] eyes and begins glowing with increasing intensity as [H.p_they()] focus[H.p_es()] on recall magic!</b>"), 
+					span_notice("<b>I begin channeling the recall spell, focusing on my marked location...</b>"))
+	
+	// Play a distinctive magical sound that everyone can hear when channeling begins
+	playsound(get_turf(H), 'sound/magic/timestop.ogg', 80, TRUE, soundping = TRUE)
+	
+	// Add sparkle effect during channeling
+	var/datum/effect_system/spark_spread/channeling_sparks = new()
+	channeling_sparks.set_up(2, 1, H)
+	channeling_sparks.start()
+	
 	if(do_after(H, recall_delay, target = H, progress = TRUE))
+		// Add more intense sparkle effect before teleport
+		var/datum/effect_system/spark_spread/sparks = new()
+		sparks.set_up(5, 1, H)
+		sparks.start()
+		
 		// Get any grabbed mobs
 		var/list/to_teleport = list(H)
 		if(H.pulling && isliving(H.pulling))
@@ -1754,13 +1808,18 @@
 		for(var/mob/living/L in to_teleport)
 			do_teleport(L, marked_location, no_effects = FALSE, channel = TELEPORT_CHANNEL_MAGIC)
 			
-		H.visible_message(span_warning("[H] vanishes in a swirl of energy!"))
+		H.visible_message(span_danger("<b>[H] disappears in a blinding shower of arcane sparks and energy!</b>"), 
+						span_notice("<b>I complete the recall spell, teleporting back to my marked location!</b>"))
 		playsound(H, 'sound/magic/unmagnet.ogg', 50, TRUE)
 		
 		// Visual effects at both locations
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(3, marked_location)
 		smoke.start()
+		
+		// Additional sparkle effect at destination
+		sparks.set_up(5, 1, H)
+		sparks.start()
 		
 		return TRUE
 	else
@@ -1846,4 +1905,5 @@
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
 #undef PRESTI_MOTE
+
 
