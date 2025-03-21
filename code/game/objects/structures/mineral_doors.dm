@@ -8,7 +8,7 @@
 	opacity = TRUE
 	layer = CLOSED_DOOR_LAYER
 
-	icon = 'icons/obj/doors/mineral_doors.dmi'
+	icon = 'icons/roguetown/misc/doors.dmi'
 	icon_state = "metal"
 	max_integrity = 1000
 	integrity_failure = 0.5

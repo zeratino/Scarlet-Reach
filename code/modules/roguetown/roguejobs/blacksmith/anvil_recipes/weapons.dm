@@ -130,6 +130,12 @@
 	created_item = /obj/item/rogueweapon/katar
 	craftdiff = 2
 
+/datum/anvil_recipe/weapons/steel/steelknuckle
+	name = "Steel Knuckle"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/rogueweapon/knuckles
+	craftdiff = 2
+
 /datum/anvil_recipe/weapons/steel/rapier
 	name = "Rapier"
 	req_bar = /obj/item/ingot/steel
@@ -424,6 +430,12 @@
 	created_item = /obj/item/rogueweapon/spear/bronze
 	craftdiff = 0
 
+/datum/anvil_recipe/weapons/bronze/bronzeknuckle
+	name = "Bronze Knuckle"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/rogueweapon/knuckles/bronzeknuckles
+	craftdiff = 2
+
 /// SHIELDS
 /datum/anvil_recipe/weapons/steel/kiteshield
 	name = "Kite Shield (+1 Steel, +1 Cured Leather)"
@@ -461,12 +473,21 @@
 	createditem_num = 10
 	i_type = "Ammo"
 
-/// RANGED
+/// BOWS
 /datum/anvil_recipe/weapons/iron/arrows
 	name = "Arrows 10x (+2 Stick)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/grown/log/tree/stick, /obj/item/grown/log/tree/stick)
 	created_item = /obj/item/ammo_casing/caseless/rogue/arrow/iron
+	createditem_num = 10
+	i_type = "Ammo"
+	craftdiff = 0
+
+/// SLINGS
+/datum/anvil_recipe/weapons/iron/slingbullets
+	name = "Iron Sling Bullets 10x"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/ammo_casing/caseless/rogue/sling_bullet/iron
 	createditem_num = 10
 	i_type = "Ammo"
 	craftdiff = 0

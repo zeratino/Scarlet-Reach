@@ -20,7 +20,7 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	beltr = /obj/item/rogueweapon/shield/buckler
 	beltl= /obj/item/quiver/arrows
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
@@ -46,8 +46,6 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
 	H.change_stat("perception", 3)
-	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 2)
 	H.change_stat("speed", 2)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)

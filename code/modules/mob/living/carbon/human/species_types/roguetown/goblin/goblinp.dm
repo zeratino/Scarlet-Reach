@@ -19,7 +19,7 @@
 	dam_icon = 'icons/roguetown/mob/bodies/dam/dam_male.dmi'
 	dam_icon_f = 'icons/roguetown/mob/bodies/dam/dam_female.dmi'
 	soundpack_m = /datum/voicepack/male/goblin
-	soundpack_f = /datum/voicepack/female
+	soundpack_f = /datum/voicepack/female/goblin
 	custom_clothes = TRUE
 	use_f = TRUE
 	clothes_id = "dwarf"
@@ -74,7 +74,7 @@
 		/datum/language/orcish
 	)
 	stress_examine = TRUE
-	stress_desc = span_red("Horrid goblin...")
+	stress_desc = span_red("Horrid little goblin...")
 	descriptor_choices = list(
 		/datum/descriptor_choice/height,
 		/datum/descriptor_choice/body,
@@ -97,16 +97,18 @@
 
 /datum/species/goblinp/get_skin_list()
 	return list(
-		"Green" = "317e3c",
-		"Forest" = "244f1b",
-		"Red" = "87312a",
-		"Bronze" = "75533b",
-		"Teal" = "0d8f68",
-		"Viridian" = "0f8a4a",
-		"Jade" = "53a16d",
-		"Lime" = "518a2d",
-		"Moss" = "538a0f",
-		"Olive" = "6b8a08",
+		"Ochre" = SKIN_COLOR_OCHRE,
+		"Meadow" = SKIN_COLOR_MEADOW,
+		"Olive" = SKIN_COLOR_OLIVE,
+		"Green" = SKIN_COLOR_GREEN,
+		"Moss" = SKIN_COLOR_MOSS,
+		"Taiga" = SKIN_COLOR_TAIGA,
+		"Bronze" = SKIN_COLOR_BRONZE,
+		"Red" = SKIN_COLOR_RED,
+		"Frost" = SKIN_COLOR_FROST,
+		"Abyss" = SKIN_COLOR_ABYSS,
+		"Teal" = SKIN_COLOR_TEAL,
+		"Hadal" = SKIN_COLOR_HADAL
 	)
 
 /datum/species/goblinp/on_species_gain(mob/living/carbon/C, datum/species/old_species)

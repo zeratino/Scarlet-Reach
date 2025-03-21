@@ -103,63 +103,6 @@
 			return
 		SSticker.mode.admin_panel()
 
-	else if(href_list["call_shuttle"])
-		if(!check_rights(R_ADMIN))
-			return
-
-
-		switch(href_list["call_shuttle"])
-			if("1")
-				if(EMERGENCY_AT_LEAST_DOCKED)
-					return
-				SSshuttle.emergency.request()
-				log_admin("[key_name(usr)] called the Emergency Shuttle.")
-				message_admins(span_adminnotice("[key_name_admin(usr)] called the Emergency Shuttle to the station."))
-
-			if("2")
-				if(EMERGENCY_AT_LEAST_DOCKED)
-					return
-				switch(SSshuttle.emergency.mode)
-					if(SHUTTLE_CALL)
-						SSshuttle.emergency.cancel()
-						log_admin("[key_name(usr)] sent the Emergency Shuttle back.")
-						message_admins(span_adminnotice("[key_name_admin(usr)] sent the Emergency Shuttle back."))
-					else
-						SSshuttle.emergency.cancel()
-						log_admin("[key_name(usr)] called the Emergency Shuttle.")
-						message_admins(span_adminnotice("[key_name_admin(usr)] called the Emergency Shuttle to the station."))
-
-
-
-	else if(href_list["edit_shuttle_time"])
-		if(!check_rights(R_SERVER))
-			return
-
-		var/timer = input("Enter new shuttle duration (seconds):","Edit Shuttle Timeleft", SSshuttle.emergency.timeLeft() ) as num|null
-		if(!timer)
-			return
-		SSshuttle.emergency.setTimer(timer*10)
-		log_admin("[key_name(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.")
-		minor_announce("The emergency shuttle will reach its destination in [round(SSshuttle.emergency.timeLeft(600))] minutes.")
-		message_admins(span_adminnotice("[key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds."))
-	else if(href_list["trigger_centcom_recall"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		usr.client.trigger_centcom_recall()
-
-	else if(href_list["toggle_continuous"])
-		if(!check_rights(R_ADMIN))
-			return
-		var/list/continuous = CONFIG_GET(keyed_list/continuous)
-		if(!continuous[SSticker.mode.config_tag])
-			continuous[SSticker.mode.config_tag] = TRUE
-		else
-			continuous[SSticker.mode.config_tag] = FALSE
-
-		message_admins(span_adminnotice("[key_name_admin(usr)] toggled the round to [continuous[SSticker.mode.config_tag] ? "continue if all antagonists die" : "end with the antagonists"]."))
-		check_antagonists()
-
 	else if(href_list["toggle_midround_antag"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -283,10 +226,6 @@
 				M.change_mob_type( /mob/living/simple_animal/pet/dog/corgi/Ian , null, null, delmob )
 			if("pug")
 				M.change_mob_type( /mob/living/simple_animal/pet/dog/pug , null, null, delmob )
-			if("parrot")
-				M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
-			if("polyparrot")
-				M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
 
 	else if(href_list["boot2"])
 		if(!check_rights(R_ADMIN))
@@ -881,7 +820,24 @@
 		if(!M.client)
 			to_chat(usr, span_warning("[M] doesn't seem to have an active client."))
 			return
+		var/datum/job/mob_job = SSjob.GetJob(M.mind.assigned_role)
+		var/target_job = SSrole_class_handler.get_advclass_by_name(M.advjob)
+		if(M.mind)
+			mob_job = SSjob.GetJob(M.mind.assigned_role)
+			if(mob_job)
+				mob_job.current_positions = max(0, mob_job.current_positions - 1)
+			if(target_job)
+				SSrole_class_handler.adjust_class_amount(target_job, -1)
+			M.mind.unknow_all_people()
+			for(var/datum/mind/MF in get_minds())
+				M.mind.become_unknown_to(MF)
+			for(var/datum/bounty/removing_bounty in GLOB.head_bounties)
+				if(removing_bounty.target == M.real_name)
+					GLOB.head_bounties -= removing_bounty
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
+		GLOB.chosen_names -= M.real_name
+		LAZYREMOVE(GLOB.actors_list, M.mobid)
+		LAZYREMOVE(GLOB.roleplay_ads, M.mobid)
 
 		var/mob/dead/new_player/NP = new()
 		NP.ckey = M.ckey
@@ -1119,12 +1075,6 @@
 		var/mob/M = locate(href_list["HeadsetMessage"])
 		usr.client.admin_headset_message(M)
 
-	else if(href_list["reject_custom_name"])
-		if(!check_rights(R_ADMIN))
-			return
-		var/obj/item/station_charter/charter = locate(href_list["reject_custom_name"])
-		if(istype(charter))
-			charter.reject_proposed(usr)
 	else if(href_list["jumpto"])
 		if(!isobserver(usr) && !check_rights(R_ADMIN))
 			return

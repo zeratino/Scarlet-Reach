@@ -40,8 +40,6 @@
 	switch(alert(src, "What kind of map is this?", "Map type", "Normal", "Shuttle", "Cancel"))
 		if("Normal")
 			M = new /datum/map_template(map, "[map]", TRUE)
-		if("Shuttle")
-			M = new /datum/map_template/shuttle(map, "[map]", TRUE)
 		else
 			return
 	if(!M.cached_map)
