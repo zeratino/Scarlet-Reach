@@ -172,18 +172,3 @@
 		/datum/sprite_accessory/horns/halforc,
 		/datum/sprite_accessory/horns/longtusk
 		)
-
-/datum/customizer/organ/horns/halforc
-	name = "Orc Tusks"
-	customizer_choices = list(/datum/customizer_choice/organ/horns/halforc)
-	allows_disabling = TRUE
-	default_disabled = FALSE
-
-/datum/customizer_choice/organ/horns/halforc
-	name = "Orc Tusks"
-	organ_type = /obj/item/organ/horns/halforc
-	organ_slot = ORGAN_SLOT_HORNS
-	sprite_accessories = list(
-		/datum/sprite_accessory/horns/halforc,
-		/datum/sprite_accessory/horns/longtusk
-	)
