@@ -230,7 +230,6 @@
 		/obj/effect/proc_holder/spell/invoked/leap,
 		/obj/effect/proc_holder/spell/invoked/mirror_transform,
 		/obj/effect/proc_holder/spell/invoked/blink,
-		/obj/effect/proc_holder/spell/self/recall,
 		/obj/effect/proc_holder/spell/invoked/mindlink
 
 		
@@ -1709,7 +1708,7 @@
 	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
 	return TRUE
 
-
+/*	-Teleport to lumby
 /obj/effect/proc_holder/spell/self/recall
 	name = "Recall"
 	desc = "Memorize your current location, allowing you to return to it after a delay."
@@ -1766,6 +1765,7 @@
 	else
 		to_chat(H, span_warning("Your concentration was broken!"))
 		return FALSE
+*/
 /obj/effect/proc_holder/spell/invoked/mindlink
 	name = "Mindlink"
 	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
