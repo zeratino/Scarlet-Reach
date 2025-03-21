@@ -230,7 +230,9 @@
 		/obj/effect/proc_holder/spell/invoked/leap,
 		/obj/effect/proc_holder/spell/invoked/mirror_transform,
 		/obj/effect/proc_holder/spell/invoked/blink,
-    /obj/effect/proc_holder/spell/self/recall
+		/obj/effect/proc_holder/spell/self/recall,
+		/obj/effect/proc_holder/spell/invoked/mindlink
+
 		
 	)
 	for(var/i = 1, i <= spell_choices.len, i++)
@@ -1712,14 +1714,14 @@
 	name = "Recall"
 	desc = "Memorize your current location, allowing you to return to it after a delay."
 	school = "transmutation"
-	charge_type = "recharge"
-	charge_max = 3 MINUTES
-	charge_counter = 3 MINUTES
+	charge_type = "none" // Changed from "recharge" to "none"
+	charge_max = 0 // Changed from 3 MINUTES
+	charge_counter = 0 // Changed from 3 MINUTES
 	clothes_req = FALSE
 	cost = 2
 	invocation = "There's no place like home!"
 	invocation_type = "whisper"
-	cooldown_min = 3 MINUTES
+	cooldown_min = 0 // Changed from 3 MINUTES
 	associated_skill = /datum/skill/magic/arcane
 	xp_gain = TRUE
 	action_icon_state = "recall"
@@ -1729,7 +1731,7 @@
 
 /obj/effect/proc_holder/spell/self/recall/cast(mob/user = usr)
 	if(!istype(user, /mob/living/carbon/human))
-		return
+		return FALSE
 		
 	var/mob/living/carbon/human/H = user
 	
@@ -1738,8 +1740,6 @@
 		var/turf/T = get_turf(H)
 		marked_location = T
 		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
-		start_recharge()
-		revert_cast()
 		return TRUE
 		
 	// Subsequent casts - begin channeling
@@ -1761,14 +1761,89 @@
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(3, marked_location)
 		smoke.start()
-		start_recharge()
+		
+		return TRUE
 	else
 		to_chat(H, span_warning("Your concentration was broken!"))
-		start_recharge()
-		revert_cast()
+		return FALSE
+/obj/effect/proc_holder/spell/invoked/mindlink
+	name = "Mindlink"
+	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
+	clothes_req = FALSE
+	overlay_state = "mindlink"
+	associated_skill = /datum/skill/magic/arcane
+	cost = 2
+	xp_gain = TRUE
+	charge_max = 2 MINUTES
+	invocation = "MENTIS NEXUS!"
+	invocation_type = "whisper"
+	
+	// Charged spell variables
+	chargedloop = /datum/looping_sound/invokegen
+	chargedrain = 1
+	chargetime = 20
+	releasedrain = 25
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	warnie = "spellwarning"
+
+/obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return
+	
+	var/list/possible_targets = list()
+	if(user.client)
+		possible_targets += user  // Always add self first
+		
+	if(user.mind?.known_people)  // Only check known_people if it exists
+		for(var/mob/living/L in GLOB.player_list)
+			if((L.client && L != user) && (L.real_name in user.mind.known_people))
+				possible_targets += L
+	
+	if(!length(possible_targets))
+		to_chat(user, span_warning("You have no known people to establish a mindlink with!"))
+		return FALSE
+
+	var/mob/living/first_target = input(user, "Choose the first person to link", "Mindlink") as null|anything in possible_targets
+	if(!first_target)
+		return FALSE
+		
+	var/mob/living/second_target = input(user, "Choose the second person to link", "Mindlink") as null|anything in possible_targets
+	if(!second_target)
+		return FALSE
+
+	if(first_target == second_target)
+		to_chat(user, span_warning("You cannot link someone to themselves!"))
+		return FALSE
+
+	user.visible_message(span_notice("[user] touches their temples and concentrates..."), span_notice("I establish a mental connection between [first_target] and [second_target]..."))
+	
+	// Create the mindlink
+	var/datum/mindlink/link = new(first_target, second_target)
+	GLOB.mindlinks += link
+	
+	to_chat(first_target, span_notice("A mindlink has been established with [second_target]! Use ,y before a message to communicate telepathically."))
+	to_chat(second_target, span_notice("A mindlink has been established with [first_target]! Use ,y before a message to communicate telepathically."))
+	
+	addtimer(CALLBACK(src, PROC_REF(break_link), link), 3 MINUTES)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/mindlink/proc/break_link(datum/mindlink/link)
+	if(!link)
+		return
+	
+	to_chat(link.owner, span_warning("The mindlink with [link.target] fades away..."))
+	to_chat(link.target, span_warning("The mindlink with [link.owner] fades away..."))
+	
+	GLOB.mindlinks -= link
+	qdel(link)
+
 
 
 
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
 #undef PRESTI_MOTE
+
