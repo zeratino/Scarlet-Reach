@@ -91,12 +91,12 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Mace & Shield","Axe & Shield","Halberd")
+	var/weapons = list("Warhammer & Shield","Axe & Shield","Halberd")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
-		if("Mace & Shield")
-			beltr = /obj/item/rogueweapon/mace/steel
+		if("Warhammer & Shield")
+			beltr = /obj/item/rogueweapon/mace/warhammer
 			backl = /obj/item/rogueweapon/shield/wood
 		if("Axe & Shield")
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
@@ -206,12 +206,12 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Glaive","Sword & Shield")
+	var/weapons = list("Bardiche","Sword & Shield")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
-		if("Glaive")
-			r_hand = /obj/item/rogueweapon/halberd/glaive // Better then a halberd, but the only other polearm that makes sense is the spear, which is iron-tier.
+		if("Bardiche")
+			r_hand = /obj/item/rogueweapon/halberd/bardiche
 			backl = /obj/item/gwstrap
 		if("Sword & Shield")
 			beltr = /obj/item/rogueweapon/sword/sabre
