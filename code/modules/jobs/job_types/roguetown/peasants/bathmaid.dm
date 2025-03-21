@@ -48,11 +48,11 @@
 	r_hand = /obj/item/soap/bath
 	belt =	/obj/item/storage/belt/rogue/leather/cloth
 	beltl = /obj/item/roguekey/nightmaiden
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy
 		pants = /obj/item/clothing/under/roguetown/tights/stockings/fishnet/random //Added fishnet stockings to the wenches
-	else
+	else if(should_wear_masc_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 		pants =	/obj/item/clothing/under/roguetown/loincloth
 	if(H.mind)
@@ -98,7 +98,8 @@
 		/obj/item/rope = 1,
 		/obj/item/candle = 1,
 		/obj/item/rogueweapon/whip = 1,
-		/obj/item/clothing/mask/rogue/blindfold = 1
+		/obj/item/clothing/mask/rogue/blindfold = 1,
+		/obj/item/roguekey/nightmaiden = 1
 	)
 	
 	if(H.mind)

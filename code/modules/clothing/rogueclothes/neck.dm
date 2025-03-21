@@ -204,17 +204,17 @@
 
 /obj/item/clothing/neck/roguetown/gorget/cursed_collar
 	name = "cursed collar"
-	desc = "A metal collar that seems to radiate an ominous aura. It offers significant protection."
+	desc = "A metal collar that seems to radiate an ominous aura."
 	icon_state = "cursed_collar"
 	item_state = "cursed_collar"
-	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
-	smeltresult = /obj/item/ingot/steel
+	armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "piercing" = 0, "fire" = 0, "acid" = 0)
+	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = list()
 	blocksound = PLATEHIT
 
 /obj/item/clothing/neck/roguetown/psicross
