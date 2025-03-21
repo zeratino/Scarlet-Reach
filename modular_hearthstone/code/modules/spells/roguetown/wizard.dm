@@ -1667,7 +1667,7 @@
 	destination_turf.add_overlay(tile_effect)
 /obj/effect/proc_holder/spell/invoked/blink
 	name = "Blink"
-	desc = "Teleport to a targeted location within your field of view."
+	desc = "Teleport to a targeted location within your field of view. Limited to a range of 7 tiles."
 	school = "conjuration"
 	cost = 1
 	releasedrain = 30
@@ -1684,6 +1684,7 @@
 	xp_gain = TRUE
 	invocation = "SHIFT THROUGH SPACE!"
 	invocation_type = "shout"
+	var/max_range = 7
 
 /obj/effect/proc_holder/spell/invoked/blink/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
@@ -1691,6 +1692,13 @@
 	
 	if(!T)
 		to_chat(user, span_warning("Invalid target location!"))
+		revert_cast()
+		return
+	
+	// Check range limit
+	var/distance = get_dist(start, T)
+	if(distance > max_range)
+		to_chat(user, span_warning("That location is too far away! I can only blink up to [max_range] tiles."))
 		revert_cast()
 		return
 	
@@ -1710,7 +1718,7 @@
 			revert_cast()
 			return
 			
-	// Check for doors in the path
+	// Check for doors and bars in the path
 	for(var/turf/traversal_turf in turf_list)
 		// Check for mineral doors
 		for(var/obj/structure/mineral_door/door in traversal_turf.contents)
@@ -1723,6 +1731,20 @@
 		for(var/obj/structure/roguewindow/window in traversal_turf.contents)
 			if(window.density)
 				to_chat(user, span_warning("I cannot blink through windows!"))
+				revert_cast()
+				return
+				
+		// Check for bars
+		for(var/obj/structure/mineral_door/bars/bars in traversal_turf.contents)
+			if(bars.density)
+				to_chat(user, span_warning("I cannot blink through bars!"))
+				revert_cast()
+				return
+				
+		// Check for destination too
+		for(var/obj/structure/mineral_door/bars/bars in T.contents)
+			if(bars.density)
+				to_chat(user, span_warning("I cannot blink through bars!"))
 				revert_cast()
 				return
 	
