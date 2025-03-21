@@ -51,10 +51,10 @@
 	beltl = /obj/item/flashlight/flare/torch
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 	neck = /obj/item/clothing/neck/roguetown/fencerguard
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/otavan
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 	head = /obj/item/clothing/head/roguetown/helmet/otavan
-	armor = /obj/item/clothing/suit/roguetown/armor/otavan
-	pants = /obj/item/clothing/under/roguetown/trou/otavan
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/otavan
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	shoes = /obj/item/clothing/shoes/roguetown/otavan
 	gloves = /obj/item/clothing/gloves/roguetown/otavan
 	backr = /obj/item/storage/backpack/rogue/satchel/black
