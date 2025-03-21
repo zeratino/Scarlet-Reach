@@ -1,7 +1,8 @@
 /datum/virtue/combat/magical_potential
 	name = "Arcyne Potential"
-	desc = "I grasped the basics of arcyne magic at an early age, and have been able to prestidigitate for as long as I can remember. Combat-oriented classes get a weaker version of this virtue."
-	added_skills = list(/datum/skill/magic/arcane = 1)
+	desc = "I grasped the basics of arcyne magic at an early age, and have been able to prestidigitate for as long as I can remember."
+	custom_text = "Combat classes receive a weaker version of this virtue -- they get fewer spellpoints."
+	added_skills = list(list(/datum/skill/magic/arcane, 1, 6))
 
 /datum/virtue/combat/magical_potential/apply_to_human(mob/living/carbon/human/recipient)
 	if (!recipient.mind?.get_skill_level(/datum/skill/magic/arcane)) // we can do this because apply_to is always called first
@@ -17,8 +18,9 @@
 
 /datum/virtue/combat/devotee
 	name = "Devotee"
-	desc = "Though not officially of the Church, my relationship with my chosen Patron is strong enough to grant me the most minor of their blessings. I've also kept a psycross of my deity. Combat-oriented classes get a weaker version of this virtue."
-	added_skills = list(/datum/skill/magic/holy = 1)
+	desc = "Though not officially of the Church, my relationship with my chosen Patron is strong enough to grant me the most minor of their blessings. I've also kept a psycross of my deity."
+	custom_text = "Combat classes receive a weaker version of this virtue -- they do not get the first tier of miracles."
+	added_skills = list(list(/datum/skill/magic/holy, 1, 6))
 
 /datum/virtue/combat/devotee/apply_to_human(mob/living/carbon/human/recipient)
 	if (!recipient.mind)
@@ -79,7 +81,8 @@
 
 /datum/virtue/combat/duelist
 	name = "Duelist Apprentice"
-	desc = "I have trained under a duelist of considerable skill, and always have my trusty rapier close at hand. (+1 to Swords and Knives, Up to Journeyman, Minimum Apprentice. Stashed rapier.)"
+	desc = "I have trained under a duelist of considerable skill, and always have my trusty rapier close at hand."
+	custom_text = "+1 to Swords and Knives, Up to Journeyman, Minimum Apprentice."
 	added_stashed_items = list("Rapier" = /obj/item/rogueweapon/sword/rapier)
 
 /datum/virtue/combat/duelist/apply_to_human(mob/living/carbon/human/recipient)
@@ -96,7 +99,8 @@
 
 /datum/virtue/combat/executioner
 	name = "Executioner Apprentice"
-	desc = "I have trained under a skilled executioner, and always have my trusty exeuctioner's axe close at hand. (+1 to Axes and Whips/Flails, Up to Journeyman, Minimum Apprentice. Stashed battleaxe.)"
+	desc = "I have trained under a skilled executioner, and always have my trusty exeuctioner's axe close at hand."
+	custom_text = "+1 to Axes and Whips/Flails, Up to Journeyman, Minimum Apprentice."
 	added_stashed_items = list("Battleaxe" = /obj/item/rogueweapon/stoneaxe/battle)
 
 /datum/virtue/combat/executioner/apply_to_human(mob/living/carbon/human/recipient)
@@ -113,7 +117,8 @@
 
 /datum/virtue/combat/militia
 	name = "Militiaman Apprentice"
-	desc = "I have trained under a skilled militiaman, and always have my trusty billhook close at hand. (+1 to Maces and Polearms, Up to Journeyman, Minimum Apprentice. Stashed billhook.)"
+	desc = "I have trained under a skilled militiaman, and always have my trusty billhook close at hand."
+	custom_text = "+1 to Maces and Polearms, Up to Journeyman, Minimum Apprentice."
 	added_stashed_items = list("Billhook" = /obj/item/rogueweapon/spear/billhook)
 
 /datum/virtue/combat/militia/apply_to_human(mob/living/carbon/human/recipient)
@@ -130,7 +135,8 @@
 
 /datum/virtue/combat/brawler
 	name = "Brawler Apprentice"
-	desc = "I have trained under a skilled brawler, and have some experience fighting with my fists. (+1 to Unarmed and Wrestling, Up to Journeyman, Minimum Apprentice. Stashed katar.)"
+	desc = "I have trained under a skilled brawler, and have some experience fighting with my fists."
+	custom_text = "+1 to Unarmed and Wrestling, Up to Journeyman, Minimum Apprentice."
 	added_stashed_items = list("Katar" = /obj/item/rogueweapon/katar)
 	
 /datum/virtue/combat/brawler/apply_to_human(mob/living/carbon/human/recipient)
@@ -148,7 +154,8 @@
 
 /datum/virtue/combat/bowman
 	name = "Toxophilite"
-	desc = "I have studied underneath a bowman of considerable skill, and always have my trusty bow and a quiver of arrows close at hand. (+1 to Bows, Up to Legendary, Minimum Apprentice)"
+	desc = "I have studied underneath a bowman of considerable skill, and always have my trusty bow and a quiver of arrows close at hand."
+	custom_text = "+1 to Bows, Up to Legendary, Minimum Apprentice"
 	added_stashed_items = list("Recurve Bow" = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
 								"Quiver (Arrows)" = /obj/item/quiver/arrows
 	)
@@ -166,7 +173,7 @@
 
 /datum/virtue/combat/guarded
 	name = "Guarded"
-	desc = "I have long kept my true capabilities and vices a secret. Sometimes being deceptively weak can save one's lyfe. Such a virtue allows me to avoid and perform feints easier. My skills cannot be assessed, and I keep my Inhumen faith hidden even from the most keen eyes."
+	desc = "I have long kept my true capabilities and vices a secret. Sometimes being deceptively weak can save one's lyfe."
 	added_traits = list(TRAIT_DECEIVING_MEEKNESS)
 
 /*/datum/virtue/combat/impervious
@@ -177,6 +184,7 @@
 /datum/virtue/combat/rotcured
 	name = "Rotcured"
 	desc = "I was once afflicted with the accursed rot, and was cured. It has left me changed: my limbs are weaker, but I feel no pain and have no need to breathe..."
+	custom_text = "Colors your body a distinct, sickly green."
 	// below is functionally equivalent to dying and being resurrected via astrata T4 - yep, this is what it gives you.
 	added_traits = list(TRAIT_EASYDISMEMBER, TRAIT_NOPAIN, TRAIT_NOPAINSTUN, TRAIT_NOBREATH, TRAIT_TOXIMMUNE, TRAIT_ZOMBIE_IMMUNE, TRAIT_ROTMAN)
 
@@ -185,10 +193,10 @@
 
 /datum/virtue/combat/dualwielder
 	name = "Dual Wielder"
-	desc = "Whether it was by the Naledi scholars, Etruscan privateers or even the Kazengan senseis. I've been graced with the knowledge of how to wield two weapons at once, making my offense more formidable, at the expense of my defense. When I wield two identical type weapons, I roll attacks twice, but so does the enemy against me. I've also learned to become ambidextrous, ignoring any off-hand penalties."
+	desc = "Whether it was by the Naledi scholars, Etruscan privateers or even the Kazengan senseis. I've been graced with the knowledge of how to wield two weapons at once."
 	added_traits = list(TRAIT_DUALWIELDER)
 
 /datum/virtue/combat/sharp
 	name = "Sentinel of Wits"
-	desc = "Whether it's by having an annoying sibling that kept prodding me with a stick, or years of study and observation, I've become adept at both parrying and dodging stronger opponents, by learning their moves and studying them. My own attacks however, still rely on true training of my weapons. \n I convert INT into dodge and parry chance, every 2 INT points above 10 adding 10% additional chance. Does not count artificial buffs to INT from potions or substances."
+	desc = "Whether it's by having an annoying sibling that kept prodding me with a stick, or years of study and observation, I've become adept at both parrying and dodging stronger opponents, by learning their moves and studying them."
 	added_traits = list(TRAIT_SENTINELOFWITS)

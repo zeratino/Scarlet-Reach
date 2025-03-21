@@ -195,6 +195,8 @@
 	minstr = 7
 	wdefense = 3
 	resistance_flags = FLAMMABLE
+	grid_width = 32
+	grid_height = 96
 
 /obj/item/rogueweapon/mace/cudgel/justice
 	name = "'Justice'"

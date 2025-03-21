@@ -195,7 +195,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	"Consort",
 	"Merchant",
 	"Priest",
-	"Royal Guard")
+	"Knight")
 	var/num_bandits = 0
 	if(num_players() >= 10)
 		num_bandits = CLAMP(round(num_players() / 5), 4, 6)
@@ -255,8 +255,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 
 
 /datum/game_mode/chaosmode/proc/pick_aspirants()
-	var/list/possible_jobs_aspirants = list("Prince", "Princess", "Guard Captain", "Steward", "Hand", "Royal Guard")
-	var/list/possible_jobs_helpers = list("Guard Captain", "Prince", "Princess", "Hand",  "Steward", "Royal Guard")
+	var/list/possible_jobs_aspirants = list("Prince", "Princess", "Knight Captain", "Steward", "Hand", "Knight")
+	var/list/possible_jobs_helpers = list("Knight Captain", "Prince", "Princess", "Hand",  "Steward", "Knight")
 	var/list/rolesneeded = list("Aspirant","Loyalist","Supporter")
 
 	antag_candidates = get_players_for_role(ROLE_ASPIRANT)
@@ -349,7 +349,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_lich()
-	restricted_jobs = list("Grand Duke", "Consort", "Royal Guard", "Guard Captain")
+	restricted_jobs = list("Grand Duke", "Consort", "Knight", "Knight Captain")
 	antag_candidates = get_players_for_role(ROLE_LICH)
 	var/datum/mind/lichman = pick_n_take(antag_candidates)
 	if(lichman)
@@ -381,12 +381,12 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	"Priest",
 	"Acolyte",
 	"Cleric",
-	"Guard Captain",
+	"Knight Captain",
 	"Court Magician",
 	"Templar",
 	"Bog Guard",
 	"Bog Master",
-	"Royal Guard",
+	"Knight",
 	"Martyr",
 	)
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
@@ -429,13 +429,13 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	"Priest",
 	"Acolyte",
 	"Cleric",
-	"Guard Captain",
+	"Knight Captain",
 	"Court Magician",
 	"Templar",
 	"Martyr",
 	"Bog Guard",
 	"Bog Master",
-	"Royal Guard",
+	"Knight",
 	"Mortician",
 	"Desert Rider",
 	"Desert Rider Mercenary",
@@ -576,3 +576,58 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	if(wwoelf)
 		if(!vampyr)
 			return "werewolf"
+
+// Roguelite mode - a lighter mode with only bandits and werewolves
+/datum/game_mode/chaosmode/roguelite
+	name = "roguelite"
+	config_tag = "roguelite"
+	report_type = "roguelite"
+	false_report_weight = 0
+	required_players = 0
+	required_enemies = 0
+	recommended_enemies = 0
+	enemy_minimum_age = 0
+	votable = 1
+	probability = 99
+
+	announce_span = "danger"
+	announce_text = "The town has been infiltrated by bandits and werewolves! Watch your back..."
+
+// Override after_DO to only pick bandits and werewolves
+/datum/game_mode/chaosmode/roguelite/after_DO()
+	if(allmig || roguefight)
+		return TRUE
+	
+	// Always pick bandits and werewolves for this mode
+	pick_bandits()
+	pick_werewolves()
+	log_game("Antagonists: Roguelite Mode - Bandits and Werewolves")
+	
+	return TRUE
+
+// Override post_setup to only process bandits and werewolves
+/datum/game_mode/chaosmode/roguelite/post_setup()
+	set waitfor = FALSE
+
+	// Process only werewolves
+	for(var/datum/mind/werewolf_mind in pre_werewolves)
+		var/datum/antagonist/new_antag = new /datum/antagonist/werewolf()
+		werewolf_mind.add_antag_datum(new_antag)
+		werewolves += werewolf_mind
+		GLOB.pre_setup_antags -= werewolf_mind
+
+	// Process bandits
+	for(var/datum/mind/bandito_mind in pre_bandits)
+		bandits += bandito_mind
+		GLOB.pre_setup_antags -= bandito_mind
+		SSrole_class_handler.bandits_in_round = TRUE
+
+	return TRUE
+
+// Override generate_report to provide roguelite-specific report
+/datum/game_mode/chaosmode/roguelite/generate_report()
+	return {"<span class='header'>Town Intelligence Report</span><br>
+			<span class='alert'>Roguelite Mode</span><br>
+			<span class='alert'>Recent intelligence suggests potential hostile activity from bandits and werewolves.</span><br>
+			<span class='alert'>Be vigilant and report suspicious activity to the town authorities.</span>
+	"}

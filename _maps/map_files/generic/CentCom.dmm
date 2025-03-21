@@ -1450,10 +1450,6 @@
 	icon_state = "chess"
 	},
 /area/rogue/indoors/banditcamp)
-"eY" = (
-/obj/effect/landmark/shuttle_import,
-/turf/closed,
-/area/rogue)
 "fi" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood2";
@@ -2521,18 +2517,6 @@
 "Mi" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/banditcamp)
-"Ms" = (
-/obj/docking_port/stationary{
-	name = "CentCom";
-	dir = 1;
-	width = 17;
-	height = 6;
-	id = "supply_away";
-	dwidth = 9;
-	json_key = "cargo"
-	},
-/turf/open/water/swamp,
-/area/rogue/outdoors)
 "MB" = (
 /obj/structure/stairs{
 	icon_state = "stairs";
@@ -16413,7 +16397,7 @@ VS
 VS
 VS
 VS
-Ms
+VS
 VS
 AU
 rQ
@@ -16823,7 +16807,7 @@ rQ
 rQ
 rQ
 rQ
-eY
+rQ
 rQ
 rQ
 rQ

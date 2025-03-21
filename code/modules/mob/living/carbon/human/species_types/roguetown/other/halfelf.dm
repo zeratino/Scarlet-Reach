@@ -24,7 +24,6 @@
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
 	possible_ages = ALL_AGES_LIST
-	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = NONE
 	liked_food = NONE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
@@ -109,7 +108,14 @@
 		"Lalve-Steppes" = SKIN_COLOR_LALVE_NALEDI,
 		"Naledi-Otava" = SKIN_COLOR_NALEDI_OTAVA,
 		"Grezel-Avar" = SKIN_COLOR_GRENZEL_AVAR,
-		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN
+		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN,
+		"Commorah-kin" = SKIN_COLOR_COMMORAH,
+		"Gloomhaven-kin" = SKIN_COLOR_GLOOMHAVEN,
+		"Darkpila-kin" = SKIN_COLOR_DARKPILA,
+		"Sshanntynlan-kin" = SKIN_COLOR_SSHANNTYNLAN,
+		"Llurth Dreir-kin" = SKIN_COLOR_LLURTH_DREIR,
+		"Tafravma-kin" = SKIN_COLOR_TAFRAVMA,
+		"Yuethindrynn-kin" = SKIN_COLOR_YUETHINDRYNN
 	)
 
 /datum/species/human/halfelf/proc/languages(mob/living/carbon/human/literally_him)

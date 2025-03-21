@@ -202,6 +202,21 @@
 		return
 	qdel(src)
 
+/obj/item/clothing/neck/roguetown/gorget/cursed_collar
+	name = "cursed collar"
+	desc = "A metal collar that seems to radiate an ominous aura."
+	icon_state = "cursed_collar"
+	item_state = "cursed_collar"
+	armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "piercing" = 0, "fire" = 0, "acid" = 0)
+	smeltresult = /obj/item/ingot/iron
+	anvilrepair = /datum/skill/craft/armorsmithing
+	max_integrity = 150
+	resistance_flags = FIRE_PROOF
+	slot_flags = ITEM_SLOT_NECK
+	body_parts_covered = NECK
+	prevent_crits = list()
+	blocksound = PLATEHIT
+
 /obj/item/clothing/neck/roguetown/psicross
 	name = "psycross"
 	desc = "'With every broken bone, I swore I lived!'"
@@ -416,8 +431,27 @@
 	name = "bell collar"
 	desc = "A band of leather with a bell protects the local zads from the local catfolk."
 	icon_state = "bell_collar"
-	icon_state = "bell_collar"
 
 /obj/item/clothing/neck/roguetown/collar/bell_collar/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS)
+
+/obj/item/clothing/neck/roguetown/collar/feldcollar
+	name = "feldcollar"
+	desc = "A sturdy collar made of leather, commonly worn by field workers."
+	icon_state = "feldcollar"
+	item_state = "feldcollar"
+	resistance_flags = FIRE_PROOF
+	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE
+
+/obj/item/clothing/neck/roguetown/collar/surgcollar
+	name = "surgcollar"
+	desc = "A specialized collar designed for medical practitioners, with reinforced padding."
+	icon_state = "surgcollar"
+	item_state = "surgcollar"
+	resistance_flags = FIRE_PROOF
+	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE

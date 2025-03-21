@@ -72,7 +72,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)	//Decent tracking akin to Skirmisher.
 		ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		H.change_stat("strength", 2)
 		H.change_stat("intelligence", 1)
@@ -116,7 +116,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return		
@@ -178,7 +178,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return
@@ -209,7 +209,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return
@@ -267,7 +267,7 @@
 			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
-		if(user.job == "Guard Captain")
+		if(user.job == "Knight Captain")
 			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
 				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
 				return

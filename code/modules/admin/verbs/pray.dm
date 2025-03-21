@@ -20,7 +20,6 @@
 //		if(src.client.handle_spam_prevention(msg,MUTE_PRAY))
 //			return
 
-	var/mutable_appearance/cross = mutable_appearance('icons/obj/storage.dmi', "bible")
 	var/font_color = "purple"
 	var/prayer_type = "PRAYER"
 	var/deity
@@ -28,7 +27,6 @@
 		var/mob/living/carbon/human/human_user = src
 		deity = human_user.patron.name
 	if(usr.job == "Chaplain")
-		cross.icon_state = "kingyellow"
 		font_color = "blue"
 		prayer_type = "CHAPLAIN PRAYER"
 		if(GLOB.deity)
@@ -36,12 +34,11 @@
 	else if(isliving(usr))
 		var/mob/living/L = usr
 		if(HAS_TRAIT(L, TRAIT_SPIRITUAL))
-			cross.icon_state = "holylight"
 			font_color = "blue"
 			prayer_type = "SPIRITUAL PRAYER"
 
 	var/msg_tmp = msg
-	msg = span_adminnotice("[icon2html(cross, GLOB.admins)]<b><font color=[font_color]>[prayer_type][deity ? " (to [deity])" : ""]: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> <span class='linkify'>[msg]</span>")
+	msg = span_adminnotice("[icon2html(GLOB.admins)]<b><font color=[font_color]>[prayer_type][deity ? " (to [deity])" : ""]: </font>[ADMIN_FULLMONTY(src)] [ADMIN_SC(src)]:</b> <span class='linkify'>[msg]</span>")
 	for(var/client/C in GLOB.admins)
 		if(C.prefs.chat_toggles & CHAT_PRAYER)
 			to_chat(C, msg)

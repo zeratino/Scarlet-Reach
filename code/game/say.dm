@@ -148,6 +148,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(copytext(input, length(input) - 1) == "!!")
 		spans |= SPAN_YELL
 
+	input = parsemarkdown_basic(input, limited = TRUE, barebones = TRUE)
 	var/spanned = attach_spans(input, spans)
 	if(isliving(src))
 		var/mob/living/L = src
@@ -156,6 +157,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return "[say_mod(input, message_mode)], \"[spanned]\""
 
 /atom/movable/proc/quoteless_say_quote(input, list/spans = list(speech_span), message_mode)
+	input = parsemarkdown_basic(input, limited = TRUE, barebones = TRUE)
 	var/pos = findtext(input, "*")
 	return pos? copytext(input, pos + 1) : input
 
