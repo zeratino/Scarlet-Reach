@@ -102,6 +102,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
 	armor = list("blunt" = 80, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)
 	sellprice = 30
+	color = "#976E6B"
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/otavan
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
@@ -298,6 +299,13 @@
 	max_integrity = 250
 	armor_class = ARMOR_CLASS_LIGHT
 
+/obj/item/clothing/suit/roguetown/armor/leather/hide/warden
+	name = "forestry armor"
+	desc = "A light armor worn by the Wardens of Azuria. Far more durable than leather."
+	icon = 'icons/roguetown/clothing/special/warden.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/warden.dmi'
+	icon_state = "foresthide"
+
 /obj/item/clothing/suit/roguetown/armor/leather/studded
 	name = "studded leather armor"
 	desc = "Studded leather is the most durable of all hides and leathers and about as light."
@@ -352,7 +360,7 @@
 	body_parts_covered = CHEST|GROIN
 	icon_state = "leatherkini"
 	item_state = "leatherkini"
-	allowed_sex = list(FEMALE)
+	allowed_sex = list(FEMALE, MALE)
 	allowed_race = CLOTHED_RACES_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
@@ -926,5 +934,22 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
+/obj/item/clothing/suit/roguetown/armor/plate/elven_plate
+	name = "woad elven plate"
+	desc = "Woven by song and tool of the oldest elven druids. It still creaks and weeps with forlorn reminiscence of a bygone era. It looks like only Elves can fit in it."
+	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark, /datum/species/elf)
+	armor = list("blunt" = 100, "slash" = 20, "stab" = 100, "piercing" = 40, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PICK, BCLASS_SMASH)
+	icon = 'icons/roguetown/clothing/special/race_armor.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
+	icon_state = "welfchest"
+	item_state = "welfchest"
+	max_integrity = 500
+	smeltresult = /obj/item/rogueore/coal
+	smelt_bar_num = 4
+	blocksound = SOFTHIT
+	armor_class = ARMOR_CLASS_MEDIUM
 
-
+/obj/item/clothing/suit/roguetown/armor/plate/elven_plate/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_WOOD_ARMOR)

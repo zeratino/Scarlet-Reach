@@ -6,7 +6,6 @@
 /obj/structure/easel
 	name = "easel"
 	desc = ""
-	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "easel"
 	density = TRUE
 	resistance_flags = FLAMMABLE
@@ -48,7 +47,6 @@ GLOBAL_LIST_INIT(globalBlankCanvases, new(AMT_OF_CANVASES))
 /obj/item/canvas
 	name = "canvas"
 	desc = ""
-	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "11x11"
 	resistance_flags = FLAMMABLE
 	var/whichGlobalBackup = 1 //List index

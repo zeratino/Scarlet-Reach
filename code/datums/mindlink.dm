@@ -34,4 +34,4 @@ GLOBAL_LIST_EMPTY(mindlinks)
 		to_chat(speaker, span_purple("You project your thoughts to [recipient]: \"[message]\""))
 		to_chat(recipient, span_purple("[speaker] projects their thoughts to you: \"[message]\""))
 		
-		speech_args[SPEECH_MESSAGE] = null // Prevent the normal speech from happening 
+		speech_args[SPEECH_MESSAGE] = null // Prevent the normal speech from happening

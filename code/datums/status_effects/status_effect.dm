@@ -31,7 +31,7 @@
 	tick_interval = world.time + tick_interval
 	if(alert_type)
 		var/atom/movable/screen/alert/status_effect/A = owner.throw_alert(id, alert_type)
-		A.attached_effect = src //so the alert can reference us, if it needs to
+		A?.attached_effect = src //so the alert can reference us, if it needs to
 		linked_alert = A //so we can reference the alert, if we need to
 	START_PROCESSING(SSfastprocess, src)
 	return TRUE
@@ -44,6 +44,7 @@
 		LAZYREMOVE(owner.status_effects, src)
 		on_remove()
 		owner = null
+	effectedstats = list()
 	return ..()
 
 /datum/status_effect/process()
@@ -58,18 +59,18 @@
 
 /datum/status_effect/proc/on_apply() //Called whenever the buff is applied; returning FALSE will cause it to autoremove itself.
 	for(var/S in effectedstats)
-		owner.change_stat(S, effectedstats[S], "[id][S]")
+		owner.change_stat(S, effectedstats[S])
 	return TRUE
 
 /datum/status_effect/proc/tick() //Called every tick.
 
 /datum/status_effect/proc/on_remove() //Called whenever the buff expires or is removed; do note that at the point this is called, it is out of the owner's status_effects but owner is not yet null
 	for(var/S in effectedstats)
-		owner.change_stat(S, 0, "[id][S]")
+		owner.change_stat(S, -(effectedstats[S]))
 
 /datum/status_effect/proc/be_replaced() //Called instead of on_remove when a status effect is replaced by itself or when a status effect with on_remove_on_mob_delete = FALSE has its mob deleted
 	for(var/S in effectedstats)
-		owner.change_stat(S, 0, "[id][S]")
+		owner.change_stat(S, -(effectedstats[S]))
 	owner.clear_alert(id)
 	LAZYREMOVE(owner.status_effects, src)
 	owner = null

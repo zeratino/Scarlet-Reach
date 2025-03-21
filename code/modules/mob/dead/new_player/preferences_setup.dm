@@ -14,8 +14,9 @@
 	eye_color = random_eye_color()
 	is_legacy = FALSE
 	flavortext = null
-	flavortext_display = " "
-	ooc_notes_display = " "
+	flavortext_display = " "	//_display left not null to prevent any legacy bugs.
+	ooc_notes_display = " "		//You can't join without filling in the blank FT / OOC notes, so these should be overriden before the character is ever examined.
+	ooc_notes = null
 	ooc_extra_link = null
 	ooc_extra = null
 	headshot_link = null

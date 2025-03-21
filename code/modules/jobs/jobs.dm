@@ -64,11 +64,11 @@ GLOBAL_LIST_INIT(noble_positions, list(
 	"Consort",
 	"Prince",
 	"Hand",
-	"Guard Captain",
+	"Knight Captain",
 	"Marshal",
 	"Councillor",
 	"Steward",
-	"Royal Guard",
+	"Knight",
 ))
 
 GLOBAL_LIST_INIT(courtier_positions, list(
@@ -138,6 +138,7 @@ GLOBAL_LIST_INIT(peasant_positions, list(
 	"Pilgrim",
 	"Bandit",
 	"Court Agent",
+	"Wretch",
 ))
 
 GLOBAL_LIST_INIT(mercenary_positions, list(

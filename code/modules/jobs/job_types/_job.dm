@@ -215,7 +215,7 @@
 	if(cmode_music)
 		H.cmode_music = cmode_music
 
-	if(H.mind.special_role == "Court Agent" || H.mind.assigned_role == "Bandit")	//For obfuscating Court Agents & Bandits in Actors list
+	if(H.mind.special_role == "Court Agent" || H.mind.assigned_role == "Bandit" || H.mind.assigned_role == "Wretch") //For obfuscating Court Agents & Bandits in Actors list
 		GLOB.actors_list[H.mobid] = "[H.real_name] as Adventurer<BR>"
 	else
 		GLOB.actors_list[H.mobid] = "[H.real_name] as [H.mind.assigned_role]<BR>"
@@ -292,7 +292,7 @@
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 	if(!outfit_override && visualsOnly && visuals_only_outfit)
 		outfit_override = visuals_only_outfit
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		if(outfit_override || outfit_female)
 			H.equipOutfit(outfit_override ? outfit_override : outfit_female, visualsOnly)
 		else
@@ -393,4 +393,12 @@
 	if(CONFIG_GET(flag/security_has_maint_access))
 		return list(ACCESS_MAINT_TUNNELS)
 	return list()
+
+// LETHALSTONE EDIT: Helper functions for pronoun-based clothing selection
+/proc/should_wear_masc_clothes(mob/living/carbon/human/H)
+	return (H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS || H.pronouns == SHE_HER_M)
+
+/proc/should_wear_femme_clothes(mob/living/carbon/human/H)
+	return (H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F || H.pronouns == HE_HIM_F)
+// LETHALSTONE EDIT END
 

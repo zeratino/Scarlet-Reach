@@ -139,8 +139,8 @@
 
 	var/rawmsg = msg
 
-	if(holder)
-		msg = emoji_parse(msg)
+	//if(holder)
+		//msg = emoji_parse(msg)
 
 	var/keywordparsedmsg = keywords_lookup(msg)
 
@@ -292,7 +292,7 @@
 
 	message_admins("IRC message from [sender] to [key_name_admin(C)] : [msg]")
 	log_admin_private("IRC PM: [sender] -> [key_name(C)] : [msg]")
-	msg = emoji_parse(msg)
+	//msg = emoji_parse(msg)
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, span_adminsay("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"))

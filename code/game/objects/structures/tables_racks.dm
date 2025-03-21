@@ -15,7 +15,6 @@
 /obj/structure/table
 	name = "table"
 	desc = ""
-	icon = 'icons/obj/smooth_structures/table.dmi'
 	icon_state = "table"
 	density = TRUE
 	anchored = TRUE
@@ -293,12 +292,6 @@
 	desc = ""
 	icon = 'icons/roguetown/misc/tables.dmi'
 	icon_state = "tablefine2"
-
-/obj/structure/table/wood/poker //No specialties, Just a mapping object.
-	name = "gambling table"
-	desc = ""
-	icon = 'icons/obj/smooth_structures/poker_table.dmi'
-	icon_state = "poker_table"
 
 /obj/structure/table/cooling //cooling table made by artificers
 	name = "Cooling Table"
