@@ -728,7 +728,7 @@
 	rotprocess = SHELFLIFE_DECENT
 
 /obj/item/reagent_containers/food/snacks/rogue/hcake
-	name = "zybantine cake"
+	name = "ranesheni cake"
 	desc = "Cake glazed with honey, in the famous Zybantu fashion, a delicious sweet treat."
 	icon_state = "honeycake"
 	slices_num = 8
@@ -745,7 +745,7 @@
 	bitesize = 16
 
 /obj/item/reagent_containers/food/snacks/rogue/hcakeslice
-	name = "zybantine cake slice"
+	name = "ranesheni cake slice"
 	icon_state = "honeycakeslice"
 	slices_num = 0
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)

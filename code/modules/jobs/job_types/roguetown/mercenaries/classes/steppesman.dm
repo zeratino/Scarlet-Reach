@@ -20,7 +20,7 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	beltr = /obj/item/rogueweapon/shield/buckler
 	beltl= /obj/item/quiver/arrows
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve

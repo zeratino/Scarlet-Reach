@@ -21,7 +21,7 @@
 
 /datum/outfit/job/roguetown/templar
 	has_loadout = TRUE
-	allowed_patrons = ALL_PALADIN_PATRONS
+	allowed_patrons = ALL_DIVINE_PATRONS
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	beltr = /obj/item/storage/keyring/churchie
@@ -76,6 +76,22 @@
 		if(/datum/patron/divine/malum)
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
+		if(/datum/patron/divine/malum)
+			var/list/psicross_options = list(
+			/obj/item/clothing/neck/roguetown/psicross,
+			/obj/item/clothing/neck/roguetown/psicross/astrata,
+			/obj/item/clothing/neck/roguetown/psicross/noc,
+			/obj/item/clothing/neck/roguetown/psicross/abyssor,
+			/obj/item/clothing/neck/roguetown/psicross/dendor,
+			/obj/item/clothing/neck/roguetown/psicross/necra,
+			/obj/item/clothing/neck/roguetown/psicross/pestra,
+			/obj/item/clothing/neck/roguetown/psicross/ravox,
+			/obj/item/clothing/neck/roguetown/psicross/malum,
+			/obj/item/clothing/neck/roguetown/psicross/eora,
+			/obj/item/clothing/neck/roguetown/psicross/wood
+			)
+			neck = pick(psicross_options) // Random psicross, as cleric.
+			cloak = /obj/item/clothing/cloak/templar/xylix
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	wrists = /obj/item/clothing/wrists/roguetown/bracers

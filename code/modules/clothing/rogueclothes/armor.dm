@@ -360,7 +360,7 @@
 	body_parts_covered = CHEST|GROIN
 	icon_state = "leatherkini"
 	item_state = "leatherkini"
-	allowed_sex = list(FEMALE)
+	allowed_sex = list(FEMALE, MALE)
 	allowed_race = CLOTHED_RACES_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
@@ -938,7 +938,7 @@
 	name = "woad elven plate"
 	desc = "Woven by song and tool of the oldest elven druids. It still creaks and weeps with forlorn reminiscence of a bygone era. It looks like only Elves can fit in it."
 	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark, /datum/species/elf)
-	armor = list("blunt" = 100, "slash" = 20, "stab" = 40, "piercing" = 100, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 100, "slash" = 20, "stab" = 100, "piercing" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PICK, BCLASS_SMASH)
 	icon = 'icons/roguetown/clothing/special/race_armor.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
