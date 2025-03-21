@@ -228,7 +228,8 @@
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
+		/obj/effect/proc_holder/spell/invoked/blink,
 		
 	)
 	for(var/i = 1, i <= spell_choices.len, i++)
@@ -1661,6 +1662,50 @@
 	destination_turf = T
 	user_turf.add_overlay(target_effect)
 	destination_turf.add_overlay(tile_effect)
+/obj/effect/proc_holder/spell/invoked/blink
+	name = "Blink"
+	desc = "Teleport to a targeted location within your field of view."
+	school = "conjuration"
+	cost = 1
+	releasedrain = 30
+	chargedrain = 1
+	chargetime = 15
+	charge_max = 20 SECONDS
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "blink"
+	xp_gain = TRUE
+
+/obj/effect/proc_holder/spell/invoked/blink/cast(list/targets, mob/user = usr)
+	var/turf/T = get_turf(targets[1])
+	var/turf/start = get_turf(user)
+	
+	if(!T)
+		to_chat(user, span_warning("Invalid target location!"))
+		revert_cast()
+		return
+		
+	// Check if there's a wall in the way, but exclude the target turf
+	var/list/turf_list = getline(start, T)
+	// Remove the last turf (target location) from the check
+	if(length(turf_list) > 0)
+		turf_list.len--
+	
+	for(var/turf/turf in turf_list)
+		if(turf.density)
+			to_chat(user, span_warning("I cannot blink through walls!"))
+			revert_cast()
+			return
+	
+	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
+	user.visible_message(span_notice("[user] blinks away!"))
+	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
+	return TRUE
+
 
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
