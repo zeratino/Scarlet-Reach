@@ -127,6 +127,13 @@
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate
 	craftdiff = 3
 
+/datum/anvil_recipe/armor/steel/otavanplate
+	name = "Otavan Half-Plate Armour (+2 Steel, +1 Cured Leather, +1 Gold)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/ingot/steel,/obj/item/ingot/steel,/obj/item/natural/hide/cured,/obj/item/ingot/gold)
+	created_item = /obj/item/clothing/suit/roguetown/armor/otavan
+	craftdiff = 4
+
 /datum/anvil_recipe/armor/steel/fullplate
 	name = "Full-Plate Armour (+3 Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steel
@@ -342,6 +349,13 @@
 	additional_items = list(/obj/item/ingot/steel)
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/sheriff
 	craftdiff = 3
+
+/datum/anvil_recipe/armor/steel/otavanhelmet
+	name = "Otavan Helmet (+2 Steel)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/clothing/head/roguetown/helmet/otavan
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/steel/plateboot
 	name = "Plated Boots"

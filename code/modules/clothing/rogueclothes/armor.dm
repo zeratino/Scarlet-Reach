@@ -732,6 +732,10 @@
 	smelt_bar_num = 3
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/suit/roguetown/armor/otavan/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP)
+
 /obj/item/clothing/suit/roguetown/armor/otavan/AdjustClothes(mob/user)
 	if(loc == user)
 		playsound(user, "sound/foley/dropsound/cloth_drop.ogg", 100, TRUE, -1)
