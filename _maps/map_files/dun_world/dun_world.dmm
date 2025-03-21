@@ -23399,12 +23399,6 @@
 /obj/structure/fluff/statue/knight,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
-"jFz" = (
-/obj/machinery/light/roguestreet/midlamp{
-	pixel_y = 10
-	},
-/turf/open/floor/rogue/metal/barograte/open,
-/area/rogue/under/underdark)
 "jFA" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
@@ -66627,7 +66621,7 @@ nOh
 nOh
 nOh
 nOh
-qgK
+sPj
 sPj
 sPj
 sPj
@@ -68456,7 +68450,7 @@ nOh
 nOh
 sPj
 sPj
-qgK
+sPj
 nOh
 sPj
 sPj
@@ -68896,7 +68890,7 @@ sPj
 sPj
 sPj
 sPj
-vXz
+sPj
 nOh
 nOh
 nOh
@@ -69381,7 +69375,7 @@ nOh
 sPj
 nOh
 nOh
-qgK
+sPj
 sPj
 sPj
 sPj
@@ -70729,7 +70723,7 @@ sPj
 sPj
 sPj
 sPj
-vXz
+sPj
 sPj
 sPj
 nOh
@@ -71655,7 +71649,7 @@ sPj
 sPj
 sPj
 sPj
-vXz
+sPj
 sPj
 sPj
 sPj
@@ -72525,7 +72519,7 @@ mnN
 mnN
 sPj
 sPj
-qXW
+sPj
 nOh
 nOh
 nOh
@@ -72977,7 +72971,7 @@ mnN
 sPj
 sPj
 sPj
-jFz
+sPj
 nOh
 nOh
 nOh
@@ -73429,7 +73423,7 @@ sPj
 sPj
 sPj
 sPj
-qXW
+sPj
 nOh
 nOh
 nOh
@@ -80210,7 +80204,7 @@ sPj
 sPj
 sPj
 sPj
-qgK
+sPj
 sPj
 sPj
 nOh
@@ -82922,7 +82916,7 @@ sPj
 sPj
 sPj
 sPj
-vXz
+sPj
 sPj
 sPj
 nOh
@@ -87894,7 +87888,7 @@ szI
 szI
 sPj
 sPj
-qXW
+sPj
 nOh
 nOh
 nOh
@@ -88346,7 +88340,7 @@ szI
 sPj
 sPj
 sPj
-jFz
+sPj
 nOh
 nOh
 nOh
@@ -88798,7 +88792,7 @@ sPj
 sPj
 sPj
 sPj
-qXW
+sPj
 nOh
 nOh
 nOh
