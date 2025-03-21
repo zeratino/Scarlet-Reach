@@ -14,7 +14,6 @@
 /obj/effect/portal
 	name = "portal"
 	desc = ""
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
 	anchored = TRUE
 	var/mech_sized = FALSE

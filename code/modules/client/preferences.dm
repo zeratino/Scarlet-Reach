@@ -767,7 +767,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	popup.open(FALSE)
 	onclose(user, "capturekeypress", src)
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 14, list/splitJobs = list("Court Magician", "Guard Captain", "Priest", "Merchant", "Archivist", "Towner", "Grenzelhoft Mercenary", "Beggar", "Prisoner", "Goblin King"), widthPerColumn = 295, height = 620) //295 620
+/datum/preferences/proc/SetChoices(mob/user, limit = 14, list/splitJobs = list("Court Magician", "Knight Captain", "Priest", "Merchant", "Archivist", "Towner", "Grenzelhoft Mercenary", "Beggar", "Prisoner", "Goblin King"), widthPerColumn = 295, height = 620) //295 620
 	if(!SSjob)
 		return
 
@@ -1776,8 +1776,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if (result)
 						var/datum/virtue/virtue_chosen = virtue_choices[result]
 						virtue = virtue_chosen
-						if(virtue.desc)
-							to_chat(user, span_purple(virtue.desc))
+						to_chat(user, process_virtue_text(virtue_chosen))
 
 				if("virtuetwo")
 					var/list/virtue_choices = list()
@@ -1795,8 +1794,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if (result)
 						var/datum/virtue/virtue_chosen = virtue_choices[result]
 						virtuetwo = virtue_chosen
-						if (virtuetwo.desc)
-							to_chat(user, span_purple(virtuetwo.desc))
+						to_chat(user, process_virtue_text(virtue_chosen))
 					/*	if (statpack.type != /datum/statpack/wildcard/virtuous)
 							statpack = new /datum/statpack/wildcard/virtuous
 							to_chat(user, span_purple("Your statpack has been set to virtuous (no stats) due to selecting a virtue.")) */
@@ -2450,3 +2448,34 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	if(!migrant.active)
 		return FALSE
 	return TRUE
+
+/datum/preferences/proc/process_virtue_text(datum/virtue/V)
+	var/dat
+	if(V.desc)
+		dat += "<font size = 3>[span_purple(V.desc)]</font><br>"
+	if(length(V.added_skills))
+		dat += "<font color = '#a3e2ff'><font size = 3>This Virtue adds the following skills: <br>"
+		for(var/list/L in V.added_skills)
+			var/name
+			if(ispath(L[1],/datum/skill))
+				var/datum/skill/S = L[1]
+				S = new S
+				name = S.name
+				qdel(S)
+			dat += "["\Roman[L[2]]"] level[L[2] > 1 ? "s" : ""] of <b>[name]</b>[L[3] ? ", up to <b>[SSskills.level_names_plain[L[3]]]</b>" : ""] <br>"
+		dat += "</font>"
+	if(length(V.added_traits))
+		dat += "<font color = '#a3ffe0'><font size = 3>This Virtue grants the following traits: <br>"
+		for(var/TR in V.added_traits)
+			dat += "[TR] — <font size = 2>[GLOB.roguetraits[TR]]</font><br>"
+		dat += "</font>"
+	if(length(V.added_stashed_items))
+		dat += "<font color = '#eeffa3'><font size = 3>This Virtue adds the following items to your stash: <br>"
+		for(var/I in V.added_stashed_items)
+			dat += "<i>[I]</i> <br>"
+		dat += "</font>"
+	if(V.custom_text)
+		dat += "<font color = '#ffffff'><font size = 3>This Virtue has this special behaviour: <br>"
+		dat += "[V.custom_text]"
+		dat += "</font>"
+	return dat

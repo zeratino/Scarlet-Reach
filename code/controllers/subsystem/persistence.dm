@@ -13,18 +13,12 @@ SUBSYSTEM_DEF(persistence)
 	var/list/picture_logging_information = list()
 
 /datum/controller/subsystem/persistence/Initialize()
-	LoadPoly()
 	LoadTrophies()
 	LoadRecentModes()
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
 	LoadRandomizedRecipes()
 	return ..()
-
-/datum/controller/subsystem/persistence/proc/LoadPoly()
-	for(var/mob/living/simple_animal/parrot/Poly/P in GLOB.alive_mob_list)
-		twitterize(P.speech_buffer, "polytalk")
-		break //Who's been duping the bird?!
 
 /datum/controller/subsystem/persistence/proc/LoadTrophies()
 	if(fexists("data/npc_saves/TrophyItems.sav")) //legacy compatability to convert old format to new
