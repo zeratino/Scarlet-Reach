@@ -83,7 +83,7 @@
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/human,
 		/datum/customizer/organ/vagina/human_anthro,
-		/datum/customizer/organ/horns/halforc,
+		/datum/customizer/organ/horns/tusks,
 		)
 	languages = list(
 		/datum/language/common,
