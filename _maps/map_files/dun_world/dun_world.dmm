@@ -23399,6 +23399,10 @@
 /obj/structure/fluff/statue/knight,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
+"jFz" = (
+/obj/machinery/light/rogue/torchholder/c,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/under/cavewet/bogcaves/sunkencity)
 "jFA" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods)
@@ -80574,7 +80578,7 @@ sVg
 pCL
 dSN
 dSN
-cWY
+jFz
 jRA
 cWY
 cWY
