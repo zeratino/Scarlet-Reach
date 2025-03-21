@@ -1661,7 +1661,9 @@
 	user_turf = get_turf(user)
 	destination_turf = T
 	user_turf.add_overlay(target_effect)
-	destination_turf.add_overlay(tile_effect)/obj/effect/proc_holder/spell/self/recall
+	destination_turf.add_overlay(tile_effect)
+
+/obj/effect/proc_holder/spell/self/recall
 	name = "Recall"
 	desc = "Memorize your current location, allowing you to return to it after a delay."
 	school = "transmutation"
@@ -1669,7 +1671,7 @@
 	charge_max = 3 MINUTES
 	charge_counter = 3 MINUTES
 	clothes_req = FALSE
-	cost = 1
+	cost = 2
 	invocation = "There's no place like home!"
 	invocation_type = "whisper"
 	cooldown_min = 3 MINUTES
@@ -1692,7 +1694,8 @@
 		marked_location = T
 		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
 		start_recharge()
-		return
+		revert_cast()
+		return TRUE
 		
 	// Subsequent casts - begin channeling
 	H.visible_message(span_warning("[H] closes [H.p_their()] eyes and begins to focus intently..."))
@@ -1716,6 +1719,7 @@
 		start_recharge()
 	else
 		to_chat(H, span_warning("Your concentration was broken!"))
+		start_recharge()
 		revert_cast()
 
 
