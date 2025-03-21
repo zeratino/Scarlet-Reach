@@ -16027,6 +16027,10 @@
 	name = "chimney"
 	},
 /area/rogue/indoors/town)
+"lkl" = (
+/obj/item/roguebin/water,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/town/church)
 "lkr" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /obj/structure/closet/crate/drawer,
@@ -19295,6 +19299,10 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
+"nwl" = (
+/obj/structure/fermenting_barrel/water,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/town/church)
 "nwA" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /obj/structure/table/wood,
@@ -29134,6 +29142,10 @@
 /obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
+"uqi" = (
+/obj/structure/chair/stool/rogue,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/town/church)
 "uqD" = (
 /obj/effect/decal/cobbleedge{
 	dir = 5
@@ -67002,7 +67014,7 @@ xOa
 veu
 aad
 gjH
-vfo
+uqi
 vfo
 vfo
 xAm
@@ -67159,7 +67171,7 @@ qqw
 qqw
 qqw
 qrI
-vfo
+uqi
 dEc
 vfo
 vvV
@@ -67316,7 +67328,7 @@ qqw
 baW
 aKW
 rkx
-vfo
+uqi
 dEc
 vfo
 vfo
@@ -67788,8 +67800,8 @@ vfo
 vfo
 vfo
 vfo
-vfo
-vfo
+lkl
+nwl
 dPu
 dPu
 vTS

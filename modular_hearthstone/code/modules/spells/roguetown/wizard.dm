@@ -228,7 +228,11 @@
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
+		/obj/effect/proc_holder/spell/invoked/blink,
+		/obj/effect/proc_holder/spell/self/recall,
+		/obj/effect/proc_holder/spell/invoked/mindlink
+
 		
 	)
 	for(var/i = 1, i <= spell_choices.len, i++)
@@ -1661,7 +1665,185 @@
 	destination_turf = T
 	user_turf.add_overlay(target_effect)
 	destination_turf.add_overlay(tile_effect)
+/obj/effect/proc_holder/spell/invoked/blink
+	name = "Blink"
+	desc = "Teleport to a targeted location within your field of view."
+	school = "conjuration"
+	cost = 1
+	releasedrain = 30
+	chargedrain = 1
+	chargetime = 15
+	charge_max = 20 SECONDS
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "blink"
+	xp_gain = TRUE
+
+/obj/effect/proc_holder/spell/invoked/blink/cast(list/targets, mob/user = usr)
+	var/turf/T = get_turf(targets[1])
+	var/turf/start = get_turf(user)
+	
+	if(!T)
+		to_chat(user, span_warning("Invalid target location!"))
+		revert_cast()
+		return
+		
+	// Check if there's a wall in the way, but exclude the target turf
+	var/list/turf_list = getline(start, T)
+	// Remove the last turf (target location) from the check
+	if(length(turf_list) > 0)
+		turf_list.len--
+	
+	for(var/turf/turf in turf_list)
+		if(turf.density)
+			to_chat(user, span_warning("I cannot blink through walls!"))
+			revert_cast()
+			return
+	
+	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
+	user.visible_message(span_notice("[user] blinks away!"))
+	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
+	return TRUE
+
+
+/obj/effect/proc_holder/spell/self/recall
+	name = "Recall"
+	desc = "Memorize your current location, allowing you to return to it after a delay."
+	school = "transmutation"
+	charge_type = "none" // Changed from "recharge" to "none"
+	charge_max = 0 // Changed from 3 MINUTES
+	charge_counter = 0 // Changed from 3 MINUTES
+	clothes_req = FALSE
+	cost = 2
+	invocation = "There's no place like home!"
+	invocation_type = "whisper"
+	cooldown_min = 0 // Changed from 3 MINUTES
+	associated_skill = /datum/skill/magic/arcane
+	xp_gain = TRUE
+	action_icon_state = "recall"
+	
+	var/turf/marked_location = null
+	var/recall_delay = 10 SECONDS
+
+/obj/effect/proc_holder/spell/self/recall/cast(mob/user = usr)
+	if(!istype(user, /mob/living/carbon/human))
+		return FALSE
+		
+	var/mob/living/carbon/human/H = user
+	
+	// First cast - mark the location
+	if(!marked_location)
+		var/turf/T = get_turf(H)
+		marked_location = T
+		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
+		return TRUE
+		
+	// Subsequent casts - begin channeling
+	H.visible_message(span_warning("[H] closes [H.p_their()] eyes and begins to focus intently..."))
+	if(do_after(H, recall_delay, target = H, progress = TRUE))
+		// Get any grabbed mobs
+		var/list/to_teleport = list(H)
+		if(H.pulling && isliving(H.pulling))
+			to_teleport += H.pulling
+			
+		// Teleport caster and grabbed mob if any
+		for(var/mob/living/L in to_teleport)
+			do_teleport(L, marked_location, no_effects = FALSE, channel = TELEPORT_CHANNEL_MAGIC)
+			
+		H.visible_message(span_warning("[H] vanishes in a swirl of energy!"))
+		playsound(H, 'sound/magic/unmagnet.ogg', 50, TRUE)
+		
+		// Visual effects at both locations
+		var/datum/effect_system/smoke_spread/smoke = new
+		smoke.set_up(3, marked_location)
+		smoke.start()
+		
+		return TRUE
+	else
+		to_chat(H, span_warning("Your concentration was broken!"))
+		return FALSE
+/obj/effect/proc_holder/spell/invoked/mindlink
+	name = "Mindlink"
+	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
+	clothes_req = FALSE
+	overlay_state = "mindlink"
+	associated_skill = /datum/skill/magic/arcane
+	cost = 2
+	xp_gain = TRUE
+	charge_max = 2 MINUTES
+	invocation = "MENTIS NEXUS!"
+	invocation_type = "whisper"
+	
+	// Charged spell variables
+	chargedloop = /datum/looping_sound/invokegen
+	chargedrain = 1
+	chargetime = 20
+	releasedrain = 25
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	warnie = "spellwarning"
+
+/obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return
+	
+	var/list/possible_targets = list()
+	if(user.client)
+		possible_targets += user  // Always add self first
+		
+	if(user.mind?.known_people)  // Only check known_people if it exists
+		for(var/mob/living/L in GLOB.player_list)
+			if((L.client && L != user) && (L.real_name in user.mind.known_people))
+				possible_targets += L
+	
+	if(!length(possible_targets))
+		to_chat(user, span_warning("You have no known people to establish a mindlink with!"))
+		return FALSE
+
+	var/mob/living/first_target = input(user, "Choose the first person to link", "Mindlink") as null|anything in possible_targets
+	if(!first_target)
+		return FALSE
+		
+	var/mob/living/second_target = input(user, "Choose the second person to link", "Mindlink") as null|anything in possible_targets
+	if(!second_target)
+		return FALSE
+
+	if(first_target == second_target)
+		to_chat(user, span_warning("You cannot link someone to themselves!"))
+		return FALSE
+
+	user.visible_message(span_notice("[user] touches their temples and concentrates..."), span_notice("I establish a mental connection between [first_target] and [second_target]..."))
+	
+	// Create the mindlink
+	var/datum/mindlink/link = new(first_target, second_target)
+	GLOB.mindlinks += link
+	
+	to_chat(first_target, span_notice("A mindlink has been established with [second_target]! Use ,y before a message to communicate telepathically."))
+	to_chat(second_target, span_notice("A mindlink has been established with [first_target]! Use ,y before a message to communicate telepathically."))
+	
+	addtimer(CALLBACK(src, PROC_REF(break_link), link), 3 MINUTES)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/mindlink/proc/break_link(datum/mindlink/link)
+	if(!link)
+		return
+	
+	to_chat(link.owner, span_warning("The mindlink with [link.target] fades away..."))
+	to_chat(link.target, span_warning("The mindlink with [link.owner] fades away..."))
+	
+	GLOB.mindlinks -= link
+	qdel(link)
+
+
+
 
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
 #undef PRESTI_MOTE
+
