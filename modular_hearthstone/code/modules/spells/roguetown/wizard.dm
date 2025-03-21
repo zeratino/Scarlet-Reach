@@ -1731,7 +1731,7 @@
 
 /obj/effect/proc_holder/spell/self/recall/cast(mob/user = usr)
 	if(!istype(user, /mob/living/carbon/human))
-		return
+		return FALSE
 		
 	var/mob/living/carbon/human/H = user
 	
@@ -1740,9 +1740,7 @@
 		var/turf/T = get_turf(H)
 		marked_location = T
 		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
-		start_recharge()
-		revert_cast()
-		return TRUE
+		return TRUE // Let the parent handle recharge
 		
 	// Subsequent casts - begin channeling
 	H.visible_message(span_warning("[H] closes [H.p_their()] eyes and begins to focus intently..."))
@@ -1763,11 +1761,10 @@
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(3, marked_location)
 		smoke.start()
-		start_recharge()
+		return TRUE // Let the parent handle recharge
 	else
 		to_chat(H, span_warning("Your concentration was broken!"))
-		start_recharge()
-		revert_cast()
+		return FALSE // Spell failed, don't go on cooldown
 /obj/effect/proc_holder/spell/invoked/mindlink
 	name = "Mindlink"
 	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
@@ -1801,7 +1798,7 @@
 		
 	if(user.mind?.known_people)  // Only check known_people if it exists
 		for(var/mob/living/L in GLOB.player_list)
-			if(L.client && L != user && L.real_name in user.mind.known_people)
+			if((L.client && L != user) && (L.real_name in user.mind.known_people))
 				possible_targets += L
 	
 	if(!length(possible_targets))
