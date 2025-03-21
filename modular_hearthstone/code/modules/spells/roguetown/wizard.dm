@@ -1714,14 +1714,14 @@
 	name = "Recall"
 	desc = "Memorize your current location, allowing you to return to it after a delay."
 	school = "transmutation"
-	charge_type = "recharge"
-	charge_max = 3 MINUTES
-	charge_counter = 3 MINUTES
+	charge_type = "none" // Changed from "recharge" to "none"
+	charge_max = 0 // Changed from 3 MINUTES
+	charge_counter = 0 // Changed from 3 MINUTES
 	clothes_req = FALSE
 	cost = 2
 	invocation = "There's no place like home!"
 	invocation_type = "whisper"
-	cooldown_min = 3 MINUTES
+	cooldown_min = 0 // Changed from 3 MINUTES
 	associated_skill = /datum/skill/magic/arcane
 	xp_gain = TRUE
 	action_icon_state = "recall"
@@ -1740,7 +1740,7 @@
 		var/turf/T = get_turf(H)
 		marked_location = T
 		to_chat(H, span_notice("You attune yourself to this location. Future casts will return you here."))
-		return TRUE // Let the parent handle recharge
+		return TRUE
 		
 	// Subsequent casts - begin channeling
 	H.visible_message(span_warning("[H] closes [H.p_their()] eyes and begins to focus intently..."))
@@ -1761,10 +1761,11 @@
 		var/datum/effect_system/smoke_spread/smoke = new
 		smoke.set_up(3, marked_location)
 		smoke.start()
-		return TRUE // Let the parent handle recharge
+		
+		return TRUE
 	else
 		to_chat(H, span_warning("Your concentration was broken!"))
-		return FALSE // Spell failed, don't go on cooldown
+		return FALSE
 /obj/effect/proc_holder/spell/invoked/mindlink
 	name = "Mindlink"
 	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
