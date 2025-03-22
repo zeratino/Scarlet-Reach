@@ -228,9 +228,11 @@
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform
-		
+		/obj/effect/proc_holder/spell/invoked/blink,
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
+		/obj/effect/proc_holder/spell/invoked/mindlink
 	)
+
 	for(var/i = 1, i <= spell_choices.len, i++)
 		choices["[spell_choices[i].name]: [spell_choices[i].cost]"] = spell_choices[i]
 
@@ -336,7 +338,7 @@
 	charge_max = 25 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
-	movement_interrupt = FALSE
+	movement_interrupt = FALSE	
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -402,6 +404,7 @@
 		to_chat(user, span_warning("I don't know anyone."))
 		revert_cast()
 		return
+	eligible_players = sortList(eligible_players)
 	var/input = input(user, "Who do you wish to contact?", src) as null|anything in eligible_players
 	if(isnull(input))
 		to_chat(user, span_warning("No target selected."))
@@ -1538,8 +1541,390 @@
 		REMOVE_TRAIT(H, TRAIT_MIRROR_MAGIC, TRAIT_GENERIC)
 		to_chat(H, span_warning("Your connection to mirrors fades away."))
 
+/obj/effect/proc_holder/spell/invoked/shadowstep
+	name = "Shadowstep"
+	desc = "Project your shadow to swap places with it, teleporting several feet away."
+	cost = 1
+	xp_gain = TRUE
+	releasedrain = 30
+	warnie = "spellwarning"
+	movement_interrupt = TRUE
+	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "shadowstep"
+	chargedrain = 1
+	chargetime = 0 SECONDS
+	charge_max = 30 SECONDS
+	var/area_of_effect = 1
+	var/max_range = 7
+	var/turf/destination_turf
+	var/turf/user_turf
+	var/mutable_appearance/tile_effect
+	var/mutable_appearance/target_effect
+	var/datum/looping_sound/invokeshadow/shadowloop
+
+//Resets the tile and turf effects.
+/obj/effect/proc_holder/spell/invoked/shadowstep/proc/reset(silent = FALSE)
+	if(tile_effect && destination_turf)
+		destination_turf.cut_overlay(tile_effect)
+		qdel(tile_effect)
+		destination_turf = null
+	if(user_turf && target_effect)
+		user_turf.cut_overlay(target_effect)
+		qdel(target_effect)
+		user_turf = null
+	update_icon()
+
+/obj/effect/proc_holder/spell/invoked/shadowstep/proc/check_path(turf/Tu, turf/Tt)
+	var/dist = get_dist(Tt, Tu)
+	var/last_dir
+	var/turf/last_step
+	if(Tu.z > Tt.z) 
+		last_step = get_step_multiz(Tu, DOWN)
+	else if(Tu.z < Tt.z)
+		last_step = get_step_multiz(Tu, UP)
+	else 
+		last_step = locate(Tu.x, Tu.y, Tu.z)
+	var/success = FALSE
+	for(var/i = 0, i <= dist, i++)
+		last_dir = get_dir(last_step, Tt)
+		var/turf/Tstep = get_step(last_step, last_dir)
+		if(!Tstep.density)
+			success = TRUE
+			var/list/cont = Tstep.GetAllContents(/obj/structure/roguewindow)
+			for(var/obj/structure/roguewindow/W in cont)
+				if(W.climbable && !W.opacity)	//It's climbable and can be seen through
+					success = TRUE
+					continue
+				else if(!W.climbable)
+					success = FALSE
+					return success
+		else
+			success = FALSE
+			return success
+		last_step = Tstep
+	return success
+
+//Successful teleport, complete reset.
+/obj/effect/proc_holder/spell/invoked/shadowstep/proc/tp(mob/user)
+	if(destination_turf)
+		if(do_teleport(user, destination_turf, no_effects=TRUE))
+			log_admin("[user.real_name]([key_name(user)] Shadowstepped from X:[user_turf.x] Y:[user_turf.y] Z:[user_turf.z] to X:[destination_turf.x] Y:[destination_turf.y] Z:[destination_turf.z] in area: [get_area(destination_turf)]")
+			if(user.m_intent == MOVE_INTENT_SNEAK)
+				playsound(user_turf, 'sound/magic/shadowstep.ogg', 20, FALSE)
+				playsound(destination_turf, 'sound/magic/shadowstep.ogg', 20, FALSE)
+			else
+				playsound(user_turf, 'sound/magic/shadowstep.ogg', 100, FALSE)
+				playsound(destination_turf, 'sound/magic/shadowstep.ogg', 100, FALSE)
+			reset(silent = TRUE)
+
+/obj/effect/proc_holder/spell/invoked/shadowstep/cast(list/targets, mob/user)
+	var/turf/T = get_turf(targets[1])
+	if(!istransparentturf(T))
+		var/reason
+		if(max_range >= get_dist(user, T) && !T.density)
+			if(check_path(get_turf(user), T))	//We check for opaque turfs or non-climbable windows in the way via a simple pathfind.
+				if(get_dist(user, T) < 2 && user.z == T.z)
+					to_chat(user, span_info("Too close!"))
+					revert_cast()
+					return
+				to_chat(user, span_info("I begin to meld with the shadows.."))
+				lockon(T, user)
+				if(do_after(user, 70))
+					tp(user)
+				else
+					reset(silent = TRUE)
+					revert_cast()
+				return
+			else
+				to_chat(user, span_info("The path is blocked!"))
+				revert_cast()
+				return
+		else if(get_dist(user, T) > max_range)
+			reason = "It's too far."
+			revert_cast()
+		else if (T.density)
+			reason = "It's a wall!"
+			revert_cast()
+		to_chat(user, span_info("I cannot shadowstep there! "+"[reason]"))
+	else
+		to_chat(user, span_info("I cannot shadowstep there!"))
+		revert_cast()
+	. = ..()
+
+//Plays affects at target Turf
+/obj/effect/proc_holder/spell/invoked/shadowstep/proc/lockon(turf/T, mob/user)
+	if(user.m_intent == MOVE_INTENT_SNEAK)
+		playsound(T, 'sound/magic/shadowstep_destination.ogg', 20, FALSE, 5)
+	else
+		playsound(T, 'sound/magic/shadowstep_destination.ogg', 100, FALSE, 5)
+	tile_effect = mutable_appearance(icon = 'icons/effects/effects.dmi', icon_state = "curse", layer = 18)
+	target_effect = mutable_appearance(icon = 'icons/effects/effects.dmi', icon_state = "curse", layer = 18)
+	user_turf = get_turf(user)
+	destination_turf = T
+	user_turf.add_overlay(target_effect)
+	destination_turf.add_overlay(tile_effect)
+
+/obj/effect/proc_holder/spell/invoked/blink
+	name = "Blink"
+	desc = "Teleport to a targeted location within your field of view. Limited to a range of 7 tiles."
+	school = "conjuration"
+	cost = 1
+	releasedrain = 30
+	chargedrain = 1
+	chargetime = 15
+	charge_max = 20 SECONDS
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "blink"
+	xp_gain = TRUE
+	invocation = "SHIFT THROUGH SPACE!"
+	invocation_type = "shout"
+	var/max_range = 7
+
+/obj/effect/proc_holder/spell/invoked/blink/cast(list/targets, mob/user = usr)
+	var/turf/T = get_turf(targets[1])
+	var/turf/start = get_turf(user)
+	
+	if(!T)
+		to_chat(user, span_warning("Invalid target location!"))
+		revert_cast()
+		return
+	
+	// Check range limit
+	var/distance = get_dist(start, T)
+	if(distance > max_range)
+		to_chat(user, span_warning("That location is too far away! I can only blink up to [max_range] tiles."))
+		revert_cast()
+		return
+	
+	// Display a more obvious preparation message
+	user.visible_message(span_warning("<b>[user]'s body begins to shimmer with arcane energy as [user.p_they()] prepare[user.p_s()] to blink!</b>"), 
+						span_notice("<b>I focus my arcane energy, preparing to blink across space!</b>"))
+		
+	// Check if there's a wall in the way, but exclude the target turf
+	var/list/turf_list = getline(start, T)
+	// Remove the last turf (target location) from the check
+	if(length(turf_list) > 0)
+		turf_list.len--
+	
+	for(var/turf/turf in turf_list)
+		if(turf.density)
+			to_chat(user, span_warning("I cannot blink through walls!"))
+			revert_cast()
+			return
+			
+	// Check for doors and bars in the path
+	for(var/turf/traversal_turf in turf_list)
+		// Check for mineral doors
+		for(var/obj/structure/mineral_door/door in traversal_turf.contents)
+			if(door.density)
+				to_chat(user, span_warning("I cannot blink through doors!"))
+				revert_cast()
+				return
+				
+		// Check for windows
+		for(var/obj/structure/roguewindow/window in traversal_turf.contents)
+			if(window.density)
+				to_chat(user, span_warning("I cannot blink through windows!"))
+				revert_cast()
+				return
+				
+		// Check for bars
+		for(var/obj/structure/mineral_door/bars/bars in traversal_turf.contents)
+			if(bars.density)
+				to_chat(user, span_warning("I cannot blink through bars!"))
+				revert_cast()
+				return
+				
+		// Check for destination too
+		for(var/obj/structure/mineral_door/bars/bars in T.contents)
+			if(bars.density)
+				to_chat(user, span_warning("I cannot blink through bars!"))
+				revert_cast()
+				return
+	
+	// Add sparkle effect before teleporting
+	var/datum/effect_system/spark_spread/sparks = new()
+	sparks.set_up(5, 1, user)
+	sparks.start()
+	
+	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
+	
+	// Add sparkle effect after teleporting
+	sparks.set_up(5, 1, user)
+	sparks.start()
+	
+	user.visible_message(span_danger("<b>[user] vanishes in a brilliant flash of sparks!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
+	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
+	return TRUE
+/*	- Teleporting to Lumby, lumby drop 500g
+/obj/effect/proc_holder/spell/self/recall
+	name = "Recall"
+	desc = "Memorize your current location, allowing you to return to it after a delay."
+	school = "transmutation"
+	charge_type = "none" // Changed from "recharge" to "none"
+	charge_max = 0 // Changed from 3 MINUTES
+	charge_counter = 0 // Changed from 3 MINUTES
+	clothes_req = FALSE
+	cost = 2
+	invocation = "RETURN TO MY MARKED GROUND!"
+	invocation_type = "shout"
+	cooldown_min = 0 // Changed from 3 MINUTES
+	associated_skill = /datum/skill/magic/arcane
+	xp_gain = TRUE
+	action_icon_state = "recall"
+	
+	var/turf/marked_location = null
+	var/recall_delay = 10 SECONDS
+
+/obj/effect/proc_holder/spell/self/recall/cast(mob/user = usr)
+	if(!istype(user, /mob/living/carbon/human))
+		return FALSE
+		
+	var/mob/living/carbon/human/H = user
+	
+	// First cast - mark the location
+	if(!marked_location)
+		var/turf/T = get_turf(H)
+		marked_location = T
+		
+		// Add sparkle effect when marking location
+		var/datum/effect_system/spark_spread/sparks = new()
+		sparks.set_up(3, 1, H)
+		sparks.start()
+		
+		H.visible_message(span_warning("<b>[H] begins to glow slightly as [H.p_they()] mark[H.p_s()] [H.p_their()] location!</b>"), 
+						span_notice("<b>I imprint this location into my arcane memory. I can now recall to this spot.</b>"))
+		return TRUE
+		
+	// Subsequent casts - begin channeling
+	H.visible_message(span_warning("<b>[H] closes [H.p_their()] eyes and begins glowing with increasing intensity as [H.p_they()] focus[H.p_es()] on recall magic!</b>"), 
+					span_notice("<b>I begin channeling the recall spell, focusing on my marked location...</b>"))
+	
+	// Play a distinctive magical sound that everyone can hear when channeling begins
+	playsound(get_turf(H), 'sound/magic/timestop.ogg', 80, TRUE, soundping = TRUE)
+	
+	// Add sparkle effect during channeling
+	var/datum/effect_system/spark_spread/channeling_sparks = new()
+	channeling_sparks.set_up(2, 1, H)
+	channeling_sparks.start()
+	
+	if(do_after(H, recall_delay, target = H, progress = TRUE))
+		// Add more intense sparkle effect before teleport
+		var/datum/effect_system/spark_spread/sparks = new()
+		sparks.set_up(5, 1, H)
+		sparks.start()
+		
+		// Get any grabbed mobs
+		var/list/to_teleport = list(H)
+		if(H.pulling && isliving(H.pulling))
+			to_teleport += H.pulling
+			
+		// Teleport caster and grabbed mob if any
+		for(var/mob/living/L in to_teleport)
+			do_teleport(L, marked_location, no_effects = FALSE, channel = TELEPORT_CHANNEL_MAGIC)
+			
+		H.visible_message(span_danger("<b>[H] disappears in a blinding shower of arcane sparks and energy!</b>"), 
+						span_notice("<b>I complete the recall spell, teleporting back to my marked location!</b>"))
+		playsound(H, 'sound/magic/unmagnet.ogg', 50, TRUE)
+		
+		// Visual effects at both locations
+		var/datum/effect_system/smoke_spread/smoke = new
+		smoke.set_up(3, marked_location)
+		smoke.start()
+		
+		// Additional sparkle effect at destination
+		sparks.set_up(5, 1, H)
+		sparks.start()
+		
+		return TRUE
+	else
+		to_chat(H, span_warning("Your concentration was broken!"))
+		return FALSE
+*/
+/obj/effect/proc_holder/spell/invoked/mindlink
+	name = "Mindlink"
+	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
+	clothes_req = FALSE
+	overlay_state = "mindlink"
+	associated_skill = /datum/skill/magic/arcane
+	cost = 2
+	xp_gain = TRUE
+	charge_max = 2 MINUTES
+	invocation = "MENTIS NEXUS!"
+	invocation_type = "whisper"
+	
+	// Charged spell variables
+	chargedloop = /datum/looping_sound/invokegen
+	chargedrain = 1
+	chargetime = 20
+	releasedrain = 25
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	warnie = "spellwarning"
+
+/obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return
+	
+	var/list/possible_targets = list()
+	if(user.client)
+		possible_targets += user  // Always add self first
+		
+	if(user.mind?.known_people)  // Only check known_people if it exists
+		for(var/mob/living/L in GLOB.player_list)
+			if((L.client && L != user) && (L.real_name in user.mind.known_people))
+				possible_targets += L
+	
+	if(!length(possible_targets))
+		to_chat(user, span_warning("You have no known people to establish a mindlink with!"))
+		return FALSE
+
+	var/mob/living/first_target = input(user, "Choose the first person to link", "Mindlink") as null|anything in possible_targets
+	if(!first_target)
+		return FALSE
+		
+	var/mob/living/second_target = input(user, "Choose the second person to link", "Mindlink") as null|anything in possible_targets
+	if(!second_target)
+		return FALSE
+
+	if(first_target == second_target)
+		to_chat(user, span_warning("You cannot link someone to themselves!"))
+		return FALSE
+
+	user.visible_message(span_notice("[user] touches their temples and concentrates..."), span_notice("I establish a mental connection between [first_target] and [second_target]..."))
+	
+	// Create the mindlink
+	var/datum/mindlink/link = new(first_target, second_target)
+	GLOB.mindlinks += link
+	
+	to_chat(first_target, span_notice("A mindlink has been established with [second_target]! Use ,y before a message to communicate telepathically."))
+	to_chat(second_target, span_notice("A mindlink has been established with [first_target]! Use ,y before a message to communicate telepathically."))
+	
+	addtimer(CALLBACK(src, PROC_REF(break_link), link), 3 MINUTES)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/mindlink/proc/break_link(datum/mindlink/link)
+	if(!link)
+		return
+	
+	to_chat(link.owner, span_warning("The mindlink with [link.target] fades away..."))
+	to_chat(link.target, span_warning("The mindlink with [link.owner] fades away..."))
+	
+	GLOB.mindlinks -= link
+	qdel(link)
+
+
 
 
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
 #undef PRESTI_MOTE
+
+

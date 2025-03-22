@@ -45,19 +45,7 @@
 	dismantle_wall(1,0)
 
 /turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
-	if(devastated)
-		devastate_wall()
-	else
-		playsound(src, 'sound/blank.ogg', 100, TRUE)
-		var/newgirder = break_wall()
-		if(newgirder) //maybe we don't /want/ a girder!
-			transfer_fingerprints_to(newgirder)
-
-	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O, /obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
-
+	playsound(src, 'sound/blank.ogg', 100, TRUE)
 	ScrapeAway()
 
 /turf/closed/wall/proc/break_wall()

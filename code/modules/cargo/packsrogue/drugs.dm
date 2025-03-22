@@ -10,10 +10,10 @@
 	cost = 5
 	contains = list(/obj/item/reagent_containers/powder/ozium)
 
-/datum/supply_pack/rogue/drugs/purifiedozium
-	name = "Purified Ozium"
+/datum/supply_pack/rogue/drugs/herozium
+	name = "Herozium"
 	cost = 50
-	contains = list(/obj/item/reagent_containers/powder/purified_ozium)
+	contains = list(/obj/item/reagent_containers/powder/herozium)
 
 
 /datum/supply_pack/rogue/drugs/moondust

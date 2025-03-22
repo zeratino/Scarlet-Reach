@@ -18,7 +18,6 @@
 	if(world.time < last_ring + 50)
 		return
 	user.visible_message(span_info("[user] rings the bell."))
-	SSshuttle.moveShuttle("supply", "supply_away", TRUE)
 	playsound(src, 'sound/misc/boatbell.ogg', 100, extrarange = 5)
 	last_ring = world.time
 

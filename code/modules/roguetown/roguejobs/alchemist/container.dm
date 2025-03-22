@@ -102,7 +102,7 @@
 // WINES - Expensive, Nobleblooded
 /obj/item/reagent_containers/glass/bottle/rogue/wine
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/wine = 48)
-	desc = "A bottle that contains a generic red-wine, likely from Zybantia. It has a red-clay cork-seal."
+	desc = "A bottle that contains a generic red-wine, likely from Raneshen. It has a red-clay cork-seal."
 
 /obj/item/reagent_containers/glass/bottle/rogue/wine/sourwine
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/sourwine = 48)

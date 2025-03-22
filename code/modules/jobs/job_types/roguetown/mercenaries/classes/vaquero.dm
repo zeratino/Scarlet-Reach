@@ -8,7 +8,7 @@
 	traits_applied = list(TRAIT_OUTLANDER)
 
 /datum/advclass/mercenary/vaquero/equipme(mob/living/carbon/human/H)
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled
 	return ..()
 
@@ -43,7 +43,6 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	beltl = /obj/item/rogueweapon/sword/rapier/vaquero
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero
-	backr = /obj/item/rogue/instrument/guitar
 	backpack_contents = list(
 					/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 					/obj/item/rogueweapon/huntingknife/idagger/navaja = 1,
@@ -51,9 +50,28 @@
 					/obj/item/flashlight/flare/torch = 1,
 					/obj/item/roguekey/mercenary = 1
 					)
+	var/weapons = list("Harp","Lute","Accordion","Guitar","Hurdy-Gurdy","Viola","Vocal Talisman","Flute")
+	var/weapon_choice = input("Choose your instrument.", "TAKE UP ARMS") as anything in weapons
+	H.set_blindness(0)
+	switch(weapon_choice)
+		if("Harp")
+			backr = /obj/item/rogue/instrument/harp
+		if("Lute")
+			backr = /obj/item/rogue/instrument/lute
+		if("Accordion")
+			backr = /obj/item/rogue/instrument/accord
+		if("Guitar")
+			backr = /obj/item/rogue/instrument/guitar
+		if("Hurdy-Gurdy")
+			backr = /obj/item/rogue/instrument/hurdygurdy
+		if("Viola")
+			backr = /obj/item/rogue/instrument/viola
+		if("Vocal Talisman")
+			backr = /obj/item/rogue/instrument/vocals
+		if("Flute")
+			backr = /obj/item/rogue/instrument/flute
 	H.change_stat("strength", 1)
-	H.change_stat("intelligence", 2)
-	H.change_stat("endurance", 2)
+	H.change_stat("endurance", 1)
 	H.change_stat("speed", 3)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)

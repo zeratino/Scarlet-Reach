@@ -1447,6 +1447,12 @@
 "iG" = (
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/cave)
+"iH" = (
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/beach/forest)
 "iJ" = (
 /obj/structure/fluff/statue/femalestatue,
 /obj/structure/fluff/railing/border,
@@ -1649,6 +1655,12 @@
 /obj/structure/closet/crate/chest/lootbox,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/cave)
+"kq" = (
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/beach/forest)
 "kr" = (
 /obj/machinery/light/rogue/wallfire/candle/blue/l,
 /obj/structure/table/wood/fancy/black,
@@ -2282,6 +2294,13 @@
 	},
 /area/rogue/outdoors/beach/forest)
 "pa" = (
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/beach/forest)
+"pd" = (
+/obj/structure/fluff/railing/border{
+	dir = 8;
+	icon_state = "border"
+	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/beach/forest)
 "pe" = (
@@ -4964,6 +4983,10 @@
 /obj/structure/stairs/stone,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
+"GM" = (
+/obj/machinery/light/rogue/torchholder/c,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/beach/forest)
 "GN" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/silver{
@@ -5477,6 +5500,10 @@
 /obj/item/clothing/neck/roguetown/psicross/eora,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
+"JU" = (
+/obj/structure/roguemachine/bounty,
+/turf/open/floor/rogue/wood/nosmooth,
+/area/rogue/outdoors/beach/forest)
 "JW" = (
 /obj/structure/lever/wall{
 	redstone_id = "entryduke"
@@ -6152,6 +6179,10 @@
 /obj/machinery/light/rogue/chand,
 /turf/open/transparent/openspace,
 /area/rogue/indoors/shelter)
+"Or" = (
+/obj/structure/chair/arrestchair,
+/turf/open/floor/rogue/wood/nosmooth,
+/area/rogue/outdoors/beach/forest)
 "Ot" = (
 /obj/structure/closet/crate/chest,
 /turf/open/floor/rogue/naturalstone,
@@ -7722,6 +7753,12 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
+"Zp" = (
+/obj/structure/fluff/railing/border{
+	dir = 5
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/beach/forest)
 "Zu" = (
 /obj/structure/bookcase/random/archive,
 /turf/open/floor/rogue/ruinedwood{
@@ -47383,8 +47420,8 @@ zK
 kB
 SW
 kB
-pa
-pa
+iH
+Zp
 XK
 XK
 XK
@@ -47513,8 +47550,8 @@ RE
 bX
 QP
 SW
-pa
-pa
+Or
+XK
 XK
 XK
 XK
@@ -47643,8 +47680,8 @@ Na
 Ba
 Ul
 SW
-pa
-pa
+mK
+GM
 XK
 XK
 XK
@@ -47773,8 +47810,8 @@ ZP
 kB
 pm
 SW
-pa
-pa
+JU
+XK
 XK
 XK
 XK
@@ -47903,8 +47940,8 @@ xJ
 SW
 ps
 SW
-pa
-pa
+pd
+kq
 XK
 XK
 XK

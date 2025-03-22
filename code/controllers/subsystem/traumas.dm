@@ -27,10 +27,6 @@ SUBSYSTEM_DEF(traumas)
 		"falling" = strings(PHOBIA_FILE, "falling"),
 	)
 
-	phobia_mobs = list(
-		"birds"            = typecacheof(list(/mob/living/simple_animal/parrot))
-	)
-
 	phobia_objs = list(
 		"spiders"   = typecacheof(list(/obj/structure/spider)),
 
