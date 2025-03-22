@@ -1629,7 +1629,7 @@
 					return
 				to_chat(user, span_info("I begin to meld with the shadows.."))
 				lockon(T, user)
-				if(do_after(user, 70))
+				if(do_after(user, 2 SECONDS))
 					tp(user)
 				else
 					reset(silent = TRUE)
@@ -1668,10 +1668,10 @@
 	name = "Blink"
 	desc = "Teleport to a targeted location within your field of view. Limited to a range of 7 tiles."
 	school = "conjuration"
-	cost = 1
+	cost = 2
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 15
+	chargetime = 3 SECONDS
 	charge_max = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -1720,28 +1720,21 @@
 	// Check for doors and bars in the path
 	for(var/turf/traversal_turf in turf_list)
 		// Check for mineral doors
-		for(var/obj/structure/mineral_door/door in traversal_turf.contents)
+		for(var/obj/structure/mineral_door/door in (traversal_turf.contents + T.contents))
 			if(door.density)
 				to_chat(user, span_warning("I cannot blink through doors!"))
 				revert_cast()
 				return
 				
 		// Check for windows
-		for(var/obj/structure/roguewindow/window in traversal_turf.contents)
+		for(var/obj/structure/roguewindow/window in (traversal_turf.contents + T.contents))
 			if(window.density)
 				to_chat(user, span_warning("I cannot blink through windows!"))
 				revert_cast()
 				return
 				
 		// Check for bars
-		for(var/obj/structure/mineral_door/bars/bars in traversal_turf.contents)
-			if(bars.density)
-				to_chat(user, span_warning("I cannot blink through bars!"))
-				revert_cast()
-				return
-				
-		// Check for destination too
-		for(var/obj/structure/mineral_door/bars/bars in T.contents)
+		for(var/obj/structure/bars/bars in (traversal_turf.contents + T.contents))
 			if(bars.density)
 				to_chat(user, span_warning("I cannot blink through bars!"))
 				revert_cast()
