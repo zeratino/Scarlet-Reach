@@ -33,11 +33,11 @@
 		if(I.wlength == WLENGTH_SHORT)
 			chance2hit += 10
 
-	if(user.STAPER > 10)
-		chance2hit += ((user.STAPER-10)*3)
+	if(user.STAPER > 11)
+		chance2hit += ((user.STAPER-10)*6)
 
-	if(user.STAPER < 10)
-		chance2hit -= ((10-user.STAPER)*3)
+	if(user.STAPER < 9)
+		chance2hit -= ((10-user.STAPER)*6)
 
 	if(istype(user.rmb_intent, /datum/rmb_intent/aimed))
 		chance2hit += 20
