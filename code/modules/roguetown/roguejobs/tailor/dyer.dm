@@ -179,7 +179,7 @@
 		if(!inserted)
 			return
 		var/obj/item/inserted_item = inserted
-		inserted_item.detail_color = initial(inserted_item.detail_color)
+		inserted_item.detail_color = "#FFFFFF" //We don't initial() this in case it goes null
 		inserted_item.update_icon()
 		playsound(src, "bubbles", 50, 1)
 		updateUsrDialog()
