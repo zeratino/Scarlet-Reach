@@ -49,11 +49,11 @@
 	if(prob(chance2hit))
 		return zone
 	else
-		if(prob(chance2hit+5))
+		if(prob(chance2hit+(user.STAPER - 10)))
 			if(check_zone(zone) == zone)
 				return zone
 			to_chat(user, span_warning("Accuracy fail! [chance2hit]%"))
-			if(user.STAPER > 11)
+			if(user.STAPER >= 11)
 				if(user.client?.prefs.showrolls)
 					return check_zone(zone)
 			else
