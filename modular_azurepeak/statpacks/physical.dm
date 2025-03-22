@@ -28,5 +28,5 @@
 /datum/statpack/physical/brutish
 	name = "Brutish"
 	desc = "You spent your lyfe charging head-first into any situation, powering through it all."
-	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 2, STAT_ENDURANCE = 2, STAT_INTELLIGENCE = -3, STAT_PERCEPTION = -3)
+	stat_array = list(STAT_STRENGTH = 2, STAT_CONSTITUTION = 2, STAT_ENDURANCE = 2, STAT_INTELLIGENCE = -3, STAT_PERCEPTION = -3, STAT_FORTUNE = list(-1, -2))
 
