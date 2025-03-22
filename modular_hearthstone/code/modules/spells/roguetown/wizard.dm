@@ -1684,6 +1684,23 @@
 	invocation = "SHIFT THROUGH SPACE!"
 	invocation_type = "shout"
 	var/max_range = 7
+	var/phase = /obj/effect/temp_visual/blink
+
+/obj/effect/temp_visual/blink
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "hierophant_blast"
+	name = "teleportation magic"
+	desc = "Get out of the way!"
+	randomdir = FALSE
+	duration = 3 SECONDS
+	layer = MASSIVE_OBJ_LAYER
+	light_outer_range = 2
+	light_color = COLOR_PALE_PURPLE_GRAY
+
+/obj/effect/temp_visual/blink/Initialize(mapload, new_caster)
+	. = ..()
+	var/turf/src_turf = get_turf(src)
+	playsound(src_turf,'sound/magic/blink.ogg', 65, TRUE, -5)
 
 /obj/effect/proc_holder/spell/invoked/blink/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
@@ -1739,20 +1756,16 @@
 				to_chat(user, span_warning("I cannot blink through bars!"))
 				revert_cast()
 				return
-	
-	// Add sparkle effect before teleporting
-	var/datum/effect_system/spark_spread/sparks = new()
-	sparks.set_up(5, 1, user)
-	sparks.start()
-	
+
+	var/obj/spot_one = new phase(start, user.dir)
+	var/obj/spot_two = new phase(T, user.dir)
+
+	spot_two.Beam(spot_one, "drain_life", time = 2 SECONDS)
+	playsound(T, 'sound/magic/blink.ogg', 25, TRUE)
+
 	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
 	
-	// Add sparkle effect after teleporting
-	sparks.set_up(5, 1, user)
-	sparks.start()
-	
-	user.visible_message(span_danger("<b>[user] vanishes in a brilliant flash of sparks!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
-	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
+	user.visible_message(span_danger("<b>[user] vanishes in a mysterious purple flash!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
 	return TRUE
 /*	- Teleporting to Lumby, lumby drop 500g
 /obj/effect/proc_holder/spell/self/recall
