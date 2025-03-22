@@ -177,7 +177,7 @@
 			if(length(embeds))
 				for(var/object in embeds)
 					if(!istype(object, /obj/item/natural/worms/leech))	//Leeches and surgical cheeles are made an exception.
-						success = FALSE
+						no_embeds = FALSE
 			else
 				no_embeds = TRUE
 			if(no_embeds)
