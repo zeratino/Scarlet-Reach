@@ -228,13 +228,11 @@
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform,
 		/obj/effect/proc_holder/spell/invoked/blink,
-		/obj/effect/proc_holder/spell/self/recall,
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
 		/obj/effect/proc_holder/spell/invoked/mindlink
-
-		
 	)
+
 	for(var/i = 1, i <= spell_choices.len, i++)
 		choices["[spell_choices[i].name]: [spell_choices[i].cost]"] = spell_choices[i]
 
@@ -1665,6 +1663,7 @@
 	destination_turf = T
 	user_turf.add_overlay(target_effect)
 	destination_turf.add_overlay(tile_effect)
+
 /obj/effect/proc_holder/spell/invoked/blink
 	name = "Blink"
 	desc = "Teleport to a targeted location within your field of view. Limited to a range of 7 tiles."
@@ -1762,8 +1761,7 @@
 	user.visible_message(span_danger("<b>[user] vanishes in a brilliant flash of sparks!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
 	playsound(get_turf(user), 'sound/magic/unmagnet.ogg', 50, TRUE)
 	return TRUE
-
-
+/*	- Teleporting to Lumby, lumby drop 500g
 /obj/effect/proc_holder/spell/self/recall
 	name = "Recall"
 	desc = "Memorize your current location, allowing you to return to it after a delay."
@@ -1847,6 +1845,7 @@
 	else
 		to_chat(H, span_warning("Your concentration was broken!"))
 		return FALSE
+*/
 /obj/effect/proc_holder/spell/invoked/mindlink
 	name = "Mindlink"
 	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
