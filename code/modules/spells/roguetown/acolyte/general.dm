@@ -172,14 +172,22 @@
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			if(length(H.get_embedded_objects()))
+			var/no_embeds = TRUE
+			var/list/embeds = H.get_embedded_objects()
+			if(length(embeds))
+				for(var/object in embeds)
+					if(!istype(object, /obj/item/natural/worms/leech))	//Leeches and surgical cheeles are made an exception.
+						success = FALSE
+			else
+				no_embeds = TRUE
+			if(no_embeds)
+				target.apply_status_effect(/datum/status_effect/buff/healing, healing)
+			else
 				message_out = span_warning("The wounds tear and rip around the embedded objects!")
 				message_self = span_warning("Agonising pain shoots through your body as magycks try to sew around the embedded objects!")
 				H.adjustBruteLoss(20)
 				playsound(target, 'sound/combat/dismemberment/dismem (2).ogg', 100)
 				H.emote("agony")
-			else
-				target.apply_status_effect(/datum/status_effect/buff/healing, healing)
 		target.visible_message(message_out, message_self)
 		return TRUE
 	revert_cast()
