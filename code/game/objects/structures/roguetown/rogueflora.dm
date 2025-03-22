@@ -670,6 +670,10 @@
 	icon_state = "mushroomcluster"
 	density = TRUE
 
+/obj/structure/flora/mushroomcluster/New(loc)
+	..()
+	set_light(1.5, 1.5, 1.5, l_color ="#5D3FD3")
+
 /obj/structure/flora/tinymushrooms
 	name = "small mushroom cluster"
 	desc = "A cluster of tiny mushrooms native to the underdark."
