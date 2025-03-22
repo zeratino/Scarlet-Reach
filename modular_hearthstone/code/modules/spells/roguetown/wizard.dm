@@ -1757,6 +1757,13 @@
 				revert_cast()
 				return
 
+		// Check for gates
+		for (var/obj/structure/gate/gate in (traversal_turf.contents + T.contents))
+			if(gate.density)
+				to_chat(user, span_warning("I cannot blink through gates!"))
+				revert_cast()
+				return
+
 	var/obj/spot_one = new phase(start, user.dir)
 	var/obj/spot_two = new phase(T, user.dir)
 
