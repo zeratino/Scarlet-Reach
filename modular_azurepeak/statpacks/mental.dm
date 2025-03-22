@@ -32,4 +32,14 @@
 /datum/statpack/mental/precise
 	name = "Precise"
 	desc = "You've seen it all. You've heard it all. An eye to the horizon, and an ear to the ground, and the right place to strike."
-	stat_array = list(STAT_PERCEPTION = 2, STAT_STRENGTH = 1, STAT_ENDURANCE = -1, STAT_CONSTITUTION = -2)
+	stat_array = list(STAT_PERCEPTION = 2, STAT_STRENGTH = 1, STAT_ENDURANCE = -1, STAT_CONSTITUTION = -1)
+
+/datum/statpack/mental/diligent
+	name = "Diligent"
+	desc = "You take your time, but you have a lot of it to spare."
+	stat_array =  list(STAT_INTELLIGENCE = 2, STAT_ENDURANCE = 1, STAT_SPEED = -1)
+
+/datum/statpack/mental/industrious
+	name = "Industrious"
+	desc = "You waste no time. You know enough to get by, and strive towards it."
+	stat_array =  list(STAT_INTELLIGENCE = 2, STAT_SPEED = 1, STAT_CONSTITUTION = -1, STAT_PERCEPTION = -1)
