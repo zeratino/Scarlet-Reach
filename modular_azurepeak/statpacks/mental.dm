@@ -29,7 +29,7 @@
 	desc = "Your keen senses have not led you astray."
 	stat_array = list(STAT_PERCEPTION = 2, STAT_ENDURANCE = -1, STAT_CONSTITUTION = -1, STAT_SPEED = 1)
 
-/datum/statpack/mental/flexible
-	name = "Flexible"
-	desc = "You've seen it all. You've heard it all. An eye to the horizon, and an ear to the ground."
-	stat_array = list(STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 2, STAT_ENDURANCE = -1, STAT_CONSTITUTION = -2)
+/datum/statpack/mental/precise
+	name = "Precise"
+	desc = "You've seen it all. You've heard it all. An eye to the horizon, and an ear to the ground, and the right place to strike."
+	stat_array = list(STAT_PERCEPTION = 2, STAT_STRENGTH = 1, STAT_ENDURANCE = -1, STAT_CONSTITUTION = -2)
