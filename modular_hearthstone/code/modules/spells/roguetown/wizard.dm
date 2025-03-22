@@ -1679,7 +1679,7 @@
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	overlay_state = "blink"
+	overlay_state = "rune6"
 	xp_gain = TRUE
 	invocation = "SHIFT THROUGH SPACE!"
 	invocation_type = "shout"
@@ -1692,7 +1692,7 @@
 	name = "teleportation magic"
 	desc = "Get out of the way!"
 	randomdir = FALSE
-	duration = 3 SECONDS
+	duration = 4 SECONDS
 	layer = MASSIVE_OBJ_LAYER
 	light_outer_range = 2
 	light_color = COLOR_PALE_PURPLE_GRAY
@@ -1760,7 +1760,7 @@
 	var/obj/spot_one = new phase(start, user.dir)
 	var/obj/spot_two = new phase(T, user.dir)
 
-	spot_two.Beam(spot_one, "drain_life", time = 2 SECONDS)
+	spot_one.Beam(spot_two, "purple_lightning", time = 1.5 SECONDS)
 	playsound(T, 'sound/magic/blink.ogg', 25, TRUE)
 
 	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
