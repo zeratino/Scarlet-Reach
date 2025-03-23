@@ -89,7 +89,7 @@
 	///The timer handling deletion. Saved to potentially adjust it.
 	var/deletion_timer
 	///For determining if it's been highlighted for marked person purposes
-	var/highlighted = FALSE
+	var/highlighted = list()
 	///A preserved dir for the highlights
 	var/original_dir
 
@@ -206,8 +206,15 @@
 ///Adds a new person to the list of people who can see this track.
 /obj/effect/track/proc/add_knower(mob/living/tracker, competence = 1)
 	known_by[tracker] = competence
-	if(tracker.client)
-		tracker.client.images += real_image
+	if(ishuman(tracker))
+		var/mob/living/carbon/human/H = tracker
+		if(HAS_TRAIT(tracker, TRAIT_SLEUTH) && H.current_mark == creator)
+			if(!(tracker in highlighted))
+				real_icon_state = "tracks_marked"
+				real_image = image(icon, src, real_icon_state, ABOVE_OPEN_TURF_LAYER, original_dir)
+				LAZYADD(highlighted, tracker)
+		if(tracker.client)
+			tracker.client.images += real_image
 	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, PROC_REF(remove_knower), override = TRUE)
 
 ///Removes a knower from the known ones. Usually only done when qdeleted.
@@ -216,6 +223,7 @@
 	UnregisterSignal(tracker, COMSIG_PARENT_QDELETING)
 	if(tracker.client)
 		tracker.client.images -= real_image
+	LAZYREMOVE(highlighted, tracker)
 	known_by -= tracker
 	if(creator == tracker)
 		creator = null
@@ -238,9 +246,10 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.current_mark)
-			if(H.current_mark == creator && !highlighted)
+			if(H.current_mark == creator && !(H in highlighted))
 				real_icon_state = "tracks_marked"
 				real_image = image(icon, src, real_icon_state, ABOVE_OPEN_TURF_LAYER, original_dir)
+				LAZYADD(highlighted, H)
 				if(H.client)
 					H.client.images += real_image
 	. += knowledge_readout(user, knowledge)
@@ -274,7 +283,6 @@
 		var/mob/living/carbon/human/H = user
 		if(H.current_mark && H.current_mark == creator)
 			. += span_nicegreen("This track belongs to your mark.")
-			highlighted = TRUE
 	return .
 
 ///Gets special info for a track relative to a mob, such as type and depth. Override if desiring tracking modifier adjustment.

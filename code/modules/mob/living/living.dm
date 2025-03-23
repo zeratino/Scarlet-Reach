@@ -1789,14 +1789,20 @@
 				if(M.STAPER > 10)
 					probby -= (M.STAPER) / 2
 			probby = (max(probby, 5))
+			if(ishuman(src) && HAS_TRAIT(src, TRAIT_SLEUTH))
+				var/mob/living/carbon/human/H = src
+				if(H.current_mark == M)
+					if(M.m_intent != MOVE_INTENT_SNEAK && M.mob_timers[MT_INVISIBILITY] < world.time)
+						found_ping(get_turf(M), client, "trap")
+						continue
 			if(prob(probby))
 				found_ping(get_turf(M), client, "hidden")
-				M.mob_timers[MT_INVISIBILITY] = world.time
-				M.update_sneak_invis()
-				to_chat(M, span_danger("[src] sees me! I'm found!"))
-				if(M.m_intent == MOVE_INTENT_SNEAK)
+				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					emote("huh")
 					M.mob_timers[MT_FOUNDSNEAK] = world.time
+					M.mob_timers[MT_INVISIBILITY] = world.time
+					M.update_sneak_invis()
+					to_chat(M, span_danger("[src] sees me! I'm found!"))
 			else
 				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					if(M.client?.prefs.showrolls)

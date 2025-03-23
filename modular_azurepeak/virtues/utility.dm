@@ -250,7 +250,8 @@
 	name = "Sleuth"
 	desc = "You realised long ago that the ability to find a man is as helpful to aid the law as it is to evade it."
 	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
-	custom_text = 
+	added_traits = list(TRAIT_SLEUTH)
+	custom_text = "Upon right clicking a track, you will Mark the person who made them (Expert skill required, not exclusive to this Virtue). Further tracks found will be automatically highlighted as theirs, along with the person themselves, if they are not sneaking or invisible at the time."
 
 /datum/virtue/utility/bronzearm_r
 	name = "Bronze Arm (R)"
