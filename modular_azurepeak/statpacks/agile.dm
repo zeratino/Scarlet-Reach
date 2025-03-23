@@ -27,7 +27,7 @@
 /datum/statpack/agile/dextrous
 	name = "Dextrous"
 	desc = "You see. You dash. You spring. You dodge. Can you keep it up?"
-	stat_array = list(STAT_SPEED = 2, STAT_PERCEPTION = 2, STAT_INTELLIGENCE = -1, STAT_ENDURANCE = -1, STAT_CONSTITUTION = -1)
+	stat_array = list(STAT_SPEED = 2, STAT_PERCEPTION = 1, STAT_INTELLIGENCE = -1, STAT_CONSTITUTION = -1)
 
 /datum/statpack/agile/deft
 	name = "Deft"
