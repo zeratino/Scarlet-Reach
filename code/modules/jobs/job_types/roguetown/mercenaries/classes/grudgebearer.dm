@@ -9,7 +9,7 @@
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/grudgebearer
 	category_tags = list(CTAG_MERCENARY)
-	cmode_music = 'sound/music/combat_grudgebearer.ogg'
+	cmode_music = 'sound/music/combat_dwarf.ogg'
 
 /datum/outfit/job/roguetown/mercenary/grudgebearer/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -17,15 +17,15 @@
 		var/classes = list("Smith", "Soldier")
 		var/classchoice = input("Choose your archetype", "Available archetypes") as anything in classes
 		switch(classchoice)
-			if("Smith")
+			if("Smith")	//Because the armor is race-exclusive for repairs, these guys *should* be able to repair their own guys armor layers. A Dwarf smith isn't guaranteed, after all.
 				H.change_stat("intelligence", 3)
 				H.change_stat("perception", 3)	//"Strikes deftly" is based on PER
 				H.change_stat("endurance", 3)
 				H.change_stat("strength", 1)
 				H.change_stat("speed", -2)
 				H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 4, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 4, TRUE)	//Shouldn't be better than the smith (though the stats are already)
+				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 3, TRUE)	//But shouldn't be too low for the Soldier to be able to grind up to easily
 				H.mind.adjust_skillrank(/datum/skill/craft/smelting, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
@@ -36,6 +36,7 @@
 				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
 				cloak = /obj/item/clothing/cloak/forrestercloak/snow
 				belt = /obj/item/storage/belt/rogue/leather/black
+				beltr = /obj/item/rogueweapon/mace
 				backl = /obj/item/storage/backpack/rogue/satchel
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
@@ -55,8 +56,7 @@
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)	//Only here so they'd be able to repair their own armor integrity
 				H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
 				cloak = /obj/item/clothing/cloak/forrestercloak/snow
@@ -103,7 +103,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
 	name = "grudgebearer dwarven helm"
 	desc = "A hardy, layered helmet. It lets one's dwarvenly beard to poke out."
-	body_parts_covered = (HEAD | MOUTH | NOSE | EYES | EARS | NECK)
+	body_parts_covered = (HEAD | MOUTH | NOSE | EYES | EARS | NECK)	//This specifically omits hair so you could hang your beard out of the helm
 	armor = list("blunt" = 100, "slash" = 100, "stab" = 100, "piercing" = 80, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PICK)
 	allowed_race = list(/datum/species/dwarf, /datum/species/dwarf/mountain)
@@ -155,7 +155,7 @@
 
 	hits_per_layer = list(
 		"100" 	= 10,
-		"90" 	= 10,
+		"90" 	= 15,
 		"80" 	= 25,
 		"70" 	= 25,
 		"60" 	= 30,
@@ -174,9 +174,9 @@
 	)
 
 	repair_skills = list(
-		/datum/skill/craft/armorsmithing = 5,
-		/datum/skill/craft/blacksmithing = 5,
-		/datum/skill/craft/smelting = 5,
+		/datum/skill/craft/armorsmithing = 4,
+		/datum/skill/craft/blacksmithing = 3,
+		/datum/skill/craft/smelting = 3,
 	)
 
 	race_repair = list(
@@ -190,9 +190,9 @@
 
 /datum/component/peelarmor/grudgebearer/helmet
 	repair_skills = list(
-		/datum/skill/craft/armorsmithing = 5,
-		/datum/skill/craft/blacksmithing = 4,
-		/datum/skill/craft/smelting = 4,
+		/datum/skill/craft/armorsmithing = 3,
+		/datum/skill/craft/blacksmithing = 3,
+		/datum/skill/craft/smelting = 3,
 	)
 
 	applied_trait = null
@@ -235,8 +235,8 @@
 	)
 
 	repair_skills = list(
-		/datum/skill/craft/armorsmithing = 4,
-		/datum/skill/craft/blacksmithing = 4,
-		/datum/skill/craft/smelting = 3,
+		/datum/skill/craft/armorsmithing = 3,
+		/datum/skill/craft/blacksmithing = 2,
+		/datum/skill/craft/smelting = 2,
 	)
 	applied_trait = null
