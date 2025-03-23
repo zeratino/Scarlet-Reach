@@ -37,7 +37,7 @@
 				cloak = /obj/item/clothing/cloak/forrestercloak/snow
 				belt = /obj/item/storage/belt/rogue/leather/black
 				beltr = /obj/item/rogueweapon/mace
-				backl = /obj/item/storage/backpack/rogue/satchel
+				backl = /obj/item/storage/backpack/rogue/backpack
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
 				pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -56,7 +56,7 @@
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)	//Only here so they'd be able to repair their own armor integrity
+				H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)	//Only here so they'd be able to repair their own armor integrity
 				H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
 				cloak = /obj/item/clothing/cloak/forrestercloak/snow
