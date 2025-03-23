@@ -40,7 +40,7 @@
 	added_traits = list(TRAIT_RESIDENT)
 
 /datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
-	if(recipient.mind?.assigned_role == "Adventurer")
+	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
 		// Find tavern area for spawning
 		var/area/spawn_area
 		for(var/area/A in world)

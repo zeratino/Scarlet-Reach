@@ -7809,10 +7809,7 @@
 /area/rogue/indoors/shelter/woods)
 "fqn" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
-/obj/structure/bars/grille{
-	density = 1
-	},
-/turf/open/floor/rogue/cobble,
+/turf/closed/wall/mineral/rogue/stone/window,
 /area/rogue/indoors/town/garrison)
 "fqw" = (
 /obj/structure/fluff/railing/border{
@@ -30423,10 +30420,7 @@
 	},
 /area/rogue/outdoors/town)
 "vqp" = (
-/obj/structure/bars/grille{
-	density = 1
-	},
-/turf/open/floor/rogue/blocks,
+/turf/closed/wall/mineral/rogue/stone/window,
 /area/rogue/indoors/town/garrison)
 "vqB" = (
 /obj/structure/bars,
@@ -32335,14 +32329,8 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains)
 "wLs" = (
-/obj/effect/decal/cobbleedge{
-	dir = 8
-	},
 /obj/machinery/light/rogue/wallfire/candle/l,
-/obj/structure/bars/grille{
-	density = 1
-	},
-/turf/open/floor/rogue/blocks,
+/turf/closed/wall/mineral/rogue/stone/window,
 /area/rogue/indoors/town/garrison)
 "wLy" = (
 /obj/structure/closet/crate/roguecloset,
@@ -81906,7 +81894,7 @@ xOC
 xOC
 xOC
 xOC
-xOC
+biI
 biI
 biI
 biI
@@ -82064,7 +82052,7 @@ xOC
 xOC
 xOC
 xOC
-xOC
+biI
 biI
 biI
 biI
@@ -82222,14 +82210,14 @@ xOC
 xOC
 xOC
 xOC
-xOC
-xOC
-xOC
-xOC
-xOC
-xOC
-xOC
-xOC
+biI
+biI
+biI
+biI
+biI
+biI
+biI
+biI
 biI
 biI
 biI
