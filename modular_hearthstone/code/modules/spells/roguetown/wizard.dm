@@ -1666,7 +1666,7 @@
 
 /obj/effect/proc_holder/spell/invoked/blink
 	name = "Blink"
-	desc = "Teleport to a targeted location within your field of view. Limited to a range of [max_range] tiles. Only works on the same plane as the caster."
+	desc = "Teleport to a targeted location within your field of view. Limited to a range of 3 tiles. Only works on the same plane as the caster."
 	school = "conjuration"
 	cost = 2
 	releasedrain = 30
@@ -1755,7 +1755,7 @@
 				
 		// Check for windows
 		for(var/obj/structure/roguewindow/window in (traversal_turf.contents + T.contents))
-			if(window.density)
+			if(window.density && !window.climbable)
 				to_chat(user, span_warning("I cannot blink through windows!"))
 				revert_cast()
 				return
