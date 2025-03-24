@@ -2,6 +2,8 @@
 #define PRESTI_SPARK "presti_spark"
 #define PRESTI_MOTE "presti_mote"
 
+GLOBAL_LIST_EMPTY(wizard_spells_list)
+
 /obj/effect/proc_holder/spell/targeted/touch/prestidigitation
 	name = "Prestidigitation"
 	desc = "A few basic tricks many apprentices use to practice basic manipulation of the arcyne."
@@ -236,8 +238,11 @@
 	for(var/i = 1, i <= spell_choices.len, i++)
 		choices["[spell_choices[i].name]: [spell_choices[i].cost]"] = spell_choices[i]
 
+	choices = sortList(choices)
+
 	var/choice = input("Choose a spell, points left: [user.mind.spell_points - user.mind.used_spell_points]") as null|anything in choices
 	var/obj/effect/proc_holder/spell/item = choices[choice]
+
 	if(!item)
 		return     // user canceled;
 	if(alert(user, "[item.desc]", "[item.name]", "Learn", "Cancel") == "Cancel") //gives a preview of the spell's description to let people know what a spell does
@@ -666,67 +671,6 @@
 		attached_spell.remove_hand()
 	return
 
-/obj/effect/proc_holder/spell/invoked/featherfall
-	name = "Featherfall"
-	desc = "Grant yourself and any creatures adjacent to you some defense against falls."
-	cost = 1
-	xp_gain = TRUE
-	school = "transmutation"
-	releasedrain = 50
-	chargedrain = 0
-	chargetime = 10 SECONDS
-	charge_max = 2 MINUTES
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	movement_interrupt = TRUE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-	overlay_state = "jump"
-
-/obj/effect/proc_holder/spell/invoked/featherfall/cast(list/targets, mob/user = usr)
-
-	user.visible_message("[user] mutters an incantation and a dim pulse of light radiates out from them.")
-
-	for(var/mob/living/L in range(1, usr))
-		L.apply_status_effect(/datum/status_effect/buff/featherfall)
-
-	return TRUE
-
-/obj/effect/proc_holder/spell/invoked/haste
-	name = "Haste"
-	desc = "Cause a target to be magically hastened."
-	cost = 2
-	xp_gain = TRUE
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 1 SECONDS
-	charge_max = 1.5 MINUTES
-	warnie = "spellwarning"
-	school = "transmutation"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/haste/cast(list/targets, mob/user)
-	var/atom/A = targets[1]
-	if(!isliving(A))
-		revert_cast()
-		return
-
-	var/mob/living/spelltarget = A
-	spelltarget.apply_status_effect(/datum/status_effect/buff/haste)
-	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
-
-	if(spelltarget != user)
-		user.visible_message("[user] mutters an incantation and [spelltarget] briefly shines yellow.")
-	else
-		user.visible_message("[user] mutters an incantation and they briefly shine yellow.")
-
-	return TRUE
-
 /obj/effect/proc_holder/spell/invoked/knock
 	name = "Knock"
 	desc = "Force open adjacent doors, windows and most containers."
@@ -766,31 +710,6 @@
 /obj/effect/proc_holder/spell/invoked/knock/proc/open_window(obj/structure/roguewindow/openclose/W)
 	if(istype(W))
 		W.force_open()
-
-/obj/effect/proc_holder/spell/invoked/longstrider
-	name = "Longstrider"
-	desc = "Grant yourself and any creatures adjacent to you free movement through rough terrain."
-	cost = 1
-	xp_gain = TRUE
-	school = "transmutation"
-	releasedrain = 50
-	chargedrain = 0
-	chargetime = 4 SECONDS
-	charge_max = 1.5 MINUTES
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	charging_slowdown = 1
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/longstrider/cast(list/targets, mob/user = usr)
-
-	user.visible_message("[user] mutters an incantation and a dim pulse of light radiates out from them.")
-
-	for(var/mob/living/L in range(1, usr))
-		L.apply_status_effect(/datum/status_effect/buff/longstrider)
-
-	return TRUE
 
 //ports -- todo: sfx
 
@@ -936,76 +855,6 @@
 	target.update_vision_cone()
 	target.remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE)
 	. = ..()
-
-
-/obj/effect/proc_holder/spell/invoked/fortitude
-	name = "Fortitude"
-	desc = "Harden one's humors to the fatigues of the body."
-	cost = 2
-	xp_gain = TRUE
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 4 SECONDS
-	charge_max = 2 MINUTES
-	warnie = "spellwarning"
-	school = "transmutation"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/fortitude/cast(list/targets, mob/user)
-	var/atom/A = targets[1]
-	if(!isliving(A))
-		revert_cast()
-		return
-
-	var/mob/living/spelltarget = A
-	spelltarget.apply_status_effect(/datum/status_effect/buff/fortitude)
-	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
-
-	if(spelltarget != user)
-		user.visible_message("[user] mutters an incantation and [spelltarget] briefly shines green.")
-	else
-		user.visible_message("[user] mutters an incantation and they briefly shine green.")
-
-	return TRUE
-
-/obj/effect/proc_holder/spell/invoked/guidance
-	name = "Guidance"
-	overlay_state = "guidance"
-	desc = "Makes one's hand travel true, blessing them with arcyne luck in combat. (+10% chance to hit with melee, +10% chance to defend from melee)"
-	cost = 2
-	xp_gain = TRUE
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 4 SECONDS
-	charge_max = 5 MINUTES
-	warnie = "spellwarning"
-	school = "transmutation"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/guidance/cast(list/targets, mob/user)
-	var/atom/A = targets[1]
-	if(!isliving(A))
-		revert_cast()
-		return
-
-	var/mob/living/spelltarget = A
-	spelltarget.apply_status_effect(/datum/status_effect/buff/guidance)
-	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
-
-	if(spelltarget != user)
-		user.visible_message("[user] mutters an incantation and [spelltarget] briefly shines orange.")
-	else
-		user.visible_message("[user] mutters an incantation and they briefly shine orange.")
-
-	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/snap_freeze // to do: get scroll icon
 	name = "Snap Freeze"

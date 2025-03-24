@@ -188,10 +188,10 @@
 					prob2defend -= (attacker_skill * 20)
 
 			if(HAS_TRAIT(src, TRAIT_GUIDANCE))
-				prob2defend += 10
+				prob2defend += 15
 
 			if(HAS_TRAIT(user, TRAIT_GUIDANCE))
-				prob2defend -= 10
+				prob2defend -= 15
 
 			// parrying while knocked down sucks ass
 			if(!(mobility_flags & MOBILITY_STAND))
@@ -510,6 +510,12 @@
 		// dodging while knocked down sucks ass
 		if(!(L.mobility_flags & MOBILITY_STAND))
 			prob2defend *= 0.25
+
+		if(HAS_TRAIT(L, TRAIT_GUIDANCE))
+			prob2defend += 15
+
+		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
+			prob2defend -= 15
 
 		if(HAS_TRAIT(H, TRAIT_SENTINELOFWITS))
 			var/sentinel = H.calculate_sentinel_bonus()
