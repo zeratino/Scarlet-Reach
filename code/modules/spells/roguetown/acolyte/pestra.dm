@@ -191,7 +191,7 @@
 
 		if(remove_rot(target = target, user = user, method = "prayer",
 			success_message = "The rot leaves [target]'s body!",
-			fail_message = "Nothing happens.", is_lethal))
+			fail_message = "Nothing happens.", lethal = is_lethal))
 			target.visible_message(span_notice("The rot leaves [target]'s body!"), span_green("I feel the rot leave my body!"))
 			return TRUE
 		else //Attempt failed, no rot
