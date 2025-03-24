@@ -1666,7 +1666,7 @@
 
 /obj/effect/proc_holder/spell/invoked/blink
 	name = "Blink"
-	desc = "Teleport to a targeted location within your field of view. Limited to a range of 3 tiles. Only works on the same plane as the caster."
+	desc = "Teleport to a targeted location within your field of view. Limited to a range of 4 tiles. Only works on the same plane as the caster."
 	school = "conjuration"
 	cost = 2
 	releasedrain = 30
@@ -1683,7 +1683,7 @@
 	xp_gain = TRUE
 	invocation = "SHIFT THROUGH SPACE!"
 	invocation_type = "shout"
-	var/max_range = 3
+	var/max_range = 4
 	var/phase = /obj/effect/temp_visual/blink
 
 /obj/effect/temp_visual/blink
