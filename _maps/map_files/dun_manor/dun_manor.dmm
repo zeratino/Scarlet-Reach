@@ -6843,6 +6843,10 @@
 /obj/structure/rack/rogue,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
+"eHC" = (
+/obj/structure/bed/rogue/bedroll,
+/turf/open/floor/rogue/sand,
+/area/rogue/outdoors/beach)
 "eHD" = (
 /obj/machinery/light/rogue/chand,
 /turf/open/transparent/openspace,
@@ -55653,7 +55657,7 @@ cdQ
 kFa
 cvR
 kTL
-cdQ
+eHC
 etD
 etD
 etD
@@ -56118,7 +56122,7 @@ hWI
 hWI
 uBR
 uBR
-cdQ
+eHC
 cdQ
 bFq
 cdQ
@@ -56127,7 +56131,7 @@ sPR
 sPR
 cdQ
 cdQ
-cdQ
+eHC
 uBR
 hWI
 pNQ
