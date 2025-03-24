@@ -21,6 +21,7 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/local_lightsout,
 	/datum/admins/proc/checkpq,
 	/datum/admins/proc/adjustpq,
+	/client/proc/cmd_assume_direct_control,
 	/client/proc/jumptomob,
 	/client/proc/returntolobby,
 	/datum/verbs/menu/Admin/verb/playerpanel,
