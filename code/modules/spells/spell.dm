@@ -27,6 +27,7 @@
 	var/charging_slowdown = 0
 	var/obj/inhand_requirement = null
 	var/overlay_state = null
+	var/ignore_los = FALSE
 
 
 /obj/effect/proc_holder/Initialize()
@@ -381,6 +382,22 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			recharging = FALSE
 
 /obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
+	if(!ignore_los)
+		var/result = FALSE
+		if(length(targets))
+			var/radius
+			if(range > 0)	//accounts for touch / self spells that use negative range
+				radius = range
+			else
+				radius = 1
+			var/list/visible = view(radius, user)
+			for(var/thing in targets)
+				if(thing in visible)
+					result = TRUE
+		if(!result)
+			revert_cast(user)
+			to_chat(user, span_warning("I do not have line of sight!"))
+			return
 	before_cast(targets, user = user)
 	invocation(user)
 	if(user && user.ckey)
@@ -635,6 +652,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/self //Targets only the caster. Good for buffs and heals, but probably not wise for fireballs (although they usually fireball themselves anyway, honke)
 	range = -1 //Duh
+	ignore_los = TRUE
 
 /obj/effect/proc_holder/spell/self/choose_targets(mob/user = usr)
 	if(!user)
