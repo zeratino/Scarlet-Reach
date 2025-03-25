@@ -870,7 +870,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		to_chat(src, span_notice("Either the book file doesn't exist or you have failed to type something in properly (you can look up the file name by the verb 'database book file names'"))
 
 /client/proc/remove_bounty()
-	set category = "Admin"
+	set category = "-Admin-"
 	set name = "Remove Bounty"
 	if(!holder)
 		return
