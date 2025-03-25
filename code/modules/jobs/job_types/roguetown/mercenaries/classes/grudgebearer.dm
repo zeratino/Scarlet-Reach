@@ -153,6 +153,20 @@
 /datum/component/peelarmor/grudgebearer
 	layer_repair = 2
 
+	hits_to_peel = list(
+		"blunt" = 5,
+		"slash" = 10,
+		"stab" = 5,
+		"piercing" = 10,
+	)
+
+	damtype_peel_ratio = list(
+		"blunt" = 1,
+		"slash" = 3,
+		"stab" = 1,
+		"piercing" = 5,
+	)
+
 	hits_per_layer = list(
 		"100" 	= 10,
 		"90" 	= 15,
@@ -198,6 +212,13 @@
 	applied_trait = null
 
 /datum/component/peelarmor/grudgebearer/limbs
+	hits_to_peel = list(
+		"blunt" = 6,
+		"slash" = 6,
+		"stab" = 6,
+		"piercing" = 9,
+	)
+
 	layer_max = list(
 		"blunt" = 100,
 		"slash" = 100,

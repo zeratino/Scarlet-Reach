@@ -13,9 +13,9 @@
 
 	/// How many hits a given damage type requires to decay a tier in the armor. Is meant to increase as the armor gets worse.
 	var/list/hits_to_peel = list(
-		"blunt" = 5,
-		"slash" = 5,
-		"stab" = 5,
+		"blunt" = 10,
+		"slash" = 10,
+		"stab" = 10,
 		"piercing" = 10,
 	)
 
@@ -38,7 +38,7 @@
 	/// New hit count requirements per peeled layer. ex. going from 100 to 90 will require 5 hits, 90 to 80 will require 10, etc.
 	/// MAKE SURE THE VALUES CORRELATE WITH YOUR PEEL_AMT AND STARTING ARMOR VALUES IF YOU WISH TO USE THIS
 	var/list/hits_per_layer = list(
-		"100" 	= 5,
+		"100" 	= 10,
 		"90" 	= 10,
 		"80" 	= 20,
 		"70" 	= 25,
@@ -53,9 +53,9 @@
 	/// A multiplier to a damage type. One hit from that type will equal this number if it's bigger than 1. ONLY USE WHOLE NUMBERS.
 	var/list/damtype_peel_ratio = list(
 		"blunt" = 1,
-		"slash" = 3,
+		"slash" = 1,
 		"stab" = 1,
-		"piercing" = 10,
+		"piercing" = 5,
 	)
 
 	/// Populated during repair_check(), leave empty.
@@ -128,7 +128,7 @@
 				color = "#3c9c24"
 			if(31 to 999)
 				color = "#fdfdfd"
-		examine_list += span_info("<b>[type]:</b><font color = '[color]'> [val]</font>")
+		examine_list += span_info("<b>[type]:</b><font color = '[color]'> \Roman[val]</font>")
 	//Can I do repairs on it at all?
 	if(length(race_repair))
 		if(ishuman(user))
@@ -146,8 +146,9 @@
 			var/obj/O = item
 			dat += "<b>[O::name]</b> | "
 		examine_list += span_info("[dat]<br>")
-	else
+	else	//If there are no items to repair it with, assume unrepairable.
 		examine_list += span_info("<br>This armor's layers <b>cannot</b> be repaired.")
+		return
 	//What skills are needed?
 	if(length(repair_skills))
 		examine_list += span_info("The layers on this armor requires these skills to be repaired:")
