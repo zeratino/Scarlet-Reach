@@ -263,6 +263,13 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/kettle
 	craftdiff = 2
 
+/datum/anvil_recipe/armor/steel/widehelmetkettle
+	name = "Wide Kettle Helmet"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/clothing/head/roguetown/helmet/kettle/wide
+	craftdiff = 2
+
+
 /datum/anvil_recipe/armor/steel/bevor
 	name = "Bevor"
 	req_bar = /obj/item/ingot/steel

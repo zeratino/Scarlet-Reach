@@ -617,6 +617,11 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	armor = list("blunt" = 80, "slash" = 90, "piercing" = 30, "stab" = 70, "fire" = 0, "acid" = 0)
 
+/obj/item/clothing/head/roguetown/helmet/kettle/wide
+	name = "wide kettle helmet"
+	desc = "A steel helmet which protects the top and sides of the head. This one looks wider than others."
+	icon_state = "kettlewide"
+
 /obj/item/clothing/head/roguetown/helmet/kettle/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
