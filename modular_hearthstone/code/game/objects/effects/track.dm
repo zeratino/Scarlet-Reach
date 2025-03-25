@@ -92,6 +92,8 @@
 	var/highlighted = list()
 	///A preserved dir for the highlights
 	var/original_dir
+	///Whether this track allows its owner to be Marked
+	var/markable = TRUE
 
 /obj/effect/track/Initialize()
 	. = ..()
@@ -283,6 +285,8 @@
 		var/mob/living/carbon/human/H = user
 		if(!isnull(H.current_mark) && H.current_mark == creator)
 			. += span_nicegreen("This track belongs to your mark.")
+		if(H.mind?.get_skill_level(/datum/skill/misc/tracking) >= SKILL_LEVEL_EXPERT)
+			. += span_nicegreen("<i><font size = 2>Right-click this track to Mark its owner.</font></i>")
 	return .
 
 ///Gets special info for a track relative to a mob, such as type and depth. Override if desiring tracking modifier adjustment.
@@ -402,6 +406,7 @@
 /obj/effect/track/structure
 	name = "clue"
 	real_icon_state = "tracks_structure"
+	markable = FALSE
 	var/skill_level
 	var/tool_used
 	var/tool_used_ambiguous
@@ -448,6 +453,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.mind?.get_skill_level(/datum/skill/misc/tracking) > SKILL_LEVEL_JOURNEYMAN)	//Expert+
+			if(!markable)
+				to_chat(H, span_warning("This is not enough to Mark them. I need proper tracks."))
 			to_chat(H, span_info("You start taking note of the person's gait, weight and other distinct features."))
 			if(do_after(user, (50 - H.STAPER*2)))
 				H.current_mark = creator
