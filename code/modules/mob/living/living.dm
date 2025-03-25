@@ -1765,12 +1765,12 @@
 		return
 	if(!can_look_up())
 		return
-	changeNext_move(CLICK_CD_EXHAUSTED)
+	changeNext_move(HAS_TRAIT(src, TRAIT_SLEUTH) ? CLICK_CD_RESIST : CLICK_CD_EXHAUSTED)
 	if(m_intent != MOVE_INTENT_SNEAK)
 		visible_message(span_info("[src] begins looking around."))
 	var/looktime = 50 - (STAPER * 2) - (mind?.get_skill_level(/datum/skill/misc/tracking) * 5)
 	looktime = clamp(looktime, 7, 50)
-	if(do_after(src, looktime, target = src))
+	if(HAS_TRAIT(src, TRAIT_SLEUTH) ? move_after(src, looktime, target = src) : do_after(src, looktime, target = src))
 		for(var/mob/living/M in view(7,src))
 			if(M == src)
 				continue
@@ -1789,20 +1789,14 @@
 				if(M.STAPER > 10)
 					probby -= (M.STAPER) / 2
 			probby = (max(probby, 5))
-			if(ishuman(src) && HAS_TRAIT(src, TRAIT_SLEUTH))
-				var/mob/living/carbon/human/H = src
-				if(H.current_mark == M)
-					if(M.m_intent != MOVE_INTENT_SNEAK && M.mob_timers[MT_INVISIBILITY] < world.time)
-						found_ping(get_turf(M), client, "trap")
-						continue
 			if(prob(probby))
 				found_ping(get_turf(M), client, "hidden")
-				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
+				M.mob_timers[MT_INVISIBILITY] = world.time
+				M.update_sneak_invis()
+				to_chat(M, span_danger("[src] sees me! I'm found!"))
+				if(M.m_intent == MOVE_INTENT_SNEAK)
 					emote("huh")
 					M.mob_timers[MT_FOUNDSNEAK] = world.time
-					M.mob_timers[MT_INVISIBILITY] = world.time
-					M.update_sneak_invis()
-					to_chat(M, span_danger("[src] sees me! I'm found!"))
 			else
 				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					if(M.client?.prefs.showrolls)

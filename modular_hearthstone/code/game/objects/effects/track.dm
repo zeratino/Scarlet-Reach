@@ -245,7 +245,7 @@
 		return //Huh?
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.current_mark)
+		if(!isnull(H.current_mark))
 			if(H.current_mark == creator && !(H in highlighted))
 				real_icon_state = "tracks_marked"
 				real_image = image(icon, src, real_icon_state, ABOVE_OPEN_TURF_LAYER, original_dir)
@@ -281,7 +281,7 @@
 		else if(overwrites >= 2)
 			. += "[span_warning("There are traces of around [overwrites] older tracks here, too..")]<br>"
 		var/mob/living/carbon/human/H = user
-		if(H.current_mark && H.current_mark == creator)
+		if(!isnull(H.current_mark) && H.current_mark == creator)
 			. += span_nicegreen("This track belongs to your mark.")
 	return .
 
