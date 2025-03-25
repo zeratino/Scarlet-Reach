@@ -1725,6 +1725,7 @@
 		to_chat(user, span_warning("I cannot teleport into a wall!"))
 		revert_cast()
 		return
+
 	// Check range limit
 	var/distance = get_dist(start, T)
 	if(distance > max_range)
