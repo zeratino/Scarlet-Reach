@@ -42,7 +42,7 @@
 				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
 				pants = /obj/item/clothing/under/roguetown/trou/leather
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/half
-				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/book/rogue/grudge, /obj/item/natural/feather, /obj/item/rogueweapon/tongs = 1)
+				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/paper/scroll/grudge, /obj/item/natural/feather, /obj/item/rogueweapon/tongs = 1, /obj/item/clothing/head/roguetown/helmet/heavy/dwarven)
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			if("Soldier")
 				H.change_stat("constitution", 5)
@@ -67,7 +67,7 @@
 				pants = /obj/item/clothing/under/roguetown/trou/leather
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/full/dwarven
 				head = /obj/item/clothing/head/roguetown/helmet/heavy/dwarven
-				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/book/rogue/grudge, /obj/item/natural/feather)
+				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/hammer, /obj/item/paper/scroll/grudge, /obj/item/natural/feather)
 				var/weapons = list("Axe", "Mace")
 				var/wepchoice = input("Choose your weapon", "Available weapons") as anything in weapons
 				switch(wepchoice)
