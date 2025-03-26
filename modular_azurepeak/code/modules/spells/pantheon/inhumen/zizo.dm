@@ -124,6 +124,22 @@
 		/obj/effect/proc_holder/spell/invoked/longstrider,
 		/obj/effect/proc_holder/spell/invoked/invisibility,
 		/obj/effect/proc_holder/spell/invoked/blindness,
+		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e,
+//		/obj/effect/proc_holder/spell/invoked/frostbite5e,
+		/obj/effect/proc_holder/spell/invoked/guidance,
+		/obj/effect/proc_holder/spell/invoked/fortitude,
+		/obj/effect/proc_holder/spell/invoked/snap_freeze,
+		/obj/effect/proc_holder/spell/invoked/projectile/frostbolt,
+		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
+		/obj/effect/proc_holder/spell/invoked/gravity,
+		/obj/effect/proc_holder/spell/invoked/projectile/repel,
+		/obj/effect/proc_holder/spell/invoked/poisonspray5e,
+		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
+		/obj/effect/proc_holder/spell/invoked/counterspell,
+		/obj/effect/proc_holder/spell/invoked/enlarge,
+		/obj/effect/proc_holder/spell/invoked/leap,
+		/obj/effect/proc_holder/spell/invoked/blink,
+		/obj/effect/proc_holder/spell/invoked/mirror_transform
 	)
 
 /obj/effect/proc_holder/spell/invoked/rituos/miracle

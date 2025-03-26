@@ -382,12 +382,12 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
 	before_cast(targets, user = user)
-	invocation(user)
 	if(user && user.ckey)
 		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
 	if(recharge)
 		recharging = TRUE
 	if(cast(targets, user = user))
+		invocation(user)
 		start_recharge()
 		if(sound)
 			playMagSound()

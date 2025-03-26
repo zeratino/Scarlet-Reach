@@ -236,6 +236,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Bell Collar"
 	path = /obj/item/clothing/neck/roguetown/collar/bell_collar
 
+/datum/loadout_item/cursed_collar
+	name = "Cursed Collar"
+	path = /obj/item/clothing/neck/roguetown/gorget/cursed_collar
+
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.
@@ -248,4 +252,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/donator_sru
 	name = "Emerald Dress"
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/emerald
-	ckeywhitelist = list("CheekyCrenando")
+	ckeywhitelist = list("cheekycrenando")
+
+/datum/loadout_item/donator_strudel
+	name = "Grenzelhoftian Mage Vest"
+	path = /obj/item/clothing/suit/roguetown/armor/leather/vest/sofiavest
+	ckeywhitelist = list("toasterstrudes")
+
+/datum/loadout_item/donator_bat
+	name = "Handcarved Harp"
+	path = /obj/item/rogue/instrument/harp/handcarved
+	ckeywhitelist = list("kitchifox")

@@ -8,9 +8,9 @@
 
 /datum/outfit/job/roguetown/vagabond/wanted/pre_equip(mob/living/carbon/human/H)
 	..()
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
-	else
+	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/vagrant
 		if(prob(50))
 			pants = /obj/item/clothing/under/roguetown/tights/vagrant/l
@@ -43,5 +43,5 @@
 			if ("Massive")
 				bounty_total = rand(150, 200)
 	
-		add_bounty(H.real_name, bounty_total, FALSE, my_crime, "the Justiciary of Azuria")
+		add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
 		to_chat(H, span_notice("I'm on the run from the law, and there's a [lowertext(bounty_amount)] sum of mammons out on my head... better lay low."))
