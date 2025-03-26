@@ -1796,9 +1796,9 @@
 	desc = "Sturdy, durable, flexible. A comfortable and reliable hood made of hardened leather."
 	icon_state = "leatherhelm"
 	max_integrity = 250
-	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES|MOUTH
+	body_parts_covered = HEAD|EARS|HAIR|NOSE
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
-	armor = list("blunt" = 70, "slash" = 60, "stab" = 30, "bullet" = 20, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 70, "slash" = 60, "stab" = 30, "piercing" = 20, "fire" = 0, "acid" = 0)
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
 	anvilrepair = null
 	smeltresult = null
