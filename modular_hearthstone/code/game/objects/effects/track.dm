@@ -89,9 +89,11 @@
 	///The timer handling deletion. Saved to potentially adjust it.
 	var/deletion_timer
 	///For determining if it's been highlighted for marked person purposes
-	var/highlighted = FALSE
+	var/highlighted = list()
 	///A preserved dir for the highlights
 	var/original_dir
+	///Whether this track allows its owner to be Marked
+	var/markable = TRUE
 
 /obj/effect/track/Initialize()
 	. = ..()
@@ -206,8 +208,15 @@
 ///Adds a new person to the list of people who can see this track.
 /obj/effect/track/proc/add_knower(mob/living/tracker, competence = 1)
 	known_by[tracker] = competence
-	if(tracker.client)
-		tracker.client.images += real_image
+	if(ishuman(tracker))
+		var/mob/living/carbon/human/H = tracker
+		if(HAS_TRAIT(tracker, TRAIT_SLEUTH) && H.current_mark == creator)
+			if(!(tracker in highlighted))
+				real_icon_state = "tracks_marked"
+				real_image = image(icon, src, real_icon_state, ABOVE_OPEN_TURF_LAYER, original_dir)
+				LAZYADD(highlighted, tracker)
+		if(tracker.client)
+			tracker.client.images += real_image
 	RegisterSignal(tracker, COMSIG_PARENT_QDELETING, PROC_REF(remove_knower), override = TRUE)
 
 ///Removes a knower from the known ones. Usually only done when qdeleted.
@@ -216,6 +225,7 @@
 	UnregisterSignal(tracker, COMSIG_PARENT_QDELETING)
 	if(tracker.client)
 		tracker.client.images -= real_image
+	LAZYREMOVE(highlighted, tracker)
 	known_by -= tracker
 	if(creator == tracker)
 		creator = null
@@ -237,10 +247,11 @@
 		return //Huh?
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.current_mark)
-			if(H.current_mark == creator && !highlighted)
+		if(!isnull(H.current_mark))
+			if(H.current_mark == creator && !(H in highlighted))
 				real_icon_state = "tracks_marked"
 				real_image = image(icon, src, real_icon_state, ABOVE_OPEN_TURF_LAYER, original_dir)
+				LAZYADD(highlighted, H)
 				if(H.client)
 					H.client.images += real_image
 	. += knowledge_readout(user, knowledge)
@@ -272,9 +283,10 @@
 		else if(overwrites >= 2)
 			. += "[span_warning("There are traces of around [overwrites] older tracks here, too..")]<br>"
 		var/mob/living/carbon/human/H = user
-		if(H.current_mark && H.current_mark == creator)
+		if(!isnull(H.current_mark) && H.current_mark == creator)
 			. += span_nicegreen("This track belongs to your mark.")
-			highlighted = TRUE
+		if(H.mind?.get_skill_level(/datum/skill/misc/tracking) >= SKILL_LEVEL_EXPERT)
+			. += span_nicegreen("<i><font size = 2>Right-click this track to Mark its owner.</font></i>")
 	return .
 
 ///Gets special info for a track relative to a mob, such as type and depth. Override if desiring tracking modifier adjustment.
@@ -394,6 +406,7 @@
 /obj/effect/track/structure
 	name = "clue"
 	real_icon_state = "tracks_structure"
+	markable = FALSE
 	var/skill_level
 	var/tool_used
 	var/tool_used_ambiguous
@@ -440,6 +453,8 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.mind?.get_skill_level(/datum/skill/misc/tracking) > SKILL_LEVEL_JOURNEYMAN)	//Expert+
+			if(!markable)
+				to_chat(H, span_warning("This is not enough to Mark them. I need proper tracks."))
 			to_chat(H, span_info("You start taking note of the person's gait, weight and other distinct features."))
 			if(do_after(user, (50 - H.STAPER*2)))
 				H.current_mark = creator
