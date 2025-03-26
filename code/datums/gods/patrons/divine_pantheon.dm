@@ -37,7 +37,7 @@
 	domain = "God of the Earth and Nature"
 	desc = "The God of Wilds, born from Abyssor's feverish dreams. Spilt forth life from the oceans to land in a wild craze. The Father of Ground-Lyfe. Treefather."
 	worshippers = "Druids, Beasts, Madmen"
-	mob_traits = list(TRAIT_KNEESTINGER_IMMUNITY)
+	mob_traits = list(TRAIT_KNEESTINGER_IMMUNITY, TRAIT_LEECHIMMUNE)
 	t1 = /obj/effect/proc_holder/spell/targeted/blesscrop
 	t2 = /obj/effect/proc_holder/spell/self/dendor_shapeshift
 	t3 = /obj/effect/proc_holder/spell/targeted/conjure_glowshroom
@@ -83,10 +83,11 @@
 	domain = "Goddess of Death and the Afterlife"
 	desc = "Veiled Lady of the underworld, equally feared and respected by mortals. She taught mortals the inevitability of death and cares for them as they reach the afterlife."
 	worshippers = "The Dead, Mourners, Gravekeepers"
-	mob_traits = list(TRAIT_SOUL_EXAMINE)
+	mob_traits = list(TRAIT_SOUL_EXAMINE, TRAIT_NOSTINK)	//No stink is generic but they deal with dead bodies so.. makes sense, I suppose?
 	t1 = /obj/effect/proc_holder/spell/invoked/avert
 	t2 = /obj/effect/proc_holder/spell/targeted/abrogation
-	t3 = /obj/effect/proc_holder/spell/targeted/soulspeak
+	t3 = /obj/effect/proc_holder/spell/targeted/churn
+	extra_spell = /obj/effect/proc_holder/spell/targeted/soulspeak
 	confess_lines = list(
 		"ALL SOULS FIND THEIR WAY TO NECRA!",
 		"THE UNDERMAIDEN IS OUR FINAL REPOSE!",
@@ -98,7 +99,7 @@
 	domain = "God of Trickery, Freedom and Inspiration"
 	desc = "The Laughing God, both famous and infamous for his sway over the forces of luck. Xylix is known for the inspiration of many a bards lyric. Speaks through his gift to man; the Tarot deck."
 	worshippers = "Gamblers, Bards, Artists, and the Silver-Tongued"
-	mob_traits = list(TRAIT_XYLIX)
+	mob_traits = list(TRAIT_XYLIX, TRAIT_BLACKLEG)
 	t1 = /obj/effect/proc_holder/spell/invoked/wheel
 	t2 = /obj/effect/proc_holder/spell/invoked/mockery
 	confess_lines = list(
@@ -136,7 +137,7 @@
 	domain = "God of Fire, Destruction and Rebirth"
 	desc = "Opinionless god of the crafts. He teaches that great works for killing or saving are great works, either way. The well-oiled guillotine and the well-sharpened axe are tools, and there is no good and evil to their craft."
 	worshippers = "Smiths, Miners, Engineers"
-	mob_traits = list(TRAIT_FORGEBLESSED)
+	mob_traits = list(TRAIT_FORGEBLESSED, TRAIT_BETTER_SLEEP)
 	t1 = /obj/effect/proc_holder/spell/invoked/vigorousexchange
 	t2 = /obj/effect/proc_holder/spell/invoked/heatmetal
 	t3 = /obj/effect/proc_holder/spell/invoked/hammerfall
@@ -155,7 +156,7 @@
 	domain = "Goddess of Love, Life and Beauty"
 	desc = "Baotha's fairer half, made from blind, unconditional love. She is without a shred of hate in her heart and taught mankind that true love that even transcends Necra's grasp."
 	worshippers = "Lovers, the romantically inclined, and Doting Grandparents"
-	mob_traits = list(TRAIT_EMPATH, TRAIT_GOODLOVER)
+	mob_traits = list(TRAIT_EMPATH, TRAIT_EXTEROCEPTION)
 	t1 = /obj/effect/proc_holder/spell/invoked/bud
 	t2 = /obj/effect/proc_holder/spell/invoked/eoracurse
 	t3 = null
