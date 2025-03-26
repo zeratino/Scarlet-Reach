@@ -34,28 +34,30 @@
 			chance2hit += 10
 
 	if(user.STAPER > 10)
-		chance2hit += ((user.STAPER-10)*3)
+		chance2hit += ((user.STAPER-10)*6)
 
 	if(user.STAPER < 10)
-		chance2hit -= ((10-user.STAPER)*3)
+		chance2hit -= ((10-user.STAPER)*6)
 
 	if(istype(user.rmb_intent, /datum/rmb_intent/aimed))
 		chance2hit += 20
 	if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 		chance2hit -= 20
 
-	chance2hit = CLAMP(chance2hit, 5, 99)
+	chance2hit = CLAMP(chance2hit, 5, 95)
 
 	if(prob(chance2hit))
 		return zone
 	else
-		if(prob(chance2hit+5))
+		if(prob(chance2hit+(user.STAPER - 10)))
 			if(check_zone(zone) == zone)
 				return zone
-			else
+			to_chat(user, span_warning("Accuracy fail! [chance2hit]%"))
+			if(user.STAPER >= 11)
 				if(user.client?.prefs.showrolls)
-					to_chat(user, span_warning("Accuracy fail! [chance2hit]%"))
-				return check_zone(zone)
+					return check_zone(zone)
+			else
+				return BODY_ZONE_CHEST
 		else
 			if(user.client?.prefs.showrolls)
 				to_chat(user, span_warning("Double accuracy fail! [chance2hit]%"))
@@ -188,10 +190,10 @@
 					prob2defend -= (attacker_skill * 20)
 
 			if(HAS_TRAIT(src, TRAIT_GUIDANCE))
-				prob2defend += 10
+				prob2defend += 15
 
 			if(HAS_TRAIT(user, TRAIT_GUIDANCE))
-				prob2defend -= 10
+				prob2defend -= 15
 
 			// parrying while knocked down sucks ass
 			if(!(mobility_flags & MOBILITY_STAND))
@@ -510,6 +512,12 @@
 		// dodging while knocked down sucks ass
 		if(!(L.mobility_flags & MOBILITY_STAND))
 			prob2defend *= 0.25
+
+		if(HAS_TRAIT(L, TRAIT_GUIDANCE))
+			prob2defend += 15
+
+		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
+			prob2defend -= 15
 
 		if(HAS_TRAIT(H, TRAIT_SENTINELOFWITS))
 			var/sentinel = H.calculate_sentinel_bonus()
