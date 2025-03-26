@@ -97,7 +97,7 @@
 						return
 					if(found_recipe.skill_required > lastuser?.mind?.get_skill_level(/datum/skill/craft/alchemy))
 						brewing = 0
-						src.visible_message(span_warning("The ingredients iin the cauldron melds together into a disgusting mess! Perhaps a more skilled alchemist is needed for this recipe."))
+						src.visible_message(span_warning("The ingredients in the cauldron melds together into a disgusting mess! Perhaps a more skilled alchemist is needed for this recipe."))
 						if(reagents)
 							src.reagents.remove_reagent(/datum/reagent/water, in_cauldron)
 						for(var/obj/item/ing in src.ingredients)
