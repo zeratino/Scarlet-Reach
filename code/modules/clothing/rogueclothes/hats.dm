@@ -1850,3 +1850,24 @@
 	smeltresult = /obj/item/rogueore/coal
 	max_integrity = 300
 	blocksound = SOFTHIT
+
+/obj/item/clothing/head/roguetown/helmet/elvenbarbute
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
+	name = "elven barbute"
+	desc = "It fits snugly on one's elven head, with special slots for their pointier ears."
+	body_parts_covered = FULL_HEAD
+	body_parts_covered = HEAD|HAIR|NOSE
+	flags_inv = HIDEEARS|HIDEFACE|HIDESNOUT
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	icon_state = "elven_barbute_full"
+	item_state = "elven_barbute_full"
+	armor = list("blunt" = 90, "slash" = 50, "stab" = 60, "piercing" = 90, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	clothing_flags = 0
+	block2add = FOV_BEHIND
+
+/obj/item/clothing/head/roguetown/helmet/elvenbarbute/winged
+	name = "winged elven barbute"
+	desc = "A winged version of the elven barbute. They have always been known for their vanity."
+	icon_state = "elven_barbute_winged"
+	item_state = "elven_barbute_winged"

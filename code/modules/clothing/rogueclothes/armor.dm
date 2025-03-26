@@ -354,6 +354,16 @@
 	max_integrity = 300
 	sellprice = 25
 
+/obj/item/clothing/suit/roguetown/armor/leather/trophyfur
+	name = "treated trophy fur robes"
+	desc = "A heavy set of hardened robes, lined with fur. The leather is composed of several creatures that were notably difficult to fell by arrow. A proof or rangership among many."
+	icon_state = "hatanga"
+	item_state = "hatanga"
+	armor = list("blunt" = 90, "slash" = 30, "stab" = 40, "piercing" = 80, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_STAB, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK, BCLASS_TWIST)
+	max_integrity = 300
+	sellprice = 100
+
 /obj/item/clothing/suit/roguetown/armor/leather/bikini
 	name = "leather bikini"
 	desc = "Flexible cowhide armor. Lightweight, better than nothing. Now in tasteful bikini shape."
