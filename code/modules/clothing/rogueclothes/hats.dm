@@ -1835,6 +1835,21 @@
 					H.update_inv_head()
 		user.update_fov_angles()
 
+/obj/item/clothing/head/roguetown/helmet/leather/advanced
+	name = "hardened leather helmet"
+	desc = "Sturdy, durable, flexible. A comfortable and reliable hood made of hardened leather."
+	icon_state = "leatherhelm"
+	max_integrity = 250
+	body_parts_covered = HEAD|EARS|HAIR|NOSE
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = list("blunt" = 70, "slash" = 60, "stab" = 30, "piercing" = 20, "fire" = 0, "acid" = 0)
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
+	anvilrepair = null
+	smeltresult = null
+	sewrepair = TRUE
+	blocksound = SOFTHIT
+	salvage_result = /obj/item/natural/hide/cured
+
 /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
 	name = "woad elven helm"
 	desc = "An assembly of woven trunk, kept alive by ancient song, now twisted and warped for battle and scorn."
@@ -1850,6 +1865,7 @@
 	smeltresult = /obj/item/rogueore/coal
 	max_integrity = 300
 	blocksound = SOFTHIT
+
 
 /obj/item/clothing/head/roguetown/helmet/elvenbarbute
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
@@ -1871,3 +1887,40 @@
 	desc = "A winged version of the elven barbute. They have always been known for their vanity."
 	icon_state = "elven_barbute_winged"
 	item_state = "elven_barbute_winged"
+
+/obj/item/clothing/head/roguetown/helmet/bascinet/antler
+	name = "wardens's helmet"
+	desc = "A strange helmet adorned with antlers worn by the warden of the forest."
+	icon = 'icons/roguetown/clothing/special/warden.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/warden64.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
+	icon_state = "wardenhelm"
+	adjustable = CAN_CADJUST
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+
+/obj/item/clothing/head/roguetown/helmet/bascinet/antler/AdjustClothes(mob/user)
+	if(loc == user)
+		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
+		if(adjustable == CAN_CADJUST)
+			adjustable = CADJUSTED
+			icon_state = "wardenhelm_raised"
+			body_parts_covered = HEAD|EARS|HAIR
+			flags_inv = HIDEEARS|HIDEHAIR
+			flags_cover = null
+			emote_environment = 0
+			update_icon()
+			if(ishuman(user))
+				var/mob/living/carbon/H = user
+				H.update_inv_head()
+			block2add = null
+		else if(adjustable == CADJUSTED)
+			ResetAdjust(user)
+			emote_environment = 3
+			update_icon()
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_head()
+		user.update_fov_angles()
+ 
