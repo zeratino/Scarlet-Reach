@@ -19,5 +19,4 @@ map dun_manor
 endmap
 
 map dun_world
-	votable
 endmap
