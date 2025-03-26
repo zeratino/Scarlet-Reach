@@ -296,6 +296,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	density = TRUE
 	max_integrity = 100
 	CanAtmosPass = ATMOS_PASS_DENSITY
+	range = 7
 	var/timeleft = 20 SECONDS
 
 /obj/structure/forcefield_weak/Initialize()
@@ -874,6 +875,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
