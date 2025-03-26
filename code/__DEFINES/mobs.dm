@@ -537,3 +537,7 @@
 #define WHITEBROWN_FUR "c69b83"
 #define DARKBROWN_FUR "3b2e27"
 #define BLACK_FUR	 "271f1a"
+
+// Pixel shifting
+#define PIXEL_SHIFT_MAXIMUM 16
+#define PIXEL_SHIFT_PASSABLE_THRESHOLD 8
