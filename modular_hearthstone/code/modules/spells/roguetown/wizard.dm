@@ -1509,7 +1509,7 @@
 	clothes_req = FALSE
 	charge_type = "recharge"
 	associated_skill = /datum/skill/magic/arcane
-	cost = 1
+	cost = 2
 	xp_gain = TRUE
 	// Fix invoked spell variables
 	releasedrain = 35
@@ -1668,7 +1668,7 @@
 	name = "Blink"
 	desc = "Teleport to a targeted location within your field of view. Limited to a range of 5 tiles. Only works on the same plane as the caster."
 	school = "conjuration"
-	cost = 2
+	cost = 1
 	releasedrain = 30
 	chargedrain = 1
 	chargetime = 1.5 SECONDS
