@@ -5208,9 +5208,7 @@
 /turf/closed/wall/mineral/rogue/decostone,
 /area/rogue/indoors/cave)
 "Ik" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	locked = 1
-	},
+/obj/structure/mineral_door/wood/deadbolt,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/cave/dukecourt)
 "Il" = (

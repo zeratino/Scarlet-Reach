@@ -121,7 +121,10 @@
 
 /obj/item/rogueweapon/hammer/attack(mob/living/M, mob/user)
 	testing("attack")
-	hammerheal(M, user)
+	if(!user.cmode)
+		hammerheal(M, user)
+	else
+		. = ..() //normal hit
 
 /obj/item/rogueweapon/hammer/proc/hammerheal(mob/living/M, mob/user)
 	if(!M.can_inject(user, TRUE))
@@ -152,6 +155,8 @@
 			user.visible_message(span_notice("[user] hammers [user.p_their()] [affecting]."), span_notice("I hammer my [affecting]."))
 		else
 			user.visible_message(span_notice("[user] hammers [M]'s [affecting]."), span_notice("I hammer [M]'s [affecting]."))
+	else //Non-construct.
+		to_chat(user, span_warning("I can't tinker on living flesh!"))
 
 /obj/item/rogueweapon/hammer/stone
 	name = "stone hammer"
