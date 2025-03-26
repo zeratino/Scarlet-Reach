@@ -136,7 +136,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/knight
-	name = "Royal Guard"
+	name = "Knight"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/sheriff

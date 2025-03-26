@@ -124,6 +124,9 @@
 /obj/item/ingot/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/rogueweapon/tongs))
 		var/obj/item/rogueweapon/tongs/T = I
+		if (loc in user.contents)
+			to_chat(user, span_warning("I can't take out \the [src] from inside."))
+			return
 		if(!T.hingot)
 			forceMove(T)
 			T.hingot = src

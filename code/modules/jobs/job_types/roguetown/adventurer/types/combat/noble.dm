@@ -27,11 +27,11 @@
 			neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 			id = /obj/item/clothing/ring/silver
 			beltl = /obj/item/rogueweapon/sword/sabre/dec
-			if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
+			if(should_wear_masc_clothes(H))
 				cloak = /obj/item/clothing/cloak/half/red
 				shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/red
 				pants = /obj/item/clothing/under/roguetown/tights/black
-			if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+			if(should_wear_femme_clothes(H))
 				shirt = /obj/item/clothing/suit/roguetown/shirt/dress/gen/purple
 				pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/purple
 				cloak = /obj/item/clothing/cloak/raincloak/purple
@@ -65,17 +65,26 @@
 				"Visored Sallet"			= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
 				"Armet"				= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
 				"Hounskull Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+				"Etruscan Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
 				"None"
 				)
 			var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 			if(helmchoice != "None")
 				head = helmets[helmchoice]
+
+			var/armors = list(
+				"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+				"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+				"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/half,
+				)
+			var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
+			armor = armors[armorchoice]
+
 			gloves = /obj/item/clothing/gloves/roguetown/chain
 			pants = /obj/item/clothing/under/roguetown/chainlegs
 			cloak = /obj/item/clothing/cloak/stabard
 			neck = /obj/item/clothing/neck/roguetown/bevor
 			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 			belt = /obj/item/storage/belt/rogue/leather/plaquegold

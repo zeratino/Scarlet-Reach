@@ -74,7 +74,7 @@
 	screen_max_columns = 4
 
 /datum/component/storage/concrete/roguetown/sack
-	max_w_class = WEIGHT_CLASS_NORMAL
+	max_w_class = WEIGHT_CLASS_HUGE
 	screen_max_rows = 5
 	screen_max_columns = 4
 	click_gather = TRUE
