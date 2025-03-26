@@ -506,6 +506,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	name = "Blade Burst"
 	desc = "Summon a storm of arcyne force in an area, wounding anything in that location after a delay."
 	cost = 1
+	range = 7
 	xp_gain = TRUE
 	releasedrain = 30
 	chargedrain = 1
