@@ -43386,7 +43386,7 @@
 	desc = ""
 	},
 /obj/structure/fluff/railing/border,
-/turf/open/floor/rogue/ruinedwood/spiral,
+/turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/outdoors/beach)
 "rTu" = (
 /obj/item/ash,
