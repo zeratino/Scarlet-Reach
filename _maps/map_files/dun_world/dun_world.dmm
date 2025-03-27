@@ -2382,7 +2382,7 @@
 "aYE" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/structure/fluff/railing/border,
-/turf/open/transparent/openspace,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "aYM" = (
 /obj/item/roguebin/water,
@@ -3582,7 +3582,6 @@
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap)
 "byf" = (
-/obj/structure/far_travel,
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
@@ -11941,7 +11940,7 @@
 	opened = 1
 	},
 /obj/structure/fluff/railing/border,
-/turf/open/transparent/openspace,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "eUq" = (
 /obj/structure/flora/roguegrass/bush/wall/tall,
@@ -19887,14 +19886,6 @@
 /obj/structure/rack/rogue/shelf,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
-"ilk" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	name = "Lower Decks";
-	max_integrity = 99999
-	},
-/turf/closed/mineral/random/rogue/med,
-/area/rogue/indoors/cave)
 "ilx" = (
 /obj/structure/closet/crate/chest,
 /obj/item/reagent_containers/food/snacks/rogue/meat/wiener,
@@ -19908,10 +19899,6 @@
 /obj/structure/chair/wood/rogue,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
-"ilA" = (
-/obj/structure/far_travel,
-/turf/open/floor/rogue/ruinedwood,
-/area/rogue/indoors)
 "ilE" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/wood,
@@ -23167,14 +23154,6 @@
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
-"jBy" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	name = "Lower Decks";
-	max_integrity = 99999
-	},
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/beach)
 "jBA" = (
 /obj/structure/ladder,
 /obj/effect/decal/cobbleedge{
@@ -34535,14 +34514,6 @@
 /obj/item/storage/backpack/rogue/satchel,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/chapel)
-"oqM" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	name = "Lower Decks";
-	max_integrity = 99999
-	},
-/turf/closed/mineral/random/rogue/high,
-/area/rogue/outdoors/mountains)
 "oqR" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/rogue/blocks,
@@ -43415,7 +43386,7 @@
 	desc = ""
 	},
 /obj/structure/fluff/railing/border,
-/turf/open/transparent/openspace,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "rTu" = (
 /obj/item/ash,
@@ -45336,7 +45307,7 @@
 "sGH" = (
 /obj/structure/closet/crate/chest/crate,
 /obj/structure/fluff/railing/border,
-/turf/open/transparent/openspace,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
 "sGO" = (
 /obj/structure/chair/wood/rogue/chair3{
@@ -56608,11 +56579,6 @@
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
-"xqW" = (
-/obj/structure/far_travel,
-/obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/rogue/ruinedwood,
-/area/rogue/indoors)
 "xrk" = (
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/grassyel,
@@ -57214,14 +57180,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
-"xEc" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	name = "Lower Decks";
-	max_integrity = 99999
-	},
-/turf/closed,
-/area/rogue/indoors)
 "xEe" = (
 /obj/structure/fermenting_barrel/random/water,
 /turf/open/floor/rogue/ruinedwood{
@@ -57458,14 +57416,6 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/beach)
-"xKk" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	name = "Lower Decks";
-	max_integrity = 99999
-	},
-/turf/closed/mineral/random/rogue,
-/area/rogue/outdoors/mountains)
 "xKn" = (
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
@@ -58286,14 +58236,6 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/orcdungeon)
-"yes" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	name = "Lower Decks";
-	max_integrity = 99999
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/beach/forest)
 "yet" = (
 /obj/structure/fluff/railing/border,
 /obj/structure/flora/roguegrass,
@@ -138085,11 +138027,11 @@ tXb
 tXb
 bwv
 usj
-xqW
+esa
 bwv
 tWq
 bwv
-xqW
+esa
 usj
 bwv
 tXb
@@ -138537,11 +138479,11 @@ tXb
 tXb
 ika
 usj
-ilA
+usj
 sco
 usj
-xEc
-ilA
+sco
+usj
 usj
 ika
 tXb
@@ -251092,7 +251034,7 @@ uYI
 uYI
 uYI
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -251544,7 +251486,7 @@ pdp
 csA
 miI
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -252900,7 +252842,7 @@ qaQ
 qaQ
 uYI
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -253352,7 +253294,7 @@ uYI
 uYI
 uYI
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -255160,7 +255102,7 @@ jrj
 jrj
 whF
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -255612,7 +255554,7 @@ dpn
 jrj
 whF
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -256064,7 +256006,7 @@ pdp
 csA
 hRE
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -256516,7 +256458,7 @@ csA
 csA
 uYI
 uYI
-aWM
+aER
 eMx
 eMx
 eMx
@@ -257420,8 +257362,8 @@ uYI
 uYI
 uYI
 uYI
-hRZ
-eMx
+bwv
+gTh
 eMx
 eMx
 eMx
@@ -257872,8 +257814,8 @@ ecU
 nUn
 ika
 ika
-hRZ
-eMx
+bwv
+gTh
 eMx
 eMx
 eMx
@@ -344678,14 +344620,14 @@ aBB
 aBB
 aBB
 aBB
-aBB
-aBB
-aBB
-aBB
-aBB
-aBB
-aBB
-aBB
+vTH
+iVP
+iVP
+iVP
+iVP
+iVP
+iVP
+aDx
 aBB
 aBB
 aBB
@@ -345129,16 +345071,16 @@ aBB
 aBB
 aBB
 aBB
-aBB
-vTH
-iVP
-iVP
-iVP
-iVP
-iVP
-iVP
-aDx
-aBB
+bJa
+apU
+gdT
+gdT
+gdT
+gdT
+gdT
+gdT
+apU
+ijg
 aBB
 aBB
 aBB
@@ -345581,16 +345523,16 @@ aBB
 aBB
 aBB
 aBB
-bJa
-apU
+qFM
 gdT
 gdT
 gdT
 gdT
 gdT
 gdT
-apU
-ijg
+gdT
+gdT
+rzV
 aBB
 aBB
 aBB
@@ -346035,12 +345977,12 @@ aBB
 aBB
 qFM
 gdT
-gdT
-gdT
-gdT
-gdT
-gdT
-gdT
+apU
+kjY
+gnI
+gnI
+kjY
+apU
 gdT
 rzV
 aBB
@@ -346487,12 +346429,12 @@ aBB
 aBB
 qFM
 gdT
-apU
-kjY
-gnI
-gnI
-kjY
-apU
+mgI
+uHY
+xkp
+xkp
+rFa
+mgI
 gdT
 rzV
 aBB
@@ -346939,12 +346881,12 @@ aBB
 aBB
 qFM
 gdT
-mgI
-uHY
+hyD
+hyD
+qNd
 xkp
-xkp
-rFa
-mgI
+lmS
+oDn
 gdT
 rzV
 aBB
@@ -347392,11 +347334,11 @@ aBB
 qFM
 gdT
 hyD
-hyD
-qNd
+nyQ
+psb
 xkp
-lmS
-oDn
+xkp
+uaK
 gdT
 rzV
 aBB
@@ -347844,11 +347786,11 @@ aBB
 qFM
 gdT
 hyD
-nyQ
-psb
+hyD
+siO
 xkp
-xkp
-uaK
+jvY
+mgI
 gdT
 rzV
 aBB
@@ -348295,12 +348237,12 @@ aBB
 aBB
 qFM
 gdT
-hyD
-hyD
-siO
+rlV
+uYv
 xkp
-jvY
-mgI
+xkp
+xvO
+rlV
 gdT
 rzV
 aBB
@@ -348748,10 +348690,10 @@ aBB
 qFM
 gdT
 rlV
-uYv
-xkp
-xkp
-xvO
+twH
+pKE
+pKE
+fZi
 rlV
 gdT
 rzV
@@ -349199,12 +349141,12 @@ aBB
 aBB
 qFM
 gdT
-rlV
-twH
-pKE
-pKE
-fZi
-rlV
+oDn
+lil
+dKK
+tNg
+owz
+oDn
 gdT
 rzV
 aBB
@@ -349651,12 +349593,12 @@ aBB
 aBB
 qFM
 gdT
-oDn
-lil
-dKK
-tNg
-owz
-oDn
+apU
+kjY
+gnI
+gnI
+kjY
+apU
 gdT
 rzV
 aBB
@@ -350103,12 +350045,12 @@ aBB
 aBB
 qFM
 gdT
-apU
-kjY
-gnI
-gnI
-kjY
-apU
+gdT
+gdT
+gdT
+gdT
+gdT
+gdT
 gdT
 rzV
 aBB
@@ -350553,16 +350495,16 @@ vvB
 vvB
 aBB
 aBB
-qFM
+sMn
+apU
+ggU
+fAO
+fAO
 gdT
 gdT
 gdT
-gdT
-gdT
-gdT
-gdT
-gdT
-rzV
+apU
+fdP
 aBB
 aBB
 aBB
@@ -351005,16 +350947,16 @@ vvB
 vvB
 aBB
 aBB
-sMn
-apU
-ggU
-fAO
-fAO
-gdT
-gdT
-gdT
-apU
-fdP
+aBB
+hMq
+jVm
+jVm
+jVm
+jVm
+jVm
+jVm
+rso
+aBB
 aBB
 aBB
 aBB
@@ -351458,14 +351400,14 @@ aBB
 aBB
 aBB
 aBB
-hMq
-jVm
-jVm
-jVm
-jVm
-jVm
-jVm
-rso
+aBB
+aBB
+aBB
+aBB
+aBB
+aBB
+aBB
+aBB
 aBB
 aBB
 aBB
@@ -372681,8 +372623,8 @@ aBB
 aBB
 aBB
 aBB
-aBB
-aBB
+oJW
+oJW
 aBB
 aBB
 aBB
@@ -373133,8 +373075,8 @@ oJW
 oJW
 oJW
 oJW
-aBB
-aBB
+oJW
+oJW
 aBB
 aBB
 aBB
@@ -373585,7 +373527,7 @@ oJW
 oJW
 oJW
 oJW
-aBB
+oJW
 aBB
 aBB
 aBB
@@ -374037,7 +373979,7 @@ oJW
 oJW
 oJW
 oJW
-aBB
+oJW
 aBB
 aBB
 aBB
@@ -374489,7 +374431,7 @@ oJW
 oJW
 oJW
 oJW
-aBB
+oJW
 aBB
 aBB
 aBB
@@ -380212,7 +380154,7 @@ onF
 onF
 onF
 qwK
-xKk
+vvB
 qwK
 qwK
 qwK
@@ -380663,7 +380605,7 @@ onF
 onF
 onF
 onF
-oqM
+qwK
 qwK
 qwK
 qwK
@@ -381558,7 +381500,7 @@ qPv
 qPv
 qPv
 qPv
-ilk
+tsB
 tsB
 tsB
 onF
@@ -385155,7 +385097,7 @@ dCq
 tOc
 dCq
 dCq
-yes
+dCq
 dCq
 dCq
 sJx
@@ -394155,7 +394097,7 @@ jrj
 jrj
 jrj
 jrj
-jBy
+jrj
 jrj
 jrj
 jrj
@@ -394604,9 +394546,9 @@ jrj
 jrj
 jrj
 jrj
-jBy
-jBy
-jBy
+jrj
+jrj
+jrj
 jrj
 jrj
 jrj
@@ -395054,7 +394996,7 @@ jrj
 jrj
 jrj
 jrj
-jBy
+jrj
 jrj
 jrj
 jrj
@@ -404036,7 +403978,7 @@ aBB
 aBB
 "}
 (255,1,3) = {"
-jBy
+jrj
 jrj
 jrj
 jrj
