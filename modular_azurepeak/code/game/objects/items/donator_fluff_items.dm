@@ -13,8 +13,10 @@
 	desc = "A silky smooth emerald-green dress, only for the finest of ladies."
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR	//Goes either slot, no armor on it after all.
 	icon_state = "laciedress"
+	sleevetype = "laciedress"
 	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
+	sleeved = 'modular_azurepeak/icons/clothing/onmob/donor_sleeves_armor.dmi'
 
 //Strudles donator item - mage vest (same as base leather)
 /obj/item/clothing/suit/roguetown/armor/leather/vest/sofiavest

@@ -47,6 +47,12 @@
 	created_item = /obj/item/clothing/under/roguetown/chainlegs/iron
 	craftdiff = 0
 
+/datum/anvil_recipe/armor/iron/chainleg/kilt
+	name = "Chain Kilt"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/clothing/under/roguetown/chainlegs/iron/kilt
+	craftdiff = 0
+
 /datum/anvil_recipe/armor/iron/mask
 	name = "Iron Mask"
 	req_bar = /obj/item/ingot/iron
@@ -193,6 +199,12 @@
 	name = "Chain Chausses"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/clothing/under/roguetown/chainlegs
+	craftdiff = 2
+
+/datum/anvil_recipe/armor/steel/chainlegs/kilt
+	name = "Chain Kilt"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/clothing/under/roguetown/chainlegs/kilt
 	craftdiff = 2
 
 /datum/anvil_recipe/armor/steel/brayette
