@@ -351,7 +351,7 @@
 	armor_class = ARMOR_CLASS_LIGHT
 
 /obj/item/clothing/under/roguetown/platelegs/skirt
-	name = "steel plate skirt"
+	name = "steel plate mini-skirt"
 	desc = "Reinforced armor that doesn't even protect the legs."
 	icon_state = "plate_skirt"
 	item_state = "plate_skirt"
@@ -423,6 +423,18 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+/obj/item/clothing/under/roguetown/chainlegs/kilt
+	name = "steel chain kilt"
+	desc = "Interlinked metal rings that drape down all the way to the ankles."
+	icon_state = "chainkilt"
+	item_state = "chainkilt"
+
+/obj/item/clothing/under/roguetown/chainlegs/iron/kilt/
+	name = "iron chain kilt"
+	desc = "Interlinked metal rings that drape down all the way to the ankles."
+	icon_state = "ichainkilt"
+	item_state = "ichainkilt"
 
 //----------------- BLACKSTEEL---------------------
 
