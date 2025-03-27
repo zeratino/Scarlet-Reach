@@ -51,7 +51,6 @@
 
 /mob/living/pixel_shift(direction)
 	passthroughable = NONE
-	// switch(direction) // diagonal pixel-shifting, rejoice
 	if(CHECK_BITFIELD(direction, NORTH))
 		if(pixel_y <= PIXEL_SHIFT_MAXIMUM + base_pixel_y)
 			pixel_y++

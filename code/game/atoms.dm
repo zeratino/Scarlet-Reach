@@ -17,6 +17,9 @@
 	///Intearaction flags
 	var/interaction_flags_atom = NONE
 
+	/// pass_flags that we are. If any of this matches a pass_flag on a moving thing, by default, we let them through.
+	var/pass_flags_self = NONE
+
 	///Reagents holder
 	var/datum/reagents/reagents = null
 
@@ -233,6 +236,10 @@
 
 ///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
+	if(mover.pass_flags & pass_flags_self)
+		return TRUE
+	if(mover.throwing && (pass_flags_self & LETPASSTHROW))
+		return TRUE
 	return !density
 
 /**

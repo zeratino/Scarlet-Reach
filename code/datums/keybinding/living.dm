@@ -255,60 +255,6 @@
 	else
 		return FALSE
 
-//pixel shifting
-
-/datum/keybinding/living/pixel_shift_north
-	hotkey_keys = list("CtrlShiftW")
-	name = "pixel_shift_north"
-	full_name = "Pixel-Shift North"
-	description = ""
-	var/lastrest = 0
-
-/datum/keybinding/living/pixel_shift_north/down(client/user)
-	if(isliving(user.mob))
-		var/mob/living/M = user.mob
-		M.northshift()
-	return TRUE
-
-/datum/keybinding/living/pixel_shift_east
-	hotkey_keys = list("CtrlShiftD")
-	name = "pixel_shift_east"
-	full_name = "Pixel-Shift East"
-	description = ""
-	var/lastrest = 0
-
-/datum/keybinding/living/pixel_shift_east/down(client/user)
-	if(isliving(user.mob))
-		var/mob/living/M = user.mob
-		M.eastshift()
-	return TRUE
-
-/datum/keybinding/living/pixel_shift_south
-	hotkey_keys = list("CtrlShiftS")
-	name = "pixel_shift_south"
-	full_name = "Pixel-Shift South"
-	description = ""
-	var/lastrest = 0
-
-/datum/keybinding/living/pixel_shift_south/down(client/user)
-	if(isliving(user.mob))
-		var/mob/living/M = user.mob
-		M.southshift()
-	return TRUE
-
-/datum/keybinding/living/pixel_shift_west
-	hotkey_keys = list("CtrlShiftA")
-	name = "pixel_shift_west"
-	full_name = "Pixel-Shift West"
-	description = ""
-	var/lastrest = 0
-
-/datum/keybinding/living/pixel_shift_west/down(client/user)
-	if(isliving(user.mob))
-		var/mob/living/M = user.mob
-		M.westshift()
-	return TRUE
-
 //layer shifting
 
 /datum/keybinding/living/pixel_shift_layerup
