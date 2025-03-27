@@ -6578,10 +6578,7 @@
 	},
 /area/rogue/indoors/town)
 "cMf" = (
-/obj/structure/bars/grille{
-	density = 1
-	},
-/turf/open/floor/rogue/blocks,
+/turf/closed/wall/mineral/rogue/stone/window,
 /area/rogue/indoors/town/garrison)
 "cMg" = (
 /obj/structure/fluff/railing/border{
@@ -20448,10 +20445,7 @@
 	dir = 8
 	},
 /obj/machinery/light/rogue/wallfire/candle/l,
-/obj/structure/bars/grille{
-	density = 1
-	},
-/turf/open/floor/rogue/blocks,
+/turf/closed/wall/mineral/rogue/stone/window/moss,
 /area/rogue/indoors/town/garrison)
 "ixo" = (
 /obj/item/seeds/cabbage,
@@ -22381,6 +22375,9 @@
 /obj/effect/landmark/start/wretchlate,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
+"jjL" = (
+/turf/closed/wall/mineral/rogue/stone/window/moss,
+/area/rogue/indoors/town/garrison)
 "jjT" = (
 /obj/structure/well,
 /turf/open/floor/rogue/cobble/mossy,
@@ -26741,10 +26738,7 @@
 /area/rogue/indoors/shelter/woods)
 "lbR" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
-/obj/structure/bars/grille{
-	density = 1
-	},
-/turf/open/floor/rogue/cobble,
+/turf/closed/wall/mineral/rogue/stone/window,
 /area/rogue/indoors/town/garrison)
 "lbU" = (
 /obj/structure/roguewindow/openclose/reinforced{
@@ -264538,7 +264532,7 @@ hrE
 flt
 jwl
 gzy
-cMf
+jjL
 srn
 srn
 srn
