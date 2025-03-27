@@ -91,10 +91,6 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)		//Knights should be used to the horrors of war if they're tride-and-true.
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)			//Knights are /technically/ nobles? But they are of the lower-tiers; mainly that a non-blue-blood could become a knight
-	ADD_TRAIT(H, TRAIT_KNIGHTSMAN, TRAIT_GENERIC) 		// +1 con, end, spd, +2 per in the keep
-	ADD_TRAIT(H, TRAIT_GOODTRAINER, TRAIT_GENERIC) 		//Knights can train their squires.
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()	
 	H.verbs |= /mob/proc/haltyell
 
