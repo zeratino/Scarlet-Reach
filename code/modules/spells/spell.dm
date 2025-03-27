@@ -384,6 +384,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 /obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
 	if(!ignore_los)
 		var/result = FALSE
+		var/out_of_range = FALSE
 		if(length(targets))
 			var/radius
 			if(range > 0)	//accounts for touch / self spells that use negative range
@@ -394,9 +395,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			for(var/thing in targets)
 				if(thing in visible)
 					result = TRUE
+				if(get_dist(thing, user) > radius)
+					out_of_range = TRUE
 		if(!result)
 			revert_cast(user)
-			to_chat(user, span_warning("I do not have line of sight!"))
+			to_chat(user, "[out_of_range ? span_warning("It's too far!") : span_warning("I do not have line of sight!")]")
 			return
 	before_cast(targets, user = user)
 	if(user && user.ckey)
@@ -514,6 +517,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/include_user = 0 //if it includes usr in the target list
 	var/random_target = 0 // chooses random viable target instead of asking the caster
 	var/random_target_priority = TARGET_CLOSEST // if random_target is enabled how it will pick the target
+	ignore_los = TRUE
 
 
 /obj/effect/proc_holder/spell/aoe_turf //affects all turfs in view or range (depends)

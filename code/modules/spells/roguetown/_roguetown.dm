@@ -3,7 +3,7 @@
 
 /obj/effect/proc_holder/spell/invoked
 	name = "invoked spell"
-	range = -1
+	range = 7
 	selection_type = "range"
 	no_early_release = TRUE
 	charge_max = 30
