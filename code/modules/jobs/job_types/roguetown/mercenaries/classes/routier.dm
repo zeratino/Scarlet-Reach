@@ -42,7 +42,7 @@
 			beltl = /obj/item/rogueweapon/sword/falchion
 		if("Macebearer")
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-			r_hand = /obj/item/rogueweapon/mace/steel/morningstar
+			beltl = /obj/item/rogueweapon/mace/steel/morningstar
 		if("Flailman")
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
 			beltl = /obj/item/rogueweapon/flail/sflail
