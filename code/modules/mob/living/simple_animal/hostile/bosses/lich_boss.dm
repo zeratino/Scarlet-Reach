@@ -390,6 +390,19 @@
 		r_hand = /obj/item/rogueweapon/greatsword/zwei
 		l_hand = null
 
+/obj/effect/oneway
+	name = "one way effect"
+	desc = ""
+	icon = 'icons/effects/mapping_helpers.dmi'
+	icon_state = "field_dir"
+	invisibility = INVISIBILITY_MAXIMUM
+	anchored = TRUE
+
+/obj/effect/oneway/CanPass(atom/movable/mover, turf/target)
+	var/turf/T = get_turf(src)
+	var/turf/MT = get_turf(mover)
+	return ..() && (T == MT || get_dir(MT,T) == dir)
+
 /obj/effect/oneway/lich //one way barrier to the boss room. Can be despawned with the key the boss drops.
 	name = "magical barrier"
 	max_integrity = 99999
@@ -404,6 +417,7 @@
 	if(istype(W, /obj/item/roguekey/mage/lich))
 		visible_message(span_boldannounce("The magical barrier disperses!"))
 		qdel(src)
+
 
 /turf/open/floor/rogue/carpet/lord/center/no_teleport //sanity check to keep the Lich from blinking outside the combat arena
 	teleport_restricted = TRUE
