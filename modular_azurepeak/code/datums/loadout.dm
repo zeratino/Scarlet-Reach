@@ -17,6 +17,16 @@ GLOBAL_LIST_EMPTY(loadout_items)
 		return TRUE
 	return
 
+//Miscellaneous
+
+/datum/loadout_item/card_deck
+	name = "Card Deck"
+	path = /obj/item/toy/cards/deck
+
+/datum/loadout_item/farkle_dice
+	name = "Farkle Dice Container"
+	path = /obj/item/storage/pill_bottle/dice/farkle
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"
