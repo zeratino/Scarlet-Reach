@@ -53149,12 +53149,6 @@
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
-"vWO" = (
-/obj/structure/fluff/railing/border{
-	dir = 9
-	},
-/turf/open/floor/rogue/cobble,
-/area/rogue/indoors/town)
 "vWQ" = (
 /obj/structure/fluff/railing/wood{
 	dir = 1;
@@ -347677,9 +347671,9 @@ bZZ
 bZZ
 uGy
 phl
-ktt
-bzY
-bSF
+bjX
+jdu
+jdu
 jdu
 pLh
 pLh
@@ -348129,10 +348123,10 @@ bZZ
 bZZ
 bZZ
 cDX
-efu
-efu
-efu
-vWO
+jdu
+jdu
+jdu
+jdu
 phl
 vbZ
 tYj
