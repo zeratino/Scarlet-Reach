@@ -154,7 +154,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, SPEAR_CUT, SPEAR_BASH)
 	name = "spear"
-	desc = "This iron spear is great to impale goblins. However it's lack of reinforcements means it is ill prepared for combat against someone aiming to hew it in two!"
+	desc = "This iron spear is great to impale goblins. However its lack of reinforcements means it is ill prepared for combat against someone aiming to hew it in two!"
 	icon_state = "spear"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -526,7 +526,7 @@
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop, SPEAR_BASH)
 	name = "bardiche"
-	desc = "A beautiful variant of the halberd. It's reinforced shaft provides it with greater durability against attacks."
+	desc = "A beautiful variant of the halberd. Its reinforced shaft provides it with greater durability against attacks."
 	icon_state = "bardiche"
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
@@ -541,7 +541,7 @@
 
 /obj/item/rogueweapon/halberd/psyhalberd
 	name = "psydonian halberd"
-	desc = "A silver halberd, forged by the inquisiton. It's construction lends it greater durability than a normal halberd."
+	desc = "A silver halberd, forged by the inquisiton. Its construction lends it greater durability than a normal halberd."
 	max_blade_int = 250
 	icon_state = "psyhalberd"
 	max_integrity = 600
@@ -616,7 +616,7 @@
 
 /obj/item/rogueweapon/eaglebeak/lucerne
 	name = "lucerne"
-	desc = "A polehammer of simple iron. Fracture bone and dissent with simple brute force. The studding along it's shaft makes for a slightly more reinforced weapon."
+	desc = "A polehammer of simple iron. Fracture bone and dissent with simple brute force. The studding along its shaft makes for a slightly more reinforced weapon."
 	force = 12
 	force_wielded = 25
 	icon_state = "polehammer"
