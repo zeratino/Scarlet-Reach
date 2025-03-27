@@ -517,6 +517,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/include_user = 0 //if it includes usr in the target list
 	var/random_target = 0 // chooses random viable target instead of asking the caster
 	var/random_target_priority = TARGET_CLOSEST // if random_target is enabled how it will pick the target
+	ignore_los = TRUE
 
 
 /obj/effect/proc_holder/spell/aoe_turf //affects all turfs in view or range (depends)
