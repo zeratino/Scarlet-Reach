@@ -509,15 +509,16 @@
 						prob2defend = prob2defend - (UH.mind.get_skill_level(/datum/skill/combat/unarmed) * 10)
 					if(H.mind)
 						prob2defend = prob2defend + (H.mind.get_skill_level(/datum/skill/combat/unarmed) * 10)
-		// dodging while knocked down sucks ass
-		if(!(L.mobility_flags & MOBILITY_STAND))
-			prob2defend *= 0.25
 
 		if(HAS_TRAIT(L, TRAIT_GUIDANCE))
 			prob2defend += 15
 
 		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
 			prob2defend -= 15
+
+		// dodging while knocked down sucks ass
+		if(!(L.mobility_flags & MOBILITY_STAND))
+			prob2defend *= 0.25
 
 		if(HAS_TRAIT(H, TRAIT_SENTINELOFWITS))
 			var/sentinel = H.calculate_sentinel_bonus()
