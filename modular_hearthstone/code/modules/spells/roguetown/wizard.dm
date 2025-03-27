@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	active = FALSE
 	sound = 'sound/blank.ogg'
 	overlay_state = "forcewall"
-	range = -1
+	range = 7
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	var/wall_type = /obj/structure/forcefield_weak/caster
@@ -296,7 +296,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	density = TRUE
 	max_integrity = 100
 	CanAtmosPass = ATMOS_PASS_DENSITY
-	range = 7
 	var/timeleft = 20 SECONDS
 
 /obj/structure/forcefield_weak/Initialize()
