@@ -14363,9 +14363,10 @@
 /turf/open/floor/rogue/wood/herringbone,
 /area/rogue/indoors/town/church/chapel)
 "fUZ" = (
-/obj/structure/spacevine,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves)
+/obj/effect/spawner/lootdrop/roguetown/dungeon/medical,
+/obj/structure/closet/crate/chest,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/mountains/decap)
 "fVb" = (
 /obj/structure/closet/dirthole/grave,
 /turf/open/floor/rogue/dirt/road,
@@ -18786,8 +18787,9 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "hPS" = (
-/turf/closed/wall/mineral/rogue/stone/window/moss,
-/area/rogue/indoors/town/garrison)
+/obj/structure/spacevine,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cavewet/bogcaves)
 "hPT" = (
 /obj/structure/chair/wood/rogue{
 	icon_state = "chair2";
@@ -24908,11 +24910,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/dukecourt)
-"kmV" = (
-/obj/effect/spawner/lootdrop/roguetown/dungeon/medical,
-/obj/structure/closet/crate/chest,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/outdoors/mountains/decap)
 "kmW" = (
 /obj/effect/decal/wood/herringbone2,
 /obj/machinery/light/rogue/torchholder{
@@ -25327,8 +25324,8 @@
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/indoors/shelter/woods)
 "kxk" = (
-/obj/machinery/light/rogue/firebowl/standing/blue,
-/turf/open/floor/rogue/dirt/road,
+/obj/structure/roguerock,
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap)
 "kxl" = (
 /obj/effect/decal/cobbleedge{
@@ -25487,10 +25484,6 @@
 	},
 /obj/item/candle/skull/lit,
 /turf/open/floor/carpet/red,
-/area/rogue/outdoors/mountains/decap)
-"kAr" = (
-/obj/structure/roguerock,
-/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap)
 "kAv" = (
 /obj/structure/chair/wood/rogue{
@@ -26966,12 +26959,9 @@
 /turf/open/water/swamp/deep,
 /area/rogue/under/town/basement)
 "lgJ" = (
-/obj/structure/stairs/fancy/c{
-	dir = 1
-	},
-/obj/structure/stairs/stone,
-/turf/open/floor/rogue/churchmarble,
-/area/rogue/under/cave/licharena)
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/mountains/decap)
 "lgL" = (
 /obj/structure/bars/pipe{
 	dir = 1
@@ -53070,6 +53060,9 @@
 /obj/item/rope/chain,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
+"vTN" = (
+/turf/closed/wall/mineral/rogue/stone/window/moss,
+/area/rogue/indoors/town/garrison)
 "vTP" = (
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/metal,
@@ -70727,8 +70720,8 @@ uEf
 uEf
 uEf
 mVO
-fUZ
-fUZ
+hPS
+hPS
 xMv
 mVO
 mVO
@@ -71180,8 +71173,8 @@ uEf
 uEf
 mVO
 xMv
-fUZ
-fUZ
+hPS
+hPS
 xMv
 mVO
 mVO
@@ -72070,8 +72063,8 @@ ybI
 ybI
 sPj
 sPj
-fUZ
-fUZ
+hPS
+hPS
 abA
 abA
 abA
@@ -72521,8 +72514,8 @@ ybI
 ybI
 ybI
 ybI
-fUZ
-fUZ
+hPS
+hPS
 xMv
 abA
 abA
@@ -72973,7 +72966,7 @@ ybI
 ybI
 ybI
 ybI
-fUZ
+hPS
 xMv
 abA
 abA
@@ -77496,7 +77489,7 @@ ybI
 ybI
 abA
 abA
-fUZ
+hPS
 abA
 abA
 abA
@@ -77949,7 +77942,7 @@ ybI
 abA
 abA
 xMv
-fUZ
+hPS
 abA
 abA
 abA
@@ -78400,7 +78393,7 @@ ybI
 ybI
 ybI
 abA
-fUZ
+hPS
 xMv
 abA
 abA
@@ -79762,8 +79755,8 @@ xMv
 xMv
 abA
 abA
-fUZ
-fUZ
+hPS
+hPS
 xMv
 abA
 abA
@@ -80213,10 +80206,10 @@ abA
 abA
 xMv
 xMv
-fUZ
-fUZ
-fUZ
-fUZ
+hPS
+hPS
+hPS
+hPS
 abA
 abA
 abA
@@ -80665,7 +80658,7 @@ ybI
 abA
 abA
 abA
-fUZ
+hPS
 xMv
 gLu
 abA
@@ -80975,7 +80968,7 @@ lmt
 lmt
 hBO
 lmt
-lgJ
+rXI
 oQk
 jgF
 jgF
@@ -81427,7 +81420,7 @@ lmt
 lmt
 lmt
 lmt
-lgJ
+rXI
 oQk
 jgF
 jgF
@@ -81879,7 +81872,7 @@ lmt
 jcV
 lmt
 lmt
-lgJ
+rXI
 oQk
 jgF
 jgF
@@ -264533,7 +264526,7 @@ hrE
 flt
 jwl
 gzy
-hPS
+vTN
 srn
 srn
 srn
@@ -331332,7 +331325,7 @@ oyf
 oyf
 oyf
 oyf
-kxk
+lgJ
 fRR
 emo
 fuY
@@ -333141,10 +333134,10 @@ wHi
 wHi
 wHi
 wHi
-kmV
+fUZ
 fRR
 emo
-kAr
+kxk
 wHi
 oyf
 oyf
