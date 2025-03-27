@@ -272,9 +272,16 @@
 
 /datum/virtue/utility/keenears
 	name = "Keen Ears"
-	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, and their whispers are louder to you."
-	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, their whispers ringing louder."
 	added_traits = list(TRAIT_KEENEARS)
+	custom_text = "You can identify known people who speak even when they are out of sight. You can hear people speaking normally above and below you, regardless of obstacles in the way. You can hear whispers from one tile further."
+
+/datum/virtue/utility/tracker
+	name = "Sleuth"
+	desc = "You realised long ago that the ability to find a man is as helpful to aid the law as it is to evade it."
+	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	added_traits = list(TRAIT_SLEUTH)
+	custom_text = "- Upon right clicking a track, you will Mark the person who made them <i>(Expert skill required, not exclusive to this Virtue)</i>.\n- Further tracks found will be automatically highlighted as theirs, along with the person themselves, if they are not sneaking or invisible at the time.\n- Reduces the cooldown for tracking, allows track examining right away, and movement no longer cancels tracking."
 
 /datum/virtue/utility/bronzearm_r
 	name = "Bronze Arm (R)"

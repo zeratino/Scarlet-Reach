@@ -27,7 +27,7 @@
 /turf/closed/proc/wallpress(mob/living/user)
 	if(user.wallpressed)
 		return
-	if(user.pixelshifted)
+	if(user.is_shifted)
 		return
 	if(!(user.mobility_flags & MOBILITY_STAND))
 		return
