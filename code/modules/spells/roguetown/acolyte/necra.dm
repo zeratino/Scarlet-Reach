@@ -35,6 +35,7 @@
 	range = 4	//Way lower, halved.
 	overlay_state = "necra"
 	releasedrain = 30
+	chargetime = 2 SECONDS
 	charge_max = 60 SECONDS
 	max_targets = 0
 	cast_without_targets = TRUE
