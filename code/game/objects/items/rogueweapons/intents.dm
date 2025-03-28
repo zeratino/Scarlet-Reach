@@ -84,7 +84,8 @@
 			inspec += "Quick"
 		if(clickcd > CLICK_CD_MELEE)
 			inspec += "Slow"
-
+	if(blade_class == BCLASS_PEEL)
+		inspec += "\nThis intent will peel the coverage off of your target's armor in non-key areas."
 	inspec += "<br>----------------------"
 
 	to_chat(user, "[inspec.Join()]")

@@ -5,6 +5,7 @@
 	icon_state = "top_hat"
 	item_state = "that"
 	body_parts_covered = HEAD|HAIR
+	body_parts_inherent = HEAD
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
 	dynamic_hair_suffix = "+generic"
 	bloody_icon_state = "helmetblood"
