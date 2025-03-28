@@ -16,6 +16,7 @@
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/fortitude/cast(list/targets, mob/user)
 	var/atom/A = targets[1]
@@ -82,6 +83,7 @@
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/guidance/cast(list/targets, mob/user)
 	var/atom/A = targets[1]
@@ -149,6 +151,7 @@
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/haste/cast(list/targets, mob/user)
 	var/atom/A = targets[1]
@@ -194,6 +197,7 @@
 	to_chat(owner, span_warning("My limbs move with uncanny swiftness."))
 
 /datum/status_effect/buff/haste/on_remove()
+	. = ..()
 	owner.remove_filter(HASTE_FILTER)
 	to_chat(owner, span_warning("My body move slowly again..."))
 
@@ -244,6 +248,7 @@
 	charging_slowdown = 1
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/longstrider/cast(list/targets, mob/user = usr)
 

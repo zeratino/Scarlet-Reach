@@ -34,6 +34,20 @@
 	user.visible_message(span_suicide("[user] is gambling with death! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (OXYLOSS)
 
+/obj/item/storage/pill_bottle/dice/farkle
+
+/obj/item/storage/pill_bottle/dice/farkle/PopulateContents()
+	new /obj/item/dice/d6(src)
+	new /obj/item/dice/d6(src)
+	new /obj/item/dice/d6(src)
+	new /obj/item/dice/d6(src)
+	for(var/i in 1 to 2)
+		if(prob(7))
+			new /obj/item/dice/d6/ebony(src)
+		else
+			new /obj/item/dice/d6(src)
+
+
 /obj/item/storage/pill_bottle/dice/hazard
 
 /obj/item/storage/pill_bottle/dice/hazard/PopulateContents()
