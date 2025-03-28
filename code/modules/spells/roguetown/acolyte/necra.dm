@@ -32,10 +32,10 @@
 
 /obj/effect/proc_holder/spell/targeted/churn
 	name = "Churn Undead"
-	range = 8
+	range = 4	//Way lower, halved.
 	overlay_state = "necra"
 	releasedrain = 30
-	charge_max = 30 SECONDS
+	charge_max = 60 SECONDS
 	max_targets = 0
 	cast_without_targets = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
@@ -64,7 +64,7 @@
 					isvampire = TRUE
 			if(L.mind.has_antag_datum(/datum/antagonist/zombie))
 				iszombie = TRUE
-			if(L.mind.special_role == "Vampire Lord" || L.mind.special_role == "Lich")
+			if(L.mind.special_role == "Vampire Lord" || L.mind.special_role == "Lich")	//Won't detonate Lich's or VLs but will fling them away.
 				user.visible_message(span_warning("[L] overpowers being churned!"), span_userdanger("[L] is too strong, I am churned!"))
 				user.Stun(50)
 				user.throw_at(get_ranged_target_turf(user, get_dir(user,L), 7), 7, 1, L, spin = FALSE)
