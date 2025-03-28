@@ -1268,7 +1268,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/peel_coverage(bodypart)
 	var/coveragezone = attackzone2coveragezone(bodypart)
 	if(!(body_parts_inherent & coveragezone))
-		if(coveragezone == last_peeled_limb)
+		if(!last_peeled_limb || coveragezone == last_peeled_limb)
 			peel_count++
 			if(peel_count >= peel_threshold)
 				body_parts_covered_dynamic &= ~coveragezone
@@ -1285,6 +1285,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/repair_coverage()
 	body_parts_covered_dynamic = body_parts_covered
+	reset_peel()
 
 /obj/item/proc/reset_peel()
 	peel_count = 0
