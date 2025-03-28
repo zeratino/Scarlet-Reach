@@ -7768,12 +7768,6 @@
 /obj/structure/fermenting_barrel/random/beer,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/cave)
-"dmC" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/rtfield)
 "dmL" = (
 /obj/effect/decal/cobbleedge,
 /turf/open/floor/rogue/grass,
@@ -49478,7 +49472,7 @@
 /obj/structure/mineral_door/wood/deadbolt{
 	locked = 1
 	},
-/turf/closed/wall/mineral/rogue/wood,
+/turf/open/floor/rogue/woodturned,
 /area/rogue/under/underdark)
 "uuz" = (
 /obj/structure/fluff/railing/wood,
@@ -256343,7 +256337,7 @@ seL
 seL
 ibp
 sNZ
-dmC
+ebU
 ebU
 cDX
 gyu
@@ -265835,7 +265829,7 @@ sNZ
 sNZ
 sNZ
 sNZ
-pxF
+ebU
 phl
 phl
 phl
@@ -266287,8 +266281,8 @@ sNZ
 sNZ
 pxF
 sNZ
-pxF
-pxF
+ebU
+ebU
 phl
 phl
 pLh
@@ -266739,7 +266733,7 @@ sNZ
 kTT
 sNZ
 pxF
-pxF
+ebU
 ebU
 lKo
 pqo
@@ -267191,7 +267185,7 @@ sNZ
 sNZ
 sNZ
 sNZ
-pxF
+ebU
 ebU
 lKo
 lKO
@@ -267643,7 +267637,7 @@ sNZ
 sNZ
 pxF
 sNZ
-pxF
+ebU
 ebU
 cDX
 gyu
