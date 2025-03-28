@@ -49,6 +49,7 @@
 	swingdelay = 0
 	damfactor = 0.1
 	item_d_type = "slash"
+	allow_offhand = FALSE
 
 /datum/intent/sword/chop
 	name = "chop"

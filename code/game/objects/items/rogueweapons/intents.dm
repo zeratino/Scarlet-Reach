@@ -45,6 +45,7 @@
 	var/reach = 1 //In tiles, how far this weapon can reach; 1 for adjacent, which is default
 	var/miss_text //THESE ARE FOR UNARMED MISSING ATTACKS
 	var/miss_sound //THESE ARE FOR UNARMED MISSING ATTACKS
+	var/allow_offhand = TRUE	//Do I need my offhand free while using this intent?
 
 /datum/intent/Destroy()
 	if(chargedloop)
@@ -85,7 +86,9 @@
 		if(clickcd > CLICK_CD_MELEE)
 			inspec += "Slow"
 	if(blade_class == BCLASS_PEEL)
-		inspec += "\nThis intent will peel the coverage off of your target's armor in non-key areas."
+		inspec += "\nThis intent will peel the coverage off of your target's armor in non-key areas after three consecutive hits."
+	if(!allow_offhand)
+		inspec += "\nThis intent requires a free off-hand."
 	inspec += "<br>----------------------"
 
 	to_chat(user, "[inspec.Join()]")

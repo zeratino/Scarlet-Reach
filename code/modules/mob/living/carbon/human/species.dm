@@ -1549,6 +1549,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 //	var/armor_block = H.run_armor_check(affecting, "I.d_type", span_notice("My armor has protected my [hit_area]!"), span_warning("My armor has softened a hit to my [hit_area]!"),pen)
 
 	var/Iforce = get_complex_damage(I, user) //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
+	if(!user.used_intent?.allow_offhand)
+		if(user.get_num_arms(FALSE) < 2 || user.get_inactive_held_item())
+			Iforce = 0
 	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class)
 
 	var/nodmg = FALSE

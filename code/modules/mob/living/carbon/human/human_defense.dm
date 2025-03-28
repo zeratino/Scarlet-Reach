@@ -43,8 +43,9 @@
 		if(used.blocksound)
 			playsound(loc, get_armor_sound(used.blocksound, blade_dulling), 100)
 		used.take_damage(damage, damage_flag = d_type, sound_effect = FALSE, armor_penetration = 100)
-		if(blade_dulling == BCLASS_PEEL)
-			used.peel_coverage(def_zone)
+		if(damage)
+			if(blade_dulling == BCLASS_PEEL)
+				used.peel_coverage(def_zone)
 	if(physiology)
 		protection += physiology.armor.getRating(d_type)
 	return protection
