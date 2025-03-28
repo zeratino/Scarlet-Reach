@@ -1265,11 +1265,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			str += "NO DEFENSE"
 	return str
 
-/obj/item/proc/peel_coverage(bodypart)
+/// Proc that is only called with the Peel intent. Stacks consecutive hits, shreds coverage once a threshold is met. Thresholds are defined on /obj/item
+/obj/item/proc/peel_coverage(bodypart, divisor)
 	var/coveragezone = attackzone2coveragezone(bodypart)
 	if(!(body_parts_inherent & coveragezone))
 		if(!last_peeled_limb || coveragezone == last_peeled_limb)
-			peel_count++
+			peel_count += divisor ? (divisor / peel_threshold) : 1
 			if(peel_count >= peel_threshold)
 				body_parts_covered_dynamic &= ~coveragezone
 				playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
@@ -1282,6 +1283,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		else
 			last_peeled_limb = coveragezone
 			reset_peel()
+	else
+		last_peeled_limb = coveragezone
+		reset_peel()
 
 /obj/item/proc/repair_coverage()
 	body_parts_covered_dynamic = body_parts_covered
