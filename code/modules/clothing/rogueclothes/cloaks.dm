@@ -1609,6 +1609,10 @@
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 
+/obj/item/clothing/cloak/wardencloak/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
 /obj/item/clothing/cloak/forrestercloak
 	name = "forrester cloak"
 	desc = "A cloak worn by the Black Oaks of Azuria."

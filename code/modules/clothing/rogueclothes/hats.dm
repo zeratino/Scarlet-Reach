@@ -1876,6 +1876,12 @@
 	adjustable = CAN_CADJUST
 	worn_x_dimension = 64
 	worn_y_dimension = 64
+	body_parts_covered = FULL_HEAD
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	block2add = FOV_BEHIND
+	smeltresult = /obj/item/ingot/steel
+	smelt_bar_num = 2
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/antler/AdjustClothes(mob/user)
 	if(loc == user)
