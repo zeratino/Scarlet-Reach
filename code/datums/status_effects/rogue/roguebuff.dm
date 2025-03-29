@@ -488,7 +488,7 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/guidance
-	var/outline_colour ="#f58e2d"
+	outline_colour ="#f58e2d"
 	id = "guidance"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guidance
 	duration = 1 MINUTES
