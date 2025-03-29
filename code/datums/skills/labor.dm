@@ -5,7 +5,7 @@
 
 /datum/skill/labor/farming
 	name = "Farming"
-	desc = "Allows you to identify seeds and increases workspeed and success chances on farming-related tasks "
+	desc = "Allows you to identify seeds and increases workspeed and success chances on farming-related tasks."
 	dreams = list(
 		"...the smell of dung was once revolting but it now smells like opportunity. The soil is hungry, so you get your hands dirty...",
 		"...you scrape and plow until your muscles ache. The day was long, and soon the apples you plucked today would be rolled into a delicious pie...",
@@ -14,7 +14,7 @@
 
 /datum/skill/labor/mining
 	name = "Mining"
-	desc = "Increases mining speed"
+	desc = "Increases mining speed."
 	dreams = list(
 		"...rock crumbles and the wall before you gives way, your pickaxe has become battered and broken from the long day. You've mined into a strangely well lit cavern...",
 		"...the red, gleaming light seeps from the ancient stone, next to its guardian - a bearded hermit of short stature, who riddles you on the strongest of steels...",

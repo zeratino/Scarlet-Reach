@@ -6,7 +6,7 @@
 
 /datum/skill/magic/holy
 	name = "Miracles"
-	desc = "Gives you access to higher tier of miracles from your patrons"
+	desc = "Gives you access to higher tier of miracles from your patrons."
 
 /datum/skill/magic/blood
 	name = "Blood Sorcery"
