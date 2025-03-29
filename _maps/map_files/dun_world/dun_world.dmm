@@ -17288,6 +17288,7 @@
 /obj/item/reagent_containers/food/snacks/grown/wheat,
 /obj/item/reagent_containers/food/snacks/grown/wheat,
 /obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/butter,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
