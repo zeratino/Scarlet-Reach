@@ -11244,6 +11244,8 @@
 	},
 /area/rogue/indoors/town/garrison)
 "eFl" = (
+/obj/structure/fermenting_barrel/water,
+/obj/machinery/light/rogue/wallfire/candle/r,
 /obj/structure/rack/rogue/shelf,
 /obj/item/reagent_containers/glass/cup/wooden{
 	pixel_x = -5;
@@ -11253,8 +11255,6 @@
 	pixel_x = 5;
 	pixel_y = 39
 	},
-/obj/structure/fermenting_barrel/water,
-/obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -14813,7 +14813,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "gdG" = (
-/obj/machinery/tanningrack,
+/obj/machinery/light/rogue/oven/east,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -17286,8 +17286,8 @@
 /obj/structure/closet/crate/chest/neu,
 /obj/item/reagent_containers/food/snacks/grown/wheat,
 /obj/item/reagent_containers/food/snacks/grown/wheat,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
-/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
+/obj/item/reagent_containers/food/snacks/grown/wheat,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -270453,7 +270453,7 @@ kSN
 kSN
 tzy
 rFB
-iCo
+gdG
 tMq
 jWw
 fPq
@@ -271358,7 +271358,7 @@ nqq
 nqq
 vZB
 iCo
-gdG
+iCo
 jWw
 ljg
 iCo
