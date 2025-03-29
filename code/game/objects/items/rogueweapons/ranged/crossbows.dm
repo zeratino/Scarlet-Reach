@@ -23,6 +23,7 @@
 	smeltresult = /obj/item/ingot/steel
 	resistance_flags = FIRE_PROOF
 	obj_flags = UNIQUE_RENAME
+	damfactor = 2
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/getonmobprop(tag)
 	. = ..()
