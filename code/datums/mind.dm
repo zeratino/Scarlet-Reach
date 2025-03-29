@@ -425,12 +425,14 @@
 		return
 	var/msg = ""
 	msg += span_info("*---------*\n")
-	for(var/datum/i in shown_skills)
+	for(var/datum/skill/i in shown_skills)
 		var/can_advance_post = sleep_adv.enough_sleep_xp_to_advance(i.type, 1)
 		var/capped_post = sleep_adv.enough_sleep_xp_to_advance(i.type, 2)
 		var/rankup_postfix = capped_post ? span_nicegreen(" <b>(!!)</b>") : can_advance_post ? span_nicegreen(" <b>(!)</b>") : ""
-		msg += "[i] - [SSskills.level_names[known_skills[i]]][rankup_postfix]\n"
+		msg += "[i] - [SSskills.level_names[known_skills[i]]][rankup_postfix]"
+		msg += span_info(" <a href='?src=[REF(i)];skill_detail=1'>{?}</a>\n")
 	msg += "</span>"
+
 	to_chat(user, msg)
 
 
