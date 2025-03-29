@@ -415,14 +415,6 @@
 	var/datum/skill/S = GetSkillRef(skill)
 	return known_skills[S] || SKILL_LEVEL_NONE
 
-/datum/mind/proc/get_skill_parry_modifier(skill)
-	var/datum/skill/combat/S = GetSkillRef(skill)
-	return S.get_skill_parry_modifier(known_skills[S] || SKILL_LEVEL_NONE)
-
-/datum/mind/proc/get_skill_dodge_drain(skill)
-	var/datum/skill/combat/S = GetSkillRef(skill)
-	return S.get_skill_dodge_drain(known_skills[S] || SKILL_LEVEL_NONE)
-
 /datum/mind/proc/print_levels(user)
 	var/list/shown_skills = list()
 	for(var/i in known_skills)
