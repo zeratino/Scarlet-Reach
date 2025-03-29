@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.tx
 	flee_in_pain = TRUE
 	stand_attempts = 6
 	possible_rmb_intents = list()
-
+	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 
 /mob/living/carbon/human/species/elf/dark/drowraider/ambush
 	aggressive=1
@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.tx
 	if(target)
 		aggressive=1
 		wander = TRUE
-	if(target != newtarg)
+	if(!is_silent && target != newtarg)
 		say(pick(GLOB.drowraider_aggro))
 		linepoint(target)
 
@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.tx
 	. = ..()
 	set_species(/datum/species/elf/dark)
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
+	is_silent = TRUE
 
 
 /mob/living/carbon/human/species/elf/dark/drowraider/after_creation()
