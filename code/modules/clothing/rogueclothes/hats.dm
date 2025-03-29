@@ -846,6 +846,7 @@
 	adjustable = CAN_CADJUST
 	icon_state = "zizobarbute"
 	max_integrity = 600
+	peel_threshold = 4
 
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/pickup(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_CABAL))

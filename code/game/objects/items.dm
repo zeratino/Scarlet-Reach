@@ -471,6 +471,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					for(var/zone in zones)			
 						inspec += "<b><font color = '#7e0000'>[capitalize(zone)]</font></b> | "
 				inspec += "<br>"
+			if(C.body_parts_inherent)
+				inspec += "<b>CANNOT BE PEELED: </b>"
+				var/list/inherentList = body_parts_covered2organ_names(C.body_parts_inherent)
+				if(length(inherentList) == 1)
+					inspec += "<b><font color = '#77cde2'>[capitalize(inherentList[1])]</font></b>"
+				else
+					inspec += "| "
+					for(var/zone in inherentList)
+						inspec += "<b><font color = '#77cde2'>[capitalize(zone)]</b></font> | "
 			if(C.prevent_crits)
 				if(length(C.prevent_crits))
 					inspec += "\n<b>PREVENTS CRITS:</b>"
@@ -1270,7 +1279,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/coveragezone = attackzone2coveragezone(bodypart)
 	if(!(body_parts_inherent & coveragezone))
 		if(!last_peeled_limb || coveragezone == last_peeled_limb)
-			peel_count += divisor ? (divisor / peel_threshold) : 1
+			if(divisor >= peel_threshold)
+				peel_count += divisor ? (divisor / peel_threshold) : 1
+			else if(divisor < peel_threshold)
+				peel_count++
 			if(peel_count >= peel_threshold)
 				body_parts_covered_dynamic &= ~coveragezone
 				playsound(src, 'sound/foley/peeled_coverage.ogg', 100)

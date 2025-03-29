@@ -46,7 +46,7 @@
 	var/miss_text //THESE ARE FOR UNARMED MISSING ATTACKS
 	var/miss_sound //THESE ARE FOR UNARMED MISSING ATTACKS
 	var/allow_offhand = TRUE	//Do I need my offhand free while using this intent?
-	var/peel_divisor = 0
+	var/peel_divisor = 0		//How many consecutive peel hits this intent requires to peel a piece of coverage? May be overriden by armor thresholds if they're higher.
 
 /datum/intent/Destroy()
 	if(chargedloop)
@@ -87,7 +87,7 @@
 		if(clickcd > CLICK_CD_MELEE)
 			inspec += "Slow"
 	if(blade_class == BCLASS_PEEL)
-		inspec += "\nThis intent will peel the coverage off of your target's armor in non-key areas after [peel_divisor] consecutive hits."
+		inspec += "\nThis intent will peel the coverage off of your target's armor in non-key areas after [peel_divisor] consecutive hits.\nSome armor may have higher thresholds."
 	if(!allow_offhand)
 		inspec += "\nThis intent requires a free off-hand."
 	inspec += "<br>----------------------"

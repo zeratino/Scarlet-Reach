@@ -239,6 +239,8 @@
 /obj/item/rogueweapon/sword/long/zizo
 	name = "darksteel longsword"
 	desc = "A wicked and red blade. Called forth from the edge of what should be known. In Her name."
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
 	force = 30
 	force_wielded = 35
 	icon_state = "zizosword"
@@ -911,13 +913,13 @@
 /obj/item/rogueweapon/sword/long/romphaia
 	force = 25
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx)
-	gripped_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx)
+	possible_item_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
 	icon_state = "romphaia"
 	name = "romphaia"
 	desc = "A longsword with a hooked end for punching through armour."
 	smeltresult = /obj/item/ingot/steel
-	max_integrity = 175
+	max_integrity = 125
 
 /obj/item/rogueweapon/sword/long/romphaia/getonmobprop(tag)
 	. = ..()
@@ -1036,8 +1038,8 @@
 /obj/item/rogueweapon/sword/long/holysee
 	force = 34
 	force_wielded = 50
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
 	icon_state = "eclipsum"
 	name = "eclipsum sword"
 	desc = "A mutual effort of Noc and Astrata's followers, this blade was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite."

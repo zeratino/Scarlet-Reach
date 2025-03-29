@@ -1552,6 +1552,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(!user.used_intent?.allow_offhand)
 		if(user.get_num_arms(FALSE) < 2 || user.get_inactive_held_item())
 			Iforce = 0
+	var/bladec = user.used_intent.blade_class
+	if(H == user && bladec == BCLASS_PEEL)
+		bladec = BCLASS_BLUNT
 	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor)
 
 	var/nodmg = FALSE
