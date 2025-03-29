@@ -11254,6 +11254,7 @@
 	pixel_y = 39
 	},
 /obj/structure/fermenting_barrel/water,
+/obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -31896,6 +31897,11 @@
 	},
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
+"nmx" = (
+/obj/structure/rack/rogue,
+/obj/item/rogueweapon/halberd/bardiche,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "nmB" = (
 /obj/item/roguecoin/copper,
 /turf/open/water/sewer,
@@ -48287,8 +48293,8 @@
 /area/rogue/indoors/town)
 "tVi" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/halberd/bardiche,
-/obj/machinery/light/rogue/torchholder/c,
+/obj/item/rogueweapon/halberd,
+/obj/item/rogueweapon/halberd,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "tVn" = (
@@ -53637,6 +53643,8 @@
 /area/rogue/indoors/town/church)
 "wfo" = (
 /obj/structure/closet/crate/chest/neu,
+/obj/item/rope/chain,
+/obj/item/rope/chain,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/garrison)
 "wfv" = (
@@ -148383,7 +148391,7 @@ xCK
 xCK
 vtx
 bYC
-bYC
+nmx
 tVi
 gbH
 ooy
