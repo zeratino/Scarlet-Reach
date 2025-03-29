@@ -406,7 +406,7 @@
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
-	H.cmode_music = 'sound/music/combat_gronn.ogg'
+	H.cmode_music = 'sound/music/combat_berserker.ogg'
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	var/weapons = list("Katar","Steel Knuckles","MY BARE HANDS!!!","Battle Axe","Mace")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
