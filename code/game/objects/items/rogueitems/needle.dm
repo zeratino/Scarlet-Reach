@@ -99,6 +99,8 @@
 				user.visible_message(span_info("[user] damages [I] due to a lack of skill!"))
 				playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
 				user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT) / 2) // Only failing a repair teaches us something
+				if(do_after(user, CLICK_CD_MELEE, target = I))
+					attack_obj(I, user)
 				return
 			else
 				if(I.obj_broken && istype(I, /obj/item/clothing))
@@ -107,6 +109,8 @@
 				playsound(loc, 'sound/foley/sewflesh.ogg', 50, TRUE, -2)
 				user.visible_message(span_info("[user] repairs [I]!"))
 				I.obj_integrity = min(I.obj_integrity + 10 + skill, I.max_integrity)
+				if(do_after(user, CLICK_CD_MELEE, target = I))
+					attack_obj(I, user)
 		return
 	return ..()
 
