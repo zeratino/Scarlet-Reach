@@ -40,6 +40,8 @@
 	added_traits = list(TRAIT_RESIDENT)
 
 /datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
+	if(SSmapping.config.map_name != "Dun Manor")
+		return //snowflake other maps into bespoke children procs later
 	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
 		// Find tavern area for spawning
 		var/area/spawn_area
@@ -49,41 +51,24 @@
 				break
 		
 		if(spawn_area)
-			// Find a suitable chair in the tavern to buckle to - only on the ground floor
+			var/target_z = 3 //ground floor of tavern
 			var/list/possible_chairs = list()
-			var/list/ground_z_levels = list()
 			
-			// Find stairs first to identify the ground floor z-level
-			for(var/obj/structure/stairs/S in spawn_area)
-				ground_z_levels |= S.z // The level with stairs going up is the ground floor
-			
-			// If we couldn't find stairs, fall back to the lowest z-level in the tavern area
-			if(!length(ground_z_levels))
-				var/lowest_z = INFINITY
-				for(var/atom/movable/AM in spawn_area)
-					if(AM.z < lowest_z)
-						lowest_z = AM.z
-				if(lowest_z != INFINITY)
-					ground_z_levels += lowest_z
-			
-			// Now find chairs only on the ground level
 			for(var/obj/structure/chair/C in spawn_area)
-				if((C.z in ground_z_levels) && (istype(C, /obj/structure/chair/wood/rogue) || istype(C, /obj/structure/chair/stool/rogue)))
-					var/turf/T = get_turf(C)
-					if(T && !T.density && !T.is_blocked_turf(TRUE))
-						possible_chairs += C
+				//z-level 3, wooden chair, and Y > 70 north of tavern backrooms
+				var/turf/T = get_turf(C)
+				if(T && T.z == target_z && T.y > 70 && istype(C, /obj/structure/chair/wood/rogue) && !T.density && !T.is_blocked_turf(FALSE))
+					possible_chairs += C
 			
-			// If we found chairs, pick one and buckle the player to it
 			if(length(possible_chairs))
 				var/obj/structure/chair/chosen_chair = pick(possible_chairs)
 				recipient.forceMove(get_turf(chosen_chair))
 				chosen_chair.buckle_mob(recipient)
 				to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself seated at a chair in the local tavern."))
 			else
-				// Fallback if no chairs found on ground floor
 				var/list/possible_spawns = list()
 				for(var/turf/T in spawn_area)
-					if((T.z in ground_z_levels) && !T.density && !T.is_blocked_turf(TRUE))
+					if(T.z == target_z && T.y > 74 && !T.density && !T.is_blocked_turf(FALSE))
 						possible_spawns += T
 				
 				if(length(possible_spawns))
