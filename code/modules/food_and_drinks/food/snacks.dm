@@ -51,6 +51,10 @@ All foods are distributed among various categories. Use common sense.
 	var/dunkable = FALSE // for dunkable food, make true
 	var/dunk_amount = 10 // how much reagent is transferred per dunk
 	var/cooked_type = null  //for overn cooking
+	/// How palatable is this food for a given social class? Also influences food quality
+	var/faretype = FARE_IMPOVERISHED
+	/// If false, this will inflict mood debuffs on nobles who eat it without being near a table.
+	var/portable = TRUE
 	var/fried_type = null	//instead of becoming
 	var/filling_color = "#FFFFFF" //color to use when added to custom food.
 	var/custom_food_type = null  //for food customizing. path of the custom food to create
@@ -404,14 +408,28 @@ All foods are distributed among various categories. Use common sense.
 	. = ..()
 	if(!in_container)
 		switch (bitecount)
-			if (0)
-				return
+			if(0)
 			if(1)
-				. += "[src] was bitten by someone!"
+				. += ("[src] was bitten by someone!\n")
 			if(2,3)
-				. += "[src] was bitten [bitecount] times!"
+				. += ("[src] was bitten [bitecount] times!\n")
 			else
-				. += "[src] was bitten multiple times!"
+				. += ("[src] was bitten multiple times!\n")
+	switch(faretype)
+		if(FARE_IMPOVERISHED)
+			. += ("It is food fit for the desperate.")
+		if(FARE_POOR)
+			. += ("It is food fit for the poor.")
+		if(FARE_NEUTRAL)
+			. += ("It is decent food.")
+		if(FARE_FINE)
+			. += ("It is fine food.")
+		if(FARE_LAVISH)
+			. += ("It is lavish food.")
+	if(portable)
+		. += ("It can be eaten without a table.")
+	else
+		. += ("Eating this without a table would be disgraceful for a noble.\n")
 
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
