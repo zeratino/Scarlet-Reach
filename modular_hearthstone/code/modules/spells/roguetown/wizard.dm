@@ -1736,7 +1736,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	cost = 2
 	xp_gain = TRUE
-	charge_max = 2 MINUTES
+	charge_max = 5 MINUTES
 	invocation = "MENTIS NEXUS!"
 	invocation_type = "whisper"
 	
