@@ -864,9 +864,6 @@
 	if(wallpressed)
 		update_wallpress(T, newloc, direct)
 
-	if(is_shifted)
-		update_pixel_shifting(TRUE)
-
 	if(lying)
 		if(direct & EAST)
 			lying = 90
