@@ -5,7 +5,6 @@
 /// the parent to the exclusion list in code/__HELPERS/unsorted.dm's
 /// get_random_food proc.
 ////////////////////////////////////////////////////////////////////////////////
-#define STOP_SERVING_BREAKFAST (15 MINUTES)
 
 /obj/item/reagent_containers/food
 	possible_transfer_amounts = list()
@@ -50,8 +49,4 @@
 				if(foodtype & H.dna.species.toxic_food)
 					to_chat(H, span_warning("I don't feel so good..."))
 					H.adjust_disgust(25 + 30 * fraction)
-			if((foodtype & BREAKFAST) && world.time - SSticker.round_start_time < STOP_SERVING_BREAKFAST)
-				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "breakfast", /datum/mood_event/breakfast)
-			last_check_time = world.time
 
-#undef STOP_SERVING_BREAKFAST
