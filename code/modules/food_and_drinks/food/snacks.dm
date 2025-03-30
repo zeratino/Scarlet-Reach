@@ -171,7 +171,8 @@ All foods are distributed among various categories. Use common sense.
 /obj/item/proc/cooking(input as num)
 	return
 
-/obj/item/reagent_containers/food/snacks/cooking(input as num, atom/A)
+// Cook a food, burninput is separate so that burning doesn't scale up with skills
+/obj/item/reagent_containers/food/snacks/cooking(input as num, burninput, atom/A)
 	if(!input)
 		return
 	if(cooktime)
@@ -181,7 +182,7 @@ All foods are distributed among various categories. Use common sense.
 				return heating_act(A)
 			warming = 5 MINUTES
 			return
-	burning(input)
+	burning(burninput)
 
 /obj/item/reagent_containers/food/snacks/heating_act(atom/A)
 	if(istype(A,/obj/machinery/light/rogue/oven))
