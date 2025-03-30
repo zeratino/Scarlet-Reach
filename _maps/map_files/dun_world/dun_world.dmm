@@ -5102,6 +5102,20 @@
 /obj/structure/fermenting_barrel/random,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
+"ceM" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "tablewood1"
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/glass/cup/steel{
+	pixel_x = -6
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/town/bath)
 "ceZ" = (
 /obj/structure/bed/rogue/shit{
 	name = "makeshift bed"
@@ -32283,6 +32297,10 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors/town/magician)
+"nto" = (
+/obj/structure/roguemachine/scomm,
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/town/bath)
 "ntv" = (
 /obj/structure/bars/passage/shutter{
 	redstone_id = "golgothaone"
@@ -32763,9 +32781,6 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/town/roofs)
 "nCC" = (
-/obj/structure/chair/wood/rogue/fancy{
-	dir = 4
-	},
 /obj/machinery/light/rogue/wallfire/candle/blue{
 	pixel_y = -32
 	},
@@ -35502,6 +35517,9 @@
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "oKD" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
+/obj/structure/chair/wood/rogue/fancy{
+	dir = 4
+	},
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "oKH" = (
@@ -49204,9 +49222,9 @@
 /area/rogue/outdoors/mountains)
 "umV" = (
 /obj/structure/chair/wood/rogue/fancy{
-	dir = 8
+	dir = 4
 	},
-/turf/open/floor/rogue/blocks/stonered/tiny,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "unc" = (
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/end{
@@ -50348,7 +50366,7 @@
 	pixel_x = 9;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/glass/cup/wooden{
+/obj/item/reagent_containers/glass/cup/steel{
 	pixel_x = -6
 	},
 /turf/open/floor/rogue/tile,
@@ -51687,9 +51705,17 @@
 /area/rogue/indoors/town/church/chapel)
 "vqa" = (
 /obj/structure/table/wood{
+	dir = 1;
 	icon_state = "tablewood1"
 	},
-/turf/open/floor/carpet/royalblack,
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/cup/steel{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
 "vqc" = (
 /obj/effect/spawner/lootdrop/roguetown/dungeon,
@@ -58385,10 +58411,11 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/indoors/town/manor)
 "yfM" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
+/obj/machinery/light/rogue/wallfire/candle/blue/l,
+/obj/structure/chair/wood/rogue/fancy{
+	dir = 4
 	},
-/turf/open/floor/rogue/blocks/stonered/tiny,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "yfN" = (
 /obj/item/natural/stone,
@@ -115419,7 +115446,7 @@ rqY
 rqY
 hwy
 eMv
-rxZ
+vqa
 vId
 sBA
 sBA
@@ -116321,7 +116348,7 @@ xsH
 xsH
 xsH
 rqY
-iBX
+nto
 eMv
 eMv
 sBA
@@ -119035,7 +119062,7 @@ rqY
 rqY
 cWt
 eMv
-rxZ
+vqa
 vId
 sBA
 sBA
@@ -120395,11 +120422,11 @@ eMv
 eMv
 eMv
 xgj
-rxZ
+vqa
 vId
 eMv
 xgj
-rxZ
+ceM
 vId
 eMv
 eMv
@@ -122208,11 +122235,11 @@ eMv
 jJT
 rqY
 oKD
-dUB
+yfM
 eMv
-dUB
+yfM
 eEA
-eMv
+umV
 nCC
 rqY
 rqY
@@ -122663,9 +122690,9 @@ eMv
 ckq
 ckq
 ckq
-sdm
 ckq
-yfM
+ckq
+qoB
 rqY
 ogs
 xPZ
@@ -123104,7 +123131,7 @@ mMx
 mMx
 xAN
 rqY
-ckq
+nBJ
 sdm
 sdm
 eMv
@@ -123115,9 +123142,9 @@ eMv
 ckq
 ckq
 ckq
-vqa
 ckq
-umV
+ckq
+pVz
 rqY
 ogs
 xPZ
@@ -123567,9 +123594,9 @@ eMv
 ckq
 ckq
 ckq
-pvS
 ckq
-eMv
+ckq
+vTq
 rqY
 ogs
 xPZ
@@ -124021,7 +124048,7 @@ ckq
 ckq
 ckq
 ckq
-qoB
+eMv
 rqY
 ogs
 xPZ
@@ -124473,7 +124500,7 @@ qsF
 eMv
 eMv
 eMv
-pVz
+eMv
 rqY
 ogs
 xPZ
@@ -124925,7 +124952,7 @@ rqY
 eMv
 eMv
 eMv
-vTq
+nCC
 rqY
 ogs
 xPZ
