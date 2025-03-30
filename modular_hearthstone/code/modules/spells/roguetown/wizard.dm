@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	active = FALSE
 	sound = 'sound/blank.ogg'
 	overlay_state = "forcewall"
-	range = -1
+	range = 7
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	var/wall_type = /obj/structure/forcefield_weak/caster
@@ -506,6 +506,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	name = "Blade Burst"
 	desc = "Summon a storm of arcyne force in an area, wounding anything in that location after a delay."
 	cost = 1
+	range = 7
 	xp_gain = TRUE
 	releasedrain = 30
 	chargedrain = 1
@@ -873,6 +874,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
@@ -1046,6 +1048,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 	var/delay = 3
 	var/damage = 0 // damage based off your str 
 	var/area_of_effect = 0
@@ -1292,6 +1295,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune1"
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/enlarge/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1333,6 +1337,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune5"
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/leap/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1478,7 +1483,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 					return
 				to_chat(user, span_info("I begin to meld with the shadows.."))
 				lockon(T, user)
-				if(do_after(user, 2 SECONDS))
+				if(do_after(user, 5 SECONDS))
 					tp(user)
 				else
 					reset(silent = TRUE)
@@ -1515,13 +1520,13 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 
 /obj/effect/proc_holder/spell/invoked/blink
 	name = "Blink"
-	desc = "Teleport to a targeted location within your field of view. Limited to a range of 7 tiles."
+	desc = "Teleport to a targeted location within your field of view. Limited to a range of 5 tiles. Only works on the same plane as the caster."
 	school = "conjuration"
-	cost = 2
+	cost = 1
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 3 SECONDS
-	charge_max = 20 SECONDS
+	chargetime = 1.5 SECONDS
+	charge_max = 10 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -1532,7 +1537,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	xp_gain = TRUE
 	invocation = "SHIFT THROUGH SPACE!"
 	invocation_type = "shout"
-	var/max_range = 7
+	var/max_range = 5
 	var/phase = /obj/effect/temp_visual/blink
 
 /obj/effect/temp_visual/blink
@@ -1559,7 +1564,26 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		to_chat(user, span_warning("Invalid target location!"))
 		revert_cast()
 		return
+
+	if(T.teleport_restricted == TRUE)
+		to_chat(user, span_warning("I can't teleport here!"))
+
+	if(T.z != start.z)
+		to_chat(user, span_warning("I can only teleport on the same plane!"))
+
+		revert_cast()
+		return
 	
+	if(istransparentturf(T))
+		to_chat(user, span_warning("I cannot teleport to the open air!"))
+		revert_cast()
+		return
+
+	if(T.density)
+		to_chat(user, span_warning("I cannot teleport into a wall!"))
+		revert_cast()
+		return
+
 	// Check range limit
 	var/distance = get_dist(start, T)
 	if(distance > max_range)
@@ -1594,7 +1618,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 				
 		// Check for windows
 		for(var/obj/structure/roguewindow/window in (traversal_turf.contents + T.contents))
-			if(window.density)
+			if(window.density && !window.climbable)
 				to_chat(user, span_warning("I cannot blink through windows!"))
 				revert_cast()
 				return
@@ -1716,7 +1740,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	cost = 2
 	xp_gain = TRUE
-	charge_max = 2 MINUTES
+	charge_max = 5 MINUTES
 	invocation = "MENTIS NEXUS!"
 	invocation_type = "whisper"
 	
@@ -1729,6 +1753,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	charging_slowdown = 2
 	warnie = "spellwarning"
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
 	. = ..()

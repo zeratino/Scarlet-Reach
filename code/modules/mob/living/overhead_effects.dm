@@ -30,7 +30,7 @@
 						can_see += M
 			
 			for(var/mob/M in can_see)
-				new /obj/effect/temp_visual/stress_event/invisible(get_turf(src.loc), M, icon_path, overlay_name, offset_list)
+				vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, M, icon_path, overlay_name, offset_list)
 				if(soundin)
 					var/turf/T = get_turf(src)
 					M.playsound_local(T, soundin, 100, FALSE)

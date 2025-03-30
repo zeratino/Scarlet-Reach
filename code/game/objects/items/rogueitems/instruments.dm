@@ -242,7 +242,10 @@
 	"Danza De Las Lanzas" = 'sound/music/instruments/guitar (8).ogg',
 	"The Feline, Forever Returning" = 'sound/music/instruments/guitar (9).ogg',
 	"El Beso Carmesí" = 'sound/music/instruments/guitar (10).ogg',
-	"The Queen's High Seas" = 'sound/music/instruments/guitar (11).ogg')
+	"The Queen's High Seas" = 'sound/music/instruments/guitar (11).ogg',
+	"Harsh Testimony" = 'sound/music/instruments/guitar (12).ogg',
+	"Someone Fair" = 'sound/music/instruments/guitar (13).ogg',
+	"Daisies in Bloom" = 'sound/music/instruments/guitar (14).ogg')
 
 /obj/item/rogue/instrument/harp
 	name = "harp"
