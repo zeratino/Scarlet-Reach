@@ -47,7 +47,7 @@
 		"Royal Blue" = "#173266",
 		"Royal Brown" = "#61462c",
 		"Royal Green" = "#264d26",
-		"Royal Majenta" = "#962e5c",
+		"Royal Magenta" = "#962e5c",
 		"Royal Orange" = "#df8405",
 		"Royal Purple" = "#8747b1",
 		"Royal Red" = "#8b2323",
