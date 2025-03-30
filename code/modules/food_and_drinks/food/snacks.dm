@@ -429,8 +429,16 @@ All foods are distributed among various categories. Use common sense.
 	if(portable)
 		. += ("It can be eaten without a table.")
 	else
-		. += ("Eating this without a table would be disgraceful for a noble.\n")
-
+		. += ("Eating this without a table would be disgraceful for a noble.")
+	switch(eat_effect)
+		if(/datum/status_effect/debuff/uncookedfood)
+			. += span_warning("It is raw!")
+		if(/datum/status_effect/debuff/rotfood)
+			. += span_warning("It is rotten!")
+		if(/datum/status_effect/debuff/burnedfood)
+			. += span_warning("It is burned!")
+		if(/datum/status_effect/buff/foodbuff)
+			. += span_notice("It looks great!")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/kitchen/fork))
