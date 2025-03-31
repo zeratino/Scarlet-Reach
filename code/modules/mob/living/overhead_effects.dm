@@ -1,7 +1,7 @@
 //By DREAMKEEP, Vide Noir https://github.com/EaglePhntm.
 //GRAPHICS & SOUNDS INCLUDED:
 //DARKEST DUNGEON (STRESS, RELIEF, AFFLICTION)
-/mob/living/proc/play_overhead_indicator(icon_path, overlay_name, clear_time, overlay_layer, private = FALSE, soundin = null)
+/mob/living/proc/play_overhead_indicator(icon_path, overlay_name, clear_time, overlay_layer, private = FALSE, soundin = null, y_offset = 12)
 	if(!ishuman(src))
 		return
 	if(stat != DEAD)
@@ -16,16 +16,16 @@
 			var/mutable_appearance/appearance = mutable_appearance(icon_path, overlay_name, overlay_layer)
 			if(offset_list)
 				appearance.pixel_x += (offset_list[1])
-				appearance.pixel_y += (offset_list[2]+12)
+				appearance.pixel_y += (offset_list[2]+y_offset)
 			appearance.appearance_flags = RESET_COLOR
 			overlays_standing[OBJ_LAYER] = appearance
 			apply_overlay(OBJ_LAYER)
 			addtimer(CALLBACK(humie, PROC_REF(clear_overhead_indicator), appearance), clear_time)
 			playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
-		else
+		if(!ispath(private, /datum/patron))
 			var/list/can_see = list(src)
 			for(var/mob/M in viewers(world.view, src))
-				if(HAS_TRAIT(M, TRAIT_EMPATH))
+				if(HAS_TRAIT(M, private))
 					if(M != src)
 						can_see += M
 			
@@ -34,6 +34,8 @@
 				if(soundin)
 					var/turf/T = get_turf(src)
 					M.playsound_local(T, soundin, 100, FALSE)
+
+		if(ispath(private, /datum/patron))
 
 /obj/effect/temp_visual/stress_event
 	icon = 'icons/mob/overhead_effects.dmi'
@@ -60,10 +62,10 @@
 	return
 
 /mob/living/proc/play_stress_indicator()
-	play_overhead_indicator('icons/mob/overhead_effects.dmi', "stress", 15, OBJ_LAYER, private = TRUE, soundin = 'sound/ddstress.ogg')
+	play_overhead_indicator('icons/mob/overhead_effects.dmi', "stress", 15, OBJ_LAYER, private = TRAIT_EMPATH, soundin = 'sound/ddstress.ogg')
 
 /mob/living/proc/play_relief_indicator()
-	play_overhead_indicator('icons/mob/overhead_effects.dmi', "relief", 15, OBJ_LAYER, private = TRUE, soundin = 'sound/ddrelief.ogg')
+	play_overhead_indicator('icons/mob/overhead_effects.dmi', "relief", 15, OBJ_LAYER, private = TRAIT_EMPATH, soundin = 'sound/ddrelief.ogg')
 
 /mob/living/proc/play_mental_break_indicator()
 	play_overhead_indicator('icons/mob/overhead_effects.dmi', "mentalbreak", 20, OBJ_LAYER)
