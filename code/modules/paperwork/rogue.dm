@@ -121,11 +121,13 @@
 //Fake reskin of a scroll for the dwarf mercs -- just a fluffy toy
 /obj/item/paper/scroll/grudge
 	name = "Book of Grudges"
-	desc = "A copy you've taken with you. Unfortunately the dampness of Azuria made it unreadable. You can still add new entries, however."
+	desc = "A copy you've taken with you. Unfortunately the dampness of Azuria made it unreadable. You can still add new entries, however. It looks bulky enough to act as a mild blunt weapon."
 	icon_state ="grudge_closed"
 	drop_sound = 'sound/foley/dropsound/book_drop.ogg'
 	grid_width = 32
 	grid_height = 32
+	force = 10
+	possible_item_intents = list(/datum/intent/mace/strike)
 
 /obj/item/paper/scroll/grudge/update_icon_state()
 	if(open)
