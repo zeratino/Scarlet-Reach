@@ -89,8 +89,8 @@
 				to_chat(user, span_warning("I should put this on a table first."))
 				return
 			playsound(loc, 'sound/foley/sewflesh.ogg', 100, TRUE, -2)
-			var/skill = ((user.mind.get_skill_level(/datum/skill/misc/sewing)) + (user.mind.get_skill_level(/datum/skill/craft/tanning)) * 10)
-			var/repairskill = ((user.mind.get_skill_level(/datum/skill/misc/sewing)) + (user.mind.get_skill_level(/datum/skill/craft/tanning)) * 5)
+			var/skill = (user.mind.get_skill_level(/datum/skill/misc/sewing) + user.mind.get_skill_level(/datum/skill/craft/tanning)) * 10
+			var/repairskill = (user.mind.get_skill_level(/datum/skill/misc/sewing) + user.mind.get_skill_level(/datum/skill/craft/tanning)) * 5
 			var/sewtime = max(5, (60 - skill))
 			if(!do_after(user, sewtime, target = I))
 				return
