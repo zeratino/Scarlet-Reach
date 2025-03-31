@@ -20,7 +20,7 @@
 	if(check_zone(zone) == zone)	//Are we targeting a big limb or chest?
 		chance2hit += 10
 	else
-		chance2hit -= 20			//If not (IE hands, eyes, etc), it's harder to hit.
+		chance2hit -= 10			//If not (IE hands, eyes, etc), it's harder to hit.
 
 	if(user.mind)
 		chance2hit += (user.mind.get_skill_level(associated_skill) * 8)
