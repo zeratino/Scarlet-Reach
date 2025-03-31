@@ -40,8 +40,14 @@
 	added_traits = list(TRAIT_RESIDENT)
 
 /datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
-	if(SSmapping.config.map_name != "Dun Manor")
-		return //snowflake other maps into bespoke children procs later
+	var/mapswitch = 0
+	if(SSmapping.config.map_name == "Dun Manor")
+		mapswitch = 1
+	else if(SSmapping.config.map_name == "Dun World")
+		mapswitch = 2
+
+	if(mapswitch == 0)
+		return
 	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
 		// Find tavern area for spawning
 		var/area/spawn_area
@@ -51,13 +57,17 @@
 				break
 		
 		if(spawn_area)
-			var/target_z = 3 //ground floor of tavern
+			var/target_z = 3 //ground floor of tavern for dun manor / world
+			var/target_y = 70 //dun manor
 			var/list/possible_chairs = list()
+
+			if(mapswitch == 2)
+				target_y = 234 //dun world huge
 			
 			for(var/obj/structure/chair/C in spawn_area)
-				//z-level 3, wooden chair, and Y > 70 north of tavern backrooms
+				//z-level 3, wooden chair, and Y > north of tavern backrooms
 				var/turf/T = get_turf(C)
-				if(T && T.z == target_z && T.y > 70 && istype(C, /obj/structure/chair/wood/rogue) && !T.density && !T.is_blocked_turf(FALSE))
+				if(T && T.z == target_z && T.y > target_y && istype(C, /obj/structure/chair/wood/rogue) && !T.density && !T.is_blocked_turf(FALSE))
 					possible_chairs += C
 			
 			if(length(possible_chairs))
@@ -68,7 +78,7 @@
 			else
 				var/list/possible_spawns = list()
 				for(var/turf/T in spawn_area)
-					if(T.z == target_z && T.y > 74 && !T.density && !T.is_blocked_turf(FALSE))
+					if(T.z == target_z && T.y > (target_y + 4) && !T.density && !T.is_blocked_turf(FALSE))
 						possible_spawns += T
 				
 				if(length(possible_spawns))
@@ -188,8 +198,16 @@
 
 /datum/virtue/utility/night_vision
 	name = "Night-eyed"
-	desc = "I have eyes able to see through cloying darkness."
+	desc = "I have eyes able to see through cloying darkness. Incompatible with the vice Colorblind."
 	added_traits = list(TRAIT_DARKVISION)
+	custom_text = "Adds a button to toggle colorblindness to aid seeing in the dark. Taking this with the Colorblind vice will permanently colorblind you."
+
+/datum/virtue/utility/night_vision/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.charflaw)
+		if(recipient.charflaw.type == /datum/charflaw/colorblind)
+			to_chat(recipient, "Your eyes have become permanently colorblind.")
+		else
+			recipient.verbs += /mob/living/carbon/human/proc/toggleblindness
 
 /datum/virtue/utility/performer
 	name = "Performer"
