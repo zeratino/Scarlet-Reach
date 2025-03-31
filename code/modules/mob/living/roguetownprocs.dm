@@ -48,7 +48,7 @@
 	if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 		chance2hit -= 20
 
-	chance2hit = CLAMP(chance2hit, 5, 95)
+	chance2hit = CLAMP(chance2hit, 5, 90)
 
 	if(prob(chance2hit))
 		return zone
