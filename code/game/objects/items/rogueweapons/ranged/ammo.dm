@@ -142,7 +142,7 @@
 
 /obj/projectile/bullet/reusable/arrow/poison
 	name = "poison arrow"
-	damage = 50
+	damage = 20				//You deal a bunch of posion damage as it is, regardless of armor protection.
 	damage_type = BRUTE
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
@@ -194,7 +194,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
-		M.adjust_fire_stacks(6)
+		M.adjust_fire_stacks(5)
 //		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, my at about 65 damage if you stop drop and roll immediately
 	var/turf/T
 	if(isturf(target))
@@ -244,7 +244,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
-		M.adjust_fire_stacks(6)
+		M.adjust_fire_stacks(4)
 //		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, my at about 65 damage if you stop drop and roll immediately
 	var/turf/T
 	if(isturf(target))
