@@ -94,6 +94,37 @@
 					H.update_inv_neck()
 					H.update_inv_head()
 
+/obj/item/clothing/neck/roguetown/chaincoif/chainmantle
+	name = "chain mantle"
+	desc = "A more durable, thicker, piece of chain neck protection, though, this one only covers the neck and mouth when pulled up."
+	icon_state = "chainmantle"
+	max_integrity = 300
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
+	body_parts_covered = NECK|MOUTH
+	slot_flags = ITEM_SLOT_NECK
+	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+
+/obj/item/clothing/neck/roguetown/chaincoif/chainmantle/AdjustClothes(mob/user)
+	if(loc == user)
+		if(adjustable == CAN_CADJUST)
+			adjustable = CADJUSTED
+			if(toggle_icon_state)
+				icon_state = "[initial(icon_state)]_t"
+			flags_inv = null
+			body_parts_covered = NECK
+			if(ishuman(user))
+				var/mob/living/carbon/H = user
+				H.update_inv_neck()
+				H.update_inv_head()
+		else if(adjustable == CADJUSTED)
+			ResetAdjust(user)
+			flags_inv = null
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_neck()
+
+
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	name = "iron chain coif"
 	icon_state = "ichaincoif"
@@ -201,6 +232,21 @@
 	if(QDELETED(src))
 		return
 	qdel(src)
+
+/obj/item/clothing/neck/roguetown/gorget/cursed_collar
+	name = "cursed collar"
+	desc = "A metal collar that seems to radiate an ominous aura."
+	icon_state = "cursed_collar"
+	item_state = "cursed_collar"
+	armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "piercing" = 0, "fire" = 0, "acid" = 0)
+	smeltresult = /obj/item/ingot/iron
+	anvilrepair = /datum/skill/craft/armorsmithing
+	max_integrity = 150
+	resistance_flags = FIRE_PROOF
+	slot_flags = ITEM_SLOT_NECK
+	body_parts_covered = NECK
+	prevent_crits = list()
+	blocksound = PLATEHIT
 
 /obj/item/clothing/neck/roguetown/psicross
 	name = "psycross"
@@ -416,8 +462,27 @@
 	name = "bell collar"
 	desc = "A band of leather with a bell protects the local zads from the local catfolk."
 	icon_state = "bell_collar"
-	icon_state = "bell_collar"
 
 /obj/item/clothing/neck/roguetown/collar/bell_collar/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS)
+
+/obj/item/clothing/neck/roguetown/collar/feldcollar
+	name = "feldcollar"
+	desc = "A sturdy collar made of leather, commonly worn by field workers."
+	icon_state = "feldcollar"
+	item_state = "feldcollar"
+	resistance_flags = FIRE_PROOF
+	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE
+
+/obj/item/clothing/neck/roguetown/collar/surgcollar
+	name = "surgcollar"
+	desc = "A specialized collar designed for medical practitioners, with reinforced padding."
+	icon_state = "surgcollar"
+	item_state = "surgcollar"
+	resistance_flags = FIRE_PROOF
+	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE

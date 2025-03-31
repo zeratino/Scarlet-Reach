@@ -149,6 +149,23 @@
 	grid_width = 64
 	grid_height = 32
 
+/obj/item/clothing/gloves/roguetown/plate/matthios
+	name = "gilded gauntlets"
+	desc = "Many a man his life hath sold,"
+	icon_state = "matthiosgloves"
+	max_integrity = 500
+
+/obj/item/clothing/gloves/roguetown/plate/matthios/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+
+/obj/item/clothing/gloves/roguetown/plate/matthios/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
+
+
 /obj/item/clothing/gloves/roguetown/plate/zizo
 	name = "darksteel gauntlets"
 	desc = "darksteel plate gauntlets. Called forth from the edge of what should be known. In Her name."
@@ -220,7 +237,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
 	icon_state = "welfhand"
 	item_state = "welfhand"
-	armor = list("blunt" = 80, "slash" = 10, "stab" = 20, "piercing" = 100, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 90, "slash" = 10, "stab" = 100, "piercing" = 20, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_PICK)
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT

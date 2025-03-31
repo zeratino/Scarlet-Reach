@@ -39,6 +39,53 @@
 	desc = "I'm a resident of Azure Peak. I have an account in the city's treasury and a home in the city."
 	added_traits = list(TRAIT_RESIDENT)
 
+/datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
+	if(SSmapping.config.map_name != "Dun Manor")
+		return //snowflake other maps into bespoke children procs later
+	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
+		// Find tavern area for spawning
+		var/area/spawn_area
+		for(var/area/A in world)
+			if(istype(A, /area/rogue/indoors/town/tavern))
+				spawn_area = A
+				break
+		
+		if(spawn_area)
+			var/target_z = 3 //ground floor of tavern
+			var/list/possible_chairs = list()
+			
+			for(var/obj/structure/chair/C in spawn_area)
+				//z-level 3, wooden chair, and Y > 70 north of tavern backrooms
+				var/turf/T = get_turf(C)
+				if(T && T.z == target_z && T.y > 70 && istype(C, /obj/structure/chair/wood/rogue) && !T.density && !T.is_blocked_turf(FALSE))
+					possible_chairs += C
+			
+			if(length(possible_chairs))
+				var/obj/structure/chair/chosen_chair = pick(possible_chairs)
+				recipient.forceMove(get_turf(chosen_chair))
+				chosen_chair.buckle_mob(recipient)
+				to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself seated at a chair in the local tavern."))
+			else
+				var/list/possible_spawns = list()
+				for(var/turf/T in spawn_area)
+					if(T.z == target_z && T.y > 74 && !T.density && !T.is_blocked_turf(FALSE))
+						possible_spawns += T
+				
+				if(length(possible_spawns))
+					var/turf/spawn_loc = pick(possible_spawns)
+					recipient.forceMove(spawn_loc)
+					to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself in the local tavern."))
+
+/datum/virtue/utility/failed_squire
+	name = "Failed Squire"
+	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair."
+	added_traits = list(TRAIT_SQUIRE_REPAIR)
+	added_stashed_items = list("Worker's Hammer" = /obj/item/rogueweapon/hammer)
+	
+/datum/virtue/utility/failed_squire/apply_to_human(mob/living/carbon/human/recipient)
+	to_chat(recipient, span_notice("Though you failed to become a knight, your training in equipment maintenance and repair remains useful."))
+	to_chat(recipient, span_notice("You can retrieve your hammer from a tree, statue, or clock."))
+
 /datum/virtue/utility/linguist
 	name = "Intellectual"
 	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess."
@@ -210,9 +257,16 @@
 
 /datum/virtue/utility/keenears
 	name = "Keen Ears"
-	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, and their whispers are louder to you."
-	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, their whispers ringing louder."
 	added_traits = list(TRAIT_KEENEARS)
+	custom_text = "You can identify known people who speak even when they are out of sight. You can hear people speaking normally above and below you, regardless of obstacles in the way. You can hear whispers from one tile further."
+
+/datum/virtue/utility/tracker
+	name = "Sleuth"
+	desc = "You realised long ago that the ability to find a man is as helpful to aid the law as it is to evade it."
+	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	added_traits = list(TRAIT_SLEUTH)
+	custom_text = "- Upon right clicking a track, you will Mark the person who made them <i>(Expert skill required, not exclusive to this Virtue)</i>.\n- Further tracks found will be automatically highlighted as theirs, along with the person themselves, if they are not sneaking or invisible at the time.\n- Reduces the cooldown for tracking, allows track examining right away, and movement no longer cancels tracking."
 
 /datum/virtue/utility/bronzearm_r
 	name = "Bronze Arm (R)"

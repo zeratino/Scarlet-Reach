@@ -152,4 +152,3 @@ SUBSYSTEM_DEF(soundloopers)
 				found_loop["VOL"] = new_volume
 				mob.update_sound_volume(played_loops[loop]["SOUND"], new_volume)
 
-

@@ -53,7 +53,7 @@
 
 		if("Zeybek")
 			H.set_blindness(0)
-			to_chat(H, span_warning("Zybantian Zeybek are famed and feared the world over. Observers describe them as not so much fighting with their blade, but dancing with it."))
+			to_chat(H, span_warning("Ranesheni 'Blade Dancers' are famed and feared the world over. Their expertise in blades both long and short is well known..."))
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE) 
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)

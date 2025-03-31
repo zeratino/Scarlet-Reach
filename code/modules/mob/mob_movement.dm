@@ -106,6 +106,12 @@
 	if(mob.force_moving)
 		return FALSE
 
+	if(mob.shifting)
+		mob.pixel_shift(direct)
+		return FALSE
+	else if(mob.is_shifted)
+		mob.unpixel_shift()
+
 	var/mob/living/L = mob  //Already checked for isliving earlier
 	if(L.incorporeal_move)	//Move though walls
 		Process_Incorpmove(direct)
@@ -771,7 +777,7 @@
 	playsound_local(src, 'sound/misc/click.ogg', 100)
 
 /client/proc/hearallasghost()
-	set category = "GameMaster"
+	set category = "Prefs - Admin"
 	set name = "HearAllAsAdmin"
 	if(!holder)
 		return

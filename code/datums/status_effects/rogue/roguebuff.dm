@@ -291,20 +291,6 @@
 	to_chat(owner, span_warning("The darkness returns to normal."))
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, MAGIC_TRAIT)
 
-/atom/movable/screen/alert/status_effect/buff/haste
-	name = "Haste"
-	desc = "I am magically hastened."
-	icon_state = "buff"
-
-/datum/status_effect/buff/haste
-	id = "haste"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/haste
-	effectedstats = list("speed" = 5)
-	duration = 1 MINUTES
-
-/datum/status_effect/buff/haste/nextmove_modifier()
-	return 0.85
-
 /atom/movable/screen/alert/status_effect/buff/longstrider
 	name = "Longstrider"
 	desc = "I can easily walk through rough terrain."
@@ -455,10 +441,30 @@
 	desc = "Divine intervention bolsters me and aids my recovery."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/convergence
+	name = "Convergence Miracle"
+	desc = "My body converges to whence it found strength and health."
+	icon_state = "buff"
+
+/atom/movable/screen/alert/status_effect/buff/stasis
+	name = "Stasis Miracle"
+	desc = "A part of me has been put in stasis."
+	icon_state = "buff"
+
 /datum/status_effect/buff/fortify //Increases all healing while it lasts.
 	id = "fortify"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fortify
 	duration = 1 MINUTES
+
+/datum/status_effect/buff/convergence //Increases all healing while it lasts.
+	id = "convergence"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/convergence
+	duration = 1 MINUTES
+
+/datum/status_effect/buff/stasis //Increases all healing while it lasts.
+	id = "stasis"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/stasis
+	duration = 10 SECONDS
 
 /datum/status_effect/buff/fortitude
 	id = "fortitude"
@@ -482,7 +488,7 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/guidance
-	var/outline_colour ="#f58e2d"
+	outline_colour ="#f58e2d"
 	id = "guidance"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guidance
 	duration = 1 MINUTES
@@ -780,3 +786,23 @@
 	name = "Call to Slaughter"
 	desc = span_bloody("LAMBS TO THE SLAUGHTER!")
 	icon_state = "call_to_slaughter"
+
+/atom/movable/screen/alert/status_effect/buff/xylix_joy
+	name = "Trickster's Joy"
+	desc = "The sound of merriment fills me with fortune."
+	icon_state = "buff"
+
+/datum/status_effect/buff/xylix_joy
+	id = "xylix_joy"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/xylix_joy
+	effectedstats = list("fortune" = 1)
+	duration = 5 MINUTES
+	status_type = STATUS_EFFECT_REFRESH
+
+/datum/status_effect/buff/xylix_joy/on_apply()
+	. = ..()
+	to_chat(owner, span_info("The sounds of joy fill me with fortune!"))
+
+/datum/status_effect/buff/xylix_joy/on_remove()
+	. = ..()
+	to_chat(owner, span_info("My fortune returns to normal."))

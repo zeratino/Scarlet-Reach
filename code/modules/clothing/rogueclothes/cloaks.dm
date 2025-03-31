@@ -952,7 +952,7 @@
 	color = "#685542"
 
 /obj/item/clothing/cloak/raincloak/furcloak/black
-	color = "#66564d"
+	color = "#2b292e"
 	
 /obj/item/clothing/cloak/raincloak/furcloak/darkgreen
 	color = "#264d26"
@@ -1608,6 +1608,10 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+
+/obj/item/clothing/cloak/wardencloak/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
 
 /obj/item/clothing/cloak/forrestercloak
 	name = "forrester cloak"

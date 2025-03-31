@@ -51,7 +51,7 @@
 		var/prev_real_name = H.real_name
 		var/prev_name = H.name
 		var/honorary = "Ser"
-		if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+		if(should_wear_femme_clothes(H))
 			honorary = "Dame"
 		H.real_name = "[honorary] [prev_real_name]"
 		H.name = "[honorary] [prev_name]"
@@ -155,6 +155,7 @@
 		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
 		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
 		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
 		"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
@@ -243,6 +244,7 @@
 		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
 		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
 		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
 		"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets

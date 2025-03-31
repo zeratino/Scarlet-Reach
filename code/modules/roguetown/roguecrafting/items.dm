@@ -775,6 +775,18 @@
 				)
 	craftdiff = 0
 
+/datum/crafting_recipe/roguetown/feldcollar
+	name = "feldcollar"
+	result = /obj/item/clothing/neck/roguetown/collar/feldcollar
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/surgcollar
+	name = "surgcollar"
+	result = /obj/item/clothing/neck/roguetown/collar/surgcollar
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0
+	
 // BOUQUETS & CROWNS
 
 /datum/crafting_recipe/roguetown/bouquet_rosa
@@ -893,9 +905,51 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/hair_dye
-    name = "Hair Dye Cream"
+    name = "hair dye cream"
     result = /obj/item/hair_dye_cream
     reqs = list(
         /obj/item/reagent_containers/glass/bowl = 1,
         /obj/item/reagent_containers/food/snacks/grown/berries/rogue = 3
     )
+
+/datum/crafting_recipe/d4
+	name = "bone die (d4)"
+	result = /obj/item/dice/d4
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = /obj/item/rogueweapon/huntingknife
+	craftdiff = 1
+
+/datum/crafting_recipe/d6
+	name = "bone die (d6)"
+	result = /obj/item/dice/d6
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = /obj/item/rogueweapon/huntingknife
+	craftdiff = 1
+
+/datum/crafting_recipe/d8
+	name = "bone die (d8)"
+	result = /obj/item/dice/d8
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = /obj/item/rogueweapon/huntingknife
+	craftdiff = 2
+
+/datum/crafting_recipe/d10
+	name = "bone die (d10)"
+	result = /obj/item/dice/d10
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = /obj/item/rogueweapon/huntingknife
+	craftdiff = 2
+
+/datum/crafting_recipe/d12
+	name = "bone die (d12)"
+	result = /obj/item/dice/d12
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = /obj/item/rogueweapon/huntingknife
+	craftdiff = 2
+
+/datum/crafting_recipe/d20
+	name = "bone die (d20)"
+	result = /obj/item/dice/d20
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = /obj/item/rogueweapon/huntingknife
+	craftdiff = 3
