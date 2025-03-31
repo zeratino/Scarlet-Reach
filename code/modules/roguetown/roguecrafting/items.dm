@@ -11,7 +11,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/cloth
-	name = "cloth"
+	name = "cloth (2 fibers)"
 	result = /obj/item/natural/cloth
 	reqs = list(/obj/item/natural/fibers = 2)
 	tools = list(/obj/item/needle)
@@ -21,7 +21,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/cloth5x
-	name = "cloth 5x"
+	name = "cloth 5x (10 fibers)"
 	result = list(
 				/obj/item/natural/cloth,
 				/obj/item/natural/cloth,
@@ -512,7 +512,7 @@
 	craftdiff = 1
 
 /datum/crafting_recipe/roguetown/bag
-	name = "bag"
+	name = "bag (1 fibers, 1 cloth)"
 	result = /obj/item/storage/roguebag/crafted
 	reqs = list(/obj/item/natural/fibers = 1,
 				/obj/item/natural/cloth = 1)
@@ -520,7 +520,7 @@
 	skillcraft = /datum/skill/misc/sewing
 
 /datum/crafting_recipe/roguetown/bagx5
-	name = "bag x5"
+	name = "bag x5 (5 fibers, 5 cloth)"
 	result = list(
 				/obj/item/storage/roguebag/crafted,
 				/obj/item/storage/roguebag/crafted,
@@ -639,7 +639,7 @@
 	craftdiff = 1
 
 /datum/crafting_recipe/roguetown/tribalrags
-	name = "tribal rags"
+	name = "tribal rags (1 fibers, 1 hide)"
 	result = /obj/item/clothing/suit/roguetown/shirt/tribalrag
 	reqs = list(/obj/item/natural/hide = 1,
 				/obj/item/natural/fibers = 1)
