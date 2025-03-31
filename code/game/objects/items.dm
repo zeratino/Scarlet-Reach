@@ -133,7 +133,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/canMouseDown = FALSE
 	var/can_parry = FALSE
-	var/associated_skill
+	var/datum/skill/associated_skill
 
 	var/list/possible_item_intents = list(/datum/intent/use)
 
@@ -423,9 +423,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				if(WLENGTH_GREAT)
 					inspec += "Great"
 
-//		if(eweight)
-//			inspec += "\n<b>ENCUMBRANCE:</b> [eweight]"
-
 		if(alt_intents)
 			inspec += "\n<b>ALT-GRIP</b>"
 
@@ -442,6 +439,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += "\n<b>SHARPNESS:</b> "
 			var/meme = round(((blade_int / max_blade_int) * 100), 1)
 			inspec += "[meme]%"
+
+		if(associated_skill && associated_skill.name)
+			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
 
 //**** CLOTHING STUFF
 
