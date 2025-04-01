@@ -591,8 +591,6 @@
 				msg += "[m1] looking thirsty for a drink."
 			if(0 to HYDRATION_LEVEL_DEHYDRATED)
 				msg += "[m1] looking parched."
-	if(length(msg))
-		msg += msg.Join(" ")
 
 	//Fire/water stacks
 	if(fire_stacks > 0)
