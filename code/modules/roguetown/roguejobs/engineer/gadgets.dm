@@ -10,7 +10,7 @@ Reel teleports the attached atom to the grabbed turf.
 
 /obj/item/grapplinghook
 	name = "bronze grappler"
-	desc = "The finest innovation in industrial dwarven Engineering. Used to haul crates and kegs in shafts too steep for railcarts. Can be used on people who aren't too large.\nHas a range of \Roman[max_range_noz] on the same plane, and a range of \Roman[max_range_z] across planes.\nGrappling in the same plane will be blocked by any dense objects."
+	desc = "The finest innovation in industrial dwarven Engineering. Used to haul crates and kegs in shafts too steep for railcarts. Can be used on people who aren't too large.\nHas a range of VI tiles on the same plane, and a range of III tiles across planes.\nGrappling in the same plane will be blocked by any dense objects."
 	icon = 'icons/roguetown/misc/gadgets.dmi'
 	icon_state = "grappler_used"
 	item_state = "grappler"
@@ -259,7 +259,7 @@ Reel teleports the attached atom to the grabbed turf.
 			var/safe_to_teleport = TRUE
 			if(isobj(target))
 				var/obj/O = target
-				if(!istype(target, /obj/structure/closet/crate) && !istype(target, /obj/structure/fermenting_barrel))	//We DO want to move crates & barrels
+				if(!istype(target, /obj/structure/closet/crate) && !istype(target, /obj/structure/fermenting_barrel) && !istype(target, /obj/structure/handcart))	//We DO want to move crates, barrels & carts
 					if(O.density || istype(target, /obj/structure) || O.anchored || istype(target, /obj/machinery)) //This should cover most (fingers crossed) objects that shouldn't be moved around like this.
 						safe_to_teleport = FALSE
 			if(ishuman(target))
