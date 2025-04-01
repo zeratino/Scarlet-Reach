@@ -22,7 +22,7 @@
 			apply_overlay(OBJ_LAYER)
 			addtimer(CALLBACK(humie, PROC_REF(clear_overhead_indicator), appearance), clear_time)
 			playsound(src, soundin, 100, FALSE, extrarange = -1, ignore_walls = FALSE)
-		if(!ispath(private, /datum/patron))	//Trait
+		if(!ispath(private, /datum/patron))	//Trait-exclusivity. At the moment it's only TRAIT_EMPATH for stress indicators.
 			var/list/can_see = list(src)
 			for(var/mob/M in viewers(world.view, src))
 				if(HAS_TRAIT(M, private))
@@ -35,23 +35,26 @@
 					var/turf/T = get_turf(src)
 					M.playsound_local(T, soundin, 100, FALSE)
 
-		if(ispath(private, /datum/patron))	//Patron
+		if(ispath(private, /datum/patron))	//Patron signs. 
 			if(!ispath(private, /datum/patron/old_god))
 				for(var/mob/living/carbon/human/H in viewers(world.view, src))
-					if(H.patron?.type == private || private == /datum/patron/divine/xylix)
+					var/pass = FALSE
+					if(H.patron?.type == private || private == /datum/patron/divine/xylix)	//Xylixians will always flash the observer's religion to them.
 						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset)
-					else if(HAS_TRAIT(H, TRAIT_HERETIC_SEER) && istype(private,/datum/patron/inhumen))
+						pass = TRUE
+					else if(HAS_TRAIT(H, TRAIT_HERETIC_SEER) && istype(private,/datum/patron/inhumen))	//Seers should see all inhumen symbols.
 						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[patron?.name]", offset_list, y_offset)
-					if(soundin)
+						pass = TRUE
+					if(soundin && pass)
 						var/turf/T = get_turf(src)
 						H.playsound_local(T, soundin, 100, FALSE) 
 			else
 				for(var/mob/living/carbon/human/H in viewers(world.view, src))
 					if(H.patron?.type == private)
-						if(HAS_TRAIT(H, TRAIT_INQUISITION) && HAS_TRAIT(src, TRAIT_INQUISITION))
-							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset)
-						else 
+						if(HAS_TRAIT(H, TRAIT_INQUISITION) && HAS_TRAIT(src, TRAIT_INQUISITION))	//Inquisition members will show a fancier symbol to one another.
 							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]inq", offset_list, y_offset)
+						else 
+							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset)
 						if(soundin)
 							var/turf/T = get_turf(src)
 							H.playsound_local(T, soundin, 100, FALSE) 

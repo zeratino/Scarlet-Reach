@@ -1733,12 +1733,17 @@
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = TRUE
 
+/datum/emote/living/fsalute/run_emote(mob/user, params, type_override, intentional, targetted, animal)
+	. = ..()
+	if(isliving(user))
+		var/mob/living/L  = user
+		if(. && !isnull(L.patron) && !HAS_TRAIT(L, TRAIT_DECEIVING_MEEKNESS))	//Guarded doesn't show an icon to anyone.
+			L.play_overhead_indicator('icons/mob/overhead_effects.dmi', "stress", 15, MUTATIONS_LAYER, private = L.patron.type, soundin = 'sound/magic/holyshield.ogg', y_offset = 32)
+
 /mob/living/carbon/human/verb/emote_fsalute()
 	set name = "Faith Salute"
 	set category = "Emotes"
 
-	if(patron && !HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))	//Guarded doesn't show an icon to anyone.
-		play_overhead_indicator('icons/mob/overhead_effects.dmi', "stress", 15, MUTATIONS_LAYER, private = patron.type, soundin = 'sound/magic/holyshield.ogg', y_offset = 32)
 	emote("fsalute", intentional =  TRUE)
 
 
