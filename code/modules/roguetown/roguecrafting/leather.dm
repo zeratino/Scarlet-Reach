@@ -261,6 +261,13 @@
 	reqs = list(/obj/item/natural/hide/cured = 2)
 	sellprice = 26
 
+/datum/crafting_recipe/roguetown/leather/cuirass
+	name = "leather cuirass"
+	name = "leather armor (2 leather)"
+	result = /obj/item/clothing/suit/roguetown/armor/leather/cuirass
+	reqs = list(/obj/item/natural/hide/cured = 2)
+	sellprice = 26
+
 /datum/crafting_recipe/roguetown/leather/bikini
 	name = "leather bikini armor (2 leather)"
 	result = /obj/item/clothing/suit/roguetown/armor/leather/bikini
