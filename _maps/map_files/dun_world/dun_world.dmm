@@ -9846,11 +9846,10 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/exposed/town/keep)
 "ehm" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/cobble,
+/obj/structure/table/wood,
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "ehn" = (
 /obj/structure/roguewindow/openclose{
@@ -21255,9 +21254,12 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "iNB" = (
-/obj/structure/closet/crate/drawer,
-/obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
-/turf/open/floor/rogue/cobble,
+/obj/structure/closet/crate/roguecloset/crafted,
+/obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat,
+/obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut,
+/obj/item/clothing/under/roguetown/skirt,
+/obj/item/clothing/suit/roguetown/shirt/undershirt/puritan,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
 "iNG" = (
 /obj/structure/chair/wood/rogue/fancy{
@@ -25682,7 +25684,8 @@
 "kEx" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
-	lockid = "steward"
+	lockid = "steward";
+	name = "Steward Bedroom"
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
@@ -26372,9 +26375,9 @@
 /obj/structure/mineral_door/wood/violet{
 	locked = 1;
 	lockid = "steward";
-	name = "DORM"
+	name = "Clerk Bedroom"
 	},
-/turf/open/floor/rogue/hexstone,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "kTj" = (
 /obj/structure/rack/rogue,
@@ -27683,8 +27686,8 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
 "luy" = (
-/obj/effect/landmark/start/clerk,
-/turf/open/floor/rogue/cobble,
+/obj/structure/chair/wood/rogue/fancy,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "luC" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
@@ -36843,7 +36846,8 @@
 /obj/structure/mineral_door/wood/donjon{
 	dir = 4;
 	locked = 1;
-	lockid = "steward"
+	lockid = "steward";
+	name = "Stewardry Office"
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
@@ -37456,7 +37460,8 @@
 "pyJ" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
-	lockid = "steward"
+	lockid = "steward";
+	name = "Bathroom"
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -44496,6 +44501,7 @@
 /obj/item/roguekey/apartments/stable1,
 /obj/item/roguekey/apartments/stable2,
 /obj/item/roguekey/tavernkeep,
+/obj/item/roguekey/tower,
 /turf/open/floor/rogue/tile/tilerg,
 /area/rogue/indoors/town)
 "soQ" = (
@@ -44601,8 +44607,10 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
 "sqj" = (
-/obj/structure/bed/rogue/inn/wool,
-/turf/open/floor/rogue/cobble,
+/obj/structure/bed/rogue/inn/double,
+/obj/item/bedsheet/rogue/fabric_double,
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
 "sqq" = (
 /obj/machinery/light/rogue/torchholder/r,
@@ -54313,6 +54321,12 @@
 	icon_state = "chess"
 	},
 /area/rogue/under/cave/undeadmanor)
+"wse" = (
+/obj/structure/roguewindow/openclose/reinforced{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town)
 "wsf" = (
 /turf/closed/wall/mineral/rogue/decostone/long,
 /area/rogue/indoors/town/manor)
@@ -373967,10 +373981,10 @@ kSK
 kSK
 eKH
 iNB
-jdu
+xWk
+dra
 luy
-jdu
-iNB
+ehm
 eKH
 kSK
 kSK
@@ -374420,8 +374434,8 @@ kSK
 eKH
 eKH
 sqj
-ehm
-sqj
+qVA
+dra
 eKH
 eKH
 kSK
@@ -374871,9 +374885,9 @@ bGf
 kSK
 kSK
 eKH
+wse
 eKH
-eKH
-eKH
+wse
 eKH
 kSK
 kSK
