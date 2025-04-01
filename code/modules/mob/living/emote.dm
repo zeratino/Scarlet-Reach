@@ -1725,3 +1725,20 @@
 	else
 		to_chat(usr, span_warning("Your back doesn't do that"))
 		return
+
+/datum/emote/living/fsalute
+	key = "fsalute"
+	key_third_person = "salutes their faith."
+	message = "salutes their faith."
+	emote_type = EMOTE_AUDIBLE
+	show_runechat = TRUE
+
+/mob/living/carbon/human/verb/emote_fsalute()
+	set name = "Faith Salute"
+	set category = "Emotes"
+
+	if(patron && !HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))	//Guarded doesn't show an icon to anyone.
+		play_overhead_indicator('icons/mob/overhead_effects.dmi', "stress", 15, MUTATIONS_LAYER, private = patron.type, soundin = 'sound/magic/holyshield.ogg', y_offset = 32)
+	emote("fsalute", intentional =  TRUE)
+
+
