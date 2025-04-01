@@ -67,7 +67,7 @@
 				P.update_icon()
 				P.forceMove(X.loc)
 				X.say("New mail!")
-				playsound(X, 'sound/misc/mail.ogg', 100, FALSE, -1)
+				playsound(X, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 				break
 		if(found)
 			visible_message(span_warning("[user] sends something."))
@@ -145,8 +145,7 @@
 						P.update_icon()
 						P.forceMove(X.loc)
 						X.say("New mail!")
-						playsound(X, 'sound/misc/mail.ogg', 100, FALSE, -1)
-						playsound(src.loc, 'sound/misc/hiss.ogg', 100, FALSE, -1)
+						playsound(X, 'sound/misc/hiss.ogg', 100, FALSE, -1)
 						break
 				if(found)
 					visible_message(span_warning("[user] sends something."))
