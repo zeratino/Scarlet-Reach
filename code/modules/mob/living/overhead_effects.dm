@@ -36,14 +36,15 @@
 					M.playsound_local(T, soundin, 100, FALSE)
 
 		if(ispath(private, /datum/patron))	//Patron signs. 
+			var/icon_plane = WEATHER_EFFECT_PLANE	//Will show up through the cone.
 			if(!ispath(private, /datum/patron/old_god))
 				for(var/mob/living/carbon/human/H in viewers(world.view, src))
 					var/pass = FALSE
 					if(H.patron?.type == private || private == /datum/patron/divine/xylix)	//Xylixians will always flash the observer's religion to them.
-						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset)
+						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset, icon_plane)
 						pass = TRUE
 					else if(HAS_TRAIT(H, TRAIT_HERETIC_SEER) && istype(private,/datum/patron/inhumen))	//Seers should see all inhumen symbols.
-						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[patron?.name]", offset_list, y_offset)
+						vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[patron?.name]", offset_list, y_offset, icon_plane)
 						pass = TRUE
 					if(soundin && pass)
 						var/turf/T = get_turf(src)
@@ -52,9 +53,9 @@
 				for(var/mob/living/carbon/human/H in viewers(world.view, src))
 					if(H.patron?.type == private)
 						if(HAS_TRAIT(H, TRAIT_INQUISITION) && HAS_TRAIT(src, TRAIT_INQUISITION))	//Inquisition members will show a fancier symbol to one another.
-							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]inq", offset_list, y_offset)
+							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]inq", offset_list, y_offset, icon_plane)
 						else 
-							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset)
+							vis_contents += new /obj/effect/temp_visual/stress_event/invisible(null, H, icon_path, "sign_[H.patron.name]", offset_list, y_offset, icon_plane)
 						if(soundin)
 							var/turf/T = get_turf(src)
 							H.playsound_local(T, soundin, 100, FALSE) 
@@ -66,10 +67,12 @@
 /obj/effect/temp_visual/stress_event/invisible
 	icon_state = null
 
-/obj/effect/temp_visual/stress_event/invisible/Initialize(mapload, mob/seer, path, iname, list/offsets, y_offset = 12)
+/obj/effect/temp_visual/stress_event/invisible/Initialize(mapload, mob/seer, path, iname, list/offsets, y_offset = 12, plane)
 	. = ..()
 	var/image/I = image(icon = path, icon_state = iname, layer = ABOVE_MOB_LAYER, loc = src)
 	I.alpha = 255
+	if(plane)
+		I.plane = plane
 	I.appearance_flags = RESET_ALPHA
 	if(offsets)
 		I.pixel_x += (offsets[1])
