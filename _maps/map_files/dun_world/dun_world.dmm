@@ -5102,20 +5102,6 @@
 /obj/structure/fermenting_barrel/random,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
-"ceM" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "tablewood1"
-	},
-/obj/item/reagent_containers/glass/cup/wooden{
-	pixel_x = 9;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/glass/cup/steel{
-	pixel_x = -6
-	},
-/turf/open/floor/rogue/tile,
-/area/rogue/indoors/town/bath)
 "ceZ" = (
 /obj/structure/bed/rogue/shit{
 	name = "makeshift bed"
@@ -22375,10 +22361,6 @@
 /obj/structure/mineral_door/wood/violet,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/mazedungeon)
-"jjt" = (
-/obj/structure/fluff/walldeco/maidensigil,
-/turf/open/water/bath,
-/area/rogue/indoors/town/bath)
 "jjA" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -57784,12 +57766,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
-"xTu" = (
-/obj/structure/fluff/walldeco/maidensigil{
-	pixel_y = -32
-	},
-/turf/open/water/bath,
-/area/rogue/indoors/town/bath)
 "xTx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/fluff/railing/wood{
@@ -116807,9 +116783,9 @@ sBA
 haH
 haH
 haH
-xTu
-pWw
-jjt
+haH
+sBA
+haH
 haH
 haH
 haH
@@ -117259,9 +117235,9 @@ sBA
 haH
 soQ
 pWw
-pWw
-pWw
-pWw
+sBA
+sBA
+sBA
 pWw
 izj
 haH
@@ -117711,9 +117687,9 @@ sBA
 haH
 haH
 haH
-xTu
-pWw
-jjt
+haH
+sBA
+haH
 haH
 haH
 haH
@@ -120425,9 +120401,9 @@ xgj
 vqa
 vId
 eMv
-xgj
-ceM
-vId
+eMv
+eMv
+eMv
 eMv
 eMv
 eMv
