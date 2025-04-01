@@ -92,6 +92,9 @@
 			var/skill = (user.mind.get_skill_level(/datum/skill/misc/sewing) + user.mind.get_skill_level(/datum/skill/craft/tanning)) * 10
 			var/repairskill = (user.mind.get_skill_level(/datum/skill/misc/sewing) + user.mind.get_skill_level(/datum/skill/craft/tanning)) * 5
 			var/sewtime = max(5, (60 - skill))
+			if(HAS_TRAIT(user, TRAIT_SQUIRE_REPAIR))
+				skill = max(30, skill) // Squire can't fail a repair
+				sewtime = min(skill, 30) // Squire have half sewing time minimum
 			if(!do_after(user, sewtime, target = I))
 				return
 			if(prob(max(0, 60 - (skill * 2)))) //The more knowlegeable we are the less chance we damage the object
