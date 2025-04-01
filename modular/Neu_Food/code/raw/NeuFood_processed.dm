@@ -384,6 +384,7 @@
 				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
 				reagents.remove_reagent(/datum/reagent/consumable/milk/salted, 5)
 				new /obj/item/reagent_containers/food/snacks/rogue/cheese(drop_location())
+			return
 
 		var/obj/item/natural/cloth/T = I
 		if(T.wet && !T.return_blood_DNA())

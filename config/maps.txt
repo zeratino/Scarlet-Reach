@@ -14,9 +14,9 @@ Format:
 endmap
 
 map dun_manor
-	default
-	votable
 endmap
 
 map dun_world
+	default
+	votable
 endmap

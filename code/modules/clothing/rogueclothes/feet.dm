@@ -22,7 +22,30 @@
 	icon_state = "blackboots"
 	item_state = "blackboots"
 	sewrepair = TRUE
+	var/atom/movable/holdingknife = null
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
+
+/obj/item/clothing/shoes/roguetown/boots/attackby(obj/item/W, mob/living/carbon/user, params)
+	if(istype(W, /obj/item/rogueweapon/huntingknife/throwingknife))
+		if(holdingknife == null)
+			for(var/obj/item/clothing/shoes/roguetown/boots/B in user.get_equipped_items(TRUE))
+				to_chat(loc, span_warning("I quickly slot [W] into [B]!"))
+				user.transferItemToLoc(W, holdingknife)
+				holdingknife = W
+				playsound(loc, 'sound/foley/equip/swordsmall1.ogg')
+		else
+			to_chat(loc, span_warning("My boot already holds a throwing knife."))
+		return
+	. = ..()
+
+/obj/item/clothing/shoes/roguetown/boots/attack_right(mob/user)
+	if(holdingknife != null)
+		if(!user.get_active_held_item())
+			user.put_in_active_hand(holdingknife, user.active_hand_index)
+			holdingknife = null
+			playsound(loc, 'sound/foley/equip/swordsmall1.ogg')
+			return TRUE
+	
 
 /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	name = "psydonian boots"

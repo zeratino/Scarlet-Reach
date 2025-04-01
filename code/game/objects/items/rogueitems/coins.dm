@@ -105,8 +105,12 @@
 				if("Play fair")
 					rigged_outcome = 0
 		return
-	user.put_in_active_hand(new type(user.loc, 1))
+	var/obj/item/roguecoin/new_coin = new type()
+	new_coin.set_quantity(1)
 	set_quantity(quantity - 1)
+	new_coin.heads_tails = last_merged_heads_tails
+	user.put_in_hands(new_coin)
+	playsound(loc, 'sound/foley/coinphy (2).ogg', 100, TRUE, -2)
 
 /obj/item/roguecoin/attack_hand(mob/user)
 	if(user.get_inactive_held_item() == src && quantity > 1)
