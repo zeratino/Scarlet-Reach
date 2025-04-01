@@ -62,6 +62,8 @@
 #define SPAN_HELL "hellspeak"
 #define SPAN_LUPIAN "lupian"
 #define SPAN_OTAVAN "otavan"
+#define SPAN_ETRUSCAN "etruscan"
+#define SPAN_GRONNIC "gronnic"
 #define SPAN_BEAST "beast"
 #define SPAN_ORC "orc"
 #define SPAN_DRACONIC "reptile"

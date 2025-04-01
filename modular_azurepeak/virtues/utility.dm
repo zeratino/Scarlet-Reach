@@ -61,7 +61,10 @@
 		/datum/language/hellspeak,
 		/datum/language/draconic,
 		/datum/language/celestial,
-		/datum/language/grenzelhoftian
+		/datum/language/grenzelhoftian,
+		/datum/language/otavan,
+		/datum/language/etruscan,
+		/datum/language/gronnic
 	)
 		
 	var/list/choices = list()

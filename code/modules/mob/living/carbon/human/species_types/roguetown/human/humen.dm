@@ -83,6 +83,10 @@
 		foreign.grant_language(/datum/language/grenzelhoftian)
 	if(foreign.skin_tone == SKIN_COLOR_OTAVA)
 		foreign.grant_language(/datum/language/otavan)
+	if(foreign.skin_tone == SKIN_COLOR_ETRUSCA)
+		foreign.grant_language(/datum/language/etruscan)
+	if(foreign.skin_tone == SKIN_COLOR_GRONN)
+		foreign.grant_language(/datum/language/gronnic)
 
 /datum/species/human/northern/get_skin_list()
 	return list(
