@@ -1757,6 +1757,6 @@
 
 /mob/living/carbon/human/proc/emote_ffsalute()
 	set name = "Fake Faith Salute"
-	set category = "Xylix"
+	set category = "Emotes"
 
 	emote("ffsalute", intentional =  TRUE)
