@@ -38,7 +38,11 @@
 	//To stop people selling half-eaten food and rotten meat to the stockpile
 	if(istype(I, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/food = I
-		if(food.eat_effect == /datum/status_effect/debuff/rotfood || food.bitecount > 0)
+		if(food.eat_effect == /datum/status_effect/debuff/rotfood)
+			return FALSE
+		if(food.bitecount > 0)
+			return FALSE
+		if(food.slices_num && food.slices_num < initial(food.slices_num)) // prevent selling partly-sliced butter
 			return FALSE
 	return TRUE
 
