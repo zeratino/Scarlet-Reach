@@ -149,12 +149,6 @@
 			if(has_flaw(/datum/charflaw/addiction/sadist) && user.has_flaw(/datum/charflaw/masochist))
 				. += span_secradio("[m1] looking with eyes filled with a desire to inflict pain. So exciting.")
 
-		if(user != src)
-			if(HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
-				var/atom/item = get_most_expensive()
-				if(item)
-					. += span_notice("You get the feeling [m2] most valuable possession is \a [item.name].")
-
 		var/villain_text = get_villain_text(user)
 		if(villain_text)
 			. += villain_text
@@ -185,6 +179,11 @@
 					. += span_redtext("[m1] repugnant!")
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_redtext("[m1] repulsive!")
+
+	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
+		var/atom/item = get_most_expensive()
+		if(item)
+			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
 
 	var/is_stupid = FALSE
 	var/is_smart = FALSE
