@@ -11488,11 +11488,7 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/cave/dukecourt)
 "eNp" = (
-/obj/structure/noose/gallows{
-	pixel_y = -6;
-	pixel_x = -6
-	},
-/obj/item/chair/stool/bar/rogue,
+/obj/structure/guillotine,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/town)
 "eNq" = (
@@ -18462,6 +18458,7 @@
 /obj/structure/fluff/railing/wood{
 	layer = 4.51
 	},
+/obj/structure/closet/crate/chest/wicker,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/town)
 "hMe" = (
@@ -23064,10 +23061,6 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
-"jCM" = (
-/obj/structure/closet/crate/chest/wicker,
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/town/basement/keep)
 "jCN" = (
 /obj/structure/spacevine,
 /obj/structure/mineral_door/wood/deadbolt{
@@ -23144,6 +23137,12 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/town/roofs)
+"jEb" = (
+/obj/structure/roguemachine/atm{
+	location_tag = "Southern Gate"
+	},
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/town)
 "jEd" = (
 /obj/structure/closet/crate/chest{
 	base_icon_state = "woodchestalt";
@@ -28063,11 +28062,18 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "lHP" = (
-/obj/structure/roguemachine/scomm/l,
 /obj/structure/fluff/walldeco/customflag{
 	pixel_y = -32
 	},
-/obj/machinery/light/rogue/torchholder/l,
+/obj/structure/noose/gallows{
+	pixel_y = -6;
+	pixel_x = -6
+	},
+/obj/machinery/light/rogue/torchholder/r{
+	dir = 4
+	},
+/obj/item/chair/stool/bar/rogue,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "lHT" = (
@@ -28157,6 +28163,12 @@
 	pixel_y = 32
 	},
 /obj/machinery/light/rogue/torchholder/l,
+/obj/structure/noose/gallows{
+	pixel_y = -6;
+	pixel_x = -6
+	},
+/obj/item/chair/stool/bar/rogue,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "lKo" = (
@@ -28795,7 +28807,12 @@
 	pixel_y = -32
 	},
 /obj/machinery/light/rogue/torchholder/r,
-/turf/open/transparent/openspace,
+/obj/structure/roguemachine/scomm/r,
+/obj/structure/fluff/railing/wood{
+	dir = 1;
+	pixel_y = -1
+	},
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "maW" = (
 /obj/structure/bed/rogue/shit,
@@ -30678,11 +30695,11 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/underdark)
 "mSu" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/roguemachine/atm{
-	location_tag = "Southern Gate"
+/obj/structure/fluff/railing/wood{
+	dir = 1;
+	pixel_y = -1
 	},
-/turf/open/floor/rogue/grass,
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "mSI" = (
 /obj/structure/fluff/railing/border{
@@ -36740,10 +36757,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/cave)
-"pqN" = (
-/obj/structure/guillotine,
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/town/basement/keep)
 "pqR" = (
 /obj/structure/table/wood,
 /obj/item/paper,
@@ -157325,8 +157338,8 @@ aal
 fjY
 wCC
 wCC
-pqN
-jCM
+wCC
+wCC
 wCC
 wCC
 swB
@@ -247768,7 +247781,7 @@ siD
 kxO
 phl
 obG
-mSu
+njB
 fpx
 fpx
 aFv
@@ -250875,7 +250888,7 @@ aBl
 bge
 bge
 bge
-fgx
+mSu
 oXY
 sns
 sns
@@ -251384,7 +251397,7 @@ ocX
 ocX
 pLh
 pLh
-pWT
+jEb
 kPL
 pxc
 pxc

@@ -85,10 +85,6 @@
 						buckled_mob.adjustOxyLoss(10)
 						if(prob(20))
 							buckled_mob.emote("gasp")
-					if(prob(25))
-						var/flavor_text = list("<span class='danger'>[buckled_mob]'s legs flail for anything to stand on.</span>",\
-												"<span class='danger'>[buckled_mob]'s hands are desperately clutching the noose.</span>",\
-												"<span class='danger'>[buckled_mob]'s limbs sway back and forth with diminishing strength.</span>")
 						buckled_mob.visible_message(pick(flavor_text))
 					playsound(buckled_mob.loc, 'sound/foley/noose_idle.ogg', 30, 1, -3)
 				else
