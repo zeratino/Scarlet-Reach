@@ -49220,6 +49220,15 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/beach)
+"unn" = (
+/obj/structure/roguemachine/atm{
+	mammonsiphoned = 250;
+	location_tag = "the Bathhouse";
+	pixel_y = 0;
+	pixel_x = 32
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/indoors/town/bath)
 "unq" = (
 /obj/effect/decal/cobbleedge{
 	dir = 10
@@ -54813,6 +54822,12 @@
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/alt,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/alt,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/alt,
+/obj/item/clothing/under/roguetown/tights,
+/obj/item/clothing/under/roguetown/tights,
+/obj/item/clothing/under/roguetown/tights,
+/obj/item/clothing/suit/roguetown/shirt/tunic/random,
+/obj/item/clothing/suit/roguetown/shirt/tunic/random,
+/obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
 "wEL" = (
@@ -121298,7 +121313,7 @@ haH
 rqY
 iBX
 iBX
-iBX
+unn
 ibo
 qfz
 qfz
