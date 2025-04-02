@@ -4,9 +4,13 @@ Grab grabs onto a floor turf in range, only works for floors ABOVE the user.
 Attach clasps a hook onto the chosen atom (obj / mob, has to be unanchored and not a structure or machinery)
 Reel teleports the attached atom to the grabbed turf.
 */
+#define GRAPPLER_ZUP 1
+#define GRAPPLER_ZDOWN 2 
+#define GRAPPLER_NOZ 3
+
 /obj/item/grapplinghook
 	name = "bronze grappler"
-	desc = "The finest innovation in industrial dwarven Engineering. Used to haul crates and kegs in shafts too steep for railcarts. Can be used on people who aren't too large."
+	desc = "The finest innovation in industrial dwarven Engineering. Used to haul crates and kegs in shafts too steep for railcarts. Can be used on people who aren't too large.\nHas a range of VI tiles on the same plane, and a range of III tiles across planes.\nGrappling in the same plane will be blocked by any dense objects."
 	icon = 'icons/roguetown/misc/gadgets.dmi'
 	icon_state = "grappler_used"
 	item_state = "grappler"
@@ -20,7 +24,8 @@ Reel teleports the attached atom to the grabbed turf.
 	var/atom/attached
 	var/mutable_appearance/tile_effect
 	var/mutable_appearance/target_effect
-	var/max_range = 3
+	var/max_range_z = 3
+	var/max_range_noz = 6
 	var/leash_range = 7
 	var/list/obj_to_destroy = list()
 	grid_height = 32
@@ -48,21 +53,24 @@ Reel teleports the attached atom to the grabbed turf.
 			reset_tile()
 			reset_target()
 
-
+//Grappler intents. Not meant to be functional outside of the tool.
 /datum/intent/grapple
 	name = "grapple"
 	icon_state = "ingrab"
 	desc = "Used to grapple onto an open, unobstructed tile."
+	no_attack = TRUE
 
 /datum/intent/attach
 	name = "attach"
 	icon_state = "inattach"
 	desc = "Used to attach an entity to the hook for reeling. Must not be heavy, large, or anchored."
+	no_attack = TRUE
 
 /datum/intent/reel
 	name = "reel"
 	icon_state = "inreel"
 	desc = "Used to reel the attached entity to the grappled tile."
+	no_attack = TRUE
 
 /obj/item/grapplinghook/examine()
 	. = ..()
@@ -110,7 +118,7 @@ Reel teleports the attached atom to the grabbed turf.
 			user.visible_message(span_info("[user] gets interrupted!"))
 	else if(istype(user.used_intent, /datum/intent/reel))	//Alternative to clicking on an empty tile. You can self-use it to reel instead.
 		if(attached && in_use)
-			if(get_dist(attached, grappled_turf) <= max_range)
+			if(get_dist(attached, grappled_turf) <= (user.z != grappled_turf.z ? max_range_z : max_range_noz))
 				user.visible_message("[user] reels in the [src]!")
 				if(do_after(user, 10))
 					reel()
@@ -141,29 +149,49 @@ Reel teleports the attached atom to the grabbed turf.
 	in_use = FALSE
 	update_icon()
 
-/obj/item/grapplinghook/proc/check_path(turf/Tu, turf/Tt)
+/obj/item/grapplinghook/proc/check_path(turf/Tu, turf/Tt, state)
 	var/dist = get_dist(Tt, Tu)
 	var/last_dir
-	var/turf/last_step = get_step_multiz(Tu, UP)
+	var/turf/last_step
+	switch(state)
+		if(GRAPPLER_ZUP)
+			last_step = get_step_multiz(Tu, UP)
+		if(GRAPPLER_ZDOWN)
+			last_step = get_step_multiz(Tu, DOWN)
+		if(GRAPPLER_NOZ)
+			last_step = Tu
 	var/success = FALSE
-	for(var/i = 0, i <= dist, i++)
-		last_dir = get_dir(last_step, Tt)
-		var/turf/Tstep = get_step(last_step, last_dir)
-		if(!Tstep.density)
-			success = TRUE
-			var/list/cont = Tstep.GetAllContents(/obj/structure/roguewindow)
-			for(var/obj/structure/roguewindow/W in cont)
-				if(W.climbable && !W.opacity)	//It's climable and can be seen through
-					success = TRUE
-					LAZYADD(obj_to_destroy, W)
-					continue
-				else if(!W.climbable)
-					success = FALSE
-					return success
-		else
-			success = FALSE
-			return success
-		last_step = Tstep
+	if(state == GRAPPLER_ZDOWN || state == GRAPPLER_ZUP)
+		for(var/i = 0, i <= dist, i++)
+			last_dir = get_dir(last_step, Tt)
+			var/turf/Tstep = get_step(last_step, last_dir)
+			if(!Tstep.density)
+				success = TRUE
+				var/list/cont = Tstep.GetAllContents(/obj/structure/roguewindow)
+				for(var/obj/structure/roguewindow/W in cont)
+					if(W.climbable && !W.opacity)	//It's climable and can be seen through
+						success = TRUE
+						LAZYADD(obj_to_destroy, W)
+						continue
+					else if(!W.climbable)
+						success = FALSE
+						return success
+			else
+				success = FALSE
+				return success
+			last_step = Tstep
+	if(state == GRAPPLER_NOZ)
+		success = TRUE
+		var/list/visible = getline(Tu, Tt)
+		for(var/turf/T in visible)
+			if(T.opacity || T.density && T != Tu)	//Any dense or opaque turfs
+				success = FALSE
+				return success
+			for(var/obj/O in (T.contents + Tt.contents))
+				if(O)
+					if(O.density || O.opacity)	//ANY dense or opaque objects. It's strict, but it's also a teleport, so. 
+						success = FALSE
+						return success
 	return success
 
 	
@@ -193,25 +221,37 @@ Reel teleports the attached atom to the grabbed turf.
 	if(istype(user.used_intent, /datum/intent/grapple))	//First step, grappling onto a tile. Spawns an indicator on it.
 		if(is_loaded && istype(target, /turf/))
 			var/turf/T = target
-			if(!istransparentturf(T) && T.z > user.z) //We are shooting at a floor turf above
-				var/reason
-				if(max_range >= get_dist(user, T) && !T.density)
-					if(check_path(get_turf(user), T))	//We check for opaque turfs or non-climbable windows in the way via a simple pathfind.
-						to_chat(user, span_info("The grapple lands on the tile!"))
-						grapple_to(T)
-						return
-					else
-						to_chat(user, span_info("The path is blocked!"))
-						return
-				else if(get_dist(user, T) > max_range)
-					reason = "It's too far."
-				else if (T.density)
-					reason = "It's a wall!"
-				to_chat(user, span_info("The hook fails! "+"[reason]"))
-				playsound(user, 'sound/foley/trap.ogg', 100, FALSE , 5)
-				unload(failure = TRUE)
+			if(!istransparentturf(T) && !islava(T))
+				if(T.z != user.z) //We are shooting at a floor turf above or below
+					var/reason
+					if(max_range_z >= get_dist(user, T) && !T.density)
+						if(check_path(get_turf(user), T, T.z > user.z ? GRAPPLER_ZUP : GRAPPLER_ZDOWN))	//We check for opaque turfs or non-climbable windows in the way via a simple pathfind.
+							to_chat(user, span_info("The grapple lands on the tile!"))
+							grapple_to(T)
+							attached = user
+							return
+						else
+							to_chat(user, span_info("The path is blocked!"))
+							return
+					else if(get_dist(user, T) > max_range_z)
+						reason = "It's too far."
+					else if (T.density)
+						reason = "It's a wall!"
+					to_chat(user, span_info("The hook fails! "+"[reason]"))
+					playsound(user, 'sound/foley/trap.ogg', 100, FALSE , 5)
+					unload(failure = TRUE)
+				else if(T.z == user.z)
+					if(max_range_noz >= get_dist(user, T) && !T.density)
+						if(check_path(get_turf(user), T, GRAPPLER_NOZ))	//We check for opaque turfs and ANY dense objects in the way
+							to_chat(user, span_info("The grapple lands on the tile!"))
+							grapple_to(T)
+							attached = user
+							return
+						else
+							to_chat(user, span_info("The path is blocked!"))
+							return
 			else
-				to_chat(user, span_info("Incorrect target! It needs a clear floor tile above me to grapple onto."))
+				to_chat(user, span_info("Incorrect target! It needs a clear floor tile to grapple onto."))
 		else if(!is_loaded)
 			to_chat(user, span_info("It's been used already."))
 	if(istype(user.used_intent, /datum/intent/attach))	//Second step. Once we have a turf we've grappled onto, we can use this to attach to an entity.
@@ -219,7 +259,7 @@ Reel teleports the attached atom to the grabbed turf.
 			var/safe_to_teleport = TRUE
 			if(isobj(target))
 				var/obj/O = target
-				if(!istype(target, /obj/structure/closet/crate) && !istype(target, /obj/structure/fermenting_barrel))	//We DO want to move crates & barrels
+				if(!istype(target, /obj/structure/closet/crate) && !istype(target, /obj/structure/fermenting_barrel) && !istype(target, /obj/structure/handcart))	//We DO want to move crates, barrels & carts
 					if(O.density || istype(target, /obj/structure) || O.anchored || istype(target, /obj/machinery)) //This should cover most (fingers crossed) objects that shouldn't be moved around like this.
 						safe_to_teleport = FALSE
 			if(ishuman(target))
@@ -240,7 +280,7 @@ Reel teleports the attached atom to the grabbed turf.
 			to_chat(user, span_info("I need to have it hooked onto a tile first."))
 	if(istype(user.used_intent, /datum/intent/reel))	//Last step, we reel in the attached entity to the grappled turf.
 		if(attached && in_use)
-			if(get_dist(attached, grappled_turf) <= max_range)
+			if(get_dist(attached, grappled_turf) <= (user.z != grappled_turf.z ? max_range_z : max_range_noz))
 				user.visible_message("[user] reels in \the [src]!")
 				if(do_after(user, 10))
 					reel()
