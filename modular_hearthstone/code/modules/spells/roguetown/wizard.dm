@@ -1643,6 +1643,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spot_one.Beam(spot_two, "purple_lightning", time = 1.5 SECONDS)
 	playsound(T, 'sound/magic/blink.ogg', 25, TRUE)
 
+	if(user.buckled) // don't stay remote-buckled to the guillotine/pillory
+		user.buckled.unbuckle_mob(user, TRUE)
 	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
 	
 	user.visible_message(span_danger("<b>[user] vanishes in a mysterious purple flash!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
