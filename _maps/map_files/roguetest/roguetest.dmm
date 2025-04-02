@@ -121,6 +121,7 @@
 /obj/structure/stairs/fancy/c{
 	dir = 1
 	},
+/obj/effect/landmark/observer_start,
 /turf/open/floor/rogue/carpet/lord,
 /area/rogue/indoors)
 "dA" = (
@@ -150,7 +151,6 @@
 /area/rogue/indoors)
 "ec" = (
 /obj/effect/landmark/latejoin,
-/obj/effect/landmark/start,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors)
 "eo" = (
@@ -418,6 +418,7 @@
 /obj/structure/roguethrone,
 /obj/structure/roguemachine/titan,
 /obj/item/roguekey/lord,
+/obj/effect/landmark/start,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors)
 "nw" = (
