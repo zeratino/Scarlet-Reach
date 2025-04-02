@@ -79,7 +79,7 @@
 "abF" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/skull{
-	list_reagents = list(/datum/reagent/consumable/ethanol/beer/voddena = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/voddena=20);
 	pixel_x = 6;
 	pixel_y = 7
 	},
@@ -4727,9 +4727,6 @@
 "bVG" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
-	},
-/obj/structure/chair/wood/rogue/chair3{
-	dir = 4
 	},
 /obj/effect/decal/cobbleedge{
 	dir = 4
@@ -10898,7 +10895,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town)
 "eAH" = (
-/obj/structure/fluff/psycross,
+/obj/structure/guillotine,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/exposed/town/keep)
 "eAR" = (
@@ -11491,7 +11488,11 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/cave/dukecourt)
 "eNp" = (
-/obj/structure/guillotine,
+/obj/structure/noose/gallows{
+	pixel_y = -6;
+	pixel_x = -6
+	},
+/obj/item/chair/stool/bar/rogue,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/town)
 "eNq" = (
@@ -42086,8 +42087,10 @@
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/bog)
 "rxn" = (
-/obj/structure/fluff/railing/wood,
 /obj/effect/decal/cleanable/blood/old,
+/obj/structure/fluff/railing/wood{
+	layer = 4.51
+	},
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach/forest)
 "rxB" = (
@@ -43312,6 +43315,10 @@
 	},
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"rZj" = (
+/obj/structure/fluff/psycross,
+/turf/closed/mineral/random/rogue,
+/area/rogue/under/cavewet/bogcaves)
 "rZM" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -57921,7 +57928,11 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/beach/forest)
 "yih" = (
-/obj/structure/guillotine,
+/obj/structure/noose/gallows{
+	pixel_y = -6;
+	pixel_x = -6
+	},
+/obj/item/chair/stool/bar/rogue,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach/forest)
 "yii" = (
@@ -110949,7 +110960,7 @@ uEf
 uEf
 uEf
 uEf
-mVO
+rZj
 mVO
 mVO
 mVO
