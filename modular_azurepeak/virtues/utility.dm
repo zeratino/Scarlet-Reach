@@ -326,8 +326,8 @@
 
 /datum/virtue/utility/woodwalker
 	name = "Woodwalker"
-	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without slowing myself, or breaking any twigs."
-	added_traits = list(TRAIT_WOODWALKER, TRAIT_LONGSTRIDER)
+	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without breaking any twigs. I can even step lightly on leaves without falling, and I can gather twice as many things from bushes."
+	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
 
 //HERETIC VIRTUES
 
