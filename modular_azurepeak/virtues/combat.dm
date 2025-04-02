@@ -194,7 +194,3 @@
 	desc = "Whether it's by having an annoying sibling that kept prodding me with a stick, or years of study and observation, I've become adept at both parrying and dodging stronger opponents, by learning their moves and studying them."
 	added_traits = list(TRAIT_SENTINELOFWITS)
 
-/datum/virtue/combat/sharp
-	name = "Sure Footed"
-	desc = "After years of training, I can strafe and backpedal confidently, without slowing myself."
-	added_traits = list(TRAIT_NOFIXEDEYESLOW)

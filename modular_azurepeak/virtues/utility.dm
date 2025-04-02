@@ -324,6 +324,11 @@
 			var/obj/item/bodypart/l_arm/prosthetic/bronzeleft/L = new()
 			L.attach_limb(recipient)
 
+/datum/virtue/utility/woodwalker
+	name = "Woodwalker"
+	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without slowing myself, or breaking any twigs."
+	added_traits = list(TRAIT_WOODWALKER, TRAIT_LONGSTRIDER)
+
 //HERETIC VIRTUES
 
 /datum/virtue/heretic/seer
