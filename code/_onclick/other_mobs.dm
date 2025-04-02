@@ -339,10 +339,9 @@
 				var/jextra = FALSE
 				if(m_intent == MOVE_INTENT_RUN)
 					OffBalance(30)
-					jadded = 20
+					jadded = 15
 					jrange = 3
 					if(!HAS_TRAIT(src, TRAIT_LEAPER))// The Jester lands where the Jester wants.
-						jadded = (maxrogfat / 10) * 3 //30% of green bar
 						jextra = TRUE
 				else
 					OffBalance(20)
@@ -360,7 +359,7 @@
 						while(src.throwing)
 							sleep(1)
 						throw_at(get_step(src, src.dir), 1, 1, src, spin = FALSE)
-						Immobilize(5)
+						Immobilize((HAS_TRAIT(src, TRAIT_LEAPER) ? 5 : 10))
 					else
 						throw_at(A, jrange, 1, src, spin = FALSE)
 						while(src.throwing)
