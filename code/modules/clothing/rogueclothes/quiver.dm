@@ -79,6 +79,7 @@
 	. = ..()
 	if(arrows.len)
 		. += span_notice("[arrows.len] inside.")
+	. += span_notice("Click on the ground to pick up ammos on the floor.")
 
 /obj/item/quiver/update_icon()
 	if(arrows.len)

@@ -543,7 +543,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 */
 
 /mob/living/carbon/proc/handle_sleep()
-	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
+	if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !(mobility_flags & MOBILITY_STAND))
+		rogstam_add(5)
+		if(mind?.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+			rogstam_add(10)
 		return
 	//Healing while sleeping in a bed
 	if(IsSleeping())
@@ -636,5 +639,3 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 				rogstam_add(10)
 		else if(fallingas)
 			fallingas = 0
-	else if(HAS_TRAIT(src, TRAIT_NOSLEEP) && !(mobility_flags & MOBILITY_STAND))
-		rogstam_add(5)

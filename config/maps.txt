@@ -14,9 +14,12 @@ Format:
 endmap
 
 map dun_manor
+endmap
+
+map dun_world
 	default
 	votable
 endmap
 
-map dun_world
+map roguetest
 endmap
