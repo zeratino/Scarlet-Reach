@@ -85,7 +85,6 @@
 						buckled_mob.adjustOxyLoss(10)
 						if(prob(20))
 							buckled_mob.emote("gasp")
-						buckled_mob.visible_message(pick(flavor_text))
 					playsound(buckled_mob.loc, 'sound/foley/noose_idle.ogg', 30, 1, -3)
 				else
 					if(prob(1))
