@@ -55,7 +55,7 @@
 
 
 /datum/crafting_recipe/roguetown/sewing/linedanklet
-	name = "cloth anklet (2 fibers, 2 Cloth)"
+	name = "cloth anklet (2 fibers, 2 cloth)"
 	result = list(/obj/item/clothing/shoes/roguetown/boots/clothlinedanklets)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/fibers = 2)
