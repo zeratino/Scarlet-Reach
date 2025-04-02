@@ -42,12 +42,13 @@
 						user.say("Place your gaze upon me, oh Radiant one!!")
 						to_chat(user,span_danger("You feel the eye of Astrata turned upon you. Her warmth dances upon your cheek. You feel yourself warming up...")) // A bunch of flavor stuff, slow incanting.
 						icon_state = "astrata_active"
-						loc.visible_message(span_warning("[user]'s bursts to flames! Embraced by Her Warmth wholly!"))
-						playsound(loc, 'sound/combat/hits/burn (1).ogg', 100, FALSE, -1)
-						user.adjust_fire_stacks(10)
-						user.IgniteMob()
-						user.flash_fullscreen("redflash3")
-						user.emote("firescream")
+						if(!HAS_TRAIT(user, TRAIT_CHOSEN)) //Priests don't burst into flames.
+							loc.visible_message(span_warning("[user]'s bursts to flames! Embraced by Her Warmth wholly!"))
+							playsound(loc, 'sound/combat/hits/burn (1).ogg', 100, FALSE, -1)
+							user.adjust_fire_stacks(10)
+							user.IgniteMob()
+							user.flash_fullscreen("redflash3")
+							user.emote("firescream")
 						guidinglight(src) // Actually starts the proc for applying the buff
 						user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 						spawn(120)

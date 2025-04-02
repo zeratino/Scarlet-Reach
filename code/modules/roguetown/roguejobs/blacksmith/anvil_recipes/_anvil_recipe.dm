@@ -59,9 +59,8 @@
 	// This step is finished, check if more items are needed and restart the process
 	if(progress >= max_progress && additional_items.len)
 		needed_item = pick(additional_items)
-		var/obj/item/I = new needed_item()
-		needed_item_text = I.name
-		qdel(I)
+		var/obj/item/I = needed_item
+		needed_item_text = initial(I.name)
 		additional_items -= needed_item
 		progress = 0
 
