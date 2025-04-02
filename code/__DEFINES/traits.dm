@@ -141,7 +141,7 @@
 #define TRAIT_LIGHT_STEP	"Light Step"
 #define TRAIT_AZURENATIVE "Azure Native"
 #define TRAIT_SLEUTH	"Sleuth"
-#define TRAIT_NOFIXEDEYESLOW "Fair Balanced"
+#define TRAIT_NOFIXEDEYESLOW "Sure Footed"
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
