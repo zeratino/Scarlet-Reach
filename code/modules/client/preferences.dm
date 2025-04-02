@@ -1790,6 +1790,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							continue
 						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
 							continue
+						if (istype(V, /datum/virtue/utility/noble) && (pref_species == /datum/species/construct/metal))		//Stops bypass of nobility for constructs.
+							continue
 						virtue_choices[V.name] = V
 					var/result = input(user, "Select a virtue", "Roguetown") as null|anything in virtue_choices
 
@@ -2461,9 +2463,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 			var/name
 			if(ispath(L[1],/datum/skill))
 				var/datum/skill/S = L[1]
-				S = new S
-				name = S.name
-				qdel(S)
+				name = initial(S.name)
 			dat += "["\Roman[L[2]]"] level[L[2] > 1 ? "s" : ""] of <b>[name]</b>[L[3] ? ", up to <b>[SSskills.level_names_plain[L[3]]]</b>" : ""] <br>"
 		dat += "</font>"
 	if(length(V.added_traits))
