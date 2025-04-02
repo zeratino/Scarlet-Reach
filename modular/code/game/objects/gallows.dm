@@ -43,7 +43,7 @@
 	if(!in_range(user, src) || user.stat != CONSCIOUS || !iscarbon(M))
 		return FALSE
 
-	if (!M.get_bodypart("head"))
+	if(!M.get_bodypart("head"))
 		to_chat(user, "<span class='warning'>[M] has no head!</span>")
 		return FALSE
 
