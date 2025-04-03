@@ -556,10 +556,11 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/bikini
 	name = "half-plate corslet"
-	desc = "A breastplate, tassets and codpiece allowing great protection, save for the stomach."
+	desc = "A high breastplate and hip armor allowing flexibility and great protection, save for the stomach."
 	body_parts_covered = CHEST|GROIN
 	icon_state = "halfplatekini"
 	item_state = "halfplatekini"
+	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0) // Identical to steel cuirass, but covering the groin instead of the vitals.
 	allowed_sex = list(FEMALE)
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
@@ -636,7 +637,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full
 	name = "plate armor"
-	desc = "Full plate. Leg protecting tassets, groin cup, armored vambraces."
+	desc = "Full plate. Slow to don and doff without the aid of a good squire."
 	icon_state = "plate"
 	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
 	equip_delay_self = 12 SECONDS
@@ -681,8 +682,8 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
-	name = "plate corslet"
-	desc = "Breastplate, pauldrons, couters, tassets, cuisses... did you forget something?"
+	name = "full-plate corslet"
+	desc = "Breastplate, pauldrons, couters, cuisses... did you forget something?"
 	icon_state = "platekini"
 	allowed_sex = list(FEMALE)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
