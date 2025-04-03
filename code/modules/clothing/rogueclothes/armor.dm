@@ -355,8 +355,8 @@
 	sellprice = 25
 
 /obj/item/clothing/suit/roguetown/armor/leather/bikini
-	name = "leather bikini"
-	desc = "Flexible cowhide armor. Lightweight, better than nothing. Now in tasteful bikini shape."
+	name = "leather corslet"
+	desc = "Flexible cowhide armor. Lightweight, better than nothing. Trimmed to protect the heart and hips."
 	body_parts_covered = CHEST|GROIN
 	icon_state = "leatherkini"
 	item_state = "leatherkini"
@@ -364,8 +364,8 @@
 	allowed_race = CLOTHED_RACES_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
-	name = "studded leather bikini"
-	desc = "Studded leather is the most durable of all hides and leathers and about as light. This one is in bikini form."
+	name = "studded leather corslet"
+	desc = "Studded leather is the most durable of all hides and leathers and about as light. Trimmed to protect the heart and hips."
 	body_parts_covered = CHEST|GROIN
 	icon_state = "studleatherkini"
 	item_state = "studleatherkini"
@@ -373,8 +373,8 @@
 	allowed_race = CLOTHED_RACES_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/leather/hide/bikini
-	name = "hide bikini"
-	desc = "A light armor of wildbeast hide. Far more durable than leather. This will not keep a person warm though..."
+	name = "hide corslet"
+	desc = "A light armor of wildbeast hide. Far more durable than leather. Trimmed to protect the heart and hips."
 	body_parts_covered = CHEST|GROIN
 	icon_state = "hidearmorkini"
 	item_state = "hidearmorkini"
@@ -545,8 +545,8 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/bikini
-	name = "chainmail bikini"
-	desc = "Not very comfortable against the skin."
+	name = "chainmail corslet"	// corslet, from the old French 'cors' or bodice, with the diminutive 'let', used to describe lightweight military armor since 1500. Chosen here to replace 'bikini', an extreme anachronism.
+	desc = "For the daring, affording maille's protection with light weight."
 	icon_state = "chainkini"
 	item_state = "chainkini"
 	allowed_sex = list(FEMALE)
@@ -555,8 +555,8 @@
 	armor_class = ARMOR_CLASS_LIGHT //placed in the medium category to keep it with its parent obj
 
 /obj/item/clothing/suit/roguetown/armor/plate/bikini
-	name = "half-plate bikini"
-	desc = "Half plate in bikini form, still just as protective somehow. Save for the stomach."
+	name = "half-plate corslet"
+	desc = "A breastplate, tassets and codpiece allowing great protection, save for the stomach."
 	body_parts_covered = CHEST|GROIN
 	icon_state = "halfplatekini"
 	item_state = "halfplatekini"
@@ -681,8 +681,8 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
-	name = "fullplate bikini"
-	desc = "Full plate in bikini form, full package and full exposure."
+	name = "plate corslet"
+	desc = "Breastplate, pauldrons, couters, tassets, cuisses... did you forget something?"
 	icon_state = "platekini"
 	allowed_sex = list(FEMALE)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
