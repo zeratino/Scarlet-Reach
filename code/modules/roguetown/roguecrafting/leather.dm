@@ -452,7 +452,7 @@
 	
 /datum/crafting_recipe/roguetown/leather/otavanboots
 	name = "otavan leather boots (1 fibers, 1 leather, 1 fur, 1 tallow)"
-	result = list(/obj/item/clothing/shoes/roguetown/otavan)
+	result = list(/obj/item/clothing/shoes/roguetown/boots/otavan)
 	reqs = list(/obj/item/natural/hide/cured = 1,
 	            /obj/item/reagent_containers/food/snacks/tallow = 1,
 				/obj/item/natural/fur = 1,

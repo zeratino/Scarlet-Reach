@@ -56,7 +56,7 @@
 	head = /obj/item/clothing/head/roguetown/helmet/otavan
 	armor = /obj/item/clothing/suit/roguetown/armor/otavan
 	pants = /obj/item/clothing/under/roguetown/trou/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/otavan
+	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan
 	gloves = /obj/item/clothing/gloves/roguetown/otavan
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backl = /obj/item/rogueweapon/shield/tower/metal
