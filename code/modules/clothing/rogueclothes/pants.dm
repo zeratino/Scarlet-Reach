@@ -271,7 +271,7 @@
 
 /obj/item/clothing/under/roguetown/brayette
 	name = "brayette"
-	desc = ""
+	desc = "Maille groin protection ideal for answering Dendor's call without removing your plate armor."
 	gender = PLURAL
 	icon_state = "chain_bootyshorts"
 	item_state = "chain_bootyshorts"
