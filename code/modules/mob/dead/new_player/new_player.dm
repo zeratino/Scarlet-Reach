@@ -377,6 +377,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			if(usr.ckey in GLOB.job_respawn_delays)
 				var/remaining_time = round((GLOB.job_respawn_delays[usr.ckey] - world.time) / 10)
 				return "You must wait [remaining_time] seconds before playing as an [jobtitle] again."
+		if(JOB_UNAVAILABLE_VIRTUESVICE)
+			return "[jobtitle] is restricted by your Virtues or Vices."
 	return "Error: Unknown job availability."
 
 //used for latejoining
@@ -464,6 +466,9 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 					return JOB_UNAVAILABLE_SLOTFULL
 		else
 			return JOB_UNAVAILABLE_SLOTFULL
+	if(length(job.vice_restrictions) || length(job.virtue_restrictions))
+		if((client.prefs.virtue?.type in job.virtue_restrictions) || (client.prefs.virtuetwo?.type in job.virtue_restrictions) || (client.prefs.charflaw?.type in job.vice_restrictions))
+			return JOB_UNAVAILABLE_VIRTUESVICE
 //	if(job.title == "Adventurer" && latejoin)
 //		for(var/datum/job/J in SSjob.occupations)
 //			if(J && J.total_positions && J.current_positions < 1 && J.title != job.title && (IsJobUnavailable(J.title))
