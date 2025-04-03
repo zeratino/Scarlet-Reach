@@ -59,10 +59,10 @@
 		if(BURN)
 			playsound(src.loc, "burn", 100, FALSE, -1)
 
-/obj/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_type = "blunt")
+/obj/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
 	..()
 	if(AM.throwforce > 5)
-		take_damage(AM.throwforce*0.1, BRUTE, damage_type, 1, get_dir(src, AM))
+		take_damage(AM.throwforce*0.1, BRUTE, damage_flag, 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target, epicenter, devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	if(resistance_flags & INDESTRUCTIBLE)

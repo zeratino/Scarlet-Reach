@@ -1752,39 +1752,45 @@ generate/load female uniform sprites matching all previously decided variables
 
 //produces a key based on the human's limbs
 /mob/living/carbon/human/generate_icon_render_key()
-	. = "[dna.species.limbs_id]"
-
+	. = list(dna.species.limbs_id)
 
 	if(dna.species.use_skintones)
-		. += "-coloured-[skin_tone]"
+		. += "coloured"
+		. += skin_tone
 	else if(dna.species.fixed_mut_color)
-		. += "-coloured-[dna.species.fixed_mut_color]"
+		. += "coloured"
+		. += dna.species.fixed_mut_color
 	else if(dna.features["mcolor"])
-		. += "-coloured-[dna.features["mcolor"]]"
+		. += "coloured"
+		. += dna.features["mcolor"]
 	else
-		. += "-not_coloured"
+		. += "not_coloured"
 
-	. += "-[gender]"
-	. += "-[age]"
+	. += gender
+	. += age
 
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		. += "-[BP.body_zone]"
+		. += BP.body_zone
 		if(BP.status == BODYPART_ORGANIC)
-			. += "-organic"
+			. += "organic"
 		else
-			. += "-robotic"
-		if(BP.use_digitigrade)
-			. += "-digitigrade[BP.use_digitigrade]"
+			. += "robotic"
+		switch(BP.use_digitigrade)
+			if(FULL_DIGITIGRADE)
+				. += "digitigrade_full"
+			if(SQUISHED_DIGITIGRADE)
+				. += "digitigrade_squashed"
 		if(BP.rotted)
-			. += "-rotted"
+			. += "rotted"
 		if(BP.skeletonized)
-			. += "-skeletonized"
+			. += "skeletonized"
 		if(BP.dmg_overlay_type)
-			. += "-[BP.dmg_overlay_type]"
+			. += BP.dmg_overlay_type
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
-		. += "-husk"
+		. += "husk"
+	return jointext(., "-")
 
 /mob/living/carbon/human/load_limb_from_cache()
 	..()
