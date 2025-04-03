@@ -48,10 +48,10 @@
 			to_chat(user, "<span class='warning'>There's nothing to grind.</span>")
 			return
 		var/datum/alch_grind_recipe/foundrecipe = find_recipe()
-		if(!I.juice_results && !I.grind_results && foundrecipe == null)
+		if(!to_grind.juice_results && !to_grind.grind_results && foundrecipe == null)
 			to_chat(user, "<span class='warning'>You don't think that will work!</span>")
 			return
-		user.visible_message("<span class='info'>[user] begins grinding up [I].</span>")
+		user.visible_message("<span class='info'>[user] begins grinding up [to_grind].</span>")
 		playsound(loc, 'sound/foley/mortarpestle.ogg', 100, FALSE)
 		if(do_after(user, 10, target = src))
 			if(to_grind.juice_results) //prioritize juicing
@@ -86,6 +86,7 @@
 			QDEL_NULL(to_grind)
 			if(user.mind)
 				user.mind.adjust_experience(/datum/skill/craft/alchemy, user.STAINT, FALSE)
+			return
 	if(istype(I ,/obj/item/reagent_containers/glass))
 		if(user.used_intent.type == INTENT_POUR) //Something like a glass. Player probably wants to transfer TO it.
 			testing("attackobj2")
