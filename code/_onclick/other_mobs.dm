@@ -359,11 +359,12 @@
 						while(src.throwing)
 							sleep(1)
 						throw_at(get_step(src, src.dir), 1, 1, src, spin = FALSE)
-						Immobilize((HAS_TRAIT(src, TRAIT_LEAPER) ? 5 : 10))
 					else
 						throw_at(A, jrange, 1, src, spin = FALSE)
 						while(src.throwing)
 							sleep(1)
+					if(!HAS_TRAIT(src, TRAIT_ZJUMP))	//Jesters and werewolves don't get immobilized at all
+						Immobilize((HAS_TRAIT(src, TRAIT_LEAPER) ? 5 : 10))	//Acrobatics get half the time
 					if(isopenturf(src.loc))
 						var/turf/open/T = src.loc
 						if(T.landsound)
