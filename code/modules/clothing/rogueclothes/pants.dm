@@ -364,19 +364,20 @@
 
 /obj/item/clothing/under/roguetown/chainlegs/skirt
 	name = "steel chain skirt"
-	desc = "Interlinked metal rings that drape down to the crotch and no farther."
+	desc = "A knee-length maille skirt, warding cuts against the thighs without slowing the feet."
 	icon_state = "chain_skirt"
 	item_state = "chain_skirt"
-	body_parts_covered = GROIN
+	body_parts_covered = GROIN|LEGS
 	armor_class = ARMOR_CLASS_LIGHT
 
 /obj/item/clothing/under/roguetown/platelegs/skirt
-	name = "steel plate mini-skirt"
-	desc = "Reinforced armor that doesn't even protect the legs."
+	name = "steel plate tassets"
+	desc = "These hanging plates of steel protect the hips and thighs."
+	gender = PLURAL
 	icon_state = "plate_skirt"
 	item_state = "plate_skirt"
-	body_parts_covered = GROIN
-	armor_class = ARMOR_CLASS_LIGHT
+	body_parts_covered = GROIN|LEGS
+	armor_class = ARMOR_CLASS_MEDIUM
 
 /obj/item/clothing/under/roguetown/loincloth
 	name = "loincloth"
