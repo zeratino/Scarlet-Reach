@@ -367,6 +367,7 @@
 	desc = "A knee-length maille skirt, warding cuts against the thighs without slowing the feet."
 	icon_state = "chain_skirt"
 	item_state = "chain_skirt"
+	armor = list("blunt" = 60, "slash" = 80, "stab" = 70, "piercing" = 20, "fire" = 0, "acid" = 0) // Studded leather with +10 slash and stab as it requires steel.
 	body_parts_covered = GROIN|LEGS
 	armor_class = ARMOR_CLASS_LIGHT
 
