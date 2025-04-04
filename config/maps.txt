@@ -20,6 +20,3 @@ map dun_world
 	default
 	votable
 endmap
-
-map roguetest
-endmap
