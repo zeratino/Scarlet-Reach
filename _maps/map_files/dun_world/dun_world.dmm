@@ -25207,6 +25207,7 @@
 	icon_state = "longtable"
 	},
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute,
+/obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church/basement)
 "kxi" = (
@@ -52920,6 +52921,7 @@
 	icon_state = "longtable"
 	},
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute,
+/obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church/basement)
 "vTJ" = (
@@ -55423,6 +55425,7 @@
 "wYQ" = (
 /obj/structure/closet/crate/roguecloset,
 /obj/item/scomstone,
+/obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/church/basement)
 "wYT" = (
