@@ -57,7 +57,7 @@
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
 
-/obj/item/clothing/shoes/roguetown/nobleboot
+/obj/item/clothing/shoes/roguetown/boots/nobleboot
 	name = "noble boots"
 	//dropshrink = 0.75
 	color = "#d5c2aa"

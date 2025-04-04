@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/nobleboots
 	name = "Noble Boots"
-	path = /obj/item/clothing/shoes/roguetown/nobleboot
+	path = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 
 /datum/loadout_item/shortboots
 	name = "Short Boots"
