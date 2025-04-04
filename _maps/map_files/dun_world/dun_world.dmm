@@ -37986,6 +37986,12 @@
 	pixel_y = -32
 	},
 /obj/structure/closet/crate/roguecloset/dark,
+/obj/item/roguekey/armory,
+/obj/item/storage/keyring,
+/obj/item/roguekey/manor,
+/obj/item/roguekey/walls,
+/obj/item/roguekey/dungeon,
+/obj/item/roguekey/sheriff,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "pJJ" = (
@@ -56144,6 +56150,7 @@
 /obj/item/roguekey/manor,
 /obj/item/roguekey/walls,
 /obj/item/roguekey/dungeon,
+/obj/item/roguekey/sheriff,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "xml" = (
