@@ -1,4 +1,23 @@
-Spriting:
+Administration:
+- changed-files:
+  - any-glob-to-any-file: admin/**
+
+Code:
+- changed-files:
+  - any-glob-to-any-file: code/**
+
+Code Maintenance:
+- changed-files:
+  - any-glob-to-any-file:
+    - controllers/**
+    - _DEFINES/**
+    - _HELPERS/**
+
+Sound:
+- changed-files: 
+  - any-glob-to-any-file: sound/**
+
+Sprite:
 - changed-files:
   - any-glob-to-any-file: icons/**
 
@@ -6,7 +25,7 @@ Mapping:
 - changed-files:
   - any-glob-to-any-file: _maps/**
 
-documentation:
+Documentation:
 - changed-files:
   - any-glob-to-any-file:
     - .github/**
