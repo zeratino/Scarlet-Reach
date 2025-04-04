@@ -358,7 +358,8 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
-	heavy_metal = FALSE					//Stops spin animation, maybe.
+	heavy_metal = FALSE						//Stops spin animation, maybe.
+	thrown_damage_flag = "piercing"			//Checks peircing protection.
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
 	force = 16

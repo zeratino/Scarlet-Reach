@@ -397,6 +397,7 @@
 	possible_item_intents = list(/datum/intent/dagger/thrust, /datum/intent/dagger/chop)
 	smeltresult = null
 	sellprice = 1
+	thrown_damage_flag = "piercing"		//Checks piercing type like an arrow.
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
 	name = "steel tossblade"
