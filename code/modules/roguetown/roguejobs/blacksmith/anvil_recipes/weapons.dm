@@ -98,7 +98,7 @@
 /datum/anvil_recipe/weapons/iron/tossblade
 	name = "Iron Tossblades 4x"
 	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/rogueweapon/huntingknife/throwingknife/iron
+	created_item = /obj/item/rogueweapon/huntingknife/throwingknife
 	craftdiff = 0
 	createditem_num = 4
 
