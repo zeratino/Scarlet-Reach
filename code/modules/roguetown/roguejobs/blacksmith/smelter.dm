@@ -242,12 +242,12 @@
 	..()
 	if(on)
 		if(ore.len)
-			if(cooking < 30)
+			if(cooking < 40)
 				cooking++
 				playsound(src.loc,'sound/misc/smelter_sound.ogg', 50, FALSE)
 				actively_smelting = TRUE
 			else
-				if(cooking == 30)
+				if(cooking == 40)
 					var/alloy //moving each alloy to it's own var allows for possible additions later
 					var/bronzealloy
 					for(var/obj/item/I in ore)
@@ -285,7 +285,7 @@
 					playsound(src,'sound/misc/smelter_fin.ogg', 100, FALSE)
 					visible_message(span_notice("\The [src] finished smelting."))
 					maxore = initial(maxore)
-					cooking = 31
+					cooking = 41
 					actively_smelting = FALSE
 
 /obj/machinery/light/rogue/smelter/hiron
@@ -305,12 +305,12 @@
 	..()
 	if(on)
 		if(ore.len)
-			if(cooking < 30)
+			if(cooking < 45)
 				cooking++
 				playsound(src.loc,'sound/misc/smelter_sound.ogg', 50, FALSE)
 				actively_smelting = TRUE
 			else
-				if(cooking == 30)
+				if(cooking == 45)
 					for(var/obj/item/I in ore)
 						if(I.smeltresult)
 							var/obj/item/R = new I.smeltresult(src, ore[I])
@@ -321,5 +321,5 @@
 					playsound(src,'sound/misc/smelter_fin.ogg', 100, FALSE)
 					visible_message(span_notice("\The [src] finished smelting."))
 					maxore = initial(maxore)
-					cooking = 31
+					cooking = 46
 					actively_smelting = FALSE
