@@ -337,6 +337,7 @@
 	soundloop = /datum/looping_sound/fireloop
 	var/obj/item/attachment = null
 	var/obj/item/reagent_containers/food/snacks/food = null
+	var/mob/living/carbon/human/lastuser
 	var/datum/looping_sound/boilloop/boilloop
 
 /obj/machinery/light/rogue/hearth/Initialize()
@@ -354,6 +355,10 @@
 		return !density
 
 /obj/machinery/light/rogue/hearth/attackby(obj/item/W, mob/living/user, params)
+	lastuser = user // For processing food
+	var/datum/skill/craft/cooking/cs = lastuser?.mind?.get_skill_level(/datum/skill/craft/cooking)
+	var/cooktime_divisor = get_cooktime_divisor(cs)
+
 	if(!attachment)
 		if(istype(W, /obj/item/cooking/pan) || istype(W, /obj/item/reagent_containers/glass/bucket/pot))
 			playsound(get_turf(user), 'sound/foley/dropsound/shovel_drop.ogg', 40, TRUE, -1)
@@ -394,7 +399,7 @@
 					qdel(W)
 					playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
 					pot.reagents.remove_reagent(/datum/reagent/water, 32)
-					sleep(300)
+					sleep(300/cooktime_divisor)
 					playsound(src, "bubbles", 30, TRUE)
 					pot.reagents.add_reagent(/datum/reagent/consumable/soup/oatmeal, 32)
 					pot.reagents.remove_reagent(/datum/reagent/water, 1)
@@ -413,19 +418,19 @@
 					pot.reagents.remove_reagent(/datum/reagent/water, 32)
 					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/veg/potato_sliced))
 						qdel(W)
-						sleep(800)
+						sleep(1 MINUTES/cooktime_divisor)
 						playsound(src, "bubbles", 30, TRUE)
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/veggie/potato, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
 					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/veg/onion_sliced))
 						qdel(W)
-						sleep(600)
+						sleep(1 MINUTES/cooktime_divisor)
 						playsound(src, "bubbles", 30, TRUE)
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/veggie/onion, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
 					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/veg/cabbage_sliced))
 						qdel(W)
-						sleep(700)
+						sleep(1 MINUTES/cooktime_divisor)
 						playsound(src, "bubbles", 30, TRUE)
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/veggie/cabbage, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
@@ -444,25 +449,25 @@
 					pot.reagents.remove_reagent(/datum/reagent/water, 32)
 					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish))
 						qdel(W)
-						sleep(800)
+						sleep(1 MINUTES/cooktime_divisor)
 						playsound(src, "bubbles", 30, TRUE)
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/fish, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
 					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/spider))
 						qdel(W)
-						sleep(1000)
+						sleep(1 MINUTES/cooktime_divisor)
 						playsound(src, "bubbles", 30, TRUE)
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/yucky, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
 					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/cutlet) || istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/mince/poultry))
 						qdel(W)
-						sleep(900)
+						sleep(1 MINUTES/cooktime_divisor)
 						playsound(src, "bubbles", 30, TRUE)
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/chicken, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
 					else
 						qdel(W)
-						sleep(900)
+						sleep(1 MINUTES/cooktime_divisor)
 						playsound(src, "bubbles", 30, TRUE)
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/meat, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
@@ -522,6 +527,10 @@
 			return TRUE
 
 /obj/machinery/light/rogue/hearth/process()
+	// Edge case is that this depends on the last person to put the pan on the hearth and not the last person to put the food on the pan
+	var/datum/skill/craft/cooking/cs = lastuser?.mind?.get_skill_level(/datum/skill/craft/cooking)
+	var/cooktime_divisor = get_cooktime_divisor(cs)
+
 	if(isopenturf(loc))
 		var/turf/open/O = loc
 		if(IS_WET_OPEN_TURF(O))
@@ -535,7 +544,7 @@
 		if(attachment)
 			if(istype(attachment, /obj/item/cooking/pan))
 				if(food)
-					var/obj/item/C = food.cooking(20, src)
+					var/obj/item/C = food.cooking(20 * cooktime_divisor, 20, src)
 					if(C)
 						qdel(food)
 						food = C

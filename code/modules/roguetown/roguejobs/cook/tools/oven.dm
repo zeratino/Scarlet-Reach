@@ -11,6 +11,7 @@
 	var/donefoods = FALSE
 	var/lastsmoke = 0
 	var/need_underlay_update = TRUE
+	var/mob/living/carbon/human/lastuser
 
 /obj/machinery/light/rogue/oven/OnCrafted(dirin)
 	dirin = turn(dirin, 180)
@@ -18,6 +19,7 @@
 	update_icon()
 
 /obj/machinery/light/rogue/oven/attackby(obj/item/W, mob/living/user, params)
+	lastuser = user
 	var/_y = text2num(params2list(params)["icon-y"])
 	var/clicked_top
 	if(_y > 14)
@@ -41,9 +43,11 @@
 
 /obj/machinery/light/rogue/oven/process()
 	..()
+	var/datum/skill/craft/cooking/cs = lastuser?.mind?.get_skill_level(/datum/skill/craft/cooking)
+	var/cooktime_divisor = get_cooktime_divisor(cs)
 	if(on)
 		for(var/obj/item/I in food)
-			var/obj/item/C = I.cooking(10, src)
+			var/obj/item/C = I.cooking(10 * cooktime_divisor, 10, src)
 			if(C)
 				donefoods = TRUE
 				food -= I
@@ -121,6 +125,7 @@
 		underlays += M
 
 /obj/machinery/light/rogue/oven/attack_hand(mob/user, params)
+	lastuser = user
 	var/_y = text2num(params2list(params)["icon-y"])
 	var/clicked_top
 	if(_y > 14)
