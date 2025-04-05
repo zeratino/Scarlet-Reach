@@ -331,7 +331,7 @@ Inquisitorial armory down here
 		for(var/mob/living/carbon/human/H in view(get_turf(src)))
 			if(H.patron?.type == /datum/patron/old_god)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
 				H.add_stress(/datum/stressevent/syoncalamity)
-	if(isitem(A) && user.used_intent.type == /datum/intent/bless)
+	if(isitem(A) && on && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/psyblessed/CP = A.GetComponent(/datum/component/psyblessed)
 		if(CP)
 			if(!CP.is_blessed)
@@ -342,7 +342,7 @@ Inquisitorial armory down here
 					new /obj/effect/temp_visual/censer_dust(get_turf(A))
 			else
 				to_chat(user, span_info("It has already been blessed."))
-	if(ishuman(A) && on  && (user.used_intent.type == /datum/intent/bless))
+	if(ishuman(A) && on && (user.used_intent.type == /datum/intent/bless))
 		var/mob/living/carbon/human/H = A
 		if(H.patron?.type == /datum/patron/old_god)
 			if(!H.has_status_effect(/datum/status_effect/buff/censerbuff))
