@@ -41,6 +41,7 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_NOFALLDAMAGE1))
 		if(levels <= 2)
+			Immobilize(10)
 			return
 	var/points
 	for(var/i in 2 to levels)
