@@ -264,7 +264,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	name = "psydonian dagger"
-	desc = "A sharp dagger used by the finest of the inquisiton. It glistens under the light of Psydon."
+	desc = "An ornate dagger, plated in a ceremonial veneer of silver. The bane of vampyres and verevolves, in the hands of a faithful hunter."
 	icon_state = "psydagger"
 	sellprice = 70
 

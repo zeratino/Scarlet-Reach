@@ -345,7 +345,7 @@
 
 /obj/item/rogueweapon/mace/steel/psymace
 	name = "psydonian mace"
-	desc = "A massive mace, used by the Inquisiton. For when you need to be blunt."
+	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
 	dropshrink = 0.75
 	slot_flags = ITEM_SLOT_BACK //Looks better on back

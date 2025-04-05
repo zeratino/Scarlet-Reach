@@ -504,7 +504,7 @@
 
 /obj/item/rogueweapon/sword/long/psysword
 	name = "psydonian sword"
-	desc = "a silver bastard sword, for the Inquisiton. For when you need to make a point."
+	desc = "An ornate longsword, plated in a ceremonial veneer of silver. Ideal for hunting monsters and men alike."
 	icon_state = "psysword"
 
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()

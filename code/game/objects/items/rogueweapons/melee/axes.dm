@@ -304,7 +304,7 @@
 
 /obj/item/rogueweapon/stoneaxe/silver/psyaxe
 	name = "psydonian war axe"
-	desc = "A one-handed war axe forged in the pain of psydon."
+	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
 	smeltresult = /obj/item/ingot/steel
 

@@ -225,22 +225,23 @@
 						to_chat(H, (span_hypnophrase("A voice calls out from the song for you...")))
 						to_chat(H, (span_cultsmall(pick(ravoxlines))))		
 						H.add_stress(/datum/stressevent/soulchurner)
-
-//Inquisitorial armory down here
+/*
+Inquisitorial armory down here
 
 /obj/structure/closet/crate/chest/inqarmory
 
 /obj/structure/closet/crate/chest/inqarmory/PopulateContents()
 	.=..()
-	//new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(src)
-	//new /obj/item/rogueweapon/greatsword/psygsword(src)
-	//new /obj/item/rogueweapon/halberd/psyhalberd(src)
-	//new /obj/item/rogueweapon/whip/psywhip_lesser
-	//new /obj/item/rogueweapon/flail/sflail/psyflail
-	//new /obj/item/rogueweapon/spear/psyspear(src)
-	//new /obj/item/rogueweapon/sword/long/psysword(src)
-	//?new /obj/item/rogueweapon/mace/goden/psymace(src)
-	//new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(src)
+	new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(src)
+	new /obj/item/rogueweapon/greatsword/psygsword(src)
+	new /obj/item/rogueweapon/halberd/psyhalberd(src)
+	new /obj/item/rogueweapon/whip/psywhip_lesser
+	new /obj/item/rogueweapon/flail/sflail/psyflail
+	new /obj/item/rogueweapon/spear/psyspear(src)
+	new /obj/item/rogueweapon/sword/long/psysword(src)
+	new /obj/item/rogueweapon/mace/goden/psymace(src)
+	new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(src)
+	*/
 
 /obj/item/flashlight/flare/torch/lantern/psycenser
 	name = "Golgatha"
@@ -367,7 +368,7 @@
 		
 /datum/component/psyblessed/proc/on_examine(datum/source, mob/user, list/examine_list)
 	if(!is_blessed)
-		examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON.</font>")
+		examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON. Until then, its impure alloying of silver-and-steel cannot blight inhumen foes on its own.</font>")
 	if(is_blessed)
 		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by COMET SYON.</font>")
 		if(silver)

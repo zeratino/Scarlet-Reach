@@ -103,7 +103,7 @@
 
 /obj/item/rogueweapon/flail/sflail/psyflail
 	name = "psydon's flail"
-	desc = "Made of hardy steel, and packing a wallop."
+	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
 	icon_state = "psyflail"
 
 /obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
@@ -193,13 +193,13 @@
 
 /obj/item/rogueweapon/whip/antique/psywhip
 	name = "Daybreak"
-	desc = "I am wrath. I am silver. I am the mercy of HIM."
+	desc = "Holding the blessed silver evokes a memory of the Grand Otavan Cathedral, a testament to humenity's faith. There, upon the ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness."
 	icon_state = "psywhip"
 	is_silver = TRUE
 
 /obj/item/rogueweapon/whip/psywhip_lesser
 	name = "psydonite whip"
-	desc = "It has endured many years of use among the rank and file of the Inquisition."
+	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
 	icon_state = "psywhip_lesser"
 
 /obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
