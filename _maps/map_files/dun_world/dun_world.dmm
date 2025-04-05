@@ -56395,7 +56395,7 @@
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "xqP" = (
 /obj/structure/bars,
-/turf/closed/wall/mineral/rogue/craftstone,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "xqW" = (
 /turf/closed/wall/mineral/rogue/roofwall/outercorner{
