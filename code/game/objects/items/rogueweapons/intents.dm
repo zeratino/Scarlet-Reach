@@ -564,3 +564,10 @@
 	no_attack = TRUE
 	candodge = TRUE
 	canparry = TRUE
+
+/datum/intent/weep
+	name = "weep"
+	icon_state = "inweep"
+	no_attack = TRUE
+	candodge = FALSE
+	canparry = FALSE

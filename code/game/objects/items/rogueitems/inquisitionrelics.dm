@@ -23,7 +23,7 @@
 			to_chat(user, span_info("The reliquary lock takes my key as it opens, I take a moment to ponder what power was delivered to us..."))
 			playsound(loc, 'sound/foley/doors/lock.ogg', 60)
 			to_chat(user,)
-			var/relics = list("Melancholic Crankbox - Antimagic", "Daybreak - Silver Whip", "Stigmata - Silver Halberd", "Apocrypha - Silver Greatsword", "SYON Censer - Golgatha")
+			var/relics = list("Melancholic Crankbox - Antimagic", "Daybreak - Silver Whip", "Stigmata - Silver Halberd", "Apocrypha - Silver Greatsword", "Golgatha - SYON Shard Censer")
 			var/relicchoice = input(user, "Choose your tool", "RELICS") as anything in relics
 			var/obj/choice
 			switch(relicchoice)
@@ -35,7 +35,7 @@
 					choice = /obj/item/rogueweapon/halberd/psyhalberd
 				if("Apocrypha - Silver Greatsword")
 					choice = /obj/item/rogueweapon/greatsword/psygsword
-				if("SYON Censer - Golgatha")
+				if("Golgatha - SYON Shard Censer")
 					choice = /obj/item/flashlight/flare/torch/lantern/psycenser
 			to_chat(user, span_info("I have chosen the relic, may HE guide my hand."))
 			var/obj/structure/closet/crate/chest/reliquary/realchest = new /obj/structure/closet/crate/chest/reliquary(get_turf(src))
@@ -292,8 +292,9 @@ Inquisitorial armory down here
 				var/mob/M = loc
 				M.update_inv_hands()
 			START_PROCESSING(SSobj, src)
-	else
-		to_chat(user, span_info("It is gone."))
+	else if(fuel <= 0 && user.used_intent.type == /datum/intent/weep)
+		to_chat(user, span_info("It is gone. You weep."))
+		user.emote("cry")
 
 /obj/item/flashlight/flare/torch/lantern/psycenser/process()
 	if(on && next_smoke < world.time)
@@ -321,10 +322,11 @@ Inquisitorial armory down here
 	. = ..()	//We smashed a guy with it turned on. Bad idea!
 	if(ismob(A) && on && (user.used_intent.type == /datum/intent/flail/strike/smash/golgotha) && user.cmode)
 		user.visible_message(span_warningbig("[user] smashes the exposed [src], shattering the shard of SYON!"))
-		explosion(get_turf(A),devastation_range = 1, heavy_impact_range = 2, light_impact_range = 3, flame_range = 2, smoke = FALSE)
+		explosion(get_turf(A),devastation_range = 2, heavy_impact_range = 3, light_impact_range = 4, flame_range = 2, flash_range = 4, smoke = FALSE)
 		fuel = 0
 		turn_off()
-		possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
+		icon_state = "psycenser-broken"
+		possible_item_intents = list(/datum/intent/weep)
 		user.update_a_intents()
 		for(var/mob/living/carbon/human/H in view(get_turf(src)))
 			if(H.patron?.type == /datum/patron/old_god)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
