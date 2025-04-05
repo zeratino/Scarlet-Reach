@@ -383,7 +383,7 @@
 		sharpness = IS_BLUNT
 		wdefense = 2
 
-/obj/item/rogueweapon/huntingknife/throwingknife/iron
+/obj/item/rogueweapon/huntingknife/throwingknife
 	name = "iron tossblade"
 	desc = "Paradoxical; why is it called a blade when it is meant for tossing? Or is it the act of cutting post-toss that makes it a blade? ...Are arrows tossblades, too?"
 	item_state = "bone_dagger"
@@ -391,25 +391,24 @@
 	throwforce = 22
 	throw_speed = 4
 	max_integrity = 50
+	armor_penetration = 30
 	wdefense = 1
 	icon_state = "throw_knifei"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 25, "embedded_fall_chance" = 10)
 	possible_item_intents = list(/datum/intent/dagger/thrust, /datum/intent/dagger/chop)
 	smeltresult = null
 	sellprice = 1
+	thrown_damage_flag = "piercing"		//Checks piercing type like an arrow.
 
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
 	name = "steel tossblade"
 	desc = "There are rumors of some sea-marauders loading these into metal tubes with explosive powder to launch then fast and far. Probably won't catch on."
 	item_state = "bone_dagger"
-	force = 10
 	throwforce = 28
-	throw_speed = 4
 	max_integrity = 100
-	wdefense = 1
+	armor_penetration = 40
 	icon_state = "throw_knifes"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 30, "embedded_fall_chance" = 5)
-	smeltresult = null
 	sellprice = 2
 
 /obj/item/rogueweapon/huntingknife/throwingknife/psydon
@@ -418,14 +417,13 @@
 	item_state = "bone_dagger"
 	force = 12
 	throwforce = 28
-	throw_speed = 4
+	armor_penetration = 50
 	max_integrity = 150
 	wdefense = 3
 	icon_state = "throw_knifep"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 50, "embedded_fall_chance" = 0)
 	is_silver = TRUE
 	sellprice = 6
-	smeltresult = null
 
 /obj/item/rogueweapon/huntingknife/scissors
 	possible_item_intents = list(/datum/intent/snip, /datum/intent/dagger/thrust, /datum/intent/dagger/cut)

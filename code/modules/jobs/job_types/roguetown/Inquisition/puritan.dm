@@ -106,8 +106,8 @@
 
 /datum/outfit/job/roguetown/puritan/muscle/pre_equip(mob/living/carbon/human/H)
 	..()
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/blk
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blk
@@ -177,7 +177,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver
-	shoes = /obj/item/clothing/shoes/roguetown/otavan/inqboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	backr = /obj/item/storage/backpack/rogue/satchel
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich

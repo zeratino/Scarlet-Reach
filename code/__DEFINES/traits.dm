@@ -88,6 +88,7 @@
 #define TRAIT_BLACKLEG	"Blackleg" //Rig coin, dice, cards in your favor - UNUSED FOR NOW
 #define TRAIT_BETTER_SLEEP	"Better Sleep" //Recover more energy (blue bar) when sleeping
 #define TRAIT_LEECHIMMUNE "Unleechable" //leeches wont attach in bog squares + dendor boon.
+#define TRAIT_LONGSTRIDER "Longstrider"
 
 // ASCENDANT CULTIST TRAITS (all of them recognize each other)
 #define TRAIT_COMMIE "Blessing of Matthios" //recognized by bandits as an ally
@@ -141,7 +142,9 @@
 #define TRAIT_LIGHT_STEP	"Light Step"
 #define TRAIT_AZURENATIVE "Azure Native"
 #define TRAIT_SLEUTH	"Sleuth"
-#define TRAIT_NOFIXEDEYESLOW "Sure Footed"
+#define TRAIT_HARDSHELL "Hardshell"
+#define TRAIT_WOODWALKER "Woodwalker"
+
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
@@ -260,8 +263,9 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
 	TRAIT_AZURENATIVE = span_info("I've grown up and lived all my lyfe in these lands. I can only trigger ambushes if I sprint through them."),
 	TRAIT_SLEUTH = span_info("I can spot my tracked Mark's trail without needing to approach it, and can spot them at a distance. I can track more frequently, and the act is not impaired by movement. I can examine tracks right away."),
+  TRAIT_HARDSHELL = span_info("The bulk of this armor prevents me from parrying effectively, but I can still move out of the way."),
 	TRAIT_MATTHIOS_EYES = span_notice("I have a sense for what the most valuable item someone has is."),
-	TRAIT_NOFIXEDEYESLOW = span_notice("I can strafe and backpedal without slowing my pace.")
+	TRAIT_WOODWALKER = span_notice("I can climb trees quicker, and gain climbing experience twice as quickly. I can step on thorns and branches safely in the woods. I can get twice as many things from searching bushes, and I can stand on leaves in trees safely.")
 ))
 
 // trait accessor defines
@@ -485,7 +489,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 // unique trait sources, still defines
 #define TRAIT_GUIDANCE "Guidance"
 #define TRAIT_FORTITUDE "Fortitude"
-#define TRAIT_LONGSTRIDER "Longstrider"
 #define CLONING_POD_TRAIT "cloning-pod"
 #define STATUE_MUTE "statue"
 #define CHANGELING_DRAIN "drain"
