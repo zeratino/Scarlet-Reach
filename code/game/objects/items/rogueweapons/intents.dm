@@ -557,3 +557,10 @@
 	candodge = TRUE
 	canparry = TRUE
 	item_d_type = "stab"
+
+/datum/intent/bless
+	name = "bless"
+	icon_state = "inbless"
+	no_attack = TRUE
+	candodge = TRUE
+	canparry = TRUE

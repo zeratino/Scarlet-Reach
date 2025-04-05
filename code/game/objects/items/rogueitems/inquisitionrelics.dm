@@ -23,19 +23,27 @@
 			to_chat(user, span_info("The reliquary lock takes my key as it opens, I take a moment to ponder what power was delivered to us..."))
 			playsound(loc, 'sound/foley/doors/lock.ogg', 60)
 			to_chat(user,)
-			var/relics = list("Melancholic Crankbox - Antimagic", "Daybreak - Silver Whip","Inquistorial Armory - Weapons",)
+			var/relics = list("Melancholic Crankbox - Antimagic", "Daybreak - Silver Whip", "Stigmata - Silver Halberd", "Apocrypha - Silver Greatsword", "SYON Censer - Golgatha")
 			var/relicchoice = input(user, "Choose your tool", "RELICS") as anything in relics
+			var/obj/choice
 			switch(relicchoice)
 				if("Melancholic Crankbox - Antimagic")
-					user.put_in_hands(new /obj/item/psydonmusicbox(user))
+					choice = /obj/item/psydonmusicbox
 				if("Daybreak - Silver Whip")
-					user.put_in_hands(new /obj/item/rogueweapon/whip/antique/psywhip(user))
-				if("Inquistorial Armory - Weapons")
-					user.put_in_hands(new /obj/structure/closet/crate/chest/inqarmory)
-			to_chat(user, span_info("I retrieve the relic, may HE guide my hand."))
-			opened = TRUE
-			icon_state = "chestweird1open"
-			
+					choice = /obj/item/rogueweapon/whip/antique/psywhip
+				if("Stigmata - Silver Halberd")
+					choice = /obj/item/rogueweapon/halberd/psyhalberd
+				if("Apocrypha - Silver Greatsword")
+					choice = /obj/item/rogueweapon/greatsword/psygsword
+				if("SYON Censer - Golgatha")
+					choice = /obj/item/flashlight/flare/torch/lantern/psycenser
+			to_chat(user, span_info("I have chosen the relic, may HE guide my hand."))
+			var/obj/structure/closet/crate/chest/reliquary/realchest = new /obj/structure/closet/crate/chest/reliquary(get_turf(src))
+			realchest.PopulateContents()
+			choice = new choice(realchest)
+			qdel(src)
+
+
 
 // Soul Churner - Music box which applies magic resistance to Inquisition members, greatly mood debuffs everyone not a Psydon worshipper.
 /obj/item/psydonmusicbox
@@ -224,10 +232,176 @@
 
 /obj/structure/closet/crate/chest/inqarmory/PopulateContents()
 	.=..()
-	new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(src)
-	new /obj/item/rogueweapon/greatsword/psygsword(src)
-	new /obj/item/rogueweapon/halberd/psyhalberd(src)
-	new /obj/item/rogueweapon/spear/psyspear(src)
-	new /obj/item/rogueweapon/sword/long/psysword(src)
-	new /obj/item/rogueweapon/mace/goden/psymace(src)
-	new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(src)
+	//new /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger(src)
+	//new /obj/item/rogueweapon/greatsword/psygsword(src)
+	//new /obj/item/rogueweapon/halberd/psyhalberd(src)
+	//new /obj/item/rogueweapon/whip/psywhip_lesser
+	//new /obj/item/rogueweapon/flail/sflail/psyflail
+	//new /obj/item/rogueweapon/spear/psyspear(src)
+	//new /obj/item/rogueweapon/sword/long/psysword(src)
+	//?new /obj/item/rogueweapon/mace/goden/psymace(src)
+	//new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(src)
+
+/obj/item/flashlight/flare/torch/lantern/psycenser
+	name = "Golgatha"
+	desc = "A masterfully-crafted thurible that, when opened, emits a ghastly perfume that reinvigorates the flesh-and-steel of Psydonites. It is said to contain a volatile fragment of the Comet Syon, which - if mishandled - can lead to unforeseen consequences."
+	icon_state = "psycenser"
+	item_state = "psycenser"
+	light_outer_range = 8
+	light_color ="#70d1e2"
+	possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
+	fuel = 999 MINUTES
+	force = 30
+	var/fuel_type = /obj/item/reagent_containers/lux
+
+/obj/item/flashlight/flare/torch/lantern/psycenser/examine(mob/user)
+	. = ..()
+	if(fuel > 0)
+		. += span_info("If opened, it may bless Psydon weapons and those of Psydon faith.")
+		. += span_warning("Smashing a creature with it open will create a devastating explosion and render it useless.")
+	if(fuel <= 0)
+		. += span_info("It is gone.")
+
+/obj/item/flashlight/flare/torch/lantern/psycenser/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -2,"sy" = -4,"nx" = 9,"ny" = -4,"wx" = -3,"wy" = -4,"ex" = 2,"ey" = -4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 45, "sturn" = 45,"wturn" = 45,"eturn" = 45,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 45,"sturn" = 45,"wturn" = 45,"eturn" = 45,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+/obj/item/flashlight/flare/torch/lantern/psycenser/attack_self(mob/user)
+	if(fuel > 0)
+		if(on)
+			turn_off()
+			possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
+			user.update_a_intents()
+		else
+			playsound(src.loc, 'sound/items/censer_on.ogg', 100)
+			possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha, /datum/intent/bless)
+			user.update_a_intents()
+			on = TRUE
+			update_brightness()
+			//force = on_damage
+			if(soundloop)
+				soundloop.start()
+			if(ismob(loc))
+				var/mob/M = loc
+				M.update_inv_hands()
+			START_PROCESSING(SSobj, src)
+	else
+		to_chat(user, span_info("It is gone."))
+
+/obj/item/flashlight/flare/torch/lantern/psycenser/turn_off()
+	playsound(src.loc, 'sound/items/censer_off.ogg', 100)
+	if(soundloop)
+		soundloop.stop()
+	STOP_PROCESSING(SSobj, src)
+	..()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.update_inv_hands()
+		M.update_inv_belt()
+	damtype = BRUTE
+
+
+/obj/item/flashlight/flare/torch/lantern/psycenser/fire_act(added, maxstacks)
+	return
+
+/obj/item/flashlight/flare/torch/lantern/psycenser/afterattack(atom/movable/A, mob/user, proximity)
+	. = ..()	//We smashed a guy with it turned on. Bad idea!
+	if(ismob(A) && on && (user.used_intent.type == /datum/intent/flail/strike/smash/golgotha) && user.cmode)
+		user.visible_message(span_warningbig("[user] smashes the exposed [src], shattering the shard of SYON!"))
+		explosion(get_turf(A),devastation_range = 1, heavy_impact_range = 2, light_impact_range = 3, flame_range = 2, smoke = FALSE)
+		fuel = 0
+		turn_off()
+		possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
+		user.update_a_intents()
+	if(isitem(A) && user.used_intent.type == /datum/intent/bless)
+		var/datum/component/psyblessed/CP = A.GetComponent(/datum/component/psyblessed)
+		if(CP)
+			if(!CP.is_blessed)
+				playsound(user, 'sound/magic/censercharging.ogg', 100)
+				user.visible_message(span_info("[user] holds \the [src] over \the [A]..."))
+				if(do_after(user, 50, target = A))
+					CP.try_bless()
+			else
+				to_chat(user, span_info("It has already been blessed."))
+	if(ishuman(A) && on  && (user.used_intent.type == /datum/intent/bless))
+		var/mob/living/carbon/human/H = A
+		if(H.patron?.type == /datum/patron/old_god)
+			if(!H.has_status_effect(/datum/status_effect/buff/censerbuff))
+				playsound(user, 'sound/magic/censercharging.ogg', 100)
+				user.visible_message(span_info("[user] holds \the [src] over \the [A]..."))
+				if(do_after(user, 50, target = A))
+					H.apply_status_effect(/datum/status_effect/buff/censerbuff)
+					playsound(H, 'sound/magic/holyshield.ogg', 100)
+			else
+				to_chat(span_warning("They've already been blessed."))
+
+		else
+			to_chat(user, span_warning("They do not share our faith."))
+
+/datum/component/psyblessed
+	var/is_blessed
+	var/pre_blessed
+	var/added_force
+	var/added_blade_int
+	var/added_int
+	var/added_def
+	var/silver
+
+/datum/component/psyblessed/Initialize(preblessed = FALSE, force, blade_int, int, def, makesilver)
+	if(!isitem(parent))
+		return COMPONENT_INCOMPATIBLE
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	pre_blessed = preblessed
+	force = added_force
+	added_blade_int = blade_int
+	added_int = int
+	added_def = def
+	silver = makesilver
+	if(pre_blessed)
+		apply_bless()
+		
+/datum/component/psyblessed/proc/on_examine(datum/source, mob/user, list/examine_list)
+	if(!is_blessed)
+		examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON.</font>")
+	if(is_blessed)
+		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by COMET SYON.</font>")
+		if(silver)
+			examine_list += span_info("It has been imbued with <b>silver</b>.")
+
+/datum/component/psyblessed/proc/try_bless()
+	if(!is_blessed)
+		apply_bless()
+		play_effects()
+		return TRUE
+	else
+		return FALSE
+
+/datum/component/psyblessed/proc/play_effects()
+	if(isitem(parent))
+		var/obj/item/I = parent
+		playsound(I, 'sound/magic/holyshield.ogg', 100)
+		I.visible_message(span_notice("[I] glistens with power as dust of COMET SYON lands upon it!"))
+
+/datum/component/psyblessed/proc/apply_bless()
+	if(isitem(parent))
+		var/obj/item/I = parent
+		is_blessed = TRUE
+		I.force += added_force
+		if(I.force_wielded)
+			I.force_wielded += added_force
+		if(I.max_blade_int)
+			I.max_blade_int += added_blade_int
+			I.blade_int = I.max_blade_int
+		I.max_integrity += added_int
+		I.obj_integrity = I.max_integrity
+		I.wdefense += added_def
+		if(silver)
+			I.is_silver = silver
+			I.smeltresult = /obj/item/ingot/silver
+		I.name = "blessed [I.name]"
+		I.AddComponent(/datum/component/metal_glint)

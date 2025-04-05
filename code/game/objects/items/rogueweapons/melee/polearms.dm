@@ -180,11 +180,12 @@
 
 /obj/item/rogueweapon/spear/psyspear
 	name = "psydonian spear"
-	desc = "Silver spear, crafted to impale those the Inquisiton hunts."
+	desc = "Sharpened spear, crafted to impale those the Inquisiton hunts."
 	icon_state = "psyspear"
-	is_silver = TRUE
-	max_blade_int = 150
-	wdefense = 6
+
+/obj/item/rogueweapon/spear/psyspear/ComponentInitialize()
+	. = ..()								//+3 force, +50 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 50, 50, 1, TRUE)
 
 /obj/item/rogueweapon/spear/getonmobprop(tag)
 	. = ..()
@@ -540,14 +541,13 @@
 	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche/scythe, /datum/intent/axe/chop/scythe, SPEAR_BASH)
 
 /obj/item/rogueweapon/halberd/psyhalberd
-	name = "psydonian halberd"
-	desc = "A silver halberd, forged by the inquisiton. Its construction lends it greater durability than a normal halberd."
-	max_blade_int = 250
+	name = "Stigmata"
+	desc = "Christened in the Siege of Rockhill, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as a bulwark for the defenseless."
 	icon_state = "psyhalberd"
-	max_integrity = 600
-	is_silver = TRUE
-	wdefense = 7
-	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
+	. = ..()				//Pre-blessed, +5 force, +100 blade int, +100 int, +2 def, make silver.
+	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
 
 /obj/item/rogueweapon/halberd/glaive
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
@@ -700,13 +700,13 @@
 	smelt_bar_num = 3
 
 /obj/item/rogueweapon/greatsword/psygsword
-	name = "psydonian greatsword"
-	desc = "Silverd, and able to cut apart foes of the inquisiton!"
+	name = "Apocrypha"
+	desc = "In the Otavan mosaics, Saint Ravox - bare in all but a beaked helmet and loincloth - is often depicted wielding such an imposing greatweapon against the Dark Star, Graggar. Regardless of whether this relic was actually wielded by divinity-or-not, its unparallel strength will nevertheless command even the greatest foes to fall."
 	icon_state = "psygsword"
-	max_blade_int = 350
-	wdefense = 6
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/greatsword/psygsword/ComponentInitialize()
+	. = ..()					//Pre-blessed, +100 Blade int, +100 int, +2 def, make it silver
+	AddComponent(/datum/component/psyblessed, TRUE, 5, 100, 100, 2, TRUE)
 
 /obj/item/rogueweapon/estoc
 	name = "estoc"

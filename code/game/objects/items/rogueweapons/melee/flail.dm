@@ -59,6 +59,9 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
 
+/datum/intent/flail/strike/smash/golgotha
+	hitsound = list('sound/items/beartrap2.ogg')
+
 /datum/intent/flail/strike/smashrange
 	name = "ranged smash"
 	chargetime = 25
@@ -98,6 +101,14 @@
 	desc = "The striking head is full of teeth, rattling viciously with ever strike, with every rotation. Each set coming from one the wielder has laid to rest. Carried alongside them as a great show of respect."
 	icon_state = "necraflail"
 
+/obj/item/rogueweapon/flail/sflail/psyflail
+	name = "psydon's flail"
+	desc = "Made of hardy steel, and packing a wallop."
+	icon_state = "psyflail"
+
+/obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
+	. = ..()							//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /datum/intent/whip/lash
 	name = "lash"
@@ -185,6 +196,15 @@
 	desc = "I am wrath. I am silver. I am the mercy of HIM."
 	icon_state = "psywhip"
 	is_silver = TRUE
+
+/obj/item/rogueweapon/whip/psywhip_lesser
+	name = "psydonite whip"
+	desc = "It has endured many years of use among the rank and file of the Inquisition."
+	icon_state = "psywhip_lesser"
+
+/obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
+	. = ..()					//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/rogueweapon/flail/peasantwarflail
 	force = 10
