@@ -74,7 +74,7 @@
 
 /datum/skill/craft/cooking
 	name = "Cooking"
-	desc = "Improves ingredients preparation speed slightly per level."
+	desc = "Increases cooking & ingredients preparation speed. -25% if none, 0% if Novice, +50% per level after."
 	dreams = list(
 		"...over a crackling campfire, a slab of fresh meat sizzles as it cooks, its scent filling the air. The simplest meals are often the most difficult to perfect...",
 		"...your knife bears down onto a wheel of cheese, and you cut away at the imperfections that lie on its skin. Next would be the eggs and the dough, and they'll roll together into a wonderful meal...",

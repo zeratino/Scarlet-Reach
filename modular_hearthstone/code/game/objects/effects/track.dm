@@ -305,9 +305,8 @@
 				var/static/list/weapon_types = list(/obj/item/rogueweapon/sword, /obj/item/rogueweapon/mace, /obj/item/rogueweapon/spear, /obj/item/rogueweapon/greatsword, /obj/item/rogueweapon/pick, /obj/item/rogueweapon/huntingknife/idagger, /obj/item/rogueweapon/whip, /obj/item/lockpick)
 				for(var/type in weapon_types)
 					if(istype(holding, type))
-						var/obj/item/rogueweapon/found = new type
-						weapon = found.name
-						qdel(found)
+						var/obj/item/rogueweapon/found = type
+						weapon = initial(found.name)
 
 			if(weapon)
 				this.tool_used_ambiguous = weapon

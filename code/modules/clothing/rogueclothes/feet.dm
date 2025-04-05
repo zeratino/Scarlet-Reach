@@ -22,7 +22,30 @@
 	icon_state = "blackboots"
 	item_state = "blackboots"
 	sewrepair = TRUE
+	var/atom/movable/holdingknife = null
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
+
+/obj/item/clothing/shoes/roguetown/boots/attackby(obj/item/W, mob/living/carbon/user, params)
+	if(istype(W, /obj/item/rogueweapon/huntingknife/throwingknife))
+		if(holdingknife == null)
+			for(var/obj/item/clothing/shoes/roguetown/boots/B in user.get_equipped_items(TRUE))
+				to_chat(loc, span_warning("I quickly slot [W] into [B]!"))
+				user.transferItemToLoc(W, holdingknife)
+				holdingknife = W
+				playsound(loc, 'sound/foley/equip/swordsmall1.ogg')
+		else
+			to_chat(loc, span_warning("My boot already holds a throwing knife."))
+		return
+	. = ..()
+
+/obj/item/clothing/shoes/roguetown/boots/attack_right(mob/user)
+	if(holdingknife != null)
+		if(!user.get_active_held_item())
+			user.put_in_active_hand(holdingknife, user.active_hand_index)
+			holdingknife = null
+			playsound(loc, 'sound/foley/equip/swordsmall1.ogg')
+			return TRUE
+	
 
 /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	name = "psydonian boots"
@@ -34,7 +57,7 @@
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
 
-/obj/item/clothing/shoes/roguetown/nobleboot
+/obj/item/clothing/shoes/roguetown/boots/nobleboot
 	name = "noble boots"
 	//dropshrink = 0.75
 	color = "#d5c2aa"
@@ -189,7 +212,7 @@
 		return
 	qdel(src)
 
-/obj/item/clothing/shoes/roguetown/otavan
+/obj/item/clothing/shoes/roguetown/boots/otavan
 	name = "otavan leather boots"
 	desc = "Boots of outstanding craft, your fragile feet have never felt so protected and comfortable before."
 	body_parts_covered = FEET
@@ -268,11 +291,12 @@
 	sewrepair = TRUE
 	armor = list("blunt" = 5, "slash" = 5, "stab" = 5, "piercing" = 0, "fire" = 0, "acid" = 0) //Thinks its fair for a piece of cloth and fiber.
 
-/obj/item/clothing/shoes/roguetown/otavan/inqboots
+/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	name = "inquisitorial boots"
 	desc = "Finely crafted boots, made to stomp out darkness."
 	icon_state = "inqboots"
 	item_state = "inqboots"
+	allowed_race = ALL_RACES_TYPES
 
 
 // ----------------- BLACKSTEEL -----------------------

@@ -48,13 +48,13 @@
 		return
 
 	was_zombie.become_rotman = FALSE
-	target.mind.remove_antag_datum(/datum/antagonist/zombie)
 	if(!lethal)
 		target.Unconscious(20 SECONDS)
 		target.emote("breathgasp")
 		target.Jitter(100)
-	else
-		target.death()
+	else if(was_zombie.has_turned)
+		target.death(nocutscene = TRUE)
+	target.mind.remove_antag_datum(/datum/antagonist/zombie)
 
 	if (!HAS_TRAIT(target, TRAIT_IWASUNZOMBIFIED) && user?.ckey)
 		adjust_playerquality(PQ_GAIN_UNZOMBIFY, user.ckey)
