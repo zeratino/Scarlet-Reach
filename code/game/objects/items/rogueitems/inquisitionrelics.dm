@@ -253,7 +253,8 @@ Inquisitorial armory down here
 	possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
 	fuel = 999 MINUTES
 	force = 30
-	var/fuel_type = /obj/item/reagent_containers/lux
+	var/next_smoke
+	var/smoke_interval = 2 SECONDS
 
 /obj/item/flashlight/flare/torch/lantern/psycenser/examine(mob/user)
 	. = ..()
@@ -294,6 +295,12 @@ Inquisitorial armory down here
 	else
 		to_chat(user, span_info("It is gone."))
 
+/obj/item/flashlight/flare/torch/lantern/psycenser/process()
+	if(on && next_smoke < world.time)
+		new /obj/effect/temp_visual/censer_dust(get_turf(src))
+		next_smoke = world.time + smoke_interval
+		
+
 /obj/item/flashlight/flare/torch/lantern/psycenser/turn_off()
 	playsound(src.loc, 'sound/items/censer_off.ogg', 100)
 	if(soundloop)
@@ -319,6 +326,9 @@ Inquisitorial armory down here
 		turn_off()
 		possible_item_intents = list(/datum/intent/flail/strike/smash/golgotha)
 		user.update_a_intents()
+		for(var/mob/living/carbon/human/H in view(get_turf(src)))
+			if(H.patron?.type == /datum/patron/old_god)	//Psydonites get VERY depressed seeing an artifact get turned into an ulapool caber.
+				H.add_stress(/datum/stressevent/syoncalamity)
 	if(isitem(A) && user.used_intent.type == /datum/intent/bless)
 		var/datum/component/psyblessed/CP = A.GetComponent(/datum/component/psyblessed)
 		if(CP)
@@ -327,6 +337,7 @@ Inquisitorial armory down here
 				user.visible_message(span_info("[user] holds \the [src] over \the [A]..."))
 				if(do_after(user, 50, target = A))
 					CP.try_bless()
+					new /obj/effect/temp_visual/censer_dust(get_turf(A))
 			else
 				to_chat(user, span_info("It has already been blessed."))
 	if(ishuman(A) && on  && (user.used_intent.type == /datum/intent/bless))
@@ -337,7 +348,9 @@ Inquisitorial armory down here
 				user.visible_message(span_info("[user] holds \the [src] over \the [A]..."))
 				if(do_after(user, 50, target = A))
 					H.apply_status_effect(/datum/status_effect/buff/censerbuff)
+					to_chat(H, span_notice("The comet dust invigorates you."))
 					playsound(H, 'sound/magic/holyshield.ogg', 100)
+					new /obj/effect/temp_visual/censer_dust(get_turf(H))
 			else
 				to_chat(span_warning("They've already been blessed."))
 
@@ -406,3 +419,8 @@ Inquisitorial armory down here
 			I.smeltresult = /obj/item/ingot/silver
 		I.name = "blessed [I.name]"
 		I.AddComponent(/datum/component/metal_glint)
+
+/obj/effect/temp_visual/censer_dust
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "extinguish"
+	duration = 8

@@ -301,3 +301,8 @@
 	stressadd = 3
 	desc = span_red("Their face is unbearable!")
 	timer = 3 MINUTES
+
+/datum/stressevent/syoncalamity
+	stressadd = 15
+	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
+	timer = 15 MINUTES
