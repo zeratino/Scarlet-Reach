@@ -8,7 +8,7 @@
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_NO_CONSTRUCT		//Not been around long enough to be inquisitor, brand new race to the world.
 	allowed_patrons = list(/datum/patron/old_god) //You MUST have a Psydonite character to start. Just so people don't get japed into Oops Suddenly Psydon!
-	tutorial = "PSYDON YET LIVES. PSYDON YET ENDURES. You have been sent by the High Bishop of Otava, leader of a radical denomination of the Holy See that still believes in the endurance of PSYDON, and holds him above the Ten. Officially, you are here on diplomatic business. /n /n Unofficially, you work to cast out the sinners from God's house. Heresy of all kinds must be corrected; from Ten-worshippers that stray too far from doctrine, to Ecclesial fools that worship Ascendants. The Duchy tolerates you due to your ability to fight the inhumen, and the Church tolerates you due to your aligned goals...but it is probably best to not let them peer too closely."
+	tutorial = "You have been sent here as a diplomatic envoy from the Sovereignty of Otava: a silver-tipped olive branch, unmatched in aptitude and unshakable in faith. Though you might be ostracized due to your Psydonic beliefs, neither the Church nor Crown can deny your value, whenever matters of inhumenity arise to threaten this fief."
 	whitelist_req = TRUE
 	cmode_music = 'sound/music/inquisitorcombat.ogg'
 	selection_color = JCOLOR_INQUISITION
@@ -72,7 +72,7 @@
 
 /datum/advclass/puritan/inspector
 	name = "Inquisitor"
-	tutorial = "Your eternal service to fighting the FORCES OF HERESY has manifested within you into a profession of underground connections of Confessors, away from the prying eyes of others. Stop HERESY in their tracks, predict their movements, collect evidence through listening devices and, when the time comes - strike with impunity with your blade and swift dodging prowess."
+	tutorial = "Investigators from countless backgrounds and professions, personally chosen by the High Bishop of the Otavan Sovereignty to root out heresy all across the world. This fief in particular has garnered such an investigation, following substantiated reports of inhumen muckery. Ideal for those who prefer sleuthy-and-0clandestine affairs."
 	outfit = /datum/outfit/job/roguetown/puritan/inspector
 
 	category_tags = list(CTAG_PURITAN)
@@ -99,7 +99,8 @@
 
 /datum/advclass/puritan/muscle
 	name = "Ordinator"
-	tutorial = "Your specialty in the Inquisition was never fruitful in terms of espionage and stealth or the mystic miracles of PSYDON. You had a unique talent in busting down doors to secret churches and worship spots, extracting confessions on the spot out of those who did not yield to PSYDON, and driving out the children of ASCENDANT FILTH with a silver blade. Face down the FORCES OF EVIL with whips and chains. You are the Fist of Psydon."
+	tutorial = "Adjudicators who - through valor and martiality - have proven themselves to be champions in all-but-name. Now, they have been personally chosen by the High Bishop of the Otavan Sovereignty for a mission-most-imperative: to hunt down and destroy the monsters threatening this fief. Ideal for those who prefer overt-and-chivalrous affairs.
+"
 	outfit = /datum/outfit/job/roguetown/puritan/muscle
 	cmode_music = 'sound/music/templarofpsydonia.ogg'
 

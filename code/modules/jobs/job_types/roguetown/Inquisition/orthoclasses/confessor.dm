@@ -1,6 +1,6 @@
 /datum/advclass/confessor
 	name = "Confessor"
-	tutorial = "Confessors are assistant investigators to the Inquisitor. They are sneaky, quick, and prone to skullduggery. They are ideal listeners and watchers from the dark."
+	tutorial = "Psydonite hunters, unmatched in the fields of subterfuge and investigation. There is no suspect too powerful to investigate, no room too guarded to infiltrate, and no weakness too hidden to exploit."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/confessor
