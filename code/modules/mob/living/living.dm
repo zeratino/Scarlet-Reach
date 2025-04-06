@@ -41,6 +41,9 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_NOFALLDAMAGE1))
 		if(levels <= 2)
+			Immobilize(10)
+			if(m_intent == MOVE_INTENT_RUN)
+				toggle_rogmove_intent(MOVE_INTENT_WALK)
 			return
 	var/points
 	for(var/i in 2 to levels)
