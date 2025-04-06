@@ -367,17 +367,16 @@
 	desc = "A knee-length maille skirt, warding cuts against the thighs without slowing the feet."
 	icon_state = "chain_skirt"
 	item_state = "chain_skirt"
-	armor = list("blunt" = 60, "slash" = 80, "stab" = 70, "piercing" = 20, "fire" = 0, "acid" = 0) // Studded leather with +10 slash and stab as it requires steel.
-	body_parts_covered = GROIN|LEGS
+	body_parts_covered = LEGS	// Switched from groin exclusive to leg exclusive protection. For comparison, Brayette is groin exclusive 'light' single-zone mail.
 	armor_class = ARMOR_CLASS_LIGHT
 
 /obj/item/clothing/under/roguetown/platelegs/skirt
 	name = "steel plate tassets"
-	desc = "These hanging plates of steel protect the hips and thighs."
+	desc = "A set of hanging plates of steel to protect the hips and thighs without too much burden."
 	gender = PLURAL
 	icon_state = "plate_skirt"
 	item_state = "plate_skirt"
-	body_parts_covered = GROIN|LEGS
+	body_parts_covered = LEGS	// Switched from groin exclusive to leg exclusive protection. For comparison, Steel Cuirass is chest|vital 'medium' plate protection. 
 	armor_class = ARMOR_CLASS_MEDIUM
 
 /obj/item/clothing/under/roguetown/loincloth
