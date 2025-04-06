@@ -194,7 +194,23 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 
-
+/area/rogue/outdoors/abisland
+	name = "abyssors grasp"
+	icon_state = "island"
+	ambientsounds = AMB_ABISLAND
+	ambientnight = AMB_ABISLAND
+	droning_sound = 'sound/music/area/morosewaters.ogg'
+	droning_sound_dusk = 'sound/music/area/morosewaters.ogg'
+	droning_sound_night = 'sound/music/area/angrywaters.ogg'
+	ambush_types = list(
+		/turf/open/floor/rogue/grasscold,
+		/turf/open/floor/rogue/dirt
+	)
+	ambush_mobs = list(
+		/mob/living/simple_animal/hostile/rogue/deepone = 50,
+		/mob/living/simple_animal/hostile/rogue/deepone/spit = 30
+	)
+	first_time_text = "ABYSSOR'S GRASP"
 /area/rogue/outdoors/woods
 	name = "wilderness"
 	icon_state = "woods"

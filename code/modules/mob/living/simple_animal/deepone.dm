@@ -65,6 +65,7 @@
 	projectiletype = /obj/projectile/bullet/reusable/deepone
 	projectilesound = 'sound/combat/wooshes/punch/punchwoosh (1).ogg'
 	ranged = 1
+	ranged_message = "spits a stone"
 	retreat_distance = 2
 	minimum_distance = 5
 	ranged_cooldown_time = 40
@@ -78,7 +79,7 @@
 	icon_state = "deep1_wiz"
 	icon_living = "deep1_wiz"
 	icon_dead = "deep1_d"
-	projectiletype = /obj/projectile/magic/frostbolt
+	projectiletype = /obj/projectile/magic
 	projectilesound = 'sound/magic/fireball.ogg'
 	ranged = 1
 	retreat_distance = 2
@@ -86,12 +87,25 @@
 	ranged_cooldown_time = 70
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
+	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/magic/arcane_barrage, /obj/effect/proc_holder/spell/invoked/projectile/arcynebolt, /obj/projectile/magic/repel)	
+/mob/living/simple_animal/hostile/rogue/deepone/wiz/Shoot()
+	projectiletype = pick(allowed_projectile_types)
+	..()
 
 /datum/intent/simple/claw/deepone_unarmed
 	attack_verb = list("claws", "strikes")
 	blade_class = BCLASS_CHOP
 	animname = "cut"
 	hitsound = 'sound/combat/hits/bladed/smallslash (1).ogg'
+	clickcd = DEEPONE_ATTACK_SPEED
+	penfactor = 5
+	chargetime = 2
+
+/datum/intent/simple/claw/deepone_boss
+	attack_verb = list("smashes", "slams")
+	blade_class = BCLASS_CHOP
+	animname = "cut"
+	hitsound = 'sound/combat/hits/blunt/metalblunt (1).ogg'
 	clickcd = DEEPONE_ATTACK_SPEED
 	penfactor = 5
 	chargetime = 2
