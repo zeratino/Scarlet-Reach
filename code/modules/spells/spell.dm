@@ -157,6 +157,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/level_max = 4 //The max possible level_max is 4
 	var/cooldown_min = 0 //This defines what spell quickened four times has as a cooldown. Make sure to set this for every spell
 	var/player_lock = TRUE //If it can be used by simple mobs
+	var/gesture_required = FALSE // Can it be cast while cuffed? Rule of thumb: Offensive spells + Mobility cannot be cast
 
 	var/overlay = 0
 	var/overlay_icon = 'icons/obj/wizard.dmi'
@@ -271,6 +272,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 		if(miracle && !H.devotion?.check_devotion(src))
 			to_chat(H, span_warning("I don't have enough devotion!"))
+			return FALSE
+		if(H.handcuffed && gesture_required)
+			to_chat(user, span_warning("[name] cannot be cast with my hands tied up!"))
 			return FALSE
 	else
 		if(clothes_req || human_req)
