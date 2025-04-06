@@ -9394,7 +9394,6 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/goblinfort)
 "dXO" = (
-/obj/structure/table/wood,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/bath)
 "dXR" = (
@@ -20240,12 +20239,12 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/town/basement)
 "ivH" = (
-/obj/structure/closet/crate/chest/neu,
-/obj/item/candle/yellow,
-/obj/item/candle/yellow,
-/obj/item/candle/yellow,
-/obj/item/candle/yellow,
-/turf/open/floor/rogue/tile,
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "ivJ" = (
 /obj/machinery/light/rogue/lanternpost,
@@ -38531,7 +38530,6 @@
 /area/rogue/under/cave/goblinfort)
 "pVz" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/glass/cup/steel,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/bath)
 "pVA" = (
@@ -39416,15 +39414,11 @@
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/indoors/town)
 "qoB" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/clothing/mask/cigarette/pipe/westman{
-	pixel_x = 5;
-	pixel_y = 3
+/obj/structure/roguemachine/drugmachine{
+	pixel_x = 32;
+	density = 0
 	},
-/obj/item/clothing/mask/cigarette/pipe/westman{
-	pixel_y = 10
-	},
-/turf/open/floor/rogue/blocks/stonered,
+/turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
 "qpd" = (
 /obj/structure/rack/rogue,
@@ -39592,8 +39586,15 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "qsF" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet/royalblack,
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/clothing/mask/cigarette/pipe/westman{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/clothing/mask/cigarette/pipe/westman{
+	pixel_y = 10
+	},
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
 "qsI" = (
 /obj/structure/handcart{
@@ -40928,10 +40929,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town)
 "qUv" = (
-/obj/structure/roguemachine/drugmachine{
-	pixel_x = 32;
-	density = 0
-	},
+/obj/structure/roguetent,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
 "qUy" = (
@@ -50090,8 +50088,9 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/cave)
 "uLG" = (
-/obj/structure/roguetent,
-/turf/open/floor/rogue/tile,
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/cup/steel,
+/turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/bath)
 "uLT" = (
 /obj/effect/decal/cobbleedge{
@@ -56374,12 +56373,12 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "xqP" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/paper/scroll,
-/obj/item/natural/feather,
-/turf/open/floor/rogue/blocks/stonered,
+/obj/structure/closet/crate/chest/neu,
+/obj/item/candle/yellow,
+/obj/item/candle/yellow,
+/obj/item/candle/yellow,
+/obj/item/candle/yellow,
+/turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
 "xqW" = (
 /turf/closed/wall/mineral/rogue/roofwall/outercorner{
@@ -113381,7 +113380,7 @@ iBX
 rqY
 rqY
 rHx
-qoB
+qsF
 rqY
 qHj
 qHj
@@ -114282,7 +114281,7 @@ eMv
 eMv
 eMv
 iBX
-uLG
+qUv
 eMv
 ckq
 ckq
@@ -114734,10 +114733,10 @@ aFy
 eMv
 eMv
 iBX
-uLG
+qUv
 eMv
 wRp
-pVz
+uLG
 eMv
 rqY
 ogs
@@ -115186,10 +115185,10 @@ sBA
 eMv
 eMv
 iBX
-uLG
+qUv
 eMv
 uSR
-qsF
+pVz
 eMv
 rqY
 ogs
@@ -116994,10 +116993,10 @@ haH
 sBA
 eMv
 iBX
-uLG
+qUv
 eMv
 tZX
-pVz
+uLG
 eMv
 eMv
 voW
@@ -117446,10 +117445,10 @@ haH
 sBA
 eMv
 iBX
-uLG
+qUv
 eMv
 guT
-qsF
+pVz
 eMv
 eMv
 rqY
@@ -117898,7 +117897,7 @@ haH
 sBA
 eMv
 iBX
-uLG
+qUv
 eMv
 ckq
 ckq
@@ -119706,10 +119705,10 @@ eMv
 eMv
 eMv
 iBX
-uLG
+qUv
 eMv
 ows
-qsF
+pVz
 eMv
 rqY
 avB
@@ -120158,10 +120157,10 @@ eMv
 eMv
 eMv
 iBX
-uLG
+qUv
 eMv
 eog
-pVz
+uLG
 eMv
 rqY
 ogs
@@ -120610,7 +120609,7 @@ eMv
 eMv
 eMv
 iBX
-uLG
+qUv
 eMv
 ckq
 ckq
@@ -121055,7 +121054,7 @@ kZi
 kZi
 eMv
 ibo
-qUv
+qoB
 hux
 ibo
 eMv
@@ -121499,7 +121498,7 @@ haH
 haH
 rqY
 kgj
-ivH
+xqP
 rqY
 rqY
 mHD
@@ -121964,7 +121963,7 @@ oPw
 oPo
 eMv
 jeb
-xqP
+ivH
 aZv
 rHx
 rqY
