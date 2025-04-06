@@ -656,6 +656,11 @@
 	name = "greatsword"
 	desc = "Might be able to chop anything in half!"
 	icon_state = "gsw"
+	parrysound = list(
+		'sound/combat/parry/bladed/bladedlarge (1).ogg',
+		'sound/combat/parry/bladed/bladedlarge (2).ogg',
+		'sound/combat/parry/bladed/bladedlarge (3).ogg',
+		)
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
 	pixel_x = -16
