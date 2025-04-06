@@ -4386,13 +4386,6 @@
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/rtfield)
-"bQD" = (
-/obj/item/rogueweapon/whip,
-/turf/closed/wall/mineral/rogue/pipe{
-	dir = 4;
-	icon_state = "iron_line"
-	},
-/area/rogue/under/town/sewer)
 "bQF" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -114699,7 +114692,7 @@ htN
 htN
 htN
 ogs
-bQD
+xAN
 mMx
 ylh
 xAN
@@ -117414,7 +117407,7 @@ xAN
 ylh
 mMx
 ylh
-dlK
+pby
 cxj
 haH
 haH
