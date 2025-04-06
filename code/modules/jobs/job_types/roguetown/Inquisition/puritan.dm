@@ -72,7 +72,7 @@
 
 /datum/advclass/puritan/inspector
 	name = "Inquisitor"
-	tutorial = "Investigators from countless backgrounds and professions, personally chosen by the High Bishop of the Otavan Sovereignty to root out heresy all across the world. This fief in particular has garnered such an investigation, following substantiated reports of inhumen muckery. Ideal for those who prefer sleuthy-and-0clandestine affairs."
+	tutorial = "Investigators from countless backgrounds, personally chosen by the High Bishop of the Otavan Sovereignty to root out heresy all across the world. Dressed in fashionable leathers and armed with a plethora of equipment, these beplumed officers are ready to tackle the inhumen: anywhere, anytime. Ideal for those who prefer sleuthy-and-clandestine affairs."
 	outfit = /datum/outfit/job/roguetown/puritan/inspector
 
 	category_tags = list(CTAG_PURITAN)
