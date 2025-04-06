@@ -614,7 +614,7 @@
 	name = "Psydonian Mace (+1 B. Silver, +1 Stick)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
-	created_item = /obj/item/rogueweapon/mace/goden/psymace
+	created_item = /obj/item/rogueweapon/mace/steel/psymace
 	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/grown/log/tree/stick)
 	i_type = "Weapons"
 

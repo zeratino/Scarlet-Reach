@@ -72,7 +72,7 @@
 			H.put_in_hands(new /obj/item/rogueweapon/flail/sflail/psyflail(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
 		if("Mace")
-			H.put_in_hands(new /obj/item/rogueweapon/mace/goden/psymace(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/mace/steel/psymace(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
 		if("Spear")
 			H.put_in_hands(new /obj/item/rogueweapon/spear/psyspear(H), TRUE)

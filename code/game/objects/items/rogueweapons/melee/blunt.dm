@@ -349,7 +349,7 @@
 	dropshrink = 0.75
 	slot_flags = ITEM_SLOT_BACK //Looks better on back
 
-/obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()
+/obj/item/rogueweapon/mace/steel/psymace/ComponentInitialize()
 	. = ..()								//+3 force, +50 int, +1 def, make silver
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
