@@ -59,7 +59,7 @@
 	head = /obj/item/clothing/head/roguetown/puritan
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	beltl = /obj/item/rogueweapon/sword/rapier
-	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver, /obj/item/grapplinghook = 1)
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/grapplinghook = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
@@ -106,8 +106,8 @@
 
 /datum/outfit/job/roguetown/puritan/muscle/pre_equip(mob/living/carbon/human/H)
 	..()
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/blk
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blk
@@ -119,7 +119,7 @@
 	head = /obj/item/clothing/head/roguetown/roguehood/psydon
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
 	beltl = /obj/item/rogueweapon/mace/silver
-	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver)
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
@@ -177,7 +177,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
 	neck = /obj/item/clothing/neck/roguetown/psicross/silver
-	shoes = /obj/item/clothing/shoes/roguetown/otavan/inqboots
+	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	backr = /obj/item/storage/backpack/rogue/satchel
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
@@ -185,7 +185,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
 	beltl = /obj/item/rogueweapon/sword/rapier
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
-	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver, /obj/item/grapplinghook = 1)
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/grapplinghook = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)

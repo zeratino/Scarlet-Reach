@@ -131,13 +131,25 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Dark Boots"
 	path = /obj/item/clothing/shoes/roguetown/boots
 
+/datum/loadout_item/babouche
+	name = "Babouche"
+	path = /obj/item/clothing/shoes/roguetown/shalal
+
 /datum/loadout_item/nobleboots
 	name = "Noble Boots"
-	path = /obj/item/clothing/shoes/roguetown/nobleboot
+	path = /obj/item/clothing/shoes/roguetown/boots/nobleboot
+
+/datum/loadout_item/sandals
+	name = "Sandals"
+	path = /obj/item/clothing/shoes/roguetown/sandals
 
 /datum/loadout_item/shortboots
 	name = "Short Boots"
 	path = /obj/item/clothing/shoes/roguetown/shortboots
+
+/datum/loadout_item/gladsandals
+	name = "Gladiatorial Sandals"
+	path = /obj/item/clothing/shoes/roguetown/gladiator
 
 /datum/loadout_item/ridingboots
 	name = "Riding Boots"
@@ -155,6 +167,30 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/formalsilks
 	name = "Formal Silks"
 	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
+
+/datum/loadout_item/longshirt
+	name = "Shirt"
+	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
+
+/datum/loadout_item/shortshirt
+	name = "Short-sleeved Shirt"
+	path = /obj/item/clothing/suit/roguetown/shirt/shortshirt
+
+/datum/loadout_item/sailorshirt
+	name = "Striped Shirt"
+	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/sailor
+
+/datum/loadout_item/sailorjacket
+	name = "Leather Jacket"
+	path = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
+
+/datum/loadout_item/priestrobe
+	name = "Undervestments"
+	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
+
+/datum/loadout_item/bottomtunic
+	name = "Low-cut Tunic"
+	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
 
 /datum/loadout_item/tunic
 	name = "Tunic"
@@ -193,6 +229,26 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/nun
 
 //PANTS
+/datum/loadout_item/tights
+	name = "Cloth Tights"
+	path = /obj/item/clothing/under/roguetown/tights/black
+
+/datum/loadout_item/leathertights
+	name = "Leather Tights"
+	path = /obj/item/clothing/under/roguetown/trou/leathertights
+
+/datum/loadout_item/trou
+	name = "Work Trousers"
+	path = /obj/item/clothing/under/roguetown/trou
+
+/datum/loadout_item/leathertrou
+	name = "Leather Trousers"
+	path = /obj/item/clothing/under/roguetown/trou/leather
+
+/datum/loadout_item/sailorpants
+	name = "Seafaring Pants"
+	path = /obj/item/clothing/under/roguetown/tights/sailor
+
 /datum/loadout_item/skirt
 	name = "Skirt"
 	path = /obj/item/clothing/under/roguetown/skirt
@@ -210,6 +266,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Fishnet Stockings"
 	path = /obj/item/clothing/under/roguetown/tights/stockings/fishnet
 
+/datum/loadout_item/wrappings
+	name = "Handwraps"
+	path = /obj/item/clothing/wrists/roguetown/wrappings
+
 /datum/loadout_item/loincloth
 	name = "Loincloth"
 	path = /obj/item/clothing/under/roguetown/loincloth
@@ -217,6 +277,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/spectacles
 	name = "Spectacles"
 	path = /obj/item/clothing/mask/rogue/spectacles
+
+/datum/loadout_item/fingerless
+	name = "Fingerless Gloves"
+	path = /obj/item/clothing/gloves/roguetown/fingerless
 
 /datum/loadout_item/ragmask
 	name = "Rag Mask"

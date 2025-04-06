@@ -67,7 +67,11 @@
 	icon = 'icons/roguetown/weapons/32.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
-	parrysound = "bladedmedium"
+	parrysound = list(
+		'sound/combat/parry/bladed/bladedmedium (1).ogg',
+		'sound/combat/parry/bladed/bladedmedium (2).ogg',
+		'sound/combat/parry/bladed/bladedmedium (3).ogg',
+		)
 	swingsound = BLADEWOOSH_MED
 	associated_skill = /datum/skill/combat/swords
 	max_blade_int = 100
@@ -96,7 +100,6 @@
 /obj/item/rogueweapon/sword/falchion
 	name = "falchion"
 	desc = "A blade with a quilloned crossguard."
-	parrysound = "bladedmedium"
 	force = 20
 	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short)
 	icon_state = "falchion"
@@ -107,7 +110,6 @@
 /obj/item/rogueweapon/sword/falx
 	name = "falx"
 	desc = "A blade with an odd curve forward, meant to penetrate armour and slice flesh."
-	parrysound = "bladedmedium"
 	force = 22
 	possible_item_intents = list(/datum/intent/sword/cut/falx,  /datum/intent/sword/chop/falx, /datum/intent/sword/strike)
 	icon_state = "falx"
@@ -182,7 +184,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "bastard sword"
 	desc = "A bastard sword that can chop with ease."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -244,7 +245,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "old sword"
 	desc = "A old steel sword with a green leather grip."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -281,7 +281,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "judgement"
 	desc = "A sword with a silver grip, a topaz gem hilt and a steel blade, what more could a noble ask for."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -324,7 +323,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "Psydonia Redentor"
 	desc = "...for the LORD is my tower, and HE gives me the power to tear down the works of the enemy..."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -356,7 +354,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "crimson fang"
 	desc = "A strange long sword with a green metal composition."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -504,12 +501,12 @@
 
 /obj/item/rogueweapon/sword/long/psysword
 	name = "psydonian sword"
-	desc = "a silver bastard sword, for the Inquisiton. For when you need to make a point."
+	desc = "An ornate longsword, plated in a ceremonial veneer of silver. Ideal for hunting monsters and men alike."
 	icon_state = "psysword"
-	max_blade_int = 200
-	wdefense = 5
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
+	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 100, 50, 1, TRUE)
 
 /obj/item/rogueweapon/sword/iron
 	name = "sword"
