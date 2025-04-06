@@ -337,10 +337,12 @@
 				var/jadded
 				var/jrange
 				var/jextra = FALSE
+				var/is_sprinting = FALSE
 				if(m_intent == MOVE_INTENT_RUN)
 					OffBalance(30)
 					jadded = 15
 					jrange = 3
+					is_sprinting = TRUE
 					if(!HAS_TRAIT(src, TRAIT_LEAPER))// The Jester lands where the Jester wants.
 						jextra = TRUE
 				else
@@ -363,6 +365,8 @@
 						throw_at(A, jrange, 1, src, spin = FALSE)
 						while(src.throwing)
 							sleep(1)
+					if(!HAS_TRAIT(src, TRAIT_ZJUMP) && is_sprinting)	//Jesters and werewolves don't get immobilized at all
+						Immobilize((HAS_TRAIT(src, TRAIT_LEAPER) ? 5 : 10))	//Acrobatics get half the time
 					if(isopenturf(src.loc))
 						var/turf/open/T = src.loc
 						if(T.landsound)
