@@ -26,9 +26,7 @@
 		!(locate(/obj/item/storage/bag/tray) in src.loc))
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(mill))
 		if(!mill.reagents.has_reagent(/datum/reagent/consumable/blackpepper, 1))
 			to_chat(user, "There's not enough black pepper to make anything with.")
@@ -51,6 +49,15 @@
 		if(do_after(user,short_cooktime, target = src))
 			new /obj/item/reagent_containers/food/snacks/rogue/onionsteak(loc)
 			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(I)
+			qdel(src)
+	
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked))
+		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
+		to_chat(user, "<span class='notice'>Adding carrots...</span>")
+		if(do_after(user,short_cooktime, target = src))
+			user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+			new /obj/item/reagent_containers/food/snacks/rogue/carrotsteak(loc)
 			qdel(I)
 			qdel(src)
 
@@ -83,6 +90,15 @@
 	trash = /obj/item/cooking/platter
 	rotprocess = SHELFLIFE_EXTREME
 
+/*	.............   Raston   ................ */
+/obj/item/reagent_containers/food/snacks/rogue/bun_raston
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
+	tastes = list("cheese" = 1, "bread" = 1)
+	icon_state = "raston"
+	name = "raston"
+	desc = ""
+	rotprocess = SHELFLIFE_EXTREME
+	eat_effect = /datum/status_effect/buff/foodbuff
 
 /*	.............   Fried Cackleberry   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/friedegg
@@ -100,9 +116,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/friedegg/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/friedegg))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
@@ -127,9 +141,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/friedegg/two/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
@@ -138,9 +150,36 @@
 				new /obj/item/reagent_containers/food/snacks/rogue/friedegg/tiberian(loc)
 				qdel(I)
 				qdel(src)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/bacon/fried))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			if(do_after(user,long_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/friedegg/bacon(loc)
+				qdel(I)
+				qdel(src)
 	else
 		return ..()
 
+/*	.............   Deviled Eggs   ................ */
+/obj/item/reagent_containers/food/snacks/rogue/stuffeggraw
+	name = "raw stuffed egg"
+	desc = ""
+	icon_state = "deviledegg_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/preserved/stuffegg
+	foodtype = MEAT
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+
+/obj/item/reagent_containers/food/snacks/rogue/preserved/stuffegg
+	tastes = list("creamy cheese" = 1, "egg" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
+	name = "stuffed egg"
+	desc = ""
+	icon_state = "deviledegg"
+	foodtype = MEAT
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
 
 /*	.............   Frybird   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/cutlet/fried
@@ -157,9 +196,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/cutlet/fried/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/preserved/potato_baked))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
@@ -242,9 +279,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/preserved/cabbage_fried/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
@@ -269,9 +304,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/preserved/potato_baked/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
@@ -293,6 +326,38 @@
 	else
 		return ..()
 
+/* .............   Baked Carrot   ................ */
+/obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked
+	name = "baked carrot"
+	desc = ""
+	icon_state = "carrot_cooked"
+	bitesize = 6
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
+	tastes = list("carrot" = 1)
+	rotprocess = SHELFLIFE_DECENT
+/obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/steak/fried))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "Preparing a serving of steak and carrots...")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/carrotsteak(loc)
+				qdel(I)
+				qdel(src)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/ricebeef))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "Laying down carrots alongside the rice...")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/ricebeefcar(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
 
 /*	.............   Fried onions   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/preserved/onion_fried
@@ -308,9 +373,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/preserved/onion_fried/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
@@ -337,9 +400,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/preserved/potato_fried/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
@@ -361,3 +422,336 @@
 	else
 		return ..()
 
+/* Fry Fish... i hate neufood */
+/obj/item/reagent_containers/food/snacks/rogue/meat/fish/fried
+	eat_effect = null
+	slices_num = 0
+	name = "fryfilet"
+	desc = "A slab of flaky fish, fried until falling apart."
+	icon_state = "cooked_filet"
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = MEATSLAB_NUTRITION)
+	faretype = FARE_NEUTRAL
+	rotprocess = SHELFLIFE_DECENT
+	tastes = list("warm fish" = 1)
+
+/obj/item/reagent_containers/food/snacks/rogue/meat/fish/fried/attackby(obj/item/I, mob/living/user, params)
+	var/obj/item/reagent_containers/peppermill/mill = I
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)
+	if(istype(mill))
+		if(!mill.reagents.has_reagent(/datum/reagent/consumable/blackpepper, 1))
+			to_chat(user, "There's not enough black pepper to make anything with.")
+			return TRUE
+		mill.icon_state = "peppermill_grind"
+		to_chat(user, "You start rubbing the fish with black pepper.")
+		playsound(get_turf(user), 'modular/Neu_Food/sound/peppermill.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			if(!mill.reagents.has_reagent(/datum/reagent/consumable/blackpepper, 1))
+				to_chat(user, "There's not enough black pepper to make anything with.")
+				return TRUE
+			mill.reagents.remove_reagent(/datum/reagent/consumable/blackpepper, 1)
+			new /obj/item/reagent_containers/food/snacks/rogue/pepperfish(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(src)
+
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))
+
+/* salmon and salmon accessories */
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/salmon/attackby(obj/item/M, mob/living/user, params)
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)	
+	if(istype(M, /obj/item/alch/mentha))
+		to_chat(user, "You start crushing mentha upon the salmon.")
+		playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			new /obj/item/reagent_containers/food/snacks/rogue/dendorsalmon(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(M)
+			qdel(src)
+	if(istype(M, /obj/item/reagent_containers/food/snacks/grown/berries/rogue))
+		to_chat(user, "You start crushing berries upon the salmon.")
+		playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			new /obj/item/reagent_containers/food/snacks/rogue/berrysalmon(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(M)
+			qdel(src)
+		
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))	
+/*lobsta*/
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/lobster/attackby(obj/item/I, mob/living/user, params)
+	var/obj/item/reagent_containers/peppermill/mill = I
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)
+	if(istype(mill))
+		if(!mill.reagents.has_reagent(/datum/reagent/consumable/blackpepper, 1))
+			to_chat(user, "There's not enough black pepper to make anything with.")
+			return TRUE
+		mill.icon_state = "peppermill_grind"
+		to_chat(user, "You start rubbing the lobster with black pepper.")
+		playsound(get_turf(user), 'modular/Neu_Food/sound/peppermill.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			if(!mill.reagents.has_reagent(/datum/reagent/consumable/blackpepper, 1))
+				to_chat(user, "There's not enough black pepper to make anything with.")
+				return TRUE
+			mill.reagents.remove_reagent(/datum/reagent/consumable/blackpepper, 1)
+			new /obj/item/reagent_containers/food/snacks/rogue/pepperlobsta(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(src)
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))
+
+/*seabass*/
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/bass/attackby(obj/item/M, mob/living/user, params)
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)	
+	if(istype(M, /obj/item/reagent_containers/food/snacks/rogue/veg/garlick_clove))
+		to_chat(user, "You start crushing garlick upon the bass.")
+		playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			new /obj/item/reagent_containers/food/snacks/rogue/garlickbass(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(M)
+			qdel(src)
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))	
+
+/*milky mollusks*/
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/clam/attackby(obj/item/I, mob/living/user, params)
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers))
+		if(!I.reagents.has_reagent(/datum/reagent/consumable/milk, 1))
+			to_chat(user, "There's not enough milk to pour over these clams.")
+			return TRUE
+		to_chat(user, "You start pouring the milk over the hot clams.")
+		playsound(get_turf(user), 'modular/Creechers/sound/milking1.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			if(!I.reagents.has_reagent(/datum/reagent/consumable/milk, 1))
+				to_chat(user, "There's not enough milk to pour over these clams.")
+				return TRUE
+			I.reagents.remove_reagent(/datum/reagent/consumable/milk, 1)
+			new /obj/item/reagent_containers/food/snacks/rogue/milkclam(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(src)
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))
+/*ale cod*/
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/cod/attackby(obj/item/I, mob/living/user, params)
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers))
+		if(!I.reagents.has_reagent(/datum/reagent/consumable/ethanol/beer, 1))
+			to_chat(user, "There's not enough ale to pour over this cod.")
+			return TRUE
+		to_chat(user, "You start pouring the ale over the hot cod.")
+		playsound(get_turf(user), 'modular/Creechers/sound/milking1.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			if(!I.reagents.has_reagent(/datum/reagent/consumable/ethanol/beer, 1))
+				to_chat(user, "There's not enough ale to pour over this cod.")
+				return TRUE
+			I.reagents.remove_reagent(/datum/reagent/consumable/ethanol/beer, 1)
+			new /obj/item/reagent_containers/food/snacks/rogue/alecod(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(src)
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))
+
+/* onion plaice */
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/plaice/attackby(obj/item/M, mob/living/user, params)
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)	
+	if(istype(M, /obj/item/reagent_containers/food/snacks/rogue/veg/onion_sliced))
+		to_chat(user, "You start placing onions under the plaice.")
+		playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			new /obj/item/reagent_containers/food/snacks/rogue/onionplaice(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(M)
+			qdel(src)
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))	
+
+/*buttered feet i mean sole*/
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/sole/attackby(obj/item/M, mob/living/user, params)
+	if (!isturf(src.loc) || \
+		!(locate(/obj/structure/table) in src.loc) && \
+		!(locate(/obj/structure/table/optable) in src.loc) && \
+		!(locate(/obj/item/storage/bag/tray) in src.loc))
+		to_chat(user, span_warning("I need to use a table."))
+		return FALSE
+	update_cooktime(user)	
+	if(istype(M, /obj/item/reagent_containers/food/snacks/butterslice))
+		to_chat(user, "You start buttering the sole.")
+		playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 100, TRUE, -1)
+		if(do_after(user,long_cooktime, target = src))
+			new /obj/item/reagent_containers/food/snacks/rogue/buttersole(loc)
+			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+			qdel(M)
+			qdel(src)
+	else
+		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))	
+
+/* .............   Roast Pork   ................ */
+/obj/item/reagent_containers/food/snacks/rogue/meat/fatty/roast
+	eat_effect = null
+	icon_state = "roastpork"
+	name = "roast pork"
+	desc = "A hunk of pigflesh, roasted to a perfect crispy texture"
+	tastes = list("crispy pork" = 1)
+	bitesize = 3
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = MEATSLAB_NUTRITION)
+	rotprocess = SHELFLIFE_DECENT
+
+/* .............   RICE   ................ */
+/obj/item/reagent_containers/food/snacks/rogue/preserved/rice_cooked
+	icon_state = "rice"
+	name = "cooked rice"
+	desc = ""
+	bitesize = 3
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/preserved/rice_cooked/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/steak/fried))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "Preparing a serving of rice and beef...")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/ricebeef(loc)
+				qdel(I)
+				qdel(src)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/fatty/roast))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "Preparing a serving of rice and pork...")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/ricepork(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
+/* .............   Eggplant   ................ */
+/obj/item/reagent_containers/food/snacks/rogue/eggplantcarved
+	icon_state = "eggplant_carved"
+	name = "carved aubergine"
+	desc = ""
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/eggplantcarved/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/mince/beef))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "Filling meat into the aubergine...")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/eggplantmeat(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
+/obj/item/reagent_containers/food/snacks/rogue/eggplantmeat
+	icon_state = "eggplantraw"
+	name = "unfinished stuffed aubergine"
+	desc = ""
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/eggplantmeat/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/grown/apple))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "Topping tomatos onto the aubergine...")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/eggplantstuffedraw(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
+/obj/item/reagent_containers/food/snacks/rogue/eggplantstuffedraw
+	icon_state = "eggplantrawtom"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/preserved/eggplantstuffed
+	name = "raw stuffed aubergine"
+	desc = ""
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/preserved/eggplantstuffed
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
+	icon_state = "stuffedeggplant"
+	name = "stuffed aubergine"
+	desc = ""
+	tastes = list("meat" = 1, "apple" = 1, "aubergine" = 1)
+	rotprocess = SHELFLIFE_LONG
+	eat_effect = /datum/status_effect/buff/foodbuff
+
+/obj/item/reagent_containers/food/snacks/rogue/preserved/eggplantstuffed/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "Laying down a blanket of cheese...")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/preserved/eggplantstuffedcheese(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
+/obj/item/reagent_containers/food/snacks/rogue/preserved/eggplantstuffedcheese
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
+	icon_state = "stuffedeggplantcheese"
+	name = "stuffed aubergine with cheese"
+	desc = ""
+	tastes = list("meat" = 1, "tomato" = 1, "aubergine" = 1, "cheese" = 1)
+	rotprocess = SHELFLIFE_LONG
+	eat_effect = /datum/status_effect/buff/foodbuff

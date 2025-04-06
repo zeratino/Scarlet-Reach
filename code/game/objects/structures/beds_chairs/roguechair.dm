@@ -266,7 +266,6 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90
-	pixel_y = 5
 	sleepy = 3
 	debris = list(/obj/item/grown/log/tree/small = 1)
 
@@ -332,7 +331,6 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90
-	pixel_y = 5
 	sleepy = 3
 	debris = list(/obj/item/grown/log/tree/small = 1)
 
@@ -383,7 +381,6 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90
-	pixel_y = 5
 	sleepy = 3
 	debris = list(/obj/item/grown/log/tree/small = 1)
 
@@ -393,7 +390,6 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90
-	pixel_y = 5
 	sleepy = 3
 	debris = list(/obj/item/grown/log/tree/small = 1)
 
@@ -403,5 +399,4 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	buckle_lying = 90
-	pixel_y = 5
 	sleepy = 3

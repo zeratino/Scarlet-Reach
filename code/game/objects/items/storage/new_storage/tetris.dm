@@ -364,6 +364,8 @@
 			if(sewer.can_repair && this_item.sewrepair && this_item.max_integrity && !this_item.obj_broken && this_item.obj_integrity < this_item.max_integrity && user.mind.get_skill_level(/datum/skill/misc/sewing) >= 1 && this_item.ontable() && !being_repaired)
 				being_repaired = TRUE
 				return FALSE
+		if(user.used_intent.type == /datum/intent/snip) //This makes it so we can salvage
+			return FALSE
 	being_repaired = FALSE
 
 	. = TRUE //no afterattack
@@ -383,7 +385,6 @@
 			hide_from(living_viewer)
 	if(!worn_check_aggressive(parent, user, TRUE))
 		hide_from(user)
-	update_actions()
 
 /datum/component/storage/proc/worn_check(obj/item/storing, mob/user, no_message = FALSE)
 	. = TRUE

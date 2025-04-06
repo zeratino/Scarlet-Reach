@@ -53,6 +53,11 @@
 	stressadd = -1
 	desc = span_green("I'm stuffed! Feels good.")
 
+/datum/stressevent/hydrated
+	timer = 10 MINUTES
+	stressadd = -1
+	desc = span_green("My thirst is quenched. Invigorating.")
+
 /datum/stressevent/prebel
 	timer = 5 MINUTES
 	stressadd = -5
@@ -118,10 +123,20 @@
 	desc = span_boldgreen("Moondust surges through me.")
 	timer = 4 MINUTES
 
+/datum/stressevent/starsugar
+	stressadd = -1
+	desc = span_boldgreen("My heart rushes, my blood runs, I feel tightly bound together. I could run a marathon.")
+	timer = 4 MINUTES
+
 /datum/stressevent/moondust_purest
 	stressadd = -8
 	desc = span_boldgreen("PURE moondust surges through me!")
 	timer = 4 MINUTES
+
+/datum/stressevent/campfire
+	stressadd = -1
+	desc = span_green("The warmth of the fire is comforting.")
+	timer = 5 MINUTES
 
 /datum/stressevent/puzzle_easy
 	stressadd = -1
@@ -167,3 +182,27 @@
 	timer = 10 MINUTES
 	stressadd = -1
 	desc = span_green("My meditations were rewarding.")
+
+/datum/stressevent/bathcleaned
+    timer = 20 MINUTES
+    stressadd = -3
+    desc = span_green("I feel immaculate!")
+
+/datum/stressevent/bath
+    timer = 10 MINUTES
+    stressadd = -1
+    desc = span_green("I'm just a bit cleaner.")
+
+
+/datum/stressevent/pacified
+	timer = 30 MINUTES
+	stressadd = -5
+	desc = span_green("All my problems have washed away!")
+
+/datum/stressevent/noble_bowed_to
+	timer = 5 MINUTES
+	stressadd = -3
+	desc = span_green("Someone showed me the respect I deserve as a noble.")
+
+/datum/stressevent/noble_bowed_to/can_apply(mob/living/user)
+	return HAS_TRAIT(user, TRAIT_NOBLE)

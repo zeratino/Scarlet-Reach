@@ -10,6 +10,7 @@
 	)
 	outfit = /datum/outfit/job/roguetown/mercenary/underdweller
 	category_tags = list(CTAG_MERCENARY)
+	traits_applied = list(TRAIT_OUTLANDER)
 
 /datum/outfit/job/roguetown/mercenary/underdweller/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -45,5 +46,7 @@
 		H.change_stat("strength", 1)
 		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 2)
+		H.change_stat("speed", 1)
+
 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)

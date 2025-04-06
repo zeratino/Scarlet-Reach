@@ -10,13 +10,15 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	total_positions = 1
 	spawn_positions = 1
 	selection_color = JCOLOR_NOBLE
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = RACES_NO_CONSTRUCT
 	allowed_sexes = list(MALE, FEMALE)
 
 	spells = list(
 		/obj/effect/proc_holder/spell/self/grant_title,
 		/obj/effect/proc_holder/spell/self/convertrole/servant,
 		/obj/effect/proc_holder/spell/self/convertrole/guard,
+		/obj/effect/proc_holder/spell/self/grant_nobility,
+		/obj/effect/proc_holder/spell/self/convertrole/bog
 	)
 	outfit = /datum/outfit/job/roguetown/lord
 	visuals_only_outfit = /datum/outfit/job/roguetown/lord/visuals
@@ -53,13 +55,10 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		else
 			GLOB.lordsurname = "of [L.real_name]"
 		SSticker.rulermob = L
-		switch(L.pronouns)
-			if(SHE_HER)
-				SSticker.rulertype = "Grand Duchess"
-			if(THEY_THEM_F)
-				SSticker.rulertype = "Grand Duchess"
-			else
-				SSticker.rulertype = "Grand Duke"
+		if(should_wear_femme_clothes(L))
+			SSticker.rulertype = "Grand Duchess"
+		else
+			SSticker.rulertype = "Grand Duke"
 		to_chat(world, "<b><span class='notice'><span class='big'>[L.real_name] is [SSticker.rulertype] of Azure Peak.</span></span></b>")
 		if(STATION_TIME_PASSED() <= 10 MINUTES) //Late to the party? Stuck with default colors, sorry!
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, lord_color_choice)), 50)
@@ -74,7 +73,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	l_hand = /obj/item/rogueweapon/lordscepter
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
 	id = /obj/item/clothing/ring/active/nomag
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/royal
@@ -103,7 +102,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 			H.change_stat("perception", 2)
 			H.change_stat("fortune", 5)
 		H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
-	else
+	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
@@ -216,4 +215,63 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		return FALSE
 	recruiter.say("I HEREBY GRANT YOU, [uppertext(recruit.name)], THE TITLE OF [uppertext(granted_title)]!")
 	GLOB.lord_titles[recruit.real_name] = granted_title
+	return TRUE
+
+/obj/effect/proc_holder/spell/self/grant_nobility
+	name = "Grant Nobility"
+	desc = "Make someone a noble, or strip them of their nobility."
+	overlay_state = "recruit_titlegrant"
+	antimagic_allowed = TRUE
+	charge_max = 100
+	/// Maximum range for nobility granting
+	var/nobility_range = 3
+
+/obj/effect/proc_holder/spell/self/grant_nobility/cast(list/targets, mob/user = usr)
+	. = ..()
+	var/list/recruitment = list()
+	for(var/mob/living/carbon/human/village_idiot in (get_hearers_in_view(nobility_range, user) - user))
+		//not allowed
+		if(!can_nobility(village_idiot))
+			continue
+		recruitment[village_idiot.name] = village_idiot
+	if(!length(recruitment))
+		to_chat(user, span_warning("There are no potential honoraries in range."))
+		return
+	var/inputty = input(user, "Select an honorary!", "[name]") as anything in recruitment
+	if(inputty)
+		var/mob/living/carbon/human/recruit = recruitment[inputty]
+		if(!QDELETED(recruit) && (recruit in get_hearers_in_view(nobility_range, user)))
+			INVOKE_ASYNC(src, PROC_REF(grant_nobility), recruit, user)
+		else
+			to_chat(user, span_warning("Honorific failed!"))
+	else
+		to_chat(user, span_warning("Honorific cancelled."))
+
+/obj/effect/proc_holder/spell/self/grant_nobility/proc/can_nobility(mob/living/carbon/human/recruit)
+	//wtf
+	if(QDELETED(recruit))
+		return FALSE
+	//need a mind
+	if(!recruit.mind)
+		return FALSE
+	//need to see their damn face
+	if(!recruit.get_face_name(null))
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/spell/self/grant_nobility/proc/grant_nobility(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
+	if(QDELETED(recruit) || QDELETED(recruiter))
+		return FALSE
+	if(HAS_TRAIT(recruit, TRAIT_NOBLE))
+		if(!HAS_TRAIT(recruit,TRAIT_OUTLANDER))
+			recruiter.say("I HEREBY STRIP YOU, [uppertext(recruit.name)], OF NOBILITY!!")
+			REMOVE_TRAIT(recruit, TRAIT_NOBLE, TRAIT_GENERIC)
+			REMOVE_TRAIT(recruit, TRAIT_NOBLE, TRAIT_VIRTUE)
+			return FALSE
+		else
+			to_chat(recruiter, span_warning("Their nobility is not mine to strip!"))
+			return FALSE
+	recruiter.say("I HEREBY GRANT YOU, [uppertext(recruit.name)], NOBILITY!")
+	ADD_TRAIT(recruit, TRAIT_NOBLE, TRAIT_GENERIC)
+	REMOVE_TRAIT(recruit, TRAIT_OUTLANDER, ADVENTURER_TRAIT)
 	return TRUE

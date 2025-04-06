@@ -6,7 +6,6 @@
 	density = TRUE
 	opacity = FALSE
 	anchored = FALSE
-	pressure_resistance = 2 * ONE_ATMOSPHERE
 	max_integrity = 300
 	drag_slowdown = 2
 	var/open = FALSE
@@ -151,3 +150,72 @@
 /obj/structure/fermenting_barrel/hagwoodbitter/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/hagwoodbitter,900)
+
+
+
+/obj/structure/fermenting_barrel/jagt
+	desc = "A barrel with a Saigabuck mark. This dark liquid is the strongest alcohol coming out of Grenzelhoft available. A herbal schnapps, sure to burn out any disease."
+
+/obj/structure/fermenting_barrel/jagt/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/jagdtrunk,900)
+
+/obj/structure/fermenting_barrel/sourwine
+	desc = "A barrel that contains a Grenzelhoftian classic. An extremely sour wine that is watered down with mineral water."
+
+/obj/structure/fermenting_barrel/sourwine/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/sourwine,900)
+
+
+/obj/structure/fermenting_barrel/onion
+	desc = "A barrel with surprisingly no maker's mark. On the wood is carved the word \"ONI-N\", the 'O' seems to have been scratched out completely. Dubious. On the barrel is a paper glued to it showing an illustration of rats guarding a cellar filled with bottles against a hoard of beggars."
+
+/obj/structure/fermenting_barrel/onion/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/onion,900)
+
+/obj/structure/fermenting_barrel/saigamilk
+	desc = "A barrel with a Running Saiga mark. A form of alcohol brewed from the milk of a saiga and salt. Common drink of the nomads living in the steppe."
+
+/obj/structure/fermenting_barrel/saigamilk/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/saigamilk,900)
+
+/obj/structure/fermenting_barrel/kgsunsake
+	desc = "A barrel with a Golden Swan mark. A translucient, pale-blue liquid made from rice. A favourite drink of the warlords and nobles of Kazengun."
+
+/obj/structure/fermenting_barrel/kgsunsake/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/kgunsake,900)
+
+
+/obj/structure/fermenting_barrel/avarrice
+	desc = "A barrel with a simple mark. A murky, white wine made from rice grown in the steppes of Avar."
+
+/obj/structure/fermenting_barrel/avarrice/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/avarrice,900)
+
+
+/obj/structure/fermenting_barrel/gronmead
+	desc = "A barrel with a Shieldmaiden Brewery mark. A deep red honey-wine, refined with the red berries native to Gronns highlands."
+
+/obj/structure/fermenting_barrel/gronmead/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/gronnmead,900)
+
+
+/obj/structure/fermenting_barrel/murkwine
+	desc = "A barrel with a Possumtail Brewery mark. Two Volk tails interlace with eachother upon the seal in a dance. A country tradition from Heartfelt."
+
+/obj/structure/fermenting_barrel/murkwine/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/murkwine,900)
+
+/obj/structure/fermenting_barrel/nocshine
+	desc = "A barrel with a blue, Crescent moon mark. Not the wisest choice of drinks, but certainly the strongest."
+
+/obj/structure/fermenting_barrel/nocshine/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/nocshine,900)

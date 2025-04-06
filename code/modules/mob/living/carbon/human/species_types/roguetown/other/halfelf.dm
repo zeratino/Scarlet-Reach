@@ -15,7 +15,7 @@
 	characteristics can be either more Elvish or more Humen, depending on which of their parents' genes \
 	are more predominant. In terms of cultural identity, a Half-Elf will typically choose to lean more \
 	towards either their Humen or Elvish heritages.<br>\
-	(+1 Perception)" 
+	(+1 Constitution, +1 Perception)" 
 
 	skin_tone_wording = "Identity"
 	default_color = "FFFFFF"
@@ -24,7 +24,6 @@
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
 	possible_ages = ALL_AGES_LIST
-	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = NONE
 	liked_food = NONE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
@@ -46,7 +45,7 @@
 		OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,-1), \
 		)
-	race_bonus = list(STAT_PERCEPTION = 1)
+	race_bonus = list(STAT_PERCEPTION = 1, STAT_CONSTITUTION = 1)
 	enflamed_icon = "widefire"
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,
@@ -69,7 +68,7 @@
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/human,
-		/datum/customizer/organ/vagina/human,
+		/datum/customizer/organ/vagina/human_anthro,
 		)
 	body_marking_sets = list(
 		/datum/body_marking_set/none,
@@ -109,7 +108,14 @@
 		"Lalve-Steppes" = SKIN_COLOR_LALVE_NALEDI,
 		"Naledi-Otava" = SKIN_COLOR_NALEDI_OTAVA,
 		"Grezel-Avar" = SKIN_COLOR_GRENZEL_AVAR,
-		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN
+		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN,
+		"Commorah-kin" = SKIN_COLOR_COMMORAH,
+		"Gloomhaven-kin" = SKIN_COLOR_GLOOMHAVEN,
+		"Darkpila-kin" = SKIN_COLOR_DARKPILA,
+		"Sshanntynlan-kin" = SKIN_COLOR_SSHANNTYNLAN,
+		"Llurth Dreir-kin" = SKIN_COLOR_LLURTH_DREIR,
+		"Tafravma-kin" = SKIN_COLOR_TAFRAVMA,
+		"Yuethindrynn-kin" = SKIN_COLOR_YUETHINDRYNN
 	)
 
 /datum/species/human/halfelf/proc/languages(mob/living/carbon/human/literally_him)

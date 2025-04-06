@@ -83,6 +83,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/end_party = FALSE
 	var/last_lobby = 0
+	var/round_end = FALSE
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
@@ -142,7 +143,7 @@ SUBSYSTEM_DEF(ticker)
 	else
 		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
 
-	login_music = pick('sound/music/title.ogg')
+	login_music = pick('sound/music/title.ogg','sound/music/title2.ogg')
 
 	if(!GLOB.syndicate_code_phrase)
 		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
@@ -567,15 +568,15 @@ SUBSYSTEM_DEF(ticker)
 			if(ishuman(living))
 				try_apply_character_post_equipment(living)
 		else
-			message_admins("DEBUG: null player found in new_player_list")
-
+			continue
 	if(livings.len)
 		addtimer(CALLBACK(src, PROC_REF(release_characters), livings), 30, TIMER_CLIENT_TIME)
 
 /datum/controller/subsystem/ticker/proc/release_characters(list/livings)
 	for(var/I in livings)
 		var/mob/living/L = I
-		L.notransform = FALSE
+		if(L)
+			L?.notransform = FALSE
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	return
@@ -627,8 +628,6 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/check_maprotate()
 	if (!CONFIG_GET(flag/maprotation))
-		return
-	if (SSshuttle.emergency && SSshuttle.emergency.mode != SHUTTLE_ESCAPE || SSshuttle.canRecall())
 		return
 	if (maprotatechecked)
 		return

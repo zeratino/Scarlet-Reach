@@ -1,7 +1,8 @@
 /mob/living/proc/update_rogfat() //update hud and regen after last_fatigued delay on taking
 	maxrogfat = maxrogstam / 10
 
-	if(world.time > last_fatigued + 20) //regen fatigue
+	var/delay = (HAS_TRAIT(src, TRAIT_APRICITY) && GLOB.tod == "day") ? 13 : 20		//Astrata 
+	if(world.time > last_fatigued + delay) //regen fatigue
 		var/added = rogstam / maxrogstam
 		added = round(-10+ (added*-40))
 		if(HAS_TRAIT(src, TRAIT_MISSING_NOSE))
@@ -28,8 +29,8 @@
 /mob/living/rogstam_add(added as num)
 	if(HAS_TRAIT(src, TRAIT_NOROGSTAM))
 		return TRUE
-	if(HAS_TRAIT(src, TRAIT_NOSLEEP))
-		return TRUE
+	//if(HAS_TRAIT(src, TRAIT_NOSLEEP))
+	//	return TRUE
 	if(m_intent == MOVE_INTENT_RUN && isnull(buckled))
 		mind.add_sleep_experience(/datum/skill/misc/athletics, (STAINT*0.02))
 	rogstam += added

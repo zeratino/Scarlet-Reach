@@ -60,11 +60,10 @@
 
 ///Would this zone be above the neck
 /proc/above_neck(zone)
-	var/list/zones = list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE)
-	if(zones.Find(zone))
-		return 1
-	else
-		return 0
+	switch(zone)
+		if(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_MOUTH, BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE)
+			return TRUE
+	return FALSE
 /**
   * Convert random parts of a passed in message to stars
   *
@@ -532,8 +531,8 @@
 			mmb_intent.update_chargeloop()
 	
 	if(hud_used)		
-		hud_used.quad_intents.switch_intent(input)
-		hud_used.give_intent.switch_intent(input)
+		hud_used.quad_intents?.switch_intent(input)
+		hud_used.give_intent?.switch_intent(input)
 	givingto = null
 
 /mob/verb/def_intent_change(input as num)
@@ -553,6 +552,9 @@
 /mob/verb/toggle_cmode()
 	set name = "cmode-change"
 	set hidden = 1
+
+	if(SSticker.current_state >= GAME_STATE_FINISHED)
+		return
 
 	var/mob/living/L
 	if(isliving(src))

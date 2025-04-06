@@ -47,9 +47,6 @@
 /turf/open/lava/MakeDry(wet_setting = TURF_WET_WATER)
 	return
 
-/turf/open/lava/airless
-	initial_gas_mix = AIRLESS_ATMOS
-
 /turf/open/lava/Entered(atom/movable/AM)
 	if(!AM.throwing)
 		if(burn_stuff(AM))
@@ -66,7 +63,7 @@
 			if(!islava(newloc) && !L.on_fire)
 				L.update_fire()
 
-/turf/open/lava/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_type = "blunt")
+/turf/open/lava/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
 	if(burn_stuff(AM))
 		START_PROCESSING(SSobj, src)
 		playsound(src, 'sound/misc/lava_death.ogg', 100, FALSE)
@@ -79,15 +76,6 @@
 	underlay_appearance.icon = 'icons/turf/floors.dmi'
 	underlay_appearance.icon_state = "basalt"
 	return TRUE
-
-/turf/open/lava/GetHeatCapacity()
-	. = 700000
-
-/turf/open/lava/GetTemperature()
-	. = 5000
-
-/turf/open/lava/TakeTemperature(temp)
-
 
 /turf/open/lava/proc/is_safe()
 	//if anything matching this typecache is found in the lava, we don't burn things
@@ -160,10 +148,32 @@
 
 //			L.adjustFireLoss(50)
 			if(L) //mobs turning into object corpses could get deleted here.
+				L.adjustFireLoss(10)
 				L.adjust_fire_stacks(100)
 				L.IgniteMob()
 				if(L.health <= 0)
 					L.dust(drop_items = TRUE)
+
+/turf/open/lava/onbite(mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		if(L.stat != CONSCIOUS)
+			return
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			if(C.is_mouth_covered())
+				return
+		playsound(user, pick('sound/foley/waterwash (1).ogg','sound/foley/waterwash (2).ogg'), 100, FALSE)
+		user.visible_message(span_info("[user] starts to drink from [src]."))
+		if(do_after(L, 25, target = src))
+			var/mob/living/carbon/C = user
+			to_chat(C, span_userdanger("OH SWEET PSYDON, WHY DID I THINK THIS WAS A GOOD IDEA???"))
+			C.flash_fullscreen("redflash3")
+			C.emote("agony", forced = TRUE)
+			C.adjust_fire_stacks(500) //you deserve this.
+			C.IgniteMob()
+			C.adjustFireLoss(1000) //you, literally, deserve this.
+
 /turf/open/lava/smooth
 	name = "lava"
 	baseturfs = /turf/open/lava/smooth
@@ -173,12 +183,10 @@
 	canSmoothWith = list(/turf/open/lava/smooth)
 
 /turf/open/lava/smooth/lava_land_surface
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
-	planetary_atmos = TRUE
+
 	baseturfs = /turf/open/lava/smooth/lava_land_surface
 
 /turf/open/lava/smooth/airless
-	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/lava/acid
 	name = "acid"

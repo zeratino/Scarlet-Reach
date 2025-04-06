@@ -41,7 +41,7 @@
 	beltr = /obj/item/storage/keyring/servant
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/bad
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F) 
+	if(should_wear_femme_clothes(H)) 
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -67,6 +67,7 @@
 		H.change_stat("intelligence", 2)
 		H.change_stat("perception", 2)
 		H.change_stat("fortune", 1) // Usual leadership carrot.
+		ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 
 /datum/advclass/seneschal/headmaid
 	name = "Head Maid"
@@ -110,6 +111,7 @@
 		H.change_stat("intelligence", 2)
 		H.change_stat("perception", 2)
 		H.change_stat("fortune", 1) // Usual leadership carrot.
+		ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 
 /datum/advclass/seneschal/chiefbutler
 	name = "Chief Butler"
@@ -152,4 +154,5 @@
 		H.change_stat("intelligence", 2)
 		H.change_stat("perception", 2)
 		H.change_stat("fortune", 1) // Usual leadership carrot.
+		ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 

@@ -1,5 +1,10 @@
-/proc/remove_rot(mob/living/carbon/human/target, mob/living/user, method = "unknown", damage = 0, success_message = "The rot is removed.", fail_message = "The rot removal failed.")
+/proc/remove_rot(mob/living/carbon/human/target, mob/living/user, method = "unknown", damage = 0, success_message = "The rot is removed.", fail_message = "The rot removal failed.", lethal = TRUE)
 	if (!istype(target, /mob/living/carbon/human) || QDELETED(target))
+		return FALSE
+
+	//Special check preventing skeletons being cautery burned to regrow flesh
+	if(istype(target, /mob/living/carbon/human/species/skeleton) && method == "surgery")
+		to_chat(user, span_warning("It's going to take a miracle to put flesh back on these bones."))
 		return FALSE
 
 	// Check if the target has rot
@@ -11,19 +16,19 @@
 	else if (istype(target, /mob/living/carbon))
 		has_rot = check_bodyparts_for_rot(target)
 
+	// Remove rot component
+	remove_rot_component(target)
+
+	// Clean body parts
+	clean_body_parts(target)
+
 	// Handle failure case
 	if (!has_rot)
 		to_chat(user, span_warning(fail_message))
 		return FALSE
 
 	if (was_zombie)
-		remove_zombie_antag(target, user, method)
-
-	// Remove rot component
-	remove_rot_component(target)
-
-	// Clean body parts
-	clean_body_parts(target)
+		remove_zombie_antag(target, user, method, lethal)
 
 	//Doing it out of this proc for now
 	//to_chat(user, span_notice(success_message))
@@ -37,16 +42,19 @@
 	return FALSE
 
 
-/proc/remove_zombie_antag(mob/living/carbon/target, mob/living/user, method)
+/proc/remove_zombie_antag(mob/living/carbon/target, mob/living/user, method, lethal = TRUE)
 	var/datum/antagonist/zombie/was_zombie = target.mind?.has_antag_datum(/datum/antagonist/zombie)
 	if (!was_zombie)
 		return
 
 	was_zombie.become_rotman = FALSE
+	if(!lethal)
+		target.Unconscious(20 SECONDS)
+		target.emote("breathgasp")
+		target.Jitter(100)
+	else if(was_zombie.has_turned)
+		target.death(nocutscene = TRUE)
 	target.mind.remove_antag_datum(/datum/antagonist/zombie)
-	target.Unconscious(20 SECONDS)
-	target.emote("breathgasp")
-	target.Jitter(100)
 
 	if (!HAS_TRAIT(target, TRAIT_IWASUNZOMBIFIED) && user?.ckey)
 		adjust_playerquality(PQ_GAIN_UNZOMBIFY, user.ckey)

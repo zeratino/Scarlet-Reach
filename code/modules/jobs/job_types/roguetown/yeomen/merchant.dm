@@ -13,6 +13,7 @@
 
 	outfit = /datum/outfit/job/roguetown/merchant
 	give_bank_account = 22
+	noble_income = 100 // Guild Support - The sole Money Role outside of the keep, should help them keep pace a bit + pick up if they get completely knocked out of coin.
 	min_pq = 1 //"Yeah...my guy says the best I can do is one PQ, final offer"
 	max_pq = null
 	required = TRUE
@@ -48,10 +49,10 @@
 	beltl = /obj/item/storage/keyring/merchant
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	id = /obj/item/clothing/ring/gold
-	if(H.gender == MALE)
+	if(should_wear_masc_clothes(H))
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
-	else
+	else if(should_wear_femme_clothes(H))
 		shoes = /obj/item/clothing/shoes/roguetown/gladiator
 	H.change_stat("intelligence", 2)
 	H.change_stat("perception", 3)

@@ -8,6 +8,7 @@
 	equip_delay_self = 10
 	bloody_icon_state = "bodyblood"
 	sewrepair = TRUE //Vrell - AFAIK, all cloaks are cloth ATM. Technically semi-less future-proof, but it removes a line of code from every subtype, which is worth it IMO.
+	experimental_inhand = FALSE
 
 	grid_width = 64
 	grid_height = 64
@@ -30,6 +31,7 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
 	var/picked
+	var/overarmor = TRUE
 
 /obj/item/clothing/cloak/abyssortabard
 	name = "abyssorite tabard"
@@ -43,6 +45,17 @@
 	boobed = TRUE
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
+	var/overarmor = TRUE
+
+/obj/item/clothing/cloak/abyssortabard/MiddleClick(mob/user)
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear the tabard over my armor" : "wear the tabard under my armor"]."))
+	if(overarmor)
+		alternate_worn_layer = TABARD_LAYER
+	else
+		alternate_worn_layer = UNDER_ARMOR_LAYER
+	user.update_inv_cloak()
+	user.update_inv_armor()
 
 /obj/item/clothing/cloak/psydontabard
 	name = "psydonian tabard"
@@ -57,6 +70,7 @@
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
 	var/open_wear = FALSE
+	var/overarmor = TRUE
 
 /obj/item/clothing/cloak/psydontabard/alt
 	name = "opened psydonian tabard"
@@ -66,6 +80,18 @@
 	item_state = "psydontabardalt"
 	flags_inv = HIDECROTCH
 	open_wear = TRUE
+
+
+/obj/item/clothing/cloak/psydontabard/MiddleClick(mob/user) 
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear the tabard over my armor" : "wear the tabard under my armor"]."))
+	if(overarmor)
+		alternate_worn_layer = TABARD_LAYER
+	else
+		alternate_worn_layer = UNDER_ARMOR_LAYER
+	user.update_inv_cloak()
+	user.update_inv_armor()
+	user.update_inv_shirt()
 
 /obj/item/clothing/cloak/psydontabard/attack_right(mob/user)
 	switch(open_wear)
@@ -102,6 +128,18 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+/obj/item/clothing/cloak/tabard/MiddleClick(mob/user)
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear the tabard over my armor" : "wear the tabard under my armor"]."))
+	if(overarmor)
+		alternate_worn_layer = TABARD_LAYER
+	else
+		alternate_worn_layer = UNDER_ARMOR_LAYER
+	user.update_inv_cloak()
+	user.update_inv_armor()
+
+
 
 /obj/item/clothing/cloak/tabard/attack_right(mob/user)
 	if(picked)
@@ -379,6 +417,17 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
 	var/picked
+	var/overarmor = TRUE
+
+/obj/item/clothing/cloak/stabard/MiddleClick(mob/user) 
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear the tabard over my armor" : "wear the tabard under my armor"]."))
+	if(overarmor)
+		alternate_worn_layer = TABARD_LAYER
+	else
+		alternate_worn_layer = UNDER_ARMOR_LAYER
+	user.update_inv_cloak()
+	user.update_inv_armor()
 
 /obj/item/clothing/cloak/stabard/attack_right(mob/user)
 	if(picked)
@@ -715,6 +764,7 @@
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/cloak/darkcloak/ComponentInitialize()
 	. = ..()
@@ -763,6 +813,7 @@
 	body_parts_covered = CHEST|GROIN
 	armor = list("blunt" = 25, "slash" = 5, "stab" = 15, "fire" = 24, "acid" = 0)
 	boobed = TRUE
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/cloak/apron/brown
 	color = CLOTHING_BROWN
@@ -823,6 +874,7 @@
 	inhand_mod = TRUE
 	hoodtype = /obj/item/clothing/head/hooded/rainhood
 	toggle_icon_state = FALSE
+	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/wash_act(clean)
 	. = ..()
@@ -889,6 +941,7 @@
 	icon_state = "furgrey"
 	inhand_mod = FALSE
 	hoodtype = /obj/item/clothing/head/hooded/rainhood/furhood
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/cloak/raincloak/furcloak/crafted/Initialize()
 	. = ..()
@@ -899,7 +952,10 @@
 	color = "#685542"
 
 /obj/item/clothing/cloak/raincloak/furcloak/black
-	color = "#66564d"
+	color = "#2b292e"
+	
+/obj/item/clothing/cloak/raincloak/furcloak/darkgreen
+	color = "#264d26"
 
 /obj/item/clothing/cloak/raincloak/furcloak/woad
 	name = "Warden's fur cloak"
@@ -979,6 +1035,7 @@
 	icon_state = "furcape"
 	item_state = "furcape"
 	inhand_mod = TRUE
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/cloak/chasuble
 	name = "chasuble"
@@ -1009,8 +1066,8 @@
 	icon_state = "stole_purple"
 
 /obj/item/clothing/cloak/black_cloak
-	name = "fur coat"
-	desc = ""
+	name = "fur overcoat"
+	desc = "A very thick, baggy set of robes trimmed with fur, meant to be worn over one's clothing."
 	icon_state = "black_cloak"
 	body_parts_covered = CHEST|GROIN|VITALS|ARMS
 	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
@@ -1020,6 +1077,7 @@
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	sellprice = 50
 	nodismemsleeves = TRUE
+	salvage_result = /obj/item/natural/fur
 
 /obj/item/clothing/cloak/heartfelt
 	name = "red cloak"
@@ -1120,6 +1178,9 @@
 	color = null
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/cloak/templar
+	var/overarmor = TRUE
+
 /obj/item/clothing/cloak/templar/psydon
 	name = "psydon tabard"
 	desc = "An outer garment commonly worn by soldiers. This one has the symbol of Psydon on it."
@@ -1218,6 +1279,19 @@
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	flags_inv = HIDECROTCH|HIDEBOOB
 
+/obj/item/clothing/cloak/volfmantle
+	name = "volf mantle"
+	desc = "A warm cloak made using the hide and head of a slain volf. A status symbol if ever there was one."
+	color = null
+	icon_state = "volfpelt"
+	item_state = "volfpelt"
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = FALSE
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	flags_inv = HIDECROTCH|HIDEBOOB
+
 /obj/item/clothing/cloak/wickercloak
 	name = "wicker cloak"
 	desc = "A makeshift cloak constructed with mud, sticks and fibers."
@@ -1283,6 +1357,16 @@
 	alternate_worn_layer = TABARD_LAYER
 	body_parts_covered = CHEST|GROIN
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
+	
+/obj/item/clothing/cloak/templar/MiddleClick(mob/user) 
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear the tabard over my armor" : "wear the tabard under my armor"]."))
+	if(overarmor)
+		alternate_worn_layer = TABARD_LAYER
+	else
+		alternate_worn_layer = UNDER_ARMOR_LAYER
+	user.update_inv_cloak()
+	user.update_inv_armor()
 
 /obj/item/clothing/cloak/templar/eora
 	name = "eora tabard"
@@ -1513,3 +1597,38 @@
 	icon_state = "naledisash"
 	item_state = "naledisash"
 	desc = "A limp piece of fabric traditionally used to fasten bags that are too baggy, but in modern days has become more of a fashion statement than anything."
+
+/obj/item/clothing/cloak/wardencloak
+	name = "warden cloak"
+	desc = "A cloak worn by the Veteran Warden of Vanderlin's Forest Guard"
+	icon_state = "wardencloak"
+	alternate_worn_layer = CLOAK_BEHIND_LAYER
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = TRUE
+
+/obj/item/clothing/cloak/wardencloak/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
+/obj/item/clothing/cloak/forrestercloak
+	name = "forrester cloak"
+	desc = "A cloak worn by the Black Oaks of Azuria."
+	icon_state = "forestcloak"
+	alternate_worn_layer = CLOAK_BEHIND_LAYER
+	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
+	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
+	sleevetype = "shirt"
+	nodismemsleeves = TRUE
+	inhand_mod = TRUE
+
+/obj/item/clothing/cloak/forrestercloak/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
+/obj/item/clothing/cloak/forrestercloak/snow
+	name = "snow cloak"
+	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of Azuria."
+	icon_state = "snowcloak"

@@ -114,27 +114,6 @@ GLOBAL_VAR_INIT(mobids, 1)
 				hud_list[hud] = I
 
 /**
- * Some kind of debug verb that gives atmosphere environment details
- */
-/mob/proc/Cell()
-	set category = "Admin"
-	set hidden = 1
-
-	if(!loc)
-		return 0
-
-	var/datum/gas_mixture/environment = loc.return_air()
-
-	var/t =	"<span class='notice'>Coordinates: [x],[y] \n</span>"
-	t +=	"<span class='danger'>Temperature: [environment.temperature] \n</span>"
-	for(var/id in environment.gases)
-		var/gas = environment.gases[id]
-		if(gas[MOLES])
-			t+="<span class='notice'>[gas[GAS_META][META_GAS_NAME]]: [gas[MOLES]] \n</span>"
-
-	to_chat(usr, t)
-
-/**
  * Show a message to this mob (visual or audible)
  */
 /mob/proc/show_message(msg, type, alt_msg, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -602,7 +581,7 @@ GLOBAL_VAR_INIT(mobids, 1)
  * Only works if flag/norespawn is allowed in config
  */
 /mob/verb/abandon_mob()
-	set name = "{RETURN TO LOBBY}"
+	set name = "{ABANDON MOB}"
 	set category = "Options"
 	set hidden = 1
 	if(!check_rights(0))
@@ -765,10 +744,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 			stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 			if(check_rights(R_ADMIN,0))
 				stat(null, SSmigrants.get_status_line())
-			if(SSshuttle.emergency)
-				var/ETA = SSshuttle.emergency.getModeStr()
-				if(ETA)
-					stat(null, "[ETA] [SSshuttle.emergency.getTimerStr()]")
+
 	if(client)
 		if(statpanel("RoundInfo"))
 			stat("Round ID: [GLOB.rogue_round_id]")
@@ -928,6 +904,23 @@ GLOBAL_VAR_INIT(mobids, 1)
 	setDir(SOUTH)
 	client.last_turn = world.time + MOB_FACE_DIRECTION_DELAY
 	return TRUE
+
+///Hidden Pixel Shift Verbs, now handled through modularized pixel_shift 
+/mob/verb/eastshift()
+	set hidden = TRUE
+	pixel_shift(EAST)
+
+/mob/verb/westshift()
+	set hidden = TRUE
+	pixel_shift(WEST)
+
+/mob/verb/northshift()
+	set hidden = TRUE
+	pixel_shift(NORTH)
+
+/mob/verb/southshift()
+	set hidden = TRUE
+	pixel_shift(SOUTH)
 
 ///This might need a rename but it should replace the can this mob use things check
 /mob/proc/IsAdvancedToolUser()

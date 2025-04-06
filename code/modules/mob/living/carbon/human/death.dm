@@ -27,7 +27,7 @@
 			if(HAS_TRAIT(L, TRAIT_BLIND))
 				. -= L
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbed, nocutscene = FALSE)
 	if(stat == DEAD)
 		return
 
@@ -117,7 +117,7 @@
 				addomen(OMEN_NOPRIEST)
 //		if(yeae)
 //			if(mind)
-//				if((mind.assigned_role == "Lord") || (mind.assigned_role == "Priest") || (mind.assigned_role == "Guard Captain") || (mind.assigned_role == "Merchant"))
+//				if((mind.assigned_role == "Lord") || (mind.assigned_role == "Priest") || (mind.assigned_role == "Knight Captain") || (mind.assigned_role == "Merchant"))
 //					addomen(OMEN_NOBLEDEATH)
 
 		if(!gibbed && yeae)

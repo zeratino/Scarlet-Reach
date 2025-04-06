@@ -8,7 +8,7 @@
 	sharpness = IS_BLUNT
 	//dropshrink = 0.75
 	wlength = WLENGTH_NORMAL
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	associated_skill = /datum/skill/combat/whipsflails
 	anvilrepair = /datum/skill/craft/weaponsmithing
@@ -18,6 +18,8 @@
 	throwforce = 5
 	wdefense = 0
 	minstr = 4
+	grid_width = 32
+	grid_height = 96
 
 /datum/intent/flail/strike
 	name = "strike"
@@ -57,6 +59,9 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
 
+/datum/intent/flail/strike/smash/golgotha
+	hitsound = list('sound/items/beartrap2.ogg')
+
 /datum/intent/flail/strike/smashrange
 	name = "ranged smash"
 	chargetime = 25
@@ -91,6 +96,19 @@
 	smeltresult = /obj/item/ingot/steel
 	minstr = 5
 
+/obj/item/rogueweapon/flail/sflail/necraflail
+	name = "swift journey"
+	desc = "The striking head is full of teeth, rattling viciously with ever strike, with every rotation. Each set coming from one the wielder has laid to rest. Carried alongside them as a great show of respect."
+	icon_state = "necraflail"
+
+/obj/item/rogueweapon/flail/sflail/psyflail
+	name = "psydon's flail"
+	desc = "An ornate flail, plated in a ceremonial veneer of silver. Its flanged head can crumple even the toughest of darksteel-maille."
+	icon_state = "psyflail"
+
+/obj/item/rogueweapon/flail/sflail/psyflail/ComponentInitialize()
+	. = ..()							//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /datum/intent/whip/lash
 	name = "lash"
@@ -147,6 +165,8 @@
 	throwforce = 5
 	wdefense = 0
 	minstr = 6
+	grid_width = 32
+	grid_height = 64
 
 /obj/item/rogueweapon/whip/getonmobprop(tag)
 	. = ..()
@@ -158,6 +178,12 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 
+/obj/item/rogueweapon/whip/xylix
+	name = "cackle lash"
+	desc = "The chimes of this whip are said to sound as the trickster's laughter itself."
+	icon_state = "xylixwhip"
+	force = 24
+
 /obj/item/rogueweapon/whip/antique
 	force = 29
 	name = "Repenta En"
@@ -167,9 +193,18 @@
 
 /obj/item/rogueweapon/whip/antique/psywhip
 	name = "Daybreak"
-	desc = "I am wrath. I am silver. I am the mercy of HIM."
+	desc = "Holding the blessed silver evokes a memory of the Grand Otavan Cathedral, a testament to humenity's faith. There, upon the ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness."
 	icon_state = "psywhip"
 	is_silver = TRUE
+
+/obj/item/rogueweapon/whip/psywhip_lesser
+	name = "psydonite whip"
+	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
+	icon_state = "psywhip_lesser"
+
+/obj/item/rogueweapon/whip/psywhip_lesser/ComponentInitialize()
+	. = ..()					//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/rogueweapon/flail/peasantwarflail
 	force = 10

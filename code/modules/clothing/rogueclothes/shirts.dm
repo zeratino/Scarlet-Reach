@@ -14,6 +14,7 @@
 	boobed = TRUE
 	sewrepair = TRUE
 	flags_inv = HIDEBOOB
+	experimental_inhand = FALSE
 	
 	grid_width = 64
 	grid_height = 64
@@ -31,9 +32,14 @@
 	name = "undervestments"
 	desc = ""
 	icon_state = "priestunder"
-	sleeved = null
+	item_state = "priestunder"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts.dmi'
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	boobed = TRUE
+	flags_inv= HIDEBOOB|HIDECROTCH
 	body_parts_covered = CHEST|GROIN|ARMS|VITALS
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/black
@@ -89,6 +95,7 @@
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
 	name = "formal silks"
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	icon_state = "puritan_shirt"
 	allowed_race = CLOTHED_RACES_TYPES
 	sleeved = 'icons/roguetown/clothing/onmob/shirts.dmi'
@@ -193,9 +200,59 @@
 	desc = "A gold-embroidered dress shirt specially tailored for the monarch's children."
 	icon_state = "prince"
 	boobed = TRUE
-	detail_color = CLOTHING_MAJENTA
+	detail_color = CLOTHING_MAGENTA
 
 // End royal clothes
+
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress
+	name = "silky dress"
+	desc = "Despite not actually being made of silk, the legendary expertise needed to sew this puts the quality on par."
+	body_parts_covered = null
+	slot_flags = ITEM_SLOT_ARMOR
+	icon_state = "silkydress"
+	item_state = "silkydress"
+	sleevetype = null
+	sleeved = null
+
+/obj/item/clothing/suit/roguetown/shirt/dress/gown
+	icon = 'icons/roguetown/clothing/shirts_gown.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts_gown.dmi'
+	name = "spring gown"
+	desc = "A delicate gown that captures the essence of the season's renewal."
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
+	icon_state = "springgown"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts_gown.dmi'
+	boobed = TRUE
+	detail_tag = "_detail"
+	detail_color = CLOTHING_DARK_GREEN
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	var/picked = FALSE
+
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/summergown
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "summer gown"
+	desc = "A breezy, flowing gown fit for warm weathers."
+	icon_state = "summergown"
+	boobed = TRUE
+	detail_color = "#e395bb"
+
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/fallgown
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "fall gown"
+	desc = "A long sleeved, solemn gown signifies the season's nearing end."
+	icon_state = "fallgown"
+	boobed = TRUE
+	detail_color = "#8b3f00"
+
+/obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "winter gown"
+	desc = "A warm, elegant gown adorned with soft fur for cold."
+	icon_state = "wintergown"
+	boobed = TRUE
+	detail_color = "#45749d"
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/sailor
 	icon_state = "sailorblues"
@@ -383,8 +440,8 @@
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy
 	slot_flags = ITEM_SLOT_ARMOR
-	name = "dress"
-	desc = ""
+	name = "sheer dress"
+	desc = "A scandalously short dress made of extra fine fibers, making it semi-sheer."
 	body_parts_covered = null
 	icon_state = "sexydress"
 	sleevetype = null
@@ -433,7 +490,7 @@
 	boobed = TRUE
 	detail_tag = "_detail"
 	detail_color = CLOTHING_WHITE
-	armor = list("blunt" = 40, "slash" = 30, "stab" = 30, "fire" = 0, "acid" = 0) //gambeson stats
+	armor = list("blunt" = 60, "slash" = 40, "stab" = 30, "piercing" = 50, "fire" = 0, "acid" = 0) //Actually has gambeson stats now
 	max_integrity = 250
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
@@ -493,3 +550,21 @@
 	desc = "A billowing tunic made of the finest silks and softest fabrics. Inlaid with golden thread, this is the height of fashion for the wealthiest of wearers."
 	icon_state = "stewardtunic"
 	item_state = "stewardtunic"
+
+//WEDDING CLOTHES
+/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/weddingdress
+	name = "wedding silk dress"
+	desc = "A dress woven from fine silks, with golden threads inlaid in it. Made for that special day."
+	icon_state = "weddingdress"
+	item_state = "weddingdress"
+
+/obj/item/clothing/suit/roguetown/shirt/exoticsilkbra
+	name = "exotic silk bra"
+	desc = "An exquisite bra crafted from the finest silk and adorned with gold rings. It leaves little to the imagination."
+	icon_state = "exoticsilkbra"
+	item_state = "exoticsilkbra"
+	body_parts_covered = CHEST
+	boobed = TRUE
+	sewrepair = TRUE
+	flags_inv = null
+	slot_flags = ITEM_SLOT_SHIRT

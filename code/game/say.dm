@@ -94,11 +94,27 @@ GLOBAL_LIST_INIT(freqtospan, list(
 				arrowpart += " ⇈"
 			if(speakturf.z < sourceturf.z)
 				arrowpart += " ⇊"
-			if(istype(speaker, /mob/living))
-				var/mob/living/L = speaker
-				namepart = "Unknown [(L.gender == FEMALE) ? "Woman" : "Man"]"
+			
+			var/hidden = TRUE
+			if(HAS_TRAIT(src, TRAIT_KEENEARS))
+				if(ishuman(speaker) && ishuman(src))
+					var/mob/living/carbon/human/HS = speaker
+					var/mob/living/carbon/human/HL = src
+					if(length(HL.mind?.known_people))
+						if(HS.real_name in HL.mind?.known_people)	//We won't recognise people we don't know w/ Keen Ears
+							hidden = FALSE
+					else
+						hidden = TRUE
+				else
+					hidden = FALSE
 			else
-				namepart = "Unknown"
+				hidden = TRUE
+			if(hidden)
+				if(istype(speaker, /mob/living))
+					var/mob/living/L = speaker
+					namepart = "Unknown [(L.gender == FEMALE) ? "Woman" : "Man"]"
+				else
+					namepart = "Unknown"
 			spanpart1 = "<span class='smallyell'>"
 
 	var/languageicon = ""
@@ -132,6 +148,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(copytext(input, length(input) - 1) == "!!")
 		spans |= SPAN_YELL
 
+	input = parsemarkdown_basic(input, limited = TRUE, barebones = TRUE)
 	var/spanned = attach_spans(input, spans)
 	if(isliving(src))
 		var/mob/living/L = src
@@ -140,6 +157,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return "[say_mod(input, message_mode)], \"[spanned]\""
 
 /atom/movable/proc/quoteless_say_quote(input, list/spans = list(speech_span), message_mode)
+	input = parsemarkdown_basic(input, limited = TRUE, barebones = TRUE)
 	var/pos = findtext(input, "*")
 	return pos? copytext(input, pos + 1) : input
 

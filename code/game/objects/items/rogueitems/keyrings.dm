@@ -15,6 +15,7 @@
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 	anvilrepair = /datum/skill/craft/blacksmithing
 	resistance_flags = FIRE_PROOF
+	experimental_inhand = FALSE
 	component_type = /datum/component/storage/concrete/roguetown/keyring
 
 /obj/item/storage/keyring/Initialize()
@@ -223,7 +224,7 @@
 	keys = list(/obj/item/roguekey/sheriff, /obj/item/roguekey/dungeon, /obj/item/roguekey/garrison, /obj/item/roguekey/walls, /obj/item/roguekey/manor, /obj/item/roguekey/graveyard)
 
 /obj/item/storage/keyring/guard
-	keys = list(/obj/item/roguekey/dungeon, /obj/item/roguekey/garrison, /obj/item/roguekey/warden, /obj/item/roguekey/armory, /obj/item/roguekey/walls)
+	keys = list(/obj/item/roguekey/warden, /obj/item/roguekey/walls)
 
 /obj/item/storage/keyring/guardcastle
 	keys = list(/obj/item/roguekey/dungeon, /obj/item/roguekey/garrison, /obj/item/roguekey/walls, /obj/item/roguekey/manor, /obj/item/roguekey/armory)

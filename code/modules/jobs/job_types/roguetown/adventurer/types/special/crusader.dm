@@ -69,7 +69,7 @@
 				beltr = /obj/item/rogueweapon/sword/sabre
 				belt = /obj/item/storage/belt/rogue/leather/plaquesilver
 
-	if(H.gender == FEMALE)
+	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
 		backr = /obj/item/storage/backpack/rogue/satchel
 		gloves = null
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
@@ -114,11 +114,7 @@
 
 /obj/item/clothing/cloak/cape/crusader/ComponentInitialize()
 	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	if(STR)
-		STR.max_combined_w_class = 3
-		STR.max_w_class = WEIGHT_CLASS_NORMAL
-		STR.max_items = 1
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
 
 /obj/item/clothing/cloak/cape/crusader/attack_right(mob/user)
 	var/datum/component/storage/CP = GetComponent(/datum/component/storage)

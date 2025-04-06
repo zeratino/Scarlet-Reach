@@ -58,7 +58,7 @@
 			. += span_warning("Better let this one sleep.")
 
 /obj/structure/closet/dirthole/insertion_allowed(atom/movable/AM)
-	if(istype(AM, /obj/structure/closet/crate/chest) || istype(AM, /obj/structure/closet/burial_shroud))
+	if(istype(AM, /obj/structure/closet/crate/coffin) || istype(AM, /obj/structure/closet/burial_shroud))
 		for(var/mob/living/M in contents)
 			return FALSE
 		for(var/obj/structure/closet/C in contents)
@@ -108,11 +108,13 @@
 		if(stage == 3)
 			var/turf/underT = get_step_multiz(src, DOWN)
 			if(underT && isopenturf(underT) && mastert)
-				attacking_shovel.heldclod = new(attacking_shovel)
-				attacking_shovel.update_icon()
-				playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
-				mastert.ChangeTurf(/turf/open/transparent/openspace)
-				return
+				var/area/rogue/underA = underT.loc
+				if((underA && !underA.ceiling_protected) || !underA)
+					attacking_shovel.heldclod = new(attacking_shovel)
+					attacking_shovel.update_icon()
+					playsound(mastert,'sound/items/dig_shovel.ogg', 100, TRUE)
+					mastert.ChangeTurf(/turf/open/transparent/openspace)
+					return
 //					for(var/D in GLOB.cardinals)
 //						var/turf/T = get_step(mastert, D)
 //						if(T)
@@ -147,7 +149,8 @@
 				qdel(G)
 				if(isliving(user))
 					var/mob/living/L = user
-					L.apply_status_effect(/datum/status_effect/debuff/cursed)
+					if(!HAS_TRAIT(L, TRAIT_GRAVEROBBER))
+						L.apply_status_effect(/datum/status_effect/debuff/cursed)
 		update_icon()
 		attacking_shovel.heldclod = new(attacking_shovel)
 		attacking_shovel.update_icon()

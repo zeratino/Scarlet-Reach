@@ -28,7 +28,8 @@
 			return TRUE
 
 		if(L.electrocute_act(30, src))
-			L.consider_ambush()
+			src.take_damage(15)
+			L.consider_ambush(always = TRUE)
 			if(L.throwing)
 				L.throwing.finalize(FALSE)
 //			if(mover.loc != loc && L.stat == CONSCIOUS)
@@ -44,7 +45,7 @@
 				if(L.electrocute_act(30, src))
 					L.emote("painscream")
 					L.update_sneak_invis(TRUE)
-					L.consider_ambush()
+					L.consider_ambush(always = TRUE)
 	. = ..()
 
 /obj/structure/glowshroom/attackby(obj/item/W, mob/user, params)
@@ -53,7 +54,7 @@
 			var/mob/living/L = user
 			if(L.electrocute_act(30, src)) // The kneestingers will let you pass if you worship dendor, but they won't take your stupid ass hitting them.
 				L.emote("painscream")
-				L.consider_ambush()
+				L.consider_ambush(always = TRUE)
 				if(L.throwing)
 					L.throwing.finalize(FALSE)
 				return FALSE
@@ -74,7 +75,7 @@
 	if(damage_type == BURN && damage_amount)
 		playsound(src.loc, 'sound/blank.ogg', 100, TRUE)
 
-/obj/structure/glowshroom/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/glowshroom/temperature_expose(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
 		take_damage(5, BURN, 0, 0)
 

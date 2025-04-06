@@ -5,7 +5,10 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/mercenary/grenzelhoft
 	category_tags = list(CTAG_MERCENARY)
+	traits_applied = list(TRAIT_OUTLANDER)
 	cmode_music = 'sound/music/combat_grenzelhoft.ogg'
+	classes = list("Doppelsoldner" = "You are a Doppelsoldner of Grenzelhoft, a swordsman experienced with long-length blades.",
+					"Halberdier" = "You are a Halberdier from Grenzelhoft, a skilled user of poleamrs and axes. Though you prefer them combined.")
 
 /datum/outfit/job/roguetown/mercenary/grenzelhoft/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -35,13 +38,13 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)		//Trust me, they'll need it due to stamina drain on their base-sword.
 			H.change_stat("strength", 2)	//Should give minimum required stats to use Zweihander
 			H.change_stat("endurance", 3)
-			H.change_stat("constitution", 2)
+			H.change_stat("constitution", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("speed", -1)		//They get heavy armor now + sword option; so lower speed.
 			r_hand = /obj/item/rogueweapon/greatsword/grenz
 		if("Halberdier")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are a Halberdier from Grenzelhoft, a skilled user of poleamrs and axes. Though you prefer them combined.."))
+			to_chat(H, span_warning("You are a Halberdier from Grenzelhoft, a skilled user of poleamrs and axes. Though you prefer them combined."))
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
@@ -58,7 +61,7 @@
 			H.change_stat("strength", 2) //same str, worse end, more speed - actually a good tradeoff, now.
 			H.change_stat("endurance", 2)
 			H.change_stat("constitution", 2)
-			H.change_stat("perception", 1)
+			H.change_stat("perception", -1)
 			H.change_stat("speed", 1)
 			r_hand = /obj/item/rogueweapon/halberd
 

@@ -23,6 +23,7 @@
 	smeltresult = /obj/item/ingot/steel
 	resistance_flags = FIRE_PROOF
 	obj_flags = UNIQUE_RENAME
+	damfactor = 2
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/getonmobprop(tag)
 	. = ..()
@@ -49,15 +50,13 @@
 	if(mastermob && chargetime)
 		var/newtime = chargetime
 		//skill block
-		newtime = newtime + 80
-		newtime = newtime - (mastermob.mind.get_skill_level(/datum/skill/combat/crossbows) * 20)
-		//per block
-		newtime = newtime + 20
-		newtime = newtime - ((mastermob.STAPER)*1.5)
-		if(newtime > 0)
+		newtime = newtime + 40
+		newtime = newtime - (mastermob.mind?.get_skill_level(/datum/skill/combat/crossbows) * 4.25) //minus 4.25 per skill point
+		newtime = newtime - ((mastermob.STAPER)*1) //minus 1 per perception
+		if(newtime > 1)
 			return newtime
 		else
-			return 10
+			return 1
 	return chargetime
 
 /datum/intent/arc/crossbow
@@ -78,7 +77,7 @@
 		var/newtime = chargetime
 		//skill block
 		newtime = newtime + 80
-		newtime = newtime - (mastermob.mind.get_skill_level(/datum/skill/combat/crossbows) * 20)
+		newtime = newtime - (mastermob.mind?.get_skill_level(/datum/skill/combat/crossbows) * 20)
 		//per block
 		newtime = newtime + 20
 		newtime = newtime - ((mastermob.STAPER)*1.5)

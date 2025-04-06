@@ -6,8 +6,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "handcuff"
-	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	flags_1 = CONDUCT_1
 	throwforce = 0
 	w_class = WEIGHT_CLASS_NORMAL
@@ -27,6 +25,9 @@
 	var/trap_damage = 90 // How much brute damage the trap will do to its victim
 	var/used_time = 12 SECONDS // How many seconds it takes to disarm the trap
 	max_integrity = 100
+
+	grid_width = 64
+	grid_height = 64
 
 /obj/item/restraints/legcuffs/beartrap/attack_hand(mob/user)
 	if(iscarbon(user) && armed && isturf(loc))
@@ -48,7 +49,7 @@
 			BP.update_disabled()
 			C.apply_damage(trap_damage, BRUTE, def_zone)
 			C.update_sneak_invis(TRUE)
-			C.consider_ambush()
+			C.consider_ambush(always = TRUE)
 			return FALSE
 		else
 			var/used_time = 10 SECONDS
@@ -56,6 +57,7 @@
 				used_time -= max((C.mind.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
 			if(do_after(user, used_time, target = src))
 				armed = FALSE
+				w_class = initial(w_class)
 				update_icon()
 				alpha = 255
 				C.visible_message(span_notice("[C] disarms \the [src]."), \
@@ -73,7 +75,7 @@
 				BP.update_disabled()
 				C.apply_damage(trap_damage, BRUTE, def_zone)
 				C.update_sneak_invis(TRUE)
-				C.consider_ambush()
+				C.consider_ambush(always = TRUE)
 				return FALSE
 	..()
 
@@ -86,15 +88,17 @@
 		if(isliving(user))
 			var/mob/living/L = user
 			L.update_sneak_invis(TRUE)
-			L.consider_ambush()
+			L.consider_ambush(always = TRUE)
 		return
 	..()
 
 /obj/item/restraints/legcuffs/beartrap/armed
+	w_class = WEIGHT_CLASS_BULKY
 	armed = TRUE
 	anchored = TRUE // Pre mapped traps (bad mapping btw, don't) start anchored
 
 /obj/item/restraints/legcuffs/beartrap/armed/camouflage
+	w_class = WEIGHT_CLASS_BULKY
 	armed = TRUE
 	alpha = 80
 
@@ -118,6 +122,10 @@
 		if(do_after(user, 50 - (L.STASTR*2), target = user))
 			if(prob(50))
 				armed = !armed
+				if(armed)
+					w_class = WEIGHT_CLASS_BULKY
+				else
+					w_class = initial(w_class)
 				update_icon()
 				to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
 			else
@@ -125,6 +133,7 @@
 
 /obj/item/restraints/legcuffs/beartrap/proc/close_trap()
 	armed = FALSE
+	w_class = initial(w_class)
 	anchored = FALSE // Take it off the ground
 	alpha = 255
 	update_icon()
@@ -170,7 +179,7 @@
 						"<span class='danger'>I trigger \the [src]!</span>")
 				if(L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", damage = trap_damage)))
 					L.Stun(80)
-				L.consider_ambush()
+				L.consider_ambush(always = TRUE)
 	..()
 
 // When craftable beartraps get added, make these the ones crafted.

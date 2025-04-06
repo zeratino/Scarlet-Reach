@@ -99,6 +99,10 @@
 		mode() // Activate held item
 
 /mob/living/carbon/attackby(obj/item/I, mob/user, params)
+	// Special case for scissors with snip intent targeting the head or skull
+	if(istype(I, /obj/item/rogueweapon/huntingknife/scissors) && user.used_intent.type == /datum/intent/snip && (user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_SKULL))
+		return I.attack(src, user)
+		
 	if(!user.cmode)
 		var/try_to_fail = !istype(user.rmb_intent, /datum/rmb_intent/weak)
 		var/list/possible_steps = list()
@@ -493,7 +497,7 @@
 			I.safe_throw_at(target,I.throw_range,I.throw_speed,src, force = move_force)
 
 /mob/living/carbon/proc/get_str_arms(num)
-	if(!domhand || !num)
+	if(!domhand || !num || HAS_TRAIT(src, TRAIT_DUALWIELDER))
 		return STASTR
 	var/used = STASTR
 	if(num == domhand)
@@ -513,6 +517,7 @@
 		stat("CON: \Roman [STACON]")
 		stat("END: \Roman [STAEND]")
 		stat("SPD: \Roman [STASPD]")
+		stat("FOR: \Roman [STALUC]")
 		stat("PATRON: [patron]")
 
 /mob/living/carbon/Stat()
@@ -976,6 +981,9 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
+		if(health <= HEALTH_THRESHOLD_NEARDEATH && HAS_TRAIT(src, TRAIT_DEATHBARGAIN))
+			src.apply_status_effect(/datum/status_effect/buff/undermaidenbargainheal)
+			return
 		if(health <= HEALTH_THRESHOLD_DEAD && !HAS_TRAIT(src, TRAIT_NODEATH))
 			INVOKE_ASYNC(src, PROC_REF(emote), "deathgurgle")
 			death()

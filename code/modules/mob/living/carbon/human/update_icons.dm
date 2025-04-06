@@ -1066,6 +1066,7 @@ There are several things that need to be remembered:
 	remove_overlay(CLOAK_LAYER)
 	remove_overlay(CLOAK_BEHIND_LAYER)
 	remove_overlay(TABARD_LAYER)
+	remove_overlay(UNDER_ARMOR_LAYER)
 
 	if(client && hud_used)
 		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[SLOT_CLOAK]
@@ -1102,6 +1103,8 @@ There are several things that need to be remembered:
 					cloak_overlay.pixel_y += dna.species.offset_features[OFFSET_CLOAK_F][2]
 			if(cloak.alternate_worn_layer == TABARD_LAYER)
 				overlays_standing[TABARD_LAYER] = cloak_overlay
+			if(cloak.alternate_worn_layer == UNDER_ARMOR_LAYER)
+				overlays_standing[UNDER_ARMOR_LAYER] = cloak_overlay	
 			if(cloak.alternate_worn_layer == CLOAK_BEHIND_LAYER)
 				overlays_standing[CLOAK_BEHIND_LAYER] = cloak_overlay
 			if(!cloak.alternate_worn_layer)
@@ -1178,6 +1181,7 @@ There are several things that need to be remembered:
 	apply_overlay(TABARD_LAYER)
 	apply_overlay(CLOAK_BEHIND_LAYER)
 	apply_overlay(CLOAK_LAYER)
+	apply_overlay(UNDER_ARMOR_LAYER)
 
 /mob/living/carbon/human/update_inv_shirt()
 	remove_overlay(SHIRT_LAYER)
@@ -1607,6 +1611,20 @@ generate/load female uniform sprites matching all previously decided variables
 				pic.color = get_detail_color()
 			standing.overlays.Add(pic)
 
+	if(get_altdetail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(file2use, "[t_state][get_altdetail_tag()]"), -layer2use)
+		pic.appearance_flags = RESET_COLOR
+		if(get_altdetail_color())
+			pic.color = get_altdetail_color()
+		standing.overlays.Add(pic)
+		if(!isinhands && boobed_overlay && boobed_detail && boobed)
+			pic = mutable_appearance(icon(file2use, "[t_state]_boob[get_altdetail_tag()]"), -layer2use)
+			pic.appearance_flags = RESET_COLOR
+			if(get_altdetail_color())
+				pic.color = get_altdetail_color()
+			standing.overlays.Add(pic)
+
+
 	if(!isinhands && HAS_BLOOD_DNA(src))
 		var/index = "[t_state][sleeveindex]"
 		var/static/list/bloody_onmob = list()
@@ -1748,39 +1766,45 @@ generate/load female uniform sprites matching all previously decided variables
 
 //produces a key based on the human's limbs
 /mob/living/carbon/human/generate_icon_render_key()
-	. = "[dna.species.limbs_id]"
-
+	. = list(dna.species.limbs_id)
 
 	if(dna.species.use_skintones)
-		. += "-coloured-[skin_tone]"
+		. += "coloured"
+		. += skin_tone
 	else if(dna.species.fixed_mut_color)
-		. += "-coloured-[dna.species.fixed_mut_color]"
+		. += "coloured"
+		. += dna.species.fixed_mut_color
 	else if(dna.features["mcolor"])
-		. += "-coloured-[dna.features["mcolor"]]"
+		. += "coloured"
+		. += dna.features["mcolor"]
 	else
-		. += "-not_coloured"
+		. += "not_coloured"
 
-	. += "-[gender]"
-	. += "-[age]"
+	. += gender
+	. += age
 
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		. += "-[BP.body_zone]"
+		. += BP.body_zone
 		if(BP.status == BODYPART_ORGANIC)
-			. += "-organic"
+			. += "organic"
 		else
-			. += "-robotic"
-		if(BP.use_digitigrade)
-			. += "-digitigrade[BP.use_digitigrade]"
+			. += "robotic"
+		switch(BP.use_digitigrade)
+			if(FULL_DIGITIGRADE)
+				. += "digitigrade_full"
+			if(SQUISHED_DIGITIGRADE)
+				. += "digitigrade_squashed"
 		if(BP.rotted)
-			. += "-rotted"
+			. += "rotted"
 		if(BP.skeletonized)
-			. += "-skeletonized"
+			. += "skeletonized"
 		if(BP.dmg_overlay_type)
-			. += "-[BP.dmg_overlay_type]"
+			. += BP.dmg_overlay_type
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
-		. += "-husk"
+		. += "husk"
+	return jointext(., "-")
 
 /mob/living/carbon/human/load_limb_from_cache()
 	..()

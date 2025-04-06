@@ -41,6 +41,9 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_NOFALLDAMAGE1))
 		if(levels <= 2)
+			Immobilize(10)
+			if(m_intent == MOVE_INTENT_RUN)
+				toggle_rogmove_intent(MOVE_INTENT_WALK)
 			return
 	var/points
 	for(var/i in 2 to levels)
@@ -188,6 +191,12 @@
 
 			// Randomize con roll from -1 to +1 to make it less consistent
 			self_points += rand(-1, 1)
+
+			//Safety check for changing direction at the last step
+			if(src.dir != src.sprint_dir)
+				self_points -= 99
+				instafail = TRUE
+				to_chat(src, span_warning("I changed direction too late!"))
 
 			if(self_points > target_points)
 				L.Knockdown(1)
@@ -575,7 +584,7 @@
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IS_IN_STASIS(src)))
+	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (!ignore_restraints && restrained(ignore_grab)))
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -738,6 +747,9 @@
 		clear_alert("not_enough_oxy")
 		reload_fullscreen()
 		remove_client_colour(/datum/client_colour/monochrome)
+		// Add message about struggling to recall death circumstances
+		to_chat(src, "<span class='notice'><b>As you return to life, you struggle to recall the circumstances of your death...</b></span>")
+		to_chat(src, "<span class='italic'>Your memories of your final moments are hazy and fragmented.</span>")
 		. = TRUE
 		if(mind)
 			if(admin_revive)
@@ -843,17 +855,6 @@
 	update_wallpress_slowdown()
 
 
-/mob/living/proc/update_pixelshift(turf/T, atom/newloc, direct)
-	if(!pixelshifted)
-		reset_offsets("pixel_shift")
-		return FALSE
-	pixelshifted = FALSE
-	pixelshift_x = 0
-	pixelshift_y = 0
-	pixelshift_layer = 0
-	layer = 4
-	reset_offsets("pixel_shift")
-
 /mob/living/Move(atom/newloc, direct, glide_size_override)
 
 	var/old_direction = dir
@@ -861,12 +862,10 @@
 
 	if(m_intent == MOVE_INTENT_RUN)
 		sprinted_tiles++
+		sprint_dir = dir
 
 	if(wallpressed)
 		update_wallpress(T, newloc, direct)
-
-	if(pixelshifted)
-		update_pixelshift(T, newloc, direct)
 
 	if(lying)
 		if(direct & EAST)
@@ -958,35 +957,6 @@
 		return pick("ltrails_1", "ltrails_2")
 	else
 		return pick("trails_1", "trails_2")
-
-/mob/living/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
-	if(buckled)
-		return
-	if(client && client.move_delay >= world.time + world.tick_lag*2)
-		pressure_resistance_prob_delta -= 30
-
-	var/list/turfs_to_check = list()
-
-	if(has_limbs)
-		var/turf/T = get_step(src, angle2dir(dir2angle(direction)+90))
-		if (T)
-			turfs_to_check += T
-
-		T = get_step(src, angle2dir(dir2angle(direction)-90))
-		if(T)
-			turfs_to_check += T
-
-		for(var/t in turfs_to_check)
-			T = t
-			if(T.density)
-				pressure_resistance_prob_delta -= 20
-				continue
-			for (var/atom/movable/AM in T)
-				if (AM.density && AM.anchored)
-					pressure_resistance_prob_delta -= 20
-					break
-	if(!force_moving)
-		..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
 	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
@@ -1111,6 +1081,7 @@
 		to_chat(pulledby, span_danger("[src] breaks free of my grip!"))
 		log_combat(pulledby, src, "broke grab")
 		pulledby.changeNext_move(CLICK_CD_GRABBING)
+		playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
 		pulledby.stop_pulling()
 		return FALSE
 	else
@@ -1120,6 +1091,7 @@
 //			shitte = " ([resist_chance]%)"
 		visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
 						span_warning("I struggle against [pulledby]'s grip![shitte]"), null, null, pulledby)
+		playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 		to_chat(pulledby, span_warning("[src] struggles against my grip!"))
 
 		return TRUE
@@ -1136,6 +1108,7 @@
 						if(G.sublimb_grabbed == BODY_ZONE_PRECISE_NOSE)
 							visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
 											span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
+							playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 							to_chat(pulledby, span_warning("[src] struggles against my grip!"))
 							return FALSE
 	return ..()
@@ -1300,8 +1273,10 @@
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
 	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
-/mob/living/proc/get_temperature(datum/gas_mixture/environment)
-	var/loc_temp = environment ? environment.temperature : T0C
+/mob/living/proc/get_temperature()
+//ATMO/TURF/TEMPERATURE
+	var/turf/cur_turf = get_turf(src)
+	var/loc_temp = cur_turf.temperature
 	if(isobj(loc))
 		var/obj/oloc = loc
 		var/obj_temp = oloc.return_temperature()
@@ -1512,7 +1487,7 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src) && (has_arms || ignore_legs || has_legs)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
@@ -1582,7 +1557,7 @@
 		if(!lying_prev)
 			fall(!canstand_involuntary)
 		layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-		if (pixelshifted)
+		if (is_shifted)
 			layer = 3.99 + pixelshift_layer //So mobs can pixelshift layers while lying down
 	else
 		if(layer == LYING_MOB_LAYER)
@@ -1782,30 +1757,40 @@
 		return
 	if(!can_look_up())
 		return
-	changeNext_move(CLICK_CD_EXHAUSTED)
+	changeNext_move(HAS_TRAIT(src, TRAIT_SLEUTH) ? CLICK_CD_SLEUTH : CLICK_CD_TRACKING)
 	if(m_intent != MOVE_INTENT_SNEAK)
 		visible_message(span_info("[src] begins looking around."))
-	var/looktime = 50 - (STAPER * 2)
-	if(do_after(src, looktime, target = src))
+	var/looktime = 50 - (STAPER * 2) - (mind?.get_skill_level(/datum/skill/misc/tracking) * 5)
+	looktime = clamp(looktime, 7, 50)
+	if(HAS_TRAIT(src, TRAIT_SLEUTH) ? move_after(src, looktime, target = src) : do_after(src, looktime, target = src))
 		for(var/mob/living/M in view(7,src))
 			if(M == src)
 				continue
 			if(see_invisible < M.invisibility)
 				continue
+			var/probby = (3 * STAPER) + (mind?.get_skill_level(/datum/skill/misc/tracking)) * 5
 			if(M.mob_timers[MT_INVISIBILITY] > world.time) // Check if the mob is affected by the invisibility spell
-				continue
-			var/probby = 3 * STAPER
-			if(M.mind)
-				probby -= (M.mind.get_skill_level(/datum/skill/misc/sneaking) * 10)
+				if(mind?.get_skill_level(/datum/skill/misc/tracking) <= SKILL_LEVEL_EXPERT)	//Master or Legendary from this point
+					continue
+			if(M.mind)	//We find the biggest value and use that, to account for mages / Nocites / sneaky people all at once
+				var/target_sneak = M.mind?.get_skill_level(/datum/skill/misc/sneaking)
+				var/target_holy = M.mind?.get_skill_level(/datum/skill/magic/holy)
+				var/target_arcyne = M.mind?.get_skill_level(/datum/skill/magic/arcane)
+				var/chosen_skill = max(target_sneak, target_holy, target_arcyne)
+				probby -= chosen_skill * 10
+				if(M.STAPER > 10)
+					probby -= (M.STAPER) / 2
 			probby = (max(probby, 5))
 			if(prob(probby))
 				found_ping(get_turf(M), client, "hidden")
+				M.mob_timers[MT_INVISIBILITY] = world.time
+				M.update_sneak_invis()
+				to_chat(M, span_danger("[src] sees me! I'm found!"))
 				if(M.m_intent == MOVE_INTENT_SNEAK)
 					emote("huh")
-					to_chat(M, span_danger("[src] sees me! I'm found!"))
 					M.mob_timers[MT_FOUNDSNEAK] = world.time
 			else
-				if(M.m_intent == MOVE_INTENT_SNEAK)
+				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					if(M.client?.prefs.showrolls)
 						to_chat(M, span_warning("[src] didn't find me... [probby]%"))
 					else
@@ -1834,9 +1819,9 @@
 /proc/found_ping(atom/A, client/C, state)
 	if(!A || !C || !state)
 		return
-	var/image/I = image(icon = 'icons/effects/effects.dmi', loc = A, icon_state = state, layer = 19)
-	I.layer = 19
-	I.plane = 19
+	var/image/I = image(icon = 'icons/effects/effects.dmi', loc = A, icon_state = state, layer = 18)
+	I.layer = 18
+	I.plane = 18
 	if(!I)
 		return
 	I.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -1913,16 +1898,51 @@
 	var/_x = T.x-loc.x
 	var/_y = T.y-loc.y
 	var/dist = get_dist(src, T)
+	var/message = span_info("[src] looks into the distance.")
 	if(dist > 7 || dist  <= 2)
 		return
 	hide_cone()
-	var/ttime = 10
+	var/ttime = 11
 	if(STAPER > 5)
 		ttime = 10 - (STAPER - 5)
 		if(ttime < 0)
-			ttime = 0
+			ttime = 1
+	if(STAPER <= 10)
+		var/offset = (10 - STAPER) * 2
+		if(STAPER == 10)
+			offset = 1
+		else
+			message = span_info("[src] struggles to look ahead.")
+		if(_x > 0)
+			_x -= offset
+			_x = max(0, _x)
+		else if(_x != 0)
+			_x += offset
+			_x = min(0, _x)
+		if(_y > 0)
+			_y -= offset
+			_y = max(0,_y)
+		else if(_y != 0)
+			_y += offset
+			_y = min(0,_y)
+	else if(STAPER > 11)
+		var/offset = STAPER - 10
+		if(offset > 5)	//Caps the bonus at 15 PER, which is a whole extra screen in an orthogonal direction. Anymore will get disorienting.
+			offset = 5
+		if(STAPER >= 12)
+			message = span_info("[src] easily peers afar.")
+		if(_x > 0)
+			_x += offset
+		else if(_x != 0)
+			_x -= offset
+		if(_y > 0)
+			_y += offset
+		else if(_y != 0)
+			_y -= offset
 	if(m_intent != MOVE_INTENT_SNEAK)
-		visible_message(span_info("[src] looks into the distance."))
+		if(_y == 0 && _x == 0)	//Their PER was too low to see anything.
+			message = span_info("[src] oafishly stares in front of themselves.")
+		visible_message(message)
 	animate(client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, ttime)
 //	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 	update_cone_show()

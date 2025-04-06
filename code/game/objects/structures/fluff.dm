@@ -3,7 +3,6 @@
 /obj/structure/fluff
 	name = "fluff structure"
 	desc = ""
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "minibar"
 	anchored = TRUE
 	density = FALSE
@@ -11,19 +10,6 @@
 	blade_dulling = DULLING_BASHCHOP
 	max_integrity = 150
 	var/deconstructible = TRUE
-
-/obj/structure/fluff/empty_terrarium //Empty terrariums are created when a preserved terrarium in a lavaland seed vault is activated.
-	name = "empty terrarium"
-	desc = ""
-	icon = 'icons/obj/lavaland/spawners.dmi'
-	icon_state = "terrarium_open"
-	density = TRUE
-
-/obj/structure/fluff/empty_sleeper //Empty sleepers are created by a good few ghost roles in lavaland.
-	name = "empty sleeper"
-	desc = ""
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper-open"
 
 /obj/structure/fluff/empty_sleeper/nanotrasen
 	name = "broken hypersleep chamber"
@@ -33,18 +19,6 @@
 
 /obj/structure/fluff/empty_sleeper/syndicate
 	icon_state = "sleeper_s-open"
-
-/obj/structure/fluff/empty_cryostasis_sleeper //Empty cryostasis sleepers are created when a malfunctioning cryostasis sleeper in a lavaland shelter is activated
-	name = "empty cryostasis sleeper"
-	desc = ""
-	icon = 'icons/obj/lavaland/spawners.dmi'
-	icon_state = "cryostasis_sleeper_open"
-
-/obj/structure/fluff/broken_flooring
-	name = "broken tiling"
-	desc = ""
-	icon = 'icons/obj/brokentiling.dmi'
-	icon_state = "corner"
 
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
 	name = "drake statue"
@@ -60,50 +34,6 @@
 	desc = ""
 	icon_state = "drake_statue_falling"
 
-
-/obj/structure/fluff/bus
-	name = "bus"
-	desc = ""
-	icon = 'icons/obj/bus.dmi'
-	density = TRUE
-	anchored = TRUE
-	deconstructible = FALSE
-
-/obj/structure/fluff/bus/dense
-	name = "bus"
-	icon_state = "backwall"
-
-/obj/structure/fluff/bus/passable
-	name = "bus"
-	icon_state = "frontwalltop"
-	density = FALSE
-	layer = ABOVE_ALL_MOB_LAYER //except for the stairs tile, which should be set to OBJ_LAYER aka 3.
-
-
-/obj/structure/fluff/bus/passable/seat
-	name = "seat"
-	desc = ""
-	icon_state = "backseat"
-	pixel_y = 17
-	layer = OBJ_LAYER
-
-
-/obj/structure/fluff/bus/passable/seat/driver
-	name = "driver's seat"
-	desc = ""
-	icon_state = "driverseat"
-
-/obj/structure/fluff/bus/passable/seat/driver/attack_hand(mob/user)
-	playsound(src, 'sound/blank.ogg', 50, TRUE)
-	. = ..()
-
-/obj/structure/fluff/paper
-	name = "dense lining of papers"
-	desc = ""
-	icon = 'icons/obj/fluff.dmi'
-	icon_state = "paper"
-	deconstructible = FALSE
-
 /obj/structure/fluff/paper/corner
 	icon_state = "papercorner"
 
@@ -111,7 +41,6 @@
 	name = "dense stack of papers"
 	desc = ""
 	icon_state = "paperstack"
-
 
 /obj/structure/fluff/divine
 	name = "Miracle"
@@ -151,12 +80,6 @@
 	name = "shrine"
 	desc = ""
 	icon_state = "shrine"
-
-/obj/structure/fluff/fokoff_sign
-	name = "crude sign"
-	desc = ""
-	icon = 'icons/obj/fluff.dmi'
-	icon_state = "fokof"
 
 /obj/structure/fluff/big_chain
 	name = "giant chain"
@@ -766,19 +689,6 @@
 					icon_state = "signwrote"
 	..()
 
-/obj/structure/fluff/dryingrack
-	name = "drying rack"
-	desc = ""
-	icon = 'icons/roguetown/misc/structure.dmi'
-	icon_state = "dryrack"
-	density = TRUE
-	anchored = TRUE
-	layer = BELOW_OBJ_LAYER
-	blade_dulling = DULLING_BASHCHOP
-	max_integrity = 150
-	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
-	attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
-
 /obj/structure/fluff/alch
 	name = "alchemical lab"
 	desc = ""
@@ -996,7 +906,9 @@
 		/obj/item/roguecoin,
 		/obj/item/roguegem,
 		/obj/item/clothing/ring,
-		/obj/item/ingot,
+		/obj/item/ingot/gold,
+		/obj/item/ingot/silver,
+		/obj/item/ingot/blacksteel,
 		/obj/item/clothing/neck/roguetown/psicross,
 		/obj/item/reagent_containers/glass/cup,
 		/obj/item/roguestatue,
@@ -1224,24 +1136,6 @@
 	if(M.flash_act())
 		var/diff = power - M.confused
 		M.confused += min(power, diff)
-
-/obj/structure/fluff/beach_towel
-	name = "beach towel"
-	desc = ""
-	icon = 'icons/obj/fluff.dmi'
-	icon_state = "railing"
-	density = FALSE
-	anchored = TRUE
-	deconstructible = FALSE
-
-/obj/structure/fluff/beach_umbrella
-	name = "beach umbrella"
-	desc = ""
-	icon = 'icons/obj/fluff.dmi'
-	icon_state = "brella"
-	density = FALSE
-	anchored = TRUE
-	deconstructible = FALSE
 
 /obj/structure/fluff/beach_umbrella/security
 	icon_state = "hos_brella"

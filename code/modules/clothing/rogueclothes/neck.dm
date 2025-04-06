@@ -4,6 +4,7 @@
 	icon = 'icons/roguetown/clothing/neck.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
 	bloody_icon_state = "bodyblood"
+	experimental_inhand = FALSE
 
 /obj/item/clothing/neck/roguetown/coif
 	name = "coif"
@@ -13,7 +14,7 @@
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	blocksound = SOFTHIT
 	body_parts_covered = NECK|HAIR|EARS|HEAD
-	armor = list("blunt" = 33, "slash" = 12, "stab" = 22, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 33, "slash" = 12, "stab" = 22, "piercing" = 2, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
@@ -40,14 +41,26 @@
 					H.update_inv_neck()
 					H.update_inv_head()
 
-
+/obj/item/clothing/neck/roguetown/leather
+	name = "hardened leather gorget"
+	desc = "Sturdy. Durable. Will protect your neck from some good lumbering."
+	icon_state = "lgorget"
+	slot_flags = ITEM_SLOT_NECK
+	blocksound = SOFTHIT
+	body_parts_covered = NECK
+	armor = list("blunt" = 100, "slash" = 70, "stab" = 40, "piercing" = 20, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_SMASH)
+	sewrepair = TRUE
+	max_integrity = 150
+	salvage_result = /obj/item/natural/hide/cured
+	salvage_amount = 1
 
 /obj/item/clothing/neck/roguetown/chaincoif
 	name = "chain coif"
 	icon_state = "chaincoif"
 	item_state = "chaincoif"
 	flags_inv = HIDEHAIR
-	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "piercing" = 20, "fire" = 0, "acid" = 0)
 
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
@@ -80,6 +93,37 @@
 					var/mob/living/carbon/H = user
 					H.update_inv_neck()
 					H.update_inv_head()
+
+/obj/item/clothing/neck/roguetown/chaincoif/chainmantle
+	name = "chain mantle"
+	desc = "A more durable, thicker, piece of chain neck protection, though, this one only covers the neck and mouth when pulled up."
+	icon_state = "chainmantle"
+	max_integrity = 300
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
+	body_parts_covered = NECK|MOUTH
+	slot_flags = ITEM_SLOT_NECK
+	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+
+/obj/item/clothing/neck/roguetown/chaincoif/chainmantle/AdjustClothes(mob/user)
+	if(loc == user)
+		if(adjustable == CAN_CADJUST)
+			adjustable = CADJUSTED
+			if(toggle_icon_state)
+				icon_state = "[initial(icon_state)]_t"
+			flags_inv = null
+			body_parts_covered = NECK
+			if(ishuman(user))
+				var/mob/living/carbon/H = user
+				H.update_inv_neck()
+				H.update_inv_head()
+		else if(adjustable == CADJUSTED)
+			ResetAdjust(user)
+			flags_inv = HIDESNOUT|HIDEFACIALHAIR|HIDEFACE
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_neck()
+
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	name = "iron chain coif"
@@ -129,7 +173,7 @@
 /obj/item/clothing/neck/roguetown/bevor
 	name = "bevor"
 	icon_state = "bevor"
-	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
@@ -143,7 +187,7 @@
 /obj/item/clothing/neck/roguetown/gorget
 	name = "gorget"
 	icon_state = "gorget"
-	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150
@@ -156,7 +200,7 @@
 /obj/item/clothing/neck/roguetown/fencerguard
 	name = "fencer neckguard"
 	icon_state = "fencercollar"
-	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 100, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150
@@ -189,6 +233,21 @@
 		return
 	qdel(src)
 
+/obj/item/clothing/neck/roguetown/gorget/cursed_collar
+	name = "cursed collar"
+	desc = "A metal collar that seems to radiate an ominous aura."
+	icon_state = "cursed_collar"
+	item_state = "cursed_collar"
+	armor = list("blunt" = 0, "slash" = 0, "stab" = 0, "piercing" = 0, "fire" = 0, "acid" = 0)
+	smeltresult = /obj/item/ingot/iron
+	anvilrepair = /datum/skill/craft/armorsmithing
+	max_integrity = 150
+	resistance_flags = FIRE_PROOF
+	slot_flags = ITEM_SLOT_NECK
+	body_parts_covered = NECK
+	prevent_crits = list()
+	blocksound = PLATEHIT
+
 /obj/item/clothing/neck/roguetown/psicross
 	name = "psycross"
 	desc = "'With every broken bone, I swore I lived!'"
@@ -197,7 +256,7 @@
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
 	sellprice = 10
-	experimental_onhip = TRUE
+	experimental_onhip = FALSE
 	anvilrepair = /datum/skill/craft/armorsmithing
 	grid_width = 32
 	grid_height = 32
@@ -356,6 +415,26 @@
 	sellprice = 100
 	anvilrepair = /datum/skill/craft/armorsmithing
 
+/obj/item/clothing/neck/roguetown/ornateamulet/noble
+	var/choicename = FALSE
+	name = "Heirloom Amulet"
+	desc = "An ornate amulet representing a prestigious noble house."
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_WRISTS|ITEM_SLOT_HIP
+	sellprice = 10
+
+/obj/item/clothing/neck/roguetown/ornateamulet/noble/attack_right(mob/user)
+	if(choicename)
+		return
+	var/current_time = world.time
+	var/namechoice = input(user, "Input a new name", "Rename Object")
+	if(namechoice)
+		name = namechoice
+		choicename = TRUE
+	else
+		return
+	if(world.time > (current_time + 30 SECONDS))
+		return
+
 /obj/item/clothing/neck/roguetown/skullamulet
 	name = "Skull Amulet"
 	desc = "Gold shaped into the form of a skull, made into an amulet."
@@ -383,8 +462,27 @@
 	name = "bell collar"
 	desc = "A band of leather with a bell protects the local zads from the local catfolk."
 	icon_state = "bell_collar"
-	icon_state = "bell_collar"
 
 /obj/item/clothing/neck/roguetown/collar/bell_collar/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS)
+
+/obj/item/clothing/neck/roguetown/collar/feldcollar
+	name = "feldcollar"
+	desc = "A sturdy collar made of leather, commonly worn by field workers."
+	icon_state = "feldcollar"
+	item_state = "feldcollar"
+	resistance_flags = FIRE_PROOF
+	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE
+
+/obj/item/clothing/neck/roguetown/collar/surgcollar
+	name = "surgcollar"
+	desc = "A specialized collar designed for medical practitioners, with reinforced padding."
+	icon_state = "surgcollar"
+	item_state = "surgcollar"
+	resistance_flags = FIRE_PROOF
+	dropshrink = 0.5
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
+	body_parts_covered = NECK|FACE

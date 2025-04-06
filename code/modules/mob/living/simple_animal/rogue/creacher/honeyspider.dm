@@ -68,6 +68,8 @@
 		gender = FEMALE
 	update_icon()
 	ai_controller.set_blackboard_key(BB_BASIC_FOODS, food_type)
+	AddElement(/datum/element/ai_retaliate)
+	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/AttackingTarget()

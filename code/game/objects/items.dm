@@ -54,7 +54,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
-	pressure_resistance = 4
 	var/obj/item/master = null
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
@@ -134,7 +133,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	var/canMouseDown = FALSE
 	var/can_parry = FALSE
-	var/associated_skill
+	var/datum/skill/associated_skill
 
 	var/list/possible_item_intents = list(/datum/intent/use)
 
@@ -202,7 +201,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	///played when an item that is equipped blocks a hit
 	var/list/blocksound
 
-	var/damage_type = "blunt"
+	var/thrown_damage_flag = "blunt"
 
 	var/sheathe_sound // played when item is placed on hip_r or hip_l, the belt side slots
 
@@ -210,6 +209,18 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	// Can this be used against a training dummy to learn skills? Prevents dumb exploits.
 	var/istrainable = FALSE
+
+	/// This is what we get when we either tear up or salvage a piece of clothing
+	var/obj/item/salvage_result = null
+
+	/// The amount of salvage we get out of salvaging with scissors
+	var/salvage_amount = 0 //This will be more accurate when sewing recipes get sorted
+
+	/// Temporary snowflake var to be used in the rare cases clothing doesn't require fibers to sew, to avoid material duping
+	var/fiber_salvage = FALSE
+
+	/// Number of torn sleves, important for salvaging calculations and examine text
+	var/torn_sleeve_number = 0
 
 /obj/item/Initialize()
 	. = ..()
@@ -253,9 +264,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					B.remove()
 					B.generate_appearance()
 					B.apply()
+			if(toggle_state)
+				icon_state = "[toggle_state]1"
 			return
 		if(gripsprite)
-			icon_state = initial(icon_state)
+			if(!toggle_state)
+				icon_state = initial(icon_state)
+			else
+				icon_state = "[toggle_state]"
 			var/datum/component/decal/blood/B = GetComponent(/datum/component/decal/blood)
 			if(B)
 				B.remove()
@@ -407,9 +423,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				if(WLENGTH_GREAT)
 					inspec += "Great"
 
-//		if(eweight)
-//			inspec += "\n<b>ENCUMBRANCE:</b> [eweight]"
-
 		if(alt_intents)
 			inspec += "\n<b>ALT-GRIP</b>"
 
@@ -427,20 +440,29 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/meme = round(((blade_int / max_blade_int) * 100), 1)
 			inspec += "[meme]%"
 
+		if(associated_skill && associated_skill.name)
+			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
+
 //**** CLOTHING STUFF
 
 		if(istype(src,/obj/item/clothing))
 			var/obj/item/clothing/C = src
+			inspec += "<br>"
+			inspec += C.defense_examine()
+			if(C.body_parts_covered)
+				inspec += "\n<b>COVERAGE: <br></b>"
+				inspec += " | "
+				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
+					inspec += "<b>[capitalize(zone)]</b> | "
+				inspec += "<br>"
 			if(C.prevent_crits)
 				if(length(C.prevent_crits))
-					inspec += "\n<b>DEFENSE:</b>"
+					inspec += "\n<b>PREVENTS CRITS:</b>"
 					for(var/X in C.prevent_crits)
-						inspec += "\n<b>[X] damage</b>"
-
-			if(C.body_parts_covered)
-				inspec += "\n<b>COVERAGE:</b>"
-				for(var/zone in body_parts_covered2organ_names(C.body_parts_covered))
-					inspec += "\n<b>[zone]</b>"
+						if(X == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
+							X = "pick"
+						inspec += ("\n<b>[capitalize(X)]</b>")
+				inspec += "<br>"
 
 //**** General durability
 
@@ -557,6 +579,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!isturf(src.loc))
 		return FALSE
 	for(var/obj/structure/table/T in src.loc)
+		return TRUE
+	for(var/obj/machinery/anvil/A in src.loc)
 		return TRUE
 	return FALSE
 
@@ -808,7 +832,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		else
 			playsound(src, drop_sound, YEET_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
-		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum, damage_type = src.damage_type)
+		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum, damage_flag = thrown_damage_flag)
 
 /obj/item/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
 	thrownby = thrower
@@ -945,8 +969,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	else
 		. = ""
 
-/obj/item/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_type = "blunt")
-	return SEND_SIGNAL(src, COMSIG_ATOM_HITBY, AM, skipcatch, hitpush, blocked, throwingdatum, damage_type)
+/obj/item/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
+	return SEND_SIGNAL(src, COMSIG_ATOM_HITBY, AM, skipcatch, hitpush, blocked, throwingdatum, damage_flag)
 
 /obj/item/attack_animal(mob/living/simple_animal/M)
 	if (obj_flags & CAN_BE_HIT)
@@ -1208,3 +1232,19 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/on_embed(obj/item/bodypart/bp)
 	return
+
+/obj/item/proc/defense_examine()
+	var/list/str = list()
+	if(istype(src, /obj/item/clothing))
+		var/obj/item/clothing/C = src
+		if(C.armor)
+			var/defense = "<u><b>ABSORPTION: </b></u><br>"
+			var/datum/armor/def_armor = C.armor
+			defense += "[colorgrade_rating("BLUNT", def_armor.blunt, elaborate = TRUE)] | "
+			defense += "[colorgrade_rating("SLASH", def_armor.slash, elaborate = TRUE)] | "
+			defense += "[colorgrade_rating("STAB", def_armor.stab, elaborate = TRUE)] | "
+			defense += "[colorgrade_rating("PIERCING", def_armor.piercing, elaborate = TRUE)] "
+			str += "[defense]<br>"
+		else
+			str += "NO DEFENSE"
+	return str

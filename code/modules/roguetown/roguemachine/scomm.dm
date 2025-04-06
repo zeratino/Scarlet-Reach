@@ -1,3 +1,4 @@
+#define GARRISON_SCOM_COLOR "#FF4242"
 
 /obj/structure/roguemachine/scomm
 	name = "SCOM"
@@ -118,7 +119,7 @@
 /obj/structure/roguemachine/scomm/MiddleClick(mob/living/carbon/human/user)
 	if(.)
 		return
-	if((HAS_TRAIT(user, TRAIT_GUARDSMAN) || (HAS_TRAIT(user, TRAIT_KNIGHTSMAN)) || (HAS_TRAIT(user, TRAIT_WOODSMAN)) || (user.job == "Squire") || (user.job == "Marshal") || (user.job == "Grand Duke") || (user.job == "Guard Captain") || (user.job == "Grand Duchess")))
+	if((HAS_TRAIT(user, TRAIT_GUARDSMAN) || (HAS_TRAIT(user, TRAIT_KNIGHTSMAN)) || (user.job == "Warden") || (user.job == "Squire") || (user.job == "Marshal") || (user.job == "Grand Duke") || (user.job == "Knight Captain") || (user.job == "Grand Duchess")))
 		if(alert("Would you like to swap lines or connect to a jabberline?",, "swap", "jabberline") != "jabberline")
 			garrisonline = !garrisonline
 			to_chat(user, span_info("I [garrisonline ? "connect to the garrison SCOMline" : "connect to the general SCOMLINE"]"))
@@ -265,6 +266,7 @@
 				return*/
 			raw_message = "<small>[raw_message]</small>"
 		if(garrisonline)
+			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
 			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)
 				S.repeat_message(raw_message, src, usedcolor, message_language)
 			for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
@@ -321,6 +323,7 @@
 	obj_flags = null
 	icon = 'icons/roguetown/items/misc.dmi'
 	w_class = WEIGHT_CLASS_SMALL
+	experimental_inhand = FALSE
 	flags_1 = HEAR_1
 	muteinmouth = TRUE
 	var/listening = TRUE
@@ -419,6 +422,7 @@
 	obj_flags = null
 	icon = 'icons/roguetown/clothing/neck.dmi'
 	w_class = WEIGHT_CLASS_SMALL
+	experimental_inhand = FALSE
 	flags_1 = HEAR_1
 	muteinmouth = TRUE
 	var/listening = TRUE
@@ -488,6 +492,7 @@
 	obj_flags = null
 	icon = 'icons/roguetown/items/misc.dmi'
 	w_class = WEIGHT_CLASS_SMALL
+	experimental_inhand = FALSE
 	flags_1 = HEAR_1
 	muteinmouth = TRUE
 	var/listening = TRUE
@@ -583,6 +588,7 @@
 	force = 10
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
+	experimental_inhand = FALSE
 	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP|ITEM_SLOT_NECK|ITEM_SLOT_RING
 	possible_item_intents = list(INTENT_GENERIC)
 	grid_width = 32
@@ -643,6 +649,7 @@
 	force = 10
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
+	experimental_inhand = FALSE
 	grid_width = 32
 	grid_height = 32
 
@@ -719,6 +726,7 @@
 			for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
 				S.repeat_message(input_text, src, usedcolor)
 		if(garrisonline)
+			input_text = "<span style='color: [GARRISON_SCOM_COLOR]'>[input_text]</span>" //Prettying up for Garrison line
 			for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
 				S.repeat_message(input_text, src, usedcolor)
 			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)

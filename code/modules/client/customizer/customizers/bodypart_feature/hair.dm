@@ -262,6 +262,7 @@
 		/datum/sprite_accessory/hair/head/short,
 		/datum/sprite_accessory/hair/head/shorthair2,
 		/datum/sprite_accessory/hair/head/shorthair3,
+		/datum/sprite_accessory/hair/head/shorthair6,
 		/datum/sprite_accessory/hair/head/shorthair7,
 		/datum/sprite_accessory/hair/head/rosa,
 		/datum/sprite_accessory/hair/head/shoulderlength,
@@ -385,6 +386,15 @@
 		/datum/sprite_accessory/hair/head/royalcurls,
 		/datum/sprite_accessory/hair/head/dreadlocksmessy,
 		/datum/sprite_accessory/hair/head/suave,
+		/datum/sprite_accessory/hair/head/dave,
+		/datum/sprite_accessory/hair/head/mediumbraid,
+		/datum/sprite_accessory/hair/head/countryponytailalt,
+		/datum/sprite_accessory/hair/head/ponytailwitcher,
+		/datum/sprite_accessory/hair/head/spicy,
+		/datum/sprite_accessory/hair/head/stacy,
+		/datum/sprite_accessory/hair/head/stacybun,
+		/datum/sprite_accessory/hair/head/zoey,
+		/datum/sprite_accessory/hair/head/kusanagi_alt,
 		)
 
 /datum/customizer_choice/bodypart_feature/hair/head/humanoid/get_random_accessory(datum/customizer_entry/entry, datum/preferences/prefs)

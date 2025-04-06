@@ -11,7 +11,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/cloth
-	name = "cloth"
+	name = "cloth (2 fibers)"
 	result = /obj/item/natural/cloth
 	reqs = list(/obj/item/natural/fibers = 2)
 	tools = list(/obj/item/needle)
@@ -21,7 +21,7 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/cloth5x
-	name = "cloth 5x"
+	name = "cloth 5x (10 fibers)"
 	result = list(
 				/obj/item/natural/cloth,
 				/obj/item/natural/cloth,
@@ -512,7 +512,7 @@
 	craftdiff = 1
 
 /datum/crafting_recipe/roguetown/bag
-	name = "bag"
+	name = "bag (1 fibers, 1 cloth)"
 	result = /obj/item/storage/roguebag/crafted
 	reqs = list(/obj/item/natural/fibers = 1,
 				/obj/item/natural/cloth = 1)
@@ -520,7 +520,7 @@
 	skillcraft = /datum/skill/misc/sewing
 
 /datum/crafting_recipe/roguetown/bagx5
-	name = "bag x5"
+	name = "bag x5 (5 fibers, 5 cloth)"
 	result = list(
 				/obj/item/storage/roguebag/crafted,
 				/obj/item/storage/roguebag/crafted,
@@ -635,11 +635,11 @@
 				  /obj/item/paper/scroll)
 	reqs = list(/obj/item/grown/log/tree/small = 1,
 	/datum/reagent/water = 48)
-	structurecraft = /obj/structure/fluff/dryingrack
+	structurecraft = /obj/machinery/tanningrack
 	craftdiff = 1
 
 /datum/crafting_recipe/roguetown/tribalrags
-	name = "tribal rags"
+	name = "tribal rags (1 fibers, 1 hide)"
 	result = /obj/item/clothing/suit/roguetown/shirt/tribalrag
 	reqs = list(/obj/item/natural/hide = 1,
 				/obj/item/natural/fibers = 1)
@@ -754,23 +754,204 @@
 	name = "heater shield"
 	result = /obj/item/rogueweapon/shield/heater/crafted
 	reqs = list(/obj/item/grown/log/tree/small = 2,
-				/obj/item/natural/hide = 1)
+				/obj/item/natural/hide/cured = 1)
 	skillcraft = /datum/skill/craft/carpentry
 
 /obj/item/rogueweapon/shield/heater/crafted
 	sellprice = 6
 
 /datum/crafting_recipe/roguetown/collar
-	name = "Collar"
+	name = "collar"
 	result = /obj/item/clothing/neck/roguetown/collar
-	reqs = list(/obj/item/natural/hide = 1)
+	reqs = list(/obj/item/natural/hide/cured = 1)
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/bell_collar
-	name = "Bell Collar"
+	name = "bell Collar"
 	result = /obj/item/clothing/neck/roguetown/collar/bell_collar
 	reqs = list(
-				/obj/item/natural/hide = 1,
+				/obj/item/natural/hide/cured = 1,
 				/obj/item/jingle_bells = 1,
 				)
 	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/feldcollar
+	name = "feldcollar"
+	result = /obj/item/clothing/neck/roguetown/collar/feldcollar
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/surgcollar
+	name = "surgcollar"
+	result = /obj/item/clothing/neck/roguetown/collar/surgcollar
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 0
+	
+// BOUQUETS & CROWNS
+
+/datum/crafting_recipe/roguetown/bouquet_rosa
+	name = "rosa bouquet"
+	result = /obj/item/bouquet/rosa
+	reqs = list(/obj/item/alch/rosa = 4,
+				/obj/item/natural/fibers = 2,
+				/obj/item/paper/scroll = 1)
+	craftdiff = 0
+	verbage_simple = "arranged"
+	verbage = "arranges"
+
+/datum/crafting_recipe/roguetown/bouquet_salvia
+	name = "salvia bouquet"
+	result = /obj/item/bouquet/salvia
+	reqs = list(/obj/item/alch/salvia = 4,
+				/obj/item/natural/fibers = 2,
+				/obj/item/paper/scroll = 1)
+	craftdiff = 0
+	verbage_simple = "arranged"
+	verbage = "arranges"
+
+/datum/crafting_recipe/roguetown/bouquet_matricaria
+	name = "matricaria bouquet"
+	result = /obj/item/bouquet/matricaria
+	reqs = list(/obj/item/alch/matricaria = 4,
+				/obj/item/natural/fibers = 2,
+				/obj/item/paper/scroll = 1)
+	craftdiff = 0
+	verbage_simple = "arranged"
+	verbage = "arranges"
+
+/datum/crafting_recipe/roguetown/bouquet_calendula
+	name = "calendula bouquet"
+	result = /obj/item/bouquet/calendula
+	reqs = list(/obj/item/alch/calendula = 4,
+				/obj/item/natural/fibers = 2,
+				/obj/item/paper/scroll = 1)
+	craftdiff = 0
+	verbage_simple = "arranged"
+	verbage = "arranges"
+
+/datum/crafting_recipe/roguetown/flowercrown_rosa
+	name = "rosa crown"
+	result = /obj/item/flowercrown/rosa
+	reqs = list(/obj/item/alch/rosa = 4,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 0
+	verbage_simple = "tied"
+	verbage = "ties"
+
+/datum/crafting_recipe/roguetown/flowercrown_salvia
+	name = "salvia crown"
+	result = /obj/item/flowercrown/salvia
+	reqs = list(/obj/item/alch/salvia = 4,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 0
+	verbage_simple = "tied"
+	verbage = "ties"
+
+/datum/crafting_recipe/roguetown/candle/eora
+	name = "eora's candle (x3)"
+	result = list(
+				/obj/item/candle/eora,
+				/obj/item/candle/eora,
+				/obj/item/candle/eora,
+				)
+	reqs = list(/obj/item/reagent_containers/food/snacks/tallow = 1,
+				/obj/item/alch/rosa = 1,
+				/datum/reagent/water/blessed = 25)
+
+/datum/crafting_recipe/roguetown/slingcraft
+	name = "sling"
+	result = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
+	reqs = list(/obj/item/natural/fibers = 6)
+	verbage_simple = "twist"
+	verbage = "twists"
+	craftdiff = 1 //you should make some ammo first!
+	
+/datum/crafting_recipe/roguetown/slingpouchcraft
+	name = "sling bullet pouch"
+	result = /obj/item/quiver/sling/
+	reqs = list(/obj/item/natural/fibers = 1, /obj/item/natural/cloth = 1)
+	verbage_simple = "craft"
+	verbage = "crafts"
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/stonebullets
+	name = "stone sling bullets (x2)"
+	result = list(
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				)
+	reqs = list(/obj/item/natural/stone = 1)
+	verbage_simple = "smooth"
+	verbage = "smooths"
+	craftdiff = 0
+	
+/datum/crafting_recipe/roguetown/stonebullets10x
+	name = "stone sling bullets (x10)"
+	result = list(
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone,
+				)
+	reqs = list(/obj/item/natural/stone = 5)
+	verbage_simple = "smooth"
+	verbage = "smooths"
+	craftdiff = 0
+
+/datum/crafting_recipe/hair_dye
+    name = "hair dye cream"
+    result = /obj/item/hair_dye_cream
+    reqs = list(
+        /obj/item/reagent_containers/glass/bowl = 1,
+        /obj/item/reagent_containers/food/snacks/grown/berries/rogue = 3
+    )
+
+// DIE
+
+/datum/crafting_recipe/roguetown/d4
+	name = "bone die (d4)"
+	result = /obj/item/dice/d4
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = list(/obj/item/rogueweapon/huntingknife)
+	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/d6
+	name = "bone die (d6)"
+	result = /obj/item/dice/d6
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = list(/obj/item/rogueweapon/huntingknife)
+	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/d8
+	name = "bone die (d8)"
+	result = /obj/item/dice/d8
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = list(/obj/item/rogueweapon/huntingknife)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/d10
+	name = "bone die (d10)"
+	result = /obj/item/dice/d10
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = list(/obj/item/rogueweapon/huntingknife)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/d12
+	name = "bone die (d12)"
+	result = /obj/item/dice/d12
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = list(/obj/item/rogueweapon/huntingknife)
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/d20
+	name = "bone die (d20)"
+	result = /obj/item/dice/d20
+	reqs = list(/obj/item/natural/bone = 1)
+	tools = list(/obj/item/rogueweapon/huntingknife)
+	craftdiff = 3

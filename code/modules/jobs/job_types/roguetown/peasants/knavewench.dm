@@ -45,12 +45,13 @@
 	cloak = /obj/item/clothing/cloak/apron/waist
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
-	if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
+	if(should_wear_masc_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 		pants = /obj/item/clothing/under/roguetown/tights/black
-	else
+	else if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/rags
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 1)
 	H.change_stat("intelligence", 1)
 	H.change_stat("speed", 1) //5 points (weighted)
+	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)

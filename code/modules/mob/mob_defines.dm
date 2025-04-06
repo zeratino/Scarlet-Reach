@@ -13,7 +13,6 @@
 	animate_movement = SLIDE_STEPS
 	flags_1 = HEAR_1
 	hud_possible = list(ANTAG_HUD)
-	pressure_resistance = 8
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	throwforce = 10
 	vis_flags = VIS_INHERIT_PLANE
@@ -271,6 +270,7 @@
 
 	var/setparrytime = 12
 	var/dodgetime = 12
+	var/magearmor = 0
 
 	var/last_dodge = 0
 	var/last_parry = 0
@@ -290,3 +290,7 @@
 	var/music_playing = FALSE
 	/// Tracker for amount of turfs we sprinted over, for things like bumping and charging
 	var/sprinted_tiles = 0
+	var/sprint_dir = 1
+
+	/// Whether the mob is pixel shifted or not
+	var/is_shifted = FALSE

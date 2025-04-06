@@ -8,7 +8,6 @@
 	hud_type = /datum/hud/human
 	base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, INTENT_HARM)
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE, INTENT_GIVE)
-	pressure_resistance = 25
 	can_buckle = TRUE
 	buckle_lying = FALSE
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
@@ -77,7 +76,7 @@
 
 	var/list/datum/bioware = list()
 
-	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/parrot))
+	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human))
 	var/lastpuke = 0
 	var/last_fire_update
 	var/account_id
@@ -109,7 +108,13 @@
 
 	var/headshot_link = null
 	var/flavortext = null
+	var/flavortext_display = null
 	var/ooc_notes = null
+	var/ooc_notes_display = null
+	var/ooc_extra_link
+	var/ooc_extra
+	var/is_legacy = FALSE
+	var/received_resident_key = FALSE
 
 	possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\
@@ -122,3 +127,5 @@
 
 	var/voice_type = null // LETHALSTONE EDIT: defines what sound pack we use. keep this null so mobs resort to their typical gender typing - preferences set this
 	var/datum/statpack/statpack = null // Lethalstone Port - statpacks for greater customization
+	var/second_voice	// Virtue-specific. Can be swapped to / from and changed.
+	var/original_voice

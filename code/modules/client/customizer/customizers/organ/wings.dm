@@ -19,6 +19,7 @@
 	sprite_accessories = list(
 		/datum/sprite_accessory/wings/bat,
 		/datum/sprite_accessory/wings/feathery,
+		/datum/sprite_accessory/wings/featheryv2,
 		/datum/sprite_accessory/wings/wide/succubus,
 		/datum/sprite_accessory/wings/fairy,
 		/datum/sprite_accessory/wings/bee,
@@ -38,6 +39,7 @@
 		)
 
 /datum/customizer/organ/wings/moth
+	name = "Fluvian Wings"
 	allows_disabling = TRUE
 	default_disabled = FALSE
 	customizer_choices = list(/datum/customizer_choice/organ/wings/moth)

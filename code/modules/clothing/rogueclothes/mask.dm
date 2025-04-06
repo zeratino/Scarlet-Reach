@@ -4,6 +4,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/masks.dmi'
 	body_parts_covered = FACE
 	slot_flags = ITEM_SLOT_MASK
+	experimental_inhand = FALSE
 
 /obj/item/clothing/mask/rogue/spectacles
 	name = "spectacles"
@@ -87,7 +88,7 @@
 	resistance_flags = FIRE_PROOF
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
-	flags_inv = HIDEFACE
+	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
 	block2add = FOV_BEHIND
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
@@ -104,7 +105,7 @@
 	resistance_flags = FIRE_PROOF
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
-	flags_inv = HIDEFACE
+	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
 	block2add = FOV_BEHIND
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
@@ -118,16 +119,62 @@
 	icon_state = "psydonmask"
 	item_state = "psydonmask"
 
+/obj/item/clothing/mask/rogue/facemask/prisoner
+	name = "cursed mask"
+	desc = "An iron mask that seals around the head, making it impossible to remove. It seems to be enchanted with some kind of vile magic..."
+	var/active_item
+	var/bounty_amount
+
 /obj/item/clothing/mask/rogue/facemask/prisoner/Initialize()
 	. = ..()
-	name = "cursed mask"
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /obj/item/clothing/mask/rogue/facemask/prisoner/dropped(mob/living/carbon/human/user)
 	. = ..()
+	REMOVE_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
+	REMOVE_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
 	if(QDELETED(src))
 		return
 	qdel(src)
+
+/obj/item/clothing/mask/rogue/facemask/prisoner/proc/timerup(mob/living/carbon/human/user)
+	REMOVE_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
+	REMOVE_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
+	visible_message(span_warning("The cursed mask opens with a click, falling off of [user]'s face and clambering apart on the ground, their penance complete."))
+	say("YOUR PENANCE IS COMPLETE.")
+	for(var/name in GLOB.outlawed_players)
+		if(user.real_name == name)
+			GLOB.outlawed_players -= user.real_name
+			priority_announce("[user.real_name] has completed their penance. Justice has been served in the eyes of Ravox.", "PENANCE", 'sound/misc/bell.ogg', "Captain")
+	playsound(src.loc, pick('sound/items/pickgood1.ogg','sound/items/pickgood2.ogg'), 5, TRUE)
+	if(QDELETED(src))
+		return
+	qdel(src)
+	
+
+/obj/item/clothing/mask/rogue/facemask/prisoner/equipped(mob/living/user, slot)
+	. = ..()
+	if(active_item)
+		return
+	else if(slot == SLOT_WEAR_MASK)
+		active_item = TRUE
+		to_chat(user, span_warning("This accursed mask pacifies me!"))
+		ADD_TRAIT(user, TRAIT_PACIFISM, "cursedmask")
+		ADD_TRAIT(user, TRAIT_SPELLCOCKBLOCK, "cursedmask")
+		if(HAS_TRAIT(user, TRAIT_RITUALIST))
+			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+		var/timer = 20 MINUTES
+
+		if(bounty_amount >= 100)
+			var/additional_time = bounty_amount * 0.1
+			additional_time = round(additional_time)
+			timer += additional_time MINUTES
+
+		var/timer_minutes = timer / 600
+
+		addtimer(CALLBACK(src, PROC_REF(timerup), user), timer)
+		say("YOUR PENANCE WILL BE COMPLETE IN [timer_minutes] MINUTES.")
+	return
 
 /obj/item/clothing/mask/rogue/facemask/steel
 	name = "steel mask"
@@ -145,7 +192,7 @@
 /obj/item/clothing/mask/rogue/shepherd
 	name = "halfmask"
 	icon_state = "shepherd"
-	flags_inv = HIDEFACE|HIDEFACIALHAIR
+	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	body_parts_covered = NECK|MOUTH
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	adjustable = CAN_CADJUST
@@ -166,7 +213,7 @@
 				H.update_inv_wear_mask()
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDEFACIALHAIR
+			flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 			body_parts_covered = NECK|MOUTH
 			if(user)
 				if(ishuman(user))
@@ -182,7 +229,7 @@
 	name = "plague mask"
 	desc = "What better laboratory than the blood-soaked battlefield?"
 	icon_state = "physmask"
-	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS
+	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDESNOUT
 	body_parts_covered = FACE|EARS|EYES|MOUTH|NECK
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	sewrepair = TRUE
@@ -199,7 +246,7 @@
 	resistance_flags = FIRE_PROOF
 	armor = list("blunt" = 10, "slash" = 40, "stab" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = null
-	flags_inv = HIDEFACE
+	flags_inv = HIDEFACE|HIDESNOUT
 	body_parts_covered = FACE
 	block2add = FOV_BEHIND
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
@@ -209,7 +256,7 @@
 /obj/item/clothing/mask/rogue/ragmask
 	name = "rag mask"
 	icon_state = "ragmask"
-	flags_inv = HIDEFACE|HIDEFACIALHAIR
+	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	body_parts_covered = NECK|MOUTH
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	adjustable = CAN_CADJUST
@@ -230,7 +277,7 @@
 				H.update_inv_wear_mask()
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDEFACIALHAIR
+			flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 			body_parts_covered = NECK|MOUTH
 			if(user)
 				if(ishuman(user))
@@ -243,3 +290,54 @@
 	icon_state = "naledimask"
 	desc = "Runes and wards, meant for daemons; the gold has somehow rusted in unnatural, impossible agony. The most prominent of these etchings is in the shape of the Naledian psycross."
 	sellprice = 0
+
+/obj/item/clothing/mask/rogue/exoticsilkmask
+	name = "exotic silk mask"
+	icon_state = "exoticsilkmask"
+	flags_inv = HIDEFACE|HIDEFACIALHAIR
+	body_parts_covered = NECK|MOUTH
+	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
+	sewrepair = TRUE
+	adjustable = CAN_CADJUST
+	toggle_icon_state = FALSE
+
+/obj/item/clothing/mask/rogue/exoticsilkmask/AdjustClothes(mob/user)
+	if(loc == user)
+		if(adjustable == CAN_CADJUST)
+			adjustable = CADJUSTED
+			flags_inv = null
+			body_parts_covered = NECK
+			to_chat(user, span_notice("You pull down the [src] to expose your face."))
+			if(ishuman(user))
+				var/mob/living/carbon/H = user
+				H.update_inv_wear_mask()
+		else if(adjustable == CADJUSTED)
+			ResetAdjust(user)
+			flags_inv = HIDEFACE|HIDEFACIALHAIR
+			body_parts_covered = NECK|MOUTH
+			to_chat(user, span_notice("You pull the [src] back up to cover your face."))
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_wear_mask()
+
+/obj/item/clothing/mask/rogue/blindfold
+	name = "blindfold"
+	desc = "A strip of cloth tied around the eyes to block vision."
+	icon_state = "blindfold"
+	item_state = "blindfold"
+	flags_inv = HIDEFACE
+	body_parts_covered = EYES
+	sewrepair = TRUE
+	tint = 3
+	mob_overlay_icon = 'icons/mob/clothing/eyes.dmi'
+	icon = 'icons/obj/clothing/glasses.dmi'
+
+/obj/item/clothing/mask/rogue/blindfold/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_MASK)
+		user.become_blind("blindfold_[REF(src)]")
+
+/obj/item/clothing/mask/rogue/blindfold/dropped(mob/living/carbon/human/user)
+	..()
+	user.cure_blind("blindfold_[REF(src)]")

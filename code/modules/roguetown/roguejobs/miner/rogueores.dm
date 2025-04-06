@@ -3,6 +3,7 @@
 	icon = 'icons/roguetown/items/ore.dmi'
 	icon_state = "ore"
 	w_class = WEIGHT_CLASS_NORMAL
+	experimental_inhand = FALSE
 	grid_width = 32
 	grid_height = 32
 
@@ -123,6 +124,9 @@
 /obj/item/ingot/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/rogueweapon/tongs))
 		var/obj/item/rogueweapon/tongs/T = I
+		if (loc in user.contents)
+			to_chat(user, span_warning("I can't take out \the [src] from inside."))
+			return
 		if(!T.hingot)
 			forceMove(T)
 			T.hingot = src
@@ -188,3 +192,16 @@
 	icon_state = "ingotblacksteel"
 	smeltresult = /obj/item/ingot/blacksteel
 	sellprice = 90
+//Blessed Ingots
+/obj/item/ingot/steelholy/
+	name = "holy steel bar"
+	desc = "This ingot of steel has been touched by Malum. It radiates heat, even when outside a forge."
+	icon_state = "ingotsteelholy"
+	smeltresult = /obj/item/ingot/steel //Smelting it removes the blessing
+	sellprice = 60
+/obj/item/ingot/silverblessed/
+	name = "blessed silver bar"
+	desc = "This bar radiates a divine purity. Treasured by the realms and commonly found in Otavan weaponry."
+	icon_state = "ingotsilvblessed"
+	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
+	sellprice = 100

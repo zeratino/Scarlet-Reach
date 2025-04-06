@@ -5,8 +5,7 @@
 	sight = 0
 	see_in_dark = 8
 	hud_possible = list(ANTAG_HUD)
-	pressure_resistance = 10
-
+	
 	var/resize = 1 //Badminnery resize
 	var/lastattacker = null
 	var/lastattackerckey = null
@@ -29,9 +28,6 @@
 	var/resting = FALSE
 	var/wallpressed = FALSE
 
-	var/pixelshifted = FALSE
-	var/pixelshift_x = 0
-	var/pixelshift_y = 0
 	var/pixelshift_layer = 0
 
 	var/lying = 0			//number of degrees. DO NOT USE THIS IN CHECKS. CHECK FOR MOBILITY FLAGS INSTEAD!!
@@ -147,6 +143,10 @@
 	var/bleedsuppress = 0 //for stopping bloodloss, eventually this will be limb-based like bleeding
 
 	var/list/next_attack_msg = list()
+
+	///The NAME (not the reference) of the mob's summoner and probable master.
+	var/summoner = null
+
 
 	var/datum/component/personal_crafting/craftingthing
 

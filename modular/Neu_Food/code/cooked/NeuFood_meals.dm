@@ -53,6 +53,21 @@
 	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
 	plateable = TRUE
 
+/obj/item/reagent_containers/food/snacks/rogue/onionsteak/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	if(!experimental_inhand)
+		return
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			if(do_after(user,3 SECONDS, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/steakcarrotonion(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
 /obj/item/reagent_containers/food/snacks/rogue/onionsteak/plated
 	icon_state = "onionsteak_plated"
 	item_state = "plate_food"
@@ -66,6 +81,196 @@
 	trash = /obj/item/cooking/platter
 	rotprocess =  SHELFLIFE_LONG
 
+/*	..................   Carrot Steak   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/carrotsteak
+	name = "carrot steak"
+	desc = "Roasted flesh paired with savory baked carrot. Fragrant and slathered with juices of both ingredients to a perfect mouth-watering sauce."
+	icon_state = "carrotsteak"
+	tastes = list("steak" = 1, "carrot" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT+3)
+	foodtype = MEAT
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+
+/obj/item/reagent_containers/food/snacks/rogue/carrotsteak/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	if(!experimental_inhand)
+		return
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/preserved/onion_fried))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			if(do_after(user,3 SECONDS, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/steakcarrotonion(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
+/*	.................   Steak & carrot & onion   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/steakcarrotonion
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
+	tastes = list("steak" = 1, "onion" = 1, "carrots" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT+3)
+	name = "steak meal"
+	desc = ""
+	icon_state = "steakmeal"
+	foodtype = VEGETABLES | MEAT
+	warming = 3 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+
+/*........... Pepperfilet */
+/obj/item/reagent_containers/food/snacks/rogue/pepperfish
+	name = "pepperfilet"
+	desc = "Roasted fish flipped against itself and coated in pepper."
+	icon_state = "pepperfish"
+	tastes = list("warm fish" = 1, "pepper" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
+	faretype = FARE_FINE
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/* salmon st dendor*/
+/obj/item/reagent_containers/food/snacks/rogue/dendorsalmon
+	name = "saint dendor's salmon"
+	desc = "A dish invented in Otava, of a green sauce of fat and herbs atop salmon."
+	icon_state = "salmon_st_columbia"
+	tastes = list("warm fish" = 1, "fatty herbaceousness" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_FINE
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/* salmon wit the berry on it */
+/obj/item/reagent_containers/food/snacks/rogue/berrysalmon
+	name = "berrymash salmon"
+	desc = "A dish of jacksberries mashed atop peppered salmon. Hearty."
+	icon_state = "salmon_berry"
+	tastes = list("peppered fish" = 1, "fruity lightness" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_FINE
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/* lobsta with the pepper all over it*/
+/obj/item/reagent_containers/food/snacks/rogue/pepperlobsta
+	name = "peppertail"
+	desc = "A sprinkle of pepper atop the tail of a cretinous beast, meant to make it palatable for more than peasantry."
+	icon_state = "pepper_tail"
+	tastes = list("peppered crustacean" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_AVERAGE)
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/*garlick seabass*/
+/obj/item/reagent_containers/food/snacks/rogue/garlickbass
+	name = "garlicked seabass"
+	desc = "Seabass, with cloves of garlick smothered onto it. Delicious."
+	icon_state = "garlick_seabass"
+	tastes = list("pungent aromatics" = 1, "flaky fish goodness" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/*milk clam*/
+/obj/item/reagent_containers/food/snacks/rogue/milkclam
+	name = "milkclams"
+	desc = "Clams, simmered in milk... How queer."
+	icon_state = "milk_clams"
+	tastes = list("milky crustacean" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_FINE
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/*ale cod*/
+/obj/item/reagent_containers/food/snacks/rogue/alecod
+	name = "alecod"
+	desc = "Cod with ale poured over it right after cooking. A... choice pick."
+	icon_state = "milk_clams"
+	tastes = list("flaky ale-soaked fish" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/*onion plaice*/
+/obj/item/reagent_containers/food/snacks/rogue/onionplaice
+	name = "plaice with onion"
+	desc = "A slab of plaice with fried onion. Delicious!"
+	icon_state = "onion_plaice"
+	tastes = list("oniony fish" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_FINE
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/*buttery soles*/
+/obj/item/reagent_containers/food/snacks/rogue/buttersole
+	name = "buttered sole"
+	desc = "A slab of sole, buttered and crispy at the edges."
+	icon_state = "butter_sole"
+	tastes = list("fatty fish" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_POOR
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
+
+/*jellied eel*/
+/obj/item/reagent_containers/food/snacks/rogue/jelliedeel
+	name = "jellied eel"
+	desc = "Jellied eel! Eel in jelly made of eel! By the ten!"
+	icon_state = "jellied_eel"
+	tastes = list("slimy, slippery fish" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_GOOD)
+	faretype = FARE_LAVISH
+	portable = FALSE
+	warming = 5 MINUTES
+	rotprocess = SHELFLIFE_DECENT
+	eat_effect = /datum/status_effect/buff/foodbuff
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	plateable = FALSE
 
 /*	.................   Wiener Cabbage   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/wienercabbage
@@ -295,6 +500,16 @@
 	trash = /obj/item/cooking/platter
 	rotprocess = SHELFLIFE_LONG
 
+/*	.................   Bacon & Eggs   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/friedegg/bacon
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
+	tastes = list("fried cackleberries" = 1, "bacon" = 1)
+	name = "bacon and cackleberries"
+	desc = ""
+	icon_state = "baconegg"
+	eat_effect = /datum/status_effect/buff/foodbuff
+	rotprocess = SHELFLIFE_DECENT
+
 /*	.................   Plated fryfish   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/carp/plated
 	icon = 'modular/Neu_Food/icons/food.dmi'
@@ -349,6 +564,126 @@
 	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
 	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
 	faretype = FARE_FINE // eel's pretty tasty
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/sole/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "solecooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/cod/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "codcooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/lobster/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "lobstercooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/salmon/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "salmoncooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/plaice/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "plaicecooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/bass/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "seabasscooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/sunny/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "sunnycooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
+	portable = FALSE
+	experimental_inhand = FALSE
+	w_class = WEIGHT_CLASS_BULKY
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
+	trash = /obj/item/cooking/platter
+	rotprocess = SHELFLIFE_LONG
+
+/obj/item/reagent_containers/food/snacks/rogue/fryfish/clam/plated
+	icon = 'modular/Neu_Food/icons/food.dmi'
+	desc = "Abyssor's bounty, make sure to eat the eyes!"
+	icon_state = "clamcooked_plated"
+	item_state = "plate_food"
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	faretype = FARE_NEUTRAL
 	portable = FALSE
 	experimental_inhand = FALSE
 	w_class = WEIGHT_CLASS_BULKY
@@ -459,3 +794,72 @@
 	trash = /obj/item/cooking/platter
 	rotprocess = SHELFLIFE_LONG
 
+/*	.................   Rice & pork  ................... */
+/obj/item/reagent_containers/food/snacks/rogue/ricepork
+	name = "rice and pork"
+	tastes = list("rice" = 1, "pork" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
+	desc = ""
+	icon_state = "ricepork"
+	rotprocess = SHELFLIFE_LONG
+	eat_effect = /datum/status_effect/buff/foodbuff
+
+/obj/item/reagent_containers/food/snacks/rogue/ricepork/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	if(!experimental_inhand)
+		return
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/veg/cucumber_sliced))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			if(do_after(user,3 SECONDS, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/riceporkcuc(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
+/*	.................   Rice & pork & cucumbers ................... */
+/obj/item/reagent_containers/food/snacks/rogue/riceporkcuc
+	name = "rice and pork meal"
+	tastes = list("rice" = 1, "pork" = 1, "fresh cucumber")
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
+	desc = ""
+	icon_state = "riceporkmeal"
+	rotprocess = SHELFLIFE_LONG
+	eat_effect = /datum/status_effect/buff/foodbuff
+
+/*	.................   Rice & beef ................... */
+/obj/item/reagent_containers/food/snacks/rogue/ricebeef
+	name = "rice and beef"
+	tastes = list("rice" = 1, "steak" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
+	desc = ""
+	icon_state = "ricebeef"
+	rotprocess = SHELFLIFE_LONG
+	eat_effect = /datum/status_effect/buff/foodbuff
+
+/obj/item/reagent_containers/food/snacks/rogue/ricebeef/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	if(!experimental_inhand)
+		return
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			if(do_after(user,3 SECONDS, target = src))
+				user.mind.adjust_experience(/datum/skill/craft/cooking, user.STAINT * 0.8)
+				new /obj/item/reagent_containers/food/snacks/rogue/ricebeefcar(loc)
+				qdel(I)
+				qdel(src)
+	else
+		return ..()
+
+/*	.................   Rice & beef & carrots ................... */
+/obj/item/reagent_containers/food/snacks/rogue/ricebeefcar
+	name = "rice and beef meal"
+	tastes = list("rice" = 1, "steak" = 1, "carrot")
+	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
+	desc = ""
+	icon_state = "ricebeefmeal"
+	rotprocess = SHELFLIFE_LONG
+	eat_effect = /datum/status_effect/buff/foodbuff

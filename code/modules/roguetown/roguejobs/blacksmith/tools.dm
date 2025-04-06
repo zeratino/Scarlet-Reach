@@ -66,6 +66,10 @@
 		if(!attacked_item.anvilrepair || (attacked_item.obj_integrity >= attacked_item.max_integrity) || !isturf(attacked_item.loc))
 			return
 
+		if(!attacked_item.ontable())
+			to_chat(user, span_warning("I should put this on a table or an anvil first."))
+			return
+
 		if(blacksmith_mind.get_skill_level(attacked_item.anvilrepair) <= 0)
 			if(HAS_TRAIT(user, TRAIT_SQUIRE_REPAIR) && locate(/obj/machinery/anvil) in attacked_object.loc)
 				repair_percent = 0.035
@@ -94,6 +98,7 @@
 			return
 		else
 			user.visible_message(span_warning("[user] fumbles trying to repair [attacked_item]!"))
+			attacked_item.obj_integrity = max(0, attacked_item.obj_integrity - (10 - repair_percent))
 			return
 
 	if(isstructure(attacked_object) && !user.cmode)
@@ -112,6 +117,46 @@
 		return
 
 	. = ..()
+
+
+/obj/item/rogueweapon/hammer/attack(mob/living/M, mob/user)
+	testing("attack")
+	if(!user.cmode)
+		hammerheal(M, user)
+	else
+		. = ..() //normal hit
+
+/obj/item/rogueweapon/hammer/proc/hammerheal(mob/living/M, mob/user)
+	if(!M.can_inject(user, TRUE))
+		return
+	if(!ishuman(M))
+		return
+	if(M.construct)
+		var/mob/living/carbon/human/H = M
+		var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
+		if(!affecting)
+			return
+		var/used_time = 70
+		if(user.mind)
+			used_time -= (user.mind.get_skill_level(/datum/skill/craft/engineering) * 10)
+		playsound(loc, 'sound/items/bsmith1.ogg', 100, FALSE)
+		if(!do_mob(user, M, used_time))
+			return
+		playsound(loc, 'sound/items/bsmith4.ogg', 100, FALSE)
+
+		var/list/wCount = H.get_wounds()
+		H.adjustBruteLoss(-10)
+		H.adjustFireLoss(-10)
+		H.update_damage_overlays()
+		if(wCount.len > 0)
+			H.heal_wounds(2)
+			H.update_damage_overlays()
+		if(M == user)
+			user.visible_message(span_notice("[user] hammers [user.p_their()] [affecting]."), span_notice("I hammer my [affecting]."))
+		else
+			user.visible_message(span_notice("[user] hammers [M]'s [affecting]."), span_notice("I hammer [M]'s [affecting]."))
+	else //Non-construct.
+		to_chat(user, span_warning("I can't tinker on living flesh!"))
 
 /obj/item/rogueweapon/hammer/stone
 	name = "stone hammer"

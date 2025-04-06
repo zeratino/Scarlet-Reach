@@ -74,6 +74,7 @@
 /mob/living
 	var/tempatarget = null
 	var/pegleg = 0			//Handles check & slowdown for peglegs. Fuckin' bootleg, literally, but hey it at least works.
+	var/construct = 0
 
 /obj/item/proc/attack(mob/living/M, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
@@ -104,7 +105,8 @@
 	var/datum/intent/cached_intent = user.used_intent
 	if(user.used_intent.swingdelay)
 		if(!user.used_intent.noaa)
-			user.do_attack_animation(M, visual_effect_icon = user.used_intent.animname)
+			if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
+				user.do_attack_animation(M, visual_effect_icon = user.used_intent.animname)
 		sleep(user.used_intent.swingdelay)
 	if(user.a_intent != cached_intent)
 		return
@@ -119,7 +121,8 @@
 	if((M.mobility_flags & MOBILITY_STAND))
 		if(M.checkmiss(user))
 			if(!user.used_intent.swingdelay)
-				user.do_attack_animation(M, visual_effect_icon = user.used_intent.animname)
+				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
+					user.do_attack_animation(M, visual_effect_icon = user.used_intent.animname)
 			return
 	if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 		user.rogfat_add(10)
@@ -143,7 +146,8 @@
 				add_fingerprint(user)
 		if(M.d_intent == INTENT_DODGE)
 			if(!user.used_intent.swingdelay)
-				user.do_attack_animation(M, visual_effect_icon = user.used_intent.animname)
+				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
+					user.do_attack_animation(M, visual_effect_icon = user.used_intent.animname)
 		return
 
 	if(user.zone_selected == BODY_ZONE_PRECISE_R_INHAND)
@@ -515,7 +519,8 @@
 			if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 				adf = round(adf * 0.6)
 			user.changeNext_move(adf)
-			user.do_attack_animation(target, visual_effect_icon = user.used_intent.animname)
+			if(get_dist(get_turf(user), get_turf(target)) <= user.used_intent.reach)
+				user.do_attack_animation(target, visual_effect_icon = user.used_intent.animname)
 			playsound(get_turf(src), pick(swingsound), 100, FALSE, -1)
 			user.aftermiss()
 		if(!proximity_flag && ismob(target) && !user.used_intent?.noaa) //this block invokes miss cost clicking on seomone who isn't adjacent to you
@@ -525,7 +530,8 @@
 			if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 				adf = round(adf * 0.6)
 			user.changeNext_move(adf)
-			user.do_attack_animation(target, visual_effect_icon = user.used_intent.animname)
+			if(get_dist(get_turf(user), get_turf(target)) <= user.used_intent.reach)
+				user.do_attack_animation(target, visual_effect_icon = user.used_intent.animname)
 			playsound(get_turf(src), pick(swingsound), 100, FALSE, -1)
 			user.aftermiss()
 

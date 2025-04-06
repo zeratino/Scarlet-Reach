@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(ParticleWeather)
 	if(runningWeather)
 		if(runningWeather.running)
 			runningWeather.tick()
-			for(var/mob/act_on as anything in GLOB.mob_living_list)
+			for(var/mob/act_on as anything in GLOB.mob_living_list) //yikes. this should probably be a client scan not all mobs. it already checks for minds
 				runningWeather.try_weather_act(act_on)
 			for(var/obj/act_on as anything in GLOB.weather_act_upon_list)
 				runningWeather.weather_obj_act(act_on)
@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(ParticleWeather)
 			elligble_weather[W] = probability
 	return ..()
 
-/datum/controller/subsystem/ParticleWeather/proc/run_weather(datum/particle_weather/weather_datum_type, force = 0)
+/datum/controller/subsystem/ParticleWeather/proc/run_weather(datum/particle_weather/weather_datum_type, force = 0, color)
 	if(runningWeather)
 		if(force)
 			runningWeather.end()
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(ParticleWeather)
 	runningWeather = new weather_datum_type()
 
 	if(force)
-		runningWeather.start()
+		runningWeather.start(color)
 	else
 		var/randTime = rand(0, 6000) + initial(runningWeather.weather_duration_upper)
 		addtimer(CALLBACK(runningWeather, /datum/particle_weather/proc/start), randTime, TIMER_UNIQUE|TIMER_STOPPABLE) //Around 0-10 minutes between weathers
@@ -71,9 +71,11 @@ SUBSYSTEM_DEF(ParticleWeather)
 		weatherEffect.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	return weatherEffect
 
-/datum/controller/subsystem/ParticleWeather/proc/SetparticleEffect(particles/P, blend_type, filter_type)
+/datum/controller/subsystem/ParticleWeather/proc/SetparticleEffect(particles/P, blend_type, filter_type, color)
 	particleEffect = P
 	weatherEffect.particles = particleEffect
+	if(color)
+		weatherEffect.color = color
 	if(!blend_type)
 		weatherEffect.blend_mode = BLEND_DEFAULT
 	else

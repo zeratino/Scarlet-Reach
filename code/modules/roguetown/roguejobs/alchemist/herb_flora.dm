@@ -32,7 +32,10 @@
 				if(B)
 					B = new B(user.loc)
 					user.put_in_hands(B)
-					user.visible_message(span_notice("[user] finds [B] in [src]."))
+					if(HAS_TRAIT(user, TRAIT_WOODWALKER))
+						var/obj/item/C = new B(user.loc)
+						user.put_in_hands(C)
+					user.visible_message(span_notice("[user] finds [HAS_TRAIT(user, TRAIT_WOODWALKER) ? "two " : ""][B] in [src]."))
 					return
 			user.visible_message(span_notice("[user] searches through [src]."))
 			if(!looty.len)
@@ -53,7 +56,7 @@
 	/obj/structure/flora/roguegrass/herb/calendula,/obj/structure/flora/roguegrass/herb/mentha,
 	/obj/structure/flora/roguegrass/herb/urtica,/obj/structure/flora/roguegrass/herb/salvia,
 	/obj/structure/flora/roguegrass/herb/hypericum,/obj/structure/flora/roguegrass/herb/benedictus,
-	/obj/structure/flora/roguegrass/herb/valeriana,/obj/structure/flora/roguegrass/herb/artemisia))
+	/obj/structure/flora/roguegrass/herb/valeriana,/obj/structure/flora/roguegrass/herb/artemisia,/obj/structure/flora/roguegrass/herb/rosa,/obj/structure/flora/roguegrass/swampweed))
 
 	var/obj/structure/flora/roguegrass/herb/boi = new type
 	boi.forceMove(get_turf(src))
@@ -147,3 +150,8 @@
 
 	herbtype = /obj/item/alch/artemisia
 
+/obj/structure/flora/roguegrass/herb/rosa
+	name = "rosa"
+	icon_state = "rosa"
+
+	herbtype = /obj/item/alch/rosa

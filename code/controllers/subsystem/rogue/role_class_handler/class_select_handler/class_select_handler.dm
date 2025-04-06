@@ -59,8 +59,14 @@
 	//classes we rolled, basically you get a datum followed by a number in here on how many times you rerolled it.
 	var/list/rolled_classes = list()
 
+	// The register id we use
+	var/register_id = null
+
+
 // The normal route for first use of this list.
 /datum/class_select_handler/proc/initial_setup()
+	if(register_id)
+		SSrole_class_handler.add_class_register_listener(register_id, linked_client.mob)
 	assemble_the_CLASSES()
 	second_step()
 
@@ -72,6 +78,8 @@
 	browser_slop()
 
 /datum/class_select_handler/Destroy()
+	if(register_id)
+		SSrole_class_handler.remove_class_register_listener(register_id, linked_client.mob)
 	ForceCloseMenus() // force menus closed
 	// Cleanup anything holding references, aka these lists holding refs to class datums and the other two
 	linked_client = null
@@ -187,10 +195,12 @@
 		return
 	//Opening tags and empty head
 	var/data = {"
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<!DOCTYPE html>
+	<html lang='en'>
 	<html>
 		<head>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 			<style>
 				@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 				@import url('https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap');
@@ -219,7 +229,7 @@
 
 				for(var/i in 1 to plus_factor)
 					plus_str += "+" */
-			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='haha_skull.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='haha_skull.gif' width=32 height=32></a></div>"
+			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='gragstar.gif' width=32 height=32></a></div>"
 	else if(!showing_combat_classes)
 		for(var/datum/advclass/datums in rolled_classes)
 			var/plus_str = ""
@@ -228,11 +238,11 @@
 
 				for(var/i in 1 to plus_factor)
 					plus_str += "+" */
-			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='haha_skull.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='haha_skull.gif' width=32 height=32></a></div>"
+			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='gragstar.gif' width=32 height=32></a></div>"
 
 	if(special_session_queue && special_session_queue.len)
 		for(var/datum/advclass/datums in special_session_queue)
-			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];special_selected=1;selected_special=\ref[datums];'><img class='ninetysskull' src='haha_skull.gif' width=32 height=32>[datums.name]<img class='ninetysskull' src='haha_skull.gif' width=32 height=32></a></div>"
+			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];special_selected=1;selected_special=\ref[datums];'><img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<img class='ninetysskull' src='gragstar.gif' width=32 height=32></a></div>"
 
 	if(showing_combat_classes)
 		for(var/datum/advclass/datums in rolled_classes)
@@ -244,7 +254,7 @@
 
 				for(var/i in 1 to plus_factor)
 					plus_str += "+" */
-			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='haha_skull.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='haha_skull.gif' width=32 height=32></a></div>"
+			data += "<div class='class_bar_div'><a class='vagrant' href='?src=\ref[src];class_selected=1;selected_class=\ref[datums];'><img class='ninetysskull' src='gragstar.gif' width=32 height=32>[datums.name]<span id='green_plussa'>[plus_str]</span><img class='ninetysskull' src='gragstar.gif' width=32 height=32></a></div>"
 	data += "</div>"
 
 	//Buttondiv Segment
@@ -267,10 +277,12 @@
 /datum/class_select_handler/proc/class_select_slop()
 
 	var/data = {"
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<!DOCTYPE html>
+	<html lang='en'>	
 	<html>
 		<head>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 			<style>
 				@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 				@import url('https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&display=swap');
@@ -279,10 +291,19 @@
 			<link rel='stylesheet' type='text/css' href='slop_menustyle2.css'>
 		</head>
 		<body>
-			<div id="top_bloc">
+            <div id="top_bloc">
 				<span class="title_shit">Class Name:</span> <span class="post_title_shit">[cur_picked_class]</span><br>
-				<span class="title_shit">Description:</span> <span class="post_title_shit">[cur_picked_class.tutorial]</span>
-			</div>
+				<span class="title_shit">Description:</span> <span class="post_title_shit">[cur_picked_class.tutorial]</span>"}
+	if(cur_picked_class.classes)
+		data += {"<br><br><span class="subclassorz">Subclasses:</span>"}
+		for(var/i in cur_picked_class.classes)
+			data += {"
+			<br><div class="subclass_title">[i]
+			<span class="subclasses">[cur_picked_class.classes[i]]</span></div>
+			"}
+		data += "<br>"
+
+	data += {"</div>
 				<div id='button_div'>
 					<a class='class_desc_YES_LINK' href='?src=\ref[src];yes_to_class_select=1;special_class=0;'>This is my background</a><br>
 					<a class='bottom_buttons' href='?src=\ref[src];no_to_class_select=1'>I reject this background</a>
@@ -291,8 +312,10 @@
 		</body>
 	</html>
 	"}
-
-	linked_client << browse(data, "window=class_select_yea;size=610x300;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
+	if(!cur_picked_class.classes)
+		linked_client << browse(data, "window=class_select_yea;size=610x300;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
+	else
+		linked_client << browse(data, "window=class_select_yea;size=610x405;can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=1")
 
 /datum/class_select_handler/Topic(href, href_list)
 	. = ..()
