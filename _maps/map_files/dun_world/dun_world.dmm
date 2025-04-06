@@ -56372,9 +56372,8 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "xqP" = (
-/obj/item/candle/yellow,
-/obj/structure/bars,
-/turf/open/floor/rogue/blocks/stonered,
+/obj/structure/fermenting_barrel/water,
+/turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
 "xqW" = (
 /turf/closed/wall/mineral/rogue/roofwall/outercorner{
