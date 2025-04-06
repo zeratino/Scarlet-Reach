@@ -54702,10 +54702,6 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/magician)
-"wGp" = (
-/obj/structure/bars,
-/turf/closed/wall/mineral/rogue/pipe,
-/area/rogue/under/town/sewer)
 "wGr" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/rogue/cobblerock,
@@ -127819,7 +127815,7 @@ ylh
 fAc
 opX
 opX
-wGp
+dlK
 opX
 opX
 wvi
