@@ -451,10 +451,21 @@
 	desc = "A part of me has been put in stasis."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/censerbuff
+	name = "Inspired by SYON."
+	desc = "The shard of the great comet had inspired me to ENDURE."
+	icon_state = "censerbuff"
+
 /datum/status_effect/buff/fortify //Increases all healing while it lasts.
 	id = "fortify"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fortify
 	duration = 1 MINUTES
+
+/datum/status_effect/buff/censerbuff
+	id = "censer"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/censerbuff
+	duration = 15 MINUTES
+	effectedstats = list("endurance" = 1, "constitution" = 1)
 
 /datum/status_effect/buff/convergence //Increases all healing while it lasts.
 	id = "convergence"

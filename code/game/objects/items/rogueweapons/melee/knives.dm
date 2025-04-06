@@ -257,7 +257,6 @@
 	name = "silver dagger"
 	desc = "This silver dagger can be the banishment of vampires and werewolves."
 	icon_state = "sildagger"
-	smeltresult = null
 	sellprice = 50
 	smeltresult = /obj/item/ingot/silver
 	last_used = 0
@@ -265,12 +264,14 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	name = "psydonian dagger"
-	desc = "Silver dagger used by the finest of the inquisiton."
+	desc = "An ornate dagger, plated in a ceremonial veneer of silver. The bane of vampyres and verevolves, in the hands of a faithful hunter."
 	icon_state = "psydagger"
 	sellprice = 70
-	max_blade_int = 100
-	max_integrity = 210
-	wdefense = 3
+
+/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/ComponentInitialize()
+	. = ..()				//It's preblessed with silver only. Mostly redundant, but safely prevents double-blessing.
+	AddComponent(/datum/component/psyblessed, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE)
+	sellprice += 200
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/pickup(mob/user)
 	. = ..()
