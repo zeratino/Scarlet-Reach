@@ -75,7 +75,7 @@
 "abF" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/skull{
-	list_reagents = list(/datum/reagent/consumable/ethanol/beer/voddena = 20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/beer/voddena=20);
 	pixel_x = 6;
 	pixel_y = 7
 	},
@@ -2862,6 +2862,11 @@
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"bjP" = (
+/obj/structure/flora/roguegrass,
+/obj/structure/noose,
+/turf/open/floor/rogue/grassred,
+/area/rogue/outdoors/exposed/town/keep)
 "bjX" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/cobble,
@@ -8411,6 +8416,14 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/beach/forest)
+"dCD" = (
+/obj/structure/noose/gallows{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/chair/stool/bar/rogue,
+/turf/open/floor/rogue/wood,
+/area/rogue/outdoors/rtfield)
 "dCG" = (
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/under/cave/dungeon1/gethsmane)
@@ -9769,6 +9782,9 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/church/chapel)
+"egn" = (
+/turf/open/floor/rogue/wood,
+/area/rogue/outdoors/rtfield)
 "egv" = (
 /obj/item/natural/rock,
 /obj/effect/decal/cleanable/dirt/cobweb,
@@ -10171,8 +10187,10 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "eoe" = (
-/obj/structure/flora/newtree{
-	dir = 1
+/obj/structure/fluff/railing/wood{
+	dir = 4;
+	layer = 2.8;
+	pixel_x = 8
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/rtfield)
@@ -10464,6 +10482,12 @@
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/cave)
+"etP" = (
+/obj/structure/fluff/railing/border{
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/rtfield)
 "euf" = (
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
@@ -12346,6 +12370,13 @@
 	},
 /turf/open/floor/rogue/tile/brick,
 /area/rogue/indoors/cave)
+"fec" = (
+/obj/structure/stairs,
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/rtfield)
 "feh" = (
 /obj/structure/table/wood{
 	dir = 4;
@@ -13077,6 +13108,10 @@
 /obj/structure/plasticflaps,
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/sewer)
+"fsY" = (
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/rtfield)
 "fti" = (
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/outdoors/mountains/decap/stepbelow)
@@ -13942,6 +13977,13 @@
 /obj/structure/fluff/psycross,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
+"fNQ" = (
+/obj/structure/fluff/railing/wood{
+	dir = 8;
+	pixel_x = -8
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/rtfield)
 "fNU" = (
 /obj/structure/flora/rogueshroom/happy/mushroom3,
 /turf/open/floor/rogue/dirt/road,
@@ -15298,6 +15340,12 @@
 "gsm" = (
 /turf/closed/mineral/random/rogue/high,
 /area/rogue/outdoors/mountains/decap)
+"gsM" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/rtfield)
 "gsV" = (
 /turf/closed/wall/mineral/rogue/wooddark/end{
 	dir = 1
@@ -18501,6 +18549,7 @@
 /obj/structure/fluff/railing/wood{
 	layer = 4.51
 	},
+/obj/structure/closet/crate/chest/wicker,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/town)
 "hMe" = (
@@ -20904,6 +20953,16 @@
 	},
 /turf/open/floor/rogue/metal/barograte/open,
 /area/rogue/under/cave/dungeon1/gethsmane)
+"iHj" = (
+/obj/structure/fluff/railing/border{
+	dir = 10
+	},
+/obj/structure/fluff/railing/wood{
+	dir = 8;
+	pixel_x = -8
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/rtfield)
 "iHl" = (
 /obj/structure/closet/crate/roguecloset,
 /obj/item/reagent_containers/powder,
@@ -23475,6 +23534,12 @@
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
+"jJi" = (
+/obj/structure/fluff/railing/border{
+	dir = 10
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/rtfield)
 "jJl" = (
 /obj/structure/closet/crate/chest/neu_fancy,
 /obj/item/roguecoin/silver/pile,
@@ -27138,6 +27203,15 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"llg" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/rtfield)
 "lls" = (
 /obj/machinery/light/rogue/smelter,
 /turf/open/floor/rogue/cobble,
@@ -45424,6 +45498,12 @@
 /obj/item/clothing/suit/roguetown/shirt/tunic/white,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/bath)
+"sMI" = (
+/obj/structure/fluff/railing/border{
+	dir = 5
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/rtfield)
 "sMJ" = (
 /obj/machinery/gear_painter,
 /turf/open/floor/rogue/dirt/road,
@@ -47263,6 +47343,12 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
+"tEm" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/rtfield)
 "tEq" = (
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/blocks/stonered/tiny,
@@ -58172,6 +58258,16 @@
 /obj/structure/fluff/walldeco/bigpainting/lake,
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/under/town/basement/keep)
+"yge" = (
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/obj/structure/fluff/railing/wood{
+	dir = 8;
+	pixel_x = -8
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/rtfield)
 "ygn" = (
 /turf/closed/wall/mineral/rogue/wooddark/end{
 	dir = 4
@@ -58268,7 +58364,11 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/beach/forest)
 "yih" = (
-/obj/structure/guillotine,
+/obj/structure/noose/gallows{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/chair/stool/bar/rogue,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach/forest)
 "yin" = (
@@ -267092,7 +267192,7 @@ pJN
 pJN
 oDW
 waL
-tTc
+bjP
 lKo
 phl
 lKo
@@ -284232,11 +284332,11 @@ rZO
 jMU
 sNZ
 sNZ
-kTT
-sNZ
-seL
 eoe
-sNZ
+eoe
+eoe
+eoe
+eoe
 sNZ
 rZO
 rZO
@@ -284682,15 +284782,15 @@ aoe
 aoe
 aoe
 rZO
-rZO
-rZO
-rZO
-sNZ
-jMU
-sNZ
-rZO
-rZO
-rZO
+etP
+fec
+egn
+egn
+egn
+egn
+egn
+llg
+sMI
 aoe
 aoe
 ebU
@@ -285134,15 +285234,15 @@ aoe
 aoe
 aoe
 aoe
-aoe
-aoe
-rZO
-rZO
-rZO
-rZO
-rZO
-aoe
-aoe
+fsY
+sPF
+dCD
+egn
+dCD
+egn
+dCD
+sPF
+tEm
 aoe
 ebU
 ebU
@@ -285586,15 +285686,15 @@ ebU
 ebU
 ebU
 ebU
-ebU
-aoe
-aoe
-aoe
-aoe
-aoe
-aoe
-aoe
-ebU
+jJi
+gsM
+yge
+fNQ
+fNQ
+fNQ
+iHj
+gsM
+aUm
 ebU
 ebU
 ebU
