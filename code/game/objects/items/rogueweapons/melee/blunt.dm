@@ -305,7 +305,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	associated_skill = /datum/skill/combat/maces
 	smeltresult = /obj/item/ash
-	parrysound = "parrywood"
 	swingsound = BLUNTWOOSH_MED
 	minstr = 10
 	wdefense = 3
