@@ -1165,6 +1165,13 @@
 	},
 /turf/open/floor/rogue/church,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"awM" = (
+/obj/structure/mineral_door/wood{
+	locked = 1;
+	lockid = "walls"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "awQ" = (
 /obj/structure/bars/pipe{
 	dir = 1
@@ -36866,7 +36873,7 @@
 /area/rogue/under/town/basement/keep)
 "pnE" = (
 /obj/structure/mineral_door/wood/donjon{
-	lockid = "garrison";
+	lockid = "walls";
 	locked = 1
 	},
 /turf/open/floor/rogue/cobble,
@@ -40159,7 +40166,7 @@
 "qEG" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
-	lockid = "dungeon"
+	lockid = "warden"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave)
@@ -40568,6 +40575,13 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"qLu" = (
+/obj/structure/mineral_door/wood{
+	locked = 1;
+	lockid = "walls"
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town)
 "qLH" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/herringbone,
@@ -51914,7 +51928,7 @@
 "vzl" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
-	lockid = "garrison"
+	lockid = "walls"
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town)
@@ -52217,7 +52231,7 @@
 "vED" = (
 /obj/structure/mineral_door/wood/donjon{
 	dir = 1;
-	lockid = "garrison";
+	lockid = "walls";
 	locked = 1
 	},
 /turf/open/floor/rogue/cobble,
@@ -252161,7 +252175,7 @@ dyE
 eVO
 qfA
 sns
-kAi
+awM
 jdu
 tSF
 jdu
@@ -252569,7 +252583,7 @@ tSF
 jdu
 jdu
 jdu
-kAi
+awM
 exD
 ehB
 ehB
@@ -348393,7 +348407,7 @@ jdu
 jdu
 jdu
 jdu
-kAi
+awM
 iEn
 aUO
 aUO
@@ -348408,22 +348422,22 @@ aUO
 aUO
 aUO
 iEn
-kAi
+awM
 jdu
 jdu
 jdu
 jdu
-kAi
+awM
 bZZ
 bZZ
 bZZ
 bZZ
-kAi
+awM
 jdu
 jdu
 jdu
 jdu
-kAi
+awM
 iEn
 aUO
 aUO
@@ -348438,7 +348452,7 @@ aUO
 aUO
 aUO
 iEn
-kAi
+awM
 jdu
 jdu
 jdu
@@ -349746,7 +349760,7 @@ aBB
 aBB
 aBB
 phl
-kAi
+awM
 phl
 bGf
 bGf
@@ -349797,7 +349811,7 @@ bGf
 bGf
 bGf
 phl
-kAi
+awM
 phl
 aBB
 aBB
@@ -360193,7 +360207,7 @@ bGf
 bGf
 phl
 phl
-lXU
+qLu
 phl
 phl
 aBB
@@ -360594,7 +360608,7 @@ aBB
 aBB
 aBB
 phl
-lXU
+qLu
 phl
 phl
 phl
@@ -362905,7 +362919,7 @@ bGf
 phl
 gyu
 gyu
-lXU
+qLu
 gyu
 gyu
 phl
@@ -363307,7 +363321,7 @@ aBB
 phl
 gyu
 gyu
-lXU
+qLu
 gyu
 gyu
 phl
@@ -367889,7 +367903,7 @@ aUO
 aUO
 aUO
 aUO
-kAi
+awM
 jdu
 jdu
 jdu
@@ -368795,7 +368809,7 @@ sGj
 bGf
 bGf
 phl
-kAi
+awM
 phl
 aBB
 aBB
@@ -390943,7 +390957,7 @@ bGf
 bGf
 bGf
 phl
-kAi
+awM
 phl
 aBB
 aBB
@@ -391845,7 +391859,7 @@ aUO
 aUO
 aUO
 aUO
-kAi
+awM
 jdu
 jdu
 jdu
