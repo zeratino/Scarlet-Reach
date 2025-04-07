@@ -58,8 +58,12 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
+	var/turf/TU = get_turf(H)
+	if(TU)
+		new /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled(TU)
 	var/weapons = list("Estoc","Mace + Shield","Flail + Shield","Lucerne","Battle Axe")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
