@@ -333,7 +333,7 @@
 	id = "revived"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/revived
 	effectedstats = list("strength" = -1, "perception" = -1, "intelligence" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)
-	duration = 3 MINUTES		//Should be long enough to stop someone from running back into battle. Plus, this stacks with body-rot debuff. RIP.
+	duration = 15 MINUTES		//Should be long enough to stop someone from running back into battle. Plus, this stacks with body-rot debuff. RIP.
 
 /atom/movable/screen/alert/status_effect/debuff/revived
 	name = "Revival Sickness"
@@ -344,8 +344,8 @@
 /datum/status_effect/debuff/rotted
 	id = "rotted_body"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/rotted
-	effectedstats = list("strength" = -2, "perception" = -2, "intelligence" = -2, "endurance" = -2, "constitution" = -2, "speed" = -2, "fortune" = -2)
-	//No 'duration' because this is forever. Has to be manually removed via something, no timed removal.
+	effectedstats = list("strength" = -1, "perception" = -1, "intelligence" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)
+	duration = 20 MINUTES		//Stacks atop of revival sickness effect.
 
 /atom/movable/screen/alert/status_effect/debuff/rotted
 	name = "Body Rot Paralysis"
