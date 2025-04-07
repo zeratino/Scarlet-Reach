@@ -452,6 +452,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedrain = 1
 	chargetime = 5
 	charge_max = 30 SECONDS
+	ignore_los = TRUE
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -1755,7 +1756,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	charging_slowdown = 2
 	warnie = "spellwarning"
-	range = 7
+	ignore_los = TRUE
 
 /obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
 	. = ..()
