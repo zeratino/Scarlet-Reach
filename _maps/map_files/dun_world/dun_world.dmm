@@ -50579,8 +50579,8 @@
 /area/rogue/indoors/town/tavern)
 "uTD" = (
 /obj/structure/fluff/traveltile{
-	aportalgoesto = moor1;
-	aportalid = moor2
+	aportalgoesto = "moor1";
+	aportalid = "moor2"
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)

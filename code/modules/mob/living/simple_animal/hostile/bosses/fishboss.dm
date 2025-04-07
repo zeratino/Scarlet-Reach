@@ -47,7 +47,7 @@
 	var/mob_type
 	var/mob/new_mob
 	var/spawned_mobs = 0	
-	
+	loot = list(/obj/item/rogueweapon/mace/goden/deepduke)
 //stolen from lich code
 /mob/living/simple_animal/hostile/boss/fishboss/handle_automated_action()
 	. = ..()
