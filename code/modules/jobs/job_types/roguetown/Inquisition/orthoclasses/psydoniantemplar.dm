@@ -63,7 +63,7 @@
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/psysword(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 		if("Axe")
-			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle/psyaxe(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
 		if("Whip")
 			H.put_in_hands(new /obj/item/rogueweapon/whip/psywhip_lesser(H), TRUE)
