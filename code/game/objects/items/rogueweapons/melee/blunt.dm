@@ -336,6 +336,16 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
+/obj/item/rogueweapon/mace/goden/deepduke
+	name = "deep duke's staff"
+	desc = "A staff of no power after its holder's death. More useful as a bashing tool."
+	icon = 'icons/roguetown/mob/monster/pufferboss.dmi'
+	icon_state = "pufferprod"
+	force = 15
+	force_wielded = 35
+	minstr = 11
+	max_integrity = 900
+
 /obj/item/rogueweapon/mace/goden/steel/ravox
 	name = "duel settler"
 	desc = "The tenets of ravoxian duels are enscribed upon the head of this maul."

@@ -41,9 +41,11 @@
 
 	ai_controller = /datum/ai_controller/deepone
 
+/mob/living/simple_animal/hostile/rogue/deepone/boss
+	wander = FALSE
 
 /mob/living/simple_animal/hostile/rogue/deepone/arm
-	name = "Deep One Paladin"
+	name = "Deep One"
 	desc = ""
 	icon = 'icons/roguetown/mob/monster/fishman.dmi'
 	icon_state = "deep1_arm"
@@ -55,8 +57,10 @@
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
 
+/mob/living/simple_animal/hostile/rogue/deepone/arm/boss
+	wander = FALSE
 /mob/living/simple_animal/hostile/rogue/deepone/spit
-	name = "Deep One Spitter"
+	name = "Deep One"
 	desc = ""
 	icon = 'icons/roguetown/mob/monster/fishman.dmi'
 	icon_state = "deep1_spit"
@@ -72,6 +76,8 @@
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
 
+/mob/living/simple_animal/hostile/rogue/deepone/spit/boss
+	wander = FALSE
 /mob/living/simple_animal/hostile/rogue/deepone/wiz
 	name = "Deep One Devout"
 	desc = ""
@@ -87,7 +93,10 @@
 	ranged_cooldown_time = 70
 	check_friendly_fire = 1
 	ai_controller = /datum/ai_controller/deepone_ranged
-	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/magic/arcane_barrage, /obj/effect/proc_holder/spell/invoked/projectile/arcynebolt, /obj/projectile/magic/repel)	
+	var/allowed_projectile_types = list(/obj/projectile/magic/frostbolt, /obj/projectile/energy/rogue3, /obj/projectile/magic/repel)	
+
+/mob/living/simple_animal/hostile/rogue/deepone/wiz/boss
+	wander = FALSE
 /mob/living/simple_animal/hostile/rogue/deepone/wiz/Shoot()
 	projectiletype = pick(allowed_projectile_types)
 	..()
