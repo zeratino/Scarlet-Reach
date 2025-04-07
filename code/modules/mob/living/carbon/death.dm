@@ -1,4 +1,4 @@
-/mob/living/carbon/death(gibbed)
+/mob/living/carbon/death(gibbed, nocutscene = FALSE)
 	if(stat == DEAD)
 		return
 	stop_looking()

@@ -46,6 +46,7 @@
 		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 
 		H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)
@@ -55,15 +56,25 @@
 
 /datum/outfit/job/roguetown/psydoniantemplar/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Bastard Sword","Whip","Executioner Sword")
-	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/weapons = list("Sword", "Axe", "Whip", "Flail", "Mace", "Spear")
+	var/weapon_choice = input(H,"Choose your PSYDON weapon.", "TAKE UP PSYDON'S ARMS") as anything in weapons
 	switch(weapon_choice)
-		if("Bastard Sword")
-			H.put_in_hands(new /obj/item/rogueweapon/sword/long(H), TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+		if("Sword")
+			H.put_in_hands(new /obj/item/rogueweapon/sword/long/psysword(H), TRUE)
+			H.mind.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+		if("Axe")
+			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(H), TRUE)
+			H.mind.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
 		if("Whip")
-			H.put_in_hands(new /obj/item/rogueweapon/whip(H), TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-		if("Executioner Sword")
-			H.put_in_hands(new /obj/item/rogueweapon/sword/long/exe(H), TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/whip/psywhip_lesser(H), TRUE)
+			H.mind.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
+		if("Flail")
+			H.put_in_hands(new /obj/item/rogueweapon/flail/sflail/psyflail(H), TRUE)
+			H.mind.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
+		if("Mace")
+			H.put_in_hands(new /obj/item/rogueweapon/mace/steel/psymace(H), TRUE)
+			H.mind.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
+		if("Spear")
+			H.put_in_hands(new /obj/item/rogueweapon/spear/psyspear(H), TRUE)
+			H.mind.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
+

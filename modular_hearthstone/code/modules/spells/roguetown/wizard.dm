@@ -1565,8 +1565,12 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		revert_cast()
 		return
 
+	if(T.teleport_restricted == TRUE)
+		to_chat(user, span_warning("I can't teleport here!"))
+
 	if(T.z != start.z)
 		to_chat(user, span_warning("I can only teleport on the same plane!"))
+
 		revert_cast()
 		return
 	
@@ -1639,6 +1643,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spot_one.Beam(spot_two, "purple_lightning", time = 1.5 SECONDS)
 	playsound(T, 'sound/magic/blink.ogg', 25, TRUE)
 
+	if(user.buckled) // don't stay remote-buckled to the guillotine/pillory
+		user.buckled.unbuckle_mob(user, TRUE)
 	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
 	
 	user.visible_message(span_danger("<b>[user] vanishes in a mysterious purple flash!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
@@ -1736,7 +1742,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	cost = 2
 	xp_gain = TRUE
-	charge_max = 2 MINUTES
+	charge_max = 5 MINUTES
 	invocation = "MENTIS NEXUS!"
 	invocation_type = "whisper"
 	

@@ -383,24 +383,39 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
 	if(!ignore_los)
-		var/result = FALSE
-		var/out_of_range = FALSE
 		if(length(targets))
 			var/radius
 			if(range > 0)	//accounts for touch / self spells that use negative range
 				radius = range
 			else
 				radius = 1
-			var/list/visible = view(radius, user)
-			for(var/thing in targets)
-				if(thing in visible)
-					result = TRUE
-				if(get_dist(thing, user) > radius)
-					out_of_range = TRUE
-		if(!result)
-			revert_cast(user)
-			to_chat(user, "[out_of_range ? span_warning("It's too far!") : span_warning("I do not have line of sight!")]")
-			return
+			if(get_dist(targets[1], user) > radius)
+				to_chat(user, span_warning("It's too far!"))
+				revert_cast()
+				return
+			var/atom/A = targets[1]
+			var/turf/target_turf = get_turf(A)
+			var/turf/source_turf = get_turf(user)
+			if(A.z > user.z)
+				source_turf = get_step_multiz(source_turf, UP)
+			if(A.z < user.z)
+				target_turf = get_step_multiz(source_turf, DOWN)
+			var/list/visible = getline(source_turf, target_turf)
+			for(var/thing in visible)
+				if(isturf(thing))
+					var/turf/T = thing
+					if((T.density || T.opacity) && T != source_turf)
+						to_chat(user, span_warning("I do not have line of sight!"))
+						revert_cast()
+						return
+
+					for(var/obj/O as anything in (T.contents + target_turf.contents))
+						if(isobj(O))
+							if(O.opacity)	//This means the obj is blocking view. Simplest way to account for doors, gates, shutters and just about anything else that might be added later.
+								to_chat(user, span_warning("I do not have line of sight!"))
+								revert_cast()
+								return
+
 	before_cast(targets, user = user)
 	if(user && user.ckey)
 		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)

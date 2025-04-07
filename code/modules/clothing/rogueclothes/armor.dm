@@ -104,6 +104,38 @@
 	armor = list("blunt" = 80, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)
 	sellprice = 30
 	color = "#976E6B"
+	var/shiftable = TRUE
+	var/shifted = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/attack_right(mob/user)
+	if(!shiftable)
+		return
+	if(shifted)
+		if(alert("Would you like to wear your gambeson normally? -Restores greyscaling, new style.",, "Yes", "No") != "No")
+			icon_state = "gambesonp"
+			color = "#976E6B"
+			update_icon()
+			shifted = FALSE
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_shirt()
+					H.update_inv_armor()
+			return
+	else
+		if(alert("Would you like to wear your gambeson traditionally? -Removes Greyscaling, old style.",, "Yes", "No") != "No")
+			icon_state = "gambesonpold"
+			color = null
+			update_icon()
+			shifted = TRUE
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_shirt()
+					H.update_inv_armor()
+			return
+
+
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/otavan
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
@@ -141,6 +173,7 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress/update_icon()
 	cut_overlays()
@@ -180,6 +213,7 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/wintercommon/update_icon()
 	cut_overlays()
@@ -266,6 +300,7 @@
 	icon_state = "monkleather"
 	item_state = "monkleather"
 	desc = "Tight boiled leathers that stretch and fit to one's frame perfectly."
+	shiftable = FALSE
 
 //leather family
 
@@ -539,10 +574,15 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
+	slot_flags = ITEM_SLOT_ARMOR
+	armor_class = ARMOR_CLASS_HEAVY
 	name = "fluted hauberk"
-	desc = "An ornate cuirass, flanked with sleeves of steel maille."
+	desc = "An ornate steel cuirass with tassets, worn atop thick chainmaille. While it falters against arrows and bolts, these interlinked layers are superb at warding off the blows of inhumen claws and axes."
 	icon_state = "flutedhauberk"
 	item_state = "flutedhauberk"
+	max_integrity = 350
+
+
 
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/bikini
@@ -581,6 +621,12 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+
+/obj/item/clothing/suit/roguetown/armor/plate/half/fluted
+	name = "fluted cuirass"
+	icon_state = "flutedcuirass"
+	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. Arrows may yet splinter against the steel, but a bolt will still punch straight through it."
+	body_parts_covered = CHEST|VITALS|LEGS
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron
 	name = "iron breastplate"
@@ -646,6 +692,23 @@
 	strip_delay = 6 SECONDS
 	smelt_bar_num = 4
 
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/matthios
+	name = "gilded fullplate"
+	desc = "Often, you have heard that told,"
+	icon_state = "matthiosarmor"
+	max_integrity = 700	
+
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/matthios/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/matthios/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/zizo
 	name = "darksteel fullplate"

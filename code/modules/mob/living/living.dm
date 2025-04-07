@@ -41,6 +41,9 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_NOFALLDAMAGE1))
 		if(levels <= 2)
+			Immobilize(10)
+			if(m_intent == MOVE_INTENT_RUN)
+				toggle_rogmove_intent(MOVE_INTENT_WALK)
 			return
 	var/points
 	for(var/i in 2 to levels)
@@ -864,9 +867,6 @@
 	if(wallpressed)
 		update_wallpress(T, newloc, direct)
 
-	if(is_shifted)
-		update_pixel_shifting(TRUE)
-
 	if(lying)
 		if(direct & EAST)
 			lying = 90
@@ -1081,6 +1081,7 @@
 		to_chat(pulledby, span_danger("[src] breaks free of my grip!"))
 		log_combat(pulledby, src, "broke grab")
 		pulledby.changeNext_move(CLICK_CD_GRABBING)
+		playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
 		pulledby.stop_pulling()
 		return FALSE
 	else
@@ -1090,6 +1091,7 @@
 //			shitte = " ([resist_chance]%)"
 		visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
 						span_warning("I struggle against [pulledby]'s grip![shitte]"), null, null, pulledby)
+		playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 		to_chat(pulledby, span_warning("[src] struggles against my grip!"))
 
 		return TRUE
@@ -1106,6 +1108,7 @@
 						if(G.sublimb_grabbed == BODY_ZONE_PRECISE_NOSE)
 							visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
 											span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
+							playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 							to_chat(pulledby, span_warning("[src] struggles against my grip!"))
 							return FALSE
 	return ..()
