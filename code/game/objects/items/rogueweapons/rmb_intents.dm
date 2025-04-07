@@ -86,6 +86,15 @@
 	id = "nofeint"
 	duration = 50
 
+/datum/status_effect/debuff/feintcd
+	id = "feintcd"
+	duration = 100
+
+/datum/status_effect/debuff/riposted
+	id = "riposted"
+	duration = 30
+
+
 /datum/rmb_intent/riposte
 	name = "defend"
 	desc = "No delay between dodge and parry rolls.\n(RMB WHILE COMBAT MODE IS ACTIVE) Bait out your targeted limb to the enemy. If it matches where they're aiming, they will be thrown off balance."
