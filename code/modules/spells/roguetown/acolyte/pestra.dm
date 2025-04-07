@@ -193,6 +193,7 @@
 			success_message = "The rot leaves [target]'s body!",
 			fail_message = "Nothing happens.", lethal = is_lethal))
 			target.visible_message(span_notice("The rot leaves [target]'s body!"), span_green("I feel the rot leave my body!"))
+			target.apply_status_effect(/datum/status_effect/debuff/rotted)	//Perma debuff, needs cure
 			return TRUE
 		else //Attempt failed, no rot
 			target.visible_message(span_warning("The rot fails to leave [target]'s body!"), span_warning("I feel no different..."))

@@ -102,6 +102,7 @@
 				adjust_playerquality(revive_pq, user.ckey)
 				ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
 			target.mind.remove_antag_datum(/datum/antagonist/zombie)
+		target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
 		return TRUE
 	revert_cast()
 	return FALSE

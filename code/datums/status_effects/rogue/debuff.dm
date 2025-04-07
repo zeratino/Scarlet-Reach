@@ -41,7 +41,7 @@
 /datum/status_effect/debuff/silver_curse
 	id = "silver_curse"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/silver_curse
-	effectedstats = list("strength" = -2,"perception" = -2,"intelligence" = -2, "constitution" = -2, "endurance" = -2,"speed" = -2)
+	effectedstats = list("strength" = -2,"perception" = -2,"intelligence" = -2, "constitution" = -2, "endurance" = -2, "speed" = -2)
 	duration = 45 SECONDS
 
 /atom/movable/screen/alert/status_effect/debuff/silver_curse
@@ -216,8 +216,8 @@
 /datum/status_effect/debuff/devitalised
 	id = "devitalised"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/devitalised
-	effectedstats = list("fortune" = -3)
-	duration = 20 MINUTES
+	effectedstats = list("strength" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -2)	//More punishing.
+	duration = 20 MINUTES	//Punishing.
 
 /atom/movable/screen/alert/status_effect/debuff/devitalised
 	name = "Devitalised"
@@ -327,3 +327,27 @@
 	name = "Call to Slaughter"
 	desc = "A putrid rotting scent fills your nose as Graggar's call for slaughter rattles you to your core.."
 	icon_state = "call_to_slaughter"
+
+//For revive - your body DIDN'T rot, but it did suffer damage. Unlike being rotted, this one is only timed. Not forever.
+/datum/status_effect/debuff/revived
+	id = "revived"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/revived
+	effectedstats = list("strength" = -1, "perception" = -1, "intelligence" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)
+	duration = 3 MINUTES		//Should be long enough to stop someone from running back into battle. Plus, this stacks with body-rot debuff. RIP.
+
+/atom/movable/screen/alert/status_effect/debuff/revived
+	name = "Revival Sickness"
+	desc = "You felt lyfe itself course through you, restoring your lux and your essance. You.. live - but your body aches. It still needs time to recover.."
+	icon_state = "revived"
+
+//For de-rot - your body ROTTED. This doesn't expire. Only a certain rare mechant elixor can maybe cure it. Should hit every single stat.
+/datum/status_effect/debuff/rotted
+	id = "rotted_body"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/rotted
+	effectedstats = list("strength" = -2, "perception" = -2, "intelligence" = -2, "endurance" = -2, "constitution" = -2, "speed" = -2, "fortune" = -2)
+	//No 'duration' because this is forever. Has to be manually removed via something, no timed removal.
+
+/atom/movable/screen/alert/status_effect/debuff/rotted
+	name = "Body Rot Paralysis"
+	desc = "You came back from death, but everything aches.. you can feel it in your muscles. Even in your nose, you can smell something putrid and foul. You live yet, but at what cost..?"
+	icon_state = "rotted_body"

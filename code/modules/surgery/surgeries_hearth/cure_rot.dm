@@ -42,6 +42,6 @@
 		display_results(user, target, span_notice("You burn away the rot inside of [target]."),
 		"[user] burns the rot within [target].",
 		"[user] takes a [tool] to [target]'s innards.")
-
+		target.apply_status_effect(/datum/status_effect/debuff/rotted)	//Perma debuff, needs cure
 		return TRUE
 	return TRUE
