@@ -217,7 +217,7 @@
 	id = "devitalised"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/devitalised
 	effectedstats = list("strength" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -2)	//More punishing.
-	duration = 20 MINUTES	//Punishing.
+	duration = 10 MINUTES	//Punishing.
 
 /atom/movable/screen/alert/status_effect/debuff/devitalised
 	name = "Devitalised"
