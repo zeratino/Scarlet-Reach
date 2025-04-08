@@ -84,6 +84,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Heavy Hood"
 	path = /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 
+/datum/loadout_item/nunveil
+	name = "Nun Veil"
+	path = /obj/item/clothing/head/roguetown/nun
+
 //CLOAKS
 /datum/loadout_item/tabard
 	name = "Tabard"
@@ -154,6 +158,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/ridingboots
 	name = "Riding Boots"
 	path = /obj/item/clothing/shoes/roguetown/ridingboots
+
+/datum/loadout_item/ankletscloth
+	name = "Cloth Anklets"
+	path = /obj/item/clothing/shoes/roguetown/boots/clothlinedanklets
+
+/datum/loadout_item/ankletsfur
+	name = "Fur Anklets"
+	path = /obj/item/clothing/shoes/roguetown/boots/furlinedanklets
 
 //SHIRTS
 /datum/loadout_item/longcoat
