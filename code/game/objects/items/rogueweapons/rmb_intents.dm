@@ -134,7 +134,8 @@
 			to_chat(user, span_notice("[HT] fell for my bait <b>perfectly</b>!"))
 			to_chat(HT, span_danger("I fall for [user]'s bait <b>perfectly</b>!"))
 			HT.rogfat_add(HT.maxrogfat / 5)
-			HT.rogstam_add((HT.maxrogstam / 10) * -1)
+			//HT.rogstam_add((HT.maxrogstam / 10) * -1)
+			HT.OffBalance(12)
 			HT.emote("gasp")
 		else	//Our zones do not match, or we were targeting chest
 			var/probbait = 40
