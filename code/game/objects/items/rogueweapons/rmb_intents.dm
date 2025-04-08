@@ -172,7 +172,6 @@
 				to_chat(user, span_notice("[HT] did not fall for my bait!"))
 				to_chat(HT, span_notice("I saw through the bait!"))
 				user.changeNext_move(10)
-				user.Immobilize(5)
 				user.rogfat_add(10)
 
 		user.rogfat_add(10)
