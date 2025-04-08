@@ -180,7 +180,7 @@
 
 /obj/item/rogueweapon/spear/psyspear
 	name = "psydonian spear"
-	desc = "Sharpened spear, crafted to impale those the Inquisiton hunts."
+	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never forget that you are why Psydon wept."
 	icon_state = "psyspear"
 
 /obj/item/rogueweapon/spear/psyspear/ComponentInitialize()
