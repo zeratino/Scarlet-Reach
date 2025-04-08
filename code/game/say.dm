@@ -163,9 +163,6 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return FALSE
 
 /atom/movable/proc/lang_treat(atom/movable/speaker, datum/language/language, raw_message, list/spans, message_mode, no_quote = FALSE)
-	var/datum/language/test = GLOB.language_datum_instances[language]
-	to_chat(speaker,test.scramble(raw_message))
-	
 	if(has_language(language) || check_language_hear(language))
 		var/atom/movable/AM = speaker.GetSource()
 		if(AM) //Basically means "if the speaker is virtual"
