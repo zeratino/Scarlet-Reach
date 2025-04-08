@@ -229,6 +229,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_COURTAGENT		"CAT_COURTAGENT"	//Court agent classes
 #define CTAG_WRETCH			"CAT_WRETCH"		// Wretch classes untethered from adventurer
 
+#define CTAG_WARDEN			"CAT_WARDEN"			// Warden class - Handles warden class selector.
 #define CTAG_WATCH			"CAT_WATCH"			// Watch class - Handles Town Watch class selector
 #define CTAG_MENATARMS		"CAT_MENATARMS"		// Men-at-Arms class - Handles Men-at-Arms class selector
 #define CTAG_ROYALGUARD		"CAT_ROYALGUARD"	// Royal Guard class - Handles Royal Guard class selector
