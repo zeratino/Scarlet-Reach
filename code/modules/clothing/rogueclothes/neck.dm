@@ -221,7 +221,6 @@
 /obj/item/clothing/neck/roguetown/gorget/steel
 	name ="steel gorget"
 	smeltresult = /obj/item/ingot/steel
-	body_parts_inherent = 0
 	max_integrity = 300
 	icon_state = "sgorget"
 
