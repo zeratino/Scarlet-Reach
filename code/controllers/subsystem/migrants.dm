@@ -208,7 +208,6 @@ SUBSYSTEM_DEF(migrants)
 	/// Fade effect
 	var/atom/movable/screen/splash/Spl = new(character.client, TRUE)
 	Spl.Fade(TRUE)
-	character.update_parallax_teleport()
 
 	var/mob/living/carbon/human/humanc
 	if(ishuman(character))
@@ -389,7 +388,7 @@ SUBSYSTEM_DEF(migrants)
 	return migrants
 
 /client/proc/admin_force_next_migrant_wave()
-	set category = "GameMaster"
+	set category = "-Server-"
 	set name = "Force Migrant Wave"
 	if(!holder)
 		return

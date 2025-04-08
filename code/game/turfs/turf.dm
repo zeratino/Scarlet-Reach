@@ -49,6 +49,7 @@
 	var/neighborlay
 	var/neighborlay_list = list()
 	var/neighborlay_override
+	var/teleport_restricted = FALSE //whether turf teleport spells are forbidden from teleporting to this turf
 
 	vis_flags = VIS_INHERIT_PLANE|VIS_INHERIT_ID
 
@@ -175,8 +176,6 @@
 	can_see_sky = null
 	var/can = can_see_sky()
 	var/area/A = get_area(src)
-	if(istype(A,/area/shuttle))
-		return
 	if(can)
 		if(!A.outdoors)
 			var/area2new = /area/rogue/outdoors
@@ -314,7 +313,10 @@
 		return
 	if(zFall(A, ++levels))
 		return FALSE
-	A.visible_message(span_danger("[A] crashes into [src]!"))
+	if(!HAS_TRAIT(A, TRAIT_NOFALLDAMAGE1) && !HAS_TRAIT(A, TRAIT_NOFALLDAMAGE2))
+		A.visible_message(span_danger("[A] crashes into [src]!"))
+	else
+		A.visible_message(span_warning("[A] lands on [src]!"))
 	A.onZImpact(src, levels)
 	return TRUE
 
@@ -474,12 +476,6 @@
 	for(var/obj/O in src)
 		if(O.level == 1 && (O.flags_1 & INITIALIZED_1))
 			O.hide(src.intact)
-
-// Removes all signs of lattice on the pos of the turf -Donkieyo
-/turf/proc/RemoveLattice()
-	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(L && (L.flags_1 & INITIALIZED_1))
-		qdel(L)
 
 /turf/proc/phase_damage_creatures(damage,mob/U = null)//>Ninja Code. Hurts and knocks out creatures on this turf //NINJACODE
 	for(var/mob/living/M in src)

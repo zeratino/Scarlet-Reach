@@ -2,7 +2,7 @@
 	name = "Nobility"
 	desc = "By birth, blade or brain, I am noble known to the royalty of these lands, and have all the benefits associated with it."
 	added_traits = list(TRAIT_NOBLE)
-	added_skills = list(/datum/skill/misc/reading = 1)
+	added_skills = list(list(/datum/skill/misc/reading, 1, 6))
 	added_stashed_items = list("Heirloom Amulet" = /obj/item/clothing/neck/roguetown/ornateamulet/noble)
 
 /datum/virtue/utility/noble/apply_to_human(mob/living/carbon/human/recipient)
@@ -13,6 +13,7 @@
 /datum/virtue/utility/beautiful
 	name = "Beautiful"
 	desc = "Wherever I go, I turn heads, such is my natural beauty. I am also rather good in bed, though they always say that."
+	custom_text = "Incompatible with Ugly virtue."
 	added_traits = list(TRAIT_BEAUTIFUL,TRAIT_GOODLOVER)
 
 /datum/virtue/utility/beautiful/handle_traits(mob/living/carbon/human/recipient)
@@ -38,9 +39,67 @@
 	desc = "I'm a resident of Azure Peak. I have an account in the city's treasury and a home in the city."
 	added_traits = list(TRAIT_RESIDENT)
 
+/datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
+	var/mapswitch = 0
+	if(SSmapping.config.map_name == "Dun Manor")
+		mapswitch = 1
+	else if(SSmapping.config.map_name == "Dun World")
+		mapswitch = 2
+
+	if(mapswitch == 0)
+		return
+	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
+		// Find tavern area for spawning
+		var/area/spawn_area
+		for(var/area/A in world)
+			if(istype(A, /area/rogue/indoors/town/tavern))
+				spawn_area = A
+				break
+		
+		if(spawn_area)
+			var/target_z = 3 //ground floor of tavern for dun manor / world
+			var/target_y = 70 //dun manor
+			var/list/possible_chairs = list()
+
+			if(mapswitch == 2)
+				target_y = 234 //dun world huge
+			
+			for(var/obj/structure/chair/C in spawn_area)
+				//z-level 3, wooden chair, and Y > north of tavern backrooms
+				var/turf/T = get_turf(C)
+				if(T && T.z == target_z && T.y > target_y && istype(C, /obj/structure/chair/wood/rogue) && !T.density && !T.is_blocked_turf(FALSE))
+					possible_chairs += C
+			
+			if(length(possible_chairs))
+				var/obj/structure/chair/chosen_chair = pick(possible_chairs)
+				recipient.forceMove(get_turf(chosen_chair))
+				chosen_chair.buckle_mob(recipient)
+				to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself seated at a chair in the local tavern."))
+			else
+				var/list/possible_spawns = list()
+				for(var/turf/T in spawn_area)
+					if(T.z == target_z && T.y > (target_y + 4) && !T.density && !T.is_blocked_turf(FALSE))
+						possible_spawns += T
+				
+				if(length(possible_spawns))
+					var/turf/spawn_loc = pick(possible_spawns)
+					recipient.forceMove(spawn_loc)
+					to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself in the local tavern."))
+
+/datum/virtue/utility/failed_squire
+	name = "Failed Squire"
+	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair."
+	added_traits = list(TRAIT_SQUIRE_REPAIR)
+	added_stashed_items = list("Worker's Hammer" = /obj/item/rogueweapon/hammer)
+	
+/datum/virtue/utility/failed_squire/apply_to_human(mob/living/carbon/human/recipient)
+	to_chat(recipient, span_notice("Though you failed to become a knight, your training in equipment maintenance and repair remains useful."))
+	to_chat(recipient, span_notice("You can retrieve your hammer from a tree, statue, or clock."))
+
 /datum/virtue/utility/linguist
 	name = "Intellectual"
-	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess.(+1 INT, 3 Languages, Stashed Book, Ability to Assess)"
+	desc = "I've spent my life surrounded by various books or sophisticated foreigners, be it through travel or other fortunes beset on my life. I've picked up several tongues and wits, and keep a journal closeby. I can tell people's exact prowess."
+	custom_text = "Maximizes Assess benefits with a bonus of the target's Stats. Allows the choice of 3 languages to learn upon joining. +1 INT."
 	added_traits = list(TRAIT_INTELLECTUAL)
 	added_skills = list(list(/datum/skill/misc/reading, 3, 6))
 	added_stashed_items = list(
@@ -96,7 +155,7 @@
 
 /datum/virtue/utility/blacksmith
 	name = "Blacksmith's Apprentice"
-	desc = "In my youth, I worked under a skilled blacksmith, honing my skills with an anvil. (Apprentice in crafting, blacksmithing, weaponsmithing, armorsmithing, and smelting.)"
+	desc = "In my youth, I worked under a skilled blacksmith, honing my skills with an anvil."
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/weaponsmithing, 2, 2),
 						list(/datum/skill/craft/armorsmithing, 2, 2),
@@ -106,7 +165,7 @@
 
 /datum/virtue/utility/hunter
 	name = "Hunter's Apprentice"
-	desc = "In my youth, I trained under a skilled hunter, learning how to butcher animals and work with leather/hide. (Apprentice in crafting, trapmaking, tracking, butchering, sewing, and tanning.)"
+	desc = "In my youth, I trained under a skilled hunter, learning how to butcher animals and work with leather/hide."
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/traps, 2, 2),
 						list(/datum/skill/labor/butchering, 2, 2),
@@ -117,7 +176,7 @@
 
 /datum/virtue/utility/artificer
 	name = "Artificer's Apprentice"
-	desc = "In my youth, I worked under a skilled artificer, studying construction and engineering. (Apprentice in crafting, engineering, carpentry, masonry, and smelting.)"
+	desc = "In my youth, I worked under a skilled artificer, studying construction and engineering."
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/carpentry, 2, 2),
 						list(/datum/skill/craft/masonry, 2, 2),
@@ -127,7 +186,7 @@
 
 /datum/virtue/utility/physician
 	name = "Physician's Apprentice"
-	desc = "In my youth, I worked under a skilled physician, studying medicine and alchemy. (Apprentice in crafting, alchemy, and medicine. Stashed first aid pouch.)"
+	desc = "In my youth, I worked under a skilled physician, studying medicine and alchemy."
 	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/alchemy, 2, 2),
@@ -142,12 +201,21 @@
 
 /datum/virtue/utility/night_vision
 	name = "Night-eyed"
-	desc = "I have eyes able to see through cloying darkness."
+	desc = "I have eyes able to see through cloying darkness. Incompatible with the vice Colorblind."
 	added_traits = list(TRAIT_DARKVISION)
+	custom_text = "Adds a button to toggle colorblindness to aid seeing in the dark. Taking this with the Colorblind vice will permanently colorblind you."
+
+/datum/virtue/utility/night_vision/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.charflaw)
+		if(recipient.charflaw.type == /datum/charflaw/colorblind)
+			to_chat(recipient, "Your eyes have become permanently colorblind.")
+		else
+			recipient.verbs += /mob/living/carbon/human/proc/toggleblindness
 
 /datum/virtue/utility/performer
 	name = "Performer"
 	desc = "Music, artistry and the act of showmanship carried me through life. I've hidden a favorite instrument of mine, know how to please anyone I touch, and how to crack the eggs of hecklers."
+	custom_text = "Comes with a stashed instrument of your choice. You choose the instrument after spawning in."
 	added_traits = list(TRAIT_NUTCRACKER, TRAIT_GOODLOVER)
 	added_skills = list(list(/datum/skill/misc/music, 3, 6))
 
@@ -189,6 +257,7 @@
 /datum/virtue/utility/ugly
 	name = "Ugly"
 	desc = "Be it your family's habits in and out of womb, your own choices or Xylix's cruel roll of fate, you have been left unbearable to look at. Stuck to the unseen pits and crevices of the town, you've grown used to the foul odours of lyfe that often follow you. Corpses do not stink for you, and that is all the company you might find."
+	custom_text = "Incompatible with Beautiful virtue."
 	added_traits = list(TRAIT_UNSEEMLY, TRAIT_NOSTINK)
 
 /datum/virtue/utility/ugly/handle_traits(mob/living/carbon/human/recipient)
@@ -201,6 +270,7 @@
 /datum/virtue/utility/secondvoice
 	name = "Second Voice"
 	desc = "From performance, deception, or by a need to change yourself in uncanny ways, you've acquired a second, perfect voice. You may switch between them at any point."
+	custom_text = "Grants access to a new 'Virtue' tab. It will have the options for setting and changing your voice."
 
 /datum/virtue/utility/secondvoice/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.verbs += /mob/living/carbon/human/proc/changevoice
@@ -208,12 +278,61 @@
 
 /datum/virtue/utility/keenears
 	name = "Keen Ears"
-	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, and their whispers are louder to you. Along with this, you've developed good eyes for tracking, letting you keep those you fear, or those you seek, in your sights."
-	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, their whispers ringing louder."
 	added_traits = list(TRAIT_KEENEARS)
+	custom_text = "You can identify known people who speak even when they are out of sight. You can hear people speaking normally above and below you, regardless of obstacles in the way. You can hear whispers from one tile further."
 
+/datum/virtue/utility/tracker
+	name = "Sleuth"
+	desc = "You realised long ago that the ability to find a man is as helpful to aid the law as it is to evade it."
+	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	added_traits = list(TRAIT_SLEUTH)
+	custom_text = "- Upon right clicking a track, you will Mark the person who made them <i>(Expert skill required, not exclusive to this Virtue)</i>.\n- Further tracks found will be automatically highlighted as theirs, along with the person themselves, if they are not sneaking or invisible at the time.\n- Reduces the cooldown for tracking, allows track examining right away, and movement no longer cancels tracking."
 
-//HERETIC VIRTUES (there's only pne amd it's utility so I didn't want to make a whole file yet)
+/datum/virtue/utility/bronzearm_r
+	name = "Bronze Arm (R)"
+	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result."
+	custom_text = "Replaces your Right arm with a prosthetic Bronze one. Incompatible with Wood Arm (R) vice"
+	added_skills = list(list(/datum/skill/craft/engineering, 1, 6))
+
+/datum/virtue/utility/bronzearm_r/apply_to_human(mob/living/carbon/human/recipient)
+	. = ..()
+	var/obj/item/bodypart/O = recipient.get_bodypart(BODY_ZONE_R_ARM)
+	if(O)
+		O.drop_limb()
+		qdel(O)
+	if(recipient.charflaw)
+		if(recipient.charflaw.type == /datum/charflaw/limbloss/arm_r)
+			to_chat(recipient, span_info("In my foolishness I believed a sharlatan who wished to trade in my wooden arm for one of bronze. It fell apart. Now I've no arm at all."))
+		else
+			var/obj/item/bodypart/r_arm/prosthetic/bronzeright/L = new()
+			L.attach_limb(recipient)
+
+/datum/virtue/utility/bronzearm_l
+	name = "Bronze Arm (L)"
+	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result."
+	custom_text = "Replaces your Left arm with a prosthetic Bronze one. Incompatible with Wood Arm (L) vice"
+	added_skills = list(list(/datum/skill/craft/engineering, 1, 6))
+
+/datum/virtue/utility/bronzearm_l/apply_to_human(mob/living/carbon/human/recipient)
+	. = ..()
+	var/obj/item/bodypart/O = recipient.get_bodypart(BODY_ZONE_L_ARM)
+	if(O)
+		O.drop_limb()
+		qdel(O)
+	if(recipient.charflaw)
+		if(recipient.charflaw.type == /datum/charflaw/limbloss/arm_l)
+			to_chat(recipient, span_info("In my foolishness I believed a sharlatan who wished to trade in my wooden arm for one of bronze. It fell apart. Now I've no arm at all."))
+		else
+			var/obj/item/bodypart/l_arm/prosthetic/bronzeleft/L = new()
+			L.attach_limb(recipient)
+
+/datum/virtue/utility/woodwalker
+	name = "Woodwalker"
+	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without breaking any twigs. I can even step lightly on leaves without falling, and I can gather twice as many things from bushes."
+	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
+
+//HERETIC VIRTUES
 
 /datum/virtue/heretic/seer
 	name = "(ASCENDANT) Seer"

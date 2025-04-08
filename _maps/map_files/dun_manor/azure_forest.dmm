@@ -458,6 +458,10 @@
 /obj/item/grown/log/tree/stick,
 /turf/open/water/swamp,
 /area/rogue/under/cavewet/bogcaves)
+"dG" = (
+/obj/structure/roguemachine/bounty,
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/shelter/woods)
 "dH" = (
 /obj/structure/flora/roguegrass/bush/wall,
 /turf/open/floor/rogue/grassred,
@@ -1380,6 +1384,12 @@
 /obj/structure/closet/dirthole/closed/loot,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
+"lp" = (
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/shelter/woods)
 "lr" = (
 /turf/open/floor/rogue/rooftop{
 	icon_state = "roofg"
@@ -1715,6 +1725,7 @@
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/rope/chain,
 /obj/item/rope/chain,
+/obj/item/clothing/head/roguetown/helmet/kettle,
 /turf/open/floor/rogue/ruinedwood{
 	dir = 1;
 	icon_state = "vertw"
@@ -2736,6 +2747,10 @@
 "wv" = (
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/roofs)
+"ww" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/woods)
 "wz" = (
 /obj/structure/rack/rogue,
 /turf/open/floor/rogue/ruinedwood,
@@ -2823,6 +2838,10 @@
 	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/basement)
+"xt" = (
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors/shelter/woods)
 "xv" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat/gethsmane,
 /turf/open/floor/rogue/dirt/road,
@@ -3709,6 +3728,12 @@
 /obj/structure/spacevine,
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/under/town/basement)
+"Er" = (
+/obj/structure/fluff/railing/border{
+	dir = 10
+	},
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/shelter/woods)
 "Eu" = (
 /obj/machinery/light/small{
 	mouse_opacity = 0;
@@ -3961,6 +3986,12 @@
 	icon_state = "iron_line"
 	},
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"Gu" = (
+/obj/structure/fluff/railing/border{
+	dir = 6
+	},
+/turf/open/floor/rogue/dirt,
+/area/rogue/indoors/shelter/woods)
 "Gv" = (
 /obj/structure/bars/cemetery,
 /turf/open/floor/rogue/hexstone,
@@ -4075,6 +4106,10 @@
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"Hn" = (
+/obj/structure/chair/arrestchair,
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/shelter/woods)
 "Hp" = (
 /obj/structure/closet/crate/chest/neu,
 /obj/item/rogueore/coal{
@@ -4269,6 +4304,13 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
+"IE" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/rooftop{
+	dir = 2;
+	icon_state = "roofg"
+	},
+/area/rogue/outdoors/town/roofs)
 "II" = (
 /obj/structure/far_travel,
 /turf/open/floor/rogue/cobblerock,
@@ -4377,6 +4419,12 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains)
+"Js" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/shelter/woods)
 "Ju" = (
 /obj/structure/bed/rogue/inn/hay,
 /turf/open/floor/rogue/cobble/mossy,
@@ -5000,6 +5048,10 @@
 "Pf" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors)
+"Pg" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cavewet/bogcaves)
 "Pi" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/cobble,
@@ -5831,6 +5883,10 @@
 "VR" = (
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/outdoors/mountains)
+"VU" = (
+/obj/machinery/light/rogue/torchholder/c,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors/shelter/woods)
 "VV" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/rogue/ruinedwood/turned,
@@ -6030,6 +6086,10 @@
 "Xw" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/basement)
+"Xy" = (
+/obj/effect/landmark/start/wretchlate,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cave)
 "Xz" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/town/roofs)
@@ -6240,6 +6300,7 @@
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/rope/chain,
 /obj/item/rope/chain,
+/obj/item/clothing/head/roguetown/helmet/kettle,
 /turf/open/floor/rogue/ruinedwood{
 	dir = 1;
 	icon_state = "vertw"
@@ -28006,7 +28067,7 @@ Iu
 Iu
 Iu
 EU
-iY
+Pg
 JT
 Iu
 Iu
@@ -35260,7 +35321,7 @@ gU
 fd
 GH
 GH
-lg
+Xy
 xk
 xk
 xk
@@ -40564,7 +40625,7 @@ gC
 gC
 Vn
 Vh
-Vh
+ww
 pC
 pC
 pC
@@ -48648,10 +48709,10 @@ nt
 nt
 jW
 Yi
-Yi
-jW
-jW
-jW
+QO
+vo
+vo
+vo
 By
 jW
 jW
@@ -48805,10 +48866,10 @@ nt
 nt
 jW
 jW
-Yi
-Yi
-jW
-jW
+QO
+QO
+vo
+vo
 jW
 yo
 jW
@@ -48962,10 +49023,10 @@ nt
 nt
 nt
 jW
-Yi
-Yi
-jW
-LA
+QO
+QO
+vo
+ey
 MK
 yo
 yo
@@ -50062,9 +50123,9 @@ vo
 Yv
 vo
 vo
-vo
 QO
-XC
+QO
+QO
 jm
 XC
 nt
@@ -50218,10 +50279,10 @@ vo
 vo
 vo
 vo
-vo
-vE
-vE
-XC
+Gu
+lp
+QO
+QO
 qV
 XC
 Ek
@@ -50375,10 +50436,10 @@ nt
 nt
 jW
 By
-jW
-XC
-XC
-vE
+xt
+Hn
+QO
+QO
 vo
 yo
 yo
@@ -50532,11 +50593,11 @@ LA
 MK
 jW
 jW
-MK
-MK
-vo
-vo
-By
+xt
+mO
+VU
+QO
+jW
 yo
 yo
 MK
@@ -50689,12 +50750,12 @@ jW
 jW
 MK
 jW
-MK
-LA
-MK
+xt
+dG
+QO
+QO
 nt
-nt
-nt
+Ek
 nt
 LA
 MK
@@ -50846,10 +50907,10 @@ MK
 MK
 jW
 jW
-jW
-jW
-jW
-nt
+Er
+Js
+QO
+QO
 ST
 nt
 nt
@@ -88052,7 +88113,7 @@ rj
 rj
 hh
 hh
-hh
+IE
 bS
 Zk
 ZN

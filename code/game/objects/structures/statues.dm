@@ -1,7 +1,6 @@
 /obj/structure/statue
 	name = "statue"
 	desc = ""
-	icon = 'icons/obj/statue.dmi'
 	icon_state = ""
 	density = TRUE
 	anchored = FALSE

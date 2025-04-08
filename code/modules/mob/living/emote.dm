@@ -1,4 +1,3 @@
-
 /* EMOTE DATUMS */
 /datum/emote/living
 	mob_type_allowed_typecache = /mob/living
@@ -121,6 +120,17 @@
 	message_param = "bows to %t."
 	restraint_check = TRUE
 	emote_type = EMOTE_VISIBLE
+
+/datum/emote/living/bow/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && params && isliving(user))
+		var/mob/living/L = user
+		var/list/split_params = splittext(params, " ")
+		var/mob/target = get_target(L, split_params)
+		if(target && ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(HAS_TRAIT(H, TRAIT_NOBLE))
+				H.add_stress(/datum/stressevent/noble_bowed_to)
 
 /mob/living/carbon/human/verb/emote_bow()
 	set name = "Bow"
@@ -370,6 +380,18 @@
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = FALSE
 
+/datum/emote/living/giggle/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	if(.)
+		// Apply Xylix buff to those with the trait who hear the giggling
+		// Only apply if the hearer is not the one laughing
+		for(var/mob/living/carbon/human/H in hearers(7, user))
+			if(H == user || !H.client)
+				continue
+			if(HAS_TRAIT(H, TRAIT_XYLIX) && !H.has_status_effect(/datum/status_effect/buff/xylix_joy))
+				H.apply_status_effect(/datum/status_effect/buff/xylix_joy)
+				to_chat(H, span_info("The giggling brings a smile to my face, and fortune to my steps!"))
+
 /mob/living/carbon/human/verb/emote_giggle()
 	set name = "Giggle"
 	set category = "Noises"
@@ -383,6 +405,18 @@
 	message_muffled = "makes a muffled chuckle."
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = FALSE
+
+/datum/emote/living/chuckle/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	if(.)
+		// Apply Xylix buff to those with the trait who hear the chuckling
+		// Only apply if the hearer is not the one chuckling
+		for(var/mob/living/carbon/human/H in hearers(7, user))
+			if(H == user || !H.client)
+				continue
+			if(HAS_TRAIT(H, TRAIT_XYLIX) && !H.has_status_effect(/datum/status_effect/buff/xylix_joy))
+				H.apply_status_effect(/datum/status_effect/buff/xylix_joy)
+				to_chat(H, span_info("The chuckling brings a smile to my face, and fortune to my steps!"))
 
 /mob/living/carbon/human/verb/emote_chuckle()
 	set name = "Chuckle"
@@ -647,6 +681,18 @@
 	if(. && iscarbon(user))
 		var/mob/living/carbon/C = user
 		return !C.silent
+
+/datum/emote/living/laugh/run_emote(mob/living/user, params, type_override, intentional)
+	. = ..()
+	if(.)
+		// Apply Xylix buff to those with the trait who hear the laughter
+		// Only apply if the hearer is not the one laughing
+		for(var/mob/living/carbon/human/H in hearers(7, user))
+			if(H == user || !H.client)
+				continue
+			if(HAS_TRAIT(H, TRAIT_XYLIX) && !H.has_status_effect(/datum/status_effect/buff/xylix_joy))
+				H.apply_status_effect(/datum/status_effect/buff/xylix_joy)
+				to_chat(H, span_info("The laughter brings a smile to my face, and fortune to my steps!"))
 
 /mob/living/carbon/human/verb/emote_laugh()
 	set name = "Laugh"

@@ -33,6 +33,7 @@
 	ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE) // Need the strongarm to wrestle people out of the baths
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
@@ -53,8 +54,8 @@
 		// H.change_stat("perception", -1) // They are criminal types, and should be reasonably perceptive
 		H.change_stat("endurance", 2) // They are professionals, they should 'outlast' their subordinates and clients
 
-	if(H.pronouns == HE_HIM || H.pronouns == THEY_THEM || H.pronouns == IT_ITS)
+	if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman
 		H.dna.species.soundpack_m = new /datum/voicepack/male/zeth()
-	else
+	else if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt

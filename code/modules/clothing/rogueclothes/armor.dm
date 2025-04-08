@@ -102,6 +102,39 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
 	armor = list("blunt" = 80, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)
 	sellprice = 30
+	color = "#976E6B"
+	var/shiftable = TRUE
+	var/shifted = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/attack_right(mob/user)
+	if(!shiftable)
+		return
+	if(shifted)
+		if(alert("Would you like to wear your gambeson normally? -Restores greyscaling, new style.",, "Yes", "No") != "No")
+			icon_state = "gambesonp"
+			color = "#976E6B"
+			update_icon()
+			shifted = FALSE
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_shirt()
+					H.update_inv_armor()
+			return
+	else
+		if(alert("Would you like to wear your gambeson traditionally? -Removes Greyscaling, old style.",, "Yes", "No") != "No")
+			icon_state = "gambesonpold"
+			color = null
+			update_icon()
+			shifted = TRUE
+			if(user)
+				if(ishuman(user))
+					var/mob/living/carbon/H = user
+					H.update_inv_shirt()
+					H.update_inv_armor()
+			return
+
+
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/otavan
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
@@ -139,6 +172,7 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress/update_icon()
 	cut_overlays()
@@ -178,6 +212,7 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/wintercommon/update_icon()
 	cut_overlays()
@@ -264,6 +299,7 @@
 	icon_state = "monkleather"
 	item_state = "monkleather"
 	desc = "Tight boiled leathers that stretch and fit to one's frame perfectly."
+	shiftable = FALSE
 
 //leather family
 
@@ -297,6 +333,13 @@
 	icon_state = "hidearmor"
 	max_integrity = 250
 	armor_class = ARMOR_CLASS_LIGHT
+
+/obj/item/clothing/suit/roguetown/armor/leather/hide/warden
+	name = "forestry armor"
+	desc = "A light armor worn by the Wardens of Azuria. Far more durable than leather."
+	icon = 'icons/roguetown/clothing/special/warden.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/warden.dmi'
+	icon_state = "foresthide"
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded
 	name = "studded leather armor"
@@ -352,7 +395,7 @@
 	body_parts_covered = CHEST|GROIN
 	icon_state = "leatherkini"
 	item_state = "leatherkini"
-	allowed_sex = list(FEMALE)
+	allowed_sex = list(FEMALE, MALE)
 	allowed_race = CLOTHED_RACES_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini
@@ -530,10 +573,15 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
+	slot_flags = ITEM_SLOT_ARMOR
+	armor_class = ARMOR_CLASS_HEAVY
 	name = "fluted hauberk"
-	desc = "An ornate cuirass, flanked with sleeves of steel maille."
+	desc = "An ornate steel cuirass with tassets, worn atop thick chainmaille. While it falters against arrows and bolts, these interlinked layers are superb at warding off the blows of inhumen claws and axes."
 	icon_state = "flutedhauberk"
 	item_state = "flutedhauberk"
+	max_integrity = 350
+
+
 
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/bikini
@@ -572,6 +620,12 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+
+/obj/item/clothing/suit/roguetown/armor/plate/half/fluted
+	name = "fluted cuirass"
+	icon_state = "flutedcuirass"
+	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. Arrows may yet splinter against the steel, but a bolt will still punch straight through it."
+	body_parts_covered = CHEST|VITALS|LEGS
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron
 	name = "iron breastplate"
@@ -637,6 +691,23 @@
 	strip_delay = 6 SECONDS
 	smelt_bar_num = 4
 
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/matthios
+	name = "gilded fullplate"
+	desc = "Often, you have heard that told,"
+	icon_state = "matthiosarmor"
+	max_integrity = 700	
+
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/matthios/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+
+/obj/item/clothing/suit/roguetown/armor/plate/full/matthios/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/zizo
 	name = "darksteel fullplate"
@@ -753,8 +824,8 @@
 	desc = "A coat with plates concealed inside an exterior fabric. The gap between the plates is susceptible to being picked at."
 	icon_state = "brigandine"
 	blocksound = SOFTHIT
-	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
-	armor = list("blunt" = 90, "slash" = 60, "stab" = 70, "piercing" = 10, "fire" = 0, "acid" = 0)
+	body_parts_covered = CHEST|GROIN|VITALS|ARMS
+	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	allowed_sex = list(MALE, FEMALE)
 	nodismemsleeves = TRUE
@@ -822,7 +893,7 @@
 	body_parts_covered = CHEST|GROIN|VITALS|ARMS
 	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 30, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	max_integrity = 250
+	max_integrity = 300
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_HEAVY
@@ -867,8 +938,8 @@
 	icon_state = "light_brigandine"
 	blocksound = SOFTHIT
 	body_parts_covered = CHEST|GROIN|VITALS
-	armor = list("blunt" = 60, "slash" = 70, "stab" = 70, "piercing" = 10, "fire" = 0, "acid" = 0)
-	max_integrity = 350
+	armor = list("blunt" = 60, "slash" = 100, "stab" = 70, "piercing" = 20, "fire" = 0, "acid" = 0)
+	max_integrity = 250
 	smeltresult = /obj/item/ingot/iron
 	equip_delay_self = 40
 	armor_class = ARMOR_CLASS_MEDIUM
@@ -926,5 +997,22 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
+/obj/item/clothing/suit/roguetown/armor/plate/elven_plate
+	name = "woad elven plate"
+	desc = "Woven by song and tool of the oldest elven druids. It still creaks and weeps with forlorn reminiscence of a bygone era. It looks like only Elves can fit in it."
+	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark, /datum/species/elf)
+	armor = list("blunt" = 100, "slash" = 20, "stab" = 100, "piercing" = 40, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST, BCLASS_PICK, BCLASS_SMASH)
+	icon = 'icons/roguetown/clothing/special/race_armor.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
+	icon_state = "welfchest"
+	item_state = "welfchest"
+	max_integrity = 500
+	smeltresult = /obj/item/rogueore/coal
+	smelt_bar_num = 4
+	blocksound = SOFTHIT
+	armor_class = ARMOR_CLASS_MEDIUM
 
-
+/obj/item/clothing/suit/roguetown/armor/plate/elven_plate/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_WOOD_ARMOR)

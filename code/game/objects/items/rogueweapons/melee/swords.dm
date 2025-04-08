@@ -12,11 +12,6 @@
 	damfactor = 1.1
 	item_d_type = "slash"
 
-/datum/intent/sword/cut/sabre
-	clickcd = 10
-
-/datum/intent/sword/cut/falx
-	penfactor = 20
 /datum/intent/sword/thrust
 	name = "stab"
 	icon_state = "instab"
@@ -53,6 +48,7 @@
 	swingdelay = 8
 	damfactor = 1.0
 	item_d_type = "slash"
+
 /datum/intent/sword/chop/falx
 	penfactor = 40
 //sword objs ฅ^•ﻌ•^ฅ
@@ -63,13 +59,19 @@
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
+	armor = list("blunt" = 50, "slash" = 50, "stab" = 50, "piercing" = 0)
+	damage_deflection = 15
 	name = "sword"
 	desc = "A simple steel sword, clean and effective."
 	icon_state = "sword1"
 	icon = 'icons/roguetown/weapons/32.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/rogue_righthand.dmi'
-	parrysound = "bladedmedium"
+	parrysound = list(
+		'sound/combat/parry/bladed/bladedmedium (1).ogg',
+		'sound/combat/parry/bladed/bladedmedium (2).ogg',
+		'sound/combat/parry/bladed/bladedmedium (3).ogg',
+		)
 	swingsound = BLADEWOOSH_MED
 	associated_skill = /datum/skill/combat/swords
 	max_blade_int = 100
@@ -98,7 +100,6 @@
 /obj/item/rogueweapon/sword/falchion
 	name = "falchion"
 	desc = "A blade with a quilloned crossguard."
-	parrysound = "bladedmedium"
 	force = 20
 	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short)
 	icon_state = "falchion"
@@ -109,7 +110,6 @@
 /obj/item/rogueweapon/sword/falx
 	name = "falx"
 	desc = "A blade with an odd curve forward, meant to penetrate armour and slice flesh."
-	parrysound = "bladedmedium"
 	force = 22
 	possible_item_intents = list(/datum/intent/sword/cut/falx,  /datum/intent/sword/chop/falx, /datum/intent/sword/strike)
 	icon_state = "falx"
@@ -184,7 +184,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "bastard sword"
 	desc = "A bastard sword that can chop with ease."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -246,7 +245,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "old sword"
 	desc = "A old steel sword with a green leather grip."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -283,7 +281,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "judgement"
 	desc = "A sword with a silver grip, a topaz gem hilt and a steel blade, what more could a noble ask for."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -326,7 +323,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "Psydonia Redentor"
 	desc = "...for the LORD is my tower, and HE gives me the power to tear down the works of the enemy..."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -358,7 +354,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	name = "crimson fang"
 	desc = "A strange long sword with a green metal composition."
-	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
@@ -390,35 +385,28 @@
 			if("onbelt") 
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/rogueweapon/sword/long/rider
-	force = 26
-	force_wielded = 31
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop)
-	icon_state = "tabi"
-	icon = 'icons/roguetown/weapons/64.dmi'
-	item_state = "tabi"
-	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
+/obj/item/rogueweapon/sword/sabre/shamshir
+	force = 24
+	minstr = 5
+	wdefense = 5
+	wbalance = 1
 	name = "shamshir"
 	desc = "A one-handed sword with elegant curves and deadly sharpness."
-	parrysound = "bladedmedium"
-	swingsound = BLADEWOOSH_LARGE
-	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
-	bigboy = 1
-	wlength = WLENGTH_LONG
-	gripsprite = TRUE
+	icon_state = "tabi"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	gripped_intents = null
+	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
+	swingsound = BLADEWOOSH_SMALL
+	bigboy = TRUE
 	pixel_y = -16
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	associated_skill = /datum/skill/combat/swords
-	throwforce = 15
-	thrown_bclass = BCLASS_CUT
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
-
-/obj/item/rogueweapon/sword/long/rider/getonmobprop(tag)
+	
+/obj/item/rogueweapon/sword/sabre/shamshir/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -513,12 +501,12 @@
 
 /obj/item/rogueweapon/sword/long/psysword
 	name = "psydonian sword"
-	desc = "a silver bastard sword, for the Inquisiton. For when you need to make a point."
+	desc = "An ornate longsword, plated in a ceremonial veneer of silver. Ideal for hunting monsters and men alike."
 	icon_state = "psysword"
-	max_blade_int = 200
-	wdefense = 5
-	is_silver = TRUE
-	smeltresult = /obj/item/ingot/silver
+
+/obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
+	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 100, 50, 1, TRUE)
 
 /obj/item/rogueweapon/sword/iron
 	name = "sword"
@@ -571,13 +559,25 @@
 	name = "sabre"
 	desc = "A swift saber. Parries realiantly and strikes swiftly"
 	icon_state = "saber"
-	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust)
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust/sabre)
 	gripped_intents = null
 	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
 	swingsound = BLADEWOOSH_SMALL
 	minstr = 5
 	wdefense = 6
 	wbalance = 1
+
+/datum/intent/sword/cut/sabre
+	clickcd = 10		//Faster than sword by 2, slower than rapier stab by 2
+	damfactor = 1.15	//Opposite of rapier, 15% better than base
+
+/datum/intent/sword/thrust/sabre
+	clickcd = 9			//Fast but still not as fast as rapier n' shittier.
+	damfactor = 0.9		//10% worse	than base
+
+/obj/item/rogueweapon/sword/sabre/dec
+	icon_state = "decsaber"
+	sellprice = 140
 
 /obj/item/rogueweapon/sword/sabre/nockhopesh
 	name = "moonlight khopesh"
@@ -588,9 +588,8 @@
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/chop/falx)
 	max_integrity = 200
 
-/obj/item/rogueweapon/sword/sabre/dec
-	icon_state = "decsaber"
-	sellprice = 140
+/datum/intent/sword/cut/falx
+	penfactor = 20
 
 /obj/item/rogueweapon/sword/rapier
 	name = "rapier"
@@ -723,6 +722,16 @@
 	max_integrity = 300
 	max_blade_int = 300
 	wdefense = 7
+
+/obj/item/rogueweapon/sword/rapier/eora
+	name = "The Heartstring"
+	desc = "For when soft words cannot be spoken more, and hearts are to be pierced."
+	icon = 'icons/roguetown/weapons/32.dmi'
+	icon_state = "eorarapier"
+	grid_width = 32
+	grid_height = 64
+	dropshrink = 0
+	bigboy = FALSE
 
 /obj/item/rogueweapon/sword/cutlass
 	name = "cutlass"
@@ -1014,7 +1023,7 @@
 	smelt_bar_num = 2
 	max_integrity = 999
 
-/obj/item/rogueweapon/sword/long/eclipsum/getonmobprop(tag)
+/obj/item/rogueweapon/sword/long/holysee/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)

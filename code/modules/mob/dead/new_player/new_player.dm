@@ -377,6 +377,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			if(usr.ckey in GLOB.job_respawn_delays)
 				var/remaining_time = round((GLOB.job_respawn_delays[usr.ckey] - world.time) / 10)
 				return "You must wait [remaining_time] seconds before playing as an [jobtitle] again."
+		if(JOB_UNAVAILABLE_VIRTUESVICE)
+			return "[jobtitle] is restricted by your Virtues or Vices."
 	return "Error: Unknown job availability."
 
 //used for latejoining
@@ -464,6 +466,9 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 					return JOB_UNAVAILABLE_SLOTFULL
 		else
 			return JOB_UNAVAILABLE_SLOTFULL
+	if(length(job.vice_restrictions) || length(job.virtue_restrictions))
+		if((client.prefs.virtue?.type in job.virtue_restrictions) || (client.prefs.virtuetwo?.type in job.virtue_restrictions) || (client.prefs.charflaw?.type in job.vice_restrictions))
+			return JOB_UNAVAILABLE_VIRTUESVICE
 //	if(job.title == "Adventurer" && latejoin)
 //		for(var/datum/job/J in SSjob.occupations)
 //			if(J && J.total_positions && J.current_positions < 1 && J.title != job.title && (IsJobUnavailable(J.title))
@@ -523,7 +528,6 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		Spl.Fade(TRUE)
 //			character.playsound_local(get_turf(character), 'sound/blank.ogg', 25)
 
-		character.update_parallax_teleport()
 
 	SSticker.minds += character.mind
 
@@ -582,10 +586,6 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 /mob/dead/new_player/proc/LateChoices()
 	var/list/dat = list("<div class='notice' style='font-style: normal; font-size: 14px; margin-bottom: 2px; padding-bottom: 0px'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time, 1)]</div>")
-	if(SSshuttle.emergency)
-		switch(SSshuttle.emergency.mode)
-			if(SHUTTLE_ESCAPE)
-				dat += "<div class='notice red'>The last boat has left Roguetown.</div><br>"
 	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
 			SSjob.prioritized_jobs -= prioritized_job

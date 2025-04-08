@@ -99,9 +99,6 @@
 			continue
 		if(I.flags_1 & HOLOGRAM_1)
 			continue
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			.["other"][I.type] += S.amount
 		else if(istype(I, /obj/item/natural/bundle))
 			var/obj/item/natural/bundle/B = I
 			.["other"][B.stacktype] += B.amount
@@ -358,28 +355,6 @@
 						RC.on_reagent_change()
 					else
 						surroundings -= RC
-			else if(ispath(A, /obj/item/stack))
-				var/obj/item/stack/S
-				var/obj/item/stack/SD
-				while(amt > 0)
-					S = locate(A) in surroundings
-					if(S.amount >= amt)
-						if(!locate(S.type) in Deletion)
-							SD = new S.type()
-							Deletion += SD
-						S.use(amt)
-						SD = locate(S.type) in Deletion
-						SD.amount += amt
-						continue main_loop
-					else
-						amt -= S.amount
-						if(!locate(S.type) in Deletion)
-							Deletion += S
-						else
-							data = S.amount
-							S = locate(S.type) in Deletion
-							S.add(data)
-						surroundings -= S
 			else if(ispath(A, /obj/item/natural) || A == /obj/item/grown/log/tree/stick)
 				while(amt > 0)
 					for(var/obj/item/natural/bundle/B in get_environment(user))
@@ -423,13 +398,6 @@
 				RG.volume = partlist[A]
 			. += RG
 			Deletion -= RG
-			continue
-		else if(istype(A, /obj/item/stack))
-			var/obj/item/stack/ST = locate(A) in Deletion
-			if(ST.amount > partlist[A])
-				ST.amount = partlist[A]
-			. += ST
-			Deletion -= ST
 			continue
 		else
 			while(partlist[A] > 0)
@@ -596,9 +564,7 @@
 	if(!A.can_craft_here())
 		to_chat(user, span_warning("I can't craft here."))
 		return
-//	if(user != parent)
-//		testing("c2")
-//		return
+
 	var/list/data = list()
 	var/list/catty = list()
 	var/list/surroundings = get_surroundings(user)
@@ -606,9 +572,6 @@
 		var/datum/crafting_recipe/R = rec
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
-
-//		if((R.category != cur_category) || (R.subcategory != cur_subcategory))
-//			continue
 
 		if(check_contents(R, surroundings))
 			if(R.name)
@@ -639,6 +602,7 @@
 				if(t == "Other")
 					realdata += X
 		if(realdata.len)
+			realdata = sortNames(realdata)
 			var/r = input(user, "What should I craft?") as null|anything in realdata
 			if(r)
 				construct_item(user, r)

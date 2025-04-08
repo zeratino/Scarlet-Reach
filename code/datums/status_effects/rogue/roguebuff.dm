@@ -13,6 +13,28 @@
 	desc = ""
 	icon_state = "drunk"
 
+/atom/movable/screen/alert/status_effect/buff/drunkmurk
+	name = "Murk-Knowledge"
+	desc = ""
+	icon_state = "drunk"
+
+/atom/movable/screen/alert/status_effect/buff/drunknoc
+	name = "Noc-Shine Strength"
+	desc = ""
+	icon_state = "drunk"
+
+/datum/status_effect/buff/murkwine
+	id = "murkwine"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/drunkmurk
+	effectedstats = list("intelligence" = 5)
+	duration = 2 MINUTES
+
+/datum/status_effect/buff/nocshine
+	id = "nocshine"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/drunknoc
+	effectedstats = list("strength" = 1, "endurance" = 1)
+	duration = 2 MINUTES
+
 /datum/status_effect/buff/foodbuff
 	id = "foodbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/foodbuff
@@ -101,6 +123,79 @@
 /datum/status_effect/buff/moondust_purest/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/moondust_purest)
+
+/datum/status_effect/buff/herozium
+	id = "herozium"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
+	effectedstats = list("speed" = -5, "endurance" = 4, "intelligence" = -3, "constitution" = 3)
+	duration = 80 SECONDS
+	var/originalcmode = ""
+	var/hadcritres = FALSE
+	var/hadpainres = FALSE
+
+/datum/status_effect/buff/herozium/nextmove_modifier()
+	return 1.2
+
+/datum/status_effect/buff/herozium/on_apply()
+	. = ..()
+	owner.add_stress(/datum/stressevent/ozium)
+	if(!HAS_TRAIT(owner, TRAIT_NOPAIN))
+		ADD_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	else
+		hadpainres = TRUE
+	if(!HAS_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE))
+		ADD_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	else
+		hadcritres = TRUE
+	originalcmode = owner.cmode_music
+	owner.cmode_music = 'sound/music/combat_ozium.ogg'
+
+/datum/status_effect/buff/herozium/on_remove()
+	owner.remove_stress(/datum/stressevent/ozium)
+	if(!hadpainres)
+		REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	if(!hadcritres)
+		REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	owner.cmode_music = originalcmode
+	. = ..()
+
+/datum/status_effect/buff/starsugar
+	id = "starsugar"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
+	effectedstats = list("speed" = 4, "endurance" = 4, "intelligence" = -3, "constitution" = -3)
+	duration = 80 SECONDS
+	var/originalcmode = ""
+	var/haddodge = FALSE
+	var/haddarkvision = FALSE
+
+/datum/status_effect/buff/starsugar/nextmove_modifier()
+	return 0.7
+
+/datum/status_effect/buff/starsugar/on_apply()
+	. = ..()
+	owner.add_stress(/datum/stressevent/starsugar)
+	if(!HAS_TRAIT(owner, TRAIT_DODGEEXPERT))
+		ADD_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	else
+		haddodge = TRUE
+	if(!HAS_TRAIT(owner, TRAIT_DARKVISION))
+		ADD_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	else
+		haddarkvision = TRUE
+	if(owner.has_status_effect(/datum/status_effect/debuff/sleepytime))
+		owner.remove_status_effect(/datum/status_effect/debuff/sleepytime)
+	originalcmode = owner.cmode_music
+	owner.cmode_music = 'sound/music/combat_starsugar.ogg'
+
+
+/datum/status_effect/buff/starsugar/on_remove()
+	if(!haddodge)
+		REMOVE_TRAIT(owner, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	if(!haddarkvision)
+		REMOVE_TRAIT(owner, TRAIT_DARKVISION, TRAIT_GENERIC)
+	owner.remove_stress(/datum/stressevent/starsugar)
+	owner.cmode_music = originalcmode
+	. = ..()
 
 /datum/status_effect/buff/weed
 	id = "weed"
@@ -195,20 +290,6 @@
 	. = ..()
 	to_chat(owner, span_warning("The darkness returns to normal."))
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, MAGIC_TRAIT)
-
-/atom/movable/screen/alert/status_effect/buff/haste
-	name = "Haste"
-	desc = "I am magically hastened."
-	icon_state = "buff"
-
-/datum/status_effect/buff/haste
-	id = "haste"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/haste
-	effectedstats = list("speed" = 5)
-	duration = 1 MINUTES
-
-/datum/status_effect/buff/haste/nextmove_modifier()
-	return 0.85
 
 /atom/movable/screen/alert/status_effect/buff/longstrider
 	name = "Longstrider"
@@ -339,17 +420,18 @@
 	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal_rogue(get_turf(owner))
 	H.color = "#FF0000"
 	var/list/wCount = owner.get_wounds()
-	if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
-		owner.blood_volume = min(owner.blood_volume+10, BLOOD_VOLUME_NORMAL)
-	if(wCount.len > 0)
-		owner.heal_wounds(healing_on_tick)
-		owner.update_damage_overlays()
-	owner.adjustBruteLoss(-healing_on_tick, 0)
-	owner.adjustFireLoss(-healing_on_tick, 0)
-	owner.adjustOxyLoss(-healing_on_tick, 0)
-	owner.adjustToxLoss(-healing_on_tick, 0)
-	owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
-	owner.adjustCloneLoss(-healing_on_tick, 0)
+	if(!owner.construct)
+		if(owner.blood_volume < BLOOD_VOLUME_NORMAL)
+			owner.blood_volume = min(owner.blood_volume+10, BLOOD_VOLUME_NORMAL)
+		if(wCount.len > 0)
+			owner.heal_wounds(healing_on_tick)
+			owner.update_damage_overlays()
+		owner.adjustBruteLoss(-healing_on_tick, 0)
+		owner.adjustFireLoss(-healing_on_tick, 0)
+		owner.adjustOxyLoss(-healing_on_tick, 0)
+		owner.adjustToxLoss(-healing_on_tick, 0)
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
+		owner.adjustCloneLoss(-healing_on_tick, 0)
 
 /datum/status_effect/buff/healing/on_remove()
 	owner.remove_filter(MIRACLE_HEALING_FILTER)
@@ -359,58 +441,50 @@
 	desc = "Divine intervention bolsters me and aids my recovery."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/convergence
+	name = "Convergence Miracle"
+	desc = "My body converges to whence it found strength and health."
+	icon_state = "buff"
+
+/atom/movable/screen/alert/status_effect/buff/stasis
+	name = "Stasis Miracle"
+	desc = "A part of me has been put in stasis."
+	icon_state = "buff"
+
+/atom/movable/screen/alert/status_effect/buff/censerbuff
+	name = "Inspired by SYON."
+	desc = "The shard of the great comet had inspired me to ENDURE."
+	icon_state = "censerbuff"
+
 /datum/status_effect/buff/fortify //Increases all healing while it lasts.
 	id = "fortify"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fortify
 	duration = 1 MINUTES
 
-/datum/status_effect/buff/fortitude
-	id = "fortitude"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/fortitude
+/datum/status_effect/buff/censerbuff
+	id = "censer"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/censerbuff
+	duration = 15 MINUTES
+	effectedstats = list("endurance" = 1, "constitution" = 1)
+
+/datum/status_effect/buff/convergence //Increases all healing while it lasts.
+	id = "convergence"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/convergence
 	duration = 1 MINUTES
 
-/datum/status_effect/buff/fortitude/on_apply()
-	. = ..()
-	to_chat(owner, span_warning("My body feels lighter..."))
-	ADD_TRAIT(owner, TRAIT_FORTITUDE, MAGIC_TRAIT)
-
-/datum/status_effect/buff/fortitude/on_remove()
-	. = ..()
-	to_chat(owner, span_warning("The weight of the world rests upon my shoulders once more."))
-	REMOVE_TRAIT(owner, TRAIT_FORTITUDE, MAGIC_TRAIT)
-
-#define GUIDANCE_FILTER "guidance_glow"
-/atom/movable/screen/alert/status_effect/buff/guidance
-	name = "Guidance"
-	desc = "Arcyne assistance guides my hands."
-	icon_state = "buff"
-
-/datum/status_effect/buff/guidance
-	var/outline_colour ="#f58e2d"
-	id = "guidance"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/guidance
-	duration = 1 MINUTES
-
-/datum/status_effect/buff/guidance/on_apply()
-	. = ..()
-	var/filter = owner.get_filter(GUIDANCE_FILTER)
-	if (!filter)
-		owner.add_filter(GUIDANCE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
-	to_chat(owner, span_warning("The arcyne aides me in battle."))
-	ADD_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
-
-/datum/status_effect/buff/guidance/on_remove()
-	. = ..()
-	to_chat(owner, span_warning("My feeble mind muddies my warcraft once more."))
-	owner.remove_filter(GUIDANCE_FILTER)
-	REMOVE_TRAIT(owner, TRAIT_GUIDANCE, MAGIC_TRAIT)
-
-#undef GUIDANCE_FILTER
+/datum/status_effect/buff/stasis //Increases all healing while it lasts.
+	id = "stasis"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/stasis
+	duration = 10 SECONDS
 
 #define CRANKBOX_FILTER "crankboxbuff_glow"
 /atom/movable/screen/alert/status_effect/buff/churnerprotection
 	name = "Magick Distorted"
 	desc = "The wailing box is disrupting magicks around me!"
+	icon_state = "buff"
+/atom/movable/screen/alert/status_effect/buff/churnernegative
+	name = "Magick Distorted"
+	desc = "That infernal contraption is sapping my very arcyne essence!"
 	icon_state = "buff"
 
 /datum/status_effect/buff/churnerprotection
@@ -435,6 +509,25 @@
 
 #undef CRANKBOX_FILTER
 #undef MIRACLE_HEALING_FILTER
+
+/datum/status_effect/buff/churnernegative
+	id ="soulchurnernegative"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/churnernegative
+	duration = 20 SECONDS
+
+/datum/status_effect/buff/churnernegative/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	to_chat(owner, span_warning("I feel as if my connection to the Arcyne disappears entirely. The air feels still..."))
+	owner.visible_message("[owner]'s arcyne aura seems to fade.")
+
+/datum/status_effect/buff/churnernegative/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	to_chat(owner, span_warning("I feel my connection to the arcyne surround me once more."))
+	owner.visible_message("[owner]'s arcyne aura seems to return once more.")
 
 #define BLESSINGOFSUN_FILTER "sun_glow"
 /atom/movable/screen/alert/status_effect/buff/guidinglight
@@ -662,3 +755,45 @@
 	. = ..()
 	to_chat(owner, span_warning("My mind is my own again, no longer awash with foggy peace!"))
 	REMOVE_TRAIT(owner, TRAIT_PACIFISM, TRAIT_GENERIC)
+
+/datum/status_effect/buff/call_to_arms
+	id = "call_to_arms"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/call_to_arms
+	duration = 2.5 MINUTES
+	effectedstats = list("strength" = 1, "endurance" = 2, "constitution" = 1)
+
+/atom/movable/screen/alert/status_effect/buff/call_to_arms
+	name = "Call to Arms"
+	desc = span_bloody("FOR GLORY AND HONOR!")
+	icon_state = "call_to_arms"
+
+/datum/status_effect/buff/call_to_slaughter
+	id = "call_to_slaughter"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/call_to_slaughter
+	duration = 2.5 MINUTES
+	effectedstats = list("strength" = 1, "endurance" = 2, "constitution" = 1)
+
+/atom/movable/screen/alert/status_effect/buff/call_to_slaughter
+	name = "Call to Slaughter"
+	desc = span_bloody("LAMBS TO THE SLAUGHTER!")
+	icon_state = "call_to_slaughter"
+
+/atom/movable/screen/alert/status_effect/buff/xylix_joy
+	name = "Trickster's Joy"
+	desc = "The sound of merriment fills me with fortune."
+	icon_state = "buff"
+
+/datum/status_effect/buff/xylix_joy
+	id = "xylix_joy"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/xylix_joy
+	effectedstats = list("fortune" = 1)
+	duration = 5 MINUTES
+	status_type = STATUS_EFFECT_REFRESH
+
+/datum/status_effect/buff/xylix_joy/on_apply()
+	. = ..()
+	to_chat(owner, span_info("The sounds of joy fill me with fortune!"))
+
+/datum/status_effect/buff/xylix_joy/on_remove()
+	. = ..()
+	to_chat(owner, span_info("My fortune returns to normal."))

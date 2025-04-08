@@ -10,6 +10,10 @@
 		user.add_stress(/datum/stressevent/jesterphobia)
 	if(HAS_TRAIT(src, TRAIT_BEAUTIFUL))
 		user.add_stress(/datum/stressevent/beautiful)
+		// Apply Xylix buff when examining someone with the beautiful trait
+		if(HAS_TRAIT(user, TRAIT_XYLIX) && !user.has_status_effect(/datum/status_effect/buff/xylix_joy))
+			user.apply_status_effect(/datum/status_effect/buff/xylix_joy)
+			to_chat(user, span_info("Their beauty brings a smile to my face, and fortune to my steps!"))
 	if(HAS_TRAIT(src, TRAIT_UNSEEMLY))
 		if(!HAS_TRAIT(user, TRAIT_UNSEEMLY))
 			user.add_stress(/datum/stressevent/unseemly)
@@ -175,6 +179,11 @@
 					. += span_redtext("[m1] repugnant!")
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_redtext("[m1] repulsive!")
+
+	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
+		var/atom/item = get_most_expensive()
+		if(item)
+			. += span_notice("You get the feeling [m2] most valuable possession is \a [item].")
 
 	var/is_stupid = FALSE
 	var/is_smart = FALSE
@@ -557,14 +566,30 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[m1] being grabbed by [pulledby]."
 
-	//Nutrition
+	//Nutrition and Thirst
 	if(nutrition < (NUTRITION_LEVEL_STARVING - 50))
-		msg += "[m1] looking starved."
+		msg += "[m1] looking emaciated."
 //	else if(nutrition >= NUTRITION_LEVEL_FAT)
 //		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
 //			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy."
 //		else
 //			msg += "[t_He] [t_is] quite chubby."
+
+	if(HAS_TRAIT(user, TRAIT_EXTEROCEPTION))
+		switch(nutrition)
+			if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)
+				msg += "[m1] looking peckish."
+			if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)
+				msg += "[m1] looking hungry."
+			if(NUTRITION_LEVEL_STARVING-50 to NUTRITION_LEVEL_STARVING)
+				msg += "[m1] looking starved."
+		switch(hydration)
+			if(HYDRATION_LEVEL_THIRSTY to HYDRATION_LEVEL_SMALLTHIRST)
+				msg += "[m1] looking like [m2] mouth is dry."
+			if(HYDRATION_LEVEL_DEHYDRATED to HYDRATION_LEVEL_THIRSTY)
+				msg += "[m1] looking thirsty for a drink."
+			if(0 to HYDRATION_LEVEL_DEHYDRATED)
+				msg += "[m1] looking parched."
 
 	//Fire/water stacks
 	if(fire_stacks > 0)

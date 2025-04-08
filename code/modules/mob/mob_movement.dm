@@ -106,6 +106,12 @@
 	if(mob.force_moving)
 		return FALSE
 
+	if(mob.shifting)
+		mob.pixel_shift(direct)
+		return FALSE
+	else if(mob.is_shifted)
+		mob.unpixel_shift()
+
 	var/mob/living/L = mob  //Already checked for isliving earlier
 	if(L.incorporeal_move)	//Move though walls
 		Process_Incorpmove(direct)
@@ -158,6 +164,9 @@
 				L.toggle_rogmove_intent(MOVE_INTENT_WALK)
 	else
 		if(L.dir != target_dir)
+			if(abs(dir2angle(L.dir) - dir2angle(target_dir)) == 180)	//If we do a 180 turn, we cancel our run
+				if(L.m_intent == MOVE_INTENT_RUN)
+					L.toggle_rogmove_intent(MOVE_INTENT_WALK)
 			// Reset our sprint counter if we change direction
 			L.sprinted_tiles = 0
 
@@ -768,7 +777,7 @@
 	playsound_local(src, 'sound/misc/click.ogg', 100)
 
 /client/proc/hearallasghost()
-	set category = "GameMaster"
+	set category = "Prefs - Admin"
 	set name = "HearAllAsAdmin"
 	if(!holder)
 		return

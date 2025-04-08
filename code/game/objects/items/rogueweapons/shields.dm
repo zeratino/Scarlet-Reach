@@ -23,8 +23,8 @@
 	associated_skill = /datum/skill/combat/shields		//Trained via blocking or attacking dummys with; makes better at parrying w/ shields.
 	wdefense = 10										//should be pretty baller
 	var/coverage = 90
-	parrysound = "parrywood"
-	attacked_sound = "parrywood"
+	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
+	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
 	max_integrity = 150
 	blade_dulling = DULLING_BASHCHOP
 	anvilrepair = /datum/skill/craft/weaponsmithing
@@ -216,6 +216,8 @@
 	max_integrity = 300
 	blade_dulling = DULLING_BASH
 	associated_skill = 0
+	grid_width = 32
+	grid_height = 64
 
 /obj/item/rogueweapon/shield/buckler/proc/bucklerskill(mob/living/user)
 	if(!ishuman(user))

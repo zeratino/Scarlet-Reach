@@ -24,10 +24,9 @@
 Also given some non-combat skills that a peasent would have, just to support themselves, but not anything to replace soilsons with.*/
 /datum/outfit/job/roguetown/bogguardsman/pre_equip(mob/living/carbon/human/H)
 	. = ..()
-	head = /obj/item/clothing/head/roguetown/helmet/kettle
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
-	cloak = /obj/item/clothing/cloak/raincloak/furcloak/woad
-	mask = /obj/item/clothing/mask/rogue/wildguard
+	head = /obj/item/clothing/head/roguetown/helmet/bascinet/antler
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide/warden
+	cloak = /obj/item/clothing/cloak/wardencloak
 	neck = /obj/item/clothing/neck/roguetown/coif
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -72,6 +71,5 @@ Also given some non-combat skills that a peasent would have, just to support the
 		H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_WOODSMAN, TRAIT_GENERIC) // Longstrider where active, +3 per, +1 speed
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
-	

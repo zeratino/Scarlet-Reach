@@ -57,7 +57,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/rosewater
+/datum/reagent/water/rosewater
 	name = "Rose Water"
 	description = "Steeped rose petals with mild regeneration."
 	reagent_state = LIQUID
@@ -67,7 +67,7 @@
 	metabolization_rate = REAGENTS_METABOLISM
 	alpha = 173
 
-/datum/reagent/medicine/rosewater/on_mob_life(mob/living/carbon/M)
+/datum/reagent/water/rosewater/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if (M.mob_biotypes & MOB_BEAST)
 		M.adjustFireLoss(0.5*REM)
@@ -147,7 +147,7 @@
 
 /datum/reagent/medicine/stampot/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.adjustStaminaLoss(-1.5)
+		M.rogstam_add(30)
 	..()
 
 /datum/reagent/medicine/strongstam
@@ -159,7 +159,7 @@
 
 /datum/reagent/medicine/strongstam/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.adjustStaminaLoss(-6)
+		M.rogstam_add(120)
 	..()
 
 /datum/reagent/medicine/antidote
@@ -363,7 +363,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 
 /datum/reagent/stampoison/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.adjustStaminaLoss(2.25) //Slowly leech stamina
+		M.rogstam_add(-45) //Slowly leech stamina
 	return ..()
 
 /datum/reagent/strongstampoison
@@ -376,7 +376,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 
 /datum/reagent/strongstampoison/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.adjustStaminaLoss(9) //Rapidly leech stamina
+		M.rogstam_add(-180) //Rapidly leech stamina
 	return ..()
 
 

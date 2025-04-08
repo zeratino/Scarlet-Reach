@@ -15,7 +15,7 @@
 
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
 /client/proc/cmd_admin_pm_panel()
-	set category = "Admin"
+	set category = "-Admin-"
 	set name = "Admin PM"
 	if(!holder)
 		to_chat(src, span_danger("Error: Admin-PM-Panel: Only administrators may use this command."))
@@ -139,8 +139,8 @@
 
 	var/rawmsg = msg
 
-	if(holder)
-		msg = emoji_parse(msg)
+	//if(holder)
+		//msg = emoji_parse(msg)
 
 	var/keywordparsedmsg = keywords_lookup(msg)
 
@@ -292,7 +292,7 @@
 
 	message_admins("IRC message from [sender] to [key_name_admin(C)] : [msg]")
 	log_admin_private("IRC PM: [sender] -> [key_name(C)] : [msg]")
-	msg = emoji_parse(msg)
+	//msg = emoji_parse(msg)
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, span_adminsay("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"))

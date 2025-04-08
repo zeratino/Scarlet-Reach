@@ -12,7 +12,7 @@
 /client/proc/centcom_podlauncher() //Creates a verb for admins to open up the ui
 	set name = "Config/Launch Supplypod"
 	set desc = ""
-	set category = "Admin"
+	set category = "-Admin-"
 	set hidden = 1
 	var/datum/centcom_podlauncher/plaunch  = new(usr)//create the datum
 	plaunch.ui_interact(usr)//datum has a tgui component, here we open the window
@@ -20,7 +20,7 @@
 //Variables declared to change how items in the launch bay are picked and launched. (Almost) all of these are changed in the ui_act proc
 //Some effect groups are choices, while other are booleans. This is because some effects can stack, while others dont (ex: you can stack explosion and quiet, but you cant stack ordered launch and random launch)
 /datum/centcom_podlauncher
-	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /atom/movable/lighting_object, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector ))
+	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /atom/movable/lighting_object, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector ))
 	var/turf/oldTurf //Keeps track of where the user was at if they use the "teleport to centcom" button, so they can go back
 	var/client/holder //client of whoever is using this datum
 	var/area/bay //What bay we're using to launch shit from.

@@ -48,7 +48,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(!msg)
 		return
 
-	msg = emoji_parse(msg)
+	//msg = emoji_parse(msg)
 
 
 	if(!holder)
@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(!msg)
 		return
 
-	msg = emoji_parse(msg)
+	//msg = emoji_parse(msg)
 
 
 	if(!holder)
@@ -217,7 +217,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
 	set desc = ""
-	set category = "Fun"
+	set category = "-Fun-"
 	set hidden = 1
 	if(!holder)
 		return
@@ -228,7 +228,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/proc/reset_ooc()
 	set name = "Reset Player OOC Color"
 	set desc = ""
-	set category = "Fun"
+	set category = "-Fun-"
 	set hidden = 1
 	if(!holder)
 		return
@@ -273,7 +273,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 //Checks admin notice
 /client/verb/admin_notice()
 	set name = "Adminnotice"
-	set category = "Admin"
+	set category = "-Admin-"
 	set desc ="Check the admin notice if it has been set"
 	set hidden = 1
 	if(!holder)

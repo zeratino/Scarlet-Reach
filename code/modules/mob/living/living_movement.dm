@@ -2,8 +2,18 @@
 	. = ..()
 	stop_looking()
 	update_turf_movespeed(loc)
+	update_pixel_shifting(TRUE)
 //	if(m_intent == MOVE_INTENT_RUN)
 //		consider_ambush()
+
+/mob/living/setDir(newdir, ismousemovement)
+	. = ..()
+	if(ismousemovement)
+		update_pixel_shifting()
+
+/mob/living/proc/update_pixel_shifting(moved = FALSE)
+	if(moved)
+		unpixel_shift()
 
 /mob/living/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
@@ -22,7 +32,7 @@
 			var/mob/living/M = mover
 			if(M.wallpressed)
 				return !wallpressed
-	return (!density || wallpressed || (pixelshift_x >= 10 && pixel_x >= 10) || (pixelshift_x <= -10 && pixel_x <= -10) || (pixelshift_y >= 10 && pixel_y >= 10) || (pixelshift_y <= -8 && pixel_y <= -8) || !(mobility_flags & MOBILITY_STAND))
+	return (!density || wallpressed || !(mobility_flags & MOBILITY_STAND))
 
 /mob/living/toggle_move_intent()
 	. = ..()
@@ -107,6 +117,10 @@
 	remove_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING)
 
 /mob/living/can_zFall(turf/T, levels)
+	if(HAS_TRAIT(src, TRAIT_WOODWALKER))
+		for(var/leaf in T.contents)
+			if(istype(leaf, /obj/structure/flora/newleaf))
+				return FALSE
 	return ..()
 
 /mob/living/canZMove(dir, turf/target)

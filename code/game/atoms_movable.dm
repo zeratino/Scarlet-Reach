@@ -543,9 +543,6 @@
 	if(!isturf(loc))
 		return 1
 
-	if(locate(/obj/structure/lattice) in range(1, get_turf(src))) //Not realistic but makes pushing things in space easier
-		return 1
-
 	return 0
 
 
@@ -566,7 +563,7 @@
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
 	return hit_atom.hitby(src, throwingdatum=throwingdatum)
 
-/atom/movable/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked, datum/thrownthing/throwingdatum, damage_type = "blunt")
+/atom/movable/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
 	if(!anchored && hitpush && (!throwingdatum || (throwingdatum.force >= (move_resist * MOVE_FORCE_PUSH_RATIO))))
 		step(src, AM.dir)
 	..()
@@ -699,7 +696,7 @@
 
 /atom/movable/CanPass(atom/movable/mover, turf/target)
 	if(mover in buckled_mobs)
-		return 1
+		return TRUE
 	return ..()
 
 // called when this atom is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.

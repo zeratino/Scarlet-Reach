@@ -24,8 +24,8 @@
 
 	var/obj/item/held_item = user.get_active_held_item()
 	var/big_cast = FALSE
-	if (istype(held_item, /obj/item/stack/sheet/bone))
-		var/obj/item/stack/sheet/bone/bonez = held_item
+	if (istype(held_item, /obj/item/natural/bundle/bone))
+		var/obj/item/natural/bundle/bone/bonez = held_item
 		if (bonez.use(1))
 			projectile_type = /obj/projectile/magic/profane/major
 			big_cast = TRUE
@@ -69,19 +69,18 @@
 	if (iscarbon(target) && prob(embed_prob))
 		var/mob/living/carbon/carbon_target = target
 		var/obj/item/bodypart/victim_limb = pick(carbon_target.bodyparts)
-		var/obj/item/stack/sheet/bone/splinter/our_splinter = new
+		var/obj/item/bone/splinter/our_splinter = new
 		victim_limb.add_embedded_object(our_splinter, FALSE, TRUE)
 
-/obj/item/stack/sheet/bone/splinter
+/obj/item/bone/splinter
 	name = "bone splinter"
-	singular_name = "bone splinter"
 	embedding = list(
 		"embed_chance" = 100,
 		"embedded_pain_chance" = 25,
 		"embedded_fall_chance" = 5,
 	)
 
-/obj/item/stack/sheet/bone/splinter/dropped(mob/user, silent)
+/obj/item/bone/splinter/dropped(mob/user, silent)
 	. = ..()
 	to_chat(user, span_danger("[src] crumbles into dust..."))
 	qdel(src)
@@ -125,6 +124,22 @@
 		/obj/effect/proc_holder/spell/invoked/longstrider,
 		/obj/effect/proc_holder/spell/invoked/invisibility,
 		/obj/effect/proc_holder/spell/invoked/blindness,
+		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e,
+//		/obj/effect/proc_holder/spell/invoked/frostbite5e,
+		/obj/effect/proc_holder/spell/invoked/guidance,
+		/obj/effect/proc_holder/spell/invoked/fortitude,
+		/obj/effect/proc_holder/spell/invoked/snap_freeze,
+		/obj/effect/proc_holder/spell/invoked/projectile/frostbolt,
+		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
+		/obj/effect/proc_holder/spell/invoked/gravity,
+		/obj/effect/proc_holder/spell/invoked/projectile/repel,
+		/obj/effect/proc_holder/spell/invoked/poisonspray5e,
+		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
+		/obj/effect/proc_holder/spell/invoked/counterspell,
+		/obj/effect/proc_holder/spell/invoked/enlarge,
+		/obj/effect/proc_holder/spell/invoked/leap,
+		/obj/effect/proc_holder/spell/invoked/blink,
+		/obj/effect/proc_holder/spell/invoked/mirror_transform
 	)
 
 /obj/effect/proc_holder/spell/invoked/rituos/miracle

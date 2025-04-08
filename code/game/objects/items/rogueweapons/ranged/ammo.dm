@@ -142,7 +142,7 @@
 
 /obj/projectile/bullet/reusable/arrow/poison
 	name = "poison arrow"
-	damage = 50
+	damage = 20				//You deal a bunch of posion damage as it is, regardless of armor protection.
 	damage_type = BRUTE
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
@@ -194,7 +194,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
-		M.adjust_fire_stacks(6)
+		M.adjust_fire_stacks(5)
 //		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, my at about 65 damage if you stop drop and roll immediately
 	var/turf/T
 	if(isturf(target))
@@ -244,7 +244,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
-		M.adjust_fire_stacks(6)
+		M.adjust_fire_stacks(4)
 //		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, my at about 65 damage if you stop drop and roll immediately
 	var/turf/T
 	if(isturf(target))
@@ -348,7 +348,7 @@
 	icon_state = "ijavelin"
 	wlength = WLENGTH_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
-	armor_penetration = 35					//Redfined because.. it's not a weapon, it's an 'arrow' basically.
+	armor_penetration = 40					//Redfined because.. it's not a weapon, it's an 'arrow' basically.
 	max_integrity = 50						//Breaks semi-easy, stops constant re-use. 
 	wdefense = 3							//Worse than a spear
 	thrown_bclass = BCLASS_STAB				//Knives are slash, lets try out stab and see if it's too strong in terms of wounding.
@@ -358,7 +358,8 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
-	heavy_metal = FALSE					//Stops spin animation, maybe.
+	heavy_metal = FALSE						//Stops spin animation, maybe.
+	thrown_damage_flag = "piercing"			//Checks peircing protection.
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
 	force = 16
@@ -378,6 +379,7 @@
 	icon_state = "sjavelin"
 	is_silver = TRUE
 	throwforce = 25							//Less than steel because it's.. silver. Good at killing vampires/WW's still.
+	armor_penetration = 60
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	smeltresult = /obj/item/ingot/silver
 
@@ -420,6 +422,114 @@
 			H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
 			src.last_used = world.time
 	return
+
+//sling bullets
+
+/obj/item/ammo_casing/caseless/rogue/sling_bullet //parent of sling ammo and the temporary sling bullet for stones. shouldn't ever be seen
+	name = "soaring stone"
+	desc = "You shouldn't be seeing this."
+	projectile_type = /obj/projectile/bullet/sling_bullet
+	caliber = "slingbullet"
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "arrow"
+	force = 5
+	throwforce = 20 //you can still throw them
+	dropshrink = 0.6
+	possible_item_intents = list(INTENT_GENERIC) //not intended to attack with them
+	max_integrity = 20
+	
+/obj/item/ammo_casing/caseless/rogue/sling_bullet/stone //these should be seen
+	name = "stone sling bullet"
+	desc = "A stone refined for wrath."
+	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/stone
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "stone_sling_bullet"
+
+/obj/item/ammo_casing/caseless/rogue/sling_bullet/iron
+	name = "iron sling bullet"
+	desc = "Not to be mistakened for a ball bearing."
+	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/iron
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "iron_sling_bullet"
+
+/obj/projectile/bullet/sling_bullet //not reusable since stones will break on impact. i couldnt figure out how to prevent that
+	name = "sling bullet"
+	desc = "If you're reading this: duck."
+	damage = 25
+	damage_type = BRUTE
+	armor_penetration = 0
+	icon = 'icons/roguetown/items/natural.dmi'
+	icon_state = "stone1"
+	range = 15
+	hitsound = 'sound/combat/hits/blunt/bluntsmall (1).ogg'
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
+	flag = "piercing"
+	speed = 0.4
+
+/obj/projectile/bullet/sling_bullet/on_hit(atom/target)
+	. = ..()
+
+	var/mob/living/L = firer
+	if(!L || !L.mind) return
+
+	var/skill_multiplier = 0
+
+	if(isliving(target)) // If the target theyre shooting at is a mob/living
+		var/mob/living/T = target
+		if(T.stat != DEAD) // If theyre alive
+			skill_multiplier = 4
+
+	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/slings, SKILL_LEVEL_LEGENDARY))
+		L.mind.add_sleep_experience(/datum/skill/combat/slings, L.STAINT * skill_multiplier)
+		
+/obj/projectile/bullet/reusable/sling_bullet //parent for proper reusable sling bullets
+	name = "sling bullet"
+	desc = "If you're reading this: duck."
+	damage = 25
+	damage_type = BRUTE
+	armor_penetration = 0
+	icon = 'icons/roguetown/items/natural.dmi'
+	icon_state = "stone1"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet
+	range = 15
+	hitsound = 'sound/combat/hits/blunt/bluntsmall (1).ogg'
+	embedchance = 0
+	woundclass = BCLASS_BLUNT
+	flag = "piercing"
+	speed = 0.4		
+
+/obj/projectile/bullet/reusable/sling_bullet/on_hit(atom/target)
+	. = ..()
+
+	var/mob/living/L = firer
+	if(!L || !L.mind) return
+
+	var/skill_multiplier = 0
+
+	if(isliving(target)) // If the target theyre shooting at is a mob/living
+		var/mob/living/T = target
+		if(T.stat != DEAD) // If theyre alive
+			skill_multiplier = 4
+
+	if(skill_multiplier && can_train_combat_skill(L, /datum/skill/combat/slings, SKILL_LEVEL_LEGENDARY))
+		L.mind.add_sleep_experience(/datum/skill/combat/slings, L.STAINT * skill_multiplier)
+
+/obj/projectile/bullet/reusable/sling_bullet/stone
+	name = "stone sling bullet"
+	damage = 30 //proper stones are better
+	armor_penetration = 0
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/stone
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "musketball_proj"
+	
+/obj/projectile/bullet/reusable/sling_bullet/iron
+	name = "iron sling bullet"
+	damage = 30
+	armor_penetration = 30
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/iron
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "musketball_proj"
 
 #undef ARROW_DAMAGE
 #undef BOLT_DAMAGE

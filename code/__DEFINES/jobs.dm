@@ -55,6 +55,7 @@
 #define JOB_UNAVAILABLE_LASTCLASS 10
 #define JOB_UNAVAILABLE_JOB_COOLDOWN 11
 #define JOB_UNAVAILABLE_SLOTFULL 12
+#define JOB_UNAVAILABLE_VIRTUESVICE 13
 
 #define DEFAULT_RELIGION "Christianity"
 #define DEFAULT_DEITY "Space Jesus"
@@ -143,6 +144,7 @@
 #define MERCHANT	(1<<8)
 #define SCRIBE		(1<<9)
 #define ELDER		(1<<10)
+
 #define PEASANTS	(1<<5)
 
 #define HUNTER		(1<<0)
@@ -166,6 +168,7 @@
 #define MIGRANT		(1<<18)
 #define BANDIT		(1<<19)
 #define COURTAGENT	(1<<20)
+#define WRETCH		(1<<21)
 
 #define YOUNGFOLK	(1<<6)
 
@@ -249,6 +252,7 @@
 #define JDO_BOGGUARD 9.1
 
 #define JDO_PRIEST 10
+#define JDO_MARTYR 11
 #define JDO_TEMPLAR 12
 #define JDO_MONK 13
 #define JDO_DRUID 13.1
@@ -284,6 +288,7 @@
 #define JDO_MIGRANT 32.3
 #define JDO_BANDIT 31.3
 #define JDO_COURTAGENT 30.3
+#define JDO_WRETCH 30.4
 
 #define JDO_MERCENARY 31
 #define JDO_GRENZELHOFT 31.1
@@ -375,7 +380,8 @@
 	/datum/job/roguetown/adventurer,\
 	/datum/job/roguetown/mercenary/desert_rider,\
 	/datum/job/roguetown/mercenary/grenzelhoft,\
-	/datum/job/roguetown/bandit
+	/datum/job/roguetown/bandit,\
+	/datum/job/roguetown/wretch
 
 #define GARRISON_ROLES \
 	/datum/job/roguetown/bogguardsman,\

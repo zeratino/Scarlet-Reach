@@ -3,6 +3,7 @@
 	flag = TAILOR
 	department_flag = YEOMEN
 	faction = "Station"
+	tutorial = "You have worked sleepless nights on honing your craft. From sacks, to tapestry and luxurious clothing, there is little you cannot sew into existence. Use your storefront to turn even the ugliest peasant into a proper gentleman; who knows, even the nobility may pay you a visit."
 	total_positions = 1
 	spawn_positions = 1
 	display_order = 6
@@ -35,9 +36,9 @@
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(/obj/item/needle, /obj/item/roguekey/tailor)
-	if(H.pronouns == SHE_HER || H.pronouns == THEY_THEM_F)
+	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress
-	else
+	else if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/random
 	H.change_stat("intelligence", 2)
 	H.change_stat("perception", 1)

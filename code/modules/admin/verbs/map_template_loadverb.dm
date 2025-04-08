@@ -1,5 +1,5 @@
 /client/proc/map_template_load()
-	set category = "Debug"
+	set category = "-GameMaster-"
 	set name = "Map template - Place"
 
 	var/datum/map_template/template
@@ -27,7 +27,7 @@
 	images -= preview
 
 /client/proc/map_template_upload()
-	set category = "Debug"
+	set category = "-GameMaster-"
 	set name = "Map Template - Upload"
 
 	var/map = input(src, "Choose a Map Template to upload to template storage","Upload Map Template") as null|file
@@ -40,8 +40,6 @@
 	switch(alert(src, "What kind of map is this?", "Map type", "Normal", "Shuttle", "Cancel"))
 		if("Normal")
 			M = new /datum/map_template(map, "[map]", TRUE)
-		if("Shuttle")
-			M = new /datum/map_template/shuttle(map, "[map]", TRUE)
 		else
 			return
 	if(!M.cached_map)

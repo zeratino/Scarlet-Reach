@@ -97,9 +97,7 @@
 
 
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/piebottom/attackby(obj/item/I, mob/living/user, params)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish))
 		if (process_step > 4)
 			return
@@ -598,13 +596,13 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR)
 	w_class = WEIGHT_CLASS_NORMAL
 	foodtype = GRAIN | VEGETABLES
-	tastes = list("meat" = 1)
+	tastes = list("mushrooms" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/mince
 	w_class = WEIGHT_CLASS_NORMAL
 	foodtype = GRAIN | MEAT
-	tastes = list("mushrooms" = 1)
-
+	tastes = list("meat" = 1)
+	
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/berry
 	w_class = WEIGHT_CLASS_NORMAL
 	foodtype = GRAIN | FRUIT

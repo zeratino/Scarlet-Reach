@@ -130,6 +130,8 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	
+	var/transformed = FALSE
+	var/transforming = FALSE
 	var/revert_on_death = TRUE
 	var/die_with_shapeshifted_form = FALSE
 	var/convert_damage = FALSE
@@ -141,7 +143,7 @@
 var/static/list/druid_forms = list(
 	// Basic forms (Level 1)
 	"cat" = list(
-		"path" = /mob/living/simple_animal/pet/cat,
+		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/cat,
 		"level" = 1
 	),
 	"mudcrab" = list(
@@ -162,15 +164,19 @@ var/static/list/druid_forms = list(
 		"level" = 2
 	),
 	"mossback" = list(
-				"path" = /mob/living/simple_animal/hostile/retaliate/rogue/mossback,
+		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/mossback,
 		"level" = 3
 	),
 	"mole" = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/mole,
 		"level" = 3
 	),
-	// Advanced forms (Level 6)
-	"dragon" = list(
+	"saiga" = list(
+		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/saiga,
+		"level" = 3
+	),
+	// Advanced forms (Level 6) - Commented out
+	/*"dragon" = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/dragon,
 		"level" = 6
 	),
@@ -181,79 +187,49 @@ var/static/list/druid_forms = list(
 	"troll" = list(
 		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/troll,
 		"level" = 6
-	),
-	"saiga" = list(
-		"path" = /mob/living/simple_animal/hostile/retaliate/rogue/saiga,
-		"level" = 3
-	),
+	),*/
 )
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/Initialize()
 	. = ..()
-	START_PROCESSING(SSfastprocess, src)
 	charge_type = "recharge"
 	charge_counter = charge_max
-	charge_max = 30 SECONDS
+	charge_max = 60 SECONDS
 	recharging = FALSE
 	still_recharging_msg = span_warning("[name] is still recharging!")
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/cast(mob/living/carbon/human/user)
-	to_chat(user, span_notice("DEBUG: Starting shapeshift cast"))
-	
-	// Keep existing psicross check for initial transformation
-	var/obj/shapeshift_holder/H = locate() in user
-	if(H)
-		// Remove psicross requirement for restoration
-		to_chat(user, span_notice("DEBUG: Found existing shapeshift, restoring"))
-		do_restore(user)
+	if(!user)
 		return FALSE
-		
-	// Check for required items only for initial transformation
-	var/has_psicross = FALSE
-	for(var/obj/item/clothing/neck/roguetown/psicross/dendor/P in user.get_equipped_items())
-		has_psicross = TRUE
-		break
-	if(!has_psicross)
-		to_chat(user, span_warning("You need Dendor's psicross to cast this spell!"))
-		return FALSE
-		
-	if(invocation)
-		user.say(invocation, forced = "spell")
 	
-	// Only show form selection if we haven't picked one before
 	if(!saved_form)
 		var/list/animal_list = list()
 		var/druidic_level = user.mind?.get_skill_level(/datum/skill/magic/druidic) || 0
-		to_chat(user, span_notice("DEBUG: Druidic level is [druidic_level]"))
 		
 		for(var/animal_name in druid_forms)
 			var/list/animal_data = druid_forms[animal_name]
 			if(animal_data["level"] <= druidic_level)
 				animal_list[animal_name] = animal_data["path"]
-				to_chat(user, span_notice("DEBUG: Added [animal_name] to available forms"))
 				
 		if(!length(animal_list))
 			to_chat(user, span_warning("Your druidic knowledge is insufficient to take on any beast forms!"))
 			return FALSE
 			
-		to_chat(user, span_notice("DEBUG: Opening form selection menu"))
 		var/new_shapeshift_type = input(user, "Choose Your Animal Form! (Druidic Level: [druidic_level])", "It's Morphing Time!", null) as null|anything in sortList(animal_list)
 		if(!new_shapeshift_type)
-			to_chat(user, span_warning("DEBUG: No form selected"))
 			return FALSE
 			
-		to_chat(user, span_notice("DEBUG: Selected form [new_shapeshift_type]"))
 		saved_form = animal_list[new_shapeshift_type]
 	
 	selected_form = saved_form
 	if(selected_form)
-		to_chat(user, span_notice("DEBUG: Attempting shapeshift"))
 		do_shapeshift(user)
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/proc/do_shapeshift(mob/living/caster)
 	var/obj/shapeshift_holder/shapeshift_holder = locate() in caster
 	if(shapeshift_holder)
-		to_chat(caster, span_warning("You're already shapeshifted!"))
+		// If already shapeshifted, restore to human form
+		do_restore(caster)
 		return
 	
 	// Store original state and paralyze briefly during transformation TO beast form only
@@ -292,8 +268,13 @@ var/static/list/druid_forms = list(
 	// Enable combat capabilities
 	shape.dextrous = TRUE
 	shape.held_items = list(null, null)
+	
+	// Disable AI completely to prevent wandering
 	shape.can_have_ai = FALSE
 	shape.AIStatus = AI_OFF
+	shape.stop_automated_movement = TRUE  // Stop automated movement
+	shape.stop_automated_movement_when_pulled = TRUE  // Stop movement when pulled
+	shape.wander = FALSE  // Disable wandering
 	shape.stat_attack = CONSCIOUS
 	shape.environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	ADD_TRAIT(shape, TRAIT_BASHDOORS, TRAIT_GENERIC)
@@ -307,6 +288,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 25
 			shape.melee_damage_upper = 35
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/wolf)
 			shape.attack_verb_continuous = "mauls"
@@ -315,6 +297,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 30
 			shape.melee_damage_upper = 40
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/troll)
 			shape.attack_verb_continuous = "crushes"
@@ -323,7 +306,8 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw/troll, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 40
 			shape.melee_damage_upper = 60
-			
+			shape.rot_type = null
+
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/dragon)
 			shape.attack_verb_continuous = "tears into"
 			shape.attack_verb_simple = "tear into"
@@ -331,6 +315,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 45
 			shape.melee_damage_upper = 65
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/spider)
 			shape.attack_verb_continuous = "bites"
@@ -339,6 +324,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 20
 			shape.melee_damage_upper = 30
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/mossback)
 			shape.attack_verb_continuous = "slashes"
@@ -347,6 +333,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 25
 			shape.melee_damage_upper = 35
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/bigrat)
 			shape.attack_verb_continuous = "bites"
@@ -355,6 +342,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 15
 			shape.melee_damage_upper = 25
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/mudcrab)
 			shape.attack_verb_continuous = "pinches"
@@ -363,6 +351,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 10
 			shape.melee_damage_upper = 20
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/pet/cat)
 			shape.attack_verb_continuous = "claws"
@@ -371,6 +360,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 5
 			shape.melee_damage_upper = 10
+			shape.rot_type = null
 
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/minotaur)
 			shape.attack_verb_continuous = "gores"
@@ -379,6 +369,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw/troll, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 40
 			shape.melee_damage_upper = 60
+			shape.rot_type = null
 			
 		if(/mob/living/simple_animal/hostile/retaliate/rogue/saiga)
 			shape.attack_verb_continuous = "rams"
@@ -387,6 +378,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 25
 			shape.melee_damage_upper = 35
+			shape.rot_type = null
 			
 		else // Default animal form setup
 			shape.attack_verb_continuous = "attacks"
@@ -395,6 +387,7 @@ var/static/list/druid_forms = list(
 			shape.base_intents = list(/datum/intent/unarmed/claw, /datum/intent/simple/bite)
 			shape.melee_damage_lower = 15
 			shape.melee_damage_upper = 25
+			shape.rot_type = null
 	
 	
 	// Combat setup
@@ -423,7 +416,9 @@ var/static/list/druid_forms = list(
 	// Start cooldown
 	if(action)
 		action.UpdateButtonIcon()
-	start_recharge()
+	recharging = TRUE  // Set recharging flag to true
+	charge_counter = 0 // Reset counter to 0
+	START_PROCESSING(SSfastprocess, src)  // Ensure the spell is being processed
 	
 	return shape
 
@@ -434,33 +429,41 @@ var/static/list/druid_forms = list(
 	
 	var/was_dead = shape.stat == DEAD
 	
-	// Store visibility
+	// Store visibility and apply it
 	var/oldinv = shape.invisibility
 	shape.invisibility = INVISIBILITY_MAXIMUM
-	
-	// Transformation effects and messages
-	shape.flash_fullscreen("redflash3")
-	to_chat(shapeshift_holder.stored, span_userdanger("Your bones painfully snap back as you return to your original form!"))
-	shape.visible_message(span_warning("[shape]'s bestial form begins to recede!"), \
-						 span_warning("The transformation back is just as painful!"))
 	
 	// Add transformation effects
 	playsound(shape.loc, pick('sound/combat/gib (1).ogg','sound/combat/gib (2).ogg'), 200, FALSE, 3)
 	shape.spawn_gibs(FALSE)
 	
+	// Set transforming state
+	transforming = TRUE
+	
 	// Restore original form
 	shapeshift_holder.restore()
 	
-	// Reset visibility on restored mob
-	var/mob/living/restored = shapeshift_holder.stored
-	if(restored)
-		restored.invisibility = oldinv
+	// Reset transformation flags
+	transformed = FALSE         // No longer transformed
+	transforming = FALSE       // Not in transformation process
+	
+	// Reset visibility
+	shape.invisibility = oldinv
 	
 	if(was_dead)
 		charge_counter = 0
 		charge_max = death_cooldown
-		start_recharge()
-		to_chat(restored, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
+		recharging = TRUE  // Ensure recharging is set to true
+	else
+		charge_counter = 0  // Start the normal cooldown
+		recharging = TRUE   // Enable recharging
+	
+	START_PROCESSING(SSfastprocess, src)  // Ensure the spell is being processed
+	if(action)
+		action.UpdateButtonIcon()
+	
+	if(was_dead)
+		to_chat(shape, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
 
 /mob/living/simple_animal/hostile/retaliate/rogue/proc/attack_target(atom/A)
 	if(ismob(A))
@@ -471,27 +474,27 @@ var/static/list/druid_forms = list(
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/process(delta_time)
 	if(recharging && charge_type == "recharge")
-		charge_counter += delta_time
+		charge_counter += delta_time * 1  // Change from 10 to 1 since SECONDS macro already handles conversion
 		if(charge_counter >= charge_max)
 			charge_counter = charge_max
 			recharging = FALSE
+			STOP_PROCESSING(SSfastprocess, src)  // Stop processing when cooldown is complete
 			if(action)
 				action.UpdateButtonIcon()
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/perform(list/targets, recharge = TRUE, mob/user = usr)
-    before_cast(targets)
-    invocation(user)
-    if(user?.ckey)
-        user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
-    if(cast(user))
-        if(sound)
-            playMagSound()
-        after_cast(targets)
-        if(action)
-            action.UpdateButtonIcon()
-        start_recharge() // Only start recharge after successful cast
-        return TRUE
-    return FALSE
+	before_cast(targets)
+	invocation(user)
+	if(user?.ckey)
+		user.log_message(span_danger("cast the spell [name]."), LOG_ATTACK)
+	if(cast(user))
+		if(sound)
+			playMagSound()
+		after_cast(targets)
+		if(action)
+			action.UpdateButtonIcon()
+		return TRUE
+	return FALSE
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/can_cast(mob/user)
 	if(!..())
@@ -505,21 +508,23 @@ var/static/list/druid_forms = list(
 	return TRUE
 
 /obj/effect/proc_holder/spell/self/dendor_shapeshift/proc/handle_death(mob/living/shape)
-    SIGNAL_HANDLER
-    
-    var/obj/shapeshift_holder/H = locate() in shape
-    if(!H)
-        return
-    
-    // Set cooldown before restoration
-    charge_counter = 0
-    charge_max = death_cooldown  // Set to long cooldown
-    recharging = TRUE  // This was missing!
-    if(action)
-        action.UpdateButtonIcon()  // Update the button to show recharging
-    
-    // Restore form and notify
-    to_chat(H.stored, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
-    do_restore(shape)
-    
-    UnregisterSignal(shape, COMSIG_LIVING_DEATH)
+	SIGNAL_HANDLER
+	
+	var/obj/shapeshift_holder/H = locate() in shape
+	if(!H)
+		return
+	
+	// Set cooldown before restoration
+	charge_counter = 0
+	charge_max = death_cooldown  // Set to long cooldown
+	recharging = TRUE  // Ensure recharging is set to true
+	START_PROCESSING(SSfastprocess, src)  // Ensure the spell is being processed
+	
+	if(action)
+		action.UpdateButtonIcon()  // Update the button to show recharging
+	
+	// Restore form and notify
+	to_chat(H.stored, span_warning("The strain of your form's death leaves you unable to shapeshift again for some time!"))
+	do_restore(shape)
+	
+	UnregisterSignal(shape, COMSIG_LIVING_DEATH)

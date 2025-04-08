@@ -585,8 +585,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/blackedstone_class_menu_slop_layout
 	verify = FALSE
 	assets = list(
-		"try4.png" = 'icons/roguetown/misc/try4.png',
-		"try4_border.png" = 'icons/roguetown/misc/try4_border.png',
+		"try6.png" = 'icons/roguetown/misc/try6.png',
+		"try6_border.png" = 'icons/roguetown/misc/try6_border.png',
 		"slop_menustyle2.css" = 'html/browser/slop_menustyle2.css',
 		"gragstar.gif" = 'icons/roguetown/misc/gragstar.gif'
 	)

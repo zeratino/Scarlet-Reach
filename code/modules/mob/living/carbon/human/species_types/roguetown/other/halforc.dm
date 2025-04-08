@@ -22,7 +22,6 @@
 	inherent_traits = list(TRAIT_NOMOBSWAP)
 	default_features = MANDATORY_FEATURE_LIST
 	use_skintones = 1
-	skinned_type = /obj/item/stack/sheet/animalhide/human
 	disliked_food = NONE
 	liked_food = NONE
 	possible_ages = ALL_AGES_LIST
@@ -56,7 +55,6 @@
 		ORGAN_SLOT_LIVER = /obj/item/organ/liver,
 		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach,
 		ORGAN_SLOT_APPENDIX = /obj/item/organ/appendix,
-		ORGAN_SLOT_HORNS = /obj/item/organ/horns/halforc,
 		//ORGAN_SLOT_TESTICLES = /obj/item/organ/testicles,
 		//ORGAN_SLOT_PENIS = /obj/item/organ/penis,
 		//ORGAN_SLOT_BREASTS = /obj/item/organ/breasts,
@@ -85,6 +83,7 @@
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/human,
 		/datum/customizer/organ/vagina/human_anthro,
+		/datum/customizer/organ/horns/tusks,
 		)
 	languages = list(
 		/datum/language/common,
