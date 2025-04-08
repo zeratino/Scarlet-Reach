@@ -119,6 +119,8 @@
 		return
 	if(!ishuman(target))
 		return
+	if(user == target)
+		return
 	
 	var/mob/living/carbon/human/HT = target
 	var/mob/living/carbon/human/HU = user
