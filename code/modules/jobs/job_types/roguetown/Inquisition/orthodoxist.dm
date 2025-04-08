@@ -26,6 +26,7 @@
 		var/mob/living/carbon/human/H = L
 		if(!H.mind)
 			return
+		H.grant_language(/datum/language/otavan)
 		H.advsetup = 1
 		H.invisibility = INVISIBILITY_MAXIMUM
 		H.become_blind("advsetup")
