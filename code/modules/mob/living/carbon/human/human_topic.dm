@@ -186,7 +186,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_info("They've moved too far away or put a mask on!"))
 			return
 		user.visible_message("[user] begins assessing [src].")
-		if(do_mob(user, src, (40 - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading)), double_progress = TRUE))
+		if(do_mob(user, src, (40 - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading)), double_progress = ((HAS_TRAIT(user, TRAIT_INTELLECTUAL)) ? FALSE : TRUE)))
 			var/is_guarded = HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS)	//Will scramble Stats and prevent skills from being shown
 			var/is_smart = FALSE	//Maximum info (all skills, gear and stats) either Intellectual virtue or having high enough PER / INT / Reading
 			var/is_stupid = FALSE	//Less than 9 INT, Intellectual virtue overrides it.
@@ -227,65 +227,42 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 				dat += "</td>"
 
 			dat += "<td style='width:33%;text-align:center;vertical-align: text-top'>"
+			var/list/body_parts = list(skin_armor, head, wear_mask, wear_wrists, gloves, wear_neck, cloak, wear_armor, wear_shirt, shoes, wear_pants, backr, backl, belt, s_store, glasses, ears, wear_ring)
+			var/list/coverage = list(
+				BODY_ZONE_PRECISE_SKULL = 0,
+				BODY_ZONE_HEAD = 0,
+				BODY_ZONE_PRECISE_EARS = 0,
+				BODY_ZONE_PRECISE_R_EYE = 0,
+				BODY_ZONE_PRECISE_L_EYE = 0,
+				BODY_ZONE_PRECISE_NOSE = 0,
+				BODY_ZONE_PRECISE_MOUTH = 0,
+				BODY_ZONE_PRECISE_NECK = 0,
+				BODY_ZONE_CHEST = 0,
+				BODY_ZONE_PRECISE_STOMACH = 0,
+				BODY_ZONE_PRECISE_GROIN = 0,
+				BODY_ZONE_L_ARM = 0,
+				BODY_ZONE_PRECISE_L_HAND = 0,
+				BODY_ZONE_R_ARM = 0,
+				BODY_ZONE_PRECISE_R_HAND = 0,
+				BODY_ZONE_L_LEG = 0,
+				BODY_ZONE_PRECISE_L_FOOT = 0,
+				BODY_ZONE_R_LEG = 0,
+				BODY_ZONE_PRECISE_R_FOOT = 0
+			)
+			for(var/part in body_parts)
+				if(!part)
+					continue
+				if(part && istype(part , /obj/item/clothing))
+					var/obj/item/clothing/C = part
+					for(var/coverageflag in coverage)
+						if(C.max_integrity)
+							if(C.obj_integrity <= 0)
+								continue
+						if(zone2covered(coverageflag, C.body_parts_covered))
+							coverage[coverageflag]++
+				
 			dat += "<b>BODY:</b><br><br>"
-			dat += "<b><font size = 4; font color = '#dddada'>HEAD</b></font><br>"
-			if(H.head)
-				dat += capitalize("[H.head.name]<br>")
-				dat += defense_report(H.head, is_stupid, is_normal, is_smart, "THE HEAD I THINK. MAYBE MORE?")
-			else
-				dat += "<font color = '#8b1616'<b>NOTHING</b></font> <br>"
-				dat += "<br>---------------------------<br>"
-			
-			dat += "<b><font size = 4; font color = '#dddada'>TORSO</b></font><br>"
-			if(H.wear_armor)
-				dat += capitalize("[H.wear_armor.name]<br>")
-				dat += defense_report(H.wear_armor, is_stupid, is_normal, is_smart, "THE CHEST! PROBABLY GROIN TOO?")
-			else
-				dat += "<font color = '#8b1616'<b>NOTHING</b></font> <br>"
-				dat += "<br>---------------------------<br>"
 
-			dat += "<b><font size = 4; font color = '#dddada'>PANTS</b></font><br>"
-			if(H.wear_pants)
-				dat += capitalize("[H.wear_pants.name]<br>")
-				dat += defense_report(H.wear_pants, is_stupid, is_normal, is_smart, "THE IMPORTANT PARTS! LEGS AS WELL, I THINK.")
-			else
-				dat += "<font color = '#8b1616'<b>NOTHING</b></font> <br>"
-				dat += "<br>---------------------------<br>"
-
-			//Extra stuff you can assess if you match the thresholds. (Neck, gloves, shirt and shoes)
-			if((is_normal || is_smart) && !is_stupid)
-				dat += "<b><font size = 4; font color = '#dddada'>NECK</b></font><br>"
-				if(H.wear_neck)
-					dat += capitalize("[H.wear_neck.name]<br>")
-					dat += defense_report(H.wear_neck, is_stupid, is_normal, is_smart, "I shouldn't be seeing this.")
-				else
-					dat += "<font color = '#8b1616'<b>NOTHING</b></font> <br>"
-					dat += "<br>---------------------------<br>"
-
-				dat += "<b><font size = 4; font color = '#dddada'>GLOVES</b></font><br>"
-				if(H.gloves)
-					dat += capitalize("[H.gloves.name]<br>")
-					dat += defense_report(H.gloves, is_stupid, is_normal, is_smart, "I shouldn't be seeing this.")
-				else
-					dat += "<font color = '#8b1616'<b>NOTHING</b></font> <br>"
-					dat += "<br>---------------------------<br>"
-
-				dat += "<b><font size = 4; font color = '#dddada'>SHIRT</b></font><br>"
-				if(H.wear_shirt)
-					dat += capitalize("[H.wear_shirt.name]<br>")
-					dat += defense_report(H.wear_shirt, is_stupid, is_normal, is_smart, "I shouldn't be seeing this.")
-				else
-					dat += "<font color = '#8b1616'<b>NOTHING</b></font> <br>"
-					dat += "<br>---------------------------<br>"
-
-				dat += "<b><font size = 4; font color = '#dddada'>SHOES</b></font><br>"
-				if(H.shoes)
-					dat += capitalize("[H.shoes.name]<br>")
-					dat += defense_report(H.shoes, is_stupid, is_normal, is_smart, "I shouldn't be seeing this.")
-				else
-					dat += "<font color = '#8b1616'<b>NOTHING</b></font> <br>"
-
-			
 			dat += "</td>"
 
 			dat += "<td style='width:40%;text-align:center;vertical-align: text-top'>"
@@ -382,8 +359,9 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 	return str
 
 /proc/defense_report(var/obj/item/clothing/C, var/stupid, var/normal, var/smart, var/stupid_string)
-	var/list/str = list()
-	if(!istype(C, /obj/item/clothing))
+	var/str
+
+	/*if(!istype(C, /obj/item/clothing))
 		str += "<br>---------------------------<br>"
 		return str
 	if(C.armor)
@@ -432,6 +410,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 
 		str += crits
 	str += "<br>---------------------------<br>"
+	*/
 	return str
 
 /proc/skilldiff_report(var/input)
