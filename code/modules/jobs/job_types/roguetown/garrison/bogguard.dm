@@ -29,7 +29,6 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide/warden
 	cloak = /obj/item/clothing/cloak/wardencloak
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	beltl = /obj/item/storage/keyring/guard
 	belt = /obj/item/storage/belt/rogue/leather
 	backr = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone/bad/garrison
@@ -57,7 +56,8 @@
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 	beltr = /obj/item/quiver/arrows
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/flashlight/flare/torch/lantern = 1)
+	beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
+	backpack_contents = list(/obj/item/storage/keyring/guard = 1, /obj/item/flashlight/flare/torch/lantern = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
@@ -98,8 +98,9 @@
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 	backl = /obj/item/gwstrap
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick
+	beltl = /obj/item/rogueweapon/huntingknife
 	r_hand = /obj/item/rogueweapon/spear
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife = 1, /obj/item/flashlight/flare/torch/lantern = 1)
+	backpack_contents = list(/obj/item/storage/keyring/guard = 1, /obj/item/flashlight/flare/torch/lantern = 1)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
