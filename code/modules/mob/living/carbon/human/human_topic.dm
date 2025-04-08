@@ -259,10 +259,6 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 								if(critzone == crit)
 									LAZYREMOVE(critclasses, crit)
 									continue
-					if(length(critclasses) && (is_normal || is_smart))
-						for(var/critzone in critclasses)
-							if(critzone == BCLASS_PICK)
-								critzone = "Pick"
 
 					for(var/coverageflag in readable_coverage)
 						for(var/type in damtypes)
@@ -279,6 +275,8 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 						if(length(critclasses) && (is_normal || is_smart))
 							var/str
 							for(var/critzone in critclasses)
+								if(critzone == BCLASS_PICK)
+									critzone = "Pick"
 								str += "| [capitalize(critzone)] | "
 							crit_weakness[coverageflag] = str
 			if(!is_stupid)
