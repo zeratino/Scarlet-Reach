@@ -31,6 +31,7 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	belt = /obj/item/storage/belt/rogue/leather
 	backr = /obj/item/storage/backpack/rogue/satchel
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	id = /obj/item/scomstone/bad/garrison
 
 /datum/job/roguetown/bogguardsman/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
@@ -51,7 +52,6 @@
 	..()
 	neck = /obj/item/clothing/neck/roguetown/coif
 	gloves = /obj/item/clothing/gloves/roguetown/leather
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
@@ -93,7 +93,6 @@
 	..()
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 	backl = /obj/item/gwstrap
