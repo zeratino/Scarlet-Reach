@@ -86,6 +86,7 @@
 /datum/advclass/bogguardsman/forester
 	name = "Forester"
 	tutorial = "You are a forester, a woodsman who volunteered to become a part of the wardens. You have experience using axes and polearms."
+	outfit = /datum/outfit/job/roguetown/bogguardsman/forester
 	category_tags = list(CTAG_WARDEN)
 
 /datum/outfit/job/roguetown/bogguardsman/forester/pre_equip(mob/living/carbon/human/H)
