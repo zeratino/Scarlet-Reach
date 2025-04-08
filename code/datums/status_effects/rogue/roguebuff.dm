@@ -433,6 +433,30 @@
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
 		owner.adjustCloneLoss(-healing_on_tick, 0)
 
+/datum/status_effect/buff/rockmuncher
+	id = "rockmuncher"
+	duration = 10 SECONDS
+	var/healing_on_tick = 4
+
+/datum/status_effect/buff/rockmuncher/on_creation(mob/living/new_owner, new_healing_on_tick)
+	healing_on_tick = new_healing_on_tick
+	return ..()
+
+/datum/status_effect/buff/rockmuncher/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal_rogue(get_turf(owner))
+	H.color = "#FF0000"
+	var/list/wCount = owner.get_wounds()
+	if(owner.construct)
+		if(wCount.len > 0)
+			owner.heal_wounds(healing_on_tick)
+			owner.update_damage_overlays()
+		owner.adjustBruteLoss(0.15*-healing_on_tick, 0)
+		owner.adjustFireLoss(0.15*-healing_on_tick, 0)
+		owner.adjustOxyLoss(0.15*-healing_on_tick, 0)
+		owner.adjustToxLoss(0.15*-healing_on_tick, 0)
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.15*-healing_on_tick)
+		owner.adjustCloneLoss(0.15*-healing_on_tick, 0)
+
 /datum/status_effect/buff/healing/on_remove()
 	owner.remove_filter(MIRACLE_HEALING_FILTER)
 	
