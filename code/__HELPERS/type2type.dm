@@ -299,7 +299,7 @@
 //Turns a Body_parts_covered bitfield into a list of organ/limb names.
 //(I challenge you to find a use for this)
 //^ I did.
-/proc/body_parts_covered2organ_names(bpc)
+/proc/body_parts_covered2organ_names(bpc, verbose = FALSE)
 	var/list/covered_parts = list()
 
 	if(!bpc)
@@ -309,7 +309,7 @@
 		covered_parts |= list(READABLE_ZONE_HEAD)
 	if(bpc & NECK)
 		covered_parts |= list(READABLE_ZONE_NECK)
-	if(bpc & FACE)
+	if(bpc & FACE && !verbose)
 		covered_parts |= list(READABLE_ZONE_FACE)
 	else
 		if(bpc & MOUTH)

@@ -180,13 +180,13 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(H.get_visible_name() in unknown_names)
 			obscured_name = TRUE
 
-		if(get_dist(user, H) <= 2 + clamp(floor(((user.STAPER - 10) / 2)),-1, 2) && (!obscured_name || H.client?.prefs.masked_examine))
+		if(get_dist(user, H) <= (2 + clamp(floor(((user.STAPER - 10) / 2)),-1, 2) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
 			success = TRUE
 		if(!success)
-			to_chat(user, span_info("They've moved too far away or put a mask on!"))
+			to_chat(user, span_info("They've moved too far away!"))
 			return
 		user.visible_message("[user] begins assessing [src].")
-		if(do_mob(user, src, (40 - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading)), double_progress = ((HAS_TRAIT(user, TRAIT_INTELLECTUAL)) ? FALSE : TRUE)))
+		if(do_mob(user, src, (((HAS_TRAIT(user, TRAIT_INTELLECTUAL) ? 25 : 40)) - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading)), double_progress = ((HAS_TRAIT(user, TRAIT_INTELLECTUAL)) ? FALSE : TRUE)))
 			var/is_guarded = HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS)	//Will scramble Stats and prevent skills from being shown
 			var/is_smart = FALSE	//Maximum info (all skills, gear and stats) either Intellectual virtue or having high enough PER / INT / Reading
 			var/is_stupid = FALSE	//Less than 9 INT, Intellectual virtue overrides it.
@@ -204,7 +204,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			// NEXT ROW
 			dat += "<tr>"
 			dat += "<td style='width:16%;text-align:left;vertical-align: text-top'>"
-			if(HAS_TRAIT(user, TRAIT_INTELLECTUAL))
+			if(HAS_TRAIT(user, TRAIT_INTELLECTUAL) && (!obscured_name || H.client?.prefs.masked_examine))
 				dat += "<b>STATS:</b><br><br>"
 				if(!is_guarded)
 					dat +=("STR: \Roman [H.STASTR]<br>")
@@ -226,47 +226,79 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			else
 				dat += "</td>"
 
-			dat += "<td style='width:33%;text-align:center;vertical-align: text-top'>"
+			dat += "<td style='width:33%;text-align:left;vertical-align: text-top'>"
+			var/list/damtypes = list("blunt","slash","stab","piercing")
 			var/list/body_parts = list(skin_armor, head, wear_mask, wear_wrists, gloves, wear_neck, cloak, wear_armor, wear_shirt, shoes, wear_pants, backr, backl, belt, s_store, glasses, ears, wear_ring)
-			var/list/coverage = list(
-				BODY_ZONE_PRECISE_SKULL = 0,
-				BODY_ZONE_HEAD = 0,
-				BODY_ZONE_PRECISE_EARS = 0,
-				BODY_ZONE_PRECISE_R_EYE = 0,
-				BODY_ZONE_PRECISE_L_EYE = 0,
-				BODY_ZONE_PRECISE_NOSE = 0,
-				BODY_ZONE_PRECISE_MOUTH = 0,
-				BODY_ZONE_PRECISE_NECK = 0,
-				BODY_ZONE_CHEST = 0,
-				BODY_ZONE_PRECISE_STOMACH = 0,
-				BODY_ZONE_PRECISE_GROIN = 0,
-				BODY_ZONE_L_ARM = 0,
-				BODY_ZONE_PRECISE_L_HAND = 0,
-				BODY_ZONE_R_ARM = 0,
-				BODY_ZONE_PRECISE_R_HAND = 0,
-				BODY_ZONE_L_LEG = 0,
-				BODY_ZONE_PRECISE_L_FOOT = 0,
-				BODY_ZONE_R_LEG = 0,
-				BODY_ZONE_PRECISE_R_FOOT = 0
-			)
+			var/list/coverage = list()
+			var/list/blunt_max = list()
+			var/list/slash_max = list()
+			var/list/stab_max = list()
+			var/list/piercing_max = list()
+			var/list/crit_weakness = list()
 			for(var/part in body_parts)
 				if(!part)
 					continue
-				if(part && istype(part , /obj/item/clothing))
+				if(part && istype(part, /obj/item/clothing))
 					var/obj/item/clothing/C = part
-					for(var/coverageflag in coverage)
-						if(C.max_integrity)
-							if(C.obj_integrity <= 0)
-								continue
-						if(zone2covered(coverageflag, C.body_parts_covered))
-							coverage[coverageflag]++
-				
-			dat += "<b>BODY:</b><br><br>"
+					var/list/readable_coverage
+					var/list/critclasses = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST, BCLASS_SMASH, BCLASS_PICK)
+					if(C.max_integrity)
+						if(C.obj_integrity <= 0)
+							continue
+					if(!C.armor)	//No armor -- no need to care about it
+						continue
+					if(C.armor)
+						if(C.armor.slash == 0 && C.armor.stab == 0 && C.armor.blunt == 0 && C.armor.piercing == 0)	//No armor but there's an armor datum. Useless for Assess, so we skip it.
+							continue
+					if(C.body_parts_covered)
+						readable_coverage = body_parts_covered2organ_names(C.body_parts_covered, verbose = TRUE)
+					
+					if(length(C.prevent_crits) && (is_normal || is_smart))
+						for(var/critzone in C.prevent_crits)
+							for(var/crit in critclasses)
+								if(critzone == crit)
+									LAZYREMOVE(critclasses, crit)
+									continue
+					if(length(critclasses) && (is_normal || is_smart))
+						for(var/critzone in critclasses)
+							if(critzone == BCLASS_PICK)
+								critzone = "Pick"
 
+					for(var/coverageflag in readable_coverage)
+						for(var/type in damtypes)
+							switch(type)
+								if("blunt")
+									blunt_max[coverageflag] = max(C.armor.getRating(type), blunt_max[coverageflag])
+								if("slash")
+									slash_max[coverageflag] = max(C.armor.getRating(type), slash_max[coverageflag])
+								if("stab")
+									stab_max[coverageflag] = max(C.armor.getRating(type), stab_max[coverageflag])
+								if("piercing")
+									piercing_max[coverageflag] = max(C.armor.getRating(type), piercing_max[coverageflag])
+						coverage[coverageflag] += 1
+						if(length(critclasses) && (is_normal || is_smart))
+							var/str
+							for(var/critzone in critclasses)
+								str += "| [capitalize(critzone)] | "
+							crit_weakness[coverageflag] = str
+			if(!is_stupid)
+				dat += "<b><center>BODY:</center></b><br>"
+			if(length(coverage))
+				var/str
+				if(!is_smart)
+					coverage.Remove(READABLE_ZONE_NECK, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NOSE, READABLE_ZONE_FACE, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_FEET)
+				if(!is_stupid)
+					for(var/thing in coverage)
+						str += "<b>[thing]</b> LAYERS: <b>[coverage[thing]]</b> | [colorgrade_rating("", blunt_max[thing], TRUE)] | [colorgrade_rating("", slash_max[thing], TRUE)] | [colorgrade_rating("", stab_max[thing], TRUE)] | [colorgrade_rating("", piercing_max[thing], TRUE)] <br><font color = '#a35252'>[crit_weakness[thing]]</font><br>"
+					dat += str
+				else
+					dat += "<b><center>I don't know! Just hit them!</center></b>"
+			else
+				dat += "<b><center>They're wearing nothing.</center></b>"
 			dat += "</td>"
 
 			dat += "<td style='width:40%;text-align:center;vertical-align: text-top'>"
-			if(!is_guarded && !is_stupid)	//We don't see Guarded people's skills at all.
+			if(!is_guarded && !is_stupid && (!obscured_name || H.client?.prefs.masked_examine))	//We don't see Guarded people's skills at all.
 				dat += "<b>SKILLS:</b><br><br>"
 				var/list/wornstuff = list(H.backr, H.backl, H.beltl, H.beltr)
 				if(!is_normal && !is_smart)	//At minimum we get to see the skills of the weapons the person is holding, if we have them.
