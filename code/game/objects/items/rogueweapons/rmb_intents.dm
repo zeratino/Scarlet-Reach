@@ -128,7 +128,7 @@
 	var/user_zone = HU.zone_selected
 	if(!HT.has_status_effect(/datum/status_effect/debuff/baited) && !user.has_status_effect(/datum/status_effect/debuff/baitcd))	//We don't do anything if either of us is affected by bait statuses
 		user.visible_message(span_danger("[user] baits an attack from [target]!"))
-		if(target_zone == user_zone && !(target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST)) //Our zones match and it's not the chest
+		if(target_zone == user_zone && !((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones match and it's not the chest
 			HT.apply_status_effect(/datum/status_effect/debuff/baited)
 			HT.apply_status_effect(/datum/status_effect/debuff/feinted)	//cheeky workaround, this will prevent defending during this period w/o adding extra baited status checks
 			HT.changeNext_move(20)
