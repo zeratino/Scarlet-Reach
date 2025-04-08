@@ -513,7 +513,7 @@
 /datum/status_effect/buff/churnernegative
 	id ="soulchurnernegative"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/churnernegative
-	duration = 20 SECONDS
+	duration = 23 SECONDS
 
 /datum/status_effect/buff/churnernegative/on_apply()
 	. = ..()
