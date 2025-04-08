@@ -1617,7 +1617,6 @@
 #include "code\modules\mob\living\carbon\spirit\update_icons.dm"
 #include "code\modules\mob\living\simple_animal\animal_defense.dm"
 #include "code\modules\mob\living\simple_animal\damage_procs.dm"
-#include "code\modules\mob\living\simple_animal\deepone.dm"
 #include "code\modules\mob\living\simple_animal\examine.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal_topic.dm"
