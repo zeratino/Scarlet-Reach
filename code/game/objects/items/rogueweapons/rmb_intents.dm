@@ -111,8 +111,6 @@
 	icon_state = "rmbweak"
 
 /datum/rmb_intent/riposte/special_attack(mob/living/user, atom/target)
-	if(!isliving(target))
-		return
 	if(!user)
 		return
 	if(user.incapacitated())
