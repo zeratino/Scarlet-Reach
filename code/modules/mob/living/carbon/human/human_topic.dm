@@ -390,10 +390,10 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			str = "[input] (Above 100 or under 0! Contact coders.)"
 	return str
 
-/proc/defense_report(var/obj/item/clothing/C, var/stupid, var/normal, var/smart, var/stupid_string)
+/*/proc/defense_report(var/obj/item/clothing/C, var/stupid, var/normal, var/smart, var/stupid_string)
 	var/str
 
-	/*if(!istype(C, /obj/item/clothing))
+	if(!istype(C, /obj/item/clothing))
 		str += "<br>---------------------------<br>"
 		return str
 	if(C.armor)
@@ -442,8 +442,8 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 
 		str += crits
 	str += "<br>---------------------------<br>"
-	*/
-	return str
+	
+	return str*/
 
 /proc/skilldiff_report(var/input)
 	switch (input)
