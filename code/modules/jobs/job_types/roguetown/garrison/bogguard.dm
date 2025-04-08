@@ -83,12 +83,12 @@
 	ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 	H.set_blindness(0)
 
-/datum/advclass/bogguardsman/levyman
+/datum/advclass/bogguardsman/forester
 	name = "Forester"
 	tutorial = "You are a forester, a woodsman who volunteered to become a part of the wardens. You have experience using axes and polearms."
 	category_tags = list(CTAG_WARDEN)
 
-/datum/outfit/job/roguetown/bogguardsman/levyman/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/bogguardsman/forester/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
