@@ -451,10 +451,21 @@
 	desc = "A part of me has been put in stasis."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/censerbuff
+	name = "Inspired by SYON."
+	desc = "The shard of the great comet had inspired me to ENDURE."
+	icon_state = "censerbuff"
+
 /datum/status_effect/buff/fortify //Increases all healing while it lasts.
 	id = "fortify"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fortify
 	duration = 1 MINUTES
+
+/datum/status_effect/buff/censerbuff
+	id = "censer"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/censerbuff
+	duration = 15 MINUTES
+	effectedstats = list("endurance" = 1, "constitution" = 1)
 
 /datum/status_effect/buff/convergence //Increases all healing while it lasts.
 	id = "convergence"
@@ -470,6 +481,10 @@
 /atom/movable/screen/alert/status_effect/buff/churnerprotection
 	name = "Magick Distorted"
 	desc = "The wailing box is disrupting magicks around me!"
+	icon_state = "buff"
+/atom/movable/screen/alert/status_effect/buff/churnernegative
+	name = "Magick Distorted"
+	desc = "That infernal contraption is sapping my very arcyne essence!"
 	icon_state = "buff"
 
 /datum/status_effect/buff/churnerprotection
@@ -494,6 +509,25 @@
 
 #undef CRANKBOX_FILTER
 #undef MIRACLE_HEALING_FILTER
+
+/datum/status_effect/buff/churnernegative
+	id ="soulchurnernegative"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/churnernegative
+	duration = 20 SECONDS
+
+/datum/status_effect/buff/churnernegative/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, MAGIC_TRAIT)
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	to_chat(owner, span_warning("I feel as if my connection to the Arcyne disappears entirely. The air feels still..."))
+	owner.visible_message("[owner]'s arcyne aura seems to fade.")
+
+/datum/status_effect/buff/churnernegative/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, MAGIC_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
+	to_chat(owner, span_warning("I feel my connection to the arcyne surround me once more."))
+	owner.visible_message("[owner]'s arcyne aura seems to return once more.")
 
 #define BLESSINGOFSUN_FILTER "sun_glow"
 /atom/movable/screen/alert/status_effect/buff/guidinglight

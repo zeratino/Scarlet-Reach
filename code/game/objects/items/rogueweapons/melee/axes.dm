@@ -304,7 +304,10 @@
 
 /obj/item/rogueweapon/stoneaxe/silver/psyaxe
 	name = "psydonian war axe"
-	desc = "A one-handed war axe forged in the pain of psydon."
+	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
-	wdefense = 5
-	max_blade_int = 450
+	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/stoneaxe/silver/psyaxe/ComponentInitialize()
+	. = ..()								//+3 force, +50 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 50, 50, 1, TRUE)
