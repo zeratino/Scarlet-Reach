@@ -561,6 +561,7 @@
 	icon_state = "halfplatekini"
 	item_state = "halfplatekini"
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0) // Identical to steel cuirass, but covering the groin instead of the vitals.
+	max_integrity = 300	// Identical to steel cuirasss. Same steel price.
 	allowed_sex = list(FEMALE)
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
