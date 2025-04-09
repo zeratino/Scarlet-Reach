@@ -17,7 +17,7 @@
 				/obj/item/rope = 1)
 	verbage_simple = "construct"
 	verbage = "constructs"
-
+/*	- Disabled. Because you people can't be trusted.. Mapped-in only.
 /datum/crafting_recipe/roguetown/structure/noose
 	name = "noose"
 	result = /obj/structure/noose
@@ -35,7 +35,7 @@
 	if(istype(checking,/turf/open/transparent/openspace))
 		return FALSE
 	return TRUE
-
+*/
 /datum/crafting_recipe/roguetown/structure/psycrss
 	name = "wooden cross"
 	result = /obj/structure/fluff/psycross/crafted
