@@ -231,11 +231,11 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			var/list/body_parts = list(skin_armor, head, wear_mask, wear_wrists, gloves, wear_neck, cloak, wear_armor, wear_shirt, shoes, wear_pants, backr, backl, belt, s_store, glasses, ears, wear_ring)
 			var/list/coverage_exposed = list(READABLE_ZONE_HEAD, READABLE_ZONE_CHEST, READABLE_ZONE_ARMS, READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM, READABLE_ZONE_LEGS, READABLE_ZONE_L_LEG, READABLE_ZONE_R_LEG, READABLE_ZONE_NOSE, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NECK, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND, READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT)
 			var/list/coverage = list()	//All of the covered areas
-			var/list/blunt_max = list()
-			var/list/slash_max = list()
+			var/list/blunt_max = list()	//Highest armor prot values
+			var/list/slash_max = list()	
 			var/list/stab_max = list()
 			var/list/piercing_max = list()
-			var/list/crit_weakness = list()
+			var/list/crit_weakness = list()	//The critical damage type the zone will be weak to
 			for(var/part in body_parts)
 				if(!part)
 					continue
@@ -263,7 +263,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 
 					for(var/coverageflag in readable_coverage)
 						for(var/type in damtypes)
-							switch(type)
+							switch(type)			//We get the max armor  values for this coverage flag
 								if("blunt")
 									blunt_max[coverageflag] = max(C.armor.getRating(type), blunt_max[coverageflag])
 								if("slash")
@@ -299,7 +299,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 								coverage_exposed.Remove(READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT)
 							else
 								coverage_exposed.Remove(coverageflag)
-			for(var/coverageflag in coverage)	//We go through the set up list and filter out redundancies. (l/r limbs being identical to their combined flag data)
+			for(var/coverageflag in coverage)	//We go through the set up list and filter out redundancies. (l/rs matching layers and armor values has no value to us in the printout)
 				switch(coverageflag)
 					if(READABLE_ZONE_ARMS)
 						if(coverage[READABLE_ZONE_L_ARM] == coverage[READABLE_ZONE_R_ARM])
@@ -350,7 +350,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 				dat += "<b><center>BODY:</center></b><br>"
 			if(length(coverage))
 				var/str
-				if(!is_smart && !is_normal)	//We get a significantly simplified printout.
+				if(!is_smart && !is_normal)	//We get a significantly simplified printout if we don't have the stats / trait
 					coverage.Remove(READABLE_ZONE_NECK, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NOSE, READABLE_ZONE_FACE, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT, READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND, READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM, READABLE_ZONE_L_LEG, READABLE_ZONE_R_LEG)
 				if(!is_smart && is_normal)
 					coverage.Remove(READABLE_ZONE_NECK, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NOSE, READABLE_ZONE_FACE, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT, READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND)
