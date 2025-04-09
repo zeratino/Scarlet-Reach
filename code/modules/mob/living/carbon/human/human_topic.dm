@@ -299,6 +299,53 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 								coverage_exposed.Remove(READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT)
 							else
 								coverage_exposed.Remove(coverageflag)
+			for(var/coverageflag in coverage)	//We go through the set up list and filter out redundancies. (l/r limbs being identical to their combined flag data)
+				switch(coverageflag)
+					if(READABLE_ZONE_ARMS)
+						if(coverage[READABLE_ZONE_L_ARM] == coverage[READABLE_ZONE_R_ARM])
+							if((blunt_max[READABLE_ZONE_L_ARM] == blunt_max[READABLE_ZONE_R_ARM]) && (slash_max[READABLE_ZONE_L_ARM] == slash_max[READABLE_ZONE_R_ARM]) && (stab_max[READABLE_ZONE_L_ARM] == stab_max[READABLE_ZONE_R_ARM]))
+								coverage.Remove(READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM)
+							else
+								coverage.Remove(READABLE_ZONE_ARMS)
+						else
+							coverage.Remove(READABLE_ZONE_ARMS)
+					if(READABLE_ZONE_LEGS)
+						if(coverage[READABLE_ZONE_L_LEG] == coverage[READABLE_ZONE_R_LEG])
+							if((blunt_max[READABLE_ZONE_L_LEG] == blunt_max[READABLE_ZONE_R_LEG]) && (slash_max[READABLE_ZONE_L_LEG] == slash_max[READABLE_ZONE_R_LEG]) && (stab_max[READABLE_ZONE_L_LEG] == stab_max[READABLE_ZONE_R_LEG]))
+								coverage.Remove(READABLE_ZONE_L_LEG, READABLE_ZONE_R_LEG)
+							else
+								coverage.Remove(READABLE_ZONE_LEGS)
+						else
+							coverage.Remove(READABLE_ZONE_LEGS)
+					if(READABLE_ZONE_HANDS)
+						if(coverage[READABLE_ZONE_L_HAND] == coverage[READABLE_ZONE_R_HAND])
+							if((blunt_max[READABLE_ZONE_L_HAND] == blunt_max[READABLE_ZONE_R_HAND]) && (slash_max[READABLE_ZONE_L_HAND] == slash_max[READABLE_ZONE_R_HAND]) && (stab_max[READABLE_ZONE_L_HAND] == stab_max[READABLE_ZONE_R_HAND]))
+								coverage.Remove(READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND)
+							else
+								coverage.Remove(READABLE_ZONE_HANDS)
+						else
+							coverage.Remove(READABLE_ZONE_HANDS)
+					if(READABLE_ZONE_FEET)
+						if(coverage[READABLE_ZONE_L_FOOT] == coverage[READABLE_ZONE_R_FOOT])
+							if((blunt_max[READABLE_ZONE_L_FOOT] == blunt_max[READABLE_ZONE_R_FOOT]) && (slash_max[READABLE_ZONE_L_FOOT] == slash_max[READABLE_ZONE_R_FOOT]) && (stab_max[READABLE_ZONE_L_FOOT] == stab_max[READABLE_ZONE_R_FOOT]))
+								coverage.Remove(READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT)
+							else
+								coverage.Remove(READABLE_ZONE_FEET)
+						else
+							coverage.Remove(READABLE_ZONE_FEET)		
+			for(var/exposedzone in coverage_exposed)	//We also filter out redundancies from the exposed remainder. Mostly L / Rs if there's a combined flag that slipped through.
+				switch(exposedzone)
+					if(READABLE_ZONE_HANDS)
+						coverage_exposed.Remove(READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND)
+					if(READABLE_ZONE_ARMS)
+						coverage_exposed.Remove(READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM)
+					if(READABLE_ZONE_LEGS)
+						coverage_exposed.Remove(READABLE_ZONE_L_LEG, READABLE_ZONE_R_LEG)
+					if(READABLE_ZONE_FEET)
+						coverage_exposed.Remove(READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT)
+					if(READABLE_ZONE_HEAD)
+						coverage_exposed.Remove(READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NOSE)
+
 			if(!is_stupid)
 				dat += "<b><center>BODY:</center></b><br>"
 			if(length(coverage))
