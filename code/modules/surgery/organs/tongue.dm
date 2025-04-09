@@ -21,7 +21,8 @@
 		/datum/language/canilunzt,
 		/datum/language/thievescant,
 		/datum/language/grenzelhoftian,
-		/datum/language/kazengunese
+		/datum/language/kazengunese,
+		/datum/language/zhongese,
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)

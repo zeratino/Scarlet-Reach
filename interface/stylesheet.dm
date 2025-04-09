@@ -141,6 +141,7 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 .reptile				{font-family: "Kingthings Petrock", Pterra; font-size: 120%;}
 .lupian					{font-family: "Emperialisme", Pterra; font-size: 120%;}
 .kazengunese 			{font-family: "Yuji Boku", Pterra;}
+.zhongese				{font-family: "Ma Shan Zheng", Pterra;}
 
 .torture				{color: #42ff20}
 

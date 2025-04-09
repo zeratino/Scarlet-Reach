@@ -122,6 +122,7 @@
 		/datum/language/celestial,
 		/datum/language/grenzelhoftian,
 		/datum/language/kazengunese,
+		/datum/language/zhongese,
 	)
 		
 	var/list/choices = list()
