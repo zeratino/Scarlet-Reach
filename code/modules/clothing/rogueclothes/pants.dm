@@ -263,7 +263,7 @@
 
 /obj/item/clothing/under/roguetown/brayette
 	name = "brayette"
-	desc = ""
+	desc = "Maille groin protection ideal for answering Dendor's call without removing your plate armor."
 	gender = PLURAL
 	icon_state = "chain_bootyshorts"
 	item_state = "chain_bootyshorts"
@@ -356,15 +356,16 @@
 
 /obj/item/clothing/under/roguetown/chainlegs/skirt
 	name = "steel chain skirt"
-	desc = "Interlinked metal rings that drape down to the crotch and no farther."
+	desc = "A knee-length maille skirt, warding cuts against the thighs without slowing the feet."
 	icon_state = "chain_skirt"
 	item_state = "chain_skirt"
 	body_parts_covered = GROIN
 	armor_class = ARMOR_CLASS_LIGHT
 
 /obj/item/clothing/under/roguetown/platelegs/skirt
-	name = "steel plate mini-skirt"
-	desc = "Reinforced armor that doesn't even protect the legs."
+	name = "steel plate tassets"
+	desc = "A set of hanging plates of steel to protect the hips and thighs without too much burden."
+	gender = PLURAL
 	icon_state = "plate_skirt"
 	item_state = "plate_skirt"
 	body_parts_covered = GROIN
