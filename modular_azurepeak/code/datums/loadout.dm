@@ -349,3 +349,8 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Handcarved Harp"
 	path = /obj/item/rogue/instrument/harp/handcarved
 	ckeywhitelist = list("kitchifox")
+
+/datum/loadout_item/donator_mansa
+	name = "Wortträger"
+	path = /obj/item/rogueweapon/estoc/worttrager
+	ckeywhitelist = list("pepperoni playboy")
