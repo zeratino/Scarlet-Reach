@@ -116,3 +116,15 @@
 /obj/item/roguestatue/clay/Initialize()
 	. = ..()
 	icon_state = "claystatuecook[pick(1,2)]"
+
+/obj/item/roguestatue/glass
+	name = "glass statue"
+	desc = "A statue made of fine glass. An incredible amount of skill must have went into this fragile masterpiece!"
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "statueglass1"
+	smeltresult = null	//No resource return
+	sellprice = 70		//Silver is roughly 90 mammon, steel is 40. This sits roughly between. It's high skill to make and a bit of a grind so - worth it since resources to make aren't rare..
+
+/obj/item/roguestatue/glass/Initialize()
+	. = ..()
+	icon_state = "statueglass[pick(1,2)]"
