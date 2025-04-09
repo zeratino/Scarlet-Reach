@@ -299,7 +299,7 @@
 //Turns a Body_parts_covered bitfield into a list of organ/limb names.
 //(I challenge you to find a use for this)
 //^ I did.
-/proc/body_parts_covered2organ_names(bpc)
+/proc/body_parts_covered2organ_names(bpc, verbose = FALSE)
 	var/list/covered_parts = list()
 
 	if(!bpc)
@@ -309,7 +309,7 @@
 		covered_parts |= list(READABLE_ZONE_HEAD)
 	if(bpc & NECK)
 		covered_parts |= list(READABLE_ZONE_NECK)
-	if(bpc & FACE)
+	if(bpc & FACE && !verbose)
 		covered_parts |= list(READABLE_ZONE_FACE)
 	else
 		if(bpc & MOUTH)
@@ -328,6 +328,12 @@
 
 	if(bpc & ARMS)
 		covered_parts |= list(READABLE_ZONE_ARMS)
+		if(verbose)
+			if(bpc & ARM_LEFT)
+				covered_parts |= list(READABLE_ZONE_L_ARM)
+			if(bpc & ARM_RIGHT)
+				covered_parts |= list(READABLE_ZONE_R_ARM)
+
 	else
 		if(bpc & ARM_LEFT)
 			covered_parts |= list(READABLE_ZONE_L_ARM)
@@ -336,6 +342,11 @@
 
 	if(bpc & HANDS)
 		covered_parts |= list(READABLE_ZONE_HANDS)
+		if(verbose)
+			if(bpc & HAND_LEFT)
+				covered_parts |= list(READABLE_ZONE_L_HAND)
+			if(bpc & HAND_RIGHT)
+				covered_parts |= list(READABLE_ZONE_R_HAND)
 	else
 		if(bpc & HAND_LEFT)
 			covered_parts |= list(READABLE_ZONE_L_HAND)
@@ -344,6 +355,11 @@
 
 	if(bpc & LEGS)
 		covered_parts |= list(READABLE_ZONE_LEGS)
+		if(verbose)
+			if(bpc & LEG_LEFT)
+				covered_parts |= list(READABLE_ZONE_L_LEG)
+			if(bpc & LEG_RIGHT)
+				covered_parts |= list(READABLE_ZONE_R_LEG)
 	else
 		if(bpc & LEG_LEFT)
 			covered_parts |= list(READABLE_ZONE_L_LEG)
@@ -352,6 +368,11 @@
 
 	if(bpc & FEET)
 		covered_parts |= list(READABLE_ZONE_FEET)
+		if(verbose)
+			if(bpc & FOOT_LEFT)
+				covered_parts |= list(READABLE_ZONE_L_FOOT)
+			if(bpc & FOOT_RIGHT)
+				covered_parts |= list(READABLE_ZONE_R_FOOT)
 	else
 		if(bpc & FOOT_LEFT)
 			covered_parts |= list(READABLE_ZONE_L_FOOT)
