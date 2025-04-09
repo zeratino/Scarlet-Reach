@@ -64,6 +64,9 @@
 #define SPAN_BEAST "beast"
 #define SPAN_ORC "orc"
 #define SPAN_DRACONIC "reptile"
+#define SPAN_KAZENGUNESE "kazengunese"
+#define SPAN_ZHONG "zhong"
+#define SPAN_OMORMIR "omormir"
 #define SPAN_UNDEAD "undead" //nyi but file found
 #define SPAN_CAT "cat"		 //nyi but file found
 
