@@ -195,7 +195,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	"Consort",
 	"Merchant",
 	"Priest",
-	"Royal Guard")
+	"Knight")
 	var/num_bandits = 0
 	if(num_players() >= 10)
 		num_bandits = CLAMP(round(num_players() / 5), 4, 6)
@@ -255,8 +255,8 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 
 
 /datum/game_mode/chaosmode/proc/pick_aspirants()
-	var/list/possible_jobs_aspirants = list("Prince", "Princess", "Knight Captain", "Steward", "Hand", "Royal Guard")
-	var/list/possible_jobs_helpers = list("Knight Captain", "Prince", "Princess", "Hand",  "Steward", "Royal Guard")
+	var/list/possible_jobs_aspirants = list("Prince", "Princess", "Knight Captain", "Steward", "Hand", "Knight")
+	var/list/possible_jobs_helpers = list("Knight Captain", "Prince", "Princess", "Hand",  "Steward", "Knight")
 	var/list/rolesneeded = list("Aspirant","Loyalist","Supporter")
 
 	antag_candidates = get_players_for_role(ROLE_ASPIRANT)
@@ -349,7 +349,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	restricted_jobs = list()
 
 /datum/game_mode/chaosmode/proc/pick_lich()
-	restricted_jobs = list("Grand Duke", "Consort", "Royal Guard", "Knight Captain")
+	restricted_jobs = list("Grand Duke", "Consort", "Knight", "Knight Captain")
 	antag_candidates = get_players_for_role(ROLE_LICH)
 	var/datum/mind/lichman = pick_n_take(antag_candidates)
 	if(lichman)
@@ -386,7 +386,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	"Templar",
 	"Bog Guard",
 	"Bog Master",
-	"Royal Guard",
+	"Knight",
 	"Martyr",
 	)
 	antag_candidates = get_players_for_role(ROLE_NBEAST)
@@ -435,7 +435,7 @@ var/global/list/roguegamemodes = list("Rebellion", "Vampires and Werewolves", "E
 	"Martyr",
 	"Bog Guard",
 	"Bog Master",
-	"Royal Guard",
+	"Knight",
 	"Mortician",
 	"Desert Rider",
 	"Desert Rider Mercenary",

@@ -36,49 +36,6 @@
 	icon_state = "strapless2"
 	icon = 'modular_hearthstone/icons/obj/items/clothes/dress.dmi'
 
-//CRAFTING
-
-/datum/crafting_recipe/roguetown/sewing/strapless_dress
-	name = "strapless dress"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
-
-/datum/crafting_recipe/roguetown/sewing/strapless_dress_black
-	name = "black strapless dress"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/black)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
-
-/datum/crafting_recipe/roguetown/sewing/strapless_dress_blue
-	name = "blue strapless dress"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/blue)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
-
-/datum/crafting_recipe/roguetown/sewing/strapless_dress_red
-	name = "red strapless dress"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/red)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
-
-/datum/crafting_recipe/roguetown/sewing/strapless_dress_purple
-	name = "purple strapless dress"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/purple)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
-
-/datum/crafting_recipe/roguetown/sewing/strapless_dress_alt
-	name = "strapless dress alt"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/alt)
-	reqs = list(/obj/item/natural/cloth = 1,
-				/obj/item/natural/fibers = 1)
-	craftdiff = 3
 
 //SUPPLY
 

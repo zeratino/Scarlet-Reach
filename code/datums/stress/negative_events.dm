@@ -284,7 +284,7 @@
 
 /datum/stressevent/soulchurner
 	timer = 1 MINUTES
-	stressadd = 10
+	stressadd = 30
 	desc = span_red("The horrid wails of the dead call for relief!")
 
 /datum/stressevent/soulchurnerpsydon
@@ -301,3 +301,8 @@
 	stressadd = 3
 	desc = span_red("Their face is unbearable!")
 	timer = 3 MINUTES
+
+/datum/stressevent/syoncalamity
+	stressadd = 15
+	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
+	timer = 15 MINUTES

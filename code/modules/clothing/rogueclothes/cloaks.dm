@@ -952,7 +952,7 @@
 	color = "#685542"
 
 /obj/item/clothing/cloak/raincloak/furcloak/black
-	color = "#66564d"
+	color = "#2b292e"
 	
 /obj/item/clothing/cloak/raincloak/furcloak/darkgreen
 	color = "#264d26"
@@ -1600,7 +1600,7 @@
 
 /obj/item/clothing/cloak/wardencloak
 	name = "warden cloak"
-	desc = "A cloak worn by the Veteran Warden of Vanderlin's Forest Guard"
+	desc = "A cloak worn by the Wardens of Azuria's Forests"
 	icon_state = "wardencloak"
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
@@ -1608,6 +1608,10 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = TRUE
+
+/obj/item/clothing/cloak/wardencloak/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
 
 /obj/item/clothing/cloak/forrestercloak
 	name = "forrester cloak"
@@ -1623,3 +1627,8 @@
 /obj/item/clothing/cloak/forrestercloak/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
+/obj/item/clothing/cloak/forrestercloak/snow
+	name = "snow cloak"
+	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of Azuria."
+	icon_state = "snowcloak"

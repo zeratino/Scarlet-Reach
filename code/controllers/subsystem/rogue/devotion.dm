@@ -189,7 +189,7 @@
 // Debug verb
 /mob/living/carbon/human/proc/devotionchange()
 	set name = "(DEBUG)Change Devotion"
-	set category = "Special Verbs"
+	set category = "-Special Verbs-"
 
 	if(!devotion)
 		return FALSE
@@ -262,3 +262,12 @@
 		voice_color = original_voice
 		to_chat(src, span_info("I've returned to my natural voice."))
 	return TRUE
+
+/mob/living/carbon/human/proc/toggleblindness()
+	set name = "Toggle Colorblindness"
+	set category = "Virtue"
+
+	if(!get_client_color(/datum/client_colour/monochrome))
+		add_client_colour(/datum/client_colour/monochrome)
+	else
+		remove_client_colour(/datum/client_colour/monochrome)

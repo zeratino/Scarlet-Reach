@@ -41,6 +41,9 @@
 		return
 	if(HAS_TRAIT(src, TRAIT_NOFALLDAMAGE1))
 		if(levels <= 2)
+			Immobilize(10)
+			if(m_intent == MOVE_INTENT_RUN)
+				toggle_rogmove_intent(MOVE_INTENT_WALK)
 			return
 	var/points
 	for(var/i in 2 to levels)
@@ -852,17 +855,6 @@
 	update_wallpress_slowdown()
 
 
-/mob/living/proc/update_pixelshift(turf/T, atom/newloc, direct)
-	if(!pixelshifted)
-		reset_offsets("pixel_shift")
-		return FALSE
-	pixelshifted = FALSE
-	pixelshift_x = 0
-	pixelshift_y = 0
-	pixelshift_layer = 0
-	layer = 4
-	reset_offsets("pixel_shift")
-
 /mob/living/Move(atom/newloc, direct, glide_size_override)
 
 	var/old_direction = dir
@@ -874,9 +866,6 @@
 
 	if(wallpressed)
 		update_wallpress(T, newloc, direct)
-
-	if(pixelshifted)
-		update_pixelshift(T, newloc, direct)
 
 	if(lying)
 		if(direct & EAST)
@@ -1092,6 +1081,7 @@
 		to_chat(pulledby, span_danger("[src] breaks free of my grip!"))
 		log_combat(pulledby, src, "broke grab")
 		pulledby.changeNext_move(CLICK_CD_GRABBING)
+		playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
 		pulledby.stop_pulling()
 		return FALSE
 	else
@@ -1101,6 +1091,7 @@
 //			shitte = " ([resist_chance]%)"
 		visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
 						span_warning("I struggle against [pulledby]'s grip![shitte]"), null, null, pulledby)
+		playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 		to_chat(pulledby, span_warning("[src] struggles against my grip!"))
 
 		return TRUE
@@ -1117,6 +1108,7 @@
 						if(G.sublimb_grabbed == BODY_ZONE_PRECISE_NOSE)
 							visible_message(span_warning("[src] struggles to break free from [pulledby]'s grip!"), \
 											span_warning("I struggle against [pulledby]'s grip!"), null, null, pulledby)
+							playsound(src.loc, 'sound/combat/grabstruggle.ogg', 50, TRUE, -1)
 							to_chat(pulledby, span_warning("[src] struggles against my grip!"))
 							return FALSE
 	return ..()
@@ -1565,7 +1557,7 @@
 		if(!lying_prev)
 			fall(!canstand_involuntary)
 		layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-		if (pixelshifted)
+		if (is_shifted)
 			layer = 3.99 + pixelshift_layer //So mobs can pixelshift layers while lying down
 	else
 		if(layer == LYING_MOB_LAYER)
@@ -1765,12 +1757,12 @@
 		return
 	if(!can_look_up())
 		return
-	changeNext_move(CLICK_CD_EXHAUSTED)
+	changeNext_move(HAS_TRAIT(src, TRAIT_SLEUTH) ? CLICK_CD_SLEUTH : CLICK_CD_TRACKING)
 	if(m_intent != MOVE_INTENT_SNEAK)
 		visible_message(span_info("[src] begins looking around."))
 	var/looktime = 50 - (STAPER * 2) - (mind?.get_skill_level(/datum/skill/misc/tracking) * 5)
 	looktime = clamp(looktime, 7, 50)
-	if(do_after(src, looktime, target = src))
+	if(HAS_TRAIT(src, TRAIT_SLEUTH) ? move_after(src, looktime, target = src) : do_after(src, looktime, target = src))
 		for(var/mob/living/M in view(7,src))
 			if(M == src)
 				continue
@@ -1906,16 +1898,51 @@
 	var/_x = T.x-loc.x
 	var/_y = T.y-loc.y
 	var/dist = get_dist(src, T)
+	var/message = span_info("[src] looks into the distance.")
 	if(dist > 7 || dist  <= 2)
 		return
 	hide_cone()
-	var/ttime = 10
+	var/ttime = 11
 	if(STAPER > 5)
 		ttime = 10 - (STAPER - 5)
 		if(ttime < 0)
-			ttime = 0
+			ttime = 1
+	if(STAPER <= 10)
+		var/offset = (10 - STAPER) * 2
+		if(STAPER == 10)
+			offset = 1
+		else
+			message = span_info("[src] struggles to look ahead.")
+		if(_x > 0)
+			_x -= offset
+			_x = max(0, _x)
+		else if(_x != 0)
+			_x += offset
+			_x = min(0, _x)
+		if(_y > 0)
+			_y -= offset
+			_y = max(0,_y)
+		else if(_y != 0)
+			_y += offset
+			_y = min(0,_y)
+	else if(STAPER > 11)
+		var/offset = STAPER - 10
+		if(offset > 5)	//Caps the bonus at 15 PER, which is a whole extra screen in an orthogonal direction. Anymore will get disorienting.
+			offset = 5
+		if(STAPER >= 12)
+			message = span_info("[src] easily peers afar.")
+		if(_x > 0)
+			_x += offset
+		else if(_x != 0)
+			_x -= offset
+		if(_y > 0)
+			_y += offset
+		else if(_y != 0)
+			_y -= offset
 	if(m_intent != MOVE_INTENT_SNEAK)
-		visible_message(span_info("[src] looks into the distance."))
+		if(_y == 0 && _x == 0)	//Their PER was too low to see anything.
+			message = span_info("[src] oafishly stares in front of themselves.")
+		visible_message(message)
 	animate(client, pixel_x = world.icon_size*_x, pixel_y = world.icon_size*_y, ttime)
 //	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_looking))
 	update_cone_show()

@@ -86,7 +86,10 @@
 		var/exp_to_gain = 0 
 		if(L.mind)
 			var/myskill = L.mind.get_skill_level(/datum/skill/misc/climbing)
-			exp_to_gain = L.STAINT/2
+			if(HAS_TRAIT(L, TRAIT_WOODWALKER))
+				exp_to_gain = L.STAINT
+			else
+				exp_to_gain = L.STAINT/2
 			var/obj/structure/table/TA = locate() in L.loc
 			if(TA)
 				myskill += 1
@@ -94,7 +97,7 @@
 				var/obj/structure/chair/CH = locate() in L.loc
 				if(CH)
 					myskill += 1
-			used_time = max(70 - (myskill * 10) - (L.STASPD * 3), 30)
+			used_time = max(70 - (myskill * 10) - (L.STASPD * 3), (HAS_TRAIT(L, TRAIT_WOODWALKER) ? 15 : 30))
 		playsound(user, 'sound/foley/climb.ogg', 100, TRUE)
 		user.visible_message(span_warning("[user] starts to climb [src]."), span_warning("I start to climb [src]..."))
 		if(do_after(L, used_time, target = src))

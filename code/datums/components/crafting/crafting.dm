@@ -564,9 +564,7 @@
 	if(!A.can_craft_here())
 		to_chat(user, span_warning("I can't craft here."))
 		return
-//	if(user != parent)
-//		testing("c2")
-//		return
+
 	var/list/data = list()
 	var/list/catty = list()
 	var/list/surroundings = get_surroundings(user)
@@ -574,9 +572,6 @@
 		var/datum/crafting_recipe/R = rec
 		if(!R.always_availible && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
-
-//		if((R.category != cur_category) || (R.subcategory != cur_subcategory))
-//			continue
 
 		if(check_contents(R, surroundings))
 			if(R.name)
@@ -607,6 +602,7 @@
 				if(t == "Other")
 					realdata += X
 		if(realdata.len)
+			realdata = sortNames(realdata)
 			var/r = input(user, "What should I craft?") as null|anything in realdata
 			if(r)
 				construct_item(user, r)

@@ -2,6 +2,8 @@
 #define PRESTI_SPARK "presti_spark"
 #define PRESTI_MOTE "presti_mote"
 
+GLOBAL_LIST_EMPTY(wizard_spells_list)
+
 /obj/effect/proc_holder/spell/targeted/touch/prestidigitation
 	name = "Prestidigitation"
 	desc = "A few basic tricks many apprentices use to practice basic manipulation of the arcyne."
@@ -214,8 +216,8 @@
 		/obj/effect/proc_holder/spell/invoked/longstrider,
 		/obj/effect/proc_holder/spell/invoked/invisibility,
 		/obj/effect/proc_holder/spell/invoked/blindness,
-		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e,
-//		/obj/effect/proc_holder/spell/invoked/frostbite5e,
+		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash,
+//		/obj/effect/proc_holder/spell/invoked/frostbite,
 		/obj/effect/proc_holder/spell/invoked/guidance,
 		/obj/effect/proc_holder/spell/invoked/fortitude,
 		/obj/effect/proc_holder/spell/invoked/snap_freeze,
@@ -223,19 +225,24 @@
 		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
 		/obj/effect/proc_holder/spell/invoked/gravity,
 		/obj/effect/proc_holder/spell/invoked/projectile/repel,
-		/obj/effect/proc_holder/spell/invoked/poisonspray5e,
+		/obj/effect/proc_holder/spell/invoked/aerosolize,
 		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
 		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform
-		
+		/obj/effect/proc_holder/spell/invoked/blink,
+		/obj/effect/proc_holder/spell/invoked/mirror_transform,
+		/obj/effect/proc_holder/spell/invoked/mindlink
 	)
+
 	for(var/i = 1, i <= spell_choices.len, i++)
 		choices["[spell_choices[i].name]: [spell_choices[i].cost]"] = spell_choices[i]
 
+	choices = sortList(choices)
+
 	var/choice = input("Choose a spell, points left: [user.mind.spell_points - user.mind.used_spell_points]") as null|anything in choices
 	var/obj/effect/proc_holder/spell/item = choices[choice]
+
 	if(!item)
 		return     // user canceled;
 	if(alert(user, "[item.desc]", "[item.name]", "Learn", "Cancel") == "Cancel") //gives a preview of the spell's description to let people know what a spell does
@@ -270,7 +277,7 @@
 	active = FALSE
 	sound = 'sound/blank.ogg'
 	overlay_state = "forcewall"
-	range = -1
+	range = 7
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	var/wall_type = /obj/structure/forcefield_weak/caster
@@ -336,7 +343,7 @@
 	charge_max = 25 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
-	movement_interrupt = FALSE
+	movement_interrupt = FALSE	
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -445,6 +452,7 @@
 	chargedrain = 1
 	chargetime = 5
 	charge_max = 30 SECONDS
+	ignore_los = TRUE
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -499,6 +507,7 @@
 	name = "Blade Burst"
 	desc = "Summon a storm of arcyne force in an area, wounding anything in that location after a delay."
 	cost = 1
+	range = 7
 	xp_gain = TRUE
 	releasedrain = 30
 	chargedrain = 1
@@ -664,67 +673,6 @@
 		attached_spell.remove_hand()
 	return
 
-/obj/effect/proc_holder/spell/invoked/featherfall
-	name = "Featherfall"
-	desc = "Grant yourself and any creatures adjacent to you some defense against falls."
-	cost = 1
-	xp_gain = TRUE
-	school = "transmutation"
-	releasedrain = 50
-	chargedrain = 0
-	chargetime = 10 SECONDS
-	charge_max = 2 MINUTES
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	movement_interrupt = TRUE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-	overlay_state = "jump"
-
-/obj/effect/proc_holder/spell/invoked/featherfall/cast(list/targets, mob/user = usr)
-
-	user.visible_message("[user] mutters an incantation and a dim pulse of light radiates out from them.")
-
-	for(var/mob/living/L in range(1, usr))
-		L.apply_status_effect(/datum/status_effect/buff/featherfall)
-
-	return TRUE
-
-/obj/effect/proc_holder/spell/invoked/haste
-	name = "Haste"
-	desc = "Cause a target to be magically hastened."
-	cost = 2
-	xp_gain = TRUE
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 1 SECONDS
-	charge_max = 1.5 MINUTES
-	warnie = "spellwarning"
-	school = "transmutation"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/haste/cast(list/targets, mob/user)
-	var/atom/A = targets[1]
-	if(!isliving(A))
-		revert_cast()
-		return
-
-	var/mob/living/spelltarget = A
-	spelltarget.apply_status_effect(/datum/status_effect/buff/haste)
-	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
-
-	if(spelltarget != user)
-		user.visible_message("[user] mutters an incantation and [spelltarget] briefly shines yellow.")
-	else
-		user.visible_message("[user] mutters an incantation and they briefly shine yellow.")
-
-	return TRUE
-
 /obj/effect/proc_holder/spell/invoked/knock
 	name = "Knock"
 	desc = "Force open adjacent doors, windows and most containers."
@@ -765,38 +713,13 @@
 	if(istype(W))
 		W.force_open()
 
-/obj/effect/proc_holder/spell/invoked/longstrider
-	name = "Longstrider"
-	desc = "Grant yourself and any creatures adjacent to you free movement through rough terrain."
-	cost = 1
-	xp_gain = TRUE
-	school = "transmutation"
-	releasedrain = 50
-	chargedrain = 0
-	chargetime = 4 SECONDS
-	charge_max = 1.5 MINUTES
-	warnie = "spellwarning"
-	no_early_release = TRUE
-	charging_slowdown = 1
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/longstrider/cast(list/targets, mob/user = usr)
-
-	user.visible_message("[user] mutters an incantation and a dim pulse of light radiates out from them.")
-
-	for(var/mob/living/L in range(1, usr))
-		L.apply_status_effect(/datum/status_effect/buff/longstrider)
-
-	return TRUE
-
 //ports -- todo: sfx
 
-/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e
+/obj/effect/proc_holder/spell/invoked/projectile/acidsplash
 	name = "Acid Splash"
 	desc = "A slow-moving glob of acid that sprays over an area upon impact."
 	range = 8
-	projectile_type = /obj/projectile/magic/acidsplash5e
+	projectile_type = /obj/projectile/magic/acidsplash
 	overlay_state = "null"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE
@@ -818,12 +741,12 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-/obj/effect/proc_holder/spell/self/acidsplash5e/cast(mob/user = usr)
+/obj/effect/proc_holder/spell/self/acidsplash/cast(mob/user = usr)
 	var/mob/living/target = user
 	target.visible_message(span_warning("[target] hurls a caustic bubble!"), span_notice("You hurl a caustic bubble!"))
 	. = ..()
 
-/obj/projectile/magic/acidsplash5e //port. todo: the sounds these came with aren't good and drink_blood sounds like ur slurpin pintle
+/obj/projectile/magic/acidsplash //port. todo: the sounds these came with aren't good and drink_blood sounds like ur slurpin pintle
 	name = "acid bubble"
 	icon_state = "green_laser"
 	damage = 10
@@ -833,7 +756,7 @@
 	speed = 15 //higher is slower
 	var/aoe_range = 1
 
-/obj/projectile/magic/acidsplash5e/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/magic/acidsplash/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/turf/T = get_turf(src)
 	playsound(src, 'sound/misc/drink_blood.ogg', 100)
@@ -841,32 +764,32 @@
 	for(var/mob/living/L in range(aoe_range, get_turf(src))) //apply damage over time to mobs
 		if(!L.anti_magic_check())
 			var/mob/living/carbon/M = L
-			M.apply_status_effect(/datum/status_effect/buff/acidsplash5e)
-			new /obj/effect/temp_visual/acidsplash5e(get_turf(M))
+			M.apply_status_effect(/datum/status_effect/buff/acidsplash)
+			new /obj/effect/temp_visual/acidsplash(get_turf(M))
 	for(var/turf/turfs_in_range in range(aoe_range+1, T)) //make a splash
-		new /obj/effect/temp_visual/acidsplash5e(T)
+		new /obj/effect/temp_visual/acidsplash(T)
 
-/datum/status_effect/buff/acidsplash5e
+/datum/status_effect/buff/acidsplash
 	id = "acid splash"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/acidsplash5e
+	alert_type = /atom/movable/screen/alert/status_effect/buff/acidsplash
 	duration = 20 SECONDS
 
-/datum/status_effect/buff/acidsplash5e/on_apply()
+/datum/status_effect/buff/acidsplash/on_apply()
 	. = ..()
 	owner.playsound_local(get_turf(owner), 'sound/misc/lava_death.ogg', 35, FALSE, pressure_affected = FALSE)
 	owner.visible_message(span_warning("[owner] is covered in acid!"), span_danger("I am covered in acid!"))
 	owner.emote("scream")
 
-/datum/status_effect/buff/acidsplash5e/tick()
+/datum/status_effect/buff/acidsplash/tick()
 	var/mob/living/target = owner
 	target.adjustFireLoss(3)
 
-/atom/movable/screen/alert/status_effect/buff/acidsplash5e
+/atom/movable/screen/alert/status_effect/buff/acidsplash
 	name = "Acid Burn"
 	desc = "My skin is burning!"
 	icon_state = "debuff"
 
-/obj/effect/temp_visual/acidsplash5e
+/obj/effect/temp_visual/acidsplash
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenshatter2"
 	name = "horrible acrid brine"
@@ -876,7 +799,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 
 
-/obj/effect/proc_holder/spell/invoked/frostbite5e
+/obj/effect/proc_holder/spell/invoked/frostbite
 	name = "Frostbite"
 	desc = "Freeze your enemy with an icy blast that does low damage, but reduces the target's Speed for a considerable length of time."
 	overlay_state = "null"
@@ -901,26 +824,26 @@
 	invocation = ""
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
-/obj/effect/proc_holder/spell/invoked/frostbite5e/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/frostbite/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/carbon/target = targets[1]
-		target.apply_status_effect(/datum/status_effect/buff/frostbite5e/) //apply debuff
+		target.apply_status_effect(/datum/status_effect/buff/frostbite/) //apply debuff
 		target.adjustFireLoss(12) //damage
 		target.adjustBruteLoss(12)
 
-/datum/status_effect/buff/frostbite5e
+/datum/status_effect/buff/frostbite
 	id = "frostbite"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite5e
+	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite
 	duration = 20 SECONDS
 	effectedstats = list("speed" = -2)
 
-/atom/movable/screen/alert/status_effect/buff/frostbite5e
+/atom/movable/screen/alert/status_effect/buff/frostbite
 	name = "Frostbite"
 	desc = "I can feel myself slowing down."
 	icon_state = "debuff"
 	color = "#00fffb" //talk about a coder sprite
 
-/datum/status_effect/buff/frostbite5e/on_apply()
+/datum/status_effect/buff/frostbite/on_apply()
 	. = ..()
 	var/mob/living/target = owner
 	target.update_vision_cone()
@@ -929,81 +852,11 @@
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_atom_colour), TEMPORARY_COLOUR_PRIORITY, newcolor), 20 SECONDS)
 	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
 
-/datum/status_effect/buff/frostbite5e/on_remove()
+/datum/status_effect/buff/frostbite/on_remove()
 	var/mob/living/target = owner
 	target.update_vision_cone()
 	target.remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE)
 	. = ..()
-
-
-/obj/effect/proc_holder/spell/invoked/fortitude
-	name = "Fortitude"
-	desc = "Harden one's humors to the fatigues of the body."
-	cost = 2
-	xp_gain = TRUE
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 4 SECONDS
-	charge_max = 2 MINUTES
-	warnie = "spellwarning"
-	school = "transmutation"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/fortitude/cast(list/targets, mob/user)
-	var/atom/A = targets[1]
-	if(!isliving(A))
-		revert_cast()
-		return
-
-	var/mob/living/spelltarget = A
-	spelltarget.apply_status_effect(/datum/status_effect/buff/fortitude)
-	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
-
-	if(spelltarget != user)
-		user.visible_message("[user] mutters an incantation and [spelltarget] briefly shines green.")
-	else
-		user.visible_message("[user] mutters an incantation and they briefly shine green.")
-
-	return TRUE
-
-/obj/effect/proc_holder/spell/invoked/guidance
-	name = "Guidance"
-	overlay_state = "guidance"
-	desc = "Makes one's hand travel true, blessing them with arcyne luck in combat. (+10% chance to hit with melee, +10% chance to defend from melee)"
-	cost = 2
-	xp_gain = TRUE
-	releasedrain = 60
-	chargedrain = 1
-	chargetime = 4 SECONDS
-	charge_max = 5 MINUTES
-	warnie = "spellwarning"
-	school = "transmutation"
-	no_early_release = TRUE
-	movement_interrupt = FALSE
-	charging_slowdown = 2
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane
-
-/obj/effect/proc_holder/spell/invoked/guidance/cast(list/targets, mob/user)
-	var/atom/A = targets[1]
-	if(!isliving(A))
-		revert_cast()
-		return
-
-	var/mob/living/spelltarget = A
-	spelltarget.apply_status_effect(/datum/status_effect/buff/guidance)
-	playsound(get_turf(spelltarget), 'sound/magic/haste.ogg', 80, TRUE, soundping = TRUE)
-
-	if(spelltarget != user)
-		user.visible_message("[user] mutters an incantation and [spelltarget] briefly shines orange.")
-	else
-		user.visible_message("[user] mutters an incantation and they briefly shine orange.")
-
-	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/snap_freeze // to do: get scroll icon
 	name = "Snap Freeze"
@@ -1022,6 +875,7 @@
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
@@ -1065,7 +919,7 @@
 				return 
 			play_cleave = TRUE
 			L.adjustFireLoss(damage)
-			L.apply_status_effect(/datum/status_effect/buff/frostbite5e/)
+			L.apply_status_effect(/datum/status_effect/buff/frostbite/)
 			playsound(affected_turf, "genslash", 80, TRUE)
 			to_chat(L, "<span class='userdanger'>The air chills your bones!</span>")
 
@@ -1127,7 +981,7 @@
 			return BULLET_ACT_BLOCK
 		if(isliving(target))
 			var/mob/living/L = target
-			L.apply_status_effect(/datum/status_effect/buff/frostbite5e)
+			L.apply_status_effect(/datum/status_effect/buff/frostbite)
 			new /obj/effect/temp_visual/snap_freeze(get_turf(L))
 	qdel(src)
 
@@ -1195,6 +1049,7 @@
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 	var/delay = 3
 	var/damage = 0 // damage based off your str 
 	var/area_of_effect = 0
@@ -1303,7 +1158,7 @@
 					throw_target = get_edge_target_turf(firer, get_dir(firer, target))
 			I.throw_at(throw_target, 7, 4)
 
-/obj/effect/proc_holder/spell/invoked/poisonspray5e
+/obj/effect/proc_holder/spell/invoked/aerosolize
 	name = "Aerosolize" //once again renamed to fit better :)
 	desc = "Turns a container of liquid into a smoke containing the reagents of that liquid."
 	overlay_state = "null"
@@ -1328,7 +1183,7 @@
 	invocation = ""
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	
-/obj/effect/proc_holder/spell/invoked/poisonspray5e/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/aerosolize/cast(list/targets, mob/living/user)
 	var/turf/T = get_turf(targets[1]) //check for turf
 	if(T)
 		var/obj/item/held_item = user.get_active_held_item() //get held item
@@ -1441,6 +1296,7 @@
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune1"
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/enlarge/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1482,6 +1338,7 @@
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune5"
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/leap/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1627,7 +1484,7 @@
 					return
 				to_chat(user, span_info("I begin to meld with the shadows.."))
 				lockon(T, user)
-				if(do_after(user, 70))
+				if(do_after(user, 5 SECONDS))
 					tp(user)
 				else
 					reset(silent = TRUE)
@@ -1662,6 +1519,302 @@
 	user_turf.add_overlay(target_effect)
 	destination_turf.add_overlay(tile_effect)
 
+/obj/effect/proc_holder/spell/invoked/blink
+	name = "Blink"
+	desc = "Teleport to a targeted location within your field of view. Limited to a range of 5 tiles. Only works on the same plane as the caster."
+	school = "conjuration"
+	cost = 1
+	releasedrain = 30
+	chargedrain = 1
+	chargetime = 1.5 SECONDS
+	charge_max = 10 SECONDS
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "rune6"
+	xp_gain = TRUE
+	invocation = "SHIFT THROUGH SPACE!"
+	invocation_type = "shout"
+	var/max_range = 5
+	var/phase = /obj/effect/temp_visual/blink
+
+/obj/effect/temp_visual/blink
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "hierophant_blast"
+	name = "teleportation magic"
+	desc = "Get out of the way!"
+	randomdir = FALSE
+	duration = 4 SECONDS
+	layer = MASSIVE_OBJ_LAYER
+	light_outer_range = 2
+	light_color = COLOR_PALE_PURPLE_GRAY
+
+/obj/effect/temp_visual/blink/Initialize(mapload, new_caster)
+	. = ..()
+	var/turf/src_turf = get_turf(src)
+	playsound(src_turf,'sound/magic/blink.ogg', 65, TRUE, -5)
+
+/obj/effect/proc_holder/spell/invoked/blink/cast(list/targets, mob/user = usr)
+	var/turf/T = get_turf(targets[1])
+	var/turf/start = get_turf(user)
+	
+	if(!T)
+		to_chat(user, span_warning("Invalid target location!"))
+		revert_cast()
+		return
+
+	if(T.teleport_restricted == TRUE)
+		to_chat(user, span_warning("I can't teleport here!"))
+
+	if(T.z != start.z)
+		to_chat(user, span_warning("I can only teleport on the same plane!"))
+
+		revert_cast()
+		return
+	
+	if(istransparentturf(T))
+		to_chat(user, span_warning("I cannot teleport to the open air!"))
+		revert_cast()
+		return
+
+	if(T.density)
+		to_chat(user, span_warning("I cannot teleport into a wall!"))
+		revert_cast()
+		return
+
+	// Check range limit
+	var/distance = get_dist(start, T)
+	if(distance > max_range)
+		to_chat(user, span_warning("That location is too far away! I can only blink up to [max_range] tiles."))
+		revert_cast()
+		return
+	
+	// Display a more obvious preparation message
+	user.visible_message(span_warning("<b>[user]'s body begins to shimmer with arcane energy as [user.p_they()] prepare[user.p_s()] to blink!</b>"), 
+						span_notice("<b>I focus my arcane energy, preparing to blink across space!</b>"))
+		
+	// Check if there's a wall in the way, but exclude the target turf
+	var/list/turf_list = getline(start, T)
+	// Remove the last turf (target location) from the check
+	if(length(turf_list) > 0)
+		turf_list.len--
+	
+	for(var/turf/turf in turf_list)
+		if(turf.density)
+			to_chat(user, span_warning("I cannot blink through walls!"))
+			revert_cast()
+			return
+			
+	// Check for doors and bars in the path
+	for(var/turf/traversal_turf in turf_list)
+		// Check for mineral doors
+		for(var/obj/structure/mineral_door/door in (traversal_turf.contents + T.contents))
+			if(door.density)
+				to_chat(user, span_warning("I cannot blink through doors!"))
+				revert_cast()
+				return
+				
+		// Check for windows
+		for(var/obj/structure/roguewindow/window in (traversal_turf.contents + T.contents))
+			if(window.density && !window.climbable)
+				to_chat(user, span_warning("I cannot blink through windows!"))
+				revert_cast()
+				return
+				
+		// Check for bars
+		for(var/obj/structure/bars/bars in (traversal_turf.contents + T.contents))
+			if(bars.density)
+				to_chat(user, span_warning("I cannot blink through bars!"))
+				revert_cast()
+				return
+
+		// Check for gates
+		for (var/obj/structure/gate/gate in (traversal_turf.contents + T.contents))
+			if(gate.density)
+				to_chat(user, span_warning("I cannot blink through gates!"))
+				revert_cast()
+				return
+
+	var/obj/spot_one = new phase(start, user.dir)
+	var/obj/spot_two = new phase(T, user.dir)
+
+	spot_one.Beam(spot_two, "purple_lightning", time = 1.5 SECONDS)
+	playsound(T, 'sound/magic/blink.ogg', 25, TRUE)
+
+	if(user.buckled) // don't stay remote-buckled to the guillotine/pillory
+		user.buckled.unbuckle_mob(user, TRUE)
+	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
+	
+	user.visible_message(span_danger("<b>[user] vanishes in a mysterious purple flash!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
+	return TRUE
+/*	- Teleporting to Lumby, lumby drop 500g
+/obj/effect/proc_holder/spell/self/recall
+	name = "Recall"
+	desc = "Memorize your current location, allowing you to return to it after a delay."
+	school = "transmutation"
+	charge_type = "none" // Changed from "recharge" to "none"
+	charge_max = 0 // Changed from 3 MINUTES
+	charge_counter = 0 // Changed from 3 MINUTES
+	clothes_req = FALSE
+	cost = 2
+	invocation = "RETURN TO MY MARKED GROUND!"
+	invocation_type = "shout"
+	cooldown_min = 0 // Changed from 3 MINUTES
+	associated_skill = /datum/skill/magic/arcane
+	xp_gain = TRUE
+	action_icon_state = "recall"
+	
+	var/turf/marked_location = null
+	var/recall_delay = 10 SECONDS
+
+/obj/effect/proc_holder/spell/self/recall/cast(mob/user = usr)
+	if(!istype(user, /mob/living/carbon/human))
+		return FALSE
+		
+	var/mob/living/carbon/human/H = user
+	
+	// First cast - mark the location
+	if(!marked_location)
+		var/turf/T = get_turf(H)
+		marked_location = T
+		
+		// Add sparkle effect when marking location
+		var/datum/effect_system/spark_spread/sparks = new()
+		sparks.set_up(3, 1, H)
+		sparks.start()
+		
+		H.visible_message(span_warning("<b>[H] begins to glow slightly as [H.p_they()] mark[H.p_s()] [H.p_their()] location!</b>"), 
+						span_notice("<b>I imprint this location into my arcane memory. I can now recall to this spot.</b>"))
+		return TRUE
+		
+	// Subsequent casts - begin channeling
+	H.visible_message(span_warning("<b>[H] closes [H.p_their()] eyes and begins glowing with increasing intensity as [H.p_they()] focus[H.p_es()] on recall magic!</b>"), 
+					span_notice("<b>I begin channeling the recall spell, focusing on my marked location...</b>"))
+	
+	// Play a distinctive magical sound that everyone can hear when channeling begins
+	playsound(get_turf(H), 'sound/magic/timestop.ogg', 80, TRUE, soundping = TRUE)
+	
+	// Add sparkle effect during channeling
+	var/datum/effect_system/spark_spread/channeling_sparks = new()
+	channeling_sparks.set_up(2, 1, H)
+	channeling_sparks.start()
+	
+	if(do_after(H, recall_delay, target = H, progress = TRUE))
+		// Add more intense sparkle effect before teleport
+		var/datum/effect_system/spark_spread/sparks = new()
+		sparks.set_up(5, 1, H)
+		sparks.start()
+		
+		// Get any grabbed mobs
+		var/list/to_teleport = list(H)
+		if(H.pulling && isliving(H.pulling))
+			to_teleport += H.pulling
+			
+		// Teleport caster and grabbed mob if any
+		for(var/mob/living/L in to_teleport)
+			do_teleport(L, marked_location, no_effects = FALSE, channel = TELEPORT_CHANNEL_MAGIC)
+			
+		H.visible_message(span_danger("<b>[H] disappears in a blinding shower of arcane sparks and energy!</b>"), 
+						span_notice("<b>I complete the recall spell, teleporting back to my marked location!</b>"))
+		playsound(H, 'sound/magic/unmagnet.ogg', 50, TRUE)
+		
+		// Visual effects at both locations
+		var/datum/effect_system/smoke_spread/smoke = new
+		smoke.set_up(3, marked_location)
+		smoke.start()
+		
+		// Additional sparkle effect at destination
+		sparks.set_up(5, 1, H)
+		sparks.start()
+		
+		return TRUE
+	else
+		to_chat(H, span_warning("Your concentration was broken!"))
+		return FALSE
+*/
+/obj/effect/proc_holder/spell/invoked/mindlink
+	name = "Mindlink"
+	desc = "Establish a telepathic link with an ally for one minute. Use ,y before a message to communicate telepathically."
+	clothes_req = FALSE
+	overlay_state = "mindlink"
+	associated_skill = /datum/skill/magic/arcane
+	cost = 2
+	xp_gain = TRUE
+	charge_max = 5 MINUTES
+	invocation = "MENTIS NEXUS!"
+	invocation_type = "whisper"
+	
+	// Charged spell variables
+	chargedloop = /datum/looping_sound/invokegen
+	chargedrain = 1
+	chargetime = 20
+	releasedrain = 25
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 2
+	warnie = "spellwarning"
+	ignore_los = TRUE
+
+/obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return
+	
+	var/list/possible_targets = list()
+	if(user.client)
+		possible_targets += user  // Always add self first
+		
+	if(user.mind?.known_people)  // Only check known_people if it exists
+		for(var/mob/living/L in GLOB.player_list)
+			if((L.client && L != user) && (L.real_name in user.mind.known_people))
+				possible_targets += L
+	
+	if(!length(possible_targets))
+		to_chat(user, span_warning("You have no known people to establish a mindlink with!"))
+		return FALSE
+
+	var/mob/living/first_target = input(user, "Choose the first person to link", "Mindlink") as null|anything in possible_targets
+	if(!first_target)
+		return FALSE
+		
+	var/mob/living/second_target = input(user, "Choose the second person to link", "Mindlink") as null|anything in possible_targets
+	if(!second_target)
+		return FALSE
+
+	if(first_target == second_target)
+		to_chat(user, span_warning("You cannot link someone to themselves!"))
+		return FALSE
+
+	user.visible_message(span_notice("[user] touches their temples and concentrates..."), span_notice("I establish a mental connection between [first_target] and [second_target]..."))
+	
+	// Create the mindlink
+	var/datum/mindlink/link = new(first_target, second_target)
+	GLOB.mindlinks += link
+	
+	to_chat(first_target, span_notice("A mindlink has been established with [second_target]! Use ,y before a message to communicate telepathically."))
+	to_chat(second_target, span_notice("A mindlink has been established with [first_target]! Use ,y before a message to communicate telepathically."))
+	
+	addtimer(CALLBACK(src, PROC_REF(break_link), link), 3 MINUTES)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/mindlink/proc/break_link(datum/mindlink/link)
+	if(!link)
+		return
+	
+	to_chat(link.owner, span_warning("The mindlink with [link.target] fades away..."))
+	to_chat(link.target, span_warning("The mindlink with [link.owner] fades away..."))
+	
+	GLOB.mindlinks -= link
+	qdel(link)
+
+
+
+
 #undef PRESTI_CLEAN
 #undef PRESTI_SPARK
 #undef PRESTI_MOTE
+
+

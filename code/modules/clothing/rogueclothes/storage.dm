@@ -256,7 +256,7 @@
 				break
 
 /obj/item/storage/belt/rogue/leather/knifebelt/proc/eatknife(obj/A)
-	if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife/throwingknife))
+	if(A.type in typesof(/obj/item/rogueweapon/huntingknife/throwingknife))
 		if(knives.len < max_storage)
 			A.forceMove(src)
 			knives += A
@@ -266,7 +266,7 @@
 			return FALSE
 
 /obj/item/storage/belt/rogue/leather/knifebelt/attackby(obj/A, loc, params)
-	if(A.type in subtypesof(/obj/item/rogueweapon/huntingknife/throwingknife))
+	if(A.type in typesof(/obj/item/rogueweapon/huntingknife/throwingknife))
 		if(knives.len < max_storage)
 			if(ismob(loc))
 				var/mob/M = loc
@@ -298,7 +298,7 @@
 /obj/item/storage/belt/rogue/leather/knifebelt/iron/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
-		var/obj/item/rogueweapon/huntingknife/throwingknife/iron/K = new()
+		var/obj/item/rogueweapon/huntingknife/throwingknife/K = new()
 		knives += K
 	update_icon()
 
@@ -309,7 +309,7 @@
 /obj/item/storage/belt/rogue/leather/knifebelt/black/iron/Initialize()
 	. = ..()
 	for(var/i in 1 to max_storage)
-		var/obj/item/rogueweapon/huntingknife/throwingknife/iron/K = new()
+		var/obj/item/rogueweapon/huntingknife/throwingknife/K = new()
 		knives += K
 	update_icon()
 
@@ -326,3 +326,10 @@
 		var/obj/item/rogueweapon/huntingknife/throwingknife/psydon/K = new()
 		knives += K
 	update_icon()
+
+/obj/item/storage/belt/rogue/leather/exoticsilkbelt
+	name = "exotic silk belt"
+	desc = "A gold adorned belt with the softest of silks barely concealing one's bits."
+	icon_state = "exoticsilkbelt"
+	var/max_storage = 5
+	sewrepair = TRUE
