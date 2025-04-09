@@ -23,6 +23,7 @@
 		/datum/language/grenzelhoftian,
 		/datum/language/kazengunese,
 		/datum/language/zhongese,
+		/datum/language/omormirian,
 	))
 
 /obj/item/organ/tongue/Initialize(mapload)

@@ -1,9 +1,9 @@
 /datum/language/zhongese
 	name = "Zhongese"
 	desc = "The language of the lands of the former Zhong Dynasty. A concise language with simple grammar and a large number of homophones distinguished by tone."
-	speech_verb = "remarks"
-	ask_verb = "inquires"
-	exclaim_verb = "asserts"
+	speech_verb = "says"
+	whisper_verb = "whispers"
+	exclaim_verb = "yells"
 	key = "z"
 	flags = LANGUAGE_HIDE_ICON_IF_UNDERSTOOD | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
 	space_chance = 50
@@ -34,6 +34,5 @@
     "ca", "ce", "cai", "cao", "cou", "can", "cen", "cang", "ceng", "cong", "cu", "cuan", "cui", "cun", "cuo",
     "sa", "se", "sai", "sao", "sou", "san", "sen", "sang", "seng", "song", "su", "suan", "sui", "sun", "suo",
     "ya", "yao", "ye", "yi", "yin", "ying", "you", "yu", "yuan", "yue", "yun",
-    "wa", "wo", "wai", "wei", "wan", "wen", "wang", "weng", "wu",
-    "er"
+    "wa", "wo", "wai", "wei", "wan", "wen", "wang", "weng", "wu", "er"
 )

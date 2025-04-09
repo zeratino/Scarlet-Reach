@@ -123,6 +123,7 @@
 		/datum/language/grenzelhoftian,
 		/datum/language/kazengunese,
 		/datum/language/zhongese,
+		/datum/language/omormirian,
 	)
 		
 	var/list/choices = list()

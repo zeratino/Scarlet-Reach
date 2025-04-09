@@ -1,9 +1,9 @@
 /datum/language/kazengunese
 	name = "Kazengunese"
 	desc = "The language of the islands of Kazengun. Spoken occasionally on the Mainland as a prestige language. With intricate honorifics and complex grammar."
-	speech_verb = "remarks"
-	ask_verb = "inquires"
-	exclaim_verb = "asserts"
+	speech_verb = "says"
+	whisper_verb = "whispers"
+	exclaim_verb = "yells"
 	key = "k"
 	flags = LANGUAGE_HIDE_ICON_IF_UNDERSTOOD | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
 	space_chance = 20
