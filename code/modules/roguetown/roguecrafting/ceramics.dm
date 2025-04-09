@@ -9,23 +9,56 @@
 	structurecraft = /obj/machinery/light/rogue/smelter // To heat it
 
 /* 0 diff */
-
-/datum/crafting_recipe/roguetown/ceramics/clay/clayBottle
-	name = "clay bottle"
-	result = list(/obj/item/natural/clay/clayBottle)
+/datum/crafting_recipe/roguetown/ceramics/clay/claycup
+	name = "clay cup"
+	result = list(/obj/item/natural/clay/claycup)
 	reqs = list(/obj/item/natural/clay = 1)
 	craftdiff = 0
 
-/* 1 diff */
+/datum/crafting_recipe/roguetown/ceramics/clay/claycup3
+	name = "clay cup 3x"
+	result = list(/obj/item/natural/clay/claycup, /obj/item/natural/clay/claycup, /obj/item/natural/clay/claycup)
+	reqs = list(/obj/item/natural/clay = 3)
+	craftdiff = 0
 
-/datum/crafting_recipe/roguetown/ceramics/clay/clayBottle3
+/* 1 diff */
+/datum/crafting_recipe/roguetown/ceramics/clay/claybottle
+	name = "clay bottle"
+	result = list(/obj/item/natural/clay/claybottle)
+	reqs = list(/obj/item/natural/clay = 1)
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/ceramics/clay/claybottle3
 	name = "clay bottle 3x"
-	result = list(/obj/item/natural/clay/clayBottle, /obj/item/natural/clay/clayBottle, /obj/item/natural/clay/clayBottle)
+	result = list(/obj/item/natural/clay/claybottle, /obj/item/natural/clay/claybottle, /obj/item/natural/clay/claybottle)
 	reqs = list(/obj/item/natural/clay = 3)
 	craftdiff = 1
 
 /* 2 diff */
+/datum/crafting_recipe/roguetown/ceramics/clay/clayvase
+	name = "clay vase"
+	result = list(/obj/item/natural/clay/clayvase)
+	reqs = list(/obj/item/natural/clay = 2)
+	craftdiff = 2
 
+/datum/crafting_recipe/roguetown/ceramics/clay/clayvase3
+	name = "clay vase 3x"
+	result = list(/obj/item/natural/clay/clayvase, /obj/item/natural/clay/clayvase, /obj/item/natural/clay/clayvase)
+	reqs = list(/obj/item/natural/clay = 5)		//Slightly less cost to mass-craft than fancy ones.
+	craftdiff = 2
+
+/* 3 diff */
+/datum/crafting_recipe/roguetown/ceramics/clay/clayfancyvase
+	name = "fancy clay vase"
+	result = list(/obj/item/natural/clay/clayfancyvase)
+	reqs = list(/obj/item/natural/clay = 2)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/ceramics/clay/clayfancyvase3
+	name = "fancy clay vase 3x"
+	result = list(/obj/item/natural/clay/clayfancyvase, /obj/item/natural/clay/clayfancyvase, /obj/item/natural/clay/clayfancyvase)
+	reqs = list(/obj/item/natural/clay = 6)
+	craftdiff = 3
 
 /* 4 diff */
 
@@ -49,16 +82,28 @@
 	But not to the point of apothecary health potions where no one bothers with it.
 	*/// -SunriseOYH 
 
-/datum/crafting_recipe/roguetown/ceramics/glassRaw
+/datum/crafting_recipe/roguetown/ceramics/glassraw
 	name = "glass clay"			// This is not a clay, but I don't personally think 'batch' is fitting ICly.
 	tools = list(/obj/item/reagent_containers/glass/mortar, /obj/item/pestle)
-	result = list(/obj/item/natural/clay/glassBatch)
+	result = list(/obj/item/natural/clay/glassbatch)
 	reqs = list(/obj/item/natural/clay = 2, /obj/item/ash = 2, /obj/item/natural/stone = 1)
 	craftdiff = 4 // Knowing how to mix glass is not a trivial knowledge.
+
+/datum/crafting_recipe/roguetown/ceramics/clay/claystatue
+	name = "clay statue"
+	result = list(/obj/item/natural/clay/claystatue)
+	reqs = list(/obj/item/natural/clay = 2)
+	craftdiff = 4
 
 /* 5 diff */ // High-end glass containers. Should be a direct upgrade to clay in every possible way.
 /datum/crafting_recipe/roguetown/ceramics/glass
 	name = "glass bottles(3x)"
 	result = list(/obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/bottle, /obj/item/reagent_containers/glass/bottle)
 	reqs = list(/obj/item/ingot/glass = 1)
+	craftdiff = 5
+
+/datum/crafting_recipe/roguetown/ceramics/clay/claystatue3
+	name = "fancy clay vase(3x)"
+	result = list(/obj/item/natural/clay/claystatue, /obj/item/natural/clay/claystatue, /obj/item/natural/clay/claystatue)
+	reqs = list(/obj/item/natural/clay = 6)
 	craftdiff = 5

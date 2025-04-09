@@ -185,6 +185,19 @@
 		return
 	return TRUE
 
+/// BRICK
+
+//Needs brick walls, windows, and platforms added at some point but need sprites for this.
+
+/datum/crafting_recipe/roguetown/turfs/brickfloor
+	name = "brick tile floor"
+	result = /turf/open/floor/rogue/tile/brick
+	reqs = list(/obj/item/natural/brick = 1)
+	skillcraft = /datum/skill/craft/masonry
+	verbage_simple = "build"
+	verbage = "builds"
+	craftdiff = 1
+
 /// WINDOWS
 
 /datum/crafting_recipe/roguetown/turfs/roguewindow
@@ -203,7 +216,7 @@
 	reqs = list(
 	  /obj/item/grown/log/tree/small = 2,
 	  /obj/item/natural/stone = 1,
-	  /obj/item/ash = 1,
+	  /obj/item/ingot/glass = 1,
 	  /obj/item/natural/dirtclod = 1,
 	)
 	skillcraft = /datum/skill/craft/carpentry
@@ -218,7 +231,7 @@
 	reqs = list(
 	  /obj/item/grown/log/tree/small = 2,
 	  /obj/item/ingot/iron = 1,
-	  /obj/item/ash = 1,
+	 /obj/item/ingot/glass = 1,
 	  /obj/item/natural/dirtclod = 1,
 	)
 	skillcraft = /datum/skill/craft/blacksmithing

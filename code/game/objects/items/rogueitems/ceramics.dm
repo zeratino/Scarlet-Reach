@@ -5,28 +5,114 @@
 // Uncooked items -- Still need to be brought to a kiln
 // Those are all children of natural/clay so that they can inherit the Glaze method.
 
-/obj/item/natural/clay/clayBottle
+//Bottle - subtype of glass bottle
+/obj/item/natural/clay/claybottle
 	name = "unglazed clay bottle"
 	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "claybottleraw"
 	desc = "A bottle fashioned from clay. Still needs to be glazed to be useful."
-	cooked_type = /obj/item/reagent_containers/glass/bottle/clayBottle
+	cooked_type = /obj/item/reagent_containers/glass/bottle/claybottle
 
-/obj/item/reagent_containers/glass/bottle/clayBottle
+/obj/item/reagent_containers/glass/bottle/claybottle
 	name = "clay vessel"
-	desc = "A small bottle fashioned from clay."
+	desc = "A small ceramic bottle."
 	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "claybottlecook"
-	amount_per_transfer_from_this = 3
-	possible_transfer_amounts = list(3)
-	volume = 45 // Same as a glass bottle
-	dropshrink = 0.5
-	sellprice = 5
-	closed = FALSE
-	obj_flags = CAN_BE_HIT
-	reagent_flags = OPENCONTAINER
-	w_class =  WEIGHT_CLASS_NORMAL
-	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
-	drinksounds = list('sound/items/drink_bottle (1).ogg','sound/items/drink_bottle (2).ogg')
-	fillsounds = list('sound/items/fillcup.ogg')
-	poursounds = list('sound/items/fillbottle.ogg')
+	sellprice = 6
+	reagent_flags = OPENCONTAINER	//So it doesn't appear through
+
+//Vase - bigger bottle
+/obj/item/natural/clay/clayvase
+	name = "unglazed clay vase"
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "clayvaseraw"
+	desc = "A vase fashioned from clay. Still needs to be glazed to be useful."
+	cooked_type = /obj/item/reagent_containers/glass/bottle/clayvase
+
+/obj/item/reagent_containers/glass/bottle/clayvase
+	name = "ceramic vase"
+	desc = "A large sized ceramic vase."
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "clayvasecook"
+	volume = 65 // Larger than glass bottle
+	sellprice = 9
+	dropshrink = 0.1				//Stops shrink
+	reagent_flags = OPENCONTAINER	//So it doesn't appear through
+
+//Fancy vase - bigger bottle + fancy
+/obj/item/natural/clay/clayfancyvase
+	name = "unglazed fancy clay vase"
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "clayvaseraw"
+	desc = "A fancy vase fashioned from clay. Still needs to be glazed to be useful."
+	cooked_type = /obj/item/reagent_containers/glass/bottle/clayfancyvase
+
+/obj/item/reagent_containers/glass/bottle/clayfancyvase
+	name = "fancy ceramic vase"
+	desc = "A large sized fancy ceramic vase."
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "clayvasecook"
+	volume = 65 // Larger than glass bottle
+	sellprice = 14
+	dropshrink = 0.1				//Stops shrink
+	reagent_flags = OPENCONTAINER	//So it doesn't appear through
+
+//Cup - subtype of regular cup but can shatter.
+/obj/item/natural/clay/claycup
+	name = "unglazed clay cup"
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "claycuperaw"
+	desc = "A small cup fashioned from clay. Still needs to be glazed to be useful."
+	cooked_type = /obj/item/reagent_containers/glass/cup/claycup
+
+/obj/item/reagent_containers/glass/cup/claycup
+	name = "clay cup"
+	desc = "A small ceramic cup."
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "claybottlecook"
+	sellprice = 3
+
+//Bricks - Makes bricks which are used for building. (Need brick-wall sprites for this.. augh..)
+/obj/item/natural/clay/claybrick
+	name = "uncooked clay brick"
+	desc = "an uncooked clay brick. Still needs to be cooked in a kilm."
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "claybrickraw"
+	cooked_type = /obj/item/natural/brick
+
+/obj/item/natural/brick
+	name = "brick"
+	desc = "A cooked red brick."
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "claybrickcook"
+	gripped_intents = null
+	sellprice = 3
+	dropshrink = 0.75
+	possible_item_intents = list(INTENT_GENERIC)
+	force = 14			//stronger than rock
+	throwforce = 18		//stronger than rock
+	slot_flags = ITEM_SLOT_MOUTH
+	obj_flags = null
+	w_class = WEIGHT_CLASS_TINY
+	experimental_inhand = FALSE
+	hitsound = list('sound/combat/hits/blunt/brick.ogg')
+
+//Statues - Basically cheapest version of the metal-made statues, but way easier to make given no rare material usage. Just skill. Plus, dyeable.
+/obj/item/natural/clay/claystatue
+	name = "uncooked clay statue"
+	desc = "an uncooked clay statue. Still needs to be cooked in a kilm."
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "claystatueraw"
+	cooked_type = /obj/item/roguestatue/clay
+
+/obj/item/roguestatue/clay
+	name = "ceramic statue"
+	desc = "A ceramic statue, shining in its eligance!"
+	icon = 'icons/roguetown/items/cooking.dmi'
+	icon_state = "claystatuecook1"
+	smeltresult = null	//No resource return
+	sellprice = 15		//Iron is worth 20, so these gotta be a little cheaper
+
+/obj/item/roguestatue/clay/Initialize()
+	. = ..()
+	icon_state = "claystatuecook[pick(1,2)]"

@@ -22,7 +22,7 @@
 	var/burned_color = "#302d2d"
 
 // '''Clay''' for making glass.
-/obj/item/natural/clay/glassBatch
+/obj/item/natural/clay/glassbatch
 	name = "glass batch"
 	icon_state = "glassBatch"
 	desc = "A mixture of finely ground silica, flux and a stablizer. It glistens against the light, and could be turned into precious glass by a competent potter."
@@ -44,11 +44,11 @@
 		if(cooking < cooktime)
 			cooking = cooking + input
 			if(cooking >= cooktime)
-				return microwave_act(A) // Glazing happens once Cooking exceeds a threshold.
+				return heating_act(A) // Glazing happens once Cooking exceeds a threshold.
 			return
 	burning(input) // You can still '''burn''' clay and ruin it if you leave it for too long.
 
-/obj/item/natural/clay/microwave_act(atom/A)
+/obj/item/natural/clay/heating_act(atom/A)
 	var/obj/item/result
 	if(istype(A,/obj/machinery/light/rogue/oven))
 		if(cooked_type)
