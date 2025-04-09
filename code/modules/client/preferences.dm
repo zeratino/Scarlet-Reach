@@ -1749,7 +1749,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					for (var/path as anything in GLOB.loadout_items)
 						var/datum/loadout_item/loadout2 = GLOB.loadout_items[path]
 						var/donoritem = loadout2.donoritem
-						if(donoritem && !loadout.donator_ckey_check(user.ckey))
+						if(donoritem && !loadout2.donator_ckey_check(user.ckey))
 							continue
 						if (!loadout2.name)
 							continue
@@ -1770,7 +1770,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					for (var/path as anything in GLOB.loadout_items)
 						var/datum/loadout_item/loadout3 = GLOB.loadout_items[path]
 						var/donoritem = loadout3.donoritem
-						if(donoritem && !loadout.donator_ckey_check(user.ckey))
+						if(donoritem && !loadout3.donator_ckey_check(user.ckey))
 							continue
 						if (!loadout3.name)
 							continue

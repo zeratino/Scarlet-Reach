@@ -622,7 +622,10 @@
 				if(B)
 					B = new B(user.loc)
 					user.put_in_hands(B)
-					user.visible_message("<span class='notice'>[user] finds [B] in [src].</span>")
+					if(HAS_TRAIT(user, TRAIT_WOODWALKER))
+						var/obj/item/C = new B(user.loc)
+						user.put_in_hands(C)
+					user.visible_message("<span class='notice'>[user] finds [HAS_TRAIT(user, TRAIT_WOODWALKER) ? "two " : ""][B] in [src].</span>")
 					return
 			user.visible_message("<span class='warning'>[user] searches through [src].</span>")
 #ifdef MATURESERVER

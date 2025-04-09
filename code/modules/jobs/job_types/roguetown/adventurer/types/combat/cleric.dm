@@ -126,7 +126,8 @@
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			switch(H.patron?.type)
 				if(/datum/patron/old_god)
-					cloak = /obj/item/clothing/cloak/templar/psydon
+					armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
+					cloak = /obj/item/clothing/cloak/psydontabard
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 				if(/datum/patron/divine/astrata)
 					cloak = /obj/item/clothing/cloak/templar/astrata
