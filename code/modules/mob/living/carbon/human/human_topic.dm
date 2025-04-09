@@ -186,7 +186,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_info("They've moved too far away!"))
 			return
 		user.visible_message("[user] begins assessing [src].")
-		if(do_mob(user, src, (((HAS_TRAIT(user, TRAIT_INTELLECTUAL) ? 25 : 40)) - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading)), double_progress = ((HAS_TRAIT(user, TRAIT_INTELLECTUAL)) ? FALSE : TRUE)))
+		if(do_mob(user, src, (((HAS_TRAIT(user, TRAIT_INTELLECTUAL) ? 20 : 40)) - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading)), double_progress = ((HAS_TRAIT(user, TRAIT_INTELLECTUAL)) ? FALSE : TRUE)))
 			var/is_guarded = HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS)	//Will scramble Stats and prevent skills from being shown
 			var/is_smart = FALSE	//Maximum info (all skills, gear and stats) either Intellectual virtue or having high enough PER / INT / Reading
 			var/is_stupid = FALSE	//Less than 9 INT, Intellectual virtue overrides it.
@@ -229,7 +229,8 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			dat += "<td style='width:33%;text-align:left;vertical-align: text-top'>"
 			var/list/damtypes = list("blunt","slash","stab","piercing")
 			var/list/body_parts = list(skin_armor, head, wear_mask, wear_wrists, gloves, wear_neck, cloak, wear_armor, wear_shirt, shoes, wear_pants, backr, backl, belt, s_store, glasses, ears, wear_ring)
-			var/list/coverage = list()
+			var/list/coverage_exposed = list(READABLE_ZONE_HEAD, READABLE_ZONE_CHEST, READABLE_ZONE_ARMS, READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM, READABLE_ZONE_LEGS, READABLE_ZONE_L_LEG, READABLE_ZONE_R_LEG, READABLE_ZONE_NOSE, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NECK, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND, READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT)
+			var/list/coverage = list()	//All of the covered areas
 			var/list/blunt_max = list()
 			var/list/slash_max = list()
 			var/list/stab_max = list()
@@ -279,13 +280,38 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 									critzone = "Pick"
 								str += "| [capitalize(critzone)] | "
 							crit_weakness[coverageflag] = str
+						switch(coverageflag)		//This removes covered zones from the _exposed list. The remainder, if any, will be highlighted in red as an "exposed" zone.
+							if(READABLE_ZONE_L_ARM)
+								coverage_exposed.Remove(READABLE_ZONE_ARMS, READABLE_ZONE_L_ARM)
+							if(READABLE_ZONE_R_ARM)
+								coverage_exposed.Remove(READABLE_ZONE_ARMS, READABLE_ZONE_R_ARM)	//Since individual limbs can be exposed, this is needed for the accuracy / granularity of the printout.
+							if(READABLE_ZONE_L_LEG)
+								coverage_exposed.Remove(READABLE_ZONE_LEGS, READABLE_ZONE_L_LEG)	//However it do be ugly.
+							if(READABLE_ZONE_R_LEG)	
+								coverage_exposed.Remove(READABLE_ZONE_LEGS, READABLE_ZONE_R_LEG)
+							if(READABLE_ZONE_L_HAND)
+								coverage_exposed.Remove(READABLE_ZONE_HANDS, READABLE_ZONE_L_HAND)
+							if(READABLE_ZONE_R_HAND)
+								coverage_exposed.Remove(READABLE_ZONE_HANDS, READABLE_ZONE_R_HAND)
+							if(READABLE_ZONE_R_FOOT)
+								coverage_exposed.Remove(READABLE_ZONE_FEET, READABLE_ZONE_R_FOOT)
+							if(READABLE_ZONE_L_FOOT)
+								coverage_exposed.Remove(READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT)
+							else
+								coverage_exposed.Remove(coverageflag)
 			if(!is_stupid)
 				dat += "<b><center>BODY:</center></b><br>"
 			if(length(coverage))
 				var/str
-				if(!is_smart)
-					coverage.Remove(READABLE_ZONE_NECK, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NOSE, READABLE_ZONE_FACE, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_FEET)
+				if(!is_smart && !is_normal)	//We get a significantly simplified printout.
+					coverage.Remove(READABLE_ZONE_NECK, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NOSE, READABLE_ZONE_FACE, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT, READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND, READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM, READABLE_ZONE_L_LEG, READABLE_ZONE_R_LEG)
+				if(!is_smart && is_normal)
+					coverage.Remove(READABLE_ZONE_NECK, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NOSE, READABLE_ZONE_FACE, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT, READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND)
 				if(!is_stupid)
+					if(is_normal || is_smart)
+						if(length(coverage_exposed))
+							for(var/exposed in coverage_exposed)
+								str += "<b>[exposed]</b>: <font color = '#770404'><b>EXPOSED!</B></font><br>"
 					for(var/thing in coverage)
 						str += "<b>[thing]</b> LAYERS: <b>[coverage[thing]]</b> | [colorgrade_rating("", blunt_max[thing], TRUE)] | [colorgrade_rating("", slash_max[thing], TRUE)] | [colorgrade_rating("", stab_max[thing], TRUE)] | [colorgrade_rating("", piercing_max[thing], TRUE)] <br><font color = '#a35252'>[crit_weakness[thing]]</font><br>"
 					dat += str
