@@ -187,7 +187,7 @@
 			beltr = /obj/item/rogueweapon/sword/long
 		if("Flail")
 			beltr = /obj/item/rogueweapon/flail/sflail
-		if ("Warhamer")
+		if ("Warhammer")
 			beltr = /obj/item/rogueweapon/mace/warhammer //Iron warhammer. This is one-handed and pairs well with shields. They can upgrade to steel in-round.
 	
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
