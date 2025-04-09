@@ -355,7 +355,7 @@
 	blade_dulling = DULLING_BASH
 	smelt_bar_num = 2
 
-/obj/item/rogueweapon/mace/steel/psymace/ComponentInitialize()
+/obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()
 	. = ..()								//+3 force, +50 int, +1 def, make silver
 	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
