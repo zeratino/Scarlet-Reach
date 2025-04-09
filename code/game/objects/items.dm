@@ -1280,7 +1280,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!(body_parts_inherent & coveragezone))
 		if(!last_peeled_limb || coveragezone == last_peeled_limb)
 			if(divisor >= peel_threshold)
-				peel_count += divisor ? (divisor / peel_threshold) : 1
+				peel_count += divisor ? (peel_threshold / divisor ) : 1
 			else if(divisor < peel_threshold)
 				peel_count++
 			if(peel_count >= peel_threshold)
@@ -1290,8 +1290,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 				var/parttext
 				if(length(peeledpart))
 					parttext = peeledpart[1]	//There should really only be one bodypart that gets exposed here.
-				visible_message("[parttext ? parttext : "Coverage"] gets peeled off of [src]!")
-				reset_peel()
+				visible_message("<font color = '#f5f5f5'><b>[parttext ? parttext : "Coverage"]</font></b> gets peeled off of [src]!")
+				reset_peel(success = TRUE)
+			else
+				visible_message(span_info("Peel strikes [src]! <b>[ROUND_UP(peel_count)]</b>!"))
 		else
 			last_peeled_limb = coveragezone
 			reset_peel()
@@ -1303,7 +1305,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	body_parts_covered_dynamic = body_parts_covered
 	reset_peel()
 
-/obj/item/proc/reset_peel()
+/obj/item/proc/reset_peel(success = FALSE)
+	if(peel_count > 0 && !success)
+		visible_message(span_info("Peel count lost on [src]!"))
 	peel_count = 0
 
 /obj/item/proc/attackzone2coveragezone(location)
