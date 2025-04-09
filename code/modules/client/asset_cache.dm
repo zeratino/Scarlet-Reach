@@ -619,8 +619,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"draconic.ttf" = 'interface/fonts/languages/draconic.ttf',
 		"lupian.ttf" = 'interface/fonts/languages/lupian.ttf',
 		"kazengunese.ttf" = 'interface/fonts/languages/kazengunese.ttf',
-		"zhongese.ttf" = 'interface/fonts/languages/zhongese.ttf',
-		"omormirian.tff" = 'interface/fonts/languages/omormirian.ttf',
 	)
 
 /datum/asset/spritesheet/goonchat
