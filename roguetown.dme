@@ -1934,6 +1934,7 @@
 #include "modular\code\controllers\configuration\entries\general.dm"
 #include "modular\code\controllers\subsystem\processing\sex.dm"
 #include "modular\code\datums\character_flaw.dm"
+#include "modular\code\game\objects\gallows.dm"
 #include "modular\code\game\objects\pillory.dm"
 #include "modular\code\game\objects\items\items.dm"
 #include "modular\code\game\objects\items\lewd\dildo.dm"
@@ -2002,7 +2003,6 @@
 #include "modular_azurepeak\code\modules\spells\pantheon\inhumen\graggar.dm"
 #include "modular_azurepeak\code\modules\spells\pantheon\inhumen\matthios.dm"
 #include "modular_azurepeak\code\modules\spells\pantheon\inhumen\zizo.dm"
-#include "modular_hearthstone\code\modules\spells\roguetown\flagellant.dm"
 #include "modular_azurepeak\statpacks\agile.dm"
 #include "modular_azurepeak\statpacks\mental.dm"
 #include "modular_azurepeak\statpacks\physical.dm"
@@ -2027,6 +2027,7 @@
 #include "modular_hearthstone\code\modules\mob\living\simple_animal\rogue\rogue_corpse.dm"
 #include "modular_hearthstone\code\modules\reagents\reagent_containers\lux.dm"
 #include "modular_hearthstone\code\modules\spells\roguetown\buffs.dm"
+#include "modular_hearthstone\code\modules\spells\roguetown\flagellant.dm"
 #include "modular_hearthstone\code\modules\spells\roguetown\wizard.dm"
 // END_INCLUDE
 
