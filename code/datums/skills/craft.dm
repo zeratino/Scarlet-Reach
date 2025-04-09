@@ -74,7 +74,7 @@
 
 /datum/skill/craft/cooking
 	name = "Cooking"
-	desc = "Improves ingredients preparation speed slightly per level."
+	desc = "Increases cooking & ingredients preparation speed. -25% if none, 0% if Novice, +50% per level after."
 	dreams = list(
 		"...over a crackling campfire, a slab of fresh meat sizzles as it cooks, its scent filling the air. The simplest meals are often the most difficult to perfect...",
 		"...your knife bears down onto a wheel of cheese, and you cut away at the imperfections that lie on its skin. Next would be the eggs and the dough, and they'll roll together into a wonderful meal...",
@@ -100,7 +100,7 @@
 	
 /datum/skill/craft/alchemy
 	name = "Alchemy"
-	desc = "Used to help you determine what ingredients do."
+	desc = "Determines what kind of potions you can brew and the types of transmutation and alchemy recipes you have access to"
 	dreams = list(
 		"...the smell of sulfur singes your nostrils... you taste iron... the smoke clears as you stare down at the reflection in your cauldron... the Queen stares back at you... she looks like she's crying..."
 	)

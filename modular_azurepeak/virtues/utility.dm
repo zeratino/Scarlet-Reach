@@ -187,7 +187,6 @@
 	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/alchemy, 2, 2),
-						list(/datum/skill/misc/alchemy, 2, 2),
 						list(/datum/skill/misc/medicine, 2, 2)
 	)
 
@@ -323,6 +322,11 @@
 		else
 			var/obj/item/bodypart/l_arm/prosthetic/bronzeleft/L = new()
 			L.attach_limb(recipient)
+
+/datum/virtue/utility/woodwalker
+	name = "Woodwalker"
+	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without breaking any twigs. I can even step lightly on leaves without falling, and I can gather twice as many things from bushes."
+	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
 
 //HERETIC VIRTUES
 

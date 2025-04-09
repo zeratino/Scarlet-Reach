@@ -107,6 +107,8 @@
 	fire_act()
 
 /obj/machinery/light/rogue/attackby(obj/item/W, mob/living/user, params)
+	var/datum/skill/craft/cooking/cs = user?.mind?.get_skill_level(/datum/skill/craft/cooking)
+	var/cooktime_divisor = get_cooktime_divisor(cs)
 	if(cookonme)
 		if(istype(W, /obj/item/reagent_containers/food/snacks))
 			if(istype(W, /obj/item/reagent_containers/food/snacks/egg))
@@ -126,16 +128,16 @@
 						prob2spoil = 1
 					user.visible_message("<span class='notice'>[user] starts to cook [W] over [src].</span>")
 					for(var/i in 1 to 6)
-						if(do_after(user, 30, target = src))
+						if(do_after(user, 30 / cooktime_divisor, target = src))
 							var/obj/item/reagent_containers/food/snacks/S = W
 							var/obj/item/C
 							if(prob(prob2spoil))
 								user.visible_message("<span class='warning'>[user] burns [S].</span>")
 								if(user.client?.prefs.showrolls)
 									to_chat(user, "<span class='warning'>Critfail... [prob2spoil]%.</span>")
-								C = S.cooking(1000, null)
+								C = S.cooking(1000, 1000, null)
 							else
-								C = S.cooking(S.cooktime/4, src)
+								C = S.cooking(S.cooktime/4, S.cooktime/4, src)
 							if(C)
 								user.dropItemToGround(S, TRUE)
 								qdel(S)
