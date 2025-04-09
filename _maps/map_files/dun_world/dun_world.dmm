@@ -37445,7 +37445,10 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
-/obj/item/reagent_containers/glass/cup/steel,
+/obj/item/reagent_containers/glass/cup/steel{
+	pixel_x = -6;
+	pixel_y = 20
+	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town)
 "psb" = (
