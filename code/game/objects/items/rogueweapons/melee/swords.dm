@@ -50,7 +50,6 @@
 	damfactor = 0.1
 	item_d_type = "slash"
 	peel_divisor = 4
-	allow_offhand = FALSE
 
 /datum/intent/sword/peel/big
 	name = "big sword armor peel"
