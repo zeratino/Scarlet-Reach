@@ -1,5 +1,3 @@
-
-
 //IMPORTANT: Multiple animate() calls do not stack well, so try to do them all at once if you can.
 /mob/living/carbon/update_transform(forcepixel)
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
@@ -26,14 +24,18 @@
 	if(changed)
 //		animate(src, transform = ntransform, time = (lying_prev == 0 || !lying) ? 2 : 0, pixel_y = final_pixel_y, dir = final_dir, easing = (EASE_IN|EASE_OUT))
 		transform = ntransform
-		pixel_x = get_standard_pixel_x_offset()
-		pixel_y = final_pixel_y
+		// Only reset pixel_x if we're not in a custom pixel shift
+		if(!is_shifted)
+			pixel_x = get_standard_pixel_x_offset()
+			pixel_y = final_pixel_y
 		dir = final_dir
 		setMovetype(movement_type & ~FLOATING)  // If we were without gravity, the bouncing animation got stopped, so we make sure we restart it in next life().
 		update_vision_cone()
 	else
-		pixel_x = get_standard_pixel_x_offset()
-		pixel_y = get_standard_pixel_y_offset(lying)
+		// Only reset pixel_x if we're not in a custom pixel shift
+		if(!is_shifted)
+			pixel_x = get_standard_pixel_x_offset()
+			pixel_y = get_standard_pixel_y_offset(lying)
 
 /mob/living
 	var/list/overlays_standing[TOTAL_LAYERS]
@@ -444,20 +446,25 @@
 //produces a key based on the mob's limbs
 
 /mob/living/carbon/proc/generate_icon_render_key()
+	. = list()
 	for(var/X in bodyparts)
 		var/obj/item/bodypart/BP = X
-		. += "-[BP.body_zone]"
-		if(BP.use_digitigrade)
-			. += "-digitigrade[BP.use_digitigrade]"
+		. += BP.body_zone
+		switch(BP.use_digitigrade)
+			if(FULL_DIGITIGRADE)
+				. += "digitigrade_full"
+			if(SQUISHED_DIGITIGRADE)
+				. += "digitigrade_squashed"
 		if(BP.animal_origin)
-			. += "-[BP.animal_origin]"
+			. += BP.animal_origin
 		if(BP.status == BODYPART_ORGANIC)
-			. += "-organic"
+			. += "organic"
 		else
-			. += "-robotic"
+			. += "robotic"
 
 	if(HAS_TRAIT(src, TRAIT_HUSK))
-		. += "-husk"
+		. += "husk"
+	return jointext(., "-")
 
 
 //change the mob's icon to the one matching its key

@@ -40,6 +40,14 @@
 	added_traits = list(TRAIT_RESIDENT)
 
 /datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
+	var/mapswitch = 0
+	if(SSmapping.config.map_name == "Dun Manor")
+		mapswitch = 1
+	else if(SSmapping.config.map_name == "Dun World")
+		mapswitch = 2
+
+	if(mapswitch == 0)
+		return
 	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
 		// Find tavern area for spawning
 		var/area/spawn_area
@@ -49,41 +57,28 @@
 				break
 		
 		if(spawn_area)
-			// Find a suitable chair in the tavern to buckle to - only on the ground floor
+			var/target_z = 3 //ground floor of tavern for dun manor / world
+			var/target_y = 70 //dun manor
 			var/list/possible_chairs = list()
-			var/list/ground_z_levels = list()
+
+			if(mapswitch == 2)
+				target_y = 234 //dun world huge
 			
-			// Find stairs first to identify the ground floor z-level
-			for(var/obj/structure/stairs/S in spawn_area)
-				ground_z_levels |= S.z // The level with stairs going up is the ground floor
-			
-			// If we couldn't find stairs, fall back to the lowest z-level in the tavern area
-			if(!length(ground_z_levels))
-				var/lowest_z = INFINITY
-				for(var/atom/movable/AM in spawn_area)
-					if(AM.z < lowest_z)
-						lowest_z = AM.z
-				if(lowest_z != INFINITY)
-					ground_z_levels += lowest_z
-			
-			// Now find chairs only on the ground level
 			for(var/obj/structure/chair/C in spawn_area)
-				if((C.z in ground_z_levels) && (istype(C, /obj/structure/chair/wood/rogue) || istype(C, /obj/structure/chair/stool/rogue)))
-					var/turf/T = get_turf(C)
-					if(T && !T.density && !T.is_blocked_turf(TRUE))
-						possible_chairs += C
+				//z-level 3, wooden chair, and Y > north of tavern backrooms
+				var/turf/T = get_turf(C)
+				if(T && T.z == target_z && T.y > target_y && istype(C, /obj/structure/chair/wood/rogue) && !T.density && !T.is_blocked_turf(FALSE))
+					possible_chairs += C
 			
-			// If we found chairs, pick one and buckle the player to it
 			if(length(possible_chairs))
 				var/obj/structure/chair/chosen_chair = pick(possible_chairs)
 				recipient.forceMove(get_turf(chosen_chair))
 				chosen_chair.buckle_mob(recipient)
 				to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself seated at a chair in the local tavern."))
 			else
-				// Fallback if no chairs found on ground floor
 				var/list/possible_spawns = list()
 				for(var/turf/T in spawn_area)
-					if((T.z in ground_z_levels) && !T.density && !T.is_blocked_turf(TRUE))
+					if(T.z == target_z && T.y > (target_y + 4) && !T.density && !T.is_blocked_turf(FALSE))
 						possible_spawns += T
 				
 				if(length(possible_spawns))
@@ -192,7 +187,6 @@
 	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/alchemy, 2, 2),
-						list(/datum/skill/misc/alchemy, 2, 2),
 						list(/datum/skill/misc/medicine, 2, 2)
 	)
 
@@ -203,8 +197,16 @@
 
 /datum/virtue/utility/night_vision
 	name = "Night-eyed"
-	desc = "I have eyes able to see through cloying darkness."
+	desc = "I have eyes able to see through cloying darkness. Incompatible with the vice Colorblind."
 	added_traits = list(TRAIT_DARKVISION)
+	custom_text = "Adds a button to toggle colorblindness to aid seeing in the dark. Taking this with the Colorblind vice will permanently colorblind you."
+
+/datum/virtue/utility/night_vision/apply_to_human(mob/living/carbon/human/recipient)
+	if(recipient.charflaw)
+		if(recipient.charflaw.type == /datum/charflaw/colorblind)
+			to_chat(recipient, "Your eyes have become permanently colorblind.")
+		else
+			recipient.verbs += /mob/living/carbon/human/proc/toggleblindness
 
 /datum/virtue/utility/performer
 	name = "Performer"
@@ -272,9 +274,16 @@
 
 /datum/virtue/utility/keenears
 	name = "Keen Ears"
-	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, and their whispers are louder to you."
-	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	desc = "Cowering from authorities, loved ones or by a generous gift of the gods, you've adapted a keen sense of hearing, and can identify the speakers even when they are out of sight, their whispers ringing louder."
 	added_traits = list(TRAIT_KEENEARS)
+	custom_text = "You can identify known people who speak even when they are out of sight. You can hear people speaking normally above and below you, regardless of obstacles in the way. You can hear whispers from one tile further."
+
+/datum/virtue/utility/tracker
+	name = "Sleuth"
+	desc = "You realised long ago that the ability to find a man is as helpful to aid the law as it is to evade it."
+	added_skills = list(list(/datum/skill/misc/tracking, 3, 6))
+	added_traits = list(TRAIT_SLEUTH)
+	custom_text = "- Upon right clicking a track, you will Mark the person who made them <i>(Expert skill required, not exclusive to this Virtue)</i>.\n- Further tracks found will be automatically highlighted as theirs, along with the person themselves, if they are not sneaking or invisible at the time.\n- Reduces the cooldown for tracking, allows track examining right away, and movement no longer cancels tracking."
 
 /datum/virtue/utility/bronzearm_r
 	name = "Bronze Arm (R)"
@@ -313,6 +322,11 @@
 		else
 			var/obj/item/bodypart/l_arm/prosthetic/bronzeleft/L = new()
 			L.attach_limb(recipient)
+
+/datum/virtue/utility/woodwalker
+	name = "Woodwalker"
+	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without breaking any twigs. I can even step lightly on leaves without falling, and I can gather twice as many things from bushes."
+	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
 
 //HERETIC VIRTUES
 

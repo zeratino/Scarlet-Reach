@@ -31,6 +31,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 	H.change_stat("strength", 2)
 	H.change_stat("endurance", 2)
 	H.change_stat("constitution", 4)
@@ -55,7 +56,7 @@
 	head = /obj/item/clothing/head/roguetown/helmet/otavan
 	armor = /obj/item/clothing/suit/roguetown/armor/otavan
 	pants = /obj/item/clothing/under/roguetown/trou/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/otavan
+	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan
 	gloves = /obj/item/clothing/gloves/roguetown/otavan
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backl = /obj/item/rogueweapon/shield/tower/metal

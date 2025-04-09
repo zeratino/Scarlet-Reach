@@ -165,6 +165,7 @@
 			appro_recipe -= R
 
 	if(appro_recipe.len)
+		appro_recipe = sortNames(appro_recipe)
 		var/datum/anvil_recipe/chosen_recipe = input(user, "Choose A Creation", "Anvil") as null|anything in sortNames(appro_recipe.Copy())
 		if(!chosen_recipe)
 			return FALSE

@@ -27,7 +27,7 @@
 			if(HAS_TRAIT(L, TRAIT_BLIND))
 				. -= L
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbed, nocutscene = FALSE)
 	if(stat == DEAD)
 		return
 

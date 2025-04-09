@@ -3,7 +3,7 @@
 
 /obj/effect/proc_holder/spell/invoked
 	name = "invoked spell"
-	range = -1
+	range = 7
 	selection_type = "range"
 	no_early_release = TRUE
 	charge_max = 30
@@ -75,6 +75,7 @@
 	var/projectile_amount = 1	//Projectiles per cast.
 	var/current_amount = 0	//How many projectiles left.
 	var/projectiles_per_fire = 1		//Projectiles per fire. Probably not a good thing to use unless you override ready_projectile().
+	ignore_los = TRUE
 
 /obj/effect/proc_holder/spell/invoked/projectile/proc/ready_projectile(obj/projectile/P, atom/target, mob/user, iteration)
 	return

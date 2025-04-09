@@ -305,7 +305,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	associated_skill = /datum/skill/combat/maces
 	smeltresult = /obj/item/ash
-	parrysound = "parrywood"
 	swingsound = BLUNTWOOSH_MED
 	minstr = 10
 	wdefense = 3
@@ -343,18 +342,22 @@
 	icon_state = "ravoxhammer"
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
 
+
 /obj/item/rogueweapon/mace/goden/psymace
-	name = "psydonian grand mace"
-	desc = "A silvered grand mace, used by the Inquisiton. For when you need to be blunt."
+	name = "psydonian mace"
+	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
-	smeltresult = /obj/item/ingot/silver
-	is_silver = TRUE
-	wdefense = 5
-	max_integrity = 250
+	force = 25
+	force_wielded = 32
+	wbalance = -1
 	dropshrink = 0.75
-	force = 24
-	force_wielded = 35
 	slot_flags = ITEM_SLOT_BACK //Looks better on back
+	blade_dulling = DULLING_BASH
+	smelt_bar_num = 2
+
+/obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()
+	. = ..()								//+3 force, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, FALSE, 50, 1, TRUE)
 
 /obj/item/rogueweapon/mace/spiked
 	icon_state = "spiked_club"

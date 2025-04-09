@@ -216,8 +216,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		/obj/effect/proc_holder/spell/invoked/longstrider,
 		/obj/effect/proc_holder/spell/invoked/invisibility,
 		/obj/effect/proc_holder/spell/invoked/blindness,
-		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e,
-//		/obj/effect/proc_holder/spell/invoked/frostbite5e,
+		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash,
+//		/obj/effect/proc_holder/spell/invoked/frostbite,
 		/obj/effect/proc_holder/spell/invoked/guidance,
 		/obj/effect/proc_holder/spell/invoked/fortitude,
 		/obj/effect/proc_holder/spell/invoked/snap_freeze,
@@ -225,7 +225,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
 		/obj/effect/proc_holder/spell/invoked/gravity,
 		/obj/effect/proc_holder/spell/invoked/projectile/repel,
-		/obj/effect/proc_holder/spell/invoked/poisonspray5e,
+		/obj/effect/proc_holder/spell/invoked/aerosolize,
 		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
 		/obj/effect/proc_holder/spell/invoked/counterspell,
 		/obj/effect/proc_holder/spell/invoked/enlarge,
@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	active = FALSE
 	sound = 'sound/blank.ogg'
 	overlay_state = "forcewall"
-	range = -1
+	range = 7
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	var/wall_type = /obj/structure/forcefield_weak/caster
@@ -452,6 +452,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedrain = 1
 	chargetime = 5
 	charge_max = 30 SECONDS
+	ignore_los = TRUE
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -506,6 +507,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	name = "Blade Burst"
 	desc = "Summon a storm of arcyne force in an area, wounding anything in that location after a delay."
 	cost = 1
+	range = 7
 	xp_gain = TRUE
 	releasedrain = 30
 	chargedrain = 1
@@ -713,11 +715,11 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 
 //ports -- todo: sfx
 
-/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e
+/obj/effect/proc_holder/spell/invoked/projectile/acidsplash
 	name = "Acid Splash"
 	desc = "A slow-moving glob of acid that sprays over an area upon impact."
 	range = 8
-	projectile_type = /obj/projectile/magic/acidsplash5e
+	projectile_type = /obj/projectile/magic/acidsplash
 	overlay_state = "null"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE
@@ -739,12 +741,12 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	xp_gain = TRUE
 	miracle = FALSE
 
-/obj/effect/proc_holder/spell/self/acidsplash5e/cast(mob/user = usr)
+/obj/effect/proc_holder/spell/self/acidsplash/cast(mob/user = usr)
 	var/mob/living/target = user
 	target.visible_message(span_warning("[target] hurls a caustic bubble!"), span_notice("You hurl a caustic bubble!"))
 	. = ..()
 
-/obj/projectile/magic/acidsplash5e //port. todo: the sounds these came with aren't good and drink_blood sounds like ur slurpin pintle
+/obj/projectile/magic/acidsplash //port. todo: the sounds these came with aren't good and drink_blood sounds like ur slurpin pintle
 	name = "acid bubble"
 	icon_state = "green_laser"
 	damage = 10
@@ -754,7 +756,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	speed = 15 //higher is slower
 	var/aoe_range = 1
 
-/obj/projectile/magic/acidsplash5e/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/magic/acidsplash/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/turf/T = get_turf(src)
 	playsound(src, 'sound/misc/drink_blood.ogg', 100)
@@ -762,32 +764,32 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	for(var/mob/living/L in range(aoe_range, get_turf(src))) //apply damage over time to mobs
 		if(!L.anti_magic_check())
 			var/mob/living/carbon/M = L
-			M.apply_status_effect(/datum/status_effect/buff/acidsplash5e)
-			new /obj/effect/temp_visual/acidsplash5e(get_turf(M))
+			M.apply_status_effect(/datum/status_effect/buff/acidsplash)
+			new /obj/effect/temp_visual/acidsplash(get_turf(M))
 	for(var/turf/turfs_in_range in range(aoe_range+1, T)) //make a splash
-		new /obj/effect/temp_visual/acidsplash5e(T)
+		new /obj/effect/temp_visual/acidsplash(T)
 
-/datum/status_effect/buff/acidsplash5e
+/datum/status_effect/buff/acidsplash
 	id = "acid splash"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/acidsplash5e
+	alert_type = /atom/movable/screen/alert/status_effect/buff/acidsplash
 	duration = 20 SECONDS
 
-/datum/status_effect/buff/acidsplash5e/on_apply()
+/datum/status_effect/buff/acidsplash/on_apply()
 	. = ..()
 	owner.playsound_local(get_turf(owner), 'sound/misc/lava_death.ogg', 35, FALSE, pressure_affected = FALSE)
 	owner.visible_message(span_warning("[owner] is covered in acid!"), span_danger("I am covered in acid!"))
 	owner.emote("scream")
 
-/datum/status_effect/buff/acidsplash5e/tick()
+/datum/status_effect/buff/acidsplash/tick()
 	var/mob/living/target = owner
 	target.adjustFireLoss(3)
 
-/atom/movable/screen/alert/status_effect/buff/acidsplash5e
+/atom/movable/screen/alert/status_effect/buff/acidsplash
 	name = "Acid Burn"
 	desc = "My skin is burning!"
 	icon_state = "debuff"
 
-/obj/effect/temp_visual/acidsplash5e
+/obj/effect/temp_visual/acidsplash
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenshatter2"
 	name = "horrible acrid brine"
@@ -797,7 +799,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	layer = ABOVE_ALL_MOB_LAYER
 
 
-/obj/effect/proc_holder/spell/invoked/frostbite5e
+/obj/effect/proc_holder/spell/invoked/frostbite
 	name = "Frostbite"
 	desc = "Freeze your enemy with an icy blast that does low damage, but reduces the target's Speed for a considerable length of time."
 	overlay_state = "null"
@@ -822,26 +824,26 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	invocation = ""
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
-/obj/effect/proc_holder/spell/invoked/frostbite5e/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/frostbite/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/carbon/target = targets[1]
-		target.apply_status_effect(/datum/status_effect/buff/frostbite5e/) //apply debuff
+		target.apply_status_effect(/datum/status_effect/buff/frostbite/) //apply debuff
 		target.adjustFireLoss(12) //damage
 		target.adjustBruteLoss(12)
 
-/datum/status_effect/buff/frostbite5e
+/datum/status_effect/buff/frostbite
 	id = "frostbite"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite5e
+	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite
 	duration = 20 SECONDS
 	effectedstats = list("speed" = -2)
 
-/atom/movable/screen/alert/status_effect/buff/frostbite5e
+/atom/movable/screen/alert/status_effect/buff/frostbite
 	name = "Frostbite"
 	desc = "I can feel myself slowing down."
 	icon_state = "debuff"
 	color = "#00fffb" //talk about a coder sprite
 
-/datum/status_effect/buff/frostbite5e/on_apply()
+/datum/status_effect/buff/frostbite/on_apply()
 	. = ..()
 	var/mob/living/target = owner
 	target.update_vision_cone()
@@ -850,7 +852,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_atom_colour), TEMPORARY_COLOUR_PRIORITY, newcolor), 20 SECONDS)
 	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
 
-/datum/status_effect/buff/frostbite5e/on_remove()
+/datum/status_effect/buff/frostbite/on_remove()
 	var/mob/living/target = owner
 	target.update_vision_cone()
 	target.remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE)
@@ -873,6 +875,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
@@ -916,7 +919,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 				return 
 			play_cleave = TRUE
 			L.adjustFireLoss(damage)
-			L.apply_status_effect(/datum/status_effect/buff/frostbite5e/)
+			L.apply_status_effect(/datum/status_effect/buff/frostbite/)
 			playsound(affected_turf, "genslash", 80, TRUE)
 			to_chat(L, "<span class='userdanger'>The air chills your bones!</span>")
 
@@ -978,7 +981,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 			return BULLET_ACT_BLOCK
 		if(isliving(target))
 			var/mob/living/L = target
-			L.apply_status_effect(/datum/status_effect/buff/frostbite5e)
+			L.apply_status_effect(/datum/status_effect/buff/frostbite)
 			new /obj/effect/temp_visual/snap_freeze(get_turf(L))
 	qdel(src)
 
@@ -1046,6 +1049,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	range = 7
 	var/delay = 3
 	var/damage = 0 // damage based off your str 
 	var/area_of_effect = 0
@@ -1154,7 +1158,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 					throw_target = get_edge_target_turf(firer, get_dir(firer, target))
 			I.throw_at(throw_target, 7, 4)
 
-/obj/effect/proc_holder/spell/invoked/poisonspray5e
+/obj/effect/proc_holder/spell/invoked/aerosolize
 	name = "Aerosolize" //once again renamed to fit better :)
 	desc = "Turns a container of liquid into a smoke containing the reagents of that liquid."
 	overlay_state = "null"
@@ -1179,7 +1183,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	invocation = ""
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	
-/obj/effect/proc_holder/spell/invoked/poisonspray5e/cast(list/targets, mob/living/user)
+/obj/effect/proc_holder/spell/invoked/aerosolize/cast(list/targets, mob/living/user)
 	var/turf/T = get_turf(targets[1]) //check for turf
 	if(T)
 		var/obj/item/held_item = user.get_active_held_item() //get held item
@@ -1292,6 +1296,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune1"
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/enlarge/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1333,6 +1338,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune5"
+	range = 7
 
 /obj/effect/proc_holder/spell/invoked/leap/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1478,7 +1484,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 					return
 				to_chat(user, span_info("I begin to meld with the shadows.."))
 				lockon(T, user)
-				if(do_after(user, 2 SECONDS))
+				if(do_after(user, 5 SECONDS))
 					tp(user)
 				else
 					reset(silent = TRUE)
@@ -1515,13 +1521,13 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 
 /obj/effect/proc_holder/spell/invoked/blink
 	name = "Blink"
-	desc = "Teleport to a targeted location within your field of view. Limited to a range of 7 tiles."
+	desc = "Teleport to a targeted location within your field of view. Limited to a range of 5 tiles. Only works on the same plane as the caster."
 	school = "conjuration"
-	cost = 2
+	cost = 1
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 3 SECONDS
-	charge_max = 20 SECONDS
+	chargetime = 1.5 SECONDS
+	charge_max = 10 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -1532,7 +1538,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	xp_gain = TRUE
 	invocation = "SHIFT THROUGH SPACE!"
 	invocation_type = "shout"
-	var/max_range = 7
+	var/max_range = 5
 	var/phase = /obj/effect/temp_visual/blink
 
 /obj/effect/temp_visual/blink
@@ -1559,7 +1565,26 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		to_chat(user, span_warning("Invalid target location!"))
 		revert_cast()
 		return
+
+	if(T.teleport_restricted == TRUE)
+		to_chat(user, span_warning("I can't teleport here!"))
+
+	if(T.z != start.z)
+		to_chat(user, span_warning("I can only teleport on the same plane!"))
+
+		revert_cast()
+		return
 	
+	if(istransparentturf(T))
+		to_chat(user, span_warning("I cannot teleport to the open air!"))
+		revert_cast()
+		return
+
+	if(T.density)
+		to_chat(user, span_warning("I cannot teleport into a wall!"))
+		revert_cast()
+		return
+
 	// Check range limit
 	var/distance = get_dist(start, T)
 	if(distance > max_range)
@@ -1594,7 +1619,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 				
 		// Check for windows
 		for(var/obj/structure/roguewindow/window in (traversal_turf.contents + T.contents))
-			if(window.density)
+			if(window.density && !window.climbable)
 				to_chat(user, span_warning("I cannot blink through windows!"))
 				revert_cast()
 				return
@@ -1619,6 +1644,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spot_one.Beam(spot_two, "purple_lightning", time = 1.5 SECONDS)
 	playsound(T, 'sound/magic/blink.ogg', 25, TRUE)
 
+	if(user.buckled) // don't stay remote-buckled to the guillotine/pillory
+		user.buckled.unbuckle_mob(user, TRUE)
 	do_teleport(user, T, channel = TELEPORT_CHANNEL_MAGIC)
 	
 	user.visible_message(span_danger("<b>[user] vanishes in a mysterious purple flash!</b>"), span_notice("<b>I blink through space in an instant!</b>"))
@@ -1716,7 +1743,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	cost = 2
 	xp_gain = TRUE
-	charge_max = 2 MINUTES
+	charge_max = 5 MINUTES
 	invocation = "MENTIS NEXUS!"
 	invocation_type = "whisper"
 	
@@ -1729,6 +1756,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	charging_slowdown = 2
 	warnie = "spellwarning"
+	ignore_los = TRUE
 
 /obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
 	. = ..()

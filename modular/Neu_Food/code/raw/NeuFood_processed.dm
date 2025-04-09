@@ -16,9 +16,7 @@
 
 /obj/item/reagent_containers/food/snacks/fat/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-		long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/mince))
 		if(isturf(loc)&& (found_table))
 			to_chat(user, span_notice("Stuffing a wiener..."))
@@ -295,13 +293,7 @@
 
 /obj/item/reagent_containers/attackby(obj/item/I, mob/living/user, params) // add cook time to containers & salted milk for butter churning
 	..()
-	if(user.mind)
-		if (user.mind.get_skill_level(/datum/skill/craft/cooking) >= user.mind.get_skill_level(/datum/skill/labor/farming))
-			short_cooktime = (7 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-			long_cooktime = (12 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
-		else
-			short_cooktime = (7 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 0.5 SECONDS))
-			long_cooktime = (12 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/powder/salt))
 		if(!reagents.has_reagent(/datum/reagent/consumable/milk, 15))
 			to_chat(user, span_warning("Not enough milk."))
@@ -316,11 +308,7 @@
 
 /*	............   Churning butter   ................ */
 /obj/item/reagent_containers/glass/bucket/wooden/attackby(obj/item/I, mob/living/user, params)
-	if(user.mind)
-		if (user.mind.get_skill_level(/datum/skill/craft/cooking) >= user.mind.get_skill_level(/datum/skill/labor/farming))
-			long_cooktime = (160 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*20))
-		else
-			long_cooktime = (160 - ((user.mind.get_skill_level(/datum/skill/labor/farming))*20))
+	update_cooktime(user)
 	if(istype(I, /obj/item/kitchen/spoon))
 		if(!reagents.has_reagent(/datum/reagent/consumable/milk/salted, 15))
 			to_chat(user, span_warning("Not enough salted milk."))
@@ -381,11 +369,7 @@
 
 /*	............   Making fresh cheese   ................ */
 /obj/item/reagent_containers/glass/bucket/wooden/attackby(obj/item/I, mob/living/user, params)
-	if(user.mind)
-		if (user.mind.get_skill_level(/datum/skill/craft/cooking) >= user.mind.get_skill_level(/datum/skill/labor/farming))
-			long_cooktime = (100 - ((user.mind.get_skill_level(/datum/skill/craft/cooking))*10))
-		else
-			long_cooktime = (100 - ((user.mind.get_skill_level(/datum/skill/labor/farming))*10))
+	update_cooktime(user)
 	if(istype(I, /obj/item/natural/cloth))
 		if(reagents.has_reagent(/datum/reagent/consumable/milk/salted, 5))
 			user.visible_message(span_info("[user] strains fresh cheese..."))
@@ -394,6 +378,7 @@
 				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
 				reagents.remove_reagent(/datum/reagent/consumable/milk/salted, 5)
 				new /obj/item/reagent_containers/food/snacks/rogue/cheese(drop_location())
+			return
 
 		var/obj/item/natural/cloth/T = I
 		if(T.wet && !T.return_blood_DNA())
@@ -439,13 +424,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_start/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		if (user.mind.get_skill_level(/datum/skill/craft/cooking) >= user.mind.get_skill_level(/datum/skill/labor/farming))
-			short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-			long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
-		else
-			short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 0.5 SECONDS))
-			long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
@@ -466,13 +445,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_two/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		if (user.mind.get_skill_level(/datum/skill/craft/cooking) >= user.mind.get_skill_level(/datum/skill/labor/farming))
-			short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-			long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
-		else
-			short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 0.5 SECONDS))
-			long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
@@ -493,13 +466,7 @@
 	var/mature_proc = .proc/maturing_done
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_three/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
-	if(user.mind)
-		if (user.mind.get_skill_level(/datum/skill/craft/cooking) >= user.mind.get_skill_level(/datum/skill/labor/farming))
-			short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 0.5 SECONDS))
-			long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/craft/cooking) * 1 SECONDS))
-		else
-			short_cooktime = (6 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 0.5 SECONDS))
-			long_cooktime = (10 SECONDS - (user.mind.get_skill_level(/datum/skill/labor/farming) * 1 SECONDS))
+	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
 		if(isturf(loc)&& (found_table))
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
@@ -560,7 +527,6 @@
 	icon_state = "blue_cheese"
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/cheddarwedge/aged
 	faretype = FARE_FINE
-	eat_effect = /datum/status_effect/buff/foodbuff //setting a food buff since takes a while to make
 	become_rot_type = null
 	rotprocess = null
 
@@ -589,7 +555,6 @@
 	icon_state = "blue_cheese_wedge"
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/cheddarslice/aged
 	faretype = FARE_FINE
-	eat_effect = /datum/status_effect/buff/foodbuff //setting a food buff since takes a while to make
 	become_rot_type = null
 	rotprocess = null
 

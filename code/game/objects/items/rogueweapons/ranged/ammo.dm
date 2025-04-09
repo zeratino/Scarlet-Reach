@@ -142,7 +142,7 @@
 
 /obj/projectile/bullet/reusable/arrow/poison
 	name = "poison arrow"
-	damage = 50
+	damage = 20				//You deal a bunch of posion damage as it is, regardless of armor protection.
 	damage_type = BRUTE
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
@@ -194,7 +194,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
-		M.adjust_fire_stacks(6)
+		M.adjust_fire_stacks(5)
 //		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, my at about 65 damage if you stop drop and roll immediately
 	var/turf/T
 	if(isturf(target))
@@ -244,7 +244,7 @@
 	. = ..()
 	if(ismob(target))
 		var/mob/living/M = target
-		M.adjust_fire_stacks(6)
+		M.adjust_fire_stacks(4)
 //		M.take_overall_damage(0,10) //between this 10 burn, the 10 brute, the explosion brute, and the onfire burn, my at about 65 damage if you stop drop and roll immediately
 	var/turf/T
 	if(isturf(target))
@@ -348,7 +348,7 @@
 	icon_state = "ijavelin"
 	wlength = WLENGTH_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
-	armor_penetration = 35					//Redfined because.. it's not a weapon, it's an 'arrow' basically.
+	armor_penetration = 40					//Redfined because.. it's not a weapon, it's an 'arrow' basically.
 	max_integrity = 50						//Breaks semi-easy, stops constant re-use. 
 	wdefense = 3							//Worse than a spear
 	thrown_bclass = BCLASS_STAB				//Knives are slash, lets try out stab and see if it's too strong in terms of wounding.
@@ -358,7 +358,8 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
-	heavy_metal = FALSE					//Stops spin animation, maybe.
+	heavy_metal = FALSE						//Stops spin animation, maybe.
+	thrown_damage_flag = "piercing"			//Checks peircing protection.
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
 	force = 16
@@ -378,6 +379,7 @@
 	icon_state = "sjavelin"
 	is_silver = TRUE
 	throwforce = 25							//Less than steel because it's.. silver. Good at killing vampires/WW's still.
+	armor_penetration = 60
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	smeltresult = /obj/item/ingot/silver
 
