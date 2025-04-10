@@ -106,7 +106,6 @@
 	bounty_total = rand(151, 250)
 	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
-	alert("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards.")
 
 /datum/advclass/wretch/outlaw
 	name = "Outlaw"
@@ -175,7 +174,6 @@
 	bounty_total = rand(151, 250)
 	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
-	alert("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards.")
 
 /datum/advclass/wretch/poacher
 	name = "Poacher"
@@ -249,7 +247,6 @@
 	bounty_total = rand(151, 250)
 	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
-	alert("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards.")
 
 /datum/advclass/wretch/heretic
 	name = "Heretic"
@@ -322,7 +319,6 @@
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
-	alert("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards.")
 
 /datum/advclass/wretch/necromancer
 	name = "Necromancer"
@@ -380,7 +376,6 @@
 	bounty_total = rand(151, 250)
 	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Holy See")
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
-	alert("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards.")
 
 /datum/advclass/wretch/berserker
 	name = "Berserker"
@@ -457,4 +452,3 @@
 	bounty_total = rand(151, 250)
 	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
-	alert("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards.")
