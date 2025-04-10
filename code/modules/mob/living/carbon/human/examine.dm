@@ -761,7 +761,7 @@
 				
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10) / 2)),-1, 2)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
+		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
 			. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
 
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
