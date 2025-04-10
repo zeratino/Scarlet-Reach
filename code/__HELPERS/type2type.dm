@@ -326,7 +326,7 @@
 	if(bpc & GROIN)
 		covered_parts |= list(READABLE_ZONE_GROIN)
 
-	if(bpc & ARMS)
+	if(bpc & ARMS && !verbose)
 		covered_parts |= list(READABLE_ZONE_ARMS)
 		if(verbose)
 			if(bpc & ARM_LEFT)
@@ -340,7 +340,7 @@
 		if(bpc & ARM_RIGHT)
 			covered_parts |= list(READABLE_ZONE_R_ARM)
 
-	if(bpc & HANDS)
+	if(bpc & HANDS && !verbose)
 		covered_parts |= list(READABLE_ZONE_HANDS)
 		if(verbose)
 			if(bpc & HAND_LEFT)
@@ -353,7 +353,7 @@
 		if(bpc & HAND_RIGHT)
 			covered_parts |= list(READABLE_ZONE_R_HAND)
 
-	if(bpc & LEGS)
+	if(bpc & LEGS && !verbose)
 		covered_parts |= list(READABLE_ZONE_LEGS)
 		if(verbose)
 			if(bpc & LEG_LEFT)
@@ -366,7 +366,7 @@
 		if(bpc & LEG_RIGHT)
 			covered_parts |= list(READABLE_ZONE_R_LEG)
 
-	if(bpc & FEET)
+	if(bpc & FEET && !verbose)
 		covered_parts |= list(READABLE_ZONE_FEET)
 		if(verbose)
 			if(bpc & FOOT_LEFT)
