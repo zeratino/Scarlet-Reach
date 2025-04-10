@@ -389,7 +389,7 @@
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/iron
 	cloak = /obj/item/clothing/cloak/raincloak/mortus
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/silver/elvish = 1, /obj/item/storage/keyring/guardcastle = 1, /obj/item/reagent_containers/glass/bottle/rogue/poison = 1)
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/silver/elvish = 1, /obj/item/storage/keyring/guardcastle = 1, /obj/item/reagent_containers/glass/bottle/rogue/poison = 1, /obj/item/lockpickring/mundane)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
@@ -430,3 +430,4 @@
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
