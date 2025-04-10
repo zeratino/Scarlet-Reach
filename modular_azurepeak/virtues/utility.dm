@@ -122,6 +122,9 @@
 		/datum/language/celestial,
 		/datum/language/grenzelhoftian,
 		/datum/language/kazengunese,
+		/datum/language/otavan,
+		/datum/language/etruscan,
+		/datum/language/gronnic
 	)
 		
 	var/list/choices = list()
