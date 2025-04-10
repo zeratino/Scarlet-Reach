@@ -304,7 +304,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 								coverage_exposed.Remove(READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT)
 							else
 								coverage_exposed.Remove(coverageflag)
-			for(var/coverageflag in coverage)	//We go through the set up list and filter out redundancies. (l/rs matching layers and armor values has no value to us in the printout)
+			for(var/coverageflag in coverage)	//We go through the set up list and filter out redundancies. (ie Left Arm & Right Arm having identical stats to Arms)
 				switch(coverageflag)
 					if(READABLE_ZONE_ARMS)
 						if(coverage[READABLE_ZONE_L_ARM] == coverage[READABLE_ZONE_R_ARM])
