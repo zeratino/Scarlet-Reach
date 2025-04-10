@@ -74,6 +74,11 @@ body {
   src: url('lupian.ttf'); 
 }
 
+@font-face {
+  font-family: "Yuji Boku";
+  src: url('kazengunese.ttf');
+}
+
 @font-face { 
   font-family: "Notredame"; 
   src: url('otavan.ttf'); 
@@ -441,6 +446,11 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 .delf 					{font-family: "Dauphin", "Pterra";}
 .hellspeak				{font-family: "Xaphan", "Pterra"; font-size: 110%}
 .undead					{font-family: "FriskyVampire", "Pterra";}
+.orc					{font-family: "Thief by The Riddler", Pterra;}
+.beast					{font-family: "Thief by The Riddler", Pterra;}
+.reptile				{font-family: "Kingthings Petrock", Pterra; font-size: 120%;}
+.lupian					{font-family: "Emperialisme", Pterra; font-size: 120%;}
+.kazengunese			{font-family: "Yuji Boku", Pterra;}
 .orc					{font-family: "Thief by The Riddler", "Pterra";}
 .beast					{font-family: "Thief by The Riddler", "Pterra";}
 .reptile				{font-family: "Kingthings Petrock", "Pterra"; font-size: 120%;}

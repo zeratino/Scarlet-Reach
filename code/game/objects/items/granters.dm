@@ -226,9 +226,9 @@
 	icon_state ="scrolldarkred"
 	remarks = list("Mediolanum ventis..", "Sana damnatorum..", "Frigidus ossa mortuorum..")
 
-/obj/item/book/granter/spell/blackstone/acidsplash5e
+/obj/item/book/granter/spell/blackstone/acidsplash
 	name = "Scroll of Acid Splash"
-	spell = /obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e
+	spell = /obj/effect/proc_holder/spell/invoked/projectile/acidsplash
 	spellname = "Acid Splash"
 	icon_state ="scrolldarkred"
 	remarks = list("Lapides corrodunt..", "Spuma venenosa..", "Guttae flavescentes..")
@@ -255,9 +255,9 @@
 	remarks = list("Ventos adversos..", "Terra sibilat..", "Lapides vetusti..")
 
 
-/obj/item/book/granter/spell/blackstone/poisonspray5e
+/obj/item/book/granter/spell/blackstone/aerosolize
 	name = "Scroll of Aerosolize"
-	spell = /obj/effect/proc_holder/spell/invoked/poisonspray5e
+	spell = /obj/effect/proc_holder/spell/invoked/aerosolize
 	spellname = "Aerosolize"
 	icon_state ="scrolldarkred"
 	remarks = list("Lapides corrodunt..", "Spuma venenosa..", "Guttae flavescentes..")

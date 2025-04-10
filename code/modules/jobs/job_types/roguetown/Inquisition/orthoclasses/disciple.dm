@@ -1,6 +1,6 @@
 /datum/advclass/disciple
 	name = "Disciple"
-	tutorial = "Disciples are Otavan martial artists, recruited by the Inquisition for their iron physique. Psydonian Monks."
+	tutorial = "Psydonite monks and Naledian warscholars, trained in the martial arts. The former excels at shrugging off terrible blows while wrestling foes into submission, while the latter - often hired as mercenaries from abroad - amplify their pugilism with acryne might."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/disciple
@@ -18,10 +18,10 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	mask = /obj/item/clothing/mask/rogue/facemask/psydonmask
 	head = /obj/item/clothing/head/roguetown/roguehood/psydon
-	var/classes = list("Otavan Brute", "Naledi-Trained Scholar")
+	var/classes = list("Otavan Monk", "Naledi-Trained Scholar")
 	var/classchoice = input("Choose your archetypes", "Available archetypes") as anything in classes
 	switch(classchoice)
-		if("Otavan Brute")
+		if("Otavan Monk")
 			H.set_blindness(0)
 			brute_equip(H)
 		if("Naledi-Trained Scholar")

@@ -761,7 +761,7 @@
 				
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(get_dist(src, H) <= 2 + clamp(floor(((H.STAPER - 10) / 2)),-1, 2) && (!obscure_name || client?.prefs.masked_examine))
+		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
 			. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
 
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
@@ -811,24 +811,18 @@
 			heretic_text += "A member of Zizo's cabal."
 			if(HAS_TRAIT(examiner, TRAIT_CABAL))
 				heretic_text += " May their ambitions not interfere with mine."
-		else if(HAS_TRAIT(examiner, TRAIT_CABAL))
-			heretic_text += "Another of the Cabal!"
 	else if((HAS_TRAIT(src, TRAIT_HORDE)))
 		if(seer)
 			heretic_text += "Hardened by Graggar's Rituals."
 			if(HAS_TRAIT(examiner, TRAIT_HORDE))
 				heretic_text += " Mine were a glorious memory."
-		else if(HAS_TRAIT(examiner, TRAIT_HORDE))
-			heretic_text += "Anointed!"
 	else if((HAS_TRAIT(src, TRAIT_DEPRAVED)))
 		if(seer)
 			heretic_text += "Baotha's Touched."
 			if(HAS_TRAIT(examiner, TRAIT_DEPRAVED))
 				heretic_text += " She leads us to the greatest ends."
-		else if(HAS_TRAIT(examiner, TRAIT_DEPRAVED))
-			heretic_text += "Debased!"
 	
-	return heretic_text
+	return null
 
 /// Same as get_heretic_text, but returns a simple symbol depending on the type of heretic!
 /mob/living/proc/get_heretic_symbol(mob/examiner)

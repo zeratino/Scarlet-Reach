@@ -129,17 +129,18 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Pterra, TrueType;}
 .papyrus				{font-family: "Papyrus", cursive, sans-serif;}
 .robot					{font-family: "Courier New", cursive, sans-serif;}
 
-.human					{font-family: "Honoka Mincho", "Pterra";}
-.elf					{font-family: "Dauphin", cursive, "Pterra";}
-.dwarf					{font-family: "MasonAlternate", "Pterra";}
-.sandspeak				{font-family: "Furqan", "Pterra";}
-.delf					{font-family: "Dauphin", "Pterra";}
-.hellspeak				{font-family: "Xaphan", "Pterra"; font-size: 110%}
-.undead					{font-family: "FriskyVampire", "Pterra";}
-.orc					{font-family: "Thief by The Riddler", "Pterra";}
-.beast					{font-family: "Thief by The Riddler", "Pterra";}
-.reptile				{font-family: "Kingthings Petrock", "Pterra"; font-size: 120%;}
-.lupian					{font-family: "Emperialisme", "Pterra"; font-size: 120%;}
+.human					{font-family: "Honoka Mincho", Pterra;}
+.elf					{font-family: "Dauphin", cursive, Pterra;}
+.dwarf					{font-family: "MasonAlternate", Pterra;}
+.sandspeak				{font-family: "Arabolical", Pterra;}
+.delf					{font-family: "Dauphin", Pterra;}
+.hellspeak				{font-family: "Xaphan", Pterra; font-size: 110%}
+.undead					{font-family: "FriskyVampire", Pterra;}
+.orc					{font-family: "Thief by The Riddler", Pterra;}
+.beast					{font-family: "Thief by The Riddler", Pterra;}
+.reptile				{font-family: "Kingthings Petrock", Pterra; font-size: 120%;}
+.lupian					{font-family: "Emperialisme", Pterra; font-size: 120%;}
+.kazengunese 			{font-family: "Yuji Boku", Pterra;}
 .otavan					{font-family: "Notredame", "Pterra"; font-size: 200%;}
 .etruscan				{font-family: "Feronia", "Pterra"; font-size: 100%;}
 .gronnic				{font-family: "Jorvik Informal", "Pterra"; font-size: 100%;}
