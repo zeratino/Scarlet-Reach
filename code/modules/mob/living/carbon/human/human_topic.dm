@@ -176,23 +176,25 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		
 		var/mob/living/carbon/human/H = src
 		var/mob/living/carbon/human/user = usr
+		var/intellectual = HAS_TRAIT(user, TRAIT_INTELLECTUAL)
 
 		if(H.get_visible_name() in unknown_names)
 			obscured_name = TRUE
 
-		if(get_dist(user, H) <= (2 + clamp(floor(((user.STAPER - 10) / 2)),-1, 2) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
+		if(get_dist(user, H) <= (2 + clamp(floor(((user.STAPER - 10))),-1, 4) + intellectual))
 			success = TRUE
 		if(!success)
 			to_chat(user, span_info("They've moved too far away!"))
 			return
 		user.visible_message("[user] begins assessing [src].")
-		if(do_mob(user, src, (((HAS_TRAIT(user, TRAIT_INTELLECTUAL) ? 20 : 40)) - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading)), double_progress = ((HAS_TRAIT(user, TRAIT_INTELLECTUAL)) ? FALSE : TRUE)))
+		
+		if(do_mob(user, src, ((intellectual ? 20 : 40)) - (user.STAINT - 10) - (user.STAPER - 10) - user.mind?.get_skill_level(/datum/skill/misc/reading), uninterruptible = intellectual, double_progress = (intellectual ? FALSE : TRUE)))
 			var/is_guarded = HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS)	//Will scramble Stats and prevent skills from being shown
 			var/is_smart = FALSE	//Maximum info (all skills, gear and stats) either Intellectual virtue or having high enough PER / INT / Reading
 			var/is_stupid = FALSE	//Less than 9 INT, Intellectual virtue overrides it.
 			var/is_normal = FALSE	//High amount of info -- most gear slots, combat skills. No stats.
 			//If you don't get any of these, you'll still get to see 3 gear slots and shown weapon skills in Assess.
-			if(HAS_TRAIT(user, TRAIT_INTELLECTUAL) || ((user.STAINT - 10) + (user.STAPER - 10) + user.mind?.get_skill_level(/datum/skill/misc/reading)) >= 10)
+			if(intellectual || ((user.STAINT - 10) + (user.STAPER - 10) + user.mind?.get_skill_level(/datum/skill/misc/reading)) >= 10)
 				is_smart = TRUE	
 			if(user.STAINT < 10 && !is_smart)
 				is_stupid = TRUE
@@ -204,7 +206,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			// NEXT ROW
 			dat += "<tr>"
 			dat += "<td style='width:16%;text-align:left;vertical-align: text-top'>"
-			if(HAS_TRAIT(user, TRAIT_INTELLECTUAL) && (!obscured_name || H.client?.prefs.masked_examine))
+			if(intellectual && (!obscured_name || H.client?.prefs.masked_examine))
 				dat += "<b>STATS:</b><br><br>"
 				if(!is_guarded)
 					dat +=("STR: \Roman [H.STASTR]<br>")
@@ -246,6 +248,9 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 					if(C.max_integrity)
 						if(C.obj_integrity <= 0)
 							continue
+						if(C.integrity_failure)
+							if(C.obj_broken)
+								continue
 					if(!C.armor)	//No armor -- no need to care about it
 						continue
 					if(C.armor)
