@@ -1801,7 +1801,7 @@
 			if(marked)
 				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
-					if(H.current_mark == M)
+					if(H.current_mark == M && HAS_TRAIT(H, TRAIT_SLEUTH))
 						found_ping(get_turf(M), client, "trap")
 					else
 						found_ping(get_turf(M), client, "hidden")
