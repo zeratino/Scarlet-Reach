@@ -61,9 +61,13 @@
 #define SPAN_DELF "delf"
 #define SPAN_HELL "hellspeak"
 #define SPAN_LUPIAN "lupian"
+#define SPAN_OTAVAN "otavan"
+#define SPAN_ETRUSCAN "etruscan"
+#define SPAN_GRONNIC "gronnic"
 #define SPAN_BEAST "beast"
 #define SPAN_ORC "orc"
 #define SPAN_DRACONIC "reptile"
+#define SPAN_KAZENGUNESE "kazengunese"
 #define SPAN_UNDEAD "undead" //nyi but file found
 #define SPAN_CAT "cat"		 //nyi but file found
 
