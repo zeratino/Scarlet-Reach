@@ -1764,6 +1764,7 @@
 	looktime = clamp(looktime, 7, 50)
 	if(HAS_TRAIT(src, TRAIT_SLEUTH) ? move_after(src, looktime, target = src) : do_after(src, looktime, target = src))
 		for(var/mob/living/M in view(7,src))
+			var/marked = FALSE
 			if(M == src)
 				continue
 			if(see_invisible < M.invisibility)
@@ -1782,7 +1783,7 @@
 					probby -= (M.STAPER) / 2
 			probby = (max(probby, 5))
 			if(prob(probby))
-				found_ping(get_turf(M), client, "hidden")
+				marked = TRUE
 				M.mob_timers[MT_INVISIBILITY] = world.time
 				M.update_sneak_invis()
 				to_chat(M, span_danger("[src] sees me! I'm found!"))
@@ -1796,7 +1797,14 @@
 					else
 						to_chat(M, span_warning("[src] didn't find me."))
 				else
-					found_ping(get_turf(M), client, "hidden")
+					marked = TRUE
+			if(marked)
+				if(ishuman(src))
+					var/mob/living/carbon/human/H = src
+					if(H.current_mark == M && HAS_TRAIT(H, TRAIT_SLEUTH))
+						found_ping(get_turf(M), client, "trap")
+					else
+						found_ping(get_turf(M), client, "hidden")
 
 		for(var/obj/O in view(7,src))
 			if(istype(O, /obj/item/restraints/legcuffs/beartrap))
