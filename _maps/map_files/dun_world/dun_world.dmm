@@ -7764,13 +7764,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/beach/forest)
 "dki" = (
-/obj/structure/mineral_door/wood{
-	icon_state = "wcv";
-	locked = 1;
-	lockid = "shop"
-	},
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/town/roofs)
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/town/shop)
 "dkk" = (
 /obj/machinery/light/rogue/oven/north,
 /turf/closed/wall/mineral/rogue/decowood,
@@ -482038,7 +482034,7 @@ bGf
 bGf
 bGf
 bGf
-dki
+bGf
 bGf
 bGf
 bGf
@@ -487926,7 +487922,7 @@ ikL
 bDh
 lAs
 ikL
-gca
+dki
 gAl
 rwp
 ikL
@@ -488380,7 +488376,7 @@ udZ
 ikL
 gca
 gca
-gca
+lEy
 ikL
 kSK
 bGf
