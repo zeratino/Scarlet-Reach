@@ -500,6 +500,12 @@
 /obj/item/reagent_containers/glass/cup/steel,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/dukecourt)
+"ajP" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 9
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/town)
 "ajQ" = (
 /obj/structure/fluff/walldeco/barbersign,
 /turf/open/floor/rogue/grass,
@@ -4457,6 +4463,21 @@
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/rtfield)
+"bQA" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 5
+	},
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = -8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "bQF" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -14757,6 +14778,9 @@
 /obj/effect/decal/cobbleedge{
 	dir = 5
 	},
+/obj/effect/decal/cobble/mossy{
+	dir = 4
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "fZG" = (
@@ -20832,7 +20856,8 @@
 /area/rogue/outdoors/town)
 "iys" = (
 /obj/structure/mineral_door/bars{
-	lockid = "garrison"
+	lockid = "walls";
+	locked = 1
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
@@ -21831,6 +21856,12 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
+"iUD" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 6
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/town)
 "iUW" = (
 /obj/machinery/light/rogue/wallfire{
 	pixel_x = 16;
@@ -24038,7 +24069,7 @@
 /obj/structure/stairs{
 	dir = 1
 	},
-/turf/closed,
+/turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town)
 "jNT" = (
 /obj/effect/decal/cobbleedge{
@@ -25952,6 +25983,12 @@
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains)
+"kCu" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/indoors/town)
 "kCz" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/floor/rogue/grass,
@@ -27626,6 +27663,10 @@
 /obj/effect/decal/cobbleedge{
 	dir = 9
 	},
+/obj/effect/decal/cobble/mossy{
+	dir = 9
+	},
+/obj/structure/fermenting_barrel/water,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "lnA" = (
@@ -27933,6 +27974,12 @@
 /obj/structure/fluff/wallclock/r,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"lsX" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/indoors/town)
 "ltd" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -29989,6 +30036,12 @@
 /obj/item/rogueore/gold,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/scarymaze)
+"mpF" = (
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/indoors/town)
 "mpZ" = (
 /obj/effect/decal/cobbleedge{
 	dir = 5
@@ -44941,6 +44994,12 @@
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
+"spY" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 8
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "spZ" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -46667,6 +46726,7 @@
 	dir = 10;
 	icon_state = "cobbleedge-n"
 	},
+/obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "tcq" = (
@@ -52486,6 +52546,13 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/exposed/town/keep)
+"vxY" = (
+/obj/machinery/light/rogue/torchholder/c,
+/obj/effect/decal/cobble/mossy{
+	dir = 9
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "vya" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/wood,
@@ -57813,6 +57880,12 @@
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/tavern)
+"xHi" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 6
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town)
 "xHj" = (
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/grass,
@@ -232526,7 +232599,7 @@ phl
 phl
 phl
 phl
-kAi
+mHg
 pLh
 phl
 phl
@@ -232978,7 +233051,7 @@ phl
 kgm
 kgm
 jdu
-jdu
+spY
 phl
 phl
 phl
@@ -234332,7 +234405,7 @@ hYB
 phl
 pLh
 phl
-jdu
+vxY
 sOD
 lnw
 phl
@@ -234784,9 +234857,9 @@ hZk
 phl
 phl
 phl
+xHi
 jdu
-jdu
-jdu
+bQA
 phl
 rmm
 phl
@@ -235236,7 +235309,7 @@ gIW
 phl
 pLh
 phl
-kAi
+mHg
 pLh
 phl
 pLh
@@ -235688,7 +235761,7 @@ qyR
 qyR
 qyR
 ivJ
-sns
+ajP
 qfA
 qfA
 mhj
@@ -236140,7 +236213,7 @@ qyR
 qyR
 pWT
 pWT
-sns
+iUD
 qfA
 qfA
 qfA
@@ -348238,7 +348311,7 @@ bjX
 pLh
 jNR
 bzY
-bZZ
+lsX
 uGy
 phl
 bjX
@@ -348689,8 +348762,8 @@ jdu
 jdu
 cDX
 pIE
-bZZ
-bZZ
+kCu
+mpF
 aBN
 cDX
 jdu
