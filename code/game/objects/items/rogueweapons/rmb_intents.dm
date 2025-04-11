@@ -184,7 +184,6 @@
 
 /datum/status_effect/debuff/baited
 	id = "bait"
-	name = "Baited"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/baited
 	duration = 200
 
@@ -200,6 +199,5 @@
 
 /datum/status_effect/debuff/baitcd
 	id = "baitcd"
-	name = "Bait Cooldown"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/baitedcd
 	duration = 200
