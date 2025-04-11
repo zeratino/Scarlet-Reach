@@ -180,15 +180,7 @@
 	reqs = list(/obj/item/roguegem/diamond = 2, /obj/item/rogueore/iron = 1, /obj/item/rogueore/coal = 1)
 	craftdiff = 6
 	verbage_simple = "transmute"
-
-/datum/crafting_recipe/roguetown/alchemy/alchmort
-	name = "alchemical mortar"
-	tools = list()
-	result = list(/obj/item/mortar = 1)
-	reqs = list(/obj/item/natural/stone = 3, /obj/item/rogueore/iron = 1)
-	verbage_simple = "fabricate"
-	verbage = "fabricates"
-
+	
 //Hard to craft but feasable, will give ONE vial but that has 10 units so, enough to cure 2 people if they ration it.
 /datum/crafting_recipe/roguetown/alchemy/curerot
 	name = "rot cure potion"
