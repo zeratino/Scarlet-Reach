@@ -1,12 +1,12 @@
 //Rot-cure for revival sickness healing and rot-penalty reversal.
-/obj/item/reagent_containers/glass/alchemical/rotcure
-	list_reagents = list(/datum/reagent/rotcure = 10)	//Should be enough for 2 usages.
+/obj/item/reagent_containers/glass/bottle/rogue/rotcure
+	list_reagents = list(/datum/reagent/rotcure = 6)	//Should be enough for 2 usages.
 
 /datum/reagent/rotcure
 	name = "Rot-Cure"
 	description = "A putrid substance that appears to be in perpetual motion. It smells and looks of living-sludge."
 	color = "#034212"
-	overdose_threshold = 10		//Stops people from downing too much of it.
+	overdose_threshold = 6		//Stops people from downing too much of it.
 	metabolization_rate = 0.1
 
 /datum/reagent/rotcure/overdose_process(mob/living/M)
