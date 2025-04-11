@@ -234,7 +234,7 @@
 /obj/item/alch/puresalt
 	name = "purified salts"
 	desc = "Salts that have been finely sifted to enchance their healing properties and to bolster its connection to the arcyne."
-	icon_state = "transisdust"
+	icon_state = "puresalt"
 
 	major_pot = /datum/alch_cauldron_recipe/antidote
 	med_pot = /datum/alch_cauldron_recipe/disease_cure
