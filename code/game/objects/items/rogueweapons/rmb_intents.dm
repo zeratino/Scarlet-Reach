@@ -183,9 +183,23 @@
 
 
 /datum/status_effect/debuff/baited
-	id = "nobait"
-	duration = 50
+	id = "bait"
+	name = "Baited"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/baited
+	duration = 200
+
+/atom/movable/screen/alert/status_effect/debuff/baited
+	name = "Baited"
+	desc = "I fell for it. I'm exposed. I won't fall for it again. For now."
+	icon_state = "bait"
+
+/atom/movable/screen/alert/status_effect/debuff/baitedcd
+	name = "Bait Cooldown"
+	desc = "I used it. I must wait."
+	icon_state = "baitcd"
 
 /datum/status_effect/debuff/baitcd
 	id = "baitcd"
-	duration = 100
+	name = "Bait Cooldown"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/baitedcd
+	duration = 200
