@@ -1995,6 +1995,7 @@
 #include "modular_azurepeak\code\modules\mob\living\simple_animal\rogue\creacher\dragon.dm"
 #include "modular_azurepeak\code\modules\mob\living\simple_animal\rogue\creacher\gethsmane.dm"
 #include "modular_azurepeak\code\modules\mob\living\simple_animal\rogue\creacher\minotaur.dm"
+#include "modular_azurepeak\code\modules\reagents\reagent_containers\rotcure.dm"
 #include "modular_azurepeak\code\modules\spells\minion_order.dm"
 #include "modular_azurepeak\code\modules\spells\orison.dm"
 #include "modular_azurepeak\code\modules\spells\warscholar.dm"

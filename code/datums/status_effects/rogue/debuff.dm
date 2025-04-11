@@ -345,7 +345,7 @@
 	id = "rotted_body"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/rotted
 	effectedstats = list("strength" = -1, "perception" = -1, "intelligence" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)
-	duration = 20 MINUTES		//Stacks atop of revival sickness effect.
+	//No duration = infinate in time - it is perma again. (There is a potion to get rid of this, however, just hard to make/expensive to order.)
 
 /atom/movable/screen/alert/status_effect/debuff/rotted
 	name = "Body Rot Paralysis"

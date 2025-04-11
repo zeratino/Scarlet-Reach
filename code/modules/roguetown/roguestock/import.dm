@@ -72,6 +72,19 @@
 	new /obj/item/reagent_containers/glass/bottle/rogue/healthpot(src)
 	new /obj/item/reagent_containers/glass/bottle/rogue/healthpot(src)
 
+/datum/roguestock/import/rotpotion
+	name = "Crate of Rot Cure Potions"
+	desc = "A sought-after crate of rare potions of rot-curing."
+	item_type = /obj/structure/closet/crate/chest/steward/rotpotion
+	export_price = 500		//Expensive, 250 each roughly. Four uses total, as only 5u needed to reverse rot. Each bottle is 10u.
+	importexport_amt = 1
+
+/obj/structure/closet/crate/chest/steward/rotpotion/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/glass/alchemical/rotcure(src)
+	new /obj/item/reagent_containers/glass/alchemical/rotcure(src)
+
+
 /datum/roguestock/import/knight
 	name = "Knight Equipment Crate"
 	desc = "Kit for a Knight."

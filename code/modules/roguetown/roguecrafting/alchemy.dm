@@ -188,3 +188,10 @@
 	reqs = list(/obj/item/natural/stone = 3, /obj/item/rogueore/iron = 1)
 	verbage_simple = "fabricate"
 	verbage = "fabricates"
+
+//Hard to craft but feasable, will give ONE vial but that has 10 units so, enough to cure 2 people if they ration it.
+/datum/crafting_recipe/roguetown/alchemy/curerot
+	name = "rot cure potion"
+	result = list(/obj/item/reagent_containers/glass/alchemical/rotcure = 1)
+	reqs = list(/obj/item/reagent_containers/glass/alchemical = 1, /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /obj/item/reagent_containers/lux = 1, /obj/item/ingot/silver = 1, /obj/item/alch/viscera = 2)
+	craftdiff = 5	//Master-level

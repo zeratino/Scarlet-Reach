@@ -127,3 +127,10 @@
 	smells_like = "calming"
 	skill_required = SKILL_LEVEL_EXPERT
 	output_reagents = list(/datum/reagent/buff/fortune = 27)
+
+//Ultra SPECIAL potion - Rotcure. Removes rot-penalty and revive sickness.
+/datum/alch_cauldron_recipe/curerot_potion
+	recipe_name = "Potion of Rot Cure"
+	smells_like = "putrid sewage"
+	skill_required = SKILL_LEVEL_MASTER						//Needs to be hard to make to avoid mass-production and encourage dedicated roles.
+	output_reagents = list(/datum/reagent/rotcure = 10)		//10 units is enough to cure 2 people of revive issues if rationed right. May reduce to 5 if too easy.

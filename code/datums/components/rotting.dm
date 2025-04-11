@@ -1,4 +1,5 @@
-#define DEAD_TO_ZOMBIE_TIME 5 MINUTES ///Time before death -> raised as zombie (when outside of the city)
+#define DEAD_TO_ZOMBIE_TIME 7 MINUTES	//Time before death -> raised as zombie (when outside of the city)	
+										//(This isn't exact time. Extended 5 -> 7 because only takes 2-3 min in testing at 5.)
 
 /datum/component/rot
 	var/amount = 0
@@ -55,6 +56,9 @@
 			qdel(src)
 			return
 
+	var/area/A = get_area(C)
+	if (istype(A, /area/rogue/indoors/town))	//Stops rotting inside town buildings; will stop your zombification such as at church or appothocary.
+		return
 
 	if(!(C.mob_biotypes & (MOB_ORGANIC|MOB_UNDEAD)))
 		qdel(src)
