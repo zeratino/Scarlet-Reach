@@ -36,8 +36,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/motespeed = 20 // mote summoning speed
 	var/sparkspeed = 30 // spark summoning speed
 	var/spark_cd = 0
-	var/xp_interval = 150 // really don't want people to spam this too much for xp - they will, but the intent is for them to not
-	var/xp_cooldown = 0
 
 /obj/item/melee/touch_attack/prestidigitation/Initialize()
 	. = ..()
@@ -52,20 +50,16 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	qdel(src)
 
 /obj/item/melee/touch_attack/prestidigitation/afterattack(atom/target, mob/living/carbon/user, proximity)
-	var/fatigue_used
 	switch (user.used_intent.type)
 		if (INTENT_HELP) // Clean something like a bar of soap
-			fatigue_used = handle_cost(user, PRESTI_CLEAN)
-			if (clean_thing(target, user))
-				handle_xp(user, fatigue_used, TRUE) // cleaning ignores the xp cooldown because it awards comparatively little
+			handle_cost(user, PRESTI_CLEAN)
+			clean_thing(target, user)
 		if (INTENT_DISARM) // Snap your fingers and produce a spark
-			fatigue_used = handle_cost(user, PRESTI_SPARK)
-			if (create_spark(user, target))
-				handle_xp(user, fatigue_used)
+			handle_cost(user, PRESTI_SPARK)
+			create_spark(user, target)
 		if (/datum/intent/use) // Summon an orbiting arcane mote for light
-			fatigue_used = handle_cost(user, PRESTI_MOTE)
-			if (handle_mote(user))
-				handle_xp(user, fatigue_used)
+			handle_cost(user, PRESTI_MOTE)
+			handle_mote(user)
 
 /obj/item/melee/touch_attack/prestidigitation/proc/handle_cost(mob/living/carbon/human/user, action)
 	// handles fatigue/stamina deduction, this stuff isn't free - also returns the cost we took to use for xp calculations
@@ -87,17 +81,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		fatigue_used = 0 // we do this after we've actually changed fatigue because we're hard-capping the raises this gives to Expert
 
 	return fatigue_used
-
-/obj/item/melee/touch_attack/prestidigitation/proc/handle_xp(mob/living/carbon/human/user, fatigue, ignore_cooldown = FALSE)
-	if (!ignore_cooldown)
-		if (world.time < xp_cooldown + xp_interval)
-			return
-
-	xp_cooldown = world.time
-
-	var/obj/effect/proc_holder/spell/targeted/touch/prestidigitation/base_spell = attached_spell
-	if (user)
-		adjust_experience(user, base_spell.associated_skill, fatigue)
 
 /obj/item/melee/touch_attack/prestidigitation/proc/handle_mote(mob/living/carbon/human/user)
 	// adjusted from /obj/item/wisp_lantern & /obj/item/wisp
