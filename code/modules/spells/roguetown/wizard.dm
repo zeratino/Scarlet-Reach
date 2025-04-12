@@ -225,7 +225,7 @@
 	no_early_release = TRUE
 	movement_interrupt = TRUE
 	chargedloop = /datum/looping_sound/invokefire
-	cost = 5
+	cost = 3
 	xp_gain = TRUE
 
 /obj/projectile/magic/aoe/fireball/rogue/great
