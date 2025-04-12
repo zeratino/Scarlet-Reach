@@ -1,20 +1,15 @@
 /datum/virtue/combat/magical_potential
 	name = "Arcyne Potential"
 	desc = "I grasped the basics of arcyne magic at an early age, and have been able to prestidigitate for as long as I can remember."
-	custom_text = "Combat classes receive a weaker version of this virtue -- they get fewer spellpoints."
+	custom_text = "Classes that don't start with Arcane magic only gets prestidigitation. Everyone else get +2 spellpoints."
 	added_skills = list(list(/datum/skill/magic/arcane, 1, 6))
 
 /datum/virtue/combat/magical_potential/apply_to_human(mob/living/carbon/human/recipient)
 	if (!recipient.mind?.get_skill_level(/datum/skill/magic/arcane)) // we can do this because apply_to is always called first
-		recipient.mind?.adjust_spellpoints(-4) // Limits skill gain through for non-initial arcynes
 		if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation))
 			recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	else
-		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT))
-			recipient.mind?.adjust_spellpoints(1) // 1 extra spellpoint if you're already arcane
-		else
-			recipient.mind?.adjust_spellpoints(2) // This lessons the -6 that applies to martial classes by default (currently only pontifex at time of change).
-			to_chat(recipient, span_notice("My virtue lessens the limitations of my magical reach."))
+		recipient.mind?.adjust_spellpoints(2) // 2 extra spellpoints since you don't get any spell point from the skill anymore
 
 /datum/virtue/combat/devotee
 	name = "Devotee"
