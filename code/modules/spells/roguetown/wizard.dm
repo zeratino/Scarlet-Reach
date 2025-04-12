@@ -168,8 +168,8 @@
 	sound = list('sound/magic/fireball.ogg')
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 20
-	charge_max = 15 SECONDS
+	chargetime = 25
+	charge_max = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -216,7 +216,7 @@
 	active = FALSE
 	releasedrain = 50
 	chargedrain = 1
-	chargetime = 20
+	chargetime = 25
 	charge_max = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
