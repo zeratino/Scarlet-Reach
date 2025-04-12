@@ -77,6 +77,7 @@
 			H.change_stat("intelligence", 3)
 			H.mind.adjust_spellpoints(2)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			r_hand = /obj/item/rogueweapon/woodstaff/naledi
 
@@ -115,6 +116,7 @@
 			H.mind.AddSpell(new/obj/effect/proc_holder/spell/invoked/projectile/repel)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/shadowstep)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 
 			head = /obj/item/clothing/head/roguetown/roguehood/pontifex
 			gloves = /obj/item/clothing/gloves/roguetown/angle/pontifex

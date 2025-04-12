@@ -111,6 +111,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
 			H.mind.adjust_spellpoints(1)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
+			ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 			H.change_stat("perception", -1)
 			H.change_stat("endurance", 2)
 			H.change_stat("intelligence", 2)
