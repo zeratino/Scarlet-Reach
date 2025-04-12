@@ -17,6 +17,7 @@
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokelightning
 	associated_skill = /datum/skill/magic/arcane
+	spell_tier = 2
 	cost = 2
 	xp_gain = TRUE
 
@@ -174,6 +175,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 3
+	spell_tier = 3 // AOE
 	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
 	cost = 2
@@ -219,6 +221,7 @@
 	chargetime = 15
 	charge_max = 10 SECONDS
 	warnie = "spellwarning"
+	spell_tier = 4 // Highest tier AOE
 	no_early_release = TRUE
 	movement_interrupt = TRUE
 	chargedloop = /datum/looping_sound/invokefire
@@ -249,6 +252,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
+	spell_tier = 2
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
@@ -284,6 +288,7 @@
 	overlay_state = "fetch"
 	no_early_release = TRUE
 	charging_slowdown = 1
+	spell_tier = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	cost = 1

@@ -13,6 +13,7 @@
 	school = "transmutation"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
+	spell_tier = 2
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -78,6 +79,7 @@
 	charge_max = 2 MINUTES
 	warnie = "spellwarning"
 	school = "transmutation"
+	spell_tier = 2
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
@@ -146,6 +148,7 @@
 	charge_max = 2 MINUTES
 	warnie = "spellwarning"
 	school = "transmutation"
+	spell_tier = 2
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
@@ -219,6 +222,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = TRUE
+	spell_tier = 1 // Not directly combat useful
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -245,6 +249,7 @@
 	charge_max = 1.5 MINUTES
 	warnie = "spellwarning"
 	no_early_release = TRUE
+	spell_tier = 1 // Not direct combat useful but still good, replicated by polearm
 	charging_slowdown = 1
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
