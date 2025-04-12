@@ -51,11 +51,11 @@
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 1)
-			H.mind.adjust_spellpoints(1)
+			H.mind.adjust_spellpoints(2)
 		H.change_stat("intelligence", 3)
 		H.change_stat("constitution", 1)
 		H.change_stat("endurance", -1)
 		H.change_stat("fortune", 2)
 		H.change_stat("speed", 1) //ohhh sweetie this is NOT gonna help
-		H.mind.adjust_spellpoints(1)
+		H.mind.adjust_spellpoints(5)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
