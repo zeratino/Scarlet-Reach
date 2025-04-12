@@ -9,8 +9,8 @@
 	projectile_type = /obj/projectile/magic/lightning
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 20
-	charge_max = 20 SECONDS
+	chargetime = 15
+	charge_max = 25 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -168,8 +168,8 @@
 	sound = list('sound/magic/fireball.ogg')
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 15
-	charge_max = 10 SECONDS
+	chargetime = 20
+	charge_max = 15 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -216,8 +216,8 @@
 	active = FALSE
 	releasedrain = 50
 	chargedrain = 1
-	chargetime = 15
-	charge_max = 10 SECONDS
+	chargetime = 20
+	charge_max = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = TRUE
