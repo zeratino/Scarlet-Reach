@@ -4008,6 +4008,19 @@
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/shelter/woods)
+"bEb" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/obj/structure/fluff/railing/border{
+	dir = 8;
+	pixel_x = -4;
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/tile{
+	icon_state = "bfloorz"
+	},
+/area/rogue/indoors/town/manor)
 "bEc" = (
 /obj/structure/mineral_door/bars{
 	brokenstate = 1;
@@ -6143,7 +6156,9 @@
 /area/rogue/indoors)
 "cyz" = (
 /obj/structure/fluff/statue/gargoyle,
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/rogue/tile{
+	icon_state = "bfloorz"
+	},
 /area/rogue/indoors/town/manor)
 "cyN" = (
 /obj/structure/fluff/walldeco/stone{
@@ -20233,6 +20248,14 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
+/area/rogue/indoors/town/manor)
+"ieF" = (
+/obj/structure/fluff/railing/border{
+	dir = 9;
+	pixel_y = 0;
+	pixel_x = -4
+	},
+/turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "ieI" = (
 /obj/effect/decal/cleanable/blood,
@@ -34902,6 +34925,12 @@
 	},
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/cave/licharena)
+"oeL" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "oeQ" = (
 /obj/structure/chair/bench/church,
 /turf/open/floor/rogue/concrete,
@@ -43047,7 +43076,14 @@
 /obj/structure/stairs{
 	dir = 1
 	},
-/turf/open/floor/carpet/royalblack,
+/obj/structure/fluff/railing/border{
+	dir = 4;
+	pixel_x = 4;
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/tile{
+	icon_state = "bfloorz"
+	},
 /area/rogue/indoors/town/manor)
 "rqD" = (
 /obj/structure/flora/roguegrass/water,
@@ -46980,6 +47016,14 @@
 /obj/machinery/light/rogue/firebowl/standing/blue,
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/beach/forest)
+"sUl" = (
+/obj/structure/fluff/railing/border{
+	dir = 9;
+	pixel_x = -4;
+	pixel_y = 0
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "sUm" = (
 /obj/structure/flora/newbranch/leafless{
 	dir = 8
@@ -49757,6 +49801,14 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
+"ubt" = (
+/obj/structure/fluff/railing/border{
+	dir = 5;
+	pixel_x = 4;
+	pixel_y = 0
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "ubu" = (
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/outdoors/beach)
@@ -386316,7 +386368,7 @@ gbA
 pCb
 bou
 rqA
-fAA
+ubt
 nLR
 tjY
 vsK
@@ -386768,7 +386820,7 @@ bcB
 ngD
 vxe
 cyz
-fAA
+oeL
 fAA
 tjY
 tjY
@@ -387219,8 +387271,8 @@ bcB
 bcB
 bcB
 bou
-rqA
-fAA
+bEb
+ieF
 fAA
 tjY
 tjY
@@ -392644,7 +392696,7 @@ bcB
 bcB
 bou
 rqA
-fAA
+ubt
 fAA
 tjY
 tjY
@@ -393096,7 +393148,7 @@ bcB
 mEd
 vxe
 cyz
-fAA
+oeL
 fAA
 tjY
 tjY
@@ -393547,8 +393599,8 @@ tex
 jKV
 cMu
 bou
-rqA
-fAA
+bEb
+sUl
 ihZ
 tjY
 tjY
