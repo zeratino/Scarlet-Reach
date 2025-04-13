@@ -182,44 +182,10 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	//list of spells you can learn, it may be good to move this somewhere else eventually
 	//TODO: make GLOB list of spells, give them a true/false tag for learning, run through that list to generate choices
 	var/list/choices = list()
-	var/list/obj/effect/proc_holder/spell/spell_choices = list(/obj/effect/proc_holder/spell/invoked/projectile/fireball,
-		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,
-		/obj/effect/proc_holder/spell/invoked/projectile/fetch,
-		/obj/effect/proc_holder/spell/invoked/projectile/spitfire,
-		/obj/effect/proc_holder/spell/invoked/forcewall_weak,
-		/obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe,
-		/obj/effect/proc_holder/spell/self/message,
-		/obj/effect/proc_holder/spell/invoked/push_spell,
-		/obj/effect/proc_holder/spell/invoked/blade_burst,
-		/obj/effect/proc_holder/spell/targeted/touch/nondetection,
-		/obj/effect/proc_holder/spell/invoked/knock,
-		/obj/effect/proc_holder/spell/invoked/haste,
-		/obj/effect/proc_holder/spell/invoked/featherfall,
-		/obj/effect/proc_holder/spell/targeted/touch/darkvision,
-		/obj/effect/proc_holder/spell/invoked/longstrider,
-		/obj/effect/proc_holder/spell/invoked/invisibility,
-		/obj/effect/proc_holder/spell/invoked/blindness,
-		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash,
-		/obj/effect/proc_holder/spell/invoked/projectile/fireball/greater,
-//		/obj/effect/proc_holder/spell/invoked/frostbite,
-		/obj/effect/proc_holder/spell/invoked/guidance,
-		/obj/effect/proc_holder/spell/invoked/fortitude,
-		/obj/effect/proc_holder/spell/invoked/snap_freeze,
-		/obj/effect/proc_holder/spell/invoked/projectile/frostbolt,
-		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
-		/obj/effect/proc_holder/spell/invoked/gravity,
-		/obj/effect/proc_holder/spell/invoked/projectile/repel,
-		/obj/effect/proc_holder/spell/invoked/aerosolize,
-		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
-		/obj/effect/proc_holder/spell/invoked/counterspell,
-		/obj/effect/proc_holder/spell/invoked/enlarge,
-		/obj/effect/proc_holder/spell/invoked/leap,
-		/obj/effect/proc_holder/spell/invoked/blink,
-		/obj/effect/proc_holder/spell/invoked/mirror_transform,
-		/obj/effect/proc_holder/spell/invoked/mindlink
-	)
 
 	var/user_spell_tier = get_user_spell_tier(user)
+
+	var/list/spell_choices = GLOB.learnable_spells
 
 	for(var/i = 1, i <= spell_choices.len, i++)
 		if(spell_choices[i].spell_tier > user_spell_tier)
@@ -244,7 +210,9 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		return		// not enough spell points
 	else
 		user.mind.used_spell_points += item.cost
-		user.mind.AddSpell(new item)
+		var/obj/effect/proc_holder/spell/new_spell = new item
+		new_spell.refundable = TRUE
+		user.mind.AddSpell(new_spell)
 		addtimer(CALLBACK(user.mind, TYPE_PROC_REF(/datum/mind, check_learnspell)), 2 SECONDS) //self remove if no points
 		return TRUE
 

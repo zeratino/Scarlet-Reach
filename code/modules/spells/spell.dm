@@ -163,6 +163,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/player_lock = TRUE //If it can be used by simple mobs
 	var/gesture_required = FALSE // Can it be cast while cuffed? Rule of thumb: Offensive spells + Mobility cannot be cast
 	var/spell_tier = 1 // Tier of the spell, used to determine whether you can learn it based on your spell. Starts at 1.
+	var/refundable = FALSE // If true, the spell can be refunded. This is modified at the point it is added to the user's mind by learnspell.
 
 	var/overlay = 0
 	var/overlay_icon = 'icons/obj/wizard.dmi'
@@ -194,6 +195,10 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		var/newtime = chargetime
 		//skill block
 		newtime = newtime - (chargetime * (ranged_ability_user.mind.get_skill_level(associated_skill) * CHARGE_REDUCTION_PER_SKILL))
+		//spellbook cdr
+		var/obj/item/book/spellbook/sbook = ranged_ability_user.is_holding_item_of_type(/obj/item/book/spellbook)
+		if(sbook && sbook?.open)
+			newtime = newtime - (chargetime * (sbook.get_cdr()))
 		if(newtime > 0)
 			return newtime
 		else
