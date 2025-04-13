@@ -9,6 +9,8 @@
 	associated_skill = /datum/skill/magic/arcane
 	projectile_type = /obj/projectile/magic/profane
 	chargedloop = /datum/looping_sound/invokeholy
+	invocation = "Profane!"
+	invocation_type = "shout"
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 15

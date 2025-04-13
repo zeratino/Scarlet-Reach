@@ -234,6 +234,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	sound = 'sound/blank.ogg'
 	overlay_state = "forcewall"
 	spell_tier = 2
+	invocation = "Forcewall!"
+	invocation_type = "shout"
 	range = 7
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -306,6 +308,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	range = 6
 	spell_tier = 3
+	invocation = "Ensnare!"
+	invocation_type = "shout"
 	overlay_state = "ensnare"
 	var/area_of_effect = 1
 	var/duration = 5 SECONDS
@@ -420,6 +424,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "repulse"
 	spell_tier = 2
+	invocation = "Repulse!"
+	invocation_type = "shout"
 	var/stun_amt = 5
 	var/maxthrow = 3
 	var/sparkle_path = /obj/effect/temp_visual/gravpush
@@ -431,7 +437,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/atom/throwtarget
 	var/distfromcaster
 	playsound(user, 'sound/magic/repulse.ogg', 80, TRUE)
-	user.visible_message("[user] mutters an incantation and a wave of force radiates outward!")
+	user.say("[invocation]", forced = "spell") // This is dogshit but for some reason invocation just don't work on repulse
 	for(var/turf/T in view(push_range, user))
 		new /obj/effect/temp_visual/kinetic_blast(T)
 		for(var/atom/movable/AM in T)
@@ -481,6 +487,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "blade_burst"
 	spell_tier = 2 // AOE, but this is essential for PVP
+	invocation = "Blade Burst!"
+	invocation_type = "shout"
 	gesture_required = TRUE
 	var/delay = 14
 	var/damage = 125 //if you get hit by this it's your fault
@@ -540,6 +548,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/nondetection
 	spell_tier = 1
+	// Nondetection shouldn't need an invocation
 	xp_gain = TRUE
 	cost = 1
 
@@ -607,6 +616,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/darkvision
 	spell_tier = 1
+	invocation = "Darkvision"
+	invocation_type = "whisper"
 	xp_gain = TRUE
 	cost = 2
 
@@ -652,6 +663,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = TRUE
 	charging_slowdown = 2
 	spell_tier = 4 // CM / Antag / Lich exclusive
+	invocation = "KNOCK!"
+	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 
@@ -699,6 +712,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	antimagic_allowed = FALSE //can you use it if you are antimagicked?
 	spell_tier = 2
+	invocation = "Acid Splash!"
+	invocation_type = "shout"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
@@ -782,6 +797,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	gesture_required = TRUE
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
+	invocation = "Frost Bite!"
+	invocation_type = "shout"
 	cost = 1
 
 	xp_gain = TRUE
@@ -844,6 +861,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	range = 7
 	gesture_required = TRUE // Offensive spell
 	spell_tier = 3
+	invocation = "Snap Freeze!"
+	invocation_type = "shout"
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
@@ -917,6 +936,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	antimagic_allowed = FALSE //can you use it if you are antimagicked?
 	charging_slowdown = 3
 	spell_tier = 2
+	invocation = "Frost Bolt!"
+	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
 	cost = 1
@@ -972,6 +993,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
+	invocation = "Arcyne Bolt!"
+	invocation_type = "shout"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -1020,6 +1043,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 3
+	invocation = "Gravity!"
+	invocation_type = "shout"
 	range = 7
 	var/delay = 3
 	var/damage = 0 // damage based off your str 
@@ -1087,6 +1112,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
+	invocation = "Repel!"
+	invocation_type = "shout"
 	cost = 1
 	xp_gain = TRUE
 
@@ -1148,6 +1175,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
+	invocation = "Aerosolize!"
+	invocation_type = "shout"
 	cost = 1
 
 	xp_gain = TRUE
@@ -1200,6 +1229,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/lesserknock
 	spell_tier = 2
+	invocation = "Lesser Knock"
+	invocation_type = "whisper" // It is a fake stealth spell (lockpicking is very loud)
 	cost = 1
 	
 /obj/item/melee/touch_attack/lesserknock
@@ -1233,6 +1264,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 3 // Full shut down of another mage should be a full mage privilege, imo
+	invocation = "COUNTERSPELL!"
+	invocation_type = "shout"
 	overlay_state = "rune2"
 
 /obj/effect/proc_holder/spell/invoked/counterspell/cast(list/targets, mob/user = usr)
@@ -1269,6 +1302,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	charging_slowdown = 3
 	spell_tier = 2
+	invocation = "Enlarge!"
+	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune1"
@@ -1312,6 +1347,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	gesture_required = TRUE // Mobility spell
 	spell_tier = 2
+	invocation = "Leap!"
+	invocation_type = "shout"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
@@ -1353,6 +1390,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 1
+	invocation = "Transform"
+	invocation_type = "whisper"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/wind
 	overlay_state = "mirror"
@@ -1389,6 +1428,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargetime = 0 SECONDS
 	charge_max = 30 SECONDS
 	spell_tier = 2
+	// This is super telegraphed so it shouldn't need any whisper. It can stay silent as a unique.
 	var/area_of_effect = 1
 	var/max_range = 7
 	var/turf/destination_turf
@@ -1518,7 +1558,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune6"
 	xp_gain = TRUE
-	invocation = "SHIFT THROUGH SPACE!"
+	invocation = "Shift through space!"
 	invocation_type = "shout"
 	var/max_range = 5
 	var/phase = /obj/effect/temp_visual/blink
@@ -1643,7 +1683,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	xp_gain = TRUE
 	charge_max = 5 MINUTES
 	spell_tier = 3
-	invocation = "MENTIS NEXUS!"
+	invocation = "Mindlink"
 	invocation_type = "whisper"
 	
 	// Charged spell variables
