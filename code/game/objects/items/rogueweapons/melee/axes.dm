@@ -130,7 +130,7 @@
 /obj/item/rogueweapon/stoneaxe/battle
 	force = 25
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/axe/cut/battle, /datum/intent/axe/chop/battle, /datum/intent/axe/bash)
+	possible_item_intents = list(/datum/intent/axe/cut/battle, /datum/intent/axe/chop/battle, /datum/intent/axe/bash, /datum/intent/sword/peel)
 	wlength = WLENGTH_LONG		//It's a big battle-axe.
 	name = "battle axe"
 	desc = "A steel battleaxe of war. Has a wicked edge."
@@ -138,7 +138,7 @@
 	max_blade_int = 300
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
-	gripped_intents = list(/datum/intent/axe/cut/battle ,/datum/intent/axe/chop/battle, /datum/intent/axe/bash)
+	gripped_intents = list(/datum/intent/axe/cut/battle ,/datum/intent/axe/chop/battle, /datum/intent/axe/bash, /datum/intent/sword/peel)
 	minstr = 9
 	wdefense = 4
 
@@ -190,12 +190,12 @@
 	name = "axe"
 	force = 20
 	force_wielded = 26
-	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop)
+	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
 	desc = "A regular iron woodcutting axe."
 	icon_state = "axe"
 	max_blade_int = 400
 	smeltresult = /obj/item/ingot/iron
-	gripped_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop)
+	gripped_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
 	wdefense = 2
 
 //Pickaxe-axe ; Technically both a tool and a weapon, but it goes here due to weapon function. Subtype of woodcutter axe, mostly a weapon.
@@ -223,7 +223,7 @@
 
 /obj/item/rogueweapon/stoneaxe/handaxe
 	force = 19
-	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop)
+	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
 	name = "hatchet"
 	desc = "An iron hand axe."
 	icon_state = "hatchet"
@@ -302,9 +302,12 @@
 	wdefense = 4
 	is_silver = TRUE
 
-/obj/item/rogueweapon/stoneaxe/silver/psyaxe
+/obj/item/rogueweapon/stoneaxe/battle/psyaxe
 	name = "psydonian war axe"
-	desc = "A one-handed war axe forged in the pain of psydon."
+	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
-	wdefense = 5
-	max_blade_int = 450
+	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/stoneaxe/battle/psyaxe/ComponentInitialize()
+	. = ..()								//+3 force, +50 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, FALSE, 3, 50, 50, 1, TRUE)

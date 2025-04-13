@@ -31,7 +31,6 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
@@ -41,6 +40,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 		backpack_contents = /obj/item/rogueweapon/huntingknife/idagger/navaja
 	ADD_TRAIT(H, TRAIT_SEEPRICES, type)
+	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC) //Makes up for loss of alchemy to see reagents.
 	neck = /obj/item/clothing/neck/roguetown/horus
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/merchant
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/sailor

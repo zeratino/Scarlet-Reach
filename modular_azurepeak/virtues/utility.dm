@@ -120,7 +120,11 @@
 		/datum/language/hellspeak,
 		/datum/language/draconic,
 		/datum/language/celestial,
-		/datum/language/grenzelhoftian
+		/datum/language/grenzelhoftian,
+		/datum/language/kazengunese,
+		/datum/language/otavan,
+		/datum/language/etruscan,
+		/datum/language/gronnic
 	)
 		
 	var/list/choices = list()
@@ -187,7 +191,6 @@
 	added_stashed_items = list("Medicine Pouch" = /obj/item/storage/belt/rogue/pouch/medicine)
 	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
 						list(/datum/skill/craft/alchemy, 2, 2),
-						list(/datum/skill/misc/alchemy, 2, 2),
 						list(/datum/skill/misc/medicine, 2, 2)
 	)
 
