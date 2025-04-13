@@ -21,7 +21,9 @@
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
-	
+	allowed_patrons = NON_PSYDON_PATRONS		//Same reason as lord. See Lord.
+
+
 /datum/job/roguetown/prince/after_spawn(mob/living/H, mob/M, latejoin)
 	. = ..()
 	if(ishuman(H))
@@ -97,7 +99,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
 		H.mind.adjust_spellpoints(1)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)

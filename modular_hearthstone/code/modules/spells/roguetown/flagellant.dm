@@ -368,7 +368,7 @@
 	releasedrain = 0
 	chargedrain = 0
 	chargetime = 0
-	range = -1 // Unlimited range
+	range = 999 // Unlimited range didn't work, woe! 999 instead
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/diagnose.ogg'
