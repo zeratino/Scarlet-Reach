@@ -120,6 +120,7 @@
 		/datum/language/hellspeak,
 		/datum/language/draconic,
 		/datum/language/celestial,
+		/datum/language/canilunzt,
 		/datum/language/grenzelhoftian,
 		/datum/language/kazengunese,
 		/datum/language/otavan,
