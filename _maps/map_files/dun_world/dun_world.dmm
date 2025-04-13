@@ -5393,6 +5393,10 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/indoors/shelter/woods)
+"cmi" = (
+/obj/structure/roguemachine/mail/r,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/town/shop)
 "cmp" = (
 /obj/structure/chair/bench/church,
 /turf/open/floor/rogue/church,
@@ -26914,6 +26918,13 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"kXo" = (
+/obj/structure/roguemachine/mail/r{
+	pixel_x = 0;
+	pixel_y = -30
+	},
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/town/shop)
 "kXv" = (
 /obj/structure/fermenting_barrel/water,
 /turf/open/floor/rogue/cobblerock,
@@ -253857,7 +253868,7 @@ tEq
 pPy
 tvm
 tvm
-nhG
+kXo
 eZd
 uBc
 gpj
@@ -258377,7 +258388,7 @@ tDA
 eZd
 crh
 xTm
-xTm
+cmi
 djr
 eZd
 pWT
