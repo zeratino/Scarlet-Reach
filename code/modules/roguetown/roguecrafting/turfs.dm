@@ -198,6 +198,39 @@
 	verbage = "builds"
 	craftdiff = 1
 
+/datum/crafting_recipe/roguetown/turfs/brickwall
+	name = "brick wall"
+	result = /turf/closed/wall/mineral/rogue/brick
+	reqs = list(/obj/item/natural/brick = 1)
+	skillcraft = /datum/skill/craft/masonry
+	verbage_simple = "build"
+	verbage = "builds"
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/turfs/stonewindow
+	name = "brick murder hole"
+	result = /turf/closed/wall/mineral/rogue/brick/window
+	reqs = list(/obj/item/natural/brick = 2)
+	skillcraft = /datum/skill/craft/masonry
+	verbage_simple = "build"
+	verbage = "builds"
+	craftdiff = 2
+
+/datum/crafting_recipe/roguetown/turfs/brickwindow/openclose
+	name = "brick reinforced window"
+	result = /obj/structure/roguewindow/openclose/reinforced/brick
+	reqs = list(
+	  /obj/item/natural/brick = 2,
+	  /obj/item/ingot/iron = 1,
+	  /obj/item/ingot/glass = 1,
+	  /obj/item/natural/dirtclod = 1,
+	)
+	skillcraft = /datum/skill/craft/blacksmithing
+	craftsound = 'sound/items/bsmith1.ogg'
+	verbage_simple = "build"
+	verbage = "builds"
+	craftdiff = 2
+
 /// WINDOWS
 
 /datum/crafting_recipe/roguetown/turfs/roguewindow
