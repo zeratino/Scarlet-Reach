@@ -16,6 +16,7 @@
 	var/convert_damage = TRUE //If you want to convert the caster's health to the shift, and vice versa.
 	var/convert_damage_type = BRUTE //Since simplemobs don't have advanced damagetypes, what to convert damage back into.
 
+	var/pick_again = null
 	var/shapeshift_type
 	var/list/possible_shapes = list(
 		/mob/living/simple_animal/hostile/retaliate/rogue/cat,
@@ -49,8 +50,6 @@
 			if(shapeshift_type)
 				return
 			shapeshift_type = new_shapeshift_type
-			if(!shapeshift_type) //If you aren't gonna decide I am!
-				shapeshift_type = pick(animal_list)
 			shapeshift_type = animal_list[shapeshift_type]
 
 		var/obj/shapeshift_holder/S = locate() in M
@@ -83,8 +82,10 @@
 	if(!H)
 		return
 
-	shapeshift_type = null // allows new selection
 	H.restore()
+
+	if(pick_again == TRUE)
+		shapeshift_type = null
 
 	clothes_req = initial(clothes_req)
 	human_req = initial(human_req)

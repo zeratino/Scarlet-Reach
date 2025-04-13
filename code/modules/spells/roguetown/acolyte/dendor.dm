@@ -131,3 +131,4 @@
 	human_req = FALSE
 
 	die_with_shapeshifted_form =  FALSE
+	pick_again = TRUE
