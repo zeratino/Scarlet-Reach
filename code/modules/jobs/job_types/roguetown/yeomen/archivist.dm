@@ -56,6 +56,7 @@
 		H.grant_language(/datum/language/otavan)
 		H.grant_language(/datum/language/etruscan)
 		H.grant_language(/datum/language/gronnic)
+		H.grant_language(/datum/language/kazengunese)
 		H.grant_language(/datum/language/draconic) // All but beast, which is associated with werewolves.
 		ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
 		ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
