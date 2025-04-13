@@ -1228,7 +1228,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/lesserknock
-	spell_tier = 2
+	spell_tier = 1
 	invocation = "Lesser Knock"
 	invocation_type = "whisper" // It is a fake stealth spell (lockpicking is very loud)
 	cost = 1
