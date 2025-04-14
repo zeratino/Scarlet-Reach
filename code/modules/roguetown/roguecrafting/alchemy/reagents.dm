@@ -146,9 +146,10 @@
 	alpha = 173
 
 /datum/reagent/medicine/stampot/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogstam_add(30)
+	if(volume > 0.99)
+		M.rogfat_add(-20)
 	..()
+	. = 1
 
 /datum/reagent/medicine/strongstam
 	name = "Strong Stamina Potion"
@@ -158,9 +159,10 @@
 	metabolization_rate = REAGENTS_METABOLISM * 3
 
 /datum/reagent/medicine/strongstam/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogstam_add(120)
+	if(volume > 0.99)
+		M.rogfat_add(-50)
 	..()
+	. = 1
 
 /datum/reagent/medicine/antidote
 	name = "Poison Antidote"
