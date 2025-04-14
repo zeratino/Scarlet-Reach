@@ -107,6 +107,7 @@ decreases charge time if held opened in hand, for pure mage build + aesthetics.
 	var/datum/mind/user_mind = user.mind
 	if(!user_mind) return // How??
 	if(user_mind.has_changed_spell)
+		to_chat(user, span_warning("I have already unbinded my spells today!"))
 		return
 	var/list/resettable_spells = list()
 	var/list/spell_list = user_mind.spell_list
@@ -114,21 +115,22 @@ decreases charge time if held opened in hand, for pure mage build + aesthetics.
 		var/obj/effect/proc_holder/spell/spell = spell_list[i]
 		if(spell.refundable == TRUE)
 			if(spell.cost > 0)
-				resettable_spells["[spell_list[i].name]: [spell_list[i].cost]"] = spell_list[i]
+				resettable_spells["[spell.name]: [spell.cost]"] = spell_list[i]
 	if(!resettable_spells.len)
 		to_chat(user, span_warning("I have no spells to unbind!"))
 		return
 	for(var/i = 1, i <= 2, i++)
-		var/choice = input(user, "Choose a spell to unbind.") as null|anything in resettable_spells
+		var/choice = input(user, "Choose up to two spells to unbind. Cancel both to not use up your daily unbinding.") as null|anything in resettable_spells
 		var/obj/effect/proc_holder/spell/item = resettable_spells[choice]
 		if(!item)
 			continue
 		if(!resettable_spells.len)
 			return
+		resettable_spells.Remove(choice)
 		user_mind.used_spell_points -= item.cost
 		user_mind.RemoveSpell(item)
+		user_mind.check_learnspell()
 		user_mind.has_changed_spell = TRUE
-		return
 
 /obj/item/book/spellbook/proc/get_cdr()
 	if(born_of_rock)

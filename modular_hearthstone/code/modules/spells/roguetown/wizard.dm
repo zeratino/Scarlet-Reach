@@ -188,9 +188,10 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/list/spell_choices = GLOB.learnable_spells
 
 	for(var/i = 1, i <= spell_choices.len, i++)
-		if(spell_choices[i].spell_tier > user_spell_tier)
+		var/obj/effect/proc_holder/spell/spell_item = spell_choices[i]
+		if(spell_item.spell_tier > user_spell_tier)
 			continue
-		choices["[spell_choices[i].name]: [spell_choices[i].cost]"] = spell_choices[i]
+		choices["[spell_item.name]: [spell_item.cost]"] = spell_item
 
 	choices = sortList(choices)
 
