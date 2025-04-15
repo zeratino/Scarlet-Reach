@@ -5,17 +5,15 @@
 	set name = "Say"
 	set category = "IC"
 	set hidden = 1
-
-	// If they don't type anything just drop the message.
-	set_typing_indicator(FALSE)
-	if(!length(message))
+	display_typing_indicator()
+	var/input_message = input(usr, "", "say") as text|null
+	clear_typing_indicator()
+	if(!length(input_message))
 		return
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	if(message)
-		set_typing_indicator(FALSE)
-		say(message)
+	say(input_message)
 
 ///Whisper verb
 /mob/verb/whisper_verb(message as text)
@@ -40,8 +38,9 @@
 #ifndef MATURESERVER
 	return
 #endif
+	display_typing_indicator()
 	// If they don't type anything just drop the message.
-	set_typing_indicator(FALSE)
+	clear_typing_indicator()
 	if(!length(message))
 		return
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
@@ -62,7 +61,7 @@
 	return
 #endif
 	// If they don't type anything just drop the message.
-	set_typing_indicator(FALSE)
+	clear_typing_indicator()
 	if(!length(message))
 		return
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
