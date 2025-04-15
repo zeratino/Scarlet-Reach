@@ -1015,7 +1015,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	damage = 30
 	damage_type = BRUTE
 	armor_penetration = 10
-	woundclass = BCLASS_SMASH
+	woundclass = BCLASS_BLUNT
 	nodamage = FALSE
 	flag = "magic"
 	hitsound = 'sound/combat/hits/blunt/shovel_hit2.ogg'
@@ -1030,7 +1030,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 			playsound(get_turf(target), 'sound/magic/magic_nulled.ogg', 100)
 			qdel(src)
 			return BULLET_ACT_BLOCK
-		M.confused += 3
 		playsound(get_turf(target), 'sound/combat/hits/blunt/shovel_hit2.ogg', 100) //CLANG
 	else
 		return
