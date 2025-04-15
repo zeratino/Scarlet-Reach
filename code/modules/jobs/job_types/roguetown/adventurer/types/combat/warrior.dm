@@ -237,7 +237,6 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_transfer)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/affliction_transfer)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/burden_exchange)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_link)
 			
 			pants = /obj/item/clothing/under/roguetown/tights/black
