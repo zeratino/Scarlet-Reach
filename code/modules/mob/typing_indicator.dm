@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 		return
 	typing_indicator_current = state_override
 	add_overlay(state_override)
+	update_vision_cone()
 	typing_indicator_timerid = addtimer(CALLBACK(src, PROC_REF(clear_typing_indicator)), timeout_override, TIMER_STOPPABLE)
 
 /**
@@ -44,6 +45,7 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
   */
 /mob/proc/clear_typing_indicator()
 	cut_overlay(typing_indicator_current)
+	update_vision_cone()
 	typing_indicator_current = null
 	if(typing_indicator_timerid)
 		deltimer(typing_indicator_timerid)
@@ -56,3 +58,4 @@ GLOBAL_LIST_EMPTY(typing_indicator_overlays)
 	icon_state = "default0"
 	appearance_flags = RESET_COLOR | TILE_BOUND | PIXEL_SCALE
 	layer = 5.1 // ABOVE_FLY_LAYER
+	alpha = 175
