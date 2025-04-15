@@ -185,5 +185,5 @@
 /datum/crafting_recipe/roguetown/alchemy/curerot
 	name = "rot cure potion"
 	result = list(/obj/item/reagent_containers/glass/bottle/rogue/rotcure = 1)
-	reqs = list(/obj/item/reagent_containers/glass/bottle = 1, /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 1, /obj/item/reagent_containers/lux = 1, /obj/item/ingot/gold = 1, /obj/item/alch/viscera = 2)
+	reqs = list(/obj/item/reagent_containers/glass/bottle = 1, /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 1, /obj/item/ingot/gold = 1, /obj/item/alch/viscera = 2)
 	craftdiff = 5	//Master-level

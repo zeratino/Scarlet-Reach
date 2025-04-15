@@ -35,6 +35,7 @@
 	if(user.mind)
 		burndam -= (user.mind.get_skill_level(/datum/skill/misc/medicine) * 3)
 
+	target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it.
 	target.apply_status_effect(/datum/status_effect/debuff/rotted)	//Perma debuff, needs cure - adds this on surgery.
 
 	if(remove_rot(target = target, user = user, method = "surgery", damage = burndam,

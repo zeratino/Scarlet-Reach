@@ -351,3 +351,15 @@
 	name = "Body Rot Paralysis"
 	desc = "You came back from death, but everything aches.. you can feel it in your muscles. Even in your nose, you can smell something putrid and foul. You live yet, but at what cost..?"
 	icon_state = "rotted_body"
+
+//Replaces the flat-stat change, this should ONLY apply to zombies who have been dead for some time. Makes them easier to kill.
+/datum/status_effect/debuff/rotted_zombie
+	id = "rotted_zombie"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/rotted_zombie
+	effectedstats = list("constitution" = -8)
+	//No duration = infinate in time - this is removed on de-rot miricle OR de-rot surgery. Won't be applied unless you've been a zombie for ~20 min.
+
+/atom/movable/screen/alert/status_effect/debuff/rotted_zombie
+	name = "Decomposing Corpse"
+	desc = "You've been dead for some time.. your body is finally starting to give out on you."
+	icon_state = "rotted_body"	//Temp holdover, no idea what I'd do for a new icon for this.

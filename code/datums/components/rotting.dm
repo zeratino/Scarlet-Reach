@@ -80,21 +80,22 @@
 					B.rotted = TRUE
 					findonerotten = TRUE
 					shouldupdate = TRUE
-					C.change_stat("constitution", -8, "rottenlimbs")
+					C.apply_status_effect(/datum/status_effect/debuff/rotted_zombie)	//-8 con to rotting zombie corpse.
 			else
 				if(amount > 40 MINUTES)
 					if(!is_zombie)
 						B.skeletonize()
 						if(C.dna && C.dna.species)
 							C.dna.species.species_traits |= NOBLOOD
-						C.change_stat("constitution", -99, "skeletonized")
+						C.apply_status_effect(/datum/status_effect/debuff/rotted_zombie)	//-8 con to rotting zombie corpse - duplicate as a failsafe.
 						shouldupdate = TRUE
 				else
 					findonerotten = TRUE
 		if(amount > 35 MINUTES)  // Code to delete a corpse after 35 minutes if it's not a zombie and not skeletonized. Possible failsafe.
 			if(!is_zombie)
-				if(B.skeletonized)
-					dustme = TRUE
+				if(!C.client)	// We want to dust NPC bodies, not player bodies.
+					if(B.skeletonized)
+						dustme = TRUE
 
 	if(dustme)
 		qdel(src)
