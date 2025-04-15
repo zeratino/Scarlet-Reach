@@ -1349,7 +1349,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	gesture_required = TRUE // Mobility spell
 	spell_tier = 2
 	invocation = "Leap!"
-	invocation_type = "shout"
+	invocation_type = "whisper"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane

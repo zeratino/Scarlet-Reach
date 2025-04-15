@@ -304,7 +304,7 @@
 	charging_slowdown = 1
 	spell_tier = 2
 	invocation = "Fetch!"
-	invocation_type = "shout"
+	invocation_type = "whisper"
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	cost = 1
