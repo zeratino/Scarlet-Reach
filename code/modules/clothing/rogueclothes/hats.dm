@@ -12,6 +12,7 @@
 	experimental_onhip = TRUE
 	var/mask_override = FALSE //override if we want to always respect our inv flags if the helm is in a mask slot
 	experimental_inhand = FALSE
+	var/hidesnoutADJ = FALSE
 
 /obj/item/clothing/head/roguetown/equipped(mob/user, slot)
 	. = ..()
@@ -82,6 +83,7 @@
 	edelay_type = 1
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
+	hidesnoutADJ = TRUE
 	blocksound = SOFTHIT
 	max_integrity = 100
 	sewrepair = TRUE
@@ -96,6 +98,7 @@
 	desc = "Flowing like blood from a wound, this tithe of cloth-and-silk spills out to the shoulders. It carries the telltale mark of Naledian stitcheries."
 	item_state = "hijab"
 	icon_state = "deserthood"
+	hidesnoutADJ = FALSE
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	name = "heavy hood"
@@ -104,6 +107,7 @@
 	color = CLOTHING_BROWN
 	item_state = "heavyhood"
 	icon_state = "heavyhood"
+	hidesnoutADJ = FALSE
 
 /obj/item/clothing/head/roguetown/roguehood/astrata
 	name = "sun hood"
@@ -233,6 +237,8 @@
 			if(toggle_icon_state)
 				icon_state = "[initial(icon_state)]_t"
 			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+			if(hidesnoutADJ == TRUE)
+				flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 			body_parts_covered = NECK|HAIR|EARS|HEAD
 			if(ishuman(user))
 				var/mob/living/carbon/H = user
@@ -2122,7 +2128,9 @@
 	item_state = "welfhead"
 	block2add = FOV_BEHIND
 	bloody_icon = 'icons/effects/blood64.dmi'
+	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
 	smeltresult = /obj/item/rogueore/coal
+	anvilrepair = /datum/skill/craft/carpentry
 	max_integrity = 300
 	blocksound = SOFTHIT
 
