@@ -76,7 +76,7 @@
 	name = "Crate of Rot Cure Potions"
 	desc = "A sought-after crate of rare potions of rot-curing."
 	item_type = /obj/structure/closet/crate/chest/steward/rotpotion
-	export_price = 500		//Expensive, 250 each roughly. Four uses total, as only 5u needed to reverse rot. Each bottle is 10u.
+	export_price = 400		//Expensive, 200 each roughly. Four uses total, as only 5u needed to reverse rot. Each bottle is 10u.
 	importexport_amt = 1
 
 /obj/structure/closet/crate/chest/steward/rotpotion/Initialize()

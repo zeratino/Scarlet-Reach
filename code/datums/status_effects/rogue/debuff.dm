@@ -340,12 +340,12 @@
 	desc = "You felt lyfe itself course through you, restoring your lux and your essance. You.. live - but your body aches. It still needs time to recover.."
 	icon_state = "revived"
 
-//For de-rot - your body ROTTED. This doesn't expire. Only a certain rare mechant elixor can maybe cure it. Should hit every single stat.
+//For de-rot - your body ROTTED. Harsher penalty for longer, can be fully off-set with a cure-rot potion.
 /datum/status_effect/debuff/rotted
 	id = "rotted_body"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/rotted
-	effectedstats = list("strength" = -1, "perception" = -1, "intelligence" = -1, "endurance" = -1, "constitution" = -1, "speed" = -1, "fortune" = -1)
-	//No duration = infinate in time - it is perma again. (There is a potion to get rid of this, however, just hard to make/expensive to order.)
+	effectedstats = list("strength" = -2, "perception" = -2, "intelligence" = -2, "endurance" = -2, "constitution" = -2, "speed" = -2, "fortune" = -2)
+	duration = 30 MINUTES	//Back to a temporary 30 min duration. It hurts.
 
 /atom/movable/screen/alert/status_effect/debuff/rotted
 	name = "Body Rot Paralysis"
