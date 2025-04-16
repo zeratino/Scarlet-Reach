@@ -1360,7 +1360,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(isnull(anvilrepair) && isnull(sewrepair))
 		return .
 	else
-		var/str = "This armor can be repaired using "
+		var/str = "This object can be repaired using "
 		var/skill_needed
 		if(anvilrepair)	
 			var/datum/skill/S = anvilrepair		//Should only ever be a skill or null
