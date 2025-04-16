@@ -2128,7 +2128,9 @@
 	item_state = "welfhead"
 	block2add = FOV_BEHIND
 	bloody_icon = 'icons/effects/blood64.dmi'
+	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
 	smeltresult = /obj/item/rogueore/coal
+	anvilrepair = /datum/skill/craft/carpentry
 	max_integrity = 300
 	blocksound = SOFTHIT
 

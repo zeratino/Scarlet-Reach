@@ -1003,6 +1003,7 @@
 	icon_state = "welfchest"
 	item_state = "welfchest"
 	max_integrity = 500
+	anvilrepair = /datum/skill/craft/carpentry
 	smeltresult = /obj/item/rogueore/coal
 	smelt_bar_num = 4
 	blocksound = SOFTHIT
