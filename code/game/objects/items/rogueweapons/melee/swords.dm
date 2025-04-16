@@ -194,7 +194,7 @@
 /obj/item/rogueweapon/sword/long
 	force = 25
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
@@ -366,7 +366,7 @@
 /obj/item/rogueweapon/sword/long/vlord
 	force = 40
 	force_wielded = 55
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "vlord"
 	icon = 'icons/roguetown/weapons/64.dmi'
@@ -441,8 +441,8 @@
 /obj/item/rogueweapon/sword/long/marlin
 	force = 26
 	force_wielded = 31
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop, /datum/intent/sword/peel)
 	icon_state = "marlin"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "marlin"
