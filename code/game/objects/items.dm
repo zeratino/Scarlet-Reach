@@ -1361,7 +1361,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return .
 	else
 		var/str = "This object can be repaired using "
-		var/skill_needed
 		if(anvilrepair)	
 			var/datum/skill/S = anvilrepair		//Should only ever be a skill or null
 			str += "<b>[initial(S.name)]</b> and a hammer."
