@@ -1043,7 +1043,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	spell_tier = 3
+	spell_tier = 2
 	invocation = "Gravity!"
 	invocation_type = "shout"
 	range = 7
