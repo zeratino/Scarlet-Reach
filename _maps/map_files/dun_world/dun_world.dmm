@@ -14255,7 +14255,6 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
 "fHz" = (
-/obj/structure/fluff/wallclock/r,
 /obj/effect/decal/cobbleedge{
 	dir = 9
 	},
@@ -15671,6 +15670,14 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
+/area/rogue/indoors/town/manor)
+"gnG" = (
+/obj/item/roguebin/water,
+/obj/item/reagent_containers/glass/bucket/wooden{
+	pixel_x = 11;
+	pixel_y = -2
+	},
+/turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "gnI" = (
 /turf/closed/wall/mineral/rogue/wooddark/vertical,
@@ -24499,17 +24506,8 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/roofs)
 "jNr" = (
-/obj/item/roguebin/water,
-/obj/item/reagent_containers/glass/bucket/wooden{
-	pixel_x = 11;
-	pixel_y = -2
-	},
-/obj/effect/decal/cobbleedge{
-	dir = 4
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
+/obj/structure/fluff/wallclock/r,
+/turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "jNL" = (
 /obj/structure/table/wood,
@@ -32659,7 +32657,9 @@
 	lockid = "manor";
 	name = "Kitchen"
 	},
-/turf/open/floor/rogue/cobblerock,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
 /area/rogue/indoors/town/manor)
 "njq" = (
 /obj/structure/roguewindow,
@@ -39934,6 +39934,14 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/tavern)
+"qcL" = (
+/obj/structure/mineral_door/wood{
+	locked = 1;
+	lockid = "manor";
+	name = "Servant's Quarters"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/indoors/town/manor)
 "qdh" = (
 /obj/structure/bars/pipe,
 /obj/structure/mineral_door/wood{
@@ -43853,7 +43861,9 @@
 	lockid = "manor";
 	name = "Throne Room"
 	},
-/turf/open/floor/rogue/cobblerock,
+/turf/open/floor/rogue/tile{
+	icon_state = "bfloorz"
+	},
 /area/rogue/indoors/town/manor)
 "rFo" = (
 /obj/effect/decal/cobbleedge{
@@ -48294,12 +48304,12 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/orcdungeon)
 "ttj" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	lockid = "manor";
-	name = "Servant's Quarters"
+/obj/structure/mineral_door/wood/fancywood{
+	lockid = "manor"
 	},
-/turf/open/floor/rogue/hexstone,
+/turf/open/floor/rogue/tile{
+	icon_state = "bfloorz"
+	},
 /area/rogue/indoors/town/manor)
 "ttk" = (
 /obj/structure/fluff/railing/border{
@@ -272105,7 +272115,7 @@ bPV
 jVp
 bIg
 vxe
-rRD
+ttj
 vxe
 vxe
 mAy
@@ -278885,7 +278895,7 @@ pRi
 vxe
 cma
 fHz
-xZf
+jNr
 mHp
 mHp
 hHn
@@ -279336,8 +279346,8 @@ uWp
 aFu
 vxe
 vxe
+qcL
 vxe
-ttj
 vxe
 vxe
 ygE
@@ -279789,7 +279799,7 @@ wFJ
 vxe
 oLl
 xZf
-xZf
+gnG
 vxe
 vGl
 uQS
@@ -280241,7 +280251,7 @@ jiV
 vxe
 nOt
 toI
-jNr
+toI
 vxe
 suj
 uQS
