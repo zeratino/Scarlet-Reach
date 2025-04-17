@@ -13,7 +13,7 @@
 	sound = 'sound/magic/churn.ogg'
 	spell_tier = 2 // Combat spell
 	invocation = "Blind!"
-	invocation_type = "shout"
+	invocation_type = "whisper"
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE
 	charge_max = 15 SECONDS
