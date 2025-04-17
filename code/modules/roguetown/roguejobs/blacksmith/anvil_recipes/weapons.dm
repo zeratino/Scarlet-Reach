@@ -17,7 +17,7 @@
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/iron/messer
-	name = "Messer"
+	name = "Hunting sword (Messer)"
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/rogueweapon/sword/iron/messer
 	craftdiff = 0
@@ -159,6 +159,12 @@
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/rogueweapon/sword/falchion
 	craftdiff = 3
+
+/datum/anvil_recipe/weapons/steel/messer
+	name = "Steel Messer"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/rogueweapon/sword/short/messer
+	craftdiff = 2
 
 /datum/anvil_recipe/weapons/steel/sword
 	name = "Sword"
