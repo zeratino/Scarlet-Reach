@@ -30,7 +30,7 @@
 		perc += (user.STAINT - L.STAINT)*10	//but it's also mostly a mindgame
 	if(!L.cmode)
 		perc = 0
-	if(L.has_status_effect(/datum/status_effect/debuff/feinted))
+	if(L.has_status_effect(/datum/status_effect/debuff/exposed))
 		perc = 0
 	if(user.has_status_effect(/datum/status_effect/debuff/feintcd))
 		perc -= rand(10,30)
@@ -42,13 +42,13 @@
 	perc = CLAMP(perc, 0, 90)
 	if(prob(perc)) //feint intent increases the immobilize duration significantly
 		if(istype(user.rmb_intent, /datum/rmb_intent/feint))
-			L.apply_status_effect(/datum/status_effect/debuff/feinted)
+			L.apply_status_effect(/datum/status_effect/debuff/exposed)
 			L.changeNext_move(10)
 			L.Immobilize(12)
 			to_chat(user, span_notice("[L] fell for my feint attack!"))
 			to_chat(L, span_danger("I fall for [user]'s feint attack!"))
 		else
-			L.apply_status_effect(/datum/status_effect/debuff/feinted)
+			L.apply_status_effect(/datum/status_effect/debuff/exposed)
 			L.changeNext_move(4)
 			L.Immobilize(5)
 			to_chat(user, span_notice("[L] fell for my feint attack!"))
@@ -82,12 +82,19 @@
 	desc = "(RMB WHILE DEFENSE IS ACTIVE) A deceptive half-attack with no follow-through, meant to force your opponent to open their guard. Useless against someone who is dodging."
 	icon_state = "rmbfeint"
 
-/datum/status_effect/debuff/feinted
+/datum/status_effect/debuff/exposed
 	id = "nofeint"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/exposed
 	duration = 50
+
+/atom/movable/screen/alert/status_effect/debuff/exposed
+	name = "Exposed"
+	desc = "My defenses are exposed. I can be hit through my parry and dodge!"
+	icon_state = "exposed"
 
 /datum/status_effect/debuff/feintcd
 	id = "feintcd"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/feintcd
 	duration = 100
 
 /datum/status_effect/debuff/riposted
@@ -130,7 +137,7 @@
 		user.visible_message(span_danger("[user] baits an attack from [target]!"))
 		if(target_zone == user_zone && !((target_zone == BODY_ZONE_CHEST) || (user_zone == BODY_ZONE_CHEST))) //Our zones match and it's not the chest
 			HT.apply_status_effect(/datum/status_effect/debuff/baited)
-			HT.apply_status_effect(/datum/status_effect/debuff/feinted)	//cheeky workaround, this will prevent defending during this period w/o adding extra baited status checks
+			HT.apply_status_effect(/datum/status_effect/debuff/exposed)
 			HT.changeNext_move(20)
 			HT.Immobilize(20)
 			to_chat(user, span_notice("[HT] fell for my bait <b>perfectly</b>!"))
@@ -195,9 +202,14 @@
 /atom/movable/screen/alert/status_effect/debuff/baitedcd
 	name = "Bait Cooldown"
 	desc = "I used it. I must wait."
-	icon_state = "baitcd"
+	icon_state = "effectcd"
 
 /datum/status_effect/debuff/baitcd
 	id = "baitcd"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/baitedcd
 	duration = 200
+
+/atom/movable/screen/alert/status_effect/debuff/feintcd
+	name = "Feint Cooldown"
+	desc = "I used it. I must wait, or risk a lower chance of success."
+	icon_state = "effectcd"

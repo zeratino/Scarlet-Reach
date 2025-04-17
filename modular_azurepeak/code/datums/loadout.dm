@@ -353,4 +353,4 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/donator_mansa
 	name = "Wortträger"
 	path = /obj/item/rogueweapon/estoc/worttrager
-	ckeywhitelist = list("pepperoni playboy")
+	ckeywhitelist = list("pepperoni playboy", "pepperoniplayboy")	//Byond maybe doesn't like spaces?

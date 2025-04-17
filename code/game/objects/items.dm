@@ -1350,3 +1350,21 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			return FOOT_LEFT
 		if(BODY_ZONE_PRECISE_R_FOOT)
 			return FOOT_RIGHT
+
+/obj/item/examine(mob/user)
+	. = ..()
+	if(isliving(user))
+		var/mob/living/L = user
+		if(L.STAINT < 9)
+			return .
+	if(isnull(anvilrepair) && isnull(sewrepair))
+		return .
+	else
+		var/str = "This object can be repaired using "
+		if(anvilrepair)	
+			var/datum/skill/S = anvilrepair		//Should only ever be a skill or null
+			str += "<b>[initial(S.name)]</b> and a hammer."
+		if(sewrepair)
+			str += "<b>Sewing</b> and a needle."
+		str = span_info(str)
+		. += str
