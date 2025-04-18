@@ -118,7 +118,7 @@
 				H.update_inv_head()
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = null
+			flags_inv = HIDESNOUT|HIDEFACIALHAIR|HIDEFACE
 			if(user)
 				if(ishuman(user))
 					var/mob/living/carbon/H = user
@@ -192,6 +192,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
+	body_parts_inherent = NECK
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
@@ -204,6 +205,7 @@
 	smeltresult = /obj/item/ingot/iron
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150
+	body_parts_inherent = NECK
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK

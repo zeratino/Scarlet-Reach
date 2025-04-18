@@ -87,12 +87,12 @@ Reel teleports the attached atom to the grabbed turf.
 /obj/item/grapplinghook/obj_break(damage_flag)
 	reset_tile()
 	reset_target()
-	. = ..()
+	..()
 
 /obj/item/grapplinghook/obj_destruction(damage_flag)
 	reset_tile()
 	reset_target()
-	. = ..()
+	..()
 	
 
 /obj/item/grapplinghook/attack_self(mob/living/user)
@@ -167,13 +167,17 @@ Reel teleports the attached atom to the grabbed turf.
 			var/turf/Tstep = get_step(last_step, last_dir)
 			if(!Tstep.density)
 				success = TRUE
-				var/list/cont = Tstep.GetAllContents(/obj/structure/roguewindow)
+				var/list/cont = Tstep.GetAllContents()
 				for(var/obj/structure/roguewindow/W in cont)
 					if(W.climbable && !W.opacity)	//It's climable and can be seen through
 						success = TRUE
 						LAZYADD(obj_to_destroy, W)
 						continue
 					else if(!W.climbable)
+						success = FALSE
+						return success
+				for(var/obj/structure/fluff/railing/fence/F in cont)
+					if(F)
 						success = FALSE
 						return success
 			else

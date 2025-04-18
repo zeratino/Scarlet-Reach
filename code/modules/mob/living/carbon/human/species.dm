@@ -1423,8 +1423,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					target_table = locate(/obj/structure/table) in target_shove_turf.contents
 					shove_blocked = TRUE
 			else
-				if(stander && target.rogfat >= target.maxrogfat) //if you are kicked while fatigued, you are knocked down no matter what
-					target.Knockdown(100)
+				if((stander && target.rogfat >= target.maxrogfat) || target.IsOffBalanced()) //if you are kicked while fatigued, you are knocked down no matter what
+					target.Knockdown(target.IsOffBalanced() ? SHOVE_KNOCKDOWN_SOLID : 100)
+					target.visible_message(span_danger("[user.name] kicks [target.name], knocking them down!"),
+					span_danger("I'm knocked down from a kick by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
+					to_chat(user, span_danger("I kick [target.name], knocking them down!"))
+					log_combat(user, target, "kicked", "knocking them down")
 
 		if(shove_blocked && !target.is_shove_knockdown_blocked() && !target.buckled)
 			var/directional_blocked = FALSE
@@ -1549,7 +1553,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 //	var/armor_block = H.run_armor_check(affecting, "I.d_type", span_notice("My armor has protected my [hit_area]!"), span_warning("My armor has softened a hit to my [hit_area]!"),pen)
 
 	var/Iforce = get_complex_damage(I, user) //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
-	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class)
+	if(!user.used_intent?.allow_offhand)
+		if(user.get_num_arms(FALSE) < 2 || user.get_inactive_held_item())
+			Iforce = 0
+	var/bladec = user.used_intent.blade_class
+	if(H == user && bladec == BCLASS_PEEL)
+		bladec = BCLASS_BLUNT
+	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor)
 
 	var/nodmg = FALSE
 
@@ -1572,9 +1582,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				else if(I.wlength > WLENGTH_SHORT && (affecting.body_zone != BODY_ZONE_CHEST))
 					can_impale = FALSE
 				if(can_impale && user.Adjacent(H))
-					affecting.add_embedded_object(I, silent = FALSE, crit_message = TRUE)
+					//affecting.add_embedded_object(I, silent = FALSE, crit_message = TRUE)
 					H.emote("embed")
-					H.grabbedby(user, 1, item_override = I)
+					H.Stun(10)
+					playsound(H.loc, "genblunt", 100, FALSE, -1)
+					user.visible_message(span_notice("[user] embeds [I] within [H]'s [affecting.name]!"), span_notice("I embed my [I] in [H]'s [affecting.name]."))
+					var/list/targets = list(H)
+					if(do_after_mob(user,targets, 10, progress = 0, uninterruptible = 1, required_mobility_flags = null))
+						affecting.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class) //It hurts to rip it out, get surgery you dingus.
+						H.emote("paincrit", TRUE)
+						playsound(H, 'sound/foley/flesh_rem.ogg', 100, TRUE, -2)
+						user.visible_message(span_notice("[user] rips [I] out of [H]'s [affecting.name]!"), span_notice("I rip [I] from [H]'s [affecting.name]."))
 //		if(H.used_intent.blade_class == BCLASS_BLUNT && I.force >= 15 && affecting.body_zone == "chest")
 //			var/turf/target_shove_turf = get_step(H.loc, get_dir(user.loc,H.loc))
 //			H.throw_at(target_shove_turf, 1, 1, H, spin = FALSE)

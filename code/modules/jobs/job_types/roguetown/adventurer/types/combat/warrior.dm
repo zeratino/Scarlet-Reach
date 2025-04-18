@@ -108,7 +108,7 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/shield/buckler
 			belt = /obj/item/storage/belt/rogue/leather
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1)
 
 		if("Barbarian")
 			to_chat(H, span_warning("You are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling."))
@@ -177,7 +177,6 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 2, TRUE)
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/inquisitorcombat.ogg'
 			H.change_stat("strength", 2)
@@ -238,7 +237,6 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_transfer)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/affliction_transfer)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/burden_exchange)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/damage_link)
 			
 			pants = /obj/item/clothing/under/roguetown/tights/black

@@ -2012,7 +2012,7 @@
 /obj/effect/spawner/lootdrop/potion_vitals,
 /obj/item/ingot/blacksteel,
 /obj/item/ingot/blacksteel,
-/obj/item/book/granter/spellbook/magician,
+/obj/item/book/spellbook/magician,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "zV" = (
@@ -3395,7 +3395,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "RT" = (
-/obj/item/mortar{
+/obj/item/reagent_containers/glass/mortar{
 	pixel_x = 9;
 	pixel_y = 4
 	},
