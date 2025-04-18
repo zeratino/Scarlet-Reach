@@ -9767,9 +9767,8 @@
 	pixel_x = 0;
 	pixel_y = -30
 	},
-/obj/machinery/light/rogue/torchholder/c,
-/turf/open/floor/rogue/cobble,
-/area/rogue/indoors/town)
+/turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors/town/shop)
 "dVC" = (
 /obj/structure/rack/rogue,
 /obj/item/clothing/suit/roguetown/armor/plate/scale,
@@ -15053,10 +15052,6 @@
 "fWp" = (
 /turf/open/floor/rogue/tile/bath,
 /area/rogue/under/cave/mazedungeon)
-"fWB" = (
-/obj/structure/roguemachine/mail/r,
-/turf/open/floor/rogue/hexstone,
-/area/rogue/indoors/town/shop)
 "fWG" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -41600,7 +41595,6 @@
 /obj/effect/spawner/lootdrop/potion_vitals,
 /obj/item/ingot/blacksteel,
 /obj/item/ingot/blacksteel,
-/obj/item/book/spellbook/magician,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "qyA" = (
@@ -260254,7 +260248,7 @@ tDA
 eZd
 crh
 xTm
-fWB
+xTm
 djr
 eZd
 pWT
