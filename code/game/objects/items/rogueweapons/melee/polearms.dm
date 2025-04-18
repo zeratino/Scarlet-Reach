@@ -105,6 +105,7 @@
 	bigboy = TRUE
 	gripsprite = TRUE
 	associated_skill = /datum/skill/combat/polearms
+	anvilrepair = /datum/skill/craft/carpentry
 	resistance_flags = FLAMMABLE
 
 /obj/item/rogueweapon/woodstaff/getonmobprop(tag)
@@ -689,12 +690,15 @@
 	smelt_bar_num = 3
 	max_blade_int = 200
 	wdefense = 4
+	force = 14
+	force_wielded = 35
 
 /obj/item/rogueweapon/greatsword/grenz
 	name = "steel zweihander"
 	icon_state = "steelzwei"
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
+	max_blade_int = 300
 
 /obj/item/rogueweapon/greatsword/psygsword
 	name = "Apocrypha"

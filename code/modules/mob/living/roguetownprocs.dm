@@ -19,15 +19,15 @@
 
 	if(check_zone(zone) == zone)	//Are we targeting a big limb or chest?
 		chance2hit += 10
-	else
-		chance2hit -= 10			//If not (IE hands, eyes, etc), it's harder to hit.
 
 	if(user.mind)
 		chance2hit += (user.mind.get_skill_level(associated_skill) * 8)
 
 	if(used_intent)
-		if(used_intent.blade_class == BCLASS_STAB || used_intent.blade_class == BCLASS_PEEL)
+		if(used_intent.blade_class == BCLASS_STAB)
 			chance2hit += 10
+		if(used_intent.blade_class == BCLASS_PEEL)
+			chance2hit += 25
 		if(used_intent.blade_class == BCLASS_CUT)
 			chance2hit += 6
 		if((used_intent.blade_class == BCLASS_BLUNT || used_intent.blade_class == BCLASS_SMASH) && check_zone(zone) != zone)	//A mace can't hit the eyes very well
@@ -38,7 +38,7 @@
 			chance2hit += 10
 
 	if(user.STAPER > 10)
-		chance2hit += (min((user.STAPER-10)*6, 24))
+		chance2hit += (min((user.STAPER-10)*8, 40))
 
 	if(user.STAPER < 10)
 		chance2hit -= ((10-user.STAPER)*10)
@@ -48,7 +48,7 @@
 	if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 		chance2hit -= 20
 
-	chance2hit = CLAMP(chance2hit, 5, 90)
+	chance2hit = CLAMP(chance2hit, 5, 93)
 
 	if(prob(chance2hit))
 		return zone
@@ -133,7 +133,7 @@
 			if(world.time < last_parry + setparrytime)
 				if(!istype(rmb_intent, /datum/rmb_intent/riposte))
 					return FALSE
-			if(has_status_effect(/datum/status_effect/debuff/feinted))
+			if(has_status_effect(/datum/status_effect/debuff/exposed))
 				return FALSE
 			if(has_status_effect(/datum/status_effect/debuff/riposted))
 				return FALSE
@@ -176,7 +176,11 @@
 
 			if(highest_defense <= (H.mind ? (H.mind.get_skill_level(/datum/skill/combat/unarmed) * 20) : 20))
 				defender_skill = H.mind?.get_skill_level(/datum/skill/combat/unarmed)
-				prob2defend += (defender_skill * 20)
+				var/obj/B = H.get_item_by_slot(SLOT_WRISTS)
+				if(istype(B, /obj/item/clothing/wrists/roguetown/bracers))
+					prob2defend += (defender_skill * 30)
+				else
+					prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 				weapon_parry = FALSE
 			else
 				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
@@ -356,7 +360,7 @@
 					return FALSE
 			if(has_status_effect(/datum/status_effect/debuff/riposted))
 				return FALSE
-			if(has_status_effect(/datum/status_effect/debuff/feinted))
+			if(has_status_effect(/datum/status_effect/debuff/exposed))
 				return FALSE
 			last_dodge = world.time
 			if(src.loc == user.loc)
