@@ -118,7 +118,7 @@
 
 /obj/item/rogueweapon/sword/falchion
 	name = "falchion"
-	desc = "A blade with a quilloned crossguard."
+	desc = "A single-edged military sword that is similar to a messer in appearance. It's good for cutting and thrusting."
 	force = 20
 	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short)
 	icon_state = "falchion"
@@ -194,7 +194,7 @@
 /obj/item/rogueweapon/sword/long
 	force = 25
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
@@ -366,7 +366,7 @@
 /obj/item/rogueweapon/sword/long/vlord
 	force = 40
 	force_wielded = 55
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "vlord"
 	icon = 'icons/roguetown/weapons/64.dmi'
@@ -441,8 +441,8 @@
 /obj/item/rogueweapon/sword/long/marlin
 	force = 26
 	force_wielded = 31
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/peel)
+	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike, /datum/intent/sword/chop, /datum/intent/sword/peel)
 	icon_state = "marlin"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "marlin"
@@ -568,13 +568,24 @@
 	penfactor = 30
 
 /obj/item/rogueweapon/sword/iron/messer
-	name = "iron messer"
-	desc = "A single edged blade to slice and chop with."
+	name = "hunting sword"
+	desc = "A basic single-edge sword that is usually used to finish off hunted game. It excels at slicing and chopping, and it's made of iron. \
+	It's a fairly reliable and affordable self-defense weapon."
 	icon_state = "imesser"
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/axe/chop, /datum/intent/sword/peel)
 	gripped_intents = null
 	minstr = 4
 	wdefense = 2
+
+/obj/item/rogueweapon/sword/short/messer
+	name = "messer"
+	desc = "A \"Großesmesser\" of disputed Grenzel origin, meaning greatknife. It's a basic single-edge sword for civilian and military use. It excels at slicing and chopping, and it's made of steel. \
+	It can fill the exact function of a hunting sword, this one is more durable."
+	icon_state = "smesser"
+	force = 22	//Same damage as the iron messer
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/axe/chop, /datum/intent/sword/peel)
+	gripped_intents = null
+	minstr = 5
 
 /obj/item/rogueweapon/sword/sabre
 	name = "sabre"

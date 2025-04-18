@@ -345,7 +345,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/necromancer
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_ZOMBIE_IMMUNE, TRAIT_MAGEARMOR, TRAIT_GRAVEROBBER, TRAIT_OUTLAW)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_ZOMBIE_IMMUNE, TRAIT_MAGEARMOR, TRAIT_GRAVEROBBER, TRAIT_OUTLAW, TRAIT_ARCYNE_T3)
 
 
 /datum/outfit/job/roguetown/wretch/necromancer/pre_equip(mob/living/carbon/human/H)
@@ -375,7 +375,7 @@
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 	if(H.age == AGE_OLD)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-		H.mind.adjust_spellpoints(1)
+		H.mind.adjust_spellpoints(2)
 	H.change_stat("intelligence", 4)
 	H.change_stat("endurance", 1)
 	H.change_stat("speed", 1)
@@ -384,7 +384,7 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/bonechill)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer)
-	H.mind.adjust_spellpoints(1)
+	H.mind.adjust_spellpoints(5)
 	GLOB.excommunicated_players += H.real_name
 	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 	if (!my_crime)

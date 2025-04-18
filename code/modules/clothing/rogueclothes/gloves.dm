@@ -243,3 +243,4 @@
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT
 	max_integrity = 200
+	anvilrepair = /datum/skill/craft/carpentry
