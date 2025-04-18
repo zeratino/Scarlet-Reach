@@ -4,7 +4,7 @@
 	speech_verb = "enounces"
 	whisper_verb = "whispers"
 	exclaim_verb = "remarks"
-	key = "v"
+	key = "a"
 	flags = LANGUAGE_HIDE_ICON_IF_UNDERSTOOD | LANGUAGE_HIDE_ICON_IF_NOT_UNDERSTOOD
 	space_chance = 20
 	default_priority = 90
