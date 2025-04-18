@@ -340,3 +340,4 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
 	icon_state = "welfshoes"
 	item_state = "welfshoes"
+	anvilrepair = /datum/skill/craft/carpentry

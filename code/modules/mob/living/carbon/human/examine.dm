@@ -790,7 +790,7 @@
 
 /// Returns patron-related examine text for the mob, if any. Can return null.
 /mob/living/proc/get_heretic_text(mob/examiner)
-	var/heretic_text
+	var/heretic_text = null
 	var/seer
 
 	if(HAS_TRAIT(src,TRAIT_DECEIVING_MEEKNESS))
@@ -822,7 +822,7 @@
 			if(HAS_TRAIT(examiner, TRAIT_DEPRAVED))
 				heretic_text += " She leads us to the greatest ends."
 	
-	return null
+	return heretic_text
 
 /// Same as get_heretic_text, but returns a simple symbol depending on the type of heretic!
 /mob/living/proc/get_heretic_symbol(mob/examiner)
