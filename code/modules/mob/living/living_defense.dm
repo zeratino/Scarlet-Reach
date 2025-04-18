@@ -1,7 +1,5 @@
 
 /mob/living/proc/run_armor_check(def_zone = null, attack_flag = "blunt", absorb_text = null, soften_text = null, armor_penetration, penetrated_text, damage, blade_dulling, peeldivisor)
-	if(!damage)
-		to_chat(src, span_danger("This attack does nothing!"))
 	var/armor = getarmor(def_zone, attack_flag, damage, armor_penetration, blade_dulling, peeldivisor)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
