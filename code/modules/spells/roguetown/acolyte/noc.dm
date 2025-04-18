@@ -12,7 +12,7 @@
 	movement_interrupt = FALSE
 	sound = 'sound/magic/churn.ogg'
 	spell_tier = 2 // Combat spell
-	invocation = "Blind!"
+	invocation = "Obcaeco!"
 	invocation_type = "whisper"
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE

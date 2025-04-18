@@ -14,7 +14,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation = "Fortitude"
+	invocation = "Tenax"
 	invocation_type = "whisper"
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
@@ -82,7 +82,7 @@
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 2
-	invocation = "Guidance"
+	invocation = "Ducere"
 	invocation_type = "whisper"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -153,7 +153,7 @@
 	warnie = "spellwarning"
 	school = "transmutation"
 	spell_tier = 2
-	invocation = "Haste!"
+	invocation = "Festinatio!"
 	invocation_type = "shout" // I mean, it is fast
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -229,7 +229,7 @@
 	no_early_release = TRUE
 	movement_interrupt = TRUE
 	spell_tier = 1 // Not directly combat useful
-	invocation = "Featherfall"
+	invocation = "Lenis Cadere"
 	invocation_type = "whisper"
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
@@ -258,7 +258,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	spell_tier = 1 // Not direct combat useful but still good, replicated by polearm
-	invocation = "Stride free!"
+	invocation = "Aranea Deambulatio"
 	invocation_type = "whisper"
 	charging_slowdown = 1
 	chargedloop = /datum/looping_sound/invokegen

@@ -235,7 +235,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	sound = 'sound/blank.ogg'
 	overlay_state = "forcewall"
 	spell_tier = 2
-	invocation = "Forcewall!"
+	invocation = "Murus!"
 	invocation_type = "shout"
 	range = 7
 	chargedloop = /datum/looping_sound/invokegen
@@ -309,7 +309,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	range = 6
 	spell_tier = 3
-	invocation = "Ensnare!"
+	invocation = "Impedio!"
 	invocation_type = "shout"
 	overlay_state = "ensnare"
 	var/area_of_effect = 1
@@ -425,7 +425,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "repulse"
 	spell_tier = 2
-	invocation = "Repulse!"
+	invocation = "Obmolior!"
 	invocation_type = "shout"
 	var/stun_amt = 5
 	var/maxthrow = 3
@@ -487,8 +487,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "blade_burst"
-	spell_tier = 2 // AOE, but this is essential for PVP
-	invocation = "Blade Burst!"
+	spell_tier = 2 // AOE, but this is essential for PVE
+	invocation = "Erumpere Gladios!"
 	invocation_type = "shout"
 	gesture_required = TRUE
 	var/delay = 14
@@ -617,7 +617,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/darkvision
 	spell_tier = 1
-	invocation = "Darkvision"
+	invocation = "Nox Oculus"
 	invocation_type = "whisper"
 	xp_gain = TRUE
 	cost = 2
@@ -664,7 +664,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = TRUE
 	charging_slowdown = 2
 	spell_tier = 4 // CM / Antag / Lich exclusive
-	invocation = "KNOCK!"
+	invocation = "Pulso!"
 	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -713,7 +713,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	antimagic_allowed = FALSE //can you use it if you are antimagicked?
 	spell_tier = 2
-	invocation = "Acid Splash!"
+	invocation = "Tabificus!"
 	invocation_type = "shout"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
@@ -798,7 +798,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	gesture_required = TRUE
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
-	invocation = "Frost Bite!"
+	invocation = "Congelationis!"
 	invocation_type = "shout"
 	cost = 1
 
@@ -862,7 +862,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	range = 7
 	gesture_required = TRUE // Offensive spell
 	spell_tier = 3
-	invocation = "Snap Freeze!"
+	invocation = "Congelare Subitus!"
 	invocation_type = "shout"
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
@@ -937,7 +937,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	antimagic_allowed = FALSE //can you use it if you are antimagicked?
 	charging_slowdown = 3
 	spell_tier = 2
-	invocation = "Frost Bolt!"
+	invocation = "Sagitta Glaciei!"
 	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
@@ -994,7 +994,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 2
-	invocation = "Arcyne Bolt!"
+	invocation = "Magicae Sagitta!"
 	invocation_type = "shout"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
@@ -1044,7 +1044,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
-	invocation = "Gravity!"
+	invocation = "Pondus!"
 	invocation_type = "shout"
 	range = 7
 	var/delay = 3
@@ -1113,7 +1113,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
-	invocation = "Repel!"
+	invocation = "Exmoveo!"
 	invocation_type = "shout"
 	cost = 1
 	xp_gain = TRUE
@@ -1176,7 +1176,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
-	invocation = "Aerosolize!"
+	invocation = "Converti in Nebulam!"
 	invocation_type = "shout"
 	cost = 1
 
@@ -1230,7 +1230,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/lesserknock
 	spell_tier = 1
-	invocation = "Lesser Knock"
+	invocation = "Parvus Pulso"
 	invocation_type = "whisper" // It is a fake stealth spell (lockpicking is very loud)
 	cost = 1
 	
@@ -1265,7 +1265,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 3 // Full shut down of another mage should be a full mage privilege, imo
-	invocation = "COUNTERSPELL!"
+	invocation = "Respondeo!"
 	invocation_type = "shout"
 	overlay_state = "rune2"
 
@@ -1303,7 +1303,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	charging_slowdown = 3
 	spell_tier = 2
-	invocation = "Enlarge!"
+	invocation = "Dilatare!"
 	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
@@ -1348,7 +1348,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	gesture_required = TRUE // Mobility spell
 	spell_tier = 2
-	invocation = "Leap!"
+	invocation = "Saltus!"
 	invocation_type = "whisper"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/wind
@@ -1391,7 +1391,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 1
-	invocation = "Transform"
+	invocation = "Effingo"
 	invocation_type = "whisper"
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/wind
@@ -1559,7 +1559,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune6"
 	xp_gain = TRUE
-	invocation = "Shift through space!"
+	invocation = "Nictare Teleporto!"
 	invocation_type = "shout"
 	var/max_range = 5
 	var/phase = /obj/effect/temp_visual/blink
@@ -1684,7 +1684,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	xp_gain = TRUE
 	charge_max = 5 MINUTES
 	spell_tier = 3
-	invocation = "Mindlink"
+	invocation = "Mens Nexu"
 	invocation_type = "whisper"
 	
 	// Charged spell variables
