@@ -118,7 +118,7 @@
 
 /obj/item/rogueweapon/sword/falchion
 	name = "falchion"
-	desc = "A blade with a quilloned crossguard."
+	desc = "A single-edged military sword that is similar to a messer in appearance. It's good for cutting and thrusting."
 	force = 20
 	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short)
 	icon_state = "falchion"
@@ -568,13 +568,24 @@
 	penfactor = 30
 
 /obj/item/rogueweapon/sword/iron/messer
-	name = "iron messer"
-	desc = "A single edged blade to slice and chop with."
+	name = "hunting sword"
+	desc = "A basic single-edge sword that is usually used to finish off hunted game. It excels at slicing and chopping, and it's made of iron. \
+	It's a fairly reliable and affordable self-defense weapon."
 	icon_state = "imesser"
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/axe/chop, /datum/intent/sword/peel)
 	gripped_intents = null
 	minstr = 4
 	wdefense = 2
+
+/obj/item/rogueweapon/sword/short/messer
+	name = "messer"
+	desc = "A \"Großesmesser\" of disputed Grenzel origin, meaning greatknife. It's a basic single-edge sword for civilian and military use. It excels at slicing and chopping, and it's made of steel. \
+	It can fill the exact function of a hunting sword, this one is more durable."
+	icon_state = "smesser"
+	force = 22	//Same damage as the iron messer
+	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/axe/chop, /datum/intent/sword/peel)
+	gripped_intents = null
+	minstr = 5
 
 /obj/item/rogueweapon/sword/sabre
 	name = "sabre"
