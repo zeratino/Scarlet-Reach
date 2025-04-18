@@ -24,8 +24,8 @@
 	var/atom/movable/weps = null
 	sewrepair = TRUE
 
-/obj/item/gwstrap/attackby(obj/A, mob/living/carbon/user, params)
-	if(istype(A, /obj/item/rogueweapon/spear) || istype(A, /obj/item/rogueweapon/eaglebeak) || istype(A, /obj/item/rogueweapon/halberd) || istype(A, /obj/item/rogueweapon/estoc) || istype(A, /obj/item/rogueweapon/greatsword))
+/obj/item/gwstrap/attackby(obj/item/A, mob/living/carbon/user, params)
+	if(istype(A, /obj/item/rogueweapon) && A.w_class >= WEIGHT_CLASS_BULKY)
 		if(weps == null)
 			for(var/obj/item/gwstrap/I in user.get_equipped_items(TRUE))
 				to_chat(loc, span_warning("I work the latches of my strap to holster [A]."))
