@@ -45,6 +45,7 @@
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/elven_plate
 				neck = /obj/item/clothing/neck/roguetown/chaincoif
 				beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/special
+				beltr = /obj/item/flashlight/flare/torch
 				r_hand = /obj/item/rogueweapon/halberd/glaive
 				backr = /obj/item/gwstrap
 				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor)
@@ -72,7 +73,7 @@
 				beltr = /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 				beltl = /obj/item/quiver/arrows
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/huntingknife/idagger/navaja)
+				backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/storage/belt/rogue/pouch/coins/poor, /obj/item/rogueweapon/huntingknife/idagger/navaja, /obj/item/flashlight/flare/torch)
 				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 	//Shared minor skillblock from Wardens
