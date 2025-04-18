@@ -1,4 +1,4 @@
-// Mental-based archetypes
+did// Mental-based archetypes
 /datum/statpack/mental/scholarly
 	name = "Studious"
 	desc = "Your understanding of the world avails you, more often than not."
