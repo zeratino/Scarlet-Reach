@@ -13,6 +13,9 @@
 	school = "transmutation"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
+	spell_tier = 2
+	invocation = "Tenax"
+	invocation_type = "whisper"
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -77,6 +80,9 @@
 	charge_max = 2 MINUTES
 	warnie = "spellwarning"
 	school = "transmutation"
+	spell_tier = 2
+	invocation = "Ducere"
+	invocation_type = "whisper"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
@@ -144,6 +150,9 @@
 	charge_max = 2 MINUTES
 	warnie = "spellwarning"
 	school = "transmutation"
+	spell_tier = 2
+	invocation = "Festinatio!"
+	invocation_type = "shout" // I mean, it is fast
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
@@ -216,6 +225,9 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = TRUE
+	spell_tier = 1 // Not directly combat useful
+	invocation = "Lenis Cadere"
+	invocation_type = "whisper"
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -242,6 +254,9 @@
 	charge_max = 1.5 MINUTES
 	warnie = "spellwarning"
 	no_early_release = TRUE
+	spell_tier = 1 // Not direct combat useful but still good, replicated by polearm
+	invocation = "Aranea Deambulatio"
+	invocation_type = "whisper"
 	charging_slowdown = 1
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
