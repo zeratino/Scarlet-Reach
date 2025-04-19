@@ -17,7 +17,7 @@
 				/obj/item/rope = 1)
 	verbage_simple = "construct"
 	verbage = "constructs"
-
+/*	- Disabled. Because you people can't be trusted.. Mapped-in only.
 /datum/crafting_recipe/roguetown/structure/noose
 	name = "noose"
 	result = /obj/structure/noose
@@ -35,7 +35,7 @@
 	if(istype(checking,/turf/open/transparent/openspace))
 		return FALSE
 	return TRUE
-
+*/
 /datum/crafting_recipe/roguetown/structure/psycrss
 	name = "wooden cross"
 	result = /obj/structure/fluff/psycross/crafted
@@ -165,6 +165,26 @@
 	verbage = "builds"
 	craftsound = null
 
+/datum/crafting_recipe/roguetown/structure/smelterhiron
+	name = "iron bloomery"
+	result = /obj/machinery/light/rogue/smelter/hiron
+	reqs = list(/obj/item/natural/stone = 7,
+			/obj/item/rogueore/coal = 2,
+			/obj/item/rogueore/iron = 1)
+	verbage_simple = "build"
+	verbage = "builds"
+	craftsound = null
+
+/datum/crafting_recipe/roguetown/structure/smelterbronze
+	name = "bronze melter"
+	result = /obj/machinery/light/rogue/smelter/bronze
+	reqs = list(/obj/item/natural/stone = 6,
+			/obj/item/rogueore/coal = 1,
+			/obj/item/rogueore/iron = 1)
+	verbage_simple = "build"
+	verbage = "builds"
+	craftsound = null
+
 /datum/crafting_recipe/roguetown/structure/greatsmelter
 	name = "great furnace"
 	result = /obj/machinery/light/rogue/smelter/great
@@ -211,7 +231,7 @@
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/stone = 4,
 				/obj/item/grown/log/tree/small = 1)
-	skillcraft = /datum/skill/misc/alchemy
+	skillcraft = /datum/skill/craft/alchemy
 	craftdiff = 0
 	verbage_simple = "assemble"
 	verbage = "assembles"

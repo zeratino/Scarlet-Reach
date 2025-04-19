@@ -1,6 +1,6 @@
 /datum/advclass/psydoniantemplar // A templar, but for the Inquisition
 	name = "Adjudicator"
-	tutorial = "You are the strong arm of the Inquisition. You serve as a Templar under the local Inquisitor to forward the goals of the Otavan Inquisition. PSYDON Endures."
+	tutorial = "Psydonite knights, clad in fluted chainmaille and blessed with the capacity to invoke lesser miracles. In lieu of greater miracles and rituals, they compensate through martial discipline and blessed weaponry."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/psydoniantemplar
@@ -19,7 +19,7 @@
 	backl = /obj/item/storage/backpack/rogue/satchel/black
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/fluted
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
@@ -47,6 +47,7 @@
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
+		H.grant_language(/datum/language/otavan)
 
 		H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)
@@ -63,7 +64,7 @@
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long/psysword(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 		if("Axe")
-			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/silver/psyaxe(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/stoneaxe/battle/psyaxe(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
 		if("Whip")
 			H.put_in_hands(new /obj/item/rogueweapon/whip/psywhip_lesser(H), TRUE)
@@ -72,7 +73,7 @@
 			H.put_in_hands(new /obj/item/rogueweapon/flail/sflail/psyflail(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, 4, TRUE)
 		if("Mace")
-			H.put_in_hands(new /obj/item/rogueweapon/mace/steel/psymace(H), TRUE)
+			H.put_in_hands(new /obj/item/rogueweapon/mace/goden/psymace(H), TRUE)
 			H.mind.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE)
 		if("Spear")
 			H.put_in_hands(new /obj/item/rogueweapon/spear/psyspear(H), TRUE)

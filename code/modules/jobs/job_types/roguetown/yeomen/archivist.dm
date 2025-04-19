@@ -38,8 +38,7 @@
 
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/alchemy, 6, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 6, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
@@ -47,17 +46,23 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-		H.mind.adjust_spellpoints(1)
+		H.mind.adjust_spellpoints(3)
 		H.grant_language(/datum/language/elvish)
 		H.grant_language(/datum/language/dwarvish)
 		H.grant_language(/datum/language/celestial)
 		H.grant_language(/datum/language/hellspeak)
 		H.grant_language(/datum/language/orcish)
+		H.grant_language(/datum/language/canilunzt)
 		H.grant_language(/datum/language/grenzelhoftian)
+		H.grant_language(/datum/language/otavan)
+		H.grant_language(/datum/language/etruscan)
+		H.grant_language(/datum/language/gronnic)
+		H.grant_language(/datum/language/kazengunese)
 		H.grant_language(/datum/language/draconic) // All but beast, which is associated with werewolves.
 		ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
 		ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 		H.change_stat("strength", -1)
 		H.change_stat("constitution", -1)
 		H.change_stat("intelligence", 4)
@@ -83,7 +88,6 @@
 	var/list/datum/skill/skill_choices = list(
 	//skills alphabetically... this will be sloppy based on the descriptive name but easier for devs
 	/datum/skill/craft/alchemy,
-	/datum/skill/misc/alchemy,
 	/datum/skill/craft/armorsmithing,
 
 	/datum/skill/craft/blacksmithing,
