@@ -57,20 +57,21 @@
 	dropshrink = 0.1				//Stops shrink
 	reagent_flags = OPENCONTAINER	//So it doesn't appear through
 
-//Cup - subtype of regular cup but can shatter.
+//Flask (was a cup) - subtype of regular cup but can shatter.
 /obj/item/natural/clay/claycup
-	name = "unglazed clay cup"
+	name = "unglazed clay flask"
 	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "claycuperaw"
-	desc = "A small cup fashioned from clay. Still needs to be glazed to be useful."
+	desc = "A small flask fashioned from clay. Still needs to be glazed to be useful."
 	cooked_type = /obj/item/reagent_containers/glass/cup/claycup
 
 /obj/item/reagent_containers/glass/cup/claycup
-	name = "clay cup"
-	desc = "A small ceramic cup."
+	name = "clay flask"
+	desc = "A small ceramic flask."
 	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "claybottlecook"
 	sellprice = 3
+	reagent_flags = OPENCONTAINER	//So it doesn't appear through
 
 //Bricks - Makes bricks which are used for building. (Need brick-wall sprites for this.. augh..)
 /obj/item/natural/clay/claybrick
