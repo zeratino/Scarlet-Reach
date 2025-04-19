@@ -1813,6 +1813,7 @@
 #include "code\modules\spells\spell.dm"
 #include "code\modules\spells\roguetown\_roguetown.dm"
 #include "code\modules\spells\roguetown\confessor.dm"
+#include "code\modules\spells\roguetown\helper.dm"
 #include "code\modules\spells\roguetown\jester.dm"
 #include "code\modules\spells\roguetown\monk.dm"
 #include "code\modules\spells\roguetown\necromancer.dm"
@@ -2032,6 +2033,7 @@
 #include "modular_hearthstone\code\modules\reagents\reagent_containers\lux.dm"
 #include "modular_hearthstone\code\modules\spells\roguetown\buffs.dm"
 #include "modular_hearthstone\code\modules\spells\roguetown\flagellant.dm"
+#include "modular_hearthstone\code\modules\spells\roguetown\spelllist.dm"
 #include "modular_hearthstone\code\modules\spells\roguetown\wizard.dm"
 // END_INCLUDE
 

@@ -37,6 +37,7 @@
 				cloak = /obj/item/clothing/cloak/forrestercloak/snow
 				belt = /obj/item/storage/belt/rogue/leather/black
 				beltr = /obj/item/rogueweapon/mace
+				beltl = /obj/item/flashlight/flare/torch
 				backl = /obj/item/storage/backpack/rogue/backpack
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven
@@ -61,6 +62,7 @@
 				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/dwarven
 				cloak = /obj/item/clothing/cloak/forrestercloak/snow
 				belt = /obj/item/storage/belt/rogue/leather/black
+				beltl = /obj/item/flashlight/flare/torch
 				backl = /obj/item/storage/backpack/rogue/satchel
 				shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 				gloves = /obj/item/clothing/gloves/roguetown/plate/dwarven

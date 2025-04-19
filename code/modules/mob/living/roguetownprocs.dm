@@ -133,7 +133,7 @@
 			if(world.time < last_parry + setparrytime)
 				if(!istype(rmb_intent, /datum/rmb_intent/riposte))
 					return FALSE
-			if(has_status_effect(/datum/status_effect/debuff/feinted))
+			if(has_status_effect(/datum/status_effect/debuff/exposed))
 				return FALSE
 			if(has_status_effect(/datum/status_effect/debuff/riposted))
 				return FALSE
@@ -176,7 +176,11 @@
 
 			if(highest_defense <= (H.mind ? (H.mind.get_skill_level(/datum/skill/combat/unarmed) * 20) : 20))
 				defender_skill = H.mind?.get_skill_level(/datum/skill/combat/unarmed)
-				prob2defend += (defender_skill * 20)
+				var/obj/B = H.get_item_by_slot(SLOT_WRISTS)
+				if(istype(B, /obj/item/clothing/wrists/roguetown/bracers))
+					prob2defend += (defender_skill * 30)
+				else
+					prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 				weapon_parry = FALSE
 			else
 				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
@@ -356,7 +360,7 @@
 					return FALSE
 			if(has_status_effect(/datum/status_effect/debuff/riposted))
 				return FALSE
-			if(has_status_effect(/datum/status_effect/debuff/feinted))
+			if(has_status_effect(/datum/status_effect/debuff/exposed))
 				return FALSE
 			last_dodge = world.time
 			if(src.loc == user.loc)
