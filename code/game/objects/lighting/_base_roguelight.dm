@@ -148,8 +148,16 @@
 							break
 					return
 	if(W.firefuel)
-		if (alert(usr, "Fuel the [src] with [W]?", "ROGUETOWN", "Fuel", "Smelt") != "Fuel")
+		if(alert(usr, "Fuel [src] with [W]?", "ROGUETOWN", "Yes", "No") != "Yes")
 			return TRUE //returns true if the answer is no, we don't want to feed it
+		if(!W)
+			return
+		if(user.get_active_held_item() != W)
+			to_chat(user, span_warning("That item is no longer in my hand..."))
+			return
+
+		user.dropItemToGround(W)
+
 		if(initial(fueluse))
 			if(fueluse > initial(fueluse) - 5 SECONDS)
 				to_chat(user, "<span class='warning'>[src] is fully fueled.</span>")
