@@ -58,11 +58,11 @@
 	. = 1
 
 /datum/reagent/water/rosewater
-	name = "Rose Water"
+	name = "Rose Tea"
 	description = "Steeped rose petals with mild regeneration."
 	reagent_state = LIQUID
 	color = "#f398b6"
-	taste_description = "floral"
+	taste_description = "floral sweetness"
 	overdose_threshold = 0
 	metabolization_rate = REAGENTS_METABOLISM
 	alpha = 173

@@ -34,4 +34,9 @@
 			new /obj/item/reagent_containers/powder/salt(get_turf(loc))
 			qdel(W)
 		return
+	if(istype(W, /obj/item/alch/rosa))
+		playsound(get_turf(user), 'modular/Neu_Food/sound/milling.ogg', 100, TRUE, -1)
+		if(do_after(user, stone_grindtime, target = src))
+			new /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals(get_turf(loc))
+			qdel(W)
 	..()
