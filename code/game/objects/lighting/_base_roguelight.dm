@@ -148,8 +148,11 @@
 							break
 					return
 	if(W.firefuel)
+		if(W.smeltresult) // For things with actual smelt results - functionally no differences
+			if(alert(usr, "Fuel [src] with [W]?", "ROGUETOWN", "Fuel", "Smelt") != "Fuel")
+				return TRUE
 		if(alert(usr, "Fuel [src] with [W]?", "ROGUETOWN", "Yes", "No") != "Yes")
-			return TRUE //returns true if the answer is no, we don't want to feed it
+			return TRUE
 		if(!W)
 			return
 		if(user.get_active_held_item() != W)
