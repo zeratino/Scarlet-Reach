@@ -235,3 +235,15 @@
 		/datum/sprite_accessory/ears/cobrahood,
 		/datum/sprite_accessory/ears/cobrahoodears,
 		)
+
+/datum/customizer/organ/ears/tiefling
+	customizer_choices = list(/datum/customizer_choice/organ/ears/tiefling)
+	allows_disabling = TRUE
+
+/datum/customizer_choice/organ/ears/tiefling
+	name = "Tiefling Ears"
+	organ_type = /obj/item/organ/ears
+	sprite_accessories = list(
+		/datum/sprite_accessory/ears/elf,
+		/datum/sprite_accessory/ears/elfw,
+		)
