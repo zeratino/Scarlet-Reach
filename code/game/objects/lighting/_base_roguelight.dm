@@ -8,6 +8,7 @@
 	var/datum/looping_sound/soundloop = null // = /datum/looping_sound/fireloop
 	pass_flags = LETPASSTHROW
 	flags_1 = NODECONSTRUCT_1
+	var/no_refuel = FALSE // For special holder that don't actually refuel
 	var/cookonme = FALSE
 	var/crossfire = TRUE
 	var/can_damage = FALSE
@@ -147,7 +148,7 @@
 						else
 							break
 					return
-	if(W.firefuel)
+	if(W.firefuel && !no_refuel)
 		if(W.smeltresult) // For things with actual smelt results - functionally no differences
 			if(alert(usr, "Fuel [src] with [W]?", "ROGUETOWN", "Fuel", "Smelt") != "Fuel")
 				return TRUE
