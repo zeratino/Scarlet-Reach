@@ -207,7 +207,7 @@
 	verbage = "builds"
 	craftdiff = 2
 
-/datum/crafting_recipe/roguetown/turfs/stonewindow
+/datum/crafting_recipe/roguetown/turfs/brickwindow
 	name = "brick murder hole"
 	result = /turf/closed/wall/mineral/rogue/brick/window
 	reqs = list(/obj/item/natural/brick = 2)

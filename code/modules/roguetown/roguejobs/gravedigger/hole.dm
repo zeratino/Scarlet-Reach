@@ -289,7 +289,7 @@
 					new /obj/item/natural/stone(T)
 			else 
 				if(!(locate(/obj/item/natural/clay) in T))
-					if(prob(30))	
+					if(prob(40))	
 						new /obj/item/natural/clay(T)
 	return ..()
 
