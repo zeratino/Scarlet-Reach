@@ -34,6 +34,8 @@
 	var/obj/inhand_requirement = null
 	var/overlay_state = null
 	var/ignore_los = TRUE
+	var/glow_intensity = 0 // How much does the user glow when using the ability
+	var/glow_color = null // The color of the glow
 
 /obj/effect/proc_holder/Initialize()
 	. = ..()
