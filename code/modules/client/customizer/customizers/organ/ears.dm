@@ -238,7 +238,7 @@
 
 /datum/customizer/organ/ears/tiefling
 	customizer_choices = list(/datum/customizer_choice/organ/ears/tiefling)
-	allows_disabling = TRUE
+	allows_disabling = FALSE
 
 /datum/customizer_choice/organ/ears/tiefling
 	name = "Tiefling Ears"
