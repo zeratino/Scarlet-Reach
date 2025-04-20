@@ -72,7 +72,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 10,
-						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 2, /obj/item/rogueweapon/greataxe/steel/doublehead) //Acquiring an axe from their cold, dead hands.
+						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 2, /obj/item/rogueweapon/greataxe/steel/doublehead = 1) //Acquiring an axe from their cold, dead hands.
 	icon_state = "MinotaurMale_Axe"
 	icon_living = "MinotaurMale_Axe"
 	icon_dead = "MinotaurMale_dead"

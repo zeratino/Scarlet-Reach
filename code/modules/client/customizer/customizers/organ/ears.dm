@@ -88,6 +88,21 @@
 	customizer_choices = list(/datum/customizer_choice/organ/ears/goblin)
 	allows_disabling = FALSE
 
+/datum/customizer_choice/organ/ears/halforc
+	name = "Half-Orc Ears"
+	organ_type = /obj/item/organ/ears
+	sprite_accessories = list(
+		/datum/sprite_accessory/ears/goblin,
+		/datum/sprite_accessory/ears/goblin_alt,
+		/datum/sprite_accessory/ears/goblin_small,
+		/datum/sprite_accessory/ears/halforc,
+		/datum/sprite_accessory/ears/elf,
+		/datum/sprite_accessory/ears/elfw)
+
+/datum/customizer/organ/ears/halforc
+	customizer_choices = list(/datum/customizer_choice/organ/ears/halforc)
+	allows_disabling = FALSE
+
 /datum/customizer/organ/ears/demihuman
 	customizer_choices = list(/datum/customizer_choice/organ/ears/demihuman)
 	allows_disabling = TRUE
@@ -219,4 +234,16 @@
 	sprite_accessories = list(
 		/datum/sprite_accessory/ears/cobrahood,
 		/datum/sprite_accessory/ears/cobrahoodears,
+		)
+
+/datum/customizer/organ/ears/tiefling
+	customizer_choices = list(/datum/customizer_choice/organ/ears/tiefling)
+	allows_disabling = FALSE
+
+/datum/customizer_choice/organ/ears/tiefling
+	name = "Tiefling Ears"
+	organ_type = /obj/item/organ/ears
+	sprite_accessories = list(
+		/datum/sprite_accessory/ears/elf,
+		/datum/sprite_accessory/ears/elfw,
 		)

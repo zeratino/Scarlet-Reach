@@ -114,6 +114,26 @@
 				qdel(src)
 		else
 			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
+	if(istype(I, /obj/item/clothing/neck/roguetown/psicross/astrata))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading_alt.ogg', 90, TRUE, -1)
+			to_chat(user, span_notice("Pressing the shape of Astrata's cross into the bun..."))
+			if(do_after(user,short_cooktime, target = src))
+				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw(loc)
+				qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
+	if(istype(I, /obj/item/clothing/neck/roguetown/psicross)) // This is gonna be messy cuz other are subtypes
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading_alt.ogg', 90, TRUE, -1)
+			to_chat(user, span_notice("Pressing the shape of the psycross into the bun..."))
+			if(do_after(user,short_cooktime, target = src))
+				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw(loc)
+				qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
 	else
 		return ..()
 
@@ -477,6 +497,45 @@
 	else
 		return ..()
 
+/* 	.................   Crossbuns   ................... */
+// Astrata variant
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw
+	name = "raw crossbun"
+	desc = "A raw dough with the shape of Astrata's cross pressed onto it. In Her Lights."
+	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon_state = "crossbun_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crossbun
+
+// Psydon variant
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw
+	name = "raw psycrossbun"
+	desc = "A raw dough with the shape of a Psycross pressed onto it. He ENDURES."
+	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon_state = "psycrossbun_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
+
+/obj/item/reagent_containers/food/snacks/rogue/crossbun
+	name = "crossbun"
+	desc = "Traditionally eaten for breakfast."
+	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon_state = "crossbun"
+	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
+	w_class = WEIGHT_CLASS_NORMAL
+	tastes = list("bread" = 1)
+	bitesize = 2
+	rotprocess = SHELFLIFE_EXTREME
+
+/obj/item/reagent_containers/food/snacks/rogue/psycrossbun
+	name = "psycrossbun"
+	desc = "The bun endures."
+	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon_state = "psycrossbun"
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
+	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
+	w_class = WEIGHT_CLASS_NORMAL
+	tastes = list("bread" = 1)
+	bitesize = 2
+	rotprocess = SHELFLIFE_EXTREME
 
 /*	.................   Cheese bun   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesebun_raw
