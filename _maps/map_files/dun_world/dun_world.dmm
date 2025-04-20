@@ -9767,6 +9767,12 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/sewer)
+"dUw" = (
+/obj/effect/decal/mossy{
+	dir = 1
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/indoors/town/magician)
 "dUx" = (
 /obj/structure/handcart,
 /obj/item/grown/log/tree/stick,
@@ -11793,9 +11799,6 @@
 /obj/effect/landmark/start/prisonerr,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/cell)
-"eFJ" = (
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town/roofs/keep)
 "eFL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/wall/mineral/rogue/decostone,
@@ -23437,6 +23440,9 @@
 /area/rogue/under/cave/licharena)
 "jgI" = (
 /obj/machinery/light/rogue/firebowl/standing/blue,
+/obj/effect/decal/mossy{
+	dir = 1
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/indoors/town/magician)
 "jgM" = (
@@ -32830,10 +32836,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
-"mYB" = (
-/obj/structure/flora/roguegrass/bush,
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town/roofs/keep)
 "mYG" = (
 /obj/effect/landmark/start/vagrant{
 	dir = 1
@@ -49836,6 +49838,15 @@
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/shop)
+"tEr" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/open/transparent/openspace,
+/area/rogue/outdoors/town/roofs/keep)
 "tEs" = (
 /mob/living/carbon/human/species/skeleton/npc/ambush,
 /turf/open/floor/rogue/dirt,
@@ -52864,6 +52875,9 @@
 /obj/item/rogueweapon/hoe,
 /obj/item/rogueweapon/shovel,
 /obj/item/clothing/mask/cigarette/pipe/westman,
+/obj/effect/decal/mossy{
+	dir = 1
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/indoors/town/magician)
 "uOD" = (
@@ -277947,10 +277961,10 @@ hrf
 paT
 dTz
 mys
-paT
 xNu
+kAx
 rMf
-rMf
+kAx
 vAw
 jQE
 weQ
@@ -280203,7 +280217,7 @@ noW
 msF
 qWd
 vxr
-lRw
+dUw
 fsp
 fsp
 fsp
@@ -280655,7 +280669,7 @@ tKV
 nTh
 qWd
 eRt
-lRw
+dUw
 qLd
 qLd
 qLd
@@ -281107,7 +281121,7 @@ noW
 noW
 qWd
 gWV
-lRw
+dUw
 lxj
 lxj
 lxj
@@ -392297,8 +392311,8 @@ vxe
 kpN
 cXk
 cXk
-eFJ
-mYB
+gxR
+dmo
 dmU
 vmi
 vmi
@@ -392749,8 +392763,8 @@ vxe
 wdE
 cXk
 cXk
-eFJ
-mYB
+nnJ
+dmo
 dmU
 vmi
 vmi
@@ -393201,8 +393215,8 @@ vxe
 vxe
 piQ
 hAe
-kBl
-szS
+iVM
+tEr
 tvg
 vmi
 vmi
@@ -393653,8 +393667,8 @@ mdm
 vxe
 dmo
 vIR
-dmU
-vmi
+kBl
+tvg
 vmi
 wHo
 wHo
