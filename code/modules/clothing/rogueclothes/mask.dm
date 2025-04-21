@@ -113,9 +113,8 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 
-/obj/item/clothing/mask/rogue/facemask/hound
+/obj/item/clothing/mask/rogue/facemask
 	name = "hound mask"
-    desc = "An iron mask, made for those who have snouts, protecting the eyes, nose and muzzle while obscuring the face."
 	icon_state = "imask_hound"
 	max_integrity = 100
 	blocksound = PLATEHIT
