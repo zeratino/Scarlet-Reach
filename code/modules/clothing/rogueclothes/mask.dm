@@ -113,7 +113,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
 
-/obj/item/clothing/mask/rogue/facemask
+/obj/item/clothing/mask/rogue/facemask/hound
 	name = "hound mask"
 	icon_state = "imask_hound"
 	max_integrity = 100
