@@ -326,7 +326,6 @@
 	desc = "A strip of cloth tied around the eyes to block vision."
 	icon_state = "blindfold"
 	item_state = "blindfold"
-	flags_inv = HIDEFACE
 	body_parts_covered = EYES
 	sewrepair = TRUE
 	tint = 3
