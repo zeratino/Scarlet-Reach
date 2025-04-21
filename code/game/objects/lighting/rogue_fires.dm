@@ -13,6 +13,7 @@
 	dir = SOUTH
 	crossfire = TRUE
 	fueluse = 0
+	no_refuel = TRUE
 
 /obj/machinery/light/rogue/firebowl/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
@@ -106,6 +107,7 @@
 	bulb_colour = "#ffa35c"
 	density = FALSE
 	fueluse = 0
+	no_refuel = TRUE
 	crossfire = FALSE
 	cookonme = TRUE
 
@@ -175,6 +177,7 @@
 	density = FALSE
 	var/obj/item/flashlight/flare/torch/torchy
 	fueluse = FALSE //we use the torch's fuel
+	no_refuel = TRUE
 	soundloop = null
 	crossfire = FALSE
 	plane = GAME_PLANE_UPPER
@@ -310,6 +313,7 @@
 	pixel_y = -10
 	layer = 2.0
 	fueluse = 0
+	no_refuel = TRUE
 	soundloop = null
 	crossfire = FALSE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN | BLOCK_Z_IN_UP

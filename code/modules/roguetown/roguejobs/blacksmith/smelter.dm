@@ -55,6 +55,11 @@
 		if(!(..())) //False/null if using the item as fuel. If true, we want to try smelt it so go onto next segment.
 			return
 	if(W.smeltresult)
+		if(!W)
+			return
+		if(user.get_active_held_item() != W)
+			to_chat(user, span_warning("That item is no longer in my hand..."))
+			return
 		if(ore.len < maxore)
 			user.dropItemToGround(W)
 			W.forceMove(src)
