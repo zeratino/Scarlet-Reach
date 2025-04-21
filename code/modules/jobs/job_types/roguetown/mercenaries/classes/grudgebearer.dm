@@ -166,14 +166,14 @@
 		"piercing" = 100,
 	)
 
-	hits_to_peel = list(
+	hits_to_shred = list(
 		"blunt" = 3,
 		"slash" = 3,
 		"stab" = 3,
 		"piercing" = 5,
 	)
 
-	damtype_peel_ratio = list(
+	damtype_shred_ratio = list(
 		"blunt" = 1,
 		"slash" = 1,
 		"stab" = 1,
@@ -208,7 +208,7 @@
 /datum/component/layeredarmor/grudgebearer/helmet
 
 /datum/component/layeredarmor/grudgebearer/limbs
-	hits_to_peel = list(
+	hits_to_shred = list(
 		"blunt" = 2,
 		"slash" = 2,
 		"stab" = 2,
@@ -236,7 +236,7 @@
 		"10"	= 30,
 	)
 
-	peel_amt = 20	//Limbs lose 2 grades per layer peel, but also repair 4.
+	shred_amt = 20	//Limbs lose 2 grades per layer shred, but also repair 4.
 	layer_repair = 2
 
 

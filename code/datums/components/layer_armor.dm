@@ -12,14 +12,14 @@
 	var/list/race_repair = list()
 
 	/// How many hits a given damage type requires to decay a tier in the armor. Is meant to increase as the armor gets worse.
-	var/list/hits_to_peel = list(
+	var/list/hits_to_shred = list(
 		"blunt" = 10,
 		"slash" = 10,
 		"stab" = 10,
 		"piercing" = 10,
 	)
 
-	/// Total hits accrued by a given damage tier until it gets peeled. Resets to 0 when matches the entry from hits_to_peel.
+	/// Total hits accrued by a given damage tier until it gets shredded. Resets to 0 when matches the entry from hits_to_shred.
 	var/list/hit_count = list(
 		"blunt" = 0,
 		"slash" = 0,
@@ -35,8 +35,8 @@
 		"piercing" = 100,
 	)
 
-	/// New hit count requirements per peeled layer. ex. going from 100 to 90 will require 5 hits, 90 to 80 will require 10, etc.
-	/// MAKE SURE THE VALUES CORRELATE WITH YOUR PEEL_AMT AND STARTING ARMOR VALUES IF YOU WISH TO USE THIS
+	/// New hit count requirements per shredded layer. ex. going from 100 to 90 will require 5 hits, 90 to 80 will require 10, etc.
+	/// MAKE SURE THE VALUES CORRELATE WITH YOUR SHRED_AMT AND STARTING ARMOR VALUES IF YOU WISH TO USE THIS
 	var/list/hits_per_layer = list(
 		"100" 	= 10,
 		"90" 	= 10,
@@ -51,7 +51,7 @@
 	)
 
 	/// A multiplier to a damage type. One hit from that type will equal this number if it's bigger than 1. ONLY USE WHOLE NUMBERS.
-	var/list/damtype_peel_ratio = list(
+	var/list/damtype_shred_ratio = list(
 		"blunt" = 1,
 		"slash" = 1,
 		"stab" = 1,
@@ -61,20 +61,20 @@
 	/// Populated during repair_check(), leave empty.
 	var/list/repairable_damtypes = list()
 
-	/// How much armor is lost when a layer is peeled off. Increments of 10 are recommended, as they correspond to letter tiers on examine (S -> A+ -> A -> B+ etc)
-	var/peel_amt = 10
+	/// How much armor is lost when a layer is shredded. Increments of 10 are recommended, as they correspond to letter tiers on examine (S -> A+ -> A -> B+ etc)
+	var/shred_amt = 10
 
-	/// What the next layer's hit threshold will increase by if the hits_per_layer list is empty. Doubles at 60 integrity and below by default.
-	var/peel_add = 10
+	/// What the next layer's hit threshold will increase by if the hits_per_layer list is empty. Doubles at 50 integrity and below by default.
+	var/hits_default = 10
 
 	/// Minimum damage applied to the armor required to trigger shredding.
 	var/minimum_damage_req = 15
 
-	/// Layer repair multiplier applied to peel_amt when fixing layers.
+	/// Layer repair multiplier applied to shred_amt when fixing layers.
 	var/layer_repair = 1
 
-	/// Sound that is played when a layer is peeled off.
-	var/peel_sound = 'sound/misc/layer_peel.ogg'
+	/// Sound that is played when a layer is shredded.
+	var/shred_sound = 'sound/misc/layer_peel.ogg'
 
 	/// Soudn that is played when layers are repaired.
 	var/repair_sound = 'sound/misc/layer_repair.ogg'
@@ -112,21 +112,21 @@
 			if(damage_flag in damtypes)
 				add_hit(damage_flag)
 				if(check_hit(damage_flag))
-					peel_layer(damage_flag)
+					shred_layer(damage_flag)
 	else if(damage_flag in damtypes)
 		var/obj/item/I = parent
 		if(I.armor.vars[damage_flag] > 100)	//S+ layer, it can't take direct damage, so there's an exception.
 			add_hit(damage_flag)
 			if(check_hit(damage_flag))
-				peel_layer(damage_flag)
+				shred_layer(damage_flag)
 
 /datum/component/layeredarmor/proc/on_examine(datum/source, mob/user, list/examine_list)
 	examine_list += span_info("<br>Remaining hits until a layer is shredded:")
 	for(var/type in damtypes)
 		var/ratio = 1
-		if(damtype_peel_ratio[type] > 1)
-			ratio = damtype_peel_ratio[type]
-		var/val = ROUND_UP(((hits_to_peel[type] - hit_count[type]) / ratio))	//Round it up so it doesn't lie (ex 3.1 would actually still require 4 hits to peel)
+		if(damtype_shred_ratio[type] > 1)
+			ratio = damtype_shred_ratio[type]
+		var/val = ROUND_UP(((hits_to_shred[type] - hit_count[type]) / ratio))	//Round it up so it doesn't lie (ex 3.1 would actually still require 4 hits to shred)
 		var/color 
 		switch(val)
 			if(1 to 2)
@@ -222,24 +222,24 @@
 
 /datum/component/layeredarmor/proc/add_hit(damtype)
 	if(damtype in damtypes)
-		if(damtype in damtype_peel_ratio)
-			hit_count[damtype] += damtype_peel_ratio[damtype]
+		if(damtype in damtype_shred_ratio)
+			hit_count[damtype] += damtype_shred_ratio[damtype]
 
 /datum/component/layeredarmor/proc/check_hit(damtype)
 	if(damtype)
-		if(hit_count[damtype] >= hits_to_peel[damtype])
+		if(hit_count[damtype] >= hits_to_shred[damtype])
 			return TRUE
 		else
 			return FALSE
 
-/datum/component/layeredarmor/proc/peel_layer(damtype)
+/datum/component/layeredarmor/proc/shred_layer(damtype)
 	var/obj/item/I = parent
 	if(I.armor)
 		if(I.armor.vars[damtype] > 100)
 			I.armor.vars[damtype] = 100
 		else if(I.armor.vars[damtype] > 0)
-			I.armor.vars[damtype] -= peel_amt
-		playsound(I, peel_sound, 100)
+			I.armor.vars[damtype] -= shred_amt
+		playsound(I, shred_sound, 100)
 		I.visible_message(span_warning("A <b>[damtype]</b> layer is shredded from [I]!"))
 		adjusthits(damtype, I.armor.vars[damtype])
 
@@ -251,19 +251,19 @@
 			if(length(hits_per_layer))
 				if(num2text(check) in hits_per_layer)
 					new_threshold = hits_per_layer[num2text(check)]
-			if(!new_threshold)	//We have a mismatch in hits_per_layer with our armor value (very bad) or its empty. Either way, we fall back to peel_add.
+			if(!new_threshold)	//We have a mismatch in hits_per_layer with our armor value (very bad) or its empty. Either way, we fall back to hits_default.
 				switch(check)
 					if(60 to 100)
-						new_threshold = peel_add
+						new_threshold = hits_default
 					if(0 to 59)
-						new_threshold = peel_add * 2
-			hits_to_peel[damtype] = new_threshold
+						new_threshold = hits_default * 2
+			hits_to_shred[damtype] = new_threshold
 			hit_count[damtype] = 0
 
 /datum/component/layeredarmor/proc/add_layer(damtype)
 	var/obj/item/I = parent
 	if(I.armor)
-		I.armor.vars[damtype] += peel_amt * layer_repair
+		I.armor.vars[damtype] += shred_amt * layer_repair
 		if(layer_max[damtype] > 100 && I.armor.vars[damtype] > 100)	//We have a layer that has a max of above 100, and our repair just made us go over 100.
 			I.armor.vars[damtype] = layer_max[damtype]
 		else
