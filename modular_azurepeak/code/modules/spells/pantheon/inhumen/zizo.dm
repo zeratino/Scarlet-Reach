@@ -232,6 +232,7 @@
 		user.visible_message(span_boldwarning("[user]'s form swells with terrible power as they cast away almost all of the remnants of their mortal flesh, arcyne runes glowing upon their exposed bones..."), span_notice("I HAVE DONE IT! I HAVE COMPLETED HER LESSER WORK! I stand at the cusp of unspeakable power, but something is yet missing..."))
 		ADD_TRAIT(user, TRAIT_NOHUNGER, "[type]")
 		ADD_TRAIT(user, TRAIT_NOBREATH, "[type]")
+		ADD_TRAIT(user, TRAIT_ARCYNE_T3, "[type]")
 		if (prob(33))
 			to_chat(user, span_small("...what have I done?"))
 		return TRUE
