@@ -45,6 +45,7 @@
 	sprite_accessories = list(
 		/datum/sprite_accessory/ears/cat_big,
 		/datum/sprite_accessory/ears/cat_normal,
+		/datum/sprite_accessory/ears/miqote
 		)
 
 /datum/customizer/organ/ears/axian
