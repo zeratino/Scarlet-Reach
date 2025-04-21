@@ -68,6 +68,7 @@
 #define SPAN_ORC "orc"
 #define SPAN_DRACONIC "reptile"
 #define SPAN_KAZENGUNESE "kazengunese"
+#define SPAN_AAVNIC "aavnic"
 #define SPAN_UNDEAD "undead" //nyi but file found
 #define SPAN_CAT "cat"		 //nyi but file found
 

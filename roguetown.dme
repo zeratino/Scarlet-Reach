@@ -1405,6 +1405,7 @@
 #include "code\modules\language\roguetown\thievescant.dm"
 #include "code\modules\language\roguetown\undead.dm"
 #include "code\modules\language\roguetown\regional\kazengunese.dm"
+#include "code\modules\language\roguetown\regional\aavnic.dm"
 #include "code\modules\library\book.dm"
 #include "code\modules\library\lib_items.dm"
 #include "code\modules\library\random_books.dm"
