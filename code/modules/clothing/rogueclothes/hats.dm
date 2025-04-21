@@ -302,13 +302,40 @@
 	desc = "A funny-looking hat with jingly bells attached to it."
 	icon_state = "jester"
 	item_state = "jester"
+	detail_tag = "_detail"
+	altdetail_tag = "_detailalt"
 	dynamic_hair_suffix = "+generic"
 	sewrepair = TRUE
 	flags_inv = HIDEEARS
+	detail_color = CLOTHING_WHITE
+	color = CLOTHING_AZURE
+	altdetail_color = CLOTHING_WHITE
+
+/obj/item/clothing/head/roguetown/jester/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/jester/lordcolor(primary,secondary)
+	detail_color = secondary
+	color = primary
+	update_icon()
 
 /obj/item/clothing/head/roguetown/jester/Initialize()
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS, 2)
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
+	else
+		GLOB.lordcolor += src
+
+/obj/item/clothing/head/roguetown/jester/jester/Destroy()
+	GLOB.lordcolor -= src
+	return ..()
 
 /obj/item/clothing/head/roguetown/strawhat
 	name = "straw hat"
