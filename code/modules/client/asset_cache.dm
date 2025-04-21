@@ -621,7 +621,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"kazengunese.ttf" = 'interface/fonts/languages/kazengunese.ttf',
 		"otavan.ttf" = 'interface/fonts/languages/otavan.ttf',
 		"etruscan.ttf" = 'interface/fonts/languages/etruscan.ttf',
-		"gronnic.ttf" = 'interface/fonts/languages/gronnic.ttf'
+		"gronnic.ttf" = 'interface/fonts/languages/gronnic.ttf',
+		"aavnic.ttf" = 'interface/fonts/languages/aavnic.ttf'
 	)
 
 /datum/asset/spritesheet/goonchat

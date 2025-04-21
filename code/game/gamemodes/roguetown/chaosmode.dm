@@ -522,7 +522,7 @@
 	required_enemies = 0
 	recommended_enemies = 0
 	enemy_minimum_age = 0
-	votable = 1
+	votable = FALSE
 	probability = 80
 
 	announce_span = "danger"
