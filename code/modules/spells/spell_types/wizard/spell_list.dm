@@ -39,5 +39,6 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/stoneskin,
 		/obj/effect/proc_holder/spell/invoked/hawks_eyes,
 		/obj/effect/proc_holder/spell/invoked/giants_strength,
+		/obj/effect/proc_holder/spell/invoked/create_campfire,
 		)
 ))
