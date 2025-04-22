@@ -6,7 +6,7 @@
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1
-	chargetime = 4 SECONDS
+	chargetime = 1 SECONDS
 	charge_max = 2 MINUTES
 	warnie = "spellwarning"
 	school = "transmutation"
