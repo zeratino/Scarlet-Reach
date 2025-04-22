@@ -18,8 +18,9 @@
 	H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE) 
 	H.mind.adjust_skillrank(/datum/skill/labor/mining, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/labor/lumberjacking, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/labor/lumberjacking, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 	var/weapons = list("Knuckles","Cudgel")
@@ -27,10 +28,8 @@
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Knuckles")
-			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 			beltr = /obj/item/rogueweapon/knuckles/bronzeknuckles
 		if("Cudgel")
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			beltl = /obj/item/rogueweapon/mace/cudgel
 	head = /obj/item/clothing/head/roguetown/roguehood/random 
 	belt = /obj/item/storage/belt/rogue/leather
