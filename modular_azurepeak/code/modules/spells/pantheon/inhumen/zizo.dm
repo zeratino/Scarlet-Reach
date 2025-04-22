@@ -14,7 +14,7 @@
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 15
-	charge_max = 10 SECONDS
+	recharge_time = 10 SECONDS
 
 /obj/effect/proc_holder/spell/invoked/projectile/profane/miracle
 	miracle = TRUE
@@ -108,7 +108,7 @@
 	releasedrain = 90
 	no_early_release = TRUE
 	movement_interrupt = TRUE
-	charge_max = 2 MINUTES
+	recharge_time = 2 MINUTES
 	var/list/excluded_bodyparts = list(/obj/item/bodypart/head)
 	var/list/obj/effect/proc_holder/spell/spell_choices = list(/obj/effect/proc_holder/spell/invoked/projectile/fireball,
 		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,

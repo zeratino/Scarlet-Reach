@@ -5,7 +5,7 @@
 	drawmessage = "I prepare to form a magical shroud."
 	dropmessage = "I release my arcyne focus."
 	school = "abjuration"
-	charge_max = 30 SECONDS
+	recharge_time = 30 SECONDS
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/nondetection

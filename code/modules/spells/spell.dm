@@ -143,9 +143,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/school = "evocation" //not relevant at now, but may be important later if there are changes to how spells work. the ones I used for now will probably be changed... maybe spell presets? lacking flexibility but with some other benefit?
 
-	var/charge_type = "recharge" //can be recharge or charges, see charge_max and charge_counter descriptions; can also be based on the holder's vars now, use "holder_var" for that
+	var/charge_type = "recharge" //can be recharge or charges, see recharge_time and charge_counter descriptions; can also be based on the holder's vars now, use "holder_var" for that
 
-	var/charge_max = 50 //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
+	var/recharge_time = 50 //recharge time in deciseconds if charge_type = "recharge" or starting charges if charge_type = "charges"
 	var/charge_counter = 0 //can only cast spells if it equals recharge, ++ each decisecond if charge_type = "recharge" or -- each cast if charge_type = "charges"
 	var/still_recharging_msg = span_notice("The spell is still recharging.")
 
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 /obj/effect/proc_holder/spell/proc/charge_check(mob/user, silent = FALSE)
 	switch(charge_type)
 		if("recharge")
-			if(charge_counter < charge_max)
+			if(charge_counter < recharge_time)
 				if(!silent)
 					to_chat(user, still_recharging_msg)
 				return FALSE
@@ -366,7 +366,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	START_PROCESSING(SSfastprocess, src)
 
 	still_recharging_msg = span_warning("[name] is still recharging!")
-	charge_counter = charge_max
+	charge_counter = recharge_time
 
 /obj/effect/proc_holder/spell/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
@@ -388,19 +388,19 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(ranged_ability_user)
 		if(ranged_ability_user.STAINT > SPELL_SCALING_THRESHOLD)
 			var/diff = min(ranged_ability_user.STAINT, SPELL_POSITIVE_SCALING_THRESHOLD) - SPELL_SCALING_THRESHOLD
-			charge_max = initial(charge_max) - (initial(charge_max) * diff * COOLDOWN_REDUCTION_PER_INT)
+			recharge_time = initial(recharge_time) - (initial(recharge_time) * diff * COOLDOWN_REDUCTION_PER_INT)
 		else if(ranged_ability_user.STAINT < SPELL_SCALING_THRESHOLD)
 			var/diff2 = SPELL_SCALING_THRESHOLD - ranged_ability_user.STAINT
-			charge_max = initial(charge_max) + (initial(charge_max) * (diff2 * COOLDOWN_REDUCTION_PER_INT))
+			recharge_time = initial(recharge_time) + (initial(recharge_time) * (diff2 * COOLDOWN_REDUCTION_PER_INT))
 
 /obj/effect/proc_holder/spell/process()
-	if(charge_counter <= charge_max) // Edge case when charge counter is set
+	if(charge_counter <= recharge_time) // Edge case when charge counter is set
 		charge_counter += 2	//processes 5 times per second instead of 10.
-		if(charge_counter >= charge_max)
+		if(charge_counter >= recharge_time)
 			action.UpdateButtonIcon()
-			charge_counter = charge_max
+			charge_counter = recharge_time
 
-/obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
+/obj/effect/proc_holder/spell/proc/perform(list/target's, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
 	if(!ignore_los)
 		if(length(targets))
 			var/radius
@@ -503,7 +503,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 /obj/effect/proc_holder/spell/proc/revert_cast(mob/user = usr) //resets recharge or readds a charge
 	switch(charge_type)
 		if("recharge")
-			charge_counter = charge_max
+			charge_counter = recharge_time
 		if("charges")
 			charge_counter++
 		if("holdervar")
@@ -690,7 +690,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	desc = ""
 	human_req = TRUE
 	clothes_req = FALSE
-	charge_max = 100
+	recharge_time = 100
 	invocation = "Victus sano!"
 	invocation_type = "whisper"
 	school = "restoration"

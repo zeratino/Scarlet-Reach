@@ -5,7 +5,7 @@
 	releasedrain = 35
 	chargedrain = 1
 	chargetime = 30
-	charge_max = 80 SECONDS
+	recharge_time = 80 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE

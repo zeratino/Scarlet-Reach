@@ -10,7 +10,7 @@
 	releasedrain = 7
 	chargedrain = 0
 	chargetime = 20
-	charge_max = 15 SECONDS
+	recharge_time = 15 SECONDS
 	warnie = "spellwarning"
 	overlay_state = "fetch"
 	no_early_release = TRUE

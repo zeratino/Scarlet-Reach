@@ -6,7 +6,7 @@
 	range = 7
 	selection_type = "range"
 	no_early_release = TRUE
-	charge_max = 30
+	recharge_time = 30
 	charge_type = "recharge"
 	invocation_type = "shout"
 	var/active_sound

@@ -10,7 +10,7 @@
 	overlay_state = "shadowstep"
 	chargedrain = 1
 	chargetime = 0 SECONDS
-	charge_max = 30 SECONDS
+	recharge_time = 30 SECONDS
 	hide_charge_effect = TRUE
 	spell_tier = 2
 	// This is super telegraphed so it shouldn't need any whisper. It can stay silent as a unique.
