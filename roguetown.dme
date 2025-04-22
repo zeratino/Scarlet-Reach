@@ -1903,6 +1903,7 @@
 #include "code\modules\spells\spell_types\wizard\projectiles_single\lightning_bolt.dm"
 #include "code\modules\spells\spell_types\wizard\projectiles_single\repel.dm"
 #include "code\modules\spells\spell_types\wizard\utility\create_campfire.dm"
+#include "code\modules\spells\spell_types\wizard\utility\mending.dm"
 #include "code\modules\spells\spell_types\wizard\utility\message.dm"
 #include "code\modules\spells\spell_types\wizard\utility\mindlink.dm"
 #include "code\modules\spells\spell_types\wizard\utility\mirror_transform.dm"
