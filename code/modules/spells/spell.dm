@@ -36,11 +36,18 @@
 	var/ignore_los = TRUE
 	var/glow_intensity = 0 // How much does the user glow when using the ability
 	var/glow_color = null // The color of the glow
+	var/hide_charge_effect = FALSE // If true, will not show the spell's icon when charging 
+	var/obj/effect/mob_charge_effect = null
 
 /obj/effect/proc_holder/Initialize()
 	. = ..()
 	if(has_action)
 		action = new base_action(src)
+	if(overlay_state)
+		var/obj/effect/R = new /obj/effect/spell_rune
+		R.icon = action_icon
+		R.icon_state = overlay_state // Weird af but that's how spells work???
+		mob_charge_effect = R
 	update_icon()
 
 /obj/effect/proc_holder/proc/deactivate(mob/living/user)

@@ -17,6 +17,8 @@
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokelightning
 	associated_skill = /datum/skill/magic/arcane
+	glow_color = GLOW_COLOR_LIGHTNING
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	spell_tier = 2
 	invocation = "Fulmen!"
 	invocation_type = "shout"
@@ -76,6 +78,8 @@
 	spell_tier = 2 // Doesn't matter for the most part
 	invocation = "Sanguis Sagitta!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_VAMPIRIC
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/blood
@@ -127,6 +131,8 @@
 	spell_tier = 2
 	invocation = "Sanguis Furtum!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_VAMPIRIC
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/blood
@@ -186,6 +192,8 @@
 	spell_tier = 3 // AOE
 	invocation = "Sphaera Ignis!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_FIRE
+	glow_intensity = GLOW_INTENSITY_HIGH
 	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
 	cost = 2
@@ -234,6 +242,8 @@
 	spell_tier = 4 // Highest tier AOE
 	invocation = "Maior Sphaera Ignis!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_FIRE
+	glow_intensity = GLOW_INTENSITY_VERY_HIGH
 	no_early_release = TRUE
 	movement_interrupt = TRUE
 	chargedloop = /datum/looping_sound/invokefire
@@ -267,6 +277,8 @@
 	spell_tier = 2
 	invocation = "Evomere Flammas!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_FIRE
+	glow_intensity = GLOW_INTENSITY_LOW
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokefire
 	associated_skill = /datum/skill/magic/arcane
@@ -292,7 +304,6 @@
 	clothes_req = FALSE
 	range = 15
 	projectile_type = /obj/projectile/magic/fetch
-	overlay_state = ""
 	sound = list('sound/magic/magnet.ogg')
 	active = FALSE
 	releasedrain = 5
@@ -305,6 +316,7 @@
 	spell_tier = 2
 	invocation = "Recolligere"
 	invocation_type = "whisper"
+	hide_charge_effect = TRUE // essential for rogue mage
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	cost = 1

@@ -16,6 +16,8 @@
 	spell_tier = 2
 	invocation = "Tenax"
 	invocation_type = "whisper"
+	glow_color = GLOW_COLOR_BUFF
+	glow_intensity = GLOW_INTENSITY_LOW
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -83,6 +85,8 @@
 	spell_tier = 2
 	invocation = "Ducere"
 	invocation_type = "whisper"
+	glow_color = GLOW_COLOR_BUFF
+	glow_intensity = GLOW_INTENSITY_LOW
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
@@ -153,6 +157,8 @@
 	spell_tier = 2
 	invocation = "Festinatio!"
 	invocation_type = "shout" // I mean, it is fast
+	glow_color = GLOW_COLOR_BUFF
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
@@ -228,6 +234,8 @@
 	spell_tier = 1 // Not directly combat useful
 	invocation = "Lenis Cadere"
 	invocation_type = "whisper"
+	glow_color = GLOW_COLOR_BUFF
+	glow_intensity = GLOW_INTENSITY_LOW
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -257,6 +265,8 @@
 	spell_tier = 1 // Not direct combat useful but still good, replicated by polearm
 	invocation = "Aranea Deambulatio"
 	invocation_type = "whisper"
+	glow_color = GLOW_COLOR_BUFF
+	glow_intensity = GLOW_INTENSITY_LOW
 	charging_slowdown = 1
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane

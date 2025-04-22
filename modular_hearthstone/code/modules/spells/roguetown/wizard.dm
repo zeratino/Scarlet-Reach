@@ -237,6 +237,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Murus!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	var/wall_type = /obj/structure/forcefield_weak/caster
@@ -310,6 +312,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 3
 	invocation = "Impedio!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_DISPLACEMENT
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	overlay_state = "ensnare"
 	var/area_of_effect = 1
 	var/duration = 5 SECONDS
@@ -432,6 +436,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Obmolior!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_DISPLACEMENT
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	var/stun_amt = 5
 	var/maxthrow = 3
 	var/sparkle_path = /obj/effect/temp_visual/gravpush
@@ -494,6 +500,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2 // AOE, but this is essential for PVE
 	invocation = "Erumpere Gladios!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_METAL
+	glow_intensity = GLOW_INTENSITY_HIGH
 	gesture_required = TRUE
 	var/delay = 14
 	var/damage = 125 //if you get hit by this it's your fault
@@ -563,6 +571,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/nondetection
 	spell_tier = 1
+	hide_charge_effect = TRUE 
 	// Nondetection shouldn't need an invocation
 	xp_gain = TRUE
 	cost = 1
@@ -633,6 +642,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 1
 	invocation = "Nox Oculus"
 	invocation_type = "whisper"
+	hide_charge_effect = TRUE
 	xp_gain = TRUE
 	cost = 2
 
@@ -729,6 +739,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Tabificus!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_LOW
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
@@ -813,6 +825,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Congelationis!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ICE
+	glow_intensity = GLOW_INTENSITY_LOW
 	cost = 1
 
 	xp_gain = TRUE
@@ -876,6 +890,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 3
 	invocation = "Congelare Subitus!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ICE
+	glow_intensity = GLOW_INTENSITY_HIGH
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
@@ -960,6 +976,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Sagitta Glaciei!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ICE
+	glow_intensity = GLOW_INTENSITY_LOW
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
 	cost = 1
@@ -1017,6 +1035,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Magicae Sagitta!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_LOW
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
@@ -1067,6 +1087,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Pondus!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_DISPLACEMENT
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	var/delay = 3
 	var/damage = 0 // damage based off your str 
 	var/area_of_effect = 0
@@ -1135,6 +1157,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Exmoveo!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_DISPLACEMENT
+	glow_intensity = GLOW_INTENSITY_LOW
 	cost = 1
 	xp_gain = TRUE
 
@@ -1198,6 +1222,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Converti in Nebulam!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_LOW
 	cost = 1
 
 	xp_gain = TRUE
@@ -1252,6 +1278,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 1
 	invocation = "Parvus Pulso"
 	invocation_type = "whisper" // It is a fake stealth spell (lockpicking is very loud)
+	hide_charge_effect = TRUE
 	cost = 1
 	
 /obj/item/melee/touch_attack/lesserknock
@@ -1287,6 +1314,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 3 // Full shut down of another mage should be a full mage privilege, imo
 	invocation = "Respondeo!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_MEDIUM
 	overlay_state = "rune2"
 
 /obj/effect/proc_holder/spell/invoked/counterspell/cast(list/targets, mob/user = usr)
@@ -1327,6 +1356,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	invocation_type = "shout"
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
+	glow_color = GLOW_COLOR_BUFF
+	glow_intensity = GLOW_INTENSITY_LOW
 	overlay_state = "rune1"
 
 /obj/effect/proc_holder/spell/invoked/enlarge/cast(list/targets, mob/user = usr)
@@ -1369,6 +1400,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Saltus!"
 	invocation_type = "whisper"
+	hide_charge_effect = TRUE
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
@@ -1411,6 +1443,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 1
 	invocation = "Effingo"
 	invocation_type = "whisper"
+	hide_charge_effect = TRUE
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/wind
 	overlay_state = "mirror"
@@ -1446,6 +1479,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedrain = 1
 	chargetime = 0 SECONDS
 	charge_max = 30 SECONDS
+	hide_charge_effect = TRUE
 	spell_tier = 2
 	// This is super telegraphed so it shouldn't need any whisper. It can stay silent as a unique.
 	var/area_of_effect = 1
@@ -1579,6 +1613,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	xp_gain = TRUE
 	invocation = "Nictare Teleporto!"
 	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_LOW
 	var/max_range = 5
 	var/phase = /obj/effect/temp_visual/blink
 
