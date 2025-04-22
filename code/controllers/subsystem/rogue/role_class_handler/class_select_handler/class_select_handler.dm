@@ -265,6 +265,10 @@
 			<a class='mo_bottom_buttons' href='?src=\ref[src];show_combat_class=1'>[showing_combat_classes ? "Show Combat Classes" : "Show Pilgrim Classes"]</a>
 		</div>
 		"}
+	else
+		data += {"
+			</div>
+			"}
 
 	//Closing Tags
 	data += {"
