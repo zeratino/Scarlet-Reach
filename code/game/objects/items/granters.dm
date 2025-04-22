@@ -289,7 +289,7 @@
 
 /obj/item/book/granter/spell/blackstone/ensnare
 	name = "Scroll of Ensnare"
-	spell = /obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe
+	spell = /obj/effect/proc_holder/spell/invoked/ensnare
 	spellname = "Ensnare"
 	icon_state ="scrolldarkred"
 	remarks = list("Qui intrat..", "Radices in tenebris..", "Nexus occultus..")

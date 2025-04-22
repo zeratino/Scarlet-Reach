@@ -1,0 +1,75 @@
+//forcewall
+/obj/effect/proc_holder/spell/invoked/forcewall_weak
+	name = "Forcewall"
+	desc = "Conjure a wall of arcyne force, preventing anyone and anything other than you from moving through it."
+	school = "transmutation"
+	releasedrain = 30
+	chargedrain = 1
+	chargetime = 15
+	charge_max = 35 SECONDS
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	charging_slowdown = 3
+	clothes_req = FALSE
+	active = FALSE
+	sound = 'sound/blank.ogg'
+	overlay_state = "forcewall"
+	spell_tier = 2
+	invocation = "Murus!"
+	invocation_type = "shout"
+	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_MEDIUM
+	range = 7
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/arcane
+	var/wall_type = /obj/structure/forcefield_weak/caster
+	xp_gain = TRUE
+	cost = 1
+
+//adapted from forcefields.dm, this needs to be destructible
+/obj/structure/forcefield_weak
+	desc = "A wall of pure arcyne force."
+	name = "Arcyne Wall"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "forcefield"
+	break_sound = 'sound/combat/hits/onstone/stonedeath.ogg'
+	attacked_sound = list('sound/combat/hits/onstone/wallhit.ogg', 'sound/combat/hits/onstone/wallhit2.ogg', 'sound/combat/hits/onstone/wallhit3.ogg')
+	opacity = 0
+	density = TRUE
+	max_integrity = 100
+	CanAtmosPass = ATMOS_PASS_DENSITY
+	var/timeleft = 20 SECONDS
+
+/obj/structure/forcefield_weak/Initialize()
+	. = ..()
+	if(timeleft)
+		QDEL_IN(src, timeleft) //delete after it runs out
+
+/obj/effect/proc_holder/spell/invoked/forcewall_weak/cast(list/targets,mob/user = usr)
+	var/turf/front = get_turf(targets[1])
+	new wall_type(front, user)
+	if(user.dir == SOUTH || user.dir == NORTH)
+		new wall_type(get_step(front, WEST), user)
+		new wall_type(get_step(front, EAST), user)
+	else
+		new wall_type(get_step(front, NORTH), user)
+		new wall_type(get_step(front, SOUTH), user)
+	user.visible_message("[user] mutters an incantation and a wall of arcyne force manifests out of thin air!")
+	return TRUE
+
+/obj/structure/forcefield_weak
+	var/mob/caster
+
+/obj/structure/forcefield_weak/caster/Initialize(mapload, mob/summoner)
+	. = ..()
+	caster = summoner
+
+/obj/structure/forcefield_weak/caster/CanPass(atom/movable/mover, turf/target)	//only the caster can move through this freely
+	if(mover == caster)
+		return TRUE
+	if(ismob(mover))
+		var/mob/M = mover
+		if(M.anti_magic_check(chargecost = 0))
+			return TRUE
+	return FALSE
