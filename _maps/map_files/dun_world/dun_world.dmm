@@ -41725,14 +41725,6 @@
 	},
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/town/basement)
-"qoJ" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/turf/closed/wall/mineral/rogue/wooddark/end{
-	dir = 4
-	},
-/area/rogue/indoors/town)
 "qpd" = (
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/mace/cudgel,
@@ -56481,14 +56473,6 @@
 	},
 /turf/open/floor/rogue/tile/tilerg,
 /area/rogue/indoors/town/shop)
-"way" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/effect/decal/cobble/mossy{
-	dir = 9
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
 "waz" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -244874,7 +244858,7 @@ dVS
 qbU
 lFb
 gUQ
-way
+mYm
 jRD
 emv
 pxF
@@ -285497,7 +285481,7 @@ lKO
 lKO
 pqo
 lKo
-qoJ
+oea
 mtb
 lKo
 iSm
@@ -288213,7 +288197,7 @@ gKT
 fdD
 uSf
 aoe
-aoe
+ebU
 ebU
 ebU
 ebU
