@@ -293,7 +293,7 @@
 /obj/structure/bed/rogue/attack_right(mob/user)
 	var/datum/component/simple_rotation/rotcomp = GetComponent(/datum/component/simple_rotation)
 	if(rotcomp)
-		rotcomp.HandRot(rotcomp,user,ROTATION_FLIP)
+		rotcomp.HandRot(rotcomp,user,ROTATION_CLOCKWISE)
 
 /obj/structure/bed/rogue/shit
 	icon_state = "shitbed"
