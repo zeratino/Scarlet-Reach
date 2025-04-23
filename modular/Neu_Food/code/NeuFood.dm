@@ -563,6 +563,9 @@ What it does:
 				if(do_after(user,2 SECONDS, target = src))
 					to_chat(user, span_info("I add \the [I.name] to \the [name]."))
 					I.forceMove(src)
+					var/obj/item/reagent_containers/food/snacks/S = I
+					if(S?.faretype < FARE_LAVISH)
+						S.faretype++ //Things are tastier on plates.
 				update_icon()
 			else
 				to_chat(user, span_info("Something is already on this [initial(name)]! Remove it first."))
@@ -623,6 +626,8 @@ What it does:
 			if(istype(contents[1],  /obj/item/reagent_containers/food/snacks/))
 				var/obj/item/reagent_containers/food/snacks/S = contents[1]
 				S.bonus_reagents = list()
+				if(S?.faretype > FARE_IMPOVERISHED)
+					S.faretype-- //Less tasty off the plate.
 			to_chat(user, span_info("I remove \the [contents[1].name] from \the [initial(name)]"))
 			if(!usr.put_in_hands(contents[1]))
 				var/atom/movable/S = contents[1]
