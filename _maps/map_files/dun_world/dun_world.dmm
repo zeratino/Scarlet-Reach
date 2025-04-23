@@ -2504,8 +2504,12 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter)
 "aYt" = (
-/obj/structure/fluff/walldeco/chains,
-/turf/open/floor/rogue/hexstone,
+/obj/effect/decal/cleanable/dirt/cobweb,
+/obj/item/natural/worms/leech,
+/obj/item/natural/worms/leech{
+	pixel_x = 5
+	},
+/turf/open/water/swamp,
 /area/rogue/under/town/basement)
 "aYx" = (
 /obj/structure/flora/roguegrass/bush,
@@ -6880,6 +6884,13 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/underdark)
+"cKO" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/obj/structure/chair/stool/rogue,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/under/town/basement)
 "cKU" = (
 /obj/structure/rack/rogue,
 /obj/machinery/light/rogue/wallfire/candle{
@@ -13415,7 +13426,7 @@
 /obj/structure/roguewindow/openclose/reinforced{
 	dir = 1
 	},
-/turf/closed/wall/mineral/rogue/wooddark/window,
+/turf/closed,
 /area/rogue/indoors/town)
 "fiP" = (
 /obj/structure/closet/crate/drawer/random,
@@ -14371,6 +14382,10 @@
 "fCg" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
+	},
+/obj/structure/fluff/walldeco/chains{
+	pixel_x = 22;
+	pixel_y = 0
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
@@ -29437,10 +29452,12 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach)
 "lwq" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/rtfield)
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/obj/structure/fermenting_barrel/water,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/under/town/basement)
 "lwu" = (
 /turf/closed/wall/mineral/rogue/decowood/vert,
 /area/rogue/indoors/town/garrison)
@@ -43566,14 +43583,11 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "raa" = (
-/obj/effect/decal/cobbleedge{
-	dir = 5
+/obj/item/natural/worms/leech{
+	pixel_x = 5
 	},
-/obj/structure/fermenting_barrel/water,
-/obj/structure/fluff/railing/border{
-	dir = 8
-	},
-/turf/open/floor/rogue/hexstone,
+/obj/item/natural/worms/leech,
+/turf/open/water/swamp,
 /area/rogue/under/town/basement)
 "rag" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
@@ -52393,7 +52407,6 @@
 /area/rogue/under/town/basement)
 "uww" = (
 /obj/structure/rack/rogue/shelf/biggest,
-/obj/effect/decal/cleanable/dirt/cobweb,
 /obj/item/reagent_containers/glass/alchemical{
 	pixel_x = 7;
 	pixel_y = 8
@@ -227194,7 +227207,7 @@ pSg
 pSg
 pSg
 pSg
-lwq
+jiQ
 pWT
 qit
 qit
@@ -227640,12 +227653,12 @@ aFv
 qyR
 daQ
 daQ
-pWT
-qit
-qit
-qit
-qit
-qit
+pSg
+pSg
+pSg
+pSg
+pSg
+pSg
 pWT
 njB
 pWT
@@ -339285,13 +339298,13 @@ eGx
 eGx
 eGx
 eGx
-eGx
-eGx
-eGx
-eGx
-eGx
-eGx
-qwK
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
+cxA
 qwK
 qwK
 qwK
@@ -339737,13 +339750,13 @@ eGx
 eGx
 eGx
 eGx
-eGx
-eGx
-eGx
-eGx
-eGx
-eGx
-eGx
+cxA
+eXr
+eXr
+eXr
+eXr
+eXr
+cxA
 eGx
 qwK
 qwK
@@ -340189,13 +340202,13 @@ eGx
 eGx
 eGx
 eGx
-eGx
 cxA
 eXr
-eXr
+aYt
+raa
+bRr
 fAm
-fAm
-eGx
+cxA
 eGx
 eGx
 eGx
@@ -340643,9 +340656,9 @@ eGx
 eGx
 cxA
 eXr
-eXr
-bRr
-bRr
+lwq
+fCg
+cKO
 fAm
 cxA
 eGx
@@ -341096,8 +341109,8 @@ eGx
 cxA
 eXr
 uww
-fCg
-raa
+tUP
+mSN
 eXr
 cxA
 eGx
@@ -341548,7 +341561,7 @@ vvB
 cxA
 fAm
 fUP
-aYt
+tUP
 mSN
 eXr
 cxA
@@ -342901,7 +342914,7 @@ aBB
 aBB
 aBB
 aBB
-aBB
+cxA
 cxA
 cxA
 cxA
@@ -454558,7 +454571,7 @@ vBH
 iWF
 bAa
 pHH
-cxA
+vBH
 aBB
 aBB
 aBB
