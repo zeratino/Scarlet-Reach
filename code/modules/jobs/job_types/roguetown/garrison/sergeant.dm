@@ -113,13 +113,13 @@
 		if(!msg)
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
-		if(HAS_TRAIT(user, TRAIT_GUARDSMAN))
-			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
+		if(user.job == "Sergeant")
+			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
 		if(user.job == "Knight Captain")
-			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
-				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
+			if(!(target.job in list("Knight", "Squire")))
+				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
@@ -175,14 +175,14 @@
 		if(!msg)
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
-		if(HAS_TRAIT(user, TRAIT_GUARDSMAN)) // If we are MAA, we need to order MAA. If we are GC, we need to order RG.
-			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
+		if(user.job == "Sergeant")
+			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
 		if(user.job == "Knight Captain")
-			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
-				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
-				return
+			if(!(target.job in list("Knight", "Squire")))
+				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
 			return
@@ -206,14 +206,14 @@
 		if(!msg)
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
-		if(HAS_TRAIT(user, TRAIT_GUARDSMAN))
-			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
+		if(user.job == "Sergeant")
+			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
 		if(user.job == "Knight Captain")
-			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
-				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
-				return
+			if(!(target.job in list("Knight", "Squire")))
+				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
 			return
@@ -264,14 +264,14 @@
 		if(!msg)
 			to_chat(user, span_alert("I must say something to give an order!"))
 			return
-		if(HAS_TRAIT(user, TRAIT_GUARDSMAN)) // If we are MAA, we need to order MAA. If we are GC, we need to order RG.
-			if(!HAS_TRAIT(target, TRAIT_GUARDSMAN))
+		if(user.job == "Sergeant")
+			if(!target.job == "Man at Arms")
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				return
 		if(user.job == "Knight Captain")
-			if(!HAS_TRAIT(target, TRAIT_KNIGHTSMAN))
-				to_chat(user, span_alert("I cannot order one not of my noble ranks!"))
-				return
+			if(!(target.job in list("Knight", "Squire")))
+				to_chat(user, span_alert("I cannot order one not of my ranks!"))
+				return		
 		if(target == user)
 			to_chat(user, span_alert("I cannot order myself!"))
 			return
@@ -284,7 +284,7 @@
 
 /datum/status_effect/buff/order/hold
 	id = "hold"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/order/takeaim
+	alert_type = /atom/movable/screen/alert/status_effect/buff/order/hold
 	effectedstats = list("endurance" = 2, "constitution" = 2)
 	duration = 1 MINUTES
 

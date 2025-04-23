@@ -356,12 +356,6 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guardbuffone
 	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "perception" = 2) 
 
-/datum/status_effect/buff/knightbuff
-	id = "knightbuff"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/knightbuff
-	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "perception" = 2)
-	duration = 50000 //essentially permanent, removes when we're out of the area
-
 /datum/status_effect/buff/guardbuffone/process()
 
 	.=..()
@@ -383,13 +377,6 @@
 /datum/status_effect/buff/wardenbuff/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_LONGSTRIDER, TRAIT_GENERIC)
-
-/datum/status_effect/buff/knightbuff/process()
-
-	.=..()
-	var/area/rogue/our_area = get_area(owner)
-	if(!(our_area.keep_area))
-		owner.remove_status_effect(/datum/status_effect/buff/knightbuff)
 
 /atom/movable/screen/alert/status_effect/buff/healing
 	name = "Healing Miracle"
