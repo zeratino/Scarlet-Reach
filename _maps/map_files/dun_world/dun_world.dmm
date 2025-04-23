@@ -2178,7 +2178,7 @@
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 1
 	},
-/turf/closed/wall/mineral/rogue/decowood,
+/turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "aRp" = (
 /obj/structure/fluff/railing/wood{
