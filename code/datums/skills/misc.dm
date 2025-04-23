@@ -98,3 +98,7 @@
 		"...as the years go by, the mantra becomes increasingly oppressive. Stitch, sew, cut ties, stitch, sew, thread the needle twice...",
 		"...you turn over the fabric, and within the two layers of the gown, you hide a secret stitched into the gown, your initials, hidden within. A forbidden mark in some cultures... you never liked the bride much..."
 	)
+
+/datum/skill/misc/tracking
+	name = "Tracking"
+	desc = "Increases your chance to find tracks. Increases the information you gain from them, alongside your perception stats. You can track by right-clicking on your eye icon. At Expert level or above, you can find invisible creatures and mark the target of a track to find them."
