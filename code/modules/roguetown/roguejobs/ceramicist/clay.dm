@@ -37,16 +37,16 @@
 		cooktime = 30 SECONDS
 	..() // The ..() refers to calling the parent class's (obj/item/natural) Initialize() proc.
 
-/obj/item/natural/clay/cooking(input as num, atom/A) // I am using the same variable names from cooking
-	if(!input)                                    
+/obj/item/natural/clay/cooking(input as num, burninput, atom/A) // I am using the same variable names from cooking
+	if(!input)
 		return
 	if(cooktime)
 		if(cooking < cooktime)
 			cooking = cooking + input
 			if(cooking >= cooktime)
-				return heating_act(A) // Glazing happens once Cooking exceeds a threshold.
+				return heating_act(A)
 			return
-	burning(input) // You can still '''burn''' clay and ruin it if you leave it for too long.
+	burning(burninput)
 
 /obj/item/natural/clay/heating_act(atom/A)
 	var/obj/item/result
