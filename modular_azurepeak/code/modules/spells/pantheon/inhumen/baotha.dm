@@ -26,7 +26,7 @@
 		target.apply_status_effect(/datum/status_effect/buff/druqks)
 		ADD_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_GENERIC)		//Gets the trait temorarily, basically will just stop any active/upcoming ODs.
 		target.visible_message("<span class='info'>[target]'s eyes appear to gloss over!</span>", "<span class='notice'>I feel.. at ease.</span>")
-		addtimer(CALLBACK(src, PROC_REF(remove_buff), target), wait = 2 MINUTES)	//Should be long enough to prevent an overdose. If not, maybe up to 20 or so.
+		addtimer(CALLBACK(src, PROC_REF(remove_buff), target), wait = 2 MINUTES)	//Should be long enough to prevent an overdose.
 
 /obj/effect/proc_holder/spell/invoked/baothablessings/proc/remove_buff(mob/living/carbon/target)
 	REMOVE_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_GENERIC)							
@@ -56,7 +56,7 @@
 	damage = 1
 	poisontype = /datum/reagent/herozium
 	poisonfeel = "burning" //Would make sense for your eyes or nose to burn, I guess.
-	poisonamount = 7 //Decent bit of high, second dose would cause flat-out overdose.
+	poisonamount = 7 //Decent bit of high, three doses would be just above the overdose threshold if applied fast enough.
 
 /obj/projectile/magic/blowingdust/on_hit(target, mob/living/M)
 	. = ..()
