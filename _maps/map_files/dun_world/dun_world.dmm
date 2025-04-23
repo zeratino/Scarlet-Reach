@@ -15431,10 +15431,6 @@
 /obj/item/rogueweapon/stoneaxe/battle,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
-"fYK" = (
-/obj/item/roguekey/manor,
-/turf/closed/wall/mineral/rogue/stone,
-/area/rogue/indoors/town/garrison)
 "fZc" = (
 /obj/structure/fluff/walldeco/customflag{
 	pixel_x = -32
@@ -32049,6 +32045,7 @@
 /obj/item/quiver/bolts,
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/rope/chain,
+/obj/item/gwstrap,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "mCs" = (
@@ -33630,7 +33627,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "njb" = (
-/obj/structure/closet/crate/drawer,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/silver,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
@@ -56091,6 +56088,7 @@
 /obj/structure/closet/crate/roguecloset/inn,
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/rope/chain,
+/obj/item/gwstrap,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "vTN" = (
@@ -500212,7 +500210,7 @@ fiK
 fiK
 fiK
 jWw
-rDO
+njb
 rDO
 pqR
 nBo
@@ -502921,7 +502919,7 @@ lLV
 nBo
 siN
 rWQ
-fYK
+jWw
 gon
 siN
 siN
@@ -503375,7 +503373,7 @@ jWw
 jWw
 jWw
 jWw
-njb
+hmx
 aEu
 siN
 siN
