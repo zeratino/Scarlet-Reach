@@ -362,6 +362,30 @@
 	else
 		return !density
 
+/obj/machinery/light/rogue/hearth/examine(mob/user)
+	. = ..()
+	if(attachment)
+		if(istype(attachment, /obj/item/cooking/pan))
+			if(food)
+				. += "There's \a [attachment.name] on it with \a [food.name] in it."
+			else
+				. += "There's \a [attachment.name] on it."
+		else if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
+			var/isboiling = attachment.reagents.chem_temp > MIN_STEW_TEMPERATURE
+			if(isboiling)
+				. += "There's \a [attachment.name] on it, it is boiling." // This is common shorthand for the contents don't nitpick
+			else
+				. += "There's \a [attachment.name] on it. It is not boiling"
+		. += span_notice("Right click to start fanning the flame and make it cook faster.")
+
+/obj/machinery/light/rogue/hearth/attack_right(mob/user)
+	var/datum/skill/craft/cooking/cs = user?.mind?.get_skill_level(/datum/skill/craft/cooking)
+	var/cooktime_divisor = get_cooktime_divisor(cs)
+	if(do_after(user, 2 SECONDS / cooktime_divisor, target = src))
+		to_chat(user, span_info("I fan the flame on [src].")) // Until line combine is on by default gotta do this to avoid spam
+		try_cook(cooktime_divisor)
+		attack_right(user)
+
 /obj/machinery/light/rogue/hearth/attackby(obj/item/W, mob/living/user, params)
 	lastuser = user // For processing food
 	var/datum/skill/craft/cooking/cs = lastuser?.mind?.get_skill_level(/datum/skill/craft/cooking)
@@ -399,13 +423,13 @@
 				for(var/I in R.inputs)
 					if(istype(W, I))
 						if(!pot.reagents.has_reagent(/datum/reagent/water, VOLUME_PER_STEW_COOK + VOLUME_PER_STEW_COOK_AFTER))
-							to_chat(user, "<span class='notice'>Not enough water.</span>")
+							to_chat(user, span_notice("Not enough water."))
 							return
 						if(pot.reagents.chem_temp < MIN_STEW_TEMPERATURE)
-							to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
+							to_chat(user, span_notice("[pot] isn't boiling!</span>"))
 							return
 						if(do_after(user, 2 SECONDS / cooktime_divisor, target = src))
-							user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
+							user.visible_message(span_info("[user] places [W] into the pot.</span>"))
 							qdel(W)
 							playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
 							pot.reagents.remove_reagent(/datum/reagent/water, VOLUME_PER_STEW_COOK)
@@ -478,27 +502,29 @@
 		if(IS_WET_OPEN_TURF(O))
 			extinguish()
 	if(on)
-		if(initial(fueluse) > 0)
-			if(fueluse > 0)
-				fueluse = max(fueluse - 10, 0)
-			if(fueluse == 0)
-				burn_out()
-		if(attachment)
-			if(istype(attachment, /obj/item/cooking/pan))
-				if(food)
-					var/obj/item/C = food.cooking(20 * cooktime_divisor, 20, src)
-					if(C)
-						qdel(food)
-						food = C
-			if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
-				if(attachment.reagents)
-					attachment.reagents.expose_temperature(400, 0.033)
-					if(attachment.reagents.chem_temp > 374)
-						boilloop.start()
-					else
-						boilloop.stop()
-		update_icon()
+		try_cook(cooktime_divisor)
 
+/obj/machinery/light/rogue/hearth/proc/try_cook(var/cooktime_divisor)
+	if(initial(fueluse) > 0)
+		if(fueluse > 0)
+			fueluse = max(fueluse - 10, 0)
+		if(fueluse == 0)
+			burn_out()
+	if(attachment)
+		if(istype(attachment, /obj/item/cooking/pan))
+			if(food)
+				var/obj/item/C = food.cooking(20 * cooktime_divisor, 20, src)
+				if(C)
+					qdel(food)
+					food = C
+		if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
+			if(attachment.reagents)
+				attachment.reagents.expose_temperature(400, 0.033)
+				if(attachment.reagents.chem_temp > MIN_STEW_TEMPERATURE)
+					boilloop.start()
+				else
+					boilloop.stop()
+	update_icon()
 
 /obj/machinery/light/rogue/hearth/onkick(mob/user)
 	if(isliving(user) && on)
