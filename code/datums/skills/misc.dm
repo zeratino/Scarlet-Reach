@@ -101,4 +101,6 @@
 
 /datum/skill/misc/tracking
 	name = "Tracking"
-	desc = "Increases your chance to find tracks. Increases the information you gain from them, alongside your perception stats. You can track by right-clicking on your eye icon. At Expert level or above, you can find invisible creatures and mark the target of a track to find them."
+	desc = "Increases your chance to find tracks. Increases the information you gain from them, alongside your perception stats. \n \
+	At Expert level or above, you can mark the target of a track to find them. \n \
+	At Master level or above, you can find invisible creatures. \n \ You can track by right-clicking on your eye icon."
