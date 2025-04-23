@@ -412,7 +412,6 @@
 
 /obj/item/rogueweapon/sword/sabre/shamshir
 	force = 24
-	minstr = 5
 	wdefense = 6	//Has chop mode, so slightly less defense. Slightly.
 	wbalance = 1
 	name = "shamshir"
@@ -610,6 +609,7 @@
 /datum/intent/sword/cut/sabre
 	clickcd = 10		//Faster than sword by 2, slower than rapier stab by 2
 	damfactor = 1.25	//Opposite of rapier, 15% better than base (Base is 1.1 for swords)
+	penfactor = 10		//Very slight buff to pen on cut mode. Still weaker then sword-chop mode.
 
 /datum/intent/sword/thrust/sabre
 	clickcd = 9			//Fast but still not as fast as rapier n' shittier.
