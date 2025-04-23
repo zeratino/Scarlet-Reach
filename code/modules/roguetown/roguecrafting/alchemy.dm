@@ -53,21 +53,9 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/alchemy/quicksilver
-	name = "quicksilver (ingot)"
+	name = "quicksilver"
 	result = list(/obj/item/quicksilver = 1)
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /datum/reagent/water/blessed = 45, /obj/item/natural/cloth = 1, /obj/item/ingot/silver = 1)
-	craftdiff = 4
-
-/datum/crafting_recipe/roguetown/alchemy/quicksilver_2
-	name = "quicksilver (3 ore)"
-	result = list(/obj/item/quicksilver = 1)
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /datum/reagent/water/blessed = 45, /obj/item/natural/cloth = 1, /obj/item/rogueore/silver = 3)
-	craftdiff = 4
-
-	/datum/crafting_recipe/roguetown/alchemy/quicksilver_3
-	name = "quicksilver (blessed ingot)"
-	result = list(/obj/item/quicksilver = 1)
-	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /datum/reagent/water/blessed = 45, /obj/item/natural/cloth = 1, /obj/item/ingot/silverblessed = 3)
+	reqs = list(/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/bloodied = 1, /datum/reagent/water/blessed = 45, /obj/item/natural/cloth = 1, /obj/item/alch/silverdust = 1)
 	craftdiff = 4
 
 /// bottle craft
