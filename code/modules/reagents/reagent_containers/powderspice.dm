@@ -409,7 +409,6 @@
 	reagent_state = LIQUID
 	color = "#ff6207"
 	overdose_threshold = 20
-	addiction_threshold = 15
 	metabolization_rate = 0.5
 
 /obj/item/reagent_containers/powder/herozium
