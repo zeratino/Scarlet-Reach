@@ -60,6 +60,13 @@
 	createditem_num = 1
 	craftdiff = 0
 
+/datum/anvil_recipe/armor/iron/mask/hound
+	name = "Mask (Hound)"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/clothing/mask/rogue/facemask/hound
+	createditem_num = 1
+	craftdiff = 0
+
 /datum/anvil_recipe/armor/iron/wildguard
 	name = "Wild guard Mask"
 	req_bar = /obj/item/ingot/iron
@@ -442,6 +449,13 @@
 	name = "Steel Mask"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/clothing/mask/rogue/facemask/steel
+	createditem_num = 1
+	craftdiff = 2
+
+/datum/anvil_recipe/armor/steel/mask/hound
+	name = "Mask (Hound)"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/clothing/mask/rogue/facemask/steel/hound
 	createditem_num = 1
 	craftdiff = 2
 
