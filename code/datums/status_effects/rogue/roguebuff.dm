@@ -236,7 +236,7 @@
 	id = "druqks"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/vitae
 	effectedstats = list("fortune" = 2)
-	duration = 1 MINUTE
+	duration = 1 MINUTES
 
 /datum/status_effect/buff/vitae/on_apply()
 	. = ..()
