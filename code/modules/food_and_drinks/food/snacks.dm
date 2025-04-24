@@ -80,8 +80,6 @@ All foods are distributed among various categories. Use common sense.
 
 	var/plateable = FALSE //if it can be plated or not
 
-	var/mill_result = null
-
 	var/fertamount = 50
 
 	drop_sound = 'sound/foley/dropsound/food_drop.ogg'

@@ -433,6 +433,7 @@
 	volume = 1
 	sellprice = 0
 	color = "#999797"
+	mill_result = /obj/item/reagent_containers/powder/salt
 
 /obj/item/reagent_containers/powder/mineral/throw_impact(atom/hit_atom, datum/thrownthing/thrownthing)
 	new /obj/effect/decal/cleanable/food/flour(get_turf(src))
