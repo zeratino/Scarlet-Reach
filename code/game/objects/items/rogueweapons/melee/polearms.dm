@@ -13,6 +13,10 @@
 	penfactor = 50
 	item_d_type = "stab"
 
+/datum/intent/spear/thrust/militia
+	penfactor = 40
+	chargetime = 0
+
 /datum/intent/spear/bash
 	name = "bash"
 	blade_class = BCLASS_BLUNT

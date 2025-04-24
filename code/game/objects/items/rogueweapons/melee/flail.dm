@@ -36,7 +36,7 @@
 	blade_class = BCLASS_BLUNT
 	attack_verb = list("strikes", "hits")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
-	chargetime = 5
+	chargetime = 0
 	recovery = 15
 	penfactor = 5
 	reach = 2
@@ -211,8 +211,8 @@
 	force_wielded = 35
 	possible_item_intents = list(/datum/intent/flail/strike)
 	gripped_intents = list(/datum/intent/flail/strikerange, /datum/intent/flail/strike/smashrange)
-	name = "military thresher"
-	desc = "An agricultural flail turned into a weapon of war."
+	name = "militia thresher"
+	desc = "Just like how a sling's bullet can fell a giant, so too does this great flail follow the principle of converting 'momentum' into 'plate-rupturing force'."
 	icon_state = "peasantwarflail"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -243,28 +243,86 @@
 				return list("shrink" = 0.6,"sx" = 5,"sy" = -3,"nx" = -5,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 
 
-/obj/item/rogueweapon/woodstaff/military_warclub
+/obj/item/rogueweapon/woodstaff/militia
+	force = 20
+	force_wielded = 30
+	possible_item_intents = list(SPEAR_BASH, /datum/intent/spear/cut)
+	gripped_intents = list(SPEAR_BASH, /datum/intent/pick/ranged, /datum/intent/spear/thrust)
+	name = "militia goedendag"
+	desc = "Clubs - and their spiked descendants - are older than most languages and civilizations. Tyme hasn't made them any less deadly, however. "
+	icon_state = "peasantwarclub"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	sharpness = IS_SHARP
+	walking_stick = TRUE
+	wdefense = 6
+	max_blade_int = 80
+
+/obj/item/rogueweapon/greataxe/militia
+	name = "militia war axe"
+	desc = "Shovels have always held some manner of importance in a militiaman's lyfe. Instead of digging corpsepits, however, this poleaxe will now fill them up."
 	force = 15
 	force_wielded = 25
-	possible_item_intents = list(SPEAR_BASH)
-	gripped_intents = list(SPEAR_BASH,/datum/intent/mace/smash/wood)
-	name = "wooden staff"
-	desc = "Not so heavy, perfect for beggars, pilgrims and mages."
-	icon_state = "woodstaff"
+	minstr = 10
+	max_blade_int = 150
+	anvilrepair = /datum/skill/craft/carpentry
+	wdefense = 4
+	wbalance = -1
+
+/obj/item/rogueweapon/spear/militia
+	force = 18
+	force_wielded = 30
+	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(SPEAR_THRUST, SPEAR_CUT, SPEAR_BASH)
+	name = "militia spear"
+	desc = "Pitchforks and hoes traditionally till the soil. In tymes of peril, however, it isn't uncommon for a militiaman to pound them into polearms."
+	icon_state = "peasantwarspear"
 	icon = 'icons/roguetown/weapons/64.dmi'
-	wlength = WLENGTH_LONG
-	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = ITEM_SLOT_BACK
-	blade_dulling = DULLING_BASHCHOP
-	sharpness = IS_BLUNT
-	walking_stick = TRUE
 	pixel_y = -16
 	pixel_x = -16
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	wdefense = 10
 	bigboy = TRUE
 	gripsprite = TRUE
-	associated_skill = /datum/skill/combat/polearms
+	wlength = WLENGTH_GREAT
+	w_class = WEIGHT_CLASS_BULKY
+	minstr = 8
+	max_blade_int = 100
 	anvilrepair = /datum/skill/craft/carpentry
-	resistance_flags = FLAMMABLE
+	smeltresult = /obj/item/ingot/iron
+	associated_skill = /datum/skill/combat/polearms
+	resistance_flags = FIRE_PROOF
+	light_system = MOVABLE_LIGHT
+	light_power = 5
+	light_outer_range = 5
+	light_color = "#c49514"
+
+/obj/item/rogueweapon/spear/militia/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/ignitable)
+
+/datum/component/ignitable
+	var/is_active
+	var/single_use
+	var/icon_state_ignited
+	var/del_self_on_hit
+	var/ignite_others
+
+/datum/component/ignitable/Initialize(...)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(item_afterattack))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, PROC_REF(on_fireact))
+
+/datum/component/ignitable/proc/on_fireact(added, maxstacks)
+	var/obj/I = parent
+	I.set_light_on(TRUE)
+	is_active = TRUE
+
+/datum/component/ignitable/proc/item_afterattack(obj/item/source, atom/target, mob/user, proximity_flag, click_parameters)
+	if(isobj(target))
+		var/obj/O = target
+		if(!(O.resistance_flags & FIRE_PROOF))
+			
+	
+/datum/component/ignitable/proc/on_examine(datum/source, mob/user, list/examine_list)
+	return

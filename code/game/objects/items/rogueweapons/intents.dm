@@ -315,6 +315,19 @@
 	chargetime = 0
 	swingdelay = 12
 
+/datum/intent/pick/ranged
+	name = "ranged pick"
+	icon_state = "inpick"
+	attack_verb = list("stabs", "impales")
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 60
+	chargetime = 0
+	damfactor = 1.1
+	chargetime = 10
+	chargedrain = 2
+	no_early_release = TRUE
+	blade_class = BCLASS_PICK
+
 /datum/intent/shoot //shooting crossbows or other guns, no parrydrain
 	name = "shoot"
 	icon_state = "inshoot"
