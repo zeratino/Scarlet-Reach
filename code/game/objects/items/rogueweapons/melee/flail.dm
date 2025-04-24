@@ -300,12 +300,17 @@
 	. = ..()
 	AddComponent(/datum/component/ignitable)
 
+
+/datum/component/ignitable/warspear
+	single_use = TRUE
+	icon_state_ignited = "peasantwarspearhayfire"
+
 /datum/component/ignitable
+	var/is_ignitable
 	var/is_active
 	var/single_use
 	var/icon_state_ignited
 	var/del_self_on_hit
-	var/ignite_others
 
 /datum/component/ignitable/Initialize(...)
 	. = ..()
@@ -317,12 +322,35 @@
 	var/obj/I = parent
 	I.set_light_on(TRUE)
 	is_active = TRUE
+	update_icon()
+
+/datum/component/ignitable/proc/update_icon()
+	var/obj/item/I = parent
+	if(is_active)
+		I.toggle_state = "[icon_state_ignited]"
+		I.icon_state = "[icon_state_ignited][I.wielded ? "1" : ""]"
+	else
+		I.icon_state = "[initial(icon_state)][I.wielded ? "1" : ""]"
+		I.toggle_state = null
+		I.update_icon()
+
 
 /datum/component/ignitable/proc/item_afterattack(obj/item/source, atom/target, mob/user, proximity_flag, click_parameters)
+	var/ignited = FALSE
 	if(isobj(target))
 		var/obj/O = target
 		if(!(O.resistance_flags & FIRE_PROOF))
-			
+			O.spark_act()
+			O.fire_act()
+			ignited = TRUE
+	if(ismob(target))
+		var/mob/M = target
+		mob_ignite(M)
+		ignited = TRUE
+	if(ignited && single_use)
+		is_active = FALSE
+		update_icon()
+
 	
 /datum/component/ignitable/proc/on_examine(datum/source, mob/user, list/examine_list)
 	return
