@@ -339,6 +339,19 @@
 	bitesize = 6
 	slice_sound = TRUE
 
+/obj/item/reagent_containers/food/snacks/butter/attackby(obj/item/I, mob/living/user, params)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/egg))
+		to_chat(user, span_notice("Cracking an egg over the butter."))
+		if(do_after(user, short_cooktime, target = src))
+			playsound(get_turf(user), 'modular/Neu_Food/sound/eggbreak.ogg', 100, TRUE, -1)
+			new /obj/item/reagent_containers/food/snacks/rogue/foodbase/squires_delight(drop_location())
+			qdel(I)
+			qdel(src)
+			return
+	return ..()
+
+
 /obj/item/reagent_containers/food/snacks/butter/update_icon()
 	if(slices_num)
 		icon_state = "butter[slices_num]"

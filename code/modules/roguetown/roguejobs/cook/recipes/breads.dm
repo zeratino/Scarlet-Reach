@@ -205,8 +205,24 @@
 	icon_state = "toast"
 	slices_num = 0
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
+	mill_result = /obj/item/reagent_containers/food/snacks/rogue/toastcrumbs
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("spelt" = 1)
+	cooked_type = null
+	foodtype = GRAIN
+	bitesize = 1
+	rotprocess = 30 MINUTES
+
+/obj/item/reagent_containers/food/snacks/rogue/toastcrumbs
+	name = "toast crumbs"
+	desc = "Toast crumbs, perfect for adding a crunch to deep fried food."
+	icon = 'modular/Neu_Food/icons/deep_fried.dmi'
+	icon_state = "toastcrumbs"
+	slices_num = 0
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+	mill_result = /obj/item/reagent_containers/food/snacks/rogue/toastcrumbs
+	w_class = WEIGHT_CLASS_TINY
+	tastes = list("crunch" = 1)
 	cooked_type = null
 	foodtype = GRAIN
 	bitesize = 1
