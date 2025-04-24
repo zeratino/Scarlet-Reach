@@ -33,7 +33,7 @@
 	equipOutfit(new /datum/outfit/job/roguetown/deadite)
 	//Fluff messages before they turn into a deadite
 	if(prob(50))
-		src.say(pick(
+		say(pick(
 			"Help me.. please...",
 			"Someone.. anyone...",
 			"I-.. I don't feel right...",
