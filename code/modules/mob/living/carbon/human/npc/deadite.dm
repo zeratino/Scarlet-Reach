@@ -31,6 +31,18 @@
 	src.mind_initialize()
 	src.mind.add_antag_datum(/datum/antagonist/zombie, team = FALSE, admin_panel = TRUE)
 	equipOutfit(new /datum/outfit/job/roguetown/deadite)
+	//Fluff messages before they turn into a deadite
+	if(prob(50))
+		src.say(pick(
+			"Help me.. please...",
+			"Someone.. anyone...",
+			"I-.. I don't feel right...",
+			"Please, not like this...",
+			"Run.. it's too late...",
+			"Get away.. before it's too late...",
+			"My head-.. it's splitting...",
+			"What's-.. happening to me?",
+			"I-.. feel so cold..."))
 
 /datum/outfit/job/roguetown/deadite/pre_equip(mob/living/carbon/human/H)
 	..()
