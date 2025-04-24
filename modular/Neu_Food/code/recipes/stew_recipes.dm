@@ -1,4 +1,4 @@
-#define STEW_COOKING_TIME 60 // Default time to cook in seconds
+#define STEW_COOKING_TIME 60 SECONDS // Default time to cook in seconds
 
 /datum/stew_recipe
 	var/list/obj/inputs = null // The valid inputs for the recipe
