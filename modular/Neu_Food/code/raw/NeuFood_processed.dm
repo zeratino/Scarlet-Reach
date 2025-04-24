@@ -13,6 +13,7 @@
 	icon_state = "fat"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	eat_effect = /datum/status_effect/debuff/uncookedfood
+	fat_yield = 20
 
 /obj/item/reagent_containers/food/snacks/fat/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
@@ -41,6 +42,7 @@
 	tastes = list("grease" = 1, "oil" = 1, "regret" =1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_POOR)
 	eat_effect = /datum/status_effect/debuff/uncookedfood
+	fat_yield = 5 // 5 per animal fat
 	bitesize = 1
 	dropshrink = 0.3
 

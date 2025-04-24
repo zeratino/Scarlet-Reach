@@ -1,6 +1,8 @@
 #define MIN_STEW_TEMPERATURE 374 // For cooking
 #define VOLUME_PER_STEW_COOK 32 // Volume to cook per ingredient
 #define VOLUME_PER_STEW_COOK_AFTER 1 // Volume to deduct after the sleep is over
+#define DEEP_FRY_TIME 5 SECONDS // Default deep fry time
+#define OIL_CONSUMED 5 // Amount of oil consumed per deep fry (1 fat = 4 fry)
 
 /obj/machinery/light/rogue/firebowl
 	name = "brazier"
@@ -416,9 +418,33 @@
 					update_icon()
 					playsound(src.loc, 'sound/misc/frying.ogg', 80, FALSE, extrarange = 5)
 					return
-// New concept = boil at least 33 water, add item, it turns into food reagent volume 33 of the appropriate type
+// Stew + Deep Frying code - refactored!!
 		else if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
 			var/obj/item/reagent_containers/glass/bucket/pot = attachment
+			if(istype(W, /obj/item/reagent_containers/food/snacks))
+				var/obj/item/reagent_containers/food/snacks/S = W
+				if(S.fat_yield)
+					if(pot.reagents.has_reagent(/datum/reagent/water))
+						to_chat(user, span_warning("You can't render fat in a pot with water!"))
+						return
+					if(do_after(user, 2 SECONDS / cooktime_divisor, target = src))
+						user.visible_message(span_info("[user] melts [S] in the pot.</span>"))
+						qdel(S)
+						pot.reagents.add_reagent(/datum/reagent/consumable/oil/tallow, S.fat_yield)
+						return
+				if(pot.reagents.has_reagent(/datum/reagent/consumable/oil/tallow) && S.deep_fried_type)
+					if(!pot.reagents.has_reagent(/datum/reagent/consumable/oil/tallow, OIL_CONSUMED))
+						to_chat(user, span_notice("Not enough tallow."))
+						return
+					if(pot.reagents.has_reagent(/datum/reagent/water))
+						to_chat(user, span_warning("You can't deep fry in a pot with water!"))
+						return
+					if(do_after(user, DEEP_FRY_TIME / cooktime_divisor, target = src))
+						user.visible_message(span_info("[user] deep fries [S] in the pot.</span>"))
+						new S.deep_fried_type(src.loc)
+						qdel(S)
+						pot.reagents.remove_reagent(/datum/reagent/consumable/oil/tallow, OIL_CONSUMED)
+						return
 			for(var/datum/stew_recipe/R in GLOB.stew_recipes)
 				for(var/I in R.inputs)
 					if(istype(W, I))
