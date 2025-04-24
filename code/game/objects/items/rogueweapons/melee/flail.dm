@@ -242,3 +242,29 @@
 			if("wielded")
 				return list("shrink" = 0.6,"sx" = 5,"sy" = -3,"nx" = -5,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 
+
+/obj/item/rogueweapon/woodstaff/military_warclub
+	force = 15
+	force_wielded = 25
+	possible_item_intents = list(SPEAR_BASH)
+	gripped_intents = list(SPEAR_BASH,/datum/intent/mace/smash/wood)
+	name = "wooden staff"
+	desc = "Not so heavy, perfect for beggars, pilgrims and mages."
+	icon_state = "woodstaff"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	wlength = WLENGTH_LONG
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
+	blade_dulling = DULLING_BASHCHOP
+	sharpness = IS_BLUNT
+	walking_stick = TRUE
+	pixel_y = -16
+	pixel_x = -16
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	wdefense = 10
+	bigboy = TRUE
+	gripsprite = TRUE
+	associated_skill = /datum/skill/combat/polearms
+	anvilrepair = /datum/skill/craft/carpentry
+	resistance_flags = FLAMMABLE
