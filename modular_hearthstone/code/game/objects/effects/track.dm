@@ -42,6 +42,17 @@
 /turf/open/floor/rogue/cobble
 	track_prob = 3
 
+/turf/open/floor/rogue/blocks
+	track_prob = 10
+
+/turf/open/floor/rogue/tile/bath
+	track_prob = 20
+
+/turf/open/floor/rogue/tile
+	track_prob = 10
+
+/turf/open/floor/rogue/hexstone
+	track_prob = 10
 //Probabilities end (albeit mud is handled seperately).
 
 //For highlighting tracks
