@@ -305,9 +305,14 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 							else
 								coverage_exposed.Remove(coverageflag)
 			for(var/coverageflag in coverage)	//We go through the set up list and filter out redundancies. (ie Left Arm & Right Arm having identical stats to Arms)
+				to_chat(world, "checking the coverage flag of: [coverageflag]")
 				switch(coverageflag)
 					if(READABLE_ZONE_ARMS)
+						to_chat(world, "comparing L ARM: [coverage[READABLE_ZONE_L_ARM]] to R ARM: [coverage[READABLE_ZONE_R_ARM]]")
 						if(coverage[READABLE_ZONE_L_ARM] == coverage[READABLE_ZONE_R_ARM])
+							to_chat(world, "comparing blunt_max of L arm: [blunt_max[READABLE_ZONE_L_ARM]] to R arm: [blunt_max[READABLE_ZONE_R_ARM]]")
+							to_chat(world, "comparing slash_max of L arm: [slash_max[READABLE_ZONE_L_ARM]] to R arm: [slash_max[READABLE_ZONE_R_ARM]]")
+							to_chat(world, "comparing stab_max of L arm: [stab_max[READABLE_ZONE_L_ARM]] to R arm: [stab_max[READABLE_ZONE_R_ARM]]")
 							if((blunt_max[READABLE_ZONE_L_ARM] == blunt_max[READABLE_ZONE_R_ARM]) && (slash_max[READABLE_ZONE_L_ARM] == slash_max[READABLE_ZONE_R_ARM]) && (stab_max[READABLE_ZONE_L_ARM] == stab_max[READABLE_ZONE_R_ARM]))
 								coverage.Remove(READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM)
 							else
