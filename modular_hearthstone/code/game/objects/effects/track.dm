@@ -53,6 +53,12 @@
 
 /turf/open/floor/rogue/hexstone
 	track_prob = 10
+
+/turf/open/floor/rogue/churchmarble
+	track_prob = 5
+
+/turf/open/floor/rogue/churchbrick
+	track_prob = 5
 //Probabilities end (albeit mud is handled seperately).
 
 //For highlighting tracks
