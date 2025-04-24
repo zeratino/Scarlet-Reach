@@ -469,10 +469,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 						inspec += "<b>[capitalize(zone)]</b> | "
 				else
 					var/list/zones = list()
-					//We have some part peeled, so we turn the printout into verbose mode and highlight the missing coverage.
-					for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, verbose = TRUE))
+					//We have some part peeled, so we turn the printout into precise mode and highlight the missing coverage.
+					for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
 						zones += zoneorg
-					for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, verbose = TRUE))
+					for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
 						inspec += "<b>[capitalize(zonedyn)]</b> | "
 						if(zonedyn in zones)
 							zones.Remove(zonedyn)
@@ -1344,7 +1344,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(peel_count >= peel_threshold)
 				body_parts_covered_dynamic &= ~coveragezone
 				playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
-				var/list/peeledpart = body_parts_covered2organ_names(coveragezone, verbose = TRUE)
+				var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
 				var/parttext
 				if(length(peeledpart))
 					parttext = peeledpart[1]	//There should really only be one bodypart that gets exposed here.
