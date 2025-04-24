@@ -20,16 +20,13 @@
 /obj/effect/proc_holder/spell/invoked/baothablessings/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
 		var/mob/living/carbon/target = targets[1]
-		if(istype(target.patron, /datum/patron/inhumen/baotha))
-			to_chat(user, span_warning("They already possess Baotha's blessings.."))
-			return FALSE										//This stops us from accidently removing another Baothan's anti-overdose trait.
 		target.apply_status_effect(/datum/status_effect/buff/druqks)
-		ADD_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_GENERIC)		//Gets the trait temorarily, basically will just stop any active/upcoming ODs.
+		ADD_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_MIRACLE)		//Gets the trait temorarily, basically will just stop any active/upcoming ODs.
 		target.visible_message("<span class='info'>[target]'s eyes appear to gloss over!</span>", "<span class='notice'>I feel.. at ease.</span>")
 		addtimer(CALLBACK(src, PROC_REF(remove_buff), target), wait = 2 MINUTES)	//Should be long enough to prevent an overdose.
 
 /obj/effect/proc_holder/spell/invoked/baothablessings/proc/remove_buff(mob/living/carbon/target)
-	REMOVE_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_GENERIC)							
+	REMOVE_TRAIT(target, TRAIT_CRACKHEAD, TRAIT_MIRACLE)							
 	to_chat(target, span_warning("I see everything clearly once more.."))
 	target.visible_message("[target]'s eyes appear to return to normal.")
 
@@ -47,7 +44,8 @@
 	chargedrain = 0
 	chargetime = 15
 	charge_max = 10 SECONDS
-	invocation = "Have a taste of the maiden's pure-bliss!"
+	invocation_type = "whisper"
+	invocation = "Have a taste of the maiden's pure-bliss..."
 
 /obj/projectile/magic/blowingdust
 	name = "unholy dust"
@@ -56,7 +54,7 @@
 	damage = 1
 	poisontype = /datum/reagent/herozium
 	poisonfeel = "burning" //Would make sense for your eyes or nose to burn, I guess.
-	poisonamount = 7 //Decent bit of high, three doses would be just above the overdose threshold if applied fast enough.
+	poisonamount = 8 //Decent bit of high, three doses would be just above the overdose threshold if applied fast enough.
 
 /obj/projectile/magic/blowingdust/on_hit(target, mob/living/M)
 	. = ..()
