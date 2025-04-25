@@ -1009,12 +1009,12 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	active = FALSE
 	releasedrain = 15
 	chargedrain = 1
-	chargetime = 5
+	chargetime = 0
 	charge_max = 3.5 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
-	spell_tier = 2
+	spell_tier = 3
 	invocation = "Magicae Sagitta!"
 	invocation_type = "shout"
 	charging_slowdown = 3
@@ -1027,8 +1027,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	icon_state = "arcane_barrage"
 	damage = 30
 	damage_type = BRUTE
-	armor_penetration = 10
-	woundclass = BCLASS_BLUNT
+	armor_penetration = 40
+	woundclass = BCLASS_SMASH
 	nodamage = FALSE
 	flag = "magic"
 	hitsound = 'sound/combat/hits/blunt/shovel_hit2.ogg'
