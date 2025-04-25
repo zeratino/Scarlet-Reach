@@ -442,6 +442,7 @@
 						return
 					if(do_after(user, DEEP_FRY_TIME / cooktime_divisor, target = src))
 						user.visible_message(span_info("[user] deep fries [S] in the pot.</span>"))
+						add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
 						new S.deep_fried_type(src.loc)
 						qdel(S)
 						pot.reagents.remove_reagent(/datum/reagent/consumable/oil/tallow, OIL_CONSUMED)
@@ -457,6 +458,7 @@
 							return
 						if(do_after(user, 2 SECONDS / cooktime_divisor, target = src))
 							user.visible_message(span_info("[user] places [W] into the pot.</span>"))
+							add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
 							qdel(W)
 							playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
 							pot.reagents.remove_reagent(/datum/reagent/water, VOLUME_PER_STEW_COOK)

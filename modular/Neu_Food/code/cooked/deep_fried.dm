@@ -1,7 +1,7 @@
 // Split this file into folder and individual food type
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/nitzel
 	name = "unfinished nitzel"
-	desc = "Tenderized pork, awaiting a coating of toastcrumbs and a hot oil bath."
+	desc = "Tenderized meat, awaiting a coating of toastcrumbs and a hot oil bath."
 	icon = 'modular/Neu_Food/icons/deep_fried.dmi'
 	icon_state = "nitzel_step1"
 	process_step = 1
