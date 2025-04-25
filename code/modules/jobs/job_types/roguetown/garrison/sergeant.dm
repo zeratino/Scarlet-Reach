@@ -58,17 +58,15 @@
 	id = /obj/item/scomstone/garrison
 
 //Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
-/datum/advclass/sergeant/swordsman
-	name = "Swordsman - Romphaia (+Cudgel)"
-	tutorial = "You specialize in not just any type of sword but specifically larger, two-handed weapons of war. The Romphaia, a long hooked sword, has become your standard-issue of choice. Perfect for penetrating even the armor of knights!"
-	outfit = /datum/outfit/job/roguetown/sergeant/swordsman
+/datum/advclass/sergeant/sergeant
+	name = "Sergeant-at-Arms"
+	tutorial = "You are a not just anybody but the Sergeant-at-Arms of the Duchy's garrison. While you may have started as some peasant or mercenary, you have advanced through the ranks to that of someone who commands respect and wields it. Take up arms, sergeant!"
+	outfit = /datum/outfit/job/roguetown/sergeant/sergeant
 
 	category_tags = list(CTAG_SERGEANT)
 
-/datum/outfit/job/roguetown/sergeant/swordsman/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/sergeant/sergeant/pre_equip(mob/living/carbon/human/H)
 	..()
-	backl = /obj/item/rogueweapon/sword/long/romphaia
-	beltr = /obj/item/rogueweapon/mace/cudgel
 	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -102,147 +100,25 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard) // We'll just use Watchmen as sorta conscripts yeag?
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant = 1)
-
-//Steel flail + a tower shield, should be less strong than a steel mace but still fuck hard. Plug gives whip/flail skill sergeant gets a use.
-/datum/advclass/sergeant/flailman
-	name = "Flailman - Flail & Tower Shield"
-	tutorial = "A peasant's best weapon, a simple flail. You've trained well in its use, ready to cave-heads and take names. Accompanied with a trusty tower shield to protect yourself."
-	outfit = /datum/outfit/job/roguetown/sergeant/flailman
-
-	category_tags = list(CTAG_SERGEANT)
-
-/datum/outfit/job/roguetown/sergeant/flailman/pre_equip(mob/living/carbon/human/H)
-	..()
-	beltr = /obj/item/rogueweapon/flail/sflail
-	backl = /obj/item/rogueweapon/shield/tower
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)	
-	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)	// We are basically identical to a regular MAA, except having better athletics to help us manage our order usage better
-	H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)	//Decent tracking akin to Skirmisher.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.change_stat("strength", 2)
-	H.change_stat("intelligence", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)		//Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
-	H.change_stat("endurance", 1)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/onfeet)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/hold)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard) // We'll just use Watchmen as sorta conscripts yeag?
-	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant = 1)
-
-//Normal MAA halberd loadout, it's pretty good so..
-/datum/advclass/sergeant/halberdier
-	name = "Halbarder - Halberd (+Cudgel)"
-	tutorial = "A warrior at heart and mind, you've stuck with the tride-and-true choice of weapon among professional soldiers - the trusty halberd. With superior reaach you may stab, cut, and chop through your enemies."
-	outfit = /datum/outfit/job/roguetown/sergeant/halberdier
-
-	category_tags = list(CTAG_SERGEANT)
-
-/datum/outfit/job/roguetown/sergeant/halberdier/pre_equip(mob/living/carbon/human/H)
-	..()
-	r_hand = /obj/item/rogueweapon/halberd
-	backl = /obj/item/gwstrap
-	beltr = /obj/item/rogueweapon/mace/cudgel
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)	
-	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)	// We are basically identical to a regular MAA, except having better athletics to help us manage our order usage better
-	H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)	//Decent tracking akin to Skirmisher.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.change_stat("strength", 2)
-	H.change_stat("intelligence", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)		//Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
-	H.change_stat("endurance", 1)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/onfeet)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/hold)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard) // We'll just use Watchmen as sorta conscripts yeag?
-	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant = 1)
-
-//Versetile loadout type for shoot-stab players. Sergeants shouldn't be 'backline' archers so crossbow kinda encourages you to fire once or twice then get in the brawl.
-/datum/advclass/sergeant/skirmisher
-	name = "Skirmisher - Sabre & Crossbow"
-	tutorial = "Putting your keen eyes and dexterity to work, you specialize in hit-and-run attacks. A simple crossbow to land a wounding blow, and running up to finish them off with your trusty swift sword."
-	outfit = /datum/outfit/job/roguetown/sergeant/skirmisher
-
-	category_tags = list(CTAG_SERGEANT)
-
-/datum/outfit/job/roguetown/sergeant/skirmisher/pre_equip(mob/living/carbon/human/H)
-	..()
-	beltr = /obj/item/quiver/bolts
-	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-	r_hand = /obj/item/rogueweapon/sword/sabre
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)	
-	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)	// We are basically identical to a regular MAA, except having better athletics to help us manage our order usage better
-	H.mind.adjust_skillrank(/datum/skill/misc/riding, 1, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)	//Decent tracking akin to Skirmisher.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC) //+1 spd, con, end, +3 per in town
-	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	H.change_stat("strength", 2)
-	H.change_stat("intelligence", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("perception", 1)		//Gets bow-skills, so give a SMALL tad of perception to aid in bow draw.
-	H.change_stat("endurance", 1)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/onfeet)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/hold)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard) // We'll just use Watchmen as sorta conscripts yeag?
-	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant = 1)
-
+	H.adjust_blindness(-3)
+	var/weapons = list("Romphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
+	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	H.set_blindness(0)
+	switch(weapon_choice)
+		if("Romphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
+			backl = /obj/item/rogueweapon/sword/long/romphaia
+			beltr = /obj/item/rogueweapon/mace/cudgel
+		if("Flail & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Plus a steel flail; maybe.. less broken that a steel mace?
+			beltr = /obj/item/rogueweapon/flail/sflail
+			backl = /obj/item/rogueweapon/shield/tower
+		if("Halberd")			//Halberd - basically exact same as MAA. It's a really valid build. Spear thrust + sword chop + bash.
+			r_hand = /obj/item/rogueweapon/halberd
+			backl = /obj/item/gwstrap
+			beltr = /obj/item/rogueweapon/mace/cudgel
+		if("Sabre & Crossbow")	//Versetile skirmisher class. Considered other swords but sabre felt best without being too strong. (This one gets no cudgel, no space.)
+			beltr = /obj/item/quiver/bolts
+			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			r_hand = /obj/item/rogueweapon/sword/sabre
 
 /obj/effect/proc_holder/spell/invoked/order
 	name = ""
