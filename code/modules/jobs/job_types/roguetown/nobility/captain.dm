@@ -120,6 +120,7 @@
 	var/weapons = list(
 		"Zweihander",
 		"Great Mace",
+		"Battle Axe",
 		"Greataxe",
 		"Estoc",
 		"Bastard Sword & Shield",
@@ -134,6 +135,8 @@
 			backl = /obj/item/gwstrap
 		if("Great Mace")
 			r_hand = /obj/item/rogueweapon/mace/goden/steel
+		if("Battle Axe")
+			r_hand = /obj/item/rogueweapon/stoneaxe/battle
 		if("Greataxe")
 			r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead
 			backl = /obj/item/gwstrap
