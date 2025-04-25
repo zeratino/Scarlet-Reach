@@ -260,6 +260,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 60,
 				/mob/living/simple_animal/hostile/retaliate/rogue/trollbog = 20,
 				/mob/living/simple_animal/hostile/retaliate/rogue/spider = 40,
+				/mob/living/carbon/human/species/skeleton/npc/bogguard = 20,
 				/mob/living/carbon/human/species/goblin/npc/ambush/cave = 30)
 	first_time_text = "THE TERRORBOG"
 	converted_type = /area/rogue/indoors/shelter/bog
@@ -548,6 +549,28 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound = 'sound/music/area/dungeon.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
+	converted_type = /area/rogue/outdoors/dungeon1
+	ceiling_protected = TRUE
+
+/area/rogue/under/cave/goblindungeon
+	name = "goblindungeon"
+	icon_state = "under"
+	first_time_text = "GOIBLIN CAMP"
+	droning_sound = 'sound/music/area/dungeon.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	converted_type = /area/rogue/outdoors/dungeon1
+	ceiling_protected = TRUE
+
+/area/rogue/under/cave/skeletoncrypt
+	name = "skeletoncrypt"
+	icon_state = "under"
+	first_time_text = "SKELETON CRYPT"
+	droning_sound = 'sound/music/area/dungeon.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	ambientsounds = AMB_BASEMENT
+	ambientnight = AMB_BASEMENT
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 
