@@ -397,6 +397,7 @@
 		if(istype(W, /obj/item/cooking/pan) || istype(W, /obj/item/reagent_containers/glass/bucket/pot))
 			playsound(get_turf(user), 'sound/foley/dropsound/shovel_drop.ogg', 40, TRUE, -1)
 			attachment = W
+			user.doUnEquip(W)
 			W.forceMove(src)
 			update_icon()
 			return
