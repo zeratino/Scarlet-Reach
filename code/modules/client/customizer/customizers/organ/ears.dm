@@ -16,7 +16,8 @@
 	organ_type = /obj/item/organ/ears/vulpkanin
 	sprite_accessories = list(
 		/datum/sprite_accessory/ears/fox,
-		/datum/sprite_accessory/ears/vulp
+		/datum/sprite_accessory/ears/vulp,
+		/datum/sprite_accessory/ears/big/sandfox_large
 		)
 
 /datum/customizer/organ/ears/lupian
@@ -31,7 +32,8 @@
 		/datum/sprite_accessory/ears/fox,
 		/datum/sprite_accessory/ears/husky,
 		/datum/sprite_accessory/ears/otie,
-		/datum/sprite_accessory/ears/wolf
+		/datum/sprite_accessory/ears/wolf,
+		/datum/sprite_accessory/ears/lab
 	)
 
 /datum/customizer/organ/ears/tajaran
@@ -43,6 +45,7 @@
 	sprite_accessories = list(
 		/datum/sprite_accessory/ears/cat_big,
 		/datum/sprite_accessory/ears/cat_normal,
+		/datum/sprite_accessory/ears/miqote
 		)
 
 /datum/customizer/organ/ears/axian
