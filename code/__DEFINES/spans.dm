@@ -116,7 +116,6 @@
 #define span_reallybigredtext(str) ("<span class='reallybigredtext'>" + str + "</span>")
 #define span_red(str) ("<span class='red'>" + str + "</span>")
 #define span_smallred(str) ("<span class='smallred'>" + str + "</span>")
-#define span_singing(str) ("<span class='singing'>" + str + "</span>")
 #define span_boldred(str) ("<span class='boldred'>" + str + "</span>")
 #define span_redteamradio(str) ("<span class='redteamradio'>" + str + "</span>")
 #define span_redtext(str) ("<span class='redtext'>" + str + "</span>")
