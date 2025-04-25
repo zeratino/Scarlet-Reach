@@ -134,9 +134,9 @@
 					r_hand = /obj/item/rogueweapon/spear/billhook
 					backr = /obj/item/gwstrap
 				if("Greataxe")
-				H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-				r_hand = /obj/item/rogueweapon/greataxe
-				backr = /obj/item/gwstrap
+					H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
+					r_hand = /obj/item/rogueweapon/greataxe
+					backr = /obj/item/gwstrap
 			H.change_stat("strength", 2)
 			H.change_stat("constitution", 1)
 			H.change_stat("endurance", 1)
