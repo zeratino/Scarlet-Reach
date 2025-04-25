@@ -3,7 +3,6 @@
 #define GLOW_COLOR_ICE "#87CEEB" // Cyan
 #define GLOW_COLOR_LIGHTNING "#FFFF00" // Yellow
 #define GLOW_COLOR_BUFF "#A0E65C" // Green
-#define GLOW_COLOR_ARCYNE "#DDA0DD" // Magenta
 #define GLOW_COLOR_VAMPIRIC "#8B0000" // Dark Red
 #define GLOW_COLOR_METAL "#808080" // Gray
 #define GLOW_COLOR_DISPLACEMENT "#9400D3" // Purple, for generic displacement / CC spells
