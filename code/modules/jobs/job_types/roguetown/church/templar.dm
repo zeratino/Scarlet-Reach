@@ -1,4 +1,4 @@
-//shield flail or longsword, tief can be this with red cross
+//shield flail or longsword, tief can be this with red cross test
 
 /datum/job/roguetown/templar
 	title = "Templar"
