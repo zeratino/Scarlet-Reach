@@ -36,14 +36,13 @@
 	icon_state = "clayvasecook"
 	volume = 65 // Larger than glass bottle
 	sellprice = 9
-	dropshrink = 0.1				//Stops shrink
 	reagent_flags = OPENCONTAINER	//So it doesn't appear through
 
 //Fancy vase - bigger bottle + fancy
 /obj/item/natural/clay/clayfancyvase
 	name = "unglazed fancy clay vase"
 	icon = 'icons/roguetown/items/cooking.dmi'
-	icon_state = "clayvaseraw"
+	icon_state = "clayfancyvaseraw"
 	desc = "A fancy vase fashioned from clay. Still needs to be glazed to be useful."
 	cooked_type = /obj/item/reagent_containers/glass/bottle/clayfancyvase
 
@@ -51,10 +50,9 @@
 	name = "fancy ceramic vase"
 	desc = "A large sized fancy ceramic vase."
 	icon = 'icons/roguetown/items/cooking.dmi'
-	icon_state = "clayvasecook"
+	icon_state = "clayfancyvasecook"
 	volume = 65 // Larger than glass bottle
 	sellprice = 14
-	dropshrink = 0.1				//Stops shrink
 	reagent_flags = OPENCONTAINER	//So it doesn't appear through
 
 //Flask (was a cup) - subtype of regular cup but can shatter.
