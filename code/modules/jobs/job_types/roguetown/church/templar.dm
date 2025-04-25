@@ -97,6 +97,7 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	beltr = /obj/item/storage/keyring/churchie
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	gloves = /obj/item/clothing/gloves/roguetown/angle
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
@@ -123,7 +124,7 @@
 		H.change_stat("strength", 3)
 		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 2)
-		H.change_stat("speed", 1)
+		H.change_stat("speed", 2)
 
 		ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
