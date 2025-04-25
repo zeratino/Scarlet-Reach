@@ -156,7 +156,7 @@
 				if(boostclass.type in forced_class_additions)
 					rolled_classes[boostclass] += 1
 
-	to_chat(linked_client, "assemble_the_CLASSES completed")
+	testing("assemble_the_CLASSES completed")
 	if(!rolled_classes.len)
 		linked_client.mob.returntolobby()
 		message_admins("CLASS_SELECT_HANDLER HAD PERSON WITH 0 CLASS SELECT OPTIONS. THIS IS REALLY BAD! RETURNED THEM TO LOBBY")
