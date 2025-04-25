@@ -67,7 +67,7 @@
 /datum/class_select_handler/proc/initial_setup()
 	if(register_id)
 		SSrole_class_handler.add_class_register_listener(register_id, linked_client.mob)
-	assemble_the_CLASSES_new()
+	assemble_the_CLASSES()
 	second_step()
 
 // The second step, aka we just want to make sure the resources are there and that the menu is being displayed
@@ -88,156 +88,6 @@
 	forced_class_additions = null
 	. = ..()
 
-//Beware, coder. This is AI generated. Claude Sonnet. Forcing / Plusboosting may not work (deprecated features in AP) 
-//TODO: Switch to_chat(linked_client) to testing once the advanced menu missing class bug is hunted
-/datum/class_select_handler/proc/assemble_the_CLASSES_new()
-	var/mob/living/carbon/human/H = linked_client?.mob
-	if(!istype(H))
-		message_admins("CLASS_SELECT_HANDLER called without valid mob: [linked_client?.ckey || "NO CLIENT"]")
-		return FALSE
-
-	// Make sure our working lists are empty
-	rolled_classes = list()
-	//class_cat_alloc_attempts = list()
-	local_sorted_class_cache = list()
-
-	// Debug counters to track progress
-	var/classes_added = 0
-	var/classes_skipped = 0
-
-	// Time to sort and find our viable classes depending on what conditions we gotta deal with
-	if(class_cat_alloc_attempts && class_cat_alloc_attempts.len)
-		for(var/SORT_CAT_KEY in class_cat_alloc_attempts)
-			to_chat(linked_client, "Processing category: [SORT_CAT_KEY]")
-			
-			var/list/subsystem_ctag_list = SSrole_class_handler.sorted_class_categories[SORT_CAT_KEY]
-			if(!subsystem_ctag_list || !subsystem_ctag_list.len)
-				to_chat(linked_client, "No classes found in subsystem for category: [SORT_CAT_KEY]")
-				continue
-				
-			var/list/local_insert_sortlist = list()
-
-			if(class_cat_alloc_bypass_reqs)
-				to_chat(linked_client, "Bypassing requirements check for category: [SORT_CAT_KEY]")
-				for(var/datum/advclass/CUR_AZZ in subsystem_ctag_list)
-					// Use the explicit "in" operator to check presence
-					if(CUR_AZZ in rolled_classes)
-						to_chat(linked_client, "Skipping [CUR_AZZ] - already in rolled_classes")
-						classes_skipped++
-						continue
-					local_insert_sortlist += CUR_AZZ
-					to_chat(linked_client, "Added [CUR_AZZ] to sortlist (bypassing reqs)")
-			else // If we are not bypassing reqs, time to do a req check
-				to_chat(linked_client, "Checking requirements for classes in category: [SORT_CAT_KEY]")
-				for(var/datum/advclass/CUR_AZZ in subsystem_ctag_list)
-					// Use the explicit "in" operator to check presence
-					if(CUR_AZZ in rolled_classes)
-						to_chat(linked_client, "Skipping [CUR_AZZ] - already in rolled_classes")
-						classes_skipped++
-						continue
-						
-					if(CUR_AZZ.check_requirements(H))
-						to_chat(linked_client, "Adding [CUR_AZZ] to sortlist - passed requirements")
-						local_insert_sortlist += CUR_AZZ
-					else
-						to_chat(linked_client, "Skipping [CUR_AZZ] - failed requirements")
-						classes_skipped++
-
-			// Time to do some picking, make sure we got things in the list we dealin with
-			if(local_insert_sortlist.len)
-				to_chat(linked_client, "Found [local_insert_sortlist.len] viable classes for category [SORT_CAT_KEY]")
-				
-				// Make sure we aren't going to attempt to pick more than what we even have avail
-				if(class_cat_alloc_attempts[SORT_CAT_KEY] != local_insert_sortlist.len)
-					testing("Forcing class cat alloc attempts ([class_cat_alloc_attempts[SORT_CAT_KEY]]) equivalent to sortlist length ([local_insert_sortlist.len])")
-					class_cat_alloc_attempts[SORT_CAT_KEY] = (local_insert_sortlist.len) //Possibly dangerous
-
-				// Add classes to rolled_classes with initial value 0
-				for(var/i in 1 to class_cat_alloc_attempts[SORT_CAT_KEY])
-					var/datum/advclass/current_class = local_insert_sortlist[i]
-					if(!current_class)
-						to_chat(linked_client, "Error: Null class at index [i] in local_insert_sortlist")
-						continue
-						
-					rolled_classes[current_class] = 0
-					to_chat(linked_client, "Added [current_class] to Rolled Classes.")
-					classes_added++
-
-				// We are plusboosting too
-				if(class_cat_plusboost_attempts && (SORT_CAT_KEY in class_cat_plusboost_attempts))
-					var/boosts_to_apply = class_cat_plusboost_attempts[SORT_CAT_KEY]
-					if(boosts_to_apply > 0)
-						to_chat(linked_client, "Applying [boosts_to_apply] plusboosts to category [SORT_CAT_KEY]")
-						for(var/i in 1 to boosts_to_apply)
-							if(!local_insert_sortlist.len)
-								to_chat(linked_client, "No classes left to boost in [SORT_CAT_KEY]")
-								break
-								
-							var/datum/advclass/boostclass = pick(local_insert_sortlist)
-							if(boostclass in rolled_classes)
-								rolled_classes[boostclass] += 1
-								to_chat(linked_client, "Applied plusboost to [boostclass], now at level [rolled_classes[boostclass]]")
-
-				// Save our filtered list for future use
-				local_sorted_class_cache[SORT_CAT_KEY] = local_insert_sortlist
-			else
-				to_chat(linked_client, "No viable classes found for category [SORT_CAT_KEY] after filtering")
-
-	// If we got forced class additions
-	if(forced_class_additions && forced_class_additions.len)
-		to_chat(linked_client, "Processing [forced_class_additions.len] forced class additions")
-		
-		for(var/uninstanced_azz_type in forced_class_additions)
-			// Check if we already have an instance of this type in rolled_classes
-			var/already_exists = FALSE
-			for(var/datum/advclass/existing_class in rolled_classes)
-				if(existing_class.type == uninstanced_azz_type)
-					already_exists = TRUE
-					to_chat(linked_client, "Skipping forced addition of [uninstanced_azz_type] - already exists in rolled_classes")
-					break
-					
-			if(already_exists)
-				continue
-				
-			var/datum/advclass/FORCE_IT_IN = new uninstanced_azz_type
-			if(!istype(FORCE_IT_IN))
-				to_chat(linked_client, "Error creating instance of [uninstanced_azz_type]")
-				continue
-				
-			if(forced_class_bypass_reqs || FORCE_IT_IN.check_requirements(H))
-				rolled_classes[FORCE_IT_IN] = 0
-				to_chat(linked_client, "Forced addition of [FORCE_IT_IN] to rolled_classes")
-				classes_added++
-			else
-				to_chat(linked_client, "Skipping forced addition of [FORCE_IT_IN] - failed requirements")
-				qdel(FORCE_IT_IN) // Clean up the instance we created
-
-		if(forced_class_plusboost && forced_class_plusboost > 0)
-			to_chat(linked_client, "Applying [forced_class_plusboost] plusboosts to forced classes")
-			
-			var/list/forced_class_instances = list()
-			// Create a list of just the forced classes that made it into rolled_classes
-			for(var/datum/advclass/class_instance in rolled_classes)
-				if(class_instance.type in forced_class_additions)
-					forced_class_instances += class_instance
-			
-			if(forced_class_instances.len)
-				for(var/i in 1 to forced_class_plusboost)
-					if(!forced_class_instances.len) 
-						break
-					var/datum/advclass/boostclass = pick(forced_class_instances)
-					rolled_classes[boostclass] += 1
-					to_chat(linked_client, "Applied plusboost to forced class [boostclass], now at level [rolled_classes[boostclass]]")
-
-	to_chat(linked_client, "Assembling Classes completed: [classes_added] classes added, [classes_skipped] classes skipped")
-
-	if(!rolled_classes.len)
-		to_chat(linked_client, "ERROR: No classes were added to rolled_classes!")
-		linked_client.mob.returntolobby()
-		message_admins("CLASS_SELECT_HANDLER HAD PERSON WITH 0 CLASS SELECT OPTIONS. THIS IS REALLY BAD! RETURNED THEM TO LOBBY")
-		return FALSE
-
-	return TRUE
 // I hope to god you have a client before you call this, cause the checks on the SS
 /datum/class_select_handler/proc/assemble_the_CLASSES()
 	var/mob/living/carbon/human/H = linked_client.mob
@@ -266,9 +116,9 @@
 			// Time to do some picking, make sure we got things in the list we dealin with
 			if(local_insert_sortlist.len)
 				// Make sure we aren't going to attempt to pick more than what we even have avail
-				if(class_cat_alloc_attempts[SORT_CAT_KEY] > local_insert_sortlist.len)
-					testing("class cat alloc attempts is greater than sortlist")
-					class_cat_alloc_attempts[SORT_CAT_KEY] = local_insert_sortlist.len
+				if(class_cat_alloc_attempts[SORT_CAT_KEY] != local_insert_sortlist.len)
+					testing("class cat alloc attempts forced to equal of local_insert_sortlist")
+					class_cat_alloc_attempts[SORT_CAT_KEY] = local_insert_sortlist.len //equivalence assures all valid rolled_classes are displayed here
 
 				for(var/i in 1 to class_cat_alloc_attempts[SORT_CAT_KEY])
 					testing("[rolled_classes[local_insert_sortlist[i]]] equals zero")
