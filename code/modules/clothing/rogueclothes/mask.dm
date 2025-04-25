@@ -5,6 +5,7 @@
 	body_parts_covered = FACE
 	slot_flags = ITEM_SLOT_MASK
 	experimental_inhand = FALSE
+	experimental_onhip = FALSE
 
 /obj/item/clothing/mask/rogue/spectacles
 	name = "spectacles"
