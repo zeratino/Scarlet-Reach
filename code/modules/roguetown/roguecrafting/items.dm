@@ -2,7 +2,6 @@
 	always_availible = TRUE
 	skillcraft = /datum/skill/craft/crafting
 
-
 /datum/crafting_recipe/roguetown/tneedle
 	name = "sewing needle"
 	result = /obj/item/needle/thorn
