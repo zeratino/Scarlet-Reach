@@ -1,4 +1,4 @@
-//shield flail or longsword, tief can be this with red cross test
+//shield flail or longsword, tief can be this with red cross
 
 /datum/job/roguetown/templar
 	title = "Templar"
@@ -25,9 +25,6 @@
 /datum/outfit/job/roguetown/templar
 	has_loadout = TRUE
 	allowed_patrons = ALL_DIVINE_PATRONS
-	belt = /obj/item/storage/belt/rogue/leather/black
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
-	beltr = /obj/item/storage/keyring/churchie
 	id = /obj/item/clothing/ring/silver
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(/obj/item/ritechalk)
@@ -95,8 +92,10 @@
 			)
 			neck = pick(psicross_options) // Random psicross, as cleric.
 			cloak = /obj/item/clothing/cloak/templar/xylix
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
+	belt = /obj/item/storage/belt/rogue/leather/rope
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+	beltr = /obj/item/storage/keyring/churchie
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	if(H.mind)
@@ -122,12 +121,12 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
 		H.cmode_music = 'sound/music/combat_holy.ogg'
 		H.change_stat("strength", 3)
+		H.change_stat("constitution", 2)
 		H.change_stat("endurance", 2)
-		H.change_stat("speed", 2)
-		H.change_stat("perception", -1)
+		H.change_stat("speed", 1)
 
 		ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
@@ -136,7 +135,7 @@
 
 /datum/outfit/job/roguetown/templar/monk/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Katar")
+	var/weapons = list("Katar","Knuckle Dusters")
 	switch(H.patron?.type)
 		if(/datum/patron/divine/eora)
 			weapons += "Close Caress"
@@ -147,6 +146,8 @@
 	switch(weapon_choice)
 		if("Katar")
 			H.put_in_hands(new /obj/item/rogueweapon/katar(H), TRUE)
+		if("Knuckle Dusters")
+			H.put_in_hands(new /obj/item/rogueweapon/knuckles(H), TRUE)
 		if("Close Caress")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles/eora(H), TRUE)
 		if("Barotrauma")
@@ -209,6 +210,9 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+	belt = /obj/item/storage/belt/rogue/leather/black
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+	beltr = /obj/item/storage/keyring/churchie
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	armor = /obj/item/clothing/suit/roguetown/armor/plate	///Half-Plate not fullplate
 	if(H.mind)
