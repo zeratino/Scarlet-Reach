@@ -99,6 +99,13 @@
 		"...you turn over the fabric, and within the two layers of the gown, you hide a secret stitched into the gown, your initials, hidden within. A forbidden mark in some cultures... you never liked the bride much..."
 	)
 
+/datum/skill/misc/tracking
+	name = "Tracking"
+	desc = "Increases your chance to find tracks. Increases the information you gain from them, alongside your perception stats. \n \
+	At Expert level or above, you can mark the target of a track to find them. \n \
+	At Master level or above, you can find invisible creatures. \n \ You can track by right-clicking on your eye icon."
+
+
 /datum/skill/misc/ceramics
 	name = "Pottery"
 	desc = "Handles crafting and making of clay into vases and other fine-craft works."
