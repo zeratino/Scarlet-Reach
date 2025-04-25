@@ -155,7 +155,7 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/fullplate
-	name = "Psydonite Full-Plate Armour (+3 Steel, +1 Cured Leather)"
+	name = "Full-Plate Armour (+3 Steel, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel, /obj/item/ingot/steel, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full
@@ -294,7 +294,7 @@
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	craftdiff = 3
 
-/datum/anvil_recipe/armor/steel/cuirass/fluted
+/datum/anvil_recipe/armor/steel/cuirass/fluted/ornate
 	name = "Psydonite Cuirass (+1 Blessed Silver)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/silverblessed)
@@ -505,6 +505,12 @@
 	name = "Steel Plated Belt"
 	req_bar = /obj/item/ingot/steel
 	created_item = /obj/item/storage/belt/rogue/leather/steel
+	craftdiff = 2
+
+/datum/anvil_recipe/armor/steel/belt/tasset
+	name = "Tasseted Steel Plated Belt"
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/storage/belt/rogue/leather/steel/tasset
 	craftdiff = 2
 
 // --------- SILVER RECIPES-----------
