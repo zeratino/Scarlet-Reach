@@ -38,7 +38,7 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			shoes = /obj/item/clothing/shoes/roguetown/sandals
 			backl = /obj/item/storage/backpack/rogue/satchel
-			belt = /obj/item/storage/belt/rogue/rope
+			belt = /obj/item/storage/belt/rogue/leather/rope
 			beltr = /obj/item/flashlight/flare/torch/lantern
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1)
