@@ -33620,10 +33620,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
-"njq" = (
-/obj/structure/roguewindow,
-/turf/open/floor/rogue/cobble,
-/area/rogue/indoors/town/dwarfin)
 "njv" = (
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
@@ -256020,7 +256016,7 @@ acE
 sBu
 kfC
 ass
-njq
+xdU
 kaR
 eyK
 eyK
@@ -256472,7 +256468,7 @@ puO
 phl
 sBu
 qfA
-njq
+xdU
 fyu
 eyK
 eyK
@@ -260088,7 +260084,7 @@ aWT
 aWT
 exD
 sns
-njq
+eCR
 fyu
 eyK
 eyK
@@ -260540,7 +260536,7 @@ pxc
 vAX
 exD
 ehB
-njq
+eCR
 kaR
 eyK
 eyK
@@ -261445,7 +261441,7 @@ tDA
 exD
 ehB
 vaz
-njq
+eCR
 oED
 smL
 smL
