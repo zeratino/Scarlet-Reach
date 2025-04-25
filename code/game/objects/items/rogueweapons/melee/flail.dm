@@ -277,14 +277,6 @@
 	desc = "Pitchforks and hoes traditionally till the soil. In tymes of peril, however, it isn't uncommon for a militiaman to pound them into polearms."
 	icon_state = "peasantwarspear"
 	icon = 'icons/roguetown/weapons/64.dmi'
-	pixel_y = -16
-	pixel_x = -16
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	bigboy = TRUE
-	gripsprite = TRUE
-	wlength = WLENGTH_GREAT
-	w_class = WEIGHT_CLASS_BULKY
 	minstr = 8
 	max_blade_int = 100
 	anvilrepair = /datum/skill/craft/carpentry
@@ -294,23 +286,56 @@
 	light_system = MOVABLE_LIGHT
 	light_power = 5
 	light_outer_range = 5
-	light_color = "#c49514"
+	light_on = FALSE
+	light_color = "#db892b"
+	var/is_loaded = FALSE 
+	var/list/hay_types = list(/obj/structure/fluff/nest, /obj/structure/composter, /obj/structure/flora/roguegrass, /obj/item/reagent_containers/food/snacks/grown/wheat)
 
 /obj/item/rogueweapon/spear/militia/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/ignitable)
+	AddComponent(/datum/component/ignitable/warspear)
 
+/obj/item/rogueweapon/spear/militia/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(proximity_flag)
+		if(!is_loaded)
+			for(var/type in hay_types)
+				if(istype(target, type))
+					load_hay()
+					update_icon()
+					user.regenerate_icons()
+					visible_message(span_warning("[user] grabs a clump of [target] and wraps it around \the [src]!"))
+					playsound(src, 'sound/misc/hay_collect.ogg', 100)
+					qdel(target)
+					break
+
+/obj/item/rogueweapon/spear/militia/proc/load_hay()
+	var/datum/component/ignitable/CI = GetComponent(/datum/component/ignitable)
+	is_loaded = TRUE
+	toggle_state = "peasantwarspear_hay"
+	icon_state = "[toggle_state][wielded ? "1" : ""]"
+	CI.make_ignitable()
 
 /datum/component/ignitable/warspear
 	single_use = TRUE
-	icon_state_ignited = "peasantwarspearhayfire"
+	is_ignitable = FALSE
+	icon_state_ignited = "peasantwarspear_hayfire"
 
+
+/datum/component/ignitable/warspear/light_off()
+	..()
+	if(istype(parent, /obj/item/rogueweapon/spear/militia))
+		var/obj/item/rogueweapon/spear/militia/P = parent
+		P.is_loaded = FALSE
+
+//Component used to make any item gain the ability to be lit afire and turned into a light source / usable for single-use fire attack.
+//Uses toggle_state for the 'on-fire' sprites.
+//By default, all it does is become ignited when you click a fire / light source with it, and spread it to anything else, then extinguish.
 /datum/component/ignitable
-	var/is_ignitable
+	var/is_ignitable = TRUE	//This var makes it actually ignitable, so you want to handle it on a per-item-with-component basis.
 	var/is_active
-	var/single_use
+	var/single_use = TRUE
 	var/icon_state_ignited
-	var/del_self_on_hit
 
 /datum/component/ignitable/Initialize(...)
 	. = ..()
@@ -319,10 +344,25 @@
 	RegisterSignal(parent, COMSIG_ATOM_FIRE_ACT, PROC_REF(on_fireact))
 
 /datum/component/ignitable/proc/on_fireact(added, maxstacks)
+	if(is_ignitable && !is_active)
+		light_on()
+
+/datum/component/ignitable/proc/make_ignitable()
+	if(!is_ignitable && !is_active)
+		is_ignitable = TRUE
+
+/datum/component/ignitable/proc/light_on()
 	var/obj/I = parent
 	I.set_light_on(TRUE)
+	playsound(I.loc, 'sound/items/firelight.ogg', 100)
 	is_active = TRUE
+	is_ignitable = FALSE
 	update_icon()
+
+/datum/component/ignitable/proc/light_off()
+	var/obj/I = parent
+	I.set_light_on(FALSE)
+	playsound(get_turf(I), 'sound/items/firesnuff.ogg', 100)
 
 /datum/component/ignitable/proc/update_icon()
 	var/obj/item/I = parent
@@ -330,27 +370,39 @@
 		I.toggle_state = "[icon_state_ignited]"
 		I.icon_state = "[icon_state_ignited][I.wielded ? "1" : ""]"
 	else
-		I.icon_state = "[initial(icon_state)][I.wielded ? "1" : ""]"
+		I.icon_state = "[initial(I.icon_state)][I.wielded ? "1" : ""]"
 		I.toggle_state = null
 		I.update_icon()
 
 
 /datum/component/ignitable/proc/item_afterattack(obj/item/source, atom/target, mob/user, proximity_flag, click_parameters)
 	var/ignited = FALSE
-	if(isobj(target))
-		var/obj/O = target
-		if(!(O.resistance_flags & FIRE_PROOF))
-			O.spark_act()
-			O.fire_act()
+	if(is_active)
+		if(isobj(target))
+			var/obj/O = target
+			if(!(O.resistance_flags & FIRE_PROOF))
+				O.spark_act()
+				O.fire_act()
+				ignited = TRUE
+		if(isliving(target))
+			var/mob/living/M = target
+			M.adjust_fire_stacks(5)
+			M.IgniteMob()
 			ignited = TRUE
-	if(ismob(target))
-		var/mob/M = target
-		mob_ignite(M)
-		ignited = TRUE
-	if(ignited && single_use)
-		is_active = FALSE
-		update_icon()
+		if(ignited && single_use)
+			is_active = FALSE
+			light_off()
+			update_icon()
+			user.regenerate_icons()
+	else if(is_ignitable && !is_active)
+		if(isobj(target))
+			var/obj/O = target
+			if(O.damtype == BURN || O.light_on == TRUE)	//Super hacky, but should work on every conventional source you'd expect to ignite it. But also a few other weird ones.
+				light_on()
+				user.regenerate_icons()
+
 
 	
 /datum/component/ignitable/proc/on_examine(datum/source, mob/user, list/examine_list)
 	return
+
