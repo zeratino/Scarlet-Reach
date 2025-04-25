@@ -64,6 +64,13 @@
 	sewrepair = FALSE
 	anvilrepair = /datum/skill/craft/armorsmithing
 
+/obj/item/storage/belt/rogue/leather/steel/tasset
+	name = "tasseted belt"
+	icon_state = "steeltasset"
+	sellprice = 35
+	sewrepair = FALSE
+	anvilrepair = /datum/skill/craft/armorsmithing
+
 /obj/item/storage/belt/rogue/leather/rope
 	name = "rope belt"
 	desc = ""
