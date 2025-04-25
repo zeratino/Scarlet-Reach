@@ -16,6 +16,7 @@
 	
 
 	outfit = /datum/outfit/job/roguetown/sergeant
+	advclass_cat_rolls = list(CTAG_SERGEANT = 20)
 
 	give_bank_account = 50
 	min_pq = 6
@@ -28,14 +29,18 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(istype(H.cloak, /obj/item/clothing/cloak/stabard/surcoat/guard))
-			var/obj/item/clothing/S = H.cloak
-			var/index = findtext(H.real_name, " ")
-			if(index)
-				index = copytext(H.real_name, 1,index)
-			if(!index)
-				index = H.real_name
-			S.name = "sergeant jupon ([index])"
+		if(ishuman(L))
+			H.advsetup = 1
+			H.invisibility = INVISIBILITY_MAXIMUM
+			H.become_blind("advsetup")
+			if(istype(H.cloak, /obj/item/clothing/cloak/stabard/surcoat/guard))
+				var/obj/item/clothing/S = H.cloak
+				var/index = findtext(H.real_name, " ")
+				if(index)
+					index = copytext(H.real_name, 1,index)
+				if(!index)
+					index = H.real_name
+				S.name = "sergeant jupon ([index])"
 
 /datum/outfit/job/roguetown/sergeant/pre_equip(mob/living/carbon/human/H)
 	pants = /obj/item/clothing/under/roguetown/chainlegs
@@ -43,7 +48,6 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/black
-	beltl = /obj/item/storage/keyring/guardsergeant
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	backr = /obj/item/storage/backpack/rogue/satchel/black
@@ -51,29 +55,6 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale	
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/visored
 	id = /obj/item/scomstone/garrison
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1)
-
-	H.adjust_blindness(-3)
-	var/weapons = list("Romphaia","Flail & Shield","Halberd","Sabre & Crossbow")	//Bit more unique than footsman, you are a jack-of-all-trades + slightly more 'elite'.
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-
-	switch(weapon_choice)
-		if("Romphaia")			//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
-			backl = /obj/item/rogueweapon/sword/long/romphaia
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Flail & Shield")	//Tower-shield, higher durability wood shield w/ more coverage. Plus a steel flail; maybe.. less broken that a steel mace?
-			beltr = /obj/item/rogueweapon/flail/sflail
-			backl = /obj/item/rogueweapon/shield/tower
-		if("Halberd")			//Halberd - basically exact same as MAA. It's a really valid build. Spear thrust + sword chop + bash.
-			r_hand = /obj/item/rogueweapon/halberd
-			backl = /obj/item/gwstrap
-			beltr = /obj/item/rogueweapon/mace/cudgel
-		if("Sabre & Crossbow")	//Versetile skirmisher class. Considered other swords but sabre felt best without being too strong. (This one gets no cudgel, no space.)
-			beltr = /obj/item/quiver/bolts
-			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			r_hand = /obj/item/rogueweapon/sword/sabre
-
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
@@ -107,6 +88,62 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard) // We'll just use Watchmen as sorta conscripts yeag?
 		H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
+
+//Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
+/datum/advclass/sergeant/swordsman
+	name = "Swordsman - Romphaia (+Cudgel)"
+	tutorial = "You specialize in not just any type of sword but specifically larger, two-handed weapons of war. The Romphaia, a long hooked sword, has become your standard-issue of choice. Perfect for penetrating even the armor of knights!"
+	outfit = /datum/outfit/job/roguetown/sergeant/swordsman
+
+	category_tags = list(CTAG_SERGEANT)
+
+/datum/outfit/job/roguetown/sergeant/swordsman/pre_equip(mob/living/carbon/human/H)
+	..()
+	backl = /obj/item/rogueweapon/sword/long/romphaia
+	beltr = /obj/item/rogueweapon/mace/cudgel
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant)
+
+/datum/advclass/sergeant/flailman
+	name = "Flailman - Steel Flail & Tower Shield"
+	tutorial = "A peasant's best weapon, a simple flail. You've trained well in its use, ready to cave-heads and take names. Accompanied with a trusty tower shield to protect yourself."
+	outfit = /datum/outfit/job/roguetown/sergeant/flailman
+
+	category_tags = list(CTAG_SERGEANT)
+
+/datum/outfit/job/roguetown/sergeant/flailman/pre_equip(mob/living/carbon/human/H)
+	..()
+	beltr = /obj/item/rogueweapon/flail/sflail
+	backl = /obj/item/rogueweapon/shield/tower
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant)
+
+/datum/advclass/sergeant/halberdier
+	name = "Halbarder - Halberd (+Cudgel)"
+	tutorial = "A warrior at heart and mind, you've stuck with the tride-and-true choice of weapon among professional soldiers - the trusty halberd. With superior reaach you may stab, cut, and chop through your enemies."
+	outfit = /datum/outfit/job/roguetown/sergeant/halberdier
+
+	category_tags = list(CTAG_SERGEANT)
+
+/datum/outfit/job/roguetown/sergeant/halberdier/pre_equip(mob/living/carbon/human/H)
+	..()
+	r_hand = /obj/item/rogueweapon/halberd
+	backl = /obj/item/gwstrap
+	beltr = /obj/item/rogueweapon/mace/cudgel
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant)
+
+/datum/advclass/sergeant/skirmisher
+	name = "Skirmisher - Sabre & Crossbow"
+	tutorial = "Putting your keen eyes and dexterity to work, you specialize in hit-and-run attacks. A simple crossbow to land a wounding blow, and running up to finish them off with your trusty swift sword."
+	outfit = /datum/outfit/job/roguetown/sergeant/skirmisher
+
+	category_tags = list(CTAG_SERGEANT)
+
+/datum/outfit/job/roguetown/sergeant/skirmisher/pre_equip(mob/living/carbon/human/H)
+	..()
+	beltr = /obj/item/quiver/bolts
+	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+	r_hand = /obj/item/rogueweapon/sword/sabre
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardsergeant)
+
 
 /obj/effect/proc_holder/spell/invoked/order
 	name = ""
