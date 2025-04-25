@@ -102,7 +102,7 @@
 	H.change_stat("intelligence", 1)
 
 	H.adjust_blindness(-3)
-	var/weapons = list("Zweihander","Great Mace","Greataxe","Estoc","Lucerne")
+	var/weapons = list("Zweihander","Great Mace","Battle Axe","Greataxe","Estoc","Lucerne")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
@@ -111,6 +111,8 @@
 			backl = /obj/item/gwstrap
 		if("Great Mace")
 			r_hand = /obj/item/rogueweapon/mace/goden/steel
+		if("Battle Axe")
+			r_hand = /obj/item/rogueweapon/stoneaxe/battle
 		if("Greataxe")
 			r_hand = /obj/item/rogueweapon/greataxe/steel
 			backl = /obj/item/gwstrap
