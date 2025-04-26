@@ -4,7 +4,6 @@
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	boss_abilities = list(/datum/action/boss/lich_summon_minions)
 	faction = list("deepone")
-	del_on_death = TRUE
 	icon = 'icons/roguetown/mob/monster/pufferboss.dmi'
 	icon_state = "pufferman"
 	wander = 0
@@ -86,3 +85,12 @@
 	if (istype(T, /turf/closed))
 		return FALSE
 	return TRUE
+
+/mob/living/simple_animal/hostile/boss/fishboss/death()
+	src.visible_message("<span class='warning'>The bloated, grotesque fishman explodes in a shower of gore!</span>","<span class='warning'>The bloated, grotesque fishman explodes in a shower of gore!</span>")
+	src.spawn_gibs()
+	src.spawn_gibs()
+	src.spawn_gibs()
+	new/obj/item/rogueweapon/mace/goden/deepduke(src.drop_location())
+	qdel(src)
+	return
