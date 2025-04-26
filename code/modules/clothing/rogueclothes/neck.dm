@@ -11,7 +11,7 @@
 /obj/item/clothing/neck/roguetown/MiddleClick(mob/user, params)
 	. = ..()
 	overarmor = !overarmor
-	to_chat(user, span_info("I [overarmor ? "wear the [src] over my armor" : "wear the [src] under my armor"]."))
+	to_chat(user, span_info("I [overarmor ? "wear \the [src] over my armor" : "wear \the [src] under my armor"]."))
 	if(overarmor)
 		alternate_worn_layer = NECK_LAYER
 	else
