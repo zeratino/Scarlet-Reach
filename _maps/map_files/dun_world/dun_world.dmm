@@ -53645,13 +53645,6 @@
 /obj/structure/roguewindow,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/tavern)
-"uTD" = (
-/obj/structure/fluff/traveltile{
-	aportalgoesto = "moor1";
-	aportalid = "moor2"
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/outdoors/beach)
 "uTJ" = (
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/cobblerock,
@@ -252754,9 +252747,9 @@ ebU
 nCV
 pgn
 uYI
-uTD
+uYI
 dLX
-uTD
+uYI
 uYI
 pBY
 hsX
@@ -253206,9 +253199,9 @@ ebU
 rxe
 uYI
 uYI
-uTD
+uYI
 pdp
-uTD
+uYI
 uYI
 uYI
 mYZ
