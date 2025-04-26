@@ -51,7 +51,7 @@
 		H.change_stat("endurance", 3)
 		H.change_stat("constitution", 3)
 		H.change_stat("intelligence", -2)
-		H.change_stat("speed", -2)
+		H.change_stat("speed", -1)
 		ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
