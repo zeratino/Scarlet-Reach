@@ -59,6 +59,9 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
 
+/datum/intent/flail/strike/smash/militia
+	penfactor = 50
+
 /datum/intent/flail/strike/smash/golgotha
 	hitsound = list('sound/items/beartrap2.ogg')
 
@@ -224,11 +227,12 @@
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = null
-	minstr = 12
+	minstr = 9
 	wbalance = -1
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
-	dropshrink = 0.6
+	anvilrepair = /datum/skill/craft/carpentry
+	dropshrink = 0.9
 	blade_dulling = DULLING_BASHCHOP
 	wdefense = 4
 	resistance_flags = FLAMMABLE
@@ -245,3 +249,8 @@
 /obj/item/rogueweapon/flail/militia
 	name = "militia flail"
 	desc = "In another lyfe, this humble thresher was used to pound stalks into grain. Under a militiaman's grasp, however, it has found a new purpose: to humble overconfident bandits with crippling blows."
+	icon_state = "milflail"
+	possible_item_intents = list(/datum/intent/flail/strike, /datum/intent/flail/strike/smash/militia)
+	force = 27
+	wdefense = 3
+	wbalance = -1

@@ -39,6 +39,10 @@
 /datum/intent/spear/cut/halberd
 	damfactor = 0.9
 
+/datum/intent/spear/cut/scythe
+	reach = 3
+	damfactor = 1
+
 /datum/intent/spear/cut/bardiche
     damfactor = 1.0
     chargetime = 1

@@ -381,13 +381,25 @@
 	wdefense = 6
 	max_blade_int = 80
 
+/obj/item/rogueweapon/woodstaff/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.7,"sx" = -6,"sy" = -1,"nx" = 8,"ny" = 0,"wx" = -4,"wy" = 0,"ex" = 2,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.7,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/rogueweapon/greataxe/militia
 	name = "militia war axe"
 	desc = "Shovels have always held some manner of importance in a militiaman's lyfe. Instead of digging corpsepits, however, this poleaxe will now fill them up."
+	icon_state = "peasantwaraxe"
 	force = 15
 	force_wielded = 25
 	minstr = 10
-	max_blade_int = 150
+	max_blade_int = 100
 	anvilrepair = /datum/skill/craft/carpentry
 	wdefense = 4
 	wbalance = -1
@@ -532,7 +544,7 @@
 	force = 15
 	force_wielded = 25
 	possible_item_intents = list(SPEAR_BASH)
-	gripped_intents = list(SPEAR_CUT, SPEAR_BASH, MACE_STRIKE)
+	gripped_intents = list(/datum/intent/spear/cut/scythe, SPEAR_BASH, MACE_STRIKE)
 	name = "scythe"
 	desc = "The bane of fields, the trimmer of grass, the harvester of wheat, and - depending on who you ask - the shepherd of souls to the afterlyfe."
 	icon_state = "peasantscythe"
@@ -566,3 +578,48 @@
 			if("wielded")
 				return list("shrink" = 0.7,"sx" = 5,"sy" = -3,"nx" = -5,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 
+
+/obj/item/rogueweapon/pick/militia
+	name = "militia warpick"
+	desc = "At the end of the dae, a knight's bascinet isn't much different than a particularly large stone. After all, both tend to rupture with sobering ease when introduced to a sharpened pickend."
+	force = 20
+	force_wielded = 25
+	possible_item_intents = list(/datum/intent/pick)
+	gripped_intents = list(/datum/intent/pick, /datum/intent/stab/militia)
+	icon_state = "milpick"
+	icon = 'icons/roguetown/weapons/32.dmi'
+	sharpness = IS_SHARP
+	wlength = WLENGTH_SHORT
+	max_blade_int = 50
+	max_integrity = 200
+	slot_flags = ITEM_SLOT_HIP
+	associated_skill = /datum/skill/labor/mining
+	anvilrepair = /datum/skill/craft/carpentry
+	smeltresult = /obj/item/ingot/iron
+	wdefense = 0
+	wbalance = 0
+
+/obj/item/rogueweapon/pick/militia/steel
+	force = 22
+	force_wielded = 27
+	name = "militia steel warpick"
+	desc = "At the end of the dae, a knight's bascinet isn't much different than a particularly large stone. After all, both tend to rupture with sobering ease when introduced to a sharpened pickend. This one is honed out of steel parts."
+	icon_state = "milsteelpick"
+	max_blade_int = 150
+	max_integrity = 300
+	associated_skill = /datum/skill/combat/axes
+	anvilrepair = /datum/skill/craft/weaponsmithing
+	wdefense = 5
+	wbalance = -1
+
+/obj/item/rogueweapon/sword/falchion/militia
+	name = "maciejowski"
+	desc = "Fittingly coined as a 'peasant's falchion', this hunting sword's blade has been retempered to hunt the most dangerous game. Those jagged edges are perfect for tearing into flesh-and-maille."
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
+	icon_state = "maciejowski"
+	gripped_intents = list(/datum/intent/sword/cut/militia, /datum/intent/sword/chop/militia, /datum/intent/sword/peel, /datum/intent/sword/strike)
+	force = 18
+	force_wielded = 25
+	anvilrepair = /datum/skill/craft/carpentry
+	wdefense = 3
+	wbalance = -1

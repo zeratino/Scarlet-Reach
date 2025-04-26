@@ -303,6 +303,11 @@
 	chargetime = 0
 	swingdelay = 0
 
+/datum/intent/stab/militia
+	name = "militia stab"
+	damfactor = 1.1
+	penfactor = 50
+
 /datum/intent/pick //now like icepick intent, we really went in a circle huh
 	name = "pick"
 	icon_state = "inpick"
@@ -323,8 +328,9 @@
 	penfactor = 60
 	chargetime = 0
 	damfactor = 1.1
-	chargetime = 10
+	chargetime = 0.7
 	chargedrain = 2
+	reach = 2
 	no_early_release = TRUE
 	blade_class = BCLASS_PICK
 
