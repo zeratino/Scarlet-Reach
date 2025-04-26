@@ -21,7 +21,7 @@
 	H.mind.adjust_skillrank(/datum/skill/labor/lumberjacking, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/labor/farming, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 	var/weapons = list("Knuckles","Cudgel")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
