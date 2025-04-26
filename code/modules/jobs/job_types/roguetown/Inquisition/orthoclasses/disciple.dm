@@ -36,6 +36,7 @@
 /datum/outfit/job/roguetown/disciple/proc/brute_equip(mob/living/carbon/human/H)
 	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
 	belt = /obj/item/storage/belt/rogue/leather/rope
+	pants = /obj/item/clothing/under/roguetown/tights/black
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
 	if(H.mind)
