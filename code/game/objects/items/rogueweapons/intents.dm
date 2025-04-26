@@ -326,7 +326,6 @@
 	attack_verb = list("stabs", "impales")
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	penfactor = 60
-	chargetime = 0
 	damfactor = 1.1
 	chargetime = 0.7
 	chargedrain = 2
