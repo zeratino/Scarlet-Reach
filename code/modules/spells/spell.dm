@@ -400,7 +400,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			action.UpdateButtonIcon()
 			charge_counter = recharge_time
 
-/obj/effect/proc_holder/spell/proc/perform(list/target's, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
+/obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
 	if(!ignore_los)
 		if(length(targets))
 			var/radius
