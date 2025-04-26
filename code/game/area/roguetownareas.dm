@@ -552,6 +552,28 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	converted_type = /area/rogue/outdoors/dungeon1
 	ceiling_protected = TRUE
 
+/area/rogue/under/cave/goblindungeon
+	name = "goblindungeon"
+	icon_state = "under"
+	first_time_text = "GOIBLIN CAMP"
+	droning_sound = 'sound/music/area/dungeon.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	converted_type = /area/rogue/outdoors/dungeon1
+	ceiling_protected = TRUE
+
+/area/rogue/under/cave/skeletoncrypt
+	name = "skeletoncrypt"
+	icon_state = "under"
+	first_time_text = "SKELETON CRYPT"
+	droning_sound = 'sound/music/area/dungeon.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	ambientsounds = AMB_BASEMENT
+	ambientnight = AMB_BASEMENT
+	converted_type = /area/rogue/outdoors/dungeon1
+	ceiling_protected = TRUE
+
 /area/rogue/under/cave/dukecourt
 	name = "dukedungeon"
 	icon_state = "duke"

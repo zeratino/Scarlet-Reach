@@ -326,6 +326,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Cursed Collar"
 	path = /obj/item/clothing/neck/roguetown/gorget/cursed_collar
 
+/datum/loadout_item/cloth_blindfold
+	name = "Cloth Blindfold"
+	path = /obj/item/clothing/mask/rogue/blindfold
+	
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.

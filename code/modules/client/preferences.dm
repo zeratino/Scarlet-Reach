@@ -425,8 +425,12 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				dat += "<b>Mutant Color #2:</b><span style='border: 1px solid #161616; background-color: #[features["mcolor2"]];'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color2;task=input'>Change</a><BR>"
 				dat += "<b>Mutant Color #3:</b><span style='border: 1px solid #161616; background-color: #[features["mcolor3"]];'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=mutant_color3;task=input'>Change</a><BR>"
 
-
-			dat += "<b>Extra Language: </b><a href='?_src_=prefs;preference=extra_language;task=input'>Change</a>"
+			var/datum/language/selected_lang
+			var/lang_output = "None"
+			if(ispath(extra_language, /datum/language))
+				selected_lang = extra_language
+				lang_output = initial(selected_lang.name)
+			dat += "<b>Extra Language: </b><a href='?_src_=prefs;preference=extra_language;task=input'>[lang_output]</a>"
 			dat += "<br><b>Voice Color: </b><a href='?_src_=prefs;preference=voice;task=input'>Change</a>"
 			dat += "<br><b>Nickname Color: </b> </b><a href='?_src_=prefs;preference=highlight_color;task=input'>Change</a>"
 			dat += "<br><b>Voice Pitch: </b><a href='?_src_=prefs;preference=voice_pitch;task=input'>[voice_pitch]</a>"
@@ -1556,7 +1560,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						/datum/language/kazengunese,
 						/datum/language/etruscan,
 						/datum/language/gronnic,
-						/datum/language/otavan
+						/datum/language/otavan,
+						/datum/language/aavnic
 					)
 					var/list/choices = list("None")
 					for(var/language in selectable_languages)
@@ -1568,8 +1573,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/chosen_language = input(user, "Choose your character's extra language:", "Character Preference") as null|anything in choices
 					if(chosen_language)
 						if(chosen_language == "None")
-							return
-						extra_language = choices[chosen_language]
+							extra_language = "None"
+						else
+							extra_language = choices[chosen_language]
 
 				if("voice_pitch")
 					var/new_voice_pitch = input(user, "Choose your character's voice pitch ([MIN_VOICE_PITCH] to [MAX_VOICE_PITCH], lower is deeper):", "Voice Pitch") as null|num
@@ -2129,11 +2135,11 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					save_preferences()
 
 				if("keybindings_reset")
-					var/choice = tgalert(user, "Do you really want to reset your keybindings?", "Setup keybindings", "Do It", "Cancel")
+					var/choice = tgalert(user, "Would you prefer 'hotkey' or 'classic' defaults?", "Setup keybindings", "Hotkey", "Classic", "Cancel")
 					if(choice == "Cancel")
-						ShowChoices(user,3)
+						ShowChoices(user)
 						return
-					hotkeys = (choice == "Do It")
+					hotkeys = (choice == "Hotkey")
 					key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 					user.client.update_movement_keys()
 				if("chat_on_map")

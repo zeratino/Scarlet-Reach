@@ -237,7 +237,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Murus!"
 	invocation_type = "shout"
-	range = 7
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	var/wall_type = /obj/structure/forcefield_weak/caster
@@ -315,12 +314,19 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/area_of_effect = 1
 	var/duration = 5 SECONDS
 	var/delay = 0.8 SECONDS
+	ignore_los = FALSE
 
 /obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
 
+	var/turf/source_turf = get_turf(user)
+	if(T.z > user.z)
+		source_turf = get_step_multiz(source_turf, UP)
+	if(T.z < user.z)
+		source_turf = get_step_multiz(source_turf, DOWN)
+
 	for(var/turf/affected_turf in view(area_of_effect, T))
-		if(affected_turf.density)
+		if(!(affected_turf in view(source_turf)))
 			continue
 		new /obj/effect/temp_visual/slowdown_spell_aoe(affected_turf)
 
@@ -416,7 +422,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedrain = 1
 	chargetime = 5
 	charge_max = 30 SECONDS
-	ignore_los = TRUE
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -474,7 +479,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	name = "Blade Burst"
 	desc = "Summon a storm of arcyne force in an area, wounding anything in that location after a delay."
 	cost = 1
-	range = 7
 	xp_gain = TRUE
 	releasedrain = 30
 	chargedrain = 1
@@ -494,6 +498,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/delay = 14
 	var/damage = 125 //if you get hit by this it's your fault
 	var/area_of_effect = 1
+	ignore_los = FALSE
 
 /obj/effect/temp_visual/trap
 	icon = 'icons/effects/effects.dmi'
@@ -504,7 +509,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 
 /obj/effect/temp_visual/blade_burst
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "purplesparkles"
+	icon_state = "stab"
+	dir = NORTH
 	name = "rippeling arcyne energy"
 	desc = "Get out of the way!"
 	randomdir = FALSE
@@ -515,8 +521,14 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 /obj/effect/proc_holder/spell/invoked/blade_burst/cast(list/targets, mob/user)
 	var/turf/T = get_turf(targets[1])
 
+	var/turf/source_turf = get_turf(user)
+	if(T.z > user.z)
+		source_turf = get_step_multiz(source_turf, UP)
+	if(T.z < user.z)
+		source_turf = get_step_multiz(source_turf, DOWN)
+
 	for(var/turf/affected_turf in view(area_of_effect, T))
-		if(affected_turf.density)
+		if(!(affected_turf in view(source_turf)))
 			continue
 		new /obj/effect/temp_visual/trap(affected_turf)
 	playsound(T, 'sound/magic/blade_burst.ogg', 80, TRUE, soundping = TRUE)
@@ -525,6 +537,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/play_cleave = FALSE
 
 	for(var/turf/affected_turf in view(area_of_effect, T))
+		if(!(affected_turf in view(source_turf)))
+			continue
 		new /obj/effect/temp_visual/blade_burst(affected_turf)
 		for(var/mob/living/L in affected_turf.contents)
 			play_cleave = TRUE
@@ -788,7 +802,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	releasedrain = 50
 	chargetime = 3
 	charge_max = 25 SECONDS
-	range = 7
 	warnie = "spellwarning"
 	movement_interrupt = FALSE
 	no_early_release = FALSE
@@ -859,7 +872,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	range = 7
 	gesture_required = TRUE // Offensive spell
 	spell_tier = 3
 	invocation = "Congelare Subitus!"
@@ -867,6 +879,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
+	ignore_los = FALSE
 
 /obj/effect/temp_visual/trapice
 	icon = 'icons/effects/effects.dmi'
@@ -889,8 +902,14 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 /obj/effect/proc_holder/spell/invoked/snap_freeze/cast(list/targets, mob/user)
 	var/turf/T = get_turf(targets[1])
 
+	var/turf/source_turf = get_turf(user)
+	if(T.z > user.z)
+		source_turf = get_step_multiz(source_turf, UP)
+	if(T.z < user.z)
+		source_turf = get_step_multiz(source_turf, DOWN)
+
 	for(var/turf/affected_turf in view(area_of_effect, T))
-		if(affected_turf.density)
+		if(!(affected_turf in view(source_turf)))
 			continue
 		new /obj/effect/temp_visual/trapice(affected_turf)
 	playsound(T, 'sound/combat/wooshes/blunt/wooshhuge (2).ogg', 80, TRUE, soundping = TRUE) // it kinda sounds like cold wind idk
@@ -899,6 +918,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	var/play_cleave = FALSE
 
 	for(var/turf/affected_turf in view(area_of_effect, T))
+		if(!(affected_turf in view(source_turf)))
+			continue
 		new /obj/effect/temp_visual/snap_freeze(affected_turf)
 		for(var/mob/living/L in affected_turf.contents)
 			if(L.anti_magic_check())
@@ -1046,7 +1067,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	spell_tier = 2
 	invocation = "Pondus!"
 	invocation_type = "shout"
-	range = 7
 	var/delay = 3
 	var/damage = 0 // damage based off your str 
 	var/area_of_effect = 0
@@ -1308,7 +1328,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune1"
-	range = 7
 
 /obj/effect/proc_holder/spell/invoked/enlarge/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1354,7 +1373,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	chargedloop = /datum/looping_sound/wind
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "rune5"
-	range = 7
 
 /obj/effect/proc_holder/spell/invoked/leap/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -1696,7 +1714,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	movement_interrupt = FALSE
 	charging_slowdown = 2
 	warnie = "spellwarning"
-	ignore_los = TRUE
 
 /obj/effect/proc_holder/spell/invoked/mindlink/cast(list/targets, mob/living/user)
 	. = ..()

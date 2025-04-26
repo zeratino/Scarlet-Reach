@@ -691,7 +691,7 @@
 	armor_class = ARMOR_CLASS_HEAVY
 	smelt_bar_num = 3
 
-/obj/item/clothing/suit/roguetown/armor/plate/Initialize(mapload)
+/obj/item/clothing/suit/roguetown/armor/plate/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP)
 
@@ -1047,6 +1047,9 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 	blocksound = SOFTHIT
+
+/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/ComponentInitialize()	//No movement rustle component.
+	return
 
  //--------------- BLACKSTEEL ---------------------
 
