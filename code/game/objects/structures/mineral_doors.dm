@@ -688,7 +688,7 @@
 
 
 /obj/structure/mineral_door/obj_break(damage_flag)
-	loud_message("A loud crash of door splinters echoes", hearing_distance = 10)
+	loud_message("A loud crash of door splinters echoes", hearing_distance = 14)
 	. = ..()
 
 /obj/structure/mineral_door/wood/pickaxe_door(mob/living/user, obj/item/I)

@@ -290,7 +290,7 @@
 	attacked_sound = list("sound/combat/hits/onmetal/metalimpact (1).ogg", "sound/combat/hits/onmetal/metalimpact (2).ogg")
 
 /obj/structure/bars/obj_break(damage_flag)
-	loud_message("A sickening, metallic scrape of bars getting broken rings out", hearing_distance = 10)
+	loud_message("A sickening, metallic scrape of bars getting broken rings out", hearing_distance = 14)
 	. = ..()
 
 /obj/structure/bars/CanPass(atom/movable/mover, turf/target)
