@@ -11,7 +11,7 @@ by Arcyne user after a duration
 	var/overridden_duration = null
 	var/mob/living/current_user = null // The current user of the item
 
-/datum/component/conjured_item/Initialize(duration_override, allow_refresh_override, refresh_skill_override, outline_color_override)
+/datum/component/conjured_item/Initialize(duration_override, allow_refresh_override, refresh_skill_override, outline_color_override, var/mob/living/owner_override)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -26,6 +26,8 @@ by Arcyne user after a duration
 		refresh_skill = refresh_skill_override
 	if(outline_color_override)
 		outline_color = outline_color_override
+	if(owner_override)
+		current_user = owner_override
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
@@ -63,6 +65,6 @@ by Arcyne user after a duration
 	current_user = null
 
 /datum/component/conjured_item/proc/on_examine(datum/source, mob/user, list/examine_list)
-	examine_list += "This weapon crackles with faint arcyne energy. It seems to be conjured."
+	examine_list += "This item crackles with faint arcyne energy. It seems to be conjured."
 	var/remaining_minutes = round((endtime - world.time) / 600)
 	examine_list += "It will last for [remaining_minutes] more minutes."
