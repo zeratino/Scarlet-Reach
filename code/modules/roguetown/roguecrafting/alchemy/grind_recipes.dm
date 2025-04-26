@@ -63,7 +63,7 @@
 	bonus_chance_outputs = list(/obj/item/alch/earthdust = 33)
 
 /datum/alch_grind_recipe/swampweed_dried
-	valid_input = /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry
 	valid_outputs = list(/obj/item/alch/swampdust = 1)
 	bonus_chance_outputs = list(/obj/item/alch/earthdust = 50,/obj/item/alch/swampdust = 50)
 
@@ -73,7 +73,7 @@
 	bonus_chance_outputs = list(/obj/item/alch/airdust = 33)
 
 /datum/alch_grind_recipe/dry_westleach
-	valid_input = /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry
 	valid_outputs = list(/obj/item/alch/tobaccodust = 1)
 	bonus_chance_outputs = list(/obj/item/alch/airdust = 50,/obj/item/alch/tobaccodust = 50)
 

@@ -6,6 +6,7 @@
 	gender = PLURAL
 	slot_flags = ITEM_SLOT_SHOES
 	body_parts_covered = FEET
+	body_parts_inherent = FEET
 	sleeved = 'icons/roguetown/clothing/onmob/feet.dmi'
 	sleevetype = "leg"
 	bloody_icon_state = "shoeblood"
@@ -333,9 +334,10 @@
 /obj/item/clothing/shoes/roguetown/boots/leather/elven_boots
 	name = "woad elven boots"
 	desc = "The living trunks still blossom in the spring. They let water through, but it is never cold."
-	armor = list("blunt" = 90, "slash" = 10, "stab" = 100, "piercing" = 20, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 100, "slash" = 10, "stab" = 100, "piercing" = 20, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PICK)
 	icon = 'icons/roguetown/clothing/special/race_armor.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
 	icon_state = "welfshoes"
 	item_state = "welfshoes"
+	anvilrepair = /datum/skill/craft/carpentry

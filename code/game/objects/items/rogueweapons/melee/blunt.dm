@@ -165,6 +165,7 @@
 	possible_item_intents = list(/datum/intent/mace/strike/wood)
 	gripped_intents = list(/datum/intent/mace/strike/wood, /datum/intent/mace/smash/wood)
 	smeltresult = /obj/item/ash
+	anvilrepair = /datum/skill/craft/carpentry
 	minstr = 7
 	resistance_flags = FLAMMABLE
 
@@ -235,6 +236,7 @@
 	wdefense = 5
 	wbalance = 0
 	associated_skill = /datum/skill/combat/swords
+	anvilrepair = /datum/skill/craft/carpentry
 	resistance_flags = FLAMMABLE
 
 
@@ -354,12 +356,18 @@
 	icon_state = "ravoxhammer"
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash)
 
-/obj/item/rogueweapon/mace/steel/psymace
+
+/obj/item/rogueweapon/mace/goden/psymace
 	name = "psydonian mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
+	force = 25
+	force_wielded = 32
+	wbalance = -1
 	dropshrink = 0.75
 	slot_flags = ITEM_SLOT_BACK //Looks better on back
+	blade_dulling = DULLING_BASH
+	smelt_bar_num = 2
 
 /obj/item/rogueweapon/mace/goden/psymace/ComponentInitialize()
 	. = ..()								//+3 force, +50 int, +1 def, make silver

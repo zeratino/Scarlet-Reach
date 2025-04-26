@@ -13,6 +13,7 @@
 	dir = SOUTH
 	crossfire = TRUE
 	fueluse = 0
+	no_refuel = TRUE
 
 /obj/machinery/light/rogue/firebowl/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && (mover.pass_flags & PASSTABLE))
@@ -106,6 +107,7 @@
 	bulb_colour = "#ffa35c"
 	density = FALSE
 	fueluse = 0
+	no_refuel = TRUE
 	crossfire = FALSE
 	cookonme = TRUE
 
@@ -175,6 +177,7 @@
 	density = FALSE
 	var/obj/item/flashlight/flare/torch/torchy
 	fueluse = FALSE //we use the torch's fuel
+	no_refuel = TRUE
 	soundloop = null
 	crossfire = FALSE
 	plane = GAME_PLANE_UPPER
@@ -310,6 +313,7 @@
 	pixel_y = -10
 	layer = 2.0
 	fueluse = 0
+	no_refuel = TRUE
 	soundloop = null
 	crossfire = FALSE
 	obj_flags = CAN_BE_HIT | BLOCK_Z_OUT_DOWN | BLOCK_Z_IN_UP
@@ -472,6 +476,22 @@
 						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/meat, 32)
 						pot.reagents.remove_reagent(/datum/reagent/water, 1)
 				return
+			if(istype(W, /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals_dried))
+				if(!pot.reagents.has_reagent(/datum/reagent/water, 33))
+					to_chat(user, "<span class='notice'>Not enough water.</span>")
+					return TRUE
+				if(pot.reagents.chem_temp < 374)
+					to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
+					return
+				if(do_after(user,2 SECONDS, target = src))
+					user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
+					playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
+					pot.reagents.remove_reagent(/datum/reagent/water, 32)
+					qdel(W)
+					sleep(15 SECONDS/cooktime_divisor) // No nutritional value so make it much faster
+					playsound(src, "bubbles", 30, TRUE)
+					pot.reagents.add_reagent(/datum/reagent/water/rosewater, 32)
+					pot.reagents.remove_reagent(/datum/reagent/water, 1)
 	. = ..()
 
 //////////////////////////////////
