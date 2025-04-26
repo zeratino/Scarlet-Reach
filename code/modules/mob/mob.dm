@@ -248,7 +248,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 	for(var/mob/living/L in listening)
 		var/strz
 		var/strdir
-		if(L.STAPER < 8 && !(L in viewers(world.view, src)))
+		if(L.STAPER <= 8 && !(L in viewers(world.view, src)))
 			to_chat(L, span_warning("You hear something... somewhere!"))
 			continue
 		if(L.z != src.z)
@@ -256,21 +256,22 @@ GLOBAL_VAR_INIT(mobids, 1)
 			if(L.z > src.z)
 				switch(zdiff)
 					if(1)
-						strz = "Below"
+						strz = "below"
 					if(2 to 999)
-						strz = "Far Below"
+						strz = "far below"
 			if(L.z < src.z)
 				switch(zdiff)
 					if(1)
-						strz = "Above"
+						strz = "above"
 					if(2 to 999)
-						strz = "Far Above"
+						strz = "far above"
 		if(directional)
 			var/dir = get_dir(L, src)
-			strdir = capitalize(dir2text(dir))
+			strdir = dir2text(dir)
 		//message + "from" + strz if we have it. If we do we add "and" + "strdir", otherwise only "strdir".
 		//If there's a z difference: "A rock can be heard falling" + "from" + "below/above/etc" + "and" + "northeast"
 		//No z difference: "A rock can be heard falling" + "from" + "northeast"
+		//No dir difference:"A rock can be heard falling" + "from" + "above"
 		var/fullmsg = span_warning("[message] from [strz ? "<b>[strz]</b>" : ""][strdir ? "[strz ? " and " : ""]<b>[strdir]</b>" : ""].")
 		to_chat(L, fullmsg)
 /**
