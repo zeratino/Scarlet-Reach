@@ -450,7 +450,7 @@
 	name = "Nitori"
 	icon_state = "nitori"
 
-/datum/sprite_accessory/hair/head/nitori
+/datum/sprite_accessory/hair/head/newyou
 	name = "New You"
 	icon_state = "newyou"
 
