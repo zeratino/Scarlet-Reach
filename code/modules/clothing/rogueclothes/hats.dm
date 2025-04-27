@@ -619,6 +619,21 @@
 	max_integrity = 200
 	grid_height = 64
 	grid_width = 64
+	experimental_onhip = TRUE
+
+/obj/item/clothing/head/roguetown/helmet/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.45,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+/obj/item/clothing/head/roguetown/helmet/equipped(mob/user, slot)
+	. = ..()
+	if(slot == SLOT_BELT_R)
+		to_chat(user, span_info("The helmet slips off of my right side. I should try latching it to my left."))
+		user.dropItemToGround(src)
+		playsound(user, drop_sound, 50)
+	
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
 	name = "skull cap"
@@ -1212,6 +1227,12 @@
 	item_state = "psydonbarbute"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 
+/obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 	name = "psydonian armet"
 	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
@@ -1219,6 +1240,12 @@
 	item_state = "psydonarmet"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	adjustable = CAN_CADJUST
+
+/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/AdjustClothes(mob/user)
 	if(loc == user)

@@ -309,13 +309,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	if(experimental_onhip)
 		if(slot_flags & ITEM_SLOT_BELT)
-			var/i = "onbelt"
-			var/list/prop = getonmobprop(i)
-			if(prop)
-				getmoboverlay(i,prop,behind=FALSE,mirrored=FALSE)
-				getmoboverlay(i,prop,behind=TRUE,mirrored=FALSE)
-				getmoboverlay(i,prop,behind=FALSE,mirrored=TRUE)
-				getmoboverlay(i,prop,behind=TRUE,mirrored=TRUE)
+			var/props2gen = list("onbelt", "onbeltr")
+			var/list/prop
+			for(var/i in props2gen)
+				prop = getonmobprop(i)
+				if(prop)
+					getmoboverlay(i,prop,behind=FALSE,mirrored=FALSE)
+					getmoboverlay(i,prop,behind=TRUE,mirrored=FALSE)
+					getmoboverlay(i,prop,behind=FALSE,mirrored=TRUE)
+					getmoboverlay(i,prop,behind=TRUE,mirrored=TRUE)
 
 	if(experimental_onback)
 		if(slot_flags & ITEM_SLOT_BACK)

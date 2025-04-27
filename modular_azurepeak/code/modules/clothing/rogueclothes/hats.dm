@@ -9,6 +9,12 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
+/obj/item/clothing/head/roguetown/helmet/heavy/astratan/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/clothing/head/roguetown/helmet/heavy/malum
 	name = "helm of malum"
 	desc = "Forged in a coal-black, this helmet carries a sigiled blade upon it's visor, ever reminding it's wearer of Malum's powerful gaze."
@@ -19,6 +25,12 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/pestran/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/necran
 	name = "necran helmet"
@@ -31,6 +43,12 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
+/obj/item/clothing/head/roguetown/helmet/heavy/necran/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/clothing/head/roguetown/helmet/heavy/pestran
 	name = "pestran helmet"
 	desc = "A hooded helmet worn by Her Templars, perfect for times of disease and for the heat of battle."
@@ -42,6 +60,12 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
+/obj/item/clothing/head/roguetown/helmet/heavy/pestran/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/clothing/head/roguetown/helmet/heavy/eoran
 	name = "eoran helmet"
 	desc = "A visage of beauty, this helm made in soft pink and beige reminds one of the grace of Eora."
@@ -52,3 +76,9 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/eoran/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("onbelt")
+				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
