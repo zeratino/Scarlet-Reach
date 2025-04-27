@@ -339,7 +339,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	return TRUE
 
 /obj/effect/proc_holder/spell/proc/invocation(mob/user = usr)
-	to_chat(user, span_notice("I [invocation]"))
 	if(!invocation)
 		return
 	switch(invocation_type)

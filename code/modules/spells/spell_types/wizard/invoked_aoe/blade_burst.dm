@@ -22,6 +22,7 @@
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_HIGH
 	gesture_required = TRUE
+	ignore_los = FALSE
 	var/delay = 14
 	var/damage = 125 //if you get hit by this it's your fault
 	var/area_of_effect = 1
@@ -35,8 +36,9 @@
 
 /obj/effect/temp_visual/blade_burst
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "purplesparkles"
-	name = "rippeling arcyne energy"
+	icon_state = "stab"
+	dir = NORTH
+	name = "rippling arcyne energy"
 	desc = "Get out of the way!"
 	randomdir = FALSE
 	duration = 1 SECONDS
@@ -46,8 +48,14 @@
 /obj/effect/proc_holder/spell/invoked/blade_burst/cast(list/targets, mob/user)
 	var/turf/T = get_turf(targets[1])
 
+	var/turf/source_turf = get_turf(user)
+	if(T.z > user.z)
+		source_turf = get_step_multiz(source_turf, UP)
+	if(T.z < user.z)
+		source_turf = get_step_multiz(source_turf, DOWN)
+
 	for(var/turf/affected_turf in view(area_of_effect, T))
-		if(affected_turf.density)
+		if(!(affected_turf in view(source_turf)))
 			continue
 		new /obj/effect/temp_visual/trap(affected_turf)
 	playsound(T, 'sound/magic/blade_burst.ogg', 80, TRUE, soundping = TRUE)
@@ -57,6 +65,8 @@
 
 	for(var/turf/affected_turf in view(area_of_effect, T))
 		new /obj/effect/temp_visual/blade_burst(affected_turf)
+		if(!(affected_turf in view(source_turf)))
+			continue
 		for(var/mob/living/L in affected_turf.contents)
 			play_cleave = TRUE
 			L.adjustBruteLoss(damage)

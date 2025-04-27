@@ -22,6 +22,7 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ICE
 	glow_intensity = GLOW_INTENSITY_HIGH
+	ignore_los = FALSE
 	var/delay = 6
 	var/damage = 50 // less then fireball, more then lighting bolt
 	var/area_of_effect = 2
@@ -47,8 +48,14 @@
 /obj/effect/proc_holder/spell/invoked/snap_freeze/cast(list/targets, mob/user)
 	var/turf/T = get_turf(targets[1])
 
+	var/turf/source_turf = get_turf(user)
+	if(T.z > user.z)
+		source_turf = get_step_multiz(source_turf, UP)
+	if(T.z < user.z)
+		source_turf = get_step_multiz(source_turf, DOWN)
+
 	for(var/turf/affected_turf in view(area_of_effect, T))
-		if(affected_turf.density)
+		if(!(affected_turf in view(source_turf)))
 			continue
 		new /obj/effect/temp_visual/trapice(affected_turf)
 	playsound(T, 'sound/combat/wooshes/blunt/wooshhuge (2).ogg', 80, TRUE, soundping = TRUE) // it kinda sounds like cold wind idk
@@ -58,6 +65,8 @@
 
 	for(var/turf/affected_turf in view(area_of_effect, T))
 		new /obj/effect/temp_visual/snap_freeze(affected_turf)
+		if(!(affected_turf in view(source_turf)))
+			continue
 		for(var/mob/living/L in affected_turf.contents)
 			if(L.anti_magic_check())
 				visible_message(span_warning("The ice fades away around you. [L] "))  //antimagic needs some testing

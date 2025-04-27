@@ -14,19 +14,28 @@
 	charging_slowdown = 2
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
+	gesture_required = TRUE // Offensive spell
 	invocation = "Procella Arcana!"
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	invocation_type = "shout"
 	overlay_state = "hierophant"
+	ignore_los = FALSE
 	var/aoe_range = 3 // Adjusted from 4 to 3 tiles so mage cannot rip everyone apart in an event
 	var/damage = 10
 
 /obj/effect/proc_holder/spell/invoked/arcyne_storm/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
 	var/list/affected_turfs = list()
-	for(var/turf/turfs_in_range in range(aoe_range, T)) // use inrange instead of view
-		if(turfs_in_range.density)
+
+	var/turf/source_turf = get_turf(user)
+	if(T.z > user.z)
+		source_turf = get_step_multiz(source_turf, UP)
+	if(T.z < user.z)
+		source_turf = get_step_multiz(source_turf, DOWN)
+
+	for(var/turf/turfs_in_range in view(aoe_range, T))
+		if(!(turfs_in_range in view(source_turf)))
 			continue
 		affected_turfs.Add(turfs_in_range)
 		new /obj/effect/temp_visual/trap/arcyne_storm(turfs_in_range)
