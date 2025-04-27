@@ -31,7 +31,6 @@
 	var/atom/throwtarget
 	var/distfromcaster
 	playsound(user, 'sound/magic/repulse.ogg', 80, TRUE)
-	user.say("[invocation]", forced = "spell") // This is dogshit but for some reason invocation just don't work on repulse
 	for(var/turf/T in view(push_range, user))
 		new /obj/effect/temp_visual/kinetic_blast(T)
 		for(var/atom/movable/AM in T)
@@ -62,3 +61,4 @@
 				M.Paralyze(stun_amt)
 				to_chat(M, "<span class='danger'>You're thrown back by [user]!</span>")
 			AM.safe_throw_at(throwtarget, ((CLAMP((maxthrow - (CLAMP(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
+	return TRUE

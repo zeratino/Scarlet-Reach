@@ -39,6 +39,7 @@
 	var/mob/living/spelltarget = A
 	user.visible_message("[user] conjures a set of light armor around [spelltarget]!")
 	give_armor(user, spelltarget)
+	return TRUE
 
 // Not reusable code, because applying the conjured item component is necessary to look magicky + make sure it despawns / economy
 /obj/effect/proc_holder/spell/invoked/conjure_armor/proc/give_armor(mob/living/user, mob/living/target)

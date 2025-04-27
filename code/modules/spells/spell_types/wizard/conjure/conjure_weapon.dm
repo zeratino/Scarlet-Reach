@@ -68,6 +68,7 @@
 	var/obj/item/rogueweapon/R = new weapon_choice(user.drop_location())
 	R.AddComponent(/datum/component/conjured_item, CONJURE_DURATION)
 	user.put_in_hands(R)
+	return TRUE
 
 
 #undef CONJURE_DURATION
