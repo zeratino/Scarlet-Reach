@@ -88,13 +88,17 @@
 
 /datum/virtue/utility/failed_squire
 	name = "Failed Squire"
-	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair."
+	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair, including how to polish and maintain arms and armor."
 	added_traits = list(TRAIT_SQUIRE_REPAIR)
-	added_stashed_items = list("Worker's Hammer" = /obj/item/rogueweapon/hammer)
+	added_stashed_items = list(
+		"Worker's Hammer" = /obj/item/rogueweapon/hammer,
+		"Polishing Cream" = /obj/item/polishing_cream, 
+		"Fine Brush" = /obj/item/armor_brush
+	)
 	
 /datum/virtue/utility/failed_squire/apply_to_human(mob/living/carbon/human/recipient)
 	to_chat(recipient, span_notice("Though you failed to become a knight, your training in equipment maintenance and repair remains useful."))
-	to_chat(recipient, span_notice("You can retrieve your hammer from a tree, statue, or clock."))
+	to_chat(recipient, span_notice("You can retrieve your hammer and polishing tools from a tree, statue, or clock."))
 
 /datum/virtue/utility/linguist
 	name = "Intellectual"
