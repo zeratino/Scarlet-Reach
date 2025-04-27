@@ -337,6 +337,51 @@
 	flag = "piercing"
 	speed = 10
 
+//Spider projectiles
+/obj/projectile/bullet/spider
+	name = "web glob"
+	damage = 10
+	damage_type = BRUTE
+	icon = 'icons/roguetown/items/natural.dmi'
+	icon_state = "stone1"
+	range = 15
+	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
+	embedchance = 0
+	//Will not cause wounds.
+	woundclass = null
+	flag = "piercing"
+	speed = 2
+
+/obj/projectile/bullet/spider/on_hit(target)
+	. = ..()
+	if(ismob(target))
+		var/mob/living/M = target
+		M.apply_status_effect(/datum/status_effect/debuff/exposed)
+		M.Immobilize(15)
+	var/turf/T
+	if(isturf(target))
+		T = target
+	else
+		T = get_turf(target)
+	var/web = locate(/obj/structure/spider/stickyweb/mirespider) in T.contents
+	if(!(web in T.contents))
+		new /obj/structure/spider/stickyweb/mirespider(T)
+
+//Mirespider webs are thinner and will not stop projectiles or obstruct movement as often.
+/obj/structure/spider/stickyweb/mirespider
+	opacity = 0
+	pass_flags = LETPASSTHROW
+	debris = null
+
+/obj/structure/spider/stickyweb/mirespider/CanPass(atom/movable/mover, turf/target)
+	if(isliving(mover))
+		if(prob(25) && !HAS_TRAIT(mover, TRAIT_WEBWALK))
+			to_chat(mover, "<span class='danger'>I get stuck in \the [src] for a moment.</span>")
+			return FALSE
+	else if(istype(mover, /obj/projectile))
+		return prob(85)
+	return TRUE
+
 //Javelins - Basically spears, but to get them working as proper javelins and able to fit in a bag, they are 'ammo'. (Maybe make an atlatl later?)
 //Only ammo casing, no 'projectiles'. You throw the casing, as weird as it is.
 /obj/item/ammo_casing/caseless/rogue/javelin
