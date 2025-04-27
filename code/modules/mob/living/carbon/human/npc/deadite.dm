@@ -33,7 +33,7 @@
 	src.mind.add_antag_datum(/datum/antagonist/zombie, team = FALSE, admin_panel = TRUE)
 	equipOutfit(new /datum/outfit/job/roguetown/deadite)
 	//Fluff messages before they turn into a deadite
-	if(!no_speech && prob(50))
+	if(!no_speech && prob(25))
 		say(pick(
 			"Help me.. please...",
 			"Someone.. anyone...",
