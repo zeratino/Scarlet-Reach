@@ -4,8 +4,7 @@
 	cost = 2
 	xp_gain = TRUE
 	releasedrain = 30
-	overlay = 'icons/effects/effects.dmi'
-	overlay_state = "shieldsparkles"
+	overlay_state = "snap_freeze" // Placeholder. 1 frame of shield sparkles
 	chargedrain = 1
 	chargetime = 15
 	recharge_time = 13 SECONDS

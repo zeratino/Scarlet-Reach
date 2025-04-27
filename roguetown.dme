@@ -1889,6 +1889,7 @@
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\knock.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\repulse.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_aoe\snap_freeze.dm"
+#include "code\modules\spells\spell_types\wizard\invoked_aoe\thunderstrike.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_single_target\counterspell.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_single_target\frostbite.dm"
 #include "code\modules\spells\spell_types\wizard\invoked_single_target\gravity.dm"
