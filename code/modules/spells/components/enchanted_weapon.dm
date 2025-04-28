@@ -29,6 +29,7 @@
 
 	if(duration_override)
 		endtime = world.time += duration_override
+		overridden_duration = duration_override
 	else
 		endtime = world.time += DEFAULT_DURATION
 	if(allow_refresh_override)
