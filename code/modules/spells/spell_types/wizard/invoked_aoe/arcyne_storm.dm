@@ -18,6 +18,7 @@
 	invocation = "Procella Arcana!"
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
+	glow_intensity = GLOW_INTENSITY_VERY_HIGH
 	invocation_type = "shout"
 	overlay_state = "hierophant"
 	ignore_los = FALSE
