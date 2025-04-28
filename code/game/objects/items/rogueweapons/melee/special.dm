@@ -396,6 +396,8 @@
 	name = "militia war axe"
 	desc = "Shovels have always held some manner of importance in a militiaman's lyfe. Instead of digging corpsepits, however, this poleaxe will now fill them up."
 	icon_state = "peasantwaraxe"
+	possible_item_intents = list(/datum/intent/axe/cut, /datum/intent/axe/chop, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(/datum/intent/rend, /datum/intent/axe/chop/battle/greataxe, /datum/intent/sword/peel/big, SPEAR_BASH)
 	force = 15
 	force_wielded = 25
 	minstr = 10
@@ -415,6 +417,7 @@
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 8
 	max_blade_int = 100
+	max_integrity = 200
 	anvilrepair = /datum/skill/craft/carpentry
 	resistance_flags = FIRE_PROOF
 	light_system = MOVABLE_LIGHT
@@ -617,7 +620,7 @@
 	desc = "Fittingly coined as a 'peasant's falchion', this hunting sword's blade has been retempered to hunt the most dangerous game. Those jagged edges are perfect for tearing into flesh-and-maille."
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/strike)
 	icon_state = "maciejowski"
-	gripped_intents = list(/datum/intent/sword/cut/militia, /datum/intent/sword/chop/militia, /datum/intent/sword/peel, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/rend, /datum/intent/sword/chop/militia, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	force = 18
 	force_wielded = 25
 	anvilrepair = /datum/skill/craft/carpentry

@@ -88,6 +88,21 @@
 	recovery = 20
 	clickcd = 10
 
+/datum/intent/rend
+	name = "rend"
+	icon_state = "inrend"
+	attack_verb = list("rends")
+	animname = "cut"
+	blade_class = BCLASS_CHOP
+	reach = 1
+	penfactor = -30
+	damfactor = 2.0
+	chargetime = 5
+	no_early_release = TRUE
+	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
+	item_d_type = "slash"
+	misscost = 5
+
 //polearm objs ฅ^•ﻌ•^ฅ
 
 /obj/item/rogueweapon/woodstaff
