@@ -57,6 +57,7 @@
 	sound = 'sound/misc/area.ogg' //This sound doesnt play for some reason. Fix me.
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE
+	hide_charge_effect = TRUE
 	cost = 2
 
 /obj/effect/proc_holder/spell/invoked/invisibility/miracle

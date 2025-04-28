@@ -43,7 +43,7 @@
 	. = ..()
 	if(has_action)
 		action = new base_action(src)
-	if(overlay_state)
+	if(overlay_state && !hide_charge_effect)
 		var/obj/effect/R = new /obj/effect/spell_rune
 		R.icon = action_icon
 		R.icon_state = overlay_state // Weird af but that's how spells work???
