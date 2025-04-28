@@ -106,7 +106,7 @@
 		if(isliving(target))
 			var/mob/living/M = target
 			M.adjustFireLoss(SEARING_BLADE_DAMAGE)
-			to_chat(M, span_warning("Flame leaps from [source] and singes you!"))
+			to_chat(M, span_warning("Flames leaps from [source] and singes you!"))
 			// Permanent temporary solution until I figure out how to hack a dynamic on mob sprites
 			// Bypass parry & dodge btw.
 

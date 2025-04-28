@@ -5,7 +5,7 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,
 		/obj/effect/proc_holder/spell/invoked/projectile/fetch,
 		/obj/effect/proc_holder/spell/invoked/projectile/spitfire,
-		/obj/effect/proc_holder/spell/invoked/forcewall_weak,
+		/obj/effect/proc_holder/spell/invoked/forcewall,
 		/obj/effect/proc_holder/spell/invoked/ensnare,
 		/obj/effect/proc_holder/spell/self/message,
 		/obj/effect/proc_holder/spell/invoked/repulse,
@@ -49,5 +49,7 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/projectile/guided_bolt,
 		/obj/effect/proc_holder/spell/invoked/thunderstrike,
 		/obj/effect/proc_holder/spell/invoked/enchant_weapon,
+		/obj/effect/proc_holder/spell/invoked/forcewall/arcyne_prison,
+		/obj/effect/proc_holder/spell/invoked/forcewall/greater,
 		)
 ))

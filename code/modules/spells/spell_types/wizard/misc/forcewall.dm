@@ -1,7 +1,7 @@
 //forcewall
-/obj/effect/proc_holder/spell/invoked/forcewall_weak
+/obj/effect/proc_holder/spell/invoked/forcewall
 	name = "Forcewall"
-	desc = "Conjure a wall of arcyne force, preventing anyone and anything other than you from moving through it."
+	desc = "Conjure a 3x1 wall of arcyne force, preventing anyone and anything other than you from moving through it."
 	school = "transmutation"
 	releasedrain = 30
 	chargedrain = 1
@@ -20,11 +20,9 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_MEDIUM
-	range = 7
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	var/wall_type = /obj/structure/forcefield_weak/caster
-	xp_gain = TRUE
+	var/wall_type = /obj/structure/forcefield_weak
 	cost = 1
 
 //adapted from forcefields.dm, this needs to be destructible
@@ -46,26 +44,36 @@
 	if(timeleft)
 		QDEL_IN(src, timeleft) //delete after it runs out
 
-/obj/effect/proc_holder/spell/invoked/forcewall_weak/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/invoked/forcewall/cast(list/targets,mob/user = usr)
 	var/turf/front = get_turf(targets[1])
-	new wall_type(front, user)
+	var/list/affected_turfs = list()
+
+	affected_turfs += front
 	if(user.dir == SOUTH || user.dir == NORTH)
-		new wall_type(get_step(front, WEST), user)
-		new wall_type(get_step(front, EAST), user)
+		affected_turfs += get_step(front, WEST)
+		affected_turfs += get_step(front, EAST)
 	else
-		new wall_type(get_step(front, NORTH), user)
-		new wall_type(get_step(front, SOUTH), user)
+		affected_turfs += get_step(front, NORTH)
+		affected_turfs += get_step(front, SOUTH)
+
+	for(var/turf/affected_turf in affected_turfs)
+		new /obj/effect/temp_visual/trap_wall(affected_turf)
+		addtimer(CALLBACK(src, PROC_REF(new_wall), affected_turf, user), wait = 1 SECONDS)
+
 	user.visible_message("[user] mutters an incantation and a wall of arcyne force manifests out of thin air!")
 	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/forcewall/proc/new_wall(var/turf/target, mob/user)
+	new wall_type(target, user)
 
 /obj/structure/forcefield_weak
 	var/mob/caster
 
-/obj/structure/forcefield_weak/caster/Initialize(mapload, mob/summoner)
+/obj/structure/forcefield_weak/Initialize(mapload, mob/summoner)
 	. = ..()
 	caster = summoner
 
-/obj/structure/forcefield_weak/caster/CanPass(atom/movable/mover, turf/target)	//only the caster can move through this freely
+/obj/structure/forcefield_weak/CanPass(atom/movable/mover, turf/target)	//only the caster can move through this freely
 	if(mover == caster)
 		return TRUE
 	if(ismob(mover))
@@ -73,3 +81,10 @@
 		if(M.anti_magic_check(chargecost = 0))
 			return TRUE
 	return FALSE
+
+/obj/effect/temp_visual/trap_wall
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "trap"
+	light_outer_range = 2
+	duration = 1 SECONDS
+	layer = MASSIVE_OBJ_LAYER
