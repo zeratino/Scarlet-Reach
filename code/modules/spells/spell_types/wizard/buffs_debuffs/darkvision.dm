@@ -14,7 +14,7 @@
 	invocation_type = "whisper"
 	hide_charge_effect = TRUE
 	xp_gain = TRUE
-	cost = 2
+	cost = 1
 
 /obj/item/melee/touch_attack/darkvision
 	name = "\improper arcyne focus"

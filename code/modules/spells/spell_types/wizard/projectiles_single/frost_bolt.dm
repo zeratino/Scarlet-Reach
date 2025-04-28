@@ -9,7 +9,7 @@
 
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 3
+	chargetime = 8
 	recharge_time = 13 SECONDS //cooldown
 
 	warnie = "spellwarning"
@@ -41,7 +41,7 @@
 	damage_type = BURN
 	flag = "magic"
 	range = 10
-	speed = 12 //higher is slower
+	speed = 10 //higher is slower
 	var/aoe_range = 0
 
 /obj/projectile/magic/frostbolt/on_hit(target)

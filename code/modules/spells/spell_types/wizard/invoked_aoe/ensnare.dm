@@ -5,7 +5,7 @@
 	xp_gain = TRUE
 	releasedrain = 20
 	chargedrain = 1
-	chargetime = 20
+	chargetime = 10
 	recharge_time = 25 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE

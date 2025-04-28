@@ -70,7 +70,7 @@
 
 /datum/status_effect/buff/acidsplash/tick()
 	var/mob/living/target = owner
-	target.adjustFireLoss(3)
+	target.adjustFireLoss(5)
 
 /atom/movable/screen/alert/status_effect/buff/acidsplash
 	name = "Acid Burn"

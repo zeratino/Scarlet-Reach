@@ -9,8 +9,8 @@
 	active = FALSE
 	releasedrain = 50
 	chargedrain = 1
-	chargetime = 15
-	recharge_time = 10 SECONDS
+	chargetime = 25
+	recharge_time = 20 SECONDS
 	warnie = "spellwarning"
 	spell_tier = 4 // Highest tier AOE
 	invocation = "Maior Sphaera Ignis!"

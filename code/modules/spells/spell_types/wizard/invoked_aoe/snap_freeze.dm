@@ -6,8 +6,8 @@
 	releasedrain = 30
 	overlay_state = "snap_freeze" // Placeholder. 1 frame of shield sparkles
 	chargedrain = 1
-	chargetime = 15
-	recharge_time = 13 SECONDS
+	chargetime = 20
+	recharge_time = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE

@@ -5,8 +5,8 @@
 	school = "transmutation"
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 15
-	recharge_time = 35 SECONDS
+	chargetime = 10
+	recharge_time = 30 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -35,7 +35,7 @@
 	attacked_sound = list('sound/combat/hits/onstone/wallhit.ogg', 'sound/combat/hits/onstone/wallhit2.ogg', 'sound/combat/hits/onstone/wallhit3.ogg')
 	opacity = 0
 	density = TRUE
-	max_integrity = 100
+	max_integrity = 150
 	CanAtmosPass = ATMOS_PASS_DENSITY
 	var/timeleft = 20 SECONDS
 

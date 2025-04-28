@@ -4,7 +4,7 @@
 	clothes_req = FALSE
 	charge_type = "recharge"
 	associated_skill = /datum/skill/magic/arcane
-	cost = 2
+	cost = 1
 	xp_gain = TRUE
 	// Fix invoked spell variables
 	releasedrain = 35

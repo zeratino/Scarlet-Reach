@@ -317,7 +317,7 @@
 	tastes = list("bread" = 1)
 	slice_batch = FALSE
 	slice_sound = TRUE
-	rotprocess = SHELFLIFE_EXTREME
+	rotprocess = SHELFLIFE_EXTREME	
 
 /obj/item/reagent_containers/food/snacks/rogue/bread/update_icon()
 	if(slices_num)
@@ -398,6 +398,7 @@
 	icon_state = "toast"
 	faretype = FARE_NEUTRAL
 	tastes = list("crispy bread" = 1)
+	mill_result = /obj/item/reagent_containers/food/snacks/rogue/toastcrumbs
 	cooked_type = null
 	bitesize = 2
 	rotprocess = null
@@ -420,6 +421,20 @@
 	faretype = FARE_NEUTRAL
 	tastes = list("butter" = 1)
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
+
+/obj/item/reagent_containers/food/snacks/rogue/toastcrumbs
+	name = "toast crumbs"
+	desc = "Toast crumbs, perfect for adding a crunch to deep fried food."
+	icon = 'modular/Neu_Food/icons/deep_fried.dmi'
+	icon_state = "toastcrumbs"
+	slices_num = 0
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
+	w_class = WEIGHT_CLASS_TINY
+	tastes = list("crunch" = 1)
+	cooked_type = null
+	foodtype = GRAIN
+	bitesize = 1
+	rotprocess = 30 MINUTES
 
 // -------------- BREAD WITH FOOD ON IT (not american sandwich) -----------------
 /obj/item/reagent_containers/food/snacks/rogue/sandwich

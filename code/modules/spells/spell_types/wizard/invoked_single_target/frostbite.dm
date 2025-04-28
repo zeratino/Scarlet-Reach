@@ -4,7 +4,7 @@
 	desc = "Freeze your enemy with an icy blast that does low damage, but reduces the target's Speed for a considerable length of time."
 	overlay_state = "null"
 	releasedrain = 50
-	chargetime = 3
+	chargetime = 8
 	recharge_time = 25 SECONDS
 	range = 7
 	warnie = "spellwarning"

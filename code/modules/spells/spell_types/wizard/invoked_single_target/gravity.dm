@@ -6,8 +6,8 @@
 	xp_gain = TRUE
 	releasedrain = 20
 	chargedrain = 1
-	chargetime = 7
-	recharge_time = 15 SECONDS
+	chargetime = 10
+	recharge_time = 20 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
@@ -43,7 +43,7 @@
 				playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
 				return 
 
-			if(L.STASTR <= 11)
+			if(L.STASTR <= 15)
 				L.adjustBruteLoss(30)
 				L.Knockdown(5)
 				to_chat(L, "<span class='userdanger'>You're magically weighed down, losing your footing!</span>")
