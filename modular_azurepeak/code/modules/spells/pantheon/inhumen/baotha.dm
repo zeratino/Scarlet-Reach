@@ -46,6 +46,7 @@
 	charge_max = 10 SECONDS
 	invocation_type = "whisper"
 	invocation = "Have a taste of the maiden's pure-bliss..."
+	devotion_cost = 30
 
 /obj/projectile/magic/blowingdust
 	name = "unholy dust"
