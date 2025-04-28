@@ -1773,7 +1773,7 @@
 	emote_environment = 3
 	body_parts_covered = HEAD|HAIR|EARS
 	flags_inv = HIDEHAIR
-	block2add = FOV_BEHIND
+	block2add = null
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/leather
