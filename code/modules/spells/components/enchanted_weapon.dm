@@ -27,8 +27,6 @@
 		return COMPONENT_INCOMPATIBLE
 	var/obj/item/I = parent
 
-	to_chat(world, span_warning("[I] is enchanted!, [duration_override], [allow_refresh_override], [refresh_skill_override], [owner_override], [enchant_type_override]"))	
-
 	if(duration_override)
 		endtime = world.time += duration_override
 	else
