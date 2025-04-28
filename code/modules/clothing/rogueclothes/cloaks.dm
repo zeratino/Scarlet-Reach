@@ -1599,6 +1599,7 @@
 	detail_tag = "_spl"
 	detail_color = CLOTHING_WHITE
 	icon_state = "guard_hood"
+	item_state = "guard_hood"
 	body_parts_covered = CHEST
 
 /obj/item/clothing/cloak/stabard/guardhood/attack_right(mob/user)

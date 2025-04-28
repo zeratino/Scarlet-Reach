@@ -17619,6 +17619,7 @@
 /obj/structure/closet/crate/chest,
 /obj/item/rope/chain,
 /obj/item/rope/chain,
+/obj/item/clothing/cloak/stabard/guardhood,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
