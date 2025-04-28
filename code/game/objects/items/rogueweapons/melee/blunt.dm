@@ -21,6 +21,7 @@
 	swingdelay = 10
 	icon_state = "insmash"
 	item_d_type = "blunt"
+	intdamage_factor = 0.5
 
 /datum/intent/mace/rangedthrust
 	name = "thrust"
@@ -437,3 +438,4 @@
 	penfactor = 80
 	damfactor = 0.9
 	item_d_type = "stab"
+	intdamage_factor = 0.7

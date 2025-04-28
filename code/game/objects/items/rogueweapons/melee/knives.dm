@@ -38,6 +38,7 @@
 	swingdelay = 12
 	damfactor = 1.1
 	blade_class = BCLASS_PICK
+	intdamage_factor = 0.7
 
 /datum/intent/dagger/sucker_punch
 	name = "sucker punch"

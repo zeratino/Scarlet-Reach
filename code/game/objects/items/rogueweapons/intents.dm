@@ -47,6 +47,7 @@
 	var/miss_sound //THESE ARE FOR UNARMED MISSING ATTACKS
 	var/allow_offhand = TRUE	//Do I need my offhand free while using this intent?
 	var/peel_divisor = 0		//How many consecutive peel hits this intent requires to peel a piece of coverage? May be overriden by armor thresholds if they're higher.
+	var/intdamage_factor = 0	//%-age of our raw damage that is dealt to armor or weapon on hit / parry.
 
 /datum/intent/Destroy()
 	if(chargedloop)
@@ -90,6 +91,8 @@
 		inspec += "\nThis intent will peel the coverage off of your target's armor in non-key areas after [peel_divisor] consecutive hits.\nSome armor may have higher thresholds."
 	if(!allow_offhand)
 		inspec += "\nThis intent requires a free off-hand."
+	if(intdamage_factor)
+		inspec += "\nThis intent will deal [intdamage_factor * 100]% damage to the enemy's parried weapon or armor on a hit."
 	inspec += "<br>----------------------"
 
 	to_chat(user, "[inspec.Join()]")
@@ -319,6 +322,7 @@
 	blade_class = BCLASS_PICK
 	chargetime = 0
 	swingdelay = 12
+	intdamage_factor = 0.7
 
 /datum/intent/pick/ranged
 	name = "ranged pick"

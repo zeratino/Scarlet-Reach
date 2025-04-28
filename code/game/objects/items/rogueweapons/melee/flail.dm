@@ -58,6 +58,7 @@
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	item_d_type = "blunt"
+	intdamage_factor = 0.5
 
 /datum/intent/flail/strike/smash/militia
 	penfactor = 50
