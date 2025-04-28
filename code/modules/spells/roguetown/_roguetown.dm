@@ -99,6 +99,7 @@
 		if(istype(P, /obj/projectile/magic/bloodsteal))
 			var/obj/projectile/magic/bloodsteal/B = P
 			B.sender = user
+		P.def_zone = user.zone_selected
 		P.firer = user
 		P.preparePixelProjectile(target, user)
 		for(var/V in projectile_var_overrides)
