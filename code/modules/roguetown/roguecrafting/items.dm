@@ -957,7 +957,7 @@
 /datum/crafting_recipe/roguetown/rucksack
 	name = "rucksack"
 	result = /obj/item/storage/backpack/rogue/backpack/bagpack
-	reqs = list(/obj/item/storage/roguebag = 1,
+	reqs = list(/obj/item/storage/roguebag/crafted = 1,
 				/obj/item/rope = 1)
 	craftdiff = 0
 
