@@ -140,6 +140,19 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	experimental_inhand = FALSE
 	/// If our stone is magical, this lets us know -how- magical. Maximum is 15.
 	var/magic_power = 0
+	var/sharpening_factor = 0.1
+	var/spark_chance = 35
+
+/obj/item/natural/stone/whetstone
+	name = "whetstone"
+	icon_state = "whetstone"
+	desc = "A honed slab made for sharpening blades and striking flames."
+	possible_item_intents = list(/datum/intent/hit, /datum/intent/mace/smash/wood, /datum/intent/dagger/cut)
+	sharpening_factor = 0.4
+	spark_chance = 80
+
+/obj/item/natural/stone/whetstone/stone_lore()
+	return
 
 /obj/item/natural/stone/Initialize()
 	. = ..()

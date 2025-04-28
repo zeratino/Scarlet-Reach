@@ -319,6 +319,11 @@
 	chargetime = 0
 	swingdelay = 0
 
+/datum/intent/stab/militia
+	name = "militia stab"
+	damfactor = 1.1
+	penfactor = 50
+
 /datum/intent/pick //now like icepick intent, we really went in a circle huh
 	name = "pick"
 	icon_state = "inpick"
@@ -330,6 +335,19 @@
 	blade_class = BCLASS_PICK
 	chargetime = 0
 	swingdelay = 12
+
+/datum/intent/pick/ranged
+	name = "ranged pick"
+	icon_state = "inpick"
+	attack_verb = list("stabs", "impales")
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 60
+	damfactor = 1.1
+	chargetime = 0.7
+	chargedrain = 2
+	reach = 2
+	no_early_release = TRUE
+	blade_class = BCLASS_PICK
 
 /datum/intent/shoot //shooting crossbows or other guns, no parrydrain
 	name = "shoot"
