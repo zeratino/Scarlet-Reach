@@ -95,13 +95,19 @@
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	reach = 1
-	penfactor = -30
-	damfactor = 2.0
+	penfactor = -50
+	damfactor = 2.5
 	chargetime = 5
 	no_early_release = TRUE
 	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
 	item_d_type = "slash"
 	misscost = 5
+
+/datum/intent/rend/reach
+	name = "long rend"
+	penfactor = -30
+	damfactor = 2
+	reach = 2
 
 //polearm objs ฅ^•ﻌ•^ฅ
 
