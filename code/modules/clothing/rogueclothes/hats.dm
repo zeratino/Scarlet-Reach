@@ -630,12 +630,6 @@
 			if("onbelt")
 				return list("shrink" = 0.42,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/clothing/head/roguetown/helmet/equipped(mob/user, slot)
-	. = ..()
-	/*if(slot == SLOT_BELT_R)
-		to_chat(user, span_info("The helmet slips off of my right side. I should try latching it to my left."))
-		user.dropItemToGround(src)
-		playsound(user, drop_sound, 50)*/
 	
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
