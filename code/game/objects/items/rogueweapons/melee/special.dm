@@ -434,7 +434,7 @@
 
 /obj/item/rogueweapon/spear/militia/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	if(proximity_flag)
+	if(user.Adjacent(target) || get_dist(target, user) <= user.used_intent?.reach)
 		if(!is_loaded)
 			for(var/type in hay_types)
 				if(istype(target, type))
@@ -514,29 +514,30 @@
 
 /datum/component/ignitable/proc/item_afterattack(obj/item/source, atom/target, mob/user, proximity_flag, click_parameters)
 	var/ignited = FALSE
-	if(is_active)
-		if(isobj(target))
-			var/obj/O = target
-			if(!(O.resistance_flags & FIRE_PROOF))
-				O.spark_act()
-				O.fire_act()
+	if(user.used_intent?.reach >= get_dist(target, user))
+		if(is_active)
+			if(isobj(target))
+				var/obj/O = target
+				if(!(O.resistance_flags & FIRE_PROOF))
+					O.spark_act()
+					O.fire_act()
+					ignited = TRUE
+			if(isliving(target))
+				var/mob/living/M = target
+				M.adjust_fire_stacks(5)
+				M.IgniteMob()
 				ignited = TRUE
-		if(isliving(target))
-			var/mob/living/M = target
-			M.adjust_fire_stacks(5)
-			M.IgniteMob()
-			ignited = TRUE
-		if(ignited && single_use)
-			is_active = FALSE
-			light_off()
-			update_icon()
-			user.regenerate_icons()
-	else if(is_ignitable && !is_active)
-		if(isobj(target))
-			var/obj/O = target
-			if(O.damtype == BURN || O.light_on == TRUE)	//Super hacky, but should work on every conventional source you'd expect to ignite it. But also a few other weird ones.
-				light_on()
+			if(ignited && single_use)
+				is_active = FALSE
+				light_off()
+				update_icon()
 				user.regenerate_icons()
+		else if(is_ignitable && !is_active)
+			if(isobj(target))
+				var/obj/O = target
+				if(O.damtype == BURN || O.light_on == TRUE)	//Super hacky, but should work on every conventional source you'd expect to ignite it. But also a few other weird ones.
+					light_on()
+					user.regenerate_icons()
 
 
 	
