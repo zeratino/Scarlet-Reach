@@ -620,19 +620,22 @@
 	grid_height = 64
 	grid_width = 64
 	experimental_onhip = TRUE
+	experimental_inhand = TRUE
 
 /obj/item/clothing/head/roguetown/helmet/getonmobprop(tag)
 	if(tag)
 		switch(tag)
+			if("gen")
+				return list("shrink" = 0.5,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
 			if("onbelt")
-				return list("shrink" = 0.45,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+				return list("shrink" = 0.42,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/equipped(mob/user, slot)
 	. = ..()
-	if(slot == SLOT_BELT_R)
+	/*if(slot == SLOT_BELT_R)
 		to_chat(user, span_info("The helmet slips off of my right side. I should try latching it to my left."))
 		user.dropItemToGround(src)
-		playsound(user, drop_sound, 50)
+		playsound(user, drop_sound, 50)*/
 	
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
@@ -847,6 +850,14 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 	max_integrity = 300
+
+/obj/item/clothing/head/roguetown/helmet/otavan/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
+			if("onbelt")
+				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/otavan/AdjustClothes(mob/user)
 	if(loc == user)
@@ -1230,8 +1241,10 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute/getonmobprop(tag)
 	if(tag)
 		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
 			if("onbelt")
-				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 	name = "psydonian armet"
@@ -1244,8 +1257,10 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/getonmobprop(tag)
 	if(tag)
 		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
 			if("onbelt")
-				return list("shrink" = 0.35,"sx" = 10,"sy" = -25,"nx" = 22,"ny" = -25,"wx" = 15,"wy" = -25,"ex" = 15,"ey" = -25,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 180,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/AdjustClothes(mob/user)
 	if(loc == user)
