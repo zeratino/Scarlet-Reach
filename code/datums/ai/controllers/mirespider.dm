@@ -71,12 +71,10 @@
     
     else if (following)  // If we're following someone
         var/mob/target = following.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-        to_chat(world, span_danger("TARGET - TARGET [following.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]] TARGET [following]"))
         following.add_follower(pawn)
 
         // If the follow target has a target, stop following
         if (target)
-            to_chat(world, span_danger("[following.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]][following]"))
             controller.clear_blackboard_key(BB_FOLLOW_TARGET)
 
         // If too far from the following target, stop following
@@ -99,7 +97,6 @@
     var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/target_target = target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
     if (target_target)
-        to_chat(world, span_danger("[target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]]"))
         return FALSE
 
     if (QDELETED(target))
@@ -111,7 +108,6 @@
     var/mob/living/simple_animal/hostile/rogue/mirespider_lurker/target_target = target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
 
     if (target_target)
-        to_chat(world, span_danger("[target.ai_controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]]"))
         return  // Stop following if the target has a target
 
     if (QDELETED(target))
