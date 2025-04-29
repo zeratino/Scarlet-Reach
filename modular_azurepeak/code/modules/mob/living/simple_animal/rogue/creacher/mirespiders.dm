@@ -159,8 +159,9 @@
     STACON = 9
     STASTR = 9
     STASPD = 14
-    STAPER = 12
-    pixel_x = -8
+    // These things will crit. Slow attacks, devestating consequences.
+    STAPER = 15
+    pixel_x = -4
 
     ai_controller = /datum/ai_controller/mirespider_lurker
     projectiletype = /obj/projectile/bullet/spider
