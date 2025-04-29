@@ -6,7 +6,8 @@
 	The enchantment will lasts for 15 minutes, and will automatically refresh in the hand of an Arcyne user.\n\
 	Applying an enchantment to an already enchanted weapon will override the existing enchantment.\n\
 	Searing Blade: Applies 8 burn damage through armor and parry / dodge, per strike.\n\
-	Force Blade: Increases the force of the weapon by 5.\n\ "
+	Force Blade: Increases the force of the weapon by 5.\n\
+	Durability: Increases the integrity and max integrity of the weapon by 100."
 	overlay_state = "create_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
@@ -35,20 +36,21 @@
 
 	var/list/enchant_types = list(
 		"Searing Blade" = SEARING_BLADE_ENCHANT,
-		"Force Blade" = FORCE_BLADE_ENCHANT
+		"Force Blade" = FORCE_BLADE_ENCHANT,
+		"Durability" = DURABILITY_ENCHANT
 	)
 
-	if(istype(target, /obj/item))
+	if(istype(target, /obj/item/rogueweapon))
 		var/obj/item/I = target
 		var/enchant_type = input(user, "Select the type of enchantment you want to apply:", "Enchant Weapon") as anything in enchant_types
 		if(!enchant_type)
 			return
 		enchant_type = enchant_types[enchant_type]
 		I.AddComponent(/datum/component/enchanted_weapon, ENCHANT_DURATION, TRUE, /datum/skill/magic/arcane, user, enchant_type)
-		user.visible_message("[user] runs their hand along [I], enchanting it.")
+		user.visible_message("[user] enchants the [I], enveloping it in a magical glow.")
 		return TRUE
 	else
-		to_chat(user, span_warning("This is not a valid target for enchantment!"))
+		to_chat(user, span_warning("That is not a valid target for enchantment! You need to enchant a weapon."))
 		revert_cast()
 		return FALSE
 		
