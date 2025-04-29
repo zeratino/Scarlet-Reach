@@ -28,8 +28,9 @@
 			repair_percent *= I.max_integrity
 			I.obj_integrity = min(I.obj_integrity + repair_percent, I.max_integrity)
 			user.visible_message(span_info("[I] glows in a faint mending light."))
-			if(I.obj_broken == TRUE)
-				I.obj_broken = FALSE
+			if(I.obj_integrity >= I.max_integrity)
+				I.obj_integrity = I.max_integrity
+				I.obj_fix()
 		else
 			user.visible_message(span_info("[I] appears to be in perfect condition."))
 			revert_cast()
