@@ -172,7 +172,7 @@
 		var/obj/effect/proc_holder/spell/spell_item = spell_choices[i]
 		if(spell_item.spell_tier > 3) // Hardcap Rituos choice to T3 to avoid Court Mage spells access
 			continue
-		choices["[spell_choices[i].name]"] = spell_item
+		choices["[spell_item.name]"] = spell_item
 
 	choices = sortList(choices)
 

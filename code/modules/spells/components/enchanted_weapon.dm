@@ -62,15 +62,15 @@
 /datum/component/enchanted_weapon/process()
 	if(endtime <= world.time)
 		if(isliving(current_user) && refresh_skill)
-			var/has_right_skill = current_user.mind.get_skill_level(refresh_skill)
+			if(!current_user.mind)
+				return
+			var/has_right_skill = current_user?.mind.get_skill_level(refresh_skill)
 			if(has_right_skill)
 				if(overridden_duration)
 					endtime += overridden_duration
 				else
 					endtime += DEFAULT_DURATION
 				return
-		if(current_user)
-			to_chat(current_user, span_warning("The enchantment on [parent] fades away"))
 		remove()
 		qdel(src)
 		return
