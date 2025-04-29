@@ -34,6 +34,7 @@
 	light_color = LIGHT_COLOR_WHITE
 	damage = 15
 	damage_type = BURN
+	accuracy = 40 // Base accuracy is lower for burn projectiles because they bypass armor
 	nodamage = FALSE
 	speed = 0.3
 	flag = "magic"

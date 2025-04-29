@@ -32,6 +32,7 @@
 	exp_fire = 1
 	damage = 10
 	damage_type = BURN
+	accuracy = 40 // Base accuracy is lower for burn projectiles because they bypass armor
 	nodamage = FALSE
 	flag = "magic"
 	hitsound = 'sound/blank.ogg'

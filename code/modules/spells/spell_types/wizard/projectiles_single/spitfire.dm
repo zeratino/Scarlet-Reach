@@ -26,7 +26,7 @@
 	cost = 1
 
 /obj/projectile/magic/aoe/fireball/rogue2
-	name = "fireball"
+	name = "spitfire"
 	exp_heavy = 0
 	exp_light = 0
 	exp_flash = 1
