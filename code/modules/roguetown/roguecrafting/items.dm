@@ -973,7 +973,7 @@
 	reqs = list(/obj/item/grown/log/tree/small = 2,
 				/obj/item/rope = 1,
 				/obj/item/rogueweapon/thresher = 1)
-	craftdiff = 3
+	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/peasantry/goedendag
 	name = "militia goedendag"
@@ -981,7 +981,7 @@
 	reqs = list(/obj/item/rogueweapon/woodstaff = 1,
 				/obj/item/natural/stone/whetstone = 2,
 				/obj/item/rope = 1)
-	craftdiff = 3
+	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/peasantry/waraxe
 	name = "militia shovel-waraxe"
@@ -1034,7 +1034,7 @@
 	result = /obj/item/rogueweapon/pick/militia/steel
 	reqs = list(/obj/item/rogueweapon/pick/steel = 1,
 				/obj/item/natural/stone/whetstone = 1)
-	craftdiff = 3
+	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/peasantry/maciejowski_knife
 	name = "maciejowski (hunting knife)"
