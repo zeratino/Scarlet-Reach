@@ -50,6 +50,7 @@
 	antimagic_allowed = TRUE
 	recharge_time = 15 SECONDS
 	miracle = FALSE
+	hide_charge_effect = TRUE
 
 /obj/effect/proc_holder/spell/invoked/eyebite/cast(list/targets, mob/living/user)
 	. = ..()
@@ -120,6 +121,7 @@
 	associated_skill = /datum/skill/magic/arcane
 	recharge_time = 30 SECONDS
 	var/cabal_affine = FALSE
+	hide_charge_effect = TRUE
 
 /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/cast(list/targets, mob/living/user)
 	. = ..()
