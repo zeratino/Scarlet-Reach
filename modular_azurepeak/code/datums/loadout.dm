@@ -398,7 +398,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/donator_strudel
 	name = "Grenzelhoftian Mage Vest"
-	path = /obj/item/clothing/suit/roguetown/armor/leather/vest/sofiavest
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/sofiavest
 	ckeywhitelist = list("toasterstrudes")
 
 /datum/loadout_item/donator_bat
