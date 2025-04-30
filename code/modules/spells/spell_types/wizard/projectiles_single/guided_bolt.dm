@@ -30,6 +30,7 @@
 	damage = 40
 	damage_type = BRUTE
 	armor_penetration = 10
+	woundclass = BCLASS_BLUNT
 	arcshot = TRUE
 	nodamage = FALSE
 	flag = "magic"
