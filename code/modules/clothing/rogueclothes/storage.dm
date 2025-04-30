@@ -48,6 +48,7 @@
 /obj/item/storage/belt/rogue/leather/black
 	name = "black belt"
 	icon_state = "blackbelt"
+	item_state = "blackbelt"
 	sellprice = 10
 
 /obj/item/storage/belt/rogue/leather/plaquesilver
