@@ -121,6 +121,7 @@
 		"Zweihander",
 		"Great Mace",
 		"Battle Axe",
+		"Greataxe",
 		"Estoc",
 		"Bastard Sword & Shield",
 		"Flail & Shield",
@@ -136,6 +137,9 @@
 			r_hand = /obj/item/rogueweapon/mace/goden/steel
 		if("Battle Axe")
 			r_hand = /obj/item/rogueweapon/stoneaxe/battle
+		if("Greataxe")
+			r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead
+			backl = /obj/item/gwstrap
 		if("Estoc")
 			r_hand = /obj/item/rogueweapon/estoc
 			backl = /obj/item/gwstrap
