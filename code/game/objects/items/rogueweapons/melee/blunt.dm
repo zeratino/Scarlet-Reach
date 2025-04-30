@@ -436,7 +436,7 @@
 	animname = "stab"
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	misscost = 1
-	swingdelay = 14
+	swingdelay = 15
 	penfactor = 80
 	damfactor = 0.9
 	item_d_type = "stab"
