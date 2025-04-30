@@ -27,7 +27,8 @@
 			var/repair_percent = 0.25
 			repair_percent *= I.max_integrity
 			I.obj_integrity = min(I.obj_integrity + repair_percent, I.max_integrity)
-			user.visible_message(span_info("[I] glows in a faint mending light."))
+			user.visible_message(span_info("[I] is repaired in a faint mending glow."))
+			playsound(I, 'sound/foley/sewflesh.ogg', 50, TRUE, -2)
 			if(I.obj_integrity >= I.max_integrity)
 				I.obj_integrity = I.max_integrity
 				I.obj_fix()
