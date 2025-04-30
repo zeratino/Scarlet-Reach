@@ -90,7 +90,7 @@
 
 /obj/item/storage/belt/rogue/leather/cloth/bandit
 	color = "#ff0000"
-	component_type = /datum/component/storage/concrete/roguetown/belt //bandits are clever at making space I guess
+	component_type = /datum/component/storage/concrete/roguetown/belt
 
 /obj/item/storage/belt/rogue/pouch
 	name = "pouch"
