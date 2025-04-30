@@ -3,7 +3,7 @@
 	desc = "A slow-moving glob of acid that sprays over an area upon impact."
 	range = 8
 	projectile_type = /obj/projectile/magic/acidsplash
-	overlay_state = "null"
+	overlay_state = "acid_splash"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE
 

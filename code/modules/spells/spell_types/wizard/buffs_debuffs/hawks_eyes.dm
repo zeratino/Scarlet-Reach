@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/hawks_eyes
 	name = "Hawk's Eyes"
-	overlay_state = "hawkseyes"
+	overlay_state = "hawks_eyes"
 	desc = "Sharpens the target's vision. (+3 Perception)"
 	cost = 1
 	xp_gain = TRUE

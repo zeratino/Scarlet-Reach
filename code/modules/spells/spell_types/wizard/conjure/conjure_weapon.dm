@@ -5,7 +5,7 @@
 	desc = "Conjure a weapon of your choice in your hand or on the ground.\n\
 	The weapon lasts for 15 minutes - but will refresh its duration infinitely when in the hand of an Arcyne user.\n\
 	At 12 int or above, conjure steel-tier weapons, otherwise conjure iron-tier weapons. Melee weapons only."
-	overlay_state = "create_weapon"
+	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60

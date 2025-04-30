@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/invoked/aerosolize
 	name = "Aerosolize" //once again renamed to fit better :)
 	desc = "Turns a container of liquid into a smoke containing the reagents of that liquid."
-	overlay_state = "null"
+	overlay_state = "aerosolize"
 	releasedrain = 50
 	chargetime = 3
 	recharge_time = 30 SECONDS

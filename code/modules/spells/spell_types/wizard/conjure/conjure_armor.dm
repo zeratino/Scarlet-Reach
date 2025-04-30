@@ -6,7 +6,7 @@
 	The armor lasts for 15 minutes - but will refresh its duration infinitely when equipped on a Arcyne user.\n\
 	At 12 int or above, conjure hardened leather grade armor for the body, otherwise conjure leather armor.\n\
 	Armor will only be conjured where the target is not wearing any. Masks, Cloaks & Mouthpiece not included."
-	overlay_state = "create_weapon"
+	overlay_state = "conjure_armor"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60

@@ -4,11 +4,11 @@
 	name = "Enchant Weapon"
 	desc = "Enchant a weapon of your choice in your hand or on the ground.\n\
 	The enchantment will lasts for 15 minutes, and will automatically refresh in the hand of an Arcyne user.\n\
-	Applying an enchantment to an already enchanted weapon will override the existing enchantment.\n\
+	An enchantment cannot be applied to an already enchanted weapon.\n\
 	Searing Blade: Applies 8 burn damage through armor and parry / dodge, per strike.\n\
 	Force Blade: Increases the force of the weapon by 5.\n\
 	Durability: Increases the integrity and max integrity of the weapon by 100."
-	overlay_state = "create_weapon"
+	overlay_state = "enchant_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 30
