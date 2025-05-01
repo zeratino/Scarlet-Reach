@@ -47,7 +47,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/use_skintones = 0	// does it use skintones or not? (spoiler alert this is only used by humans)
 	var/exotic_blood = ""	// If my race wants to bleed something other than bog standard blood, change this to reagent id.
 	var/exotic_bloodtype = "" //If my race uses a non standard bloodtype (A+, O-, AB-, etc)
-	var/meat = /obj/item/reagent_containers/food/snacks/meat/slab/human //What the species drops on gibbing
+	var/meat = /obj/item/reagent_containers/food/snacks/rogue/meat/steak //What the species drops on gibbing
 	var/skinned_type
 	var/liked_food = NONE
 	var/disliked_food = GROSS
@@ -1363,13 +1363,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		return
 	if(user.rogfat >= user.maxrogfat)
 		return FALSE
-	if(!(user.mobility_flags & MOBILITY_STAND))
-		return FALSE
 	var/stander = TRUE
 	if(!(target.mobility_flags & MOBILITY_STAND))
 		stander = FALSE
 	if(!get_dist(user, target))
-		if(!stander && (user.mobility_flags & MOBILITY_STAND))
+		if(!stander)
 			target.lastattacker = user.real_name
 			target.lastattackerckey = user.ckey
 			if(target.mind)
@@ -1404,6 +1402,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 		playsound(target, 'sound/combat/hits/kick/kick.ogg', 100, TRUE, -1)
+
+		if (target.pulling && target.grab_state < GRAB_AGGRESSIVE)
+			target.stop_pulling()
+			user.Immobilize(10)
 
 		var/turf/target_oldturf = target.loc
 		var/shove_dir = get_dir(user.loc, target_oldturf)
@@ -1559,7 +1561,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/bladec = user.used_intent.blade_class
 	if(H == user && bladec == BCLASS_PEEL)
 		bladec = BCLASS_BLUNT
-	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor)
+	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor, intdamfactor = user.used_intent.masteritem?.intdamage_factor)
 
 	var/nodmg = FALSE
 

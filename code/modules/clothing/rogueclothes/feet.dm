@@ -245,12 +245,37 @@
 /obj/item/clothing/shoes/roguetown/jester
 	name = "funny shoes"
 	icon_state = "jestershoes"
+	detail_tag = "_detail"
 	resistance_flags = null
 	sewrepair = TRUE
+	detail_color = CLOTHING_WHITE
+	color = CLOTHING_AZURE
 
-/obj/item/clothing/shoes/roguetown/jester/Initialize(mapload)
+/obj/item/clothing/shoes/roguetown/jester/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/shoes/roguetown/jester/lordcolor(primary,secondary)
+	detail_color = secondary
+	color = primary
+	update_icon()
+
+/obj/item/clothing/shoes/roguetown/jester/Initialize()
 	. = ..()
-	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS)
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS, 2)
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
+	else
+		GLOB.lordcolor += src
+
+/obj/item/clothing/shoes/roguetown/jester/Destroy()
+	GLOB.lordcolor -= src
+	return ..()
 
 /obj/item/clothing/shoes/roguetown/grenzelhoft
 	name = "grenzelhoft boots"
@@ -277,6 +302,7 @@
 	icon_state = "furlinedanklets"
 	item_state = "furlinedanklets"
 	sewrepair = TRUE
+	is_barefoot = TRUE
 	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
 	is_barefoot = TRUE
 	salvage_amount = 1

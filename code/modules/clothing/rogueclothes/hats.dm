@@ -302,13 +302,40 @@
 	desc = "A funny-looking hat with jingly bells attached to it."
 	icon_state = "jester"
 	item_state = "jester"
+	detail_tag = "_detail"
+	altdetail_tag = "_detailalt"
 	dynamic_hair_suffix = "+generic"
 	sewrepair = TRUE
 	flags_inv = HIDEEARS
+	detail_color = CLOTHING_WHITE
+	color = CLOTHING_AZURE
+	altdetail_color = CLOTHING_WHITE
+
+/obj/item/clothing/head/roguetown/jester/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/jester/lordcolor(primary,secondary)
+	detail_color = secondary
+	color = primary
+	update_icon()
 
 /obj/item/clothing/head/roguetown/jester/Initialize()
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS, 2)
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
+	else
+		GLOB.lordcolor += src
+
+/obj/item/clothing/head/roguetown/jester/jester/Destroy()
+	GLOB.lordcolor -= src
+	return ..()
 
 /obj/item/clothing/head/roguetown/strawhat
 	name = "straw hat"
@@ -391,7 +418,7 @@
 
 /obj/item/clothing/head/roguetown/chaperon
 	name = "chaperon hat"
-	desc = "A fancy hat worn by nobles."
+	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
 	icon_state = "chaperon"
 	item_state = "chaperon"
 	sewrepair = TRUE
@@ -406,17 +433,34 @@
 
 /obj/item/clothing/head/roguetown/chaperon/greyscale
 	name = "chaperon hat"
-	desc = "A fancy hat worn by nobles."
+	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
 	icon_state = "chap_alt"
 	item_state = "chap_alt"
-	color = "#cf99e3"
+	color = "#dbcde0"
 
-/obj/item/clothing/head/roguetown/chaperon/bailiff
-	name = "chaperon hat"
-	desc = "A fancy hat worn by nobles."
-	icon_state = "chap_alt"
-	item_state = "chap_alt"
-	color = "#C0392B"
+/obj/item/clothing/head/roguetown/chaperon/noble
+	name = "noble's chaperon"
+	desc = "A decorated chaperon worn by those more influential in society."
+	icon_state = "noblechaperon"
+	item_state = "noblechaperon"
+	detail_tag = "_detail"
+	color = CLOTHING_WHITE
+	detail_color = COLOR_ASSEMBLY_GOLD
+
+/obj/item/clothing/head/roguetown/chaperon/noble/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/chaperon/noble/bailiff
+	name = "Marshal's chaperon"
+	desc = "A noble's chaperon made for the local Marshal. \"How terribly unfortunate you are!\""
+	color = "#641E16"
+	detail_color = "#b68e37ff"
 
 /obj/item/clothing/head/roguetown/chaperon/councillor
 	name = "chaperon hat"
@@ -619,6 +663,18 @@
 	max_integrity = 200
 	grid_height = 64
 	grid_width = 64
+	experimental_onhip = TRUE
+	experimental_inhand = TRUE
+
+/obj/item/clothing/head/roguetown/helmet/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.5,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
+			if("onbelt")
+				return list("shrink" = 0.42,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+	
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
 	name = "skull cap"
@@ -833,6 +889,14 @@
 	smelt_bar_num = 2
 	max_integrity = 300
 
+/obj/item/clothing/head/roguetown/helmet/otavan/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
+			if("onbelt")
+				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/clothing/head/roguetown/helmet/otavan/AdjustClothes(mob/user)
 	if(loc == user)
 		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
@@ -882,6 +946,8 @@
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	bloody_icon = 'icons/effects/blood64.dmi'
+	experimental_inhand = FALSE
+	experimental_onhip = FALSE
 
 
 /obj/item/clothing/head/roguetown/helmet/heavy/matthios/pickup(mob/living/user)
@@ -1212,6 +1278,14 @@
 	item_state = "psydonbarbute"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 
+/obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
+			if("onbelt")
+				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 	name = "psydonian armet"
 	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
@@ -1219,6 +1293,14 @@
 	item_state = "psydonarmet"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	adjustable = CAN_CADJUST
+
+/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/getonmobprop(tag)
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -5,"sy" = -3,"nx" = 0,"ny" = 0,"wx" = 0,"wy" = -3,"ex" = 2,"ey" = -3,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 8)
+			if("onbelt")
+				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/AdjustClothes(mob/user)
 	if(loc == user)
@@ -1710,7 +1792,7 @@
 	emote_environment = 3
 	body_parts_covered = HEAD|HAIR|EARS
 	flags_inv = HIDEHAIR
-	block2add = FOV_BEHIND
+	block2add = null
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/leather
@@ -1753,6 +1835,8 @@
 	flags_inv = HIDEEARS|HIDEFACE|HIDESNOUT
 	flags_cover = HEADCOVERSEYES
 	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES
+	experimental_inhand = FALSE
+	experimental_onhip = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/leather/minershelm
 	name = "leather miners helmet"
@@ -2090,6 +2174,9 @@
 	desc = "A feathered leather hat, to show them all your superiority."
 	icon_state = "duelhat"
 	sewrepair = TRUE
+	color = COLOR_ALMOST_BLACK	
+	detail_tag = "_detail"
+	detail_color = COLOR_SILVER
 	salvage_result = /obj/item/natural/hide/cured
 
 
@@ -2158,6 +2245,8 @@
 	anvilrepair = /datum/skill/craft/carpentry
 	max_integrity = 300
 	blocksound = SOFTHIT
+	experimental_inhand = FALSE
+	experimental_onhip = FALSE
 
 
 /obj/item/clothing/head/roguetown/helmet/elvenbarbute
@@ -2197,6 +2286,8 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+	experimental_inhand = FALSE
+	experimental_onhip = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/antler/AdjustClothes(mob/user)
 	if(loc == user)

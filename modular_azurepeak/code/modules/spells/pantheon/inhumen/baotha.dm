@@ -13,7 +13,7 @@
 	invocation_type = "none"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 10 SECONDS
+	recharge_time = 10 SECONDS
 	miracle = TRUE
 	devotion_cost = 10
 
@@ -43,9 +43,10 @@
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 15
-	charge_max = 10 SECONDS
+	recharge_time = 10 SECONDS
 	invocation_type = "whisper"
 	invocation = "Have a taste of the maiden's pure-bliss..."
+	devotion_cost = 30
 
 /obj/projectile/magic/blowingdust
 	name = "unholy dust"
@@ -78,7 +79,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 90 SECONDS
+	recharge_time = 90 SECONDS
 	miracle = TRUE
 	devotion_cost = 75
 

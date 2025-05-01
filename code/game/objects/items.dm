@@ -132,6 +132,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//Grinder vars
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
+	var/mill_result = null // What it grinds into on a millstone or similar.
 
 	var/canMouseDown = FALSE
 	var/can_parry = FALSE
@@ -153,6 +154,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/wbalance = 0
 	var/wdefense = 0 //better at defending
 	var/minstr = 0  //for weapons
+	var/intdamage_factor = 0	//%-age of our raw damage that is dealt to armor or weapon on hit / parry.
 
 	var/sleeved = null
 	var/sleevetype = null
@@ -454,6 +456,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(associated_skill && associated_skill.name)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
+		
+		if(intdamage_factor)
+			inspec += "\n<b>INTEGRITY DAMAGE:</b>[intdamage_factor * 100]%"
 
 //**** CLOTHING STUFF
 

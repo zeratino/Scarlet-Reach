@@ -216,6 +216,9 @@
 			prob2defend = clamp(prob2defend, 5, 90)
 			if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
 				prob2defend = clamp(prob2defend, 5, 70)
+			if(!H?.check_armor_skill())
+				prob2defend = clamp(prob2defend, 5, 75)			//Caps your max parry to 75 if using armor you're not trained in. Bad dexerity.
+				drained = drained + 5							//More stamina usage for not being trained in the armor you're using.
 
 			//Dual Wielding
 			var/attacker_dualw
@@ -332,6 +335,8 @@
 
 					var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 					if(dam2take)
+						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
+							dam2take = dam2take * intenty.masteritem?.intdamage_factor
 						used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
 					return TRUE
 				else

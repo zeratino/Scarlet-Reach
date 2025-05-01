@@ -409,11 +409,11 @@
 			O.grabbed = C
 			O.grabbee = src
 			O.limb_grabbed = BP
+			BP.grabbedby += O
 			if(item_override)
 				O.sublimb_grabbed = item_override
 			else
 				O.sublimb_grabbed = used_limb
-			O.icon_state = zone_selected
 			put_in_hands(O)
 			O.update_hands(src)
 			if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER) || item_override)
@@ -1773,7 +1773,7 @@
 				continue
 			if(see_invisible < M.invisibility)
 				continue
-			var/probby = (3 * STAPER) + (mind?.get_skill_level(/datum/skill/misc/tracking)) * 5
+			var/probby = (2 * STAPER) + (mind?.get_skill_level(/datum/skill/misc/tracking)) * 5
 			if(M.mob_timers[MT_INVISIBILITY] > world.time) // Check if the mob is affected by the invisibility spell
 				if(mind?.get_skill_level(/datum/skill/misc/tracking) <= SKILL_LEVEL_EXPERT)	//Master or Legendary from this point
 					continue
@@ -1782,17 +1782,17 @@
 				var/target_holy = M.mind?.get_skill_level(/datum/skill/magic/holy)
 				var/target_arcyne = M.mind?.get_skill_level(/datum/skill/magic/arcane)
 				var/chosen_skill = max(target_sneak, target_holy, target_arcyne)
-				probby -= chosen_skill * 10
+				probby -= chosen_skill * 5
 				if(M.STAPER > 10)
 					probby -= (M.STAPER) / 2
 			probby = (max(probby, 5))
 			if(prob(probby))
 				marked = TRUE
-				M.mob_timers[MT_INVISIBILITY] = world.time
-				M.update_sneak_invis()
-				to_chat(M, span_danger("[src] sees me! I'm found!"))
-				if(M.m_intent == MOVE_INTENT_SNEAK)
+				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					emote("huh")
+					to_chat(M, span_danger("[src] sees me! I'm found!"))
+					M.update_sneak_invis()
+					M.mob_timers[MT_INVISIBILITY] = world.time
 					M.mob_timers[MT_FOUNDSNEAK] = world.time
 			else
 				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
