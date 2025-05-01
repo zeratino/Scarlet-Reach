@@ -186,6 +186,7 @@
     . = ..()
     if(!succeeded)
         controller.clear_blackboard_key(target_key)
+    controller.clear_blackboard_key(target_key)
 
 /datum/ai_planning_subtree/cocoon_target
 	var/datum/ai_behavior/cocoon_target/behavior = /datum/ai_behavior/cocoon_target
@@ -193,7 +194,6 @@
 /datum/ai_planning_subtree/cocoon_target/SelectBehaviors(datum/ai_controller/controller, delta_time)
     . = ..()
     var/obj/item/target = controller.blackboard[BB_BASIC_MOB_COCOON_TARGET]
-    to_chat(world, span_boldnotice("SELECT COCOON [target]!"))
     if(QDELETED(target))
         controller.clear_blackboard_key(BB_BASIC_MOB_COCOON_TARGET)
         return
@@ -215,7 +215,6 @@
     . = ..()
 
     var/atom/target = controller.blackboard[cocoon_target_key]
-    to_chat(world, span_boldnotice("FIND SOMEONE TO COCOON [target]!"))
     if(!QDELETED(target))
         // Busy with something
         return
@@ -228,6 +227,9 @@
 /datum/ai_behavior/find_and_set/cocoon_target/search_tactic(datum/ai_controller/controller, locate_paths, search_range)
     var/list/found = list()
     for(var/mob/living/carbon/mob in oview(search_range, controller.pawn))
+        var/obj/structure/spider/cocoon/cocoon = mob.loc
+        if(istype(cocoon, /obj/structure/spider/cocoon))
+            continue
         if(mob.stat == DEAD)
             continue
         found |= mob
