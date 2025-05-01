@@ -34,6 +34,26 @@
         /datum/ai_planning_subtree/target_retaliate,
         /datum/ai_planning_subtree/simple_find_target/closest,
         /datum/ai_planning_subtree/basic_ranged_attack_subtree/mirespider_lurker,
+        /datum/ai_planning_subtree/find_cocoon_target,
+        /datum/ai_planning_subtree/cocoon_target
+    )
+
+    idle_behavior = /datum/idle_behavior/idle_random_walk
+
+/datum/ai_controller/mirespider_paralytic
+    movement_delay = MIRESPIDER_MOVEMENT_SPEED
+
+    ai_movement = /datum/ai_movement/basic_avoidance
+
+    blackboard = list(
+        BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
+    )
+
+    planning_subtrees = list(
+        /datum/ai_planning_subtree/target_retaliate,
+        /datum/ai_planning_subtree/simple_find_target/closest,
+        /datum/ai_planning_subtree/find_cocoon_target,
+        /datum/ai_planning_subtree/cocoon_target
     )
 
     idle_behavior = /datum/idle_behavior/idle_random_walk
@@ -158,9 +178,59 @@
             var/turf/T = get_turf(target)
             var/cocoon = new /obj/structure/spider/cocoon(T)
             target.forceMove(cocoon)
+            // Very gentle healing effect that restores a lot of bloodloss. Allows the target to break out later.
+            target.apply_status_effect(/datum/status_effect/buff/healing/spider_cocoon, 0.25)
             finish_action(controller, TRUE, target_key)
 
 /datum/ai_behavior/cocoon_target/finish_action(datum/ai_controller/controller, succeeded, target_key)
     . = ..()
     if(!succeeded)
         controller.clear_blackboard_key(target_key)
+
+/datum/ai_planning_subtree/cocoon_target
+	var/datum/ai_behavior/cocoon_target/behavior = /datum/ai_behavior/cocoon_target
+
+/datum/ai_planning_subtree/cocoon_target/SelectBehaviors(datum/ai_controller/controller, delta_time)
+    . = ..()
+    var/obj/item/target = controller.blackboard[BB_BASIC_MOB_COCOON_TARGET]
+    to_chat(world, span_boldnotice("SELECT COCOON [target]!"))
+    if(QDELETED(target))
+        controller.clear_blackboard_key(BB_BASIC_MOB_COCOON_TARGET)
+        return
+    var/mob/living/pawn = controller.pawn
+    if(pawn.doing)
+        return
+    if(!istype(target, /mob/living/carbon))
+        behavior = /datum/ai_behavior/cocoon_target
+
+    controller.queue_behavior(behavior, BB_BASIC_MOB_COCOON_TARGET)
+    return SUBTREE_RETURN_FINISH_PLANNING
+
+/datum/ai_planning_subtree/find_cocoon_target
+    var/vision_range = 6
+    var/datum/ai_behavior/find_and_set/cocoon_target/behavior = /datum/ai_behavior/find_and_set/cocoon_target
+    var/cocoon_target_key = BB_BASIC_MOB_COCOON_TARGET
+
+/datum/ai_planning_subtree/find_cocoon_target/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
+    . = ..()
+
+    var/atom/target = controller.blackboard[cocoon_target_key]
+    to_chat(world, span_boldnotice("FIND SOMEONE TO COCOON [target]!"))
+    if(!QDELETED(target))
+        // Busy with something
+        return
+    
+    controller.queue_behavior(behavior, cocoon_target_key, controller.blackboard[BB_BASIC_FOODS], vision_range)
+
+/datum/ai_behavior/find_and_set/cocoon_target
+    action_cooldown = 20 SECONDS
+
+/datum/ai_behavior/find_and_set/cocoon_target/search_tactic(datum/ai_controller/controller, locate_paths, search_range)
+    var/list/found = list()
+    for(var/mob/living/carbon/mob in oview(search_range, controller.pawn))
+        if(mob.stat == DEAD)
+            continue
+        found |= mob
+    if(!length(found))
+        return null
+    return pick(found)

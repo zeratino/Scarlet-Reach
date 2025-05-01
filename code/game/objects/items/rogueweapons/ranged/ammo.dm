@@ -342,15 +342,15 @@
 	name = "web glob"
 	damage = 10
 	damage_type = BRUTE
-	icon = 'icons/roguetown/items/natural.dmi'
-	icon_state = "stone1"
+	icon = 'modular/Mapping/icons/webbing.dmi'
+	icon_state = "webglob"
 	range = 15
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 0
 	//Will not cause wounds.
 	woundclass = null
 	flag = "piercing"
-	speed = 2
+	speed = 1
 
 /obj/projectile/bullet/spider/on_hit(target)
 	. = ..()

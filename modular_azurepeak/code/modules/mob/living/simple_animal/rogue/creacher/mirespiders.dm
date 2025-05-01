@@ -49,6 +49,7 @@
     update_icon()
     AddElement(/datum/element/ai_retaliate)
     ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+    ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
 
     addtimer(CALLBACK(src, PROC_REF(find_lurker_to_follow)), 10)
 
@@ -173,6 +174,16 @@
 
     var/list/mob/living/simple_animal/hostile/retaliate/rogue/mirespider/followers = list()
 
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/Initialize()
+    . = ..()
+    ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
+    ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
+    // I'll replace this with something better later. Stopgap for now to make killing them more than just a nuisance.
+    if(prob(40))
+        butcher_results += /obj/item/reagent_containers/food/snacks/rogue/honey
+    if(prob(10))
+        butcher_results += /obj/item/roguegem/violet
+
 /datum/intent/simple/bite/mirespider_lurker
     clickcd = MIRESPIDER_LURKER_ATTACK_SPEED
 
@@ -191,3 +202,40 @@
         follower.ai_controller.clear_blackboard_key(BB_BASIC_MOB_RETALIATE_LIST)
         follower.ai_controller.CancelActions()
     followers.Cut()
+
+/mob/living/simple_animal/hostile/rogue/mirespider_paralytic
+    icon = 'modular_hearthstone/icons/mob/mirespider_small.dmi'
+    name = "aragn"
+    icon_state = "aragn"
+    icon_living = "aragn"
+    icon_dead = "aragn_dead"
+
+    faction = list("zombie", "spiders")
+    attack_sound = list('sound/vo/mobs/spider/attack (1).ogg','sound/vo/mobs/spider/attack (2).ogg','sound/vo/mobs/spider/attack (3).ogg','sound/vo/mobs/spider/attack (4).ogg')
+
+    base_intents = list(/datum/intent/simple/bite/mirespider_paralytic)
+    butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 2,
+                        /obj/item/natural/hide = 1,
+                        /obj/item/natural/silk = 1, /obj/item/alch/viscera = 1, /obj/item/reagent_containers/spidervenom_inert = 1)
+
+    health = MIRESPIDER_ARAGN_HEALTH
+    maxHealth = MIRESPIDER_ARAGN_HEALTH
+    melee_damage_lower = 21
+    melee_damage_upper = 42
+
+    STACON = 9
+    STASTR = 9
+    STASPD = 12
+    STAPER = 7
+
+    ai_controller = /datum/ai_controller/mirespider_paralytic
+
+/datum/intent/simple/bite/mirespider_paralytic
+    clickcd = ARAGN_ATTACK_SPEED
+
+/mob/living/simple_animal/hostile/rogue/mirespider_paralytic/AttackingTarget()
+	. = ..()
+	if(. && isliving(target))
+		var/mob/living/L = target
+		if(L.reagents && prob(50))
+			L.reagents.add_reagent(/datum/reagent/toxin/spidervenom_paralytic, 5)
