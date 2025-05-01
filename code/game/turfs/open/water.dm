@@ -279,7 +279,7 @@
 
 /turf/open/water/swamp/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
-	if(HAS_TRAIT(AM), TRAIT_LEECHIMMUNE)
+	if(HAS_TRAIT(AM, TRAIT_LEECHIMMUNE))
 		return
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
@@ -316,7 +316,7 @@
 
 /turf/open/water/swamp/deep/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
-	if(HAS_TRAIT(AM), TRAIT_LEECHIMMUNE)
+	if(HAS_TRAIT(AM, TRAIT_LEECHIMMUNE))
 		return
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
