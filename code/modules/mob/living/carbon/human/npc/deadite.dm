@@ -6,7 +6,6 @@
 	flee_in_pain = FALSE
 
 	wander = TRUE
-	var/no_speech = FALSE // If this deadite should say anything before turning
 
 /mob/living/carbon/human/species/npc/deadite/Initialize()
 	. = ..()
@@ -32,21 +31,6 @@
 	src.mind_initialize()
 	src.mind.add_antag_datum(/datum/antagonist/zombie, team = FALSE, admin_panel = TRUE)
 	equipOutfit(new /datum/outfit/job/roguetown/deadite)
-	//Fluff messages before they turn into a deadite
-	if(!no_speech && prob(25))
-		say(pick(
-			"Help me.. please...",
-			"Someone.. anyone...",
-			"I-.. I don't feel right...",
-			"Please, not like this...",
-			"Run.. it's too late...",
-			"Get away.. before it's too late...",
-			"My head-.. it's splitting...",
-			"What's-.. happening to me?",
-			"I-.. feel so cold..."))
-
-/mob/living/carbon/human/species/npc/deadite/no_speech // Doesn't speak before turning
-	no_speech = TRUE
 
 /datum/outfit/job/roguetown/deadite/pre_equip(mob/living/carbon/human/H)
 	..()
