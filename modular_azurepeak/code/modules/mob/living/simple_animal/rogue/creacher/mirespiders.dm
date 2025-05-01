@@ -239,3 +239,20 @@
 		var/mob/living/L = target
 		if(L.reagents && prob(50))
 			L.reagents.add_reagent(/datum/reagent/toxin/spidervenom_paralytic, 5)
+
+/obj/random/spider
+    icon = 'modular_hearthstone/icons/mob/mirespider_small.dmi'
+    name = "random spider spawner"
+    desc = "YOU SHOULD NOT BE SEEING THIS, GO YELL AT KETRAI."
+    icon_state = "crawler"
+
+/obj/random/spider/Initialize()
+    . = ..()
+    spawn_random_spider_at(loc)
+    qdel(src)
+
+/obj/random/spider/proc/spawn_random_spider_at(turf/T)
+	var/newspider = list(/mob/living/simple_animal/hostile/rogue/mirespider_paralytic = 10, /mob/living/simple_animal/hostile/retaliate/rogue/mirespider = 90)
+	var/spider_to_spawn = pickweight(newspider)
+	new spider_to_spawn(get_turf(src))
+	qdel(src)
