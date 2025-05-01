@@ -119,6 +119,8 @@
 	bloody_icon = 'icons/effects/blood64.dmi'
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 3000
+	experimental_inhand = FALSE
+	experimental_onhip = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/heavy/dwarven/ComponentInitialize()
 	. = ..()

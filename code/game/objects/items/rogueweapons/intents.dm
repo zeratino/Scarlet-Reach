@@ -47,10 +47,18 @@
 	var/miss_sound //THESE ARE FOR UNARMED MISSING ATTACKS
 	var/allow_offhand = TRUE	//Do I need my offhand free while using this intent?
 	var/peel_divisor = 0		//How many consecutive peel hits this intent requires to peel a piece of coverage? May be overriden by armor thresholds if they're higher.
+	var/glow_intensity = null	//How much glow this intent has. Used for spells
+	var/glow_color = null // The color of the glow. Used for spells
+	var/mob_light = null // tracking mob_light
+	var/obj/effect/mob_charge_effect = null // The effect to be added (on top) of the mob while it is charging
 
 /datum/intent/Destroy()
 	if(chargedloop)
 		chargedloop.stop()
+	if(mob_light)
+		QDEL_NULL(mob_light)
+	if(mob_charge_effect)
+		mastermob.vis_contents -= mob_charge_effect
 	if(mastermob.curplaying == src)
 		mastermob.curplaying = null
 	mastermob = null
@@ -170,12 +178,20 @@
 			chargedloop.stop()
 		chargedloop.start(chargedloop.parent)
 		mastermob.curplaying = src
+	if(glow_color && glow_intensity)
+		mob_light = mastermob.mob_light(glow_color, glow_intensity)
+	if(mob_charge_effect)
+		mastermob.vis_contents += mob_charge_effect
 
 /datum/intent/proc/on_mouse_up()
 	if(chargedloop)
 		chargedloop.stop()
 	if(mastermob?.curplaying == src)
 		mastermob?.curplaying = null
+	if(mob_light)
+		qdel(mob_light)
+	if(mob_charge_effect)
+		mastermob.vis_contents -= mob_charge_effect
 
 
 /datum/intent/use
@@ -303,6 +319,11 @@
 	chargetime = 0
 	swingdelay = 0
 
+/datum/intent/stab/militia
+	name = "militia stab"
+	damfactor = 1.1
+	penfactor = 50
+
 /datum/intent/pick //now like icepick intent, we really went in a circle huh
 	name = "pick"
 	icon_state = "inpick"
@@ -314,6 +335,19 @@
 	blade_class = BCLASS_PICK
 	chargetime = 0
 	swingdelay = 12
+
+/datum/intent/pick/ranged
+	name = "ranged pick"
+	icon_state = "inpick"
+	attack_verb = list("stabs", "impales")
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	penfactor = 60
+	damfactor = 1.1
+	chargetime = 0.7
+	chargedrain = 2
+	reach = 2
+	no_early_release = TRUE
+	blade_class = BCLASS_PICK
 
 /datum/intent/shoot //shooting crossbows or other guns, no parrydrain
 	name = "shoot"

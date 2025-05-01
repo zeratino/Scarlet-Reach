@@ -223,6 +223,7 @@
 		attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
 		message_admins("Window broken. [ADMIN_JMP(src)]")
 		log_admin("Window broken at X:[src.x] Y:[src.y] Z:[src.z] in area: [get_area(src)]")
+		loud_message("A loud crash of a window getting broken rings out", hearing_distance = 14)
 		new /obj/item/natural/glass/shard (get_turf(src))
 		new /obj/effect/decal/cleanable/glass(get_turf(src))
 		climbable = TRUE

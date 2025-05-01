@@ -13,6 +13,10 @@
 	penfactor = 50
 	item_d_type = "stab"
 
+/datum/intent/spear/thrust/militia
+	penfactor = 40
+	chargetime = 0
+
 /datum/intent/spear/bash
 	name = "bash"
 	blade_class = BCLASS_BLUNT
@@ -34,6 +38,10 @@
 
 /datum/intent/spear/cut/halberd
 	damfactor = 0.9
+
+/datum/intent/spear/cut/scythe
+	reach = 3
+	damfactor = 1
 
 /datum/intent/spear/cut/bardiche
     damfactor = 1.0
@@ -79,6 +87,29 @@
 	chargetime = 5
 	recovery = 20
 	clickcd = 10
+
+/datum/intent/rend
+	name = "rend"
+	icon_state = "inrend"
+	attack_verb = list("rends")
+	animname = "cut"
+	blade_class = BCLASS_CHOP
+	reach = 1
+	penfactor = -60
+	damfactor = 2.5
+	chargetime = 10
+	no_early_release = TRUE
+	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
+	item_d_type = "slash"
+	misscost = 10
+
+/datum/intent/rend/reach
+	name = "long rend"
+	penfactor = -30
+	misscost = 5
+	chargetime = 5
+	damfactor = 2
+	reach = 2
 
 //polearm objs ฅ^•ﻌ•^ฅ
 
@@ -595,6 +626,7 @@
 	wdefense = 5
 	wbalance = -1
 	sellprice = 60
+	intdamage_factor = 0.7
 
 /obj/item/rogueweapon/eaglebeak/getonmobprop(tag)
 	. = ..()

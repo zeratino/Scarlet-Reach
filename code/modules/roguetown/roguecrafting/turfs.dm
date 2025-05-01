@@ -292,6 +292,7 @@
 	verbage_simple = "assemble"
 	verbage = "assembles"
 	craftdiff = 0
+	loud = TRUE
 
 /datum/crafting_recipe/roguetown/turfs/twig/TurfCheck(mob/user, turf/T)
 	if(isclosedturf(T))
@@ -309,6 +310,7 @@
 	verbage_simple = "assemble"
 	verbage = "assembles"
 	craftdiff = 1
+	loud = TRUE
 
 /datum/crafting_recipe/roguetown/turfs/twigplatform/TurfCheck(mob/user, turf/T)
 	if(isclosedturf(T))
