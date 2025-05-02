@@ -138,6 +138,18 @@
 	. = ..()
 	icon_state = "st[rand(1,2)]"
 
+/obj/structure/flora/roguetree/stump/pine
+	name = "pine stump"
+	icon_state = "dead4"
+	icon = 'icons/obj/flora/pines.dmi'
+	static_debris = list(/obj/item/rogueore/charcoal = 1)
+	stump_type = null
+	pixel_x = -32
+
+/obj/structure/flora/roguetree/stump/pine/Initialize()
+	. = ..()
+	icon_state = "dead[rand(4,5)]"
+
 /obj/structure/flora/roguetree/underworld
 	name = "screaming tree"
 	desc = "Human faces everywhere."
@@ -724,7 +736,8 @@
 	max_integrity = 50
 	static_debris = list(/obj/item/rogueore/charcoal = 1)
 	resistance_flags = FIRE_PROOF
+	stump_type = /obj/structure/flora/roguetree/stump/pine
 
 /obj/structure/flora/roguetree/pine/dead/Initialize()
 	. = ..()
-	icon_state = "dead[rand(1, 5)]"
+	icon_state = "dead[rand(1, 3)]"

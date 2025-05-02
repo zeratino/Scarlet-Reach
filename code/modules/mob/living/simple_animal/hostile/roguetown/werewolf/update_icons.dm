@@ -155,7 +155,10 @@
 	apply_overlay(HANDS_LAYER)*/
 
 /mob/living/simple_animal/hostile/rogue/werewolf/regenerate_icons()
-	icon_state = "wwolf"
+	if(gender == MALE)
+		icon_state = "wwolf_m"
+	else
+		icon_state = "wwolf_f"
 	update_inv_hands()
 	update_damage_overlays()
 

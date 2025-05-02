@@ -1071,7 +1071,6 @@
 	icon_state = "kover_black"
 
 /obj/effect/decal/carpet/square
-
 	name = "carpet"
 	pixel_w = -16
 	pixel_z = -16
