@@ -35,7 +35,7 @@
 /datum/particle_weather/rain_gentle/weather_act(mob/living/L)
 	L.adjust_bodytemperature(-rand(1,3))
 	L.adjust_fire_stacks(-100)
-	addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, SoakMob), FULL_BODY), 5 SECONDS)
+	L.SoakMob(FULL_BODY)
 	wash_atom(L,CLEAN_WEAK)
 
 /datum/particle_weather/rain_storm
@@ -59,5 +59,5 @@
 /datum/particle_weather/rain_storm/weather_act(mob/living/L)
 	L.adjust_bodytemperature(-rand(3,5))
 	L.adjust_fire_stacks(-100)
-	addtimer(CALLBACK(L, TYPE_PROC_REF(/mob/living, SoakMob), FULL_BODY), 3 SECONDS)
+	L.SoakMob(FULL_BODY)
 	wash_atom(L,CLEAN_STRONG)
