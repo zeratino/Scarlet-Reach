@@ -3,9 +3,9 @@
 	name = "WEREWOLF"
 	desc = ""
 	icon = 'icons/roguetown/mob/monster/werewolf.dmi'
-	icon_state = "wwolf_m"
-	icon_living = "wwolf_m"
-	icon_dead = "wwolf_m"
+	icon_state = "wwolf"
+	icon_living = "wwolf"
+	icon_dead = "wwolf_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	speak_chance = 80
 	maxHealth = 220

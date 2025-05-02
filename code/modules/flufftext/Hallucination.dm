@@ -359,7 +359,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				A.name = "Skeleton"
 				target.playsound_local(H, pick('sound/vo/mobs/skel/skeleton_rage (1).ogg','sound/vo/mobs/skel/skeleton_rage (2).ogg','sound/vo/mobs/skel/skeleton_rage (3).ogg'), 80, 1)
 			if("ww")//ww
-				A = image('icons/roguetown/mob/monster/werewolf.dmi',H,"wwolf_m")
+				A = image('icons/roguetown/mob/monster/werewolf.dmi',H,"wwolf")
 				A.name = "Moon Howler"
 				target.playsound_local(H, pick('sound/combat/gib (1).ogg'), 80, 1)
 				target.playsound_local(H, pick('sound/vo/mobs/wwolf/roar.ogg'), 80, 1)
@@ -423,7 +423,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			sleep(230)
 			target.playsound_local(target, pick('sound/combat/gib (1).ogg'), 80, 1)*/
 		if("ww")//Werewolf
-			A = image('icons/roguetown/mob/monster/werewolf.dmi',target,"wwolf_m")
+			A = image('icons/roguetown/mob/monster/werewolf.dmi',target,"wwolf")
 			target.playsound_local(target, pick('sound/combat/gib (1).ogg'), 80, 1)
 			target.playsound_local(target, pick('sound/vo/mobs/wwolf/roar.ogg'), 80, 1)
 			/*sleep(10)

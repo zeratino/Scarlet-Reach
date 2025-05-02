@@ -33,10 +33,8 @@
 						user.put_in_hands(I)
 			return
 
-/obj/structure/flora/roguetree/fire_act(added, maxstacks)
-	if(added <= 5)
-		return
-	return ..()
+/obj/structure/flora/roguetree/spark_act()
+	fire_act()
 
 /obj/structure/flora/roguetree/Initialize()
 	. = ..()
@@ -700,3 +698,33 @@
 	desc = "A cluster of tiny mushrooms native to the underdark."
 	icon = 'icons/roguetown/misc/foliage.dmi'
 	icon_state = "tinymushrooms"
+
+/obj/structure/flora/roguetree/pine
+	name = "pine tree"
+	icon_state = "pine1"
+	desc = ""
+	icon = 'icons/obj/flora/pines.dmi'
+	pixel_w = -24
+	density = 0
+	max_integrity = 100
+	static_debris = list(/obj/item/grown/log/tree = 2)
+	stump_type = null
+
+/obj/structure/flora/roguetree/pine/Initialize()
+	. = ..()
+	icon_state = "pine[rand(1, 4)]"
+
+/obj/structure/flora/roguetree/pine/burn()
+	new /obj/structure/flora/roguetree/pine/dead(get_turf(src))
+	qdel(src)
+
+/obj/structure/flora/roguetree/pine/dead
+	name = "burnt pine tree"
+	icon_state = "dead1"
+	max_integrity = 50
+	static_debris = list(/obj/item/rogueore/charcoal = 1)
+	resistance_flags = FIRE_PROOF
+
+/obj/structure/flora/roguetree/pine/dead/Initialize()
+	. = ..()
+	icon_state = "dead[rand(1, 5)]"

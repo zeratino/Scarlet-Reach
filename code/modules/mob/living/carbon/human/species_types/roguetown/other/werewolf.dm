@@ -69,10 +69,7 @@
 /datum/species/werewolf/regenerate_icons(mob/living/carbon/human/H)
 	H.icon = 'icons/roguetown/mob/monster/werewolf.dmi'
 	H.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB)
-	if(H.gender == MALE)
-		H.icon_state = "wwolf_m"
-	else
-		H.icon_state = "wwolf_f"
+	H.icon_state = "wwolf"
 	H.update_damage_overlays()
 	return TRUE
 
