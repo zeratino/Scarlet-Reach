@@ -400,13 +400,7 @@
 					var/dodgedir = turn(dir, 180)
 					var/turf/turfcheck = get_step(src, dodgedir)
 					if(turfcheck && !turfcheck.density)
-						var/is_dense = FALSE
-						for(var/atom/movable/AM in turfcheck)
-							if(AM.density)
-								is_dense = TRUE
-								break
-						if(!is_dense)
-							turfy = turfcheck
+						turfy = turfcheck
 				if(!turfy)
 					for(var/x in shuffle(dirry.Copy()))
 						turfy = get_step(src,x)
