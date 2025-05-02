@@ -7436,8 +7436,8 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "cSN" = (
-/mob/living/simple_animal/hostile/rogue/mirespider_lurker,
-/turf/open/water/swamp/deep,
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia,
+/turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bog)
 "cTd" = (
 /obj/structure/roguewindow/openclose,
@@ -17701,10 +17701,6 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town/physician)
-"gQt" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/mirespider,
-/turf/open/water/swamp/deep,
-/area/rogue/outdoors/bog)
 "gQv" = (
 /obj/effect/decal/wood/herringbone2{
 	dir = 1
@@ -304868,11 +304864,11 @@ vhs
 vhs
 vhs
 vhs
-gQt
 vhs
-cSN
 vhs
-gQt
+vhs
+vhs
+vhs
 dPW
 vhs
 vhs
@@ -305774,7 +305770,7 @@ vhs
 vhs
 vhs
 vhs
-gQt
+vhs
 vhs
 vhs
 vhs
@@ -314440,7 +314436,7 @@ qUs
 vhs
 vhs
 vhs
-cGT
+vhs
 vhs
 vhs
 vQH
@@ -327435,7 +327431,7 @@ vvB
 mrW
 mrW
 mrW
-pct
+mrW
 mrW
 mrW
 czH
@@ -328873,7 +328869,7 @@ qUs
 qUs
 czH
 czH
-dwF
+czH
 tYx
 tYx
 tYx
@@ -329241,7 +329237,7 @@ vvB
 vvB
 vvB
 vvB
-mrW
+cSN
 mrW
 mrW
 tYx
@@ -332113,7 +332109,7 @@ tYx
 tYx
 sLh
 sLh
-mrW
+cSN
 vvB
 vvB
 vvB
