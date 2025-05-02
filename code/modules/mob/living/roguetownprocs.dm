@@ -627,8 +627,11 @@
 		var/probclip = 50
 		var/obj/item/IS = L.get_active_held_item()
 		var/obj/item/IU = U.get_active_held_item()
-		if(IS?.wlength > WLENGTH_NORMAL)
-			probclip += (IS?.wlength - WLENGTH_NORMAL) * 10	//if wlength isn't standardised this might skyrocket it to >100%
+		if(IS)
+			if(IS.wlength > WLENGTH_NORMAL)
+				probclip += (IS.wlength - WLENGTH_NORMAL) * 10	//if wlength isn't standardised this might skyrocket it to >100%
+			else
+				probclip -= (WLENGTH_NORMAL - IS.wlength) * 10
 		var/dist = (user.used_intent?.reach - get_dist(src, user)) - 1 //-1 because we already are in range and triggered this check to begin with.
 		if(dist > 0)
 			probclip += dist * 10
