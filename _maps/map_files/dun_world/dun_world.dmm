@@ -3603,6 +3603,7 @@
 "buc" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/candle/skull/lit,
+/obj/item/rogueweapon/sword/long/blackflamb,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/cave/licharena)
 "bud" = (
@@ -5371,6 +5372,8 @@
 	},
 /obj/item/roguegem/diamond,
 /obj/structure/fluff/walldeco/bigpainting/lake,
+/obj/item/roguegem,
+/obj/item/clothing/ring/ruby,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/cave/licharena)
 "cdx" = (
@@ -6771,6 +6774,10 @@
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/dwarfin)
+"cGT" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia,
+/turf/open/water/swamp/deep,
+/area/rogue/outdoors/bog)
 "cGZ" = (
 /obj/structure/table/wood{
 	dir = 9;
@@ -6889,9 +6896,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "cKn" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	locked = 1
-	},
+/obj/structure/mineral_door/wood/deadbolt,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/outdoors/beach/forest)
 "cKw" = (
@@ -7401,6 +7406,7 @@
 	locked = 1;
 	lockid = "lich"
 	},
+/obj/item/clothing/head/roguetown/helmet/blacksteel/bucket,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/licharena)
 "cSL" = (
@@ -8802,6 +8808,10 @@
 /obj/item/roguekey/manor,
 /obj/item/roguekey/sergeant,
 /obj/item/roguekey/sergeant,
+/obj/item/scomstone/bad/garrison,
+/obj/item/scomstone/bad/garrison,
+/obj/item/scomstone/bad/garrison,
+/obj/item/scomstone/bad/garrison,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -8892,6 +8902,10 @@
 /obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
+"dwF" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/lamia,
+/turf/open/water/swamp,
+/area/rogue/outdoors/bog)
 "dwH" = (
 /obj/structure/closet/dirthole/grave,
 /obj/structure/fluff/walldeco/church/line{
@@ -12163,6 +12177,7 @@
 	locked = 1;
 	lockid = "lich"
 	},
+/obj/item/clothing/shoes/roguetown/boots/blacksteel/plateboots,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/licharena)
 "eIY" = (
@@ -12715,6 +12730,15 @@
 /obj/structure/bars,
 /turf/open/water/swamp/deep,
 /area/rogue/under/cavewet/bogcaves)
+"eVb" = (
+/obj/structure/closet/crate/roguecloset,
+/obj/item/clothing/suit/roguetown/shirt/vampire,
+/obj/item/clothing/suit/roguetown/shirt/tunic/silktunic,
+/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/indoors/town/manor)
 "eVh" = (
 /obj/structure/roguemachine/atm{
 	location_tag = "the Bathhouse";
@@ -17525,10 +17549,13 @@
 "gOQ" = (
 /obj/structure/closet/crate/roguecloset/lord,
 /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
-/obj/item/clothing/head/roguetown/helmet/heavy/frogmouth,
 /obj/item/rogueweapon/sword/long/judgement,
-/obj/item/clothing/gloves/roguetown/angle,
-/obj/item/clothing/wrists/roguetown/bracers/leather,
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+/obj/item/clothing/gloves/roguetown/plate,
+/obj/item/clothing/wrists/roguetown/bracers,
+/obj/item/clothing/shoes/roguetown/boots/armor,
+/obj/item/clothing/under/roguetown/chainlegs,
+/obj/item/storage/belt/rogue/leather/steel/tasset,
 /turf/open/floor/rogue/carpet/lord/left,
 /area/rogue/indoors/town/manor)
 "gOR" = (
@@ -19069,6 +19096,34 @@
 "htN" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
+"htQ" = (
+/obj/item/bomb{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/bomb{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/bomb{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/bomb{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/bomb{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/bomb{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/structure/rack/rogue,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "htV" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 4
@@ -23535,6 +23590,8 @@
 	lockid = "lich"
 	},
 /obj/item/roguegem/blue,
+/obj/item/roguegem/violet,
+/obj/item/clothing/ring/quartz,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/cave/licharena)
 "jdu" = (
@@ -29395,6 +29452,8 @@
 	lockid = "lich"
 	},
 /obj/item/storage/belt/rogue/pouch/coins/rich,
+/obj/item/storage/belt/rogue/pouch/coins/rich,
+/obj/item/storage/belt/rogue/pouch/coins/rich,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/licharena)
 "ltk" = (
@@ -32140,6 +32199,7 @@
 /obj/item/flashlight/flare/torch/lantern,
 /obj/item/rope/chain,
 /obj/item/gwstrap,
+/obj/item/rogueweapon/mace/cudgel,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "mCs" = (
@@ -33634,6 +33694,16 @@
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"nhC" = (
+/obj/structure/closet/crate/chest/gold{
+	locked = 1;
+	lockid = "lich"
+	},
+/obj/item/book/granter/spell/blackstone/greaterfireball,
+/obj/item/book/granter/spell/blackstone/lightning,
+/obj/item/book/granter/spell/blackstone/acidsplash,
+/turf/open/floor/rogue/carpet/lord/left,
+/area/rogue/under/cave/licharena)
 "nhE" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -40336,6 +40406,9 @@
 	pixel_y = -32
 	},
 /obj/structure/closet/crate/roguecloset/dark,
+/obj/item/rogueweapon/mace/cudgel,
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy,
+/obj/item/clothing/suit/roguetown/shirt/vampire,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "pJJ" = (
@@ -47035,6 +47108,7 @@
 	lockid = "lich"
 	},
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate,
+/obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/licharena)
 "snF" = (
@@ -48576,6 +48650,24 @@
 /obj/machinery/light/rogue/forge,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
+"sTD" = (
+/obj/structure/closet/crate/chest/gold{
+	locked = 1;
+	lockid = "lich"
+	},
+/obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
+/obj/item/ingot/gold,
+/obj/item/ingot/gold,
+/obj/item/ingot/silver,
+/obj/item/ingot/silver,
+/obj/item/ingot/silver,
+/obj/item/ingot/silver,
+/obj/item/ingot/gold,
+/obj/item/ingot/gold,
+/turf/open/floor/rogue/church,
+/area/rogue/under/cave/licharena)
 "sTI" = (
 /obj/effect/decal/cobbleedge{
 	dir = 8
@@ -50419,6 +50511,10 @@
 	lockid = "lich"
 	},
 /obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
+/obj/effect/spawner/lootdrop/roguetown/dungeon/spells,
+/obj/item/ingot/blacksteel,
+/obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/licharena)
 "tGW" = (
@@ -50984,6 +51080,15 @@
 "tSv" = (
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/outdoors/beach)
+"tSx" = (
+/obj/structure/closet/crate/chest/gold{
+	locked = 1;
+	lockid = "lich"
+	},
+/obj/item/book/granter/spell/blackstone/skeleton,
+/obj/item/book/granter/spell/blackstone/bonechill,
+/turf/open/floor/rogue/carpet/lord/right,
+/area/rogue/under/cave/licharena)
 "tSy" = (
 /obj/structure/fluff/railing/border,
 /obj/structure/fluff/railing/border{
@@ -51613,6 +51718,7 @@
 /obj/structure/closet/crate/roguecloset,
 /obj/item/scomstone,
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted,
+/obj/item/clothing/mask/rogue/facemask/psydonmask,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/church/basement)
 "udO" = (
@@ -55803,6 +55909,10 @@
 	lockid = "lich"
 	},
 /obj/item/roguegem/green,
+/obj/item/clothing/ring/topaz,
+/obj/item/clothing/ring/topaz,
+/obj/item/roguegem/yellow,
+/obj/item/roguegem/yellow,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/cave/licharena)
 "vLv" = (
@@ -56528,6 +56638,7 @@
 "vYL" = (
 /obj/structure/closet/crate/drawer,
 /obj/item/book/rogue/law,
+/obj/item/reagent_containers/glass/bottle/rogue/redwine,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "vYO" = (
@@ -57694,6 +57805,7 @@
 	locked = 1;
 	lockid = "lich"
 	},
+/obj/item/clothing/gloves/roguetown/blacksteel/plategloves,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/licharena)
 "wve" = (
@@ -157752,7 +157864,7 @@ eWv
 dZz
 iad
 bYC
-wCC
+htQ
 wCC
 wCC
 wCC
@@ -180783,21 +180895,21 @@ eww
 vek
 vek
 vek
-nSO
+dqs
 dUd
-nSO
+dqs
 vek
-nSO
+dqs
 vek
-nSO
+dqs
 vek
 dUd
 vek
-nSO
+dqs
 vek
-nSO
+dqs
 vek
-nSO
+dqs
 oQk
 ujm
 ujm
@@ -182599,7 +182711,7 @@ vek
 vek
 vek
 iSG
-vek
+ict
 vek
 vek
 vek
@@ -183486,7 +183598,7 @@ ujm
 ujm
 ujm
 oQk
-tGU
+sTD
 cgR
 cgR
 wZZ
@@ -184842,7 +184954,7 @@ ujm
 ujm
 ujm
 oQk
-vNc
+nhC
 bqp
 vNc
 vNc
@@ -186650,7 +186762,7 @@ ujm
 ujm
 ujm
 oQk
-swK
+tSx
 swK
 swK
 swK
@@ -188927,7 +189039,7 @@ vek
 vek
 vek
 iSG
-vek
+ict
 vek
 vek
 vek
@@ -190727,21 +190839,21 @@ eww
 vek
 vek
 vek
-nSO
+dqs
 dUd
-nSO
+dqs
 vek
-nSO
+dqs
 vek
-nSO
+dqs
 vek
 dUd
 vek
-nSO
+dqs
 vek
-nSO
+dqs
 vek
-nSO
+dqs
 oQk
 ujm
 ujm
@@ -301061,7 +301173,7 @@ vhs
 epy
 qUs
 vhs
-vhs
+cGT
 vhs
 vhs
 vQH
@@ -303705,7 +303817,7 @@ hgc
 epy
 vhs
 vQH
-vhs
+cGT
 vhs
 vhs
 hgc
@@ -313228,7 +313340,7 @@ mrW
 mrW
 tYx
 czH
-vhs
+cGT
 vhs
 vQH
 vQH
@@ -314202,7 +314314,7 @@ qUs
 vhs
 vhs
 vhs
-vhs
+cGT
 vhs
 vhs
 vQH
@@ -323180,7 +323292,7 @@ tYx
 tYx
 tYx
 czH
-vhs
+cGT
 vhs
 vhs
 epy
@@ -327246,7 +327358,7 @@ vhs
 vhs
 vQH
 vhs
-czH
+dwF
 czH
 czH
 mrW
@@ -328635,7 +328747,7 @@ qUs
 qUs
 czH
 czH
-czH
+dwF
 tYx
 tYx
 tYx
@@ -386911,7 +387023,7 @@ uQS
 jyb
 uQS
 uQS
-aIh
+eVb
 vxe
 vmi
 vmi
