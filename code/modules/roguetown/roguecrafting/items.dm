@@ -607,10 +607,10 @@
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/bpearlcross
-	name = "amulet (black pearls)"
+	name = "amulet (blue pearls)"
 	result = /obj/item/clothing/neck/roguetown/psicross/bpearl
 	reqs = list(/obj/item/natural/fibers = 1,
-			/obj/item/pearl/black = 3)
+			/obj/item/pearl/blue = 3)
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/shellnecklace
@@ -629,7 +629,7 @@
 	name = "amulet of abyssor"
 	result = /obj/item/clothing/neck/roguetown/psicross/abyssor
 	reqs = list(/obj/item/natural/fibers = 1,
-			/obj/item/pearl/black = 1)
+			/obj/item/pearl/blue = 1)
 
 /datum/crafting_recipe/roguetown/broom
 	name = "broom"

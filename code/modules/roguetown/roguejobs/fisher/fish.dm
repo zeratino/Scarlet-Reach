@@ -175,7 +175,7 @@
 		if("pearl")
 			pearl = new /obj/item/pearl(src)
 		if("bpearl")
-			pearl = new /obj/item/pearl/black(src)
+			pearl = new /obj/item/pearl/blue(src)
 	closed = TRUE
 
 /obj/item/reagent_containers/food/snacks/fish/oyster/attackby(obj/item/I, mob/user, params)
