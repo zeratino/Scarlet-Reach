@@ -958,9 +958,7 @@
 	result = /obj/item/natural/whetstone
 	reqs = list(/obj/item/natural/stone = 1,
 				/obj/item/grown/log/tree/stake = 1)
-	blacklist = list(/obj/item/natural/whetstone)
 	craftdiff = 0
-	subtype_reqs = FALSE
 
 /datum/crafting_recipe/roguetown/rucksack
 	name = "rucksack"
