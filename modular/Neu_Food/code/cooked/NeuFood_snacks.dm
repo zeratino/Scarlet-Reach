@@ -492,15 +492,13 @@
 		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))	
 /*lobsta*/
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/lobster/attackby(obj/item/I, mob/living/user, params)
-	var/obj/item/reagent_containers/peppermill/mill = I
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	update_cooktime(user)
+	var/found_table = locate(/obj/structure/table) in src.loc
+	if(!found_table)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
-	update_cooktime(user)
-	if(istype(mill))
+	if(istype(I, /obj/item/reagent_containers/peppermill))
+		var/obj/item/reagent_containers/peppermill/mill = I
 		if(!mill.reagents.has_reagent(/datum/reagent/consumable/blackpepper, 1))
 			to_chat(user, "There's not enough black pepper to make anything with.")
 			return TRUE
@@ -515,6 +513,15 @@
 			new /obj/item/reagent_containers/food/snacks/rogue/pepperlobsta(loc)
 			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
 			qdel(src)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/butterslice))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/gen_drop.ogg', 30, TRUE, -1)
+			to_chat(user, "You start buttering the lobster.")
+			if(do_after(user,short_cooktime, target = src))
+				user.mind.add_sleep_experience(/datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/fryfish/lobster/meal(loc)
+				qdel(I)
+				qdel(src)
 	else
 		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))
 
@@ -755,3 +762,4 @@
 	tastes = list("meat" = 1, "tomato" = 1, "aubergine" = 1, "cheese" = 1)
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
+
