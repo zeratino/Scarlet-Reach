@@ -165,7 +165,7 @@
 /area/rogue/indoors)
 "eL" = (
 /obj/item/rogueweapon/tongs,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/steel,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "fk" = (
