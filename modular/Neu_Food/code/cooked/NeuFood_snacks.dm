@@ -20,10 +20,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/steak/fried/attackby(obj/item/I, mob/living/user, params)
 	var/obj/item/reagent_containers/peppermill/mill = I
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)
@@ -436,10 +433,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/fish/fried/attackby(obj/item/I, mob/living/user, params)
 	var/obj/item/reagent_containers/peppermill/mill = I
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)
@@ -464,10 +458,7 @@
 
 /* salmon and salmon accessories */
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/salmon/attackby(obj/item/M, mob/living/user, params)
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)	
@@ -527,10 +518,7 @@
 
 /*seabass*/
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/bass/attackby(obj/item/M, mob/living/user, params)
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)	
@@ -547,10 +535,7 @@
 
 /*milky mollusks*/
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/clam/attackby(obj/item/I, mob/living/user, params)
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)
@@ -572,10 +557,7 @@
 		to_chat(user, span_warning("You need to put [src] on a table to knead in the spice."))
 /*ale cod*/
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/cod/attackby(obj/item/I, mob/living/user, params)
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)
@@ -598,10 +580,7 @@
 
 /* onion plaice */
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/plaice/attackby(obj/item/M, mob/living/user, params)
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)	
@@ -618,10 +597,7 @@
 
 /*buttered feet i mean sole*/
 /obj/item/reagent_containers/food/snacks/rogue/fryfish/sole/attackby(obj/item/M, mob/living/user, params)
-	if (!isturf(src.loc) || \
-		!(locate(/obj/structure/table) in src.loc) && \
-		!(locate(/obj/structure/table/optable) in src.loc) && \
-		!(locate(/obj/item/storage/bag/tray) in src.loc))
+	if(!locate(/obj/structure/table) in src.loc)
 		to_chat(user, span_warning("I need to use a table."))
 		return FALSE
 	update_cooktime(user)	
