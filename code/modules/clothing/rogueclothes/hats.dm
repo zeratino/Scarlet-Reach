@@ -418,7 +418,7 @@
 
 /obj/item/clothing/head/roguetown/chaperon
 	name = "chaperon hat"
-	desc = "A fancy hat worn by nobles."
+	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
 	icon_state = "chaperon"
 	item_state = "chaperon"
 	sewrepair = TRUE
@@ -433,17 +433,34 @@
 
 /obj/item/clothing/head/roguetown/chaperon/greyscale
 	name = "chaperon hat"
-	desc = "A fancy hat worn by nobles."
+	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
 	icon_state = "chap_alt"
 	item_state = "chap_alt"
-	color = "#cf99e3"
+	color = "#dbcde0"
 
-/obj/item/clothing/head/roguetown/chaperon/bailiff
-	name = "chaperon hat"
-	desc = "A fancy hat worn by nobles."
-	icon_state = "chap_alt"
-	item_state = "chap_alt"
-	color = "#C0392B"
+/obj/item/clothing/head/roguetown/chaperon/noble
+	name = "noble's chaperon"
+	desc = "A decorated chaperon worn by those more influential in society."
+	icon_state = "noblechaperon"
+	item_state = "noblechaperon"
+	detail_tag = "_detail"
+	color = CLOTHING_WHITE
+	detail_color = COLOR_ASSEMBLY_GOLD
+
+/obj/item/clothing/head/roguetown/chaperon/noble/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/chaperon/noble/bailiff
+	name = "Marshal's chaperon"
+	desc = "A noble's chaperon made for the local Marshal. \"How terribly unfortunate you are!\""
+	color = "#641E16"
+	detail_color = "#b68e37ff"
 
 /obj/item/clothing/head/roguetown/chaperon/councillor
 	name = "chaperon hat"
@@ -948,6 +965,26 @@
 	icon_state = "zizobarbute"
 	max_integrity = 600
 	peel_threshold = 4
+	var/frogstyle = FALSE
+
+/obj/item/clothing/head/roguetown/helmet/heavy/zizo/MiddleClick(mob/user)
+	frogstyle = !frogstyle
+	to_chat(user, span_info("My darksteel helmet shifts into the style of [frogstyle ? "a froggemund" : "a barbute"]."))
+	if(frogstyle)
+		icon_state = "zizofrogmouth"
+		name = "darksteel froggemund"
+		desc = "A darksteel froggemund. Called forth from the edge of what should be known. In Her name."
+		flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS 
+		body_parts_covered = HEAD|EARS|HAIR
+		adjustable = FALSE
+	else
+		icon_state = "zizobarbute"
+		name = "darksteel barbute"
+		desc = "A darksteel barbute. This one has an adjustable visor. Called forth from the edge of what should be known. In Her name."
+		adjustable = CAN_CADJUST
+	update_icon()
+	user.update_inv_head()
+
 
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/pickup(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_CABAL))
@@ -959,6 +996,8 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/AdjustClothes(mob/user)
 	if(loc == user)
+		if(frogstyle)
+			return
 		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
 		if(adjustable == CAN_CADJUST)
 			adjustable = CADJUSTED
@@ -972,7 +1011,7 @@
 			block2add = null
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDESNOUT
+			flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS
 			if(user)
 				if(ishuman(user))
 					var/mob/living/carbon/H = user
@@ -1713,21 +1752,6 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
-/obj/item/clothing/head/roguetown/helmet/heavy/frogmouth/zizo
-	name = "darksteel froggemund"
-	desc = "A sleek and imposing darksteel froggemund. Called forth from the edge of what should be known. In Her name."
-	max_integrity = 650
-	icon_state = "zizofrogmouth"
-
-
-/obj/item/clothing/head/roguetown/helmet/heavy/frogmouth/zizo/pickup(mob/living/user)
-	if(!HAS_TRAIT(user, TRAIT_CABAL))
-		to_chat(user, "<font color='purple'>UNWORTHY HANDS TOUCH THE HELMET, CEASE OR BE PUNISHED</font>")
-		user.adjust_fire_stacks(5)
-		user.IgniteMob()
-		user.Stun(40)
-	..()
-
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
@@ -2157,6 +2181,9 @@
 	desc = "A feathered leather hat, to show them all your superiority."
 	icon_state = "duelhat"
 	sewrepair = TRUE
+	color = COLOR_ALMOST_BLACK	
+	detail_tag = "_detail"
+	detail_color = COLOR_SILVER
 	salvage_result = /obj/item/natural/hide/cured
 
 

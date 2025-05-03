@@ -330,6 +330,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Cloth Blindfold"
 	path = /obj/item/clothing/mask/rogue/blindfold
 
+/datum/loadout_item/duelmask
+	name = "Duelist's Mask"
+	path = /obj/item/clothing/mask/rogue/duelmask
+
 /datum/loadout_item/psicross
 	name = "Psydonian Cross"
 	path = /obj/item/clothing/neck/roguetown/psicross
@@ -370,31 +374,48 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Amulet of Eora"
 	path = /obj/item/clothing/neck/roguetown/psicross/eora
 
+/datum/loadout_item/chaperon
+    name = "Chaperon (Normal)"
+    path = /obj/item/clothing/head/roguetown/chaperon
+
+/datum/loadout_item/chaperon/alt
+    name = "Chaperon (Alt)"
+    path = /obj/item/clothing/head/roguetown/chaperon/greyscale
+
+/datum/loadout_item/chaperon/burgher
+    name = "Noble's Chaperon"
+    path = /obj/item/clothing/head/roguetown/chaperon/noble
+
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.
 
 /datum/loadout_item/donator_plex
-	name = "Rapier di Aliseo"
-	path = /obj/item/rogueweapon/sword/rapier/aliseo
+	name = "Donator Kit - Rapier di Aliseo"
+	path = /obj/item/enchantingkit/plexiant
 	ckeywhitelist = list("plexiant")
 
 /datum/loadout_item/donator_sru
-	name = "Emerald Dress"
-	path = /obj/item/clothing/suit/roguetown/shirt/dress/emerald
+	name = "Donator Kit - Emerald Dress"
+	path = /obj/item/enchantingkit/srusu
 	ckeywhitelist = list("cheekycrenando")
 
 /datum/loadout_item/donator_strudel
-	name = "Grenzelhoftian Mage Vest"
-	path = /obj/item/clothing/suit/roguetown/armor/leather/vest/sofiavest
+	name = "Donator Kit - Grenzelhoftian Mage Vest"
+	path = /obj/item/enchantingkit/strudle
 	ckeywhitelist = list("toasterstrudes")
 
 /datum/loadout_item/donator_bat
-	name = "Handcarved Harp"
-	path = /obj/item/rogue/instrument/harp/handcarved
+	name = "Donator Kit - Handcarved Harp"
+	path = /obj/item/enchantingkit/bat
 	ckeywhitelist = list("kitchifox")
 
 /datum/loadout_item/donator_mansa
-	name = "Wortträger"
-	path = /obj/item/rogueweapon/estoc/worttrager
-	ckeywhitelist = list("pepperoni playboy", "pepperoniplayboy")	//Byond maybe doesn't like spaces?
+	name = "Donator Kit - Wortträger"
+	path = /obj/item/enchantingkit/ryebread
+	ckeywhitelist = list("pepperoniplayboy")	//Byond maybe doesn't like spaces. If a name has a space, do it as one continious name.
+
+/datum/loadout_item/donator_rebel
+	name = "Donator Kit - Gilded Sallet"
+	path = /obj/item/enchantingkit/rebel
+	ckeywhitelist = list("rebel0")

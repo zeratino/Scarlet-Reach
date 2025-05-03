@@ -95,13 +95,21 @@
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	reach = 1
-	penfactor = -30
-	damfactor = 2.0
-	chargetime = 5
+	penfactor = -60
+	damfactor = 2.5
+	chargetime = 10
 	no_early_release = TRUE
 	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
 	item_d_type = "slash"
+	misscost = 10
+
+/datum/intent/rend/reach
+	name = "long rend"
+	penfactor = -30
 	misscost = 5
+	chargetime = 5
+	damfactor = 2
+	reach = 2
 
 //polearm objs ฅ^•ﻌ•^ฅ
 
@@ -618,6 +626,7 @@
 	wdefense = 5
 	wbalance = -1
 	sellprice = 60
+	intdamage_factor = 0.7
 
 /obj/item/rogueweapon/eaglebeak/getonmobprop(tag)
 	. = ..()
