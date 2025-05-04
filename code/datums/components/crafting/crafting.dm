@@ -432,8 +432,7 @@
 			var/atom/movable/A = DL
 			if(R.blacklist.Find(A.type))
 				continue
-		else
-			qdel(DL)
+		qdel(DL)
 
 /datum/component/personal_crafting/proc/component_ui_interact(atom/movable/screen/craft/image, location, control, params, user)
 	if(user == parent)
