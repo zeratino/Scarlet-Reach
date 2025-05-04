@@ -337,6 +337,10 @@
 		for(var/A in R.reqs)
 			amt = R.reqs[A]
 			surroundings = get_environment(user)
+			for(var/atom/movable/IS in surroundings)
+				if(!R.subtype_reqs && (IS.type in subtypesof(A)))
+					to_chat(world, "we found a subtype and removed it")
+					surroundings.Remove(IS)
 			surroundings -= Deletion
 			if(ispath(A, /datum/reagent))
 				var/datum/reagent/RG = new A
@@ -425,7 +429,13 @@
 	while(Deletion.len)
 		var/DL = Deletion[Deletion.len]
 		Deletion.Cut(Deletion.len)
-		qdel(DL)
+		if(DL)
+			var/atom/movable/A = DL
+			if(R.blacklist.Find(A.type))
+				to_chat(world, "we found a blacklist and skipped")
+				continue
+		else
+			qdel(DL)
 
 /datum/component/personal_crafting/proc/component_ui_interact(atom/movable/screen/craft/image, location, control, params, user)
 	if(user == parent)
