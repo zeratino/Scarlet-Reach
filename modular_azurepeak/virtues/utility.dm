@@ -48,7 +48,7 @@
 
 	if(mapswitch == 0)
 		return
-	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
+	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary" || recipient.mind?.assigned_role == "Court Agent")
 		// Find tavern area for spawning
 		var/area/spawn_area
 		for(var/area/A in world)
