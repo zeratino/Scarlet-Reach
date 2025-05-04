@@ -67,7 +67,6 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 15 SECONDS) // Cooldown for each in
 		for(var/mob/living/V in victimsa)
 			V.mob_timers["ambushlast"] = world.time
 		var/spawnedtype = pickweight(AR.ambush_mobs)
-		to_chat(world, "spawned mobs [spawnedtype]")
 		var/list/mobs_to_spawn = list()
 		var/max_spawns = 3
 		var/mustype = 1

@@ -10,7 +10,6 @@
 	examine_text = "SUBJECTPRONOUN occasionally clicks their tongue quietly"
 
 /datum/status_effect/buff/spider_speak/on_apply()
-	to_chat(world, "DEBUG: Added spiders faction to [owner]")
 	owner.faction += "spiders"
 	return TRUE
 
