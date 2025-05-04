@@ -199,7 +199,7 @@
 	name = "wood mallet"
 	result = /obj/item/rogueweapon/hammer/wood
 	reqs = list(/obj/item/grown/log/tree/small = 1,
-				/obj/item/natural/fiber = 1)
+				/obj/item/natural/fibers = 1)
 
 /datum/crafting_recipe/roguetown/stonehammer
 	name = "stone hammer"
