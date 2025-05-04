@@ -5976,10 +5976,10 @@
 /area/rogue/outdoors/rtfield)
 "fnw" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/rogueweapon/hammer,
-/obj/item/rogueweapon/hammer,
-/obj/item/rogueweapon/hammer,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
+/obj/item/rogueweapon/hammer/iron,
+/obj/item/rogueweapon/hammer/iron,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/dwarfin)
 "fnA" = (
@@ -9731,7 +9731,7 @@
 /area/rogue/indoors/town/church/chapel)
 "jiS" = (
 /obj/structure/rack/rogue,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors)
 "jiT" = (
@@ -12650,7 +12650,7 @@
 /area/rogue/outdoors/town)
 "mEx" = (
 /obj/machinery/anvil/crafted,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/outdoors/bog)
 "mEz" = (
@@ -19377,7 +19377,7 @@
 /area/rogue/indoors/town/vault)
 "uei" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /obj/item/rogueweapon/tongs,
 /obj/item/roguekey/blacksmith,
 /turf/open/floor/rogue/ruinedwood{
@@ -22488,7 +22488,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/town)
 "xvK" = (
-/obj/item/rogueweapon/hammer/claw,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/bogcaves)
 "xwu" = (
@@ -22945,7 +22945,7 @@
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cavewet/bogcaves)
 "xPN" = (
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/cavewet/bogcaves)
 "xQN" = (
