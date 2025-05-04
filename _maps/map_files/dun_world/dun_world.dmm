@@ -26680,6 +26680,7 @@
 /obj/item/natural/stone{
 	pixel_y = -14
 	},
+/obj/item/rogueweapon/hammer/steel,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "kja" = (
@@ -37934,6 +37935,10 @@
 /obj/item/rogueweapon/tongs{
 	pixel_x = 5;
 	pixel_y = 4
+	},
+/obj/item/rogueweapon/hammer/iron{
+	pixel_x = -2;
+	pixel_y = 5
 	},
 /obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/blocks/platform,
