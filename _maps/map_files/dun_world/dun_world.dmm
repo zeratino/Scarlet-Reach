@@ -10286,7 +10286,7 @@
 /area/rogue/indoors/town/shop)
 "dZz" = (
 /obj/machinery/anvil,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "dZC" = (
@@ -13650,7 +13650,7 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/stone,
 /obj/item/rogueweapon/tongs,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
@@ -14685,7 +14685,7 @@
 /area/rogue/outdoors/mountains)
 "fFd" = (
 /obj/machinery/anvil,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /obj/item/rogueweapon/tongs,
 /turf/open/floor/rogue/metal,
 /area/rogue/outdoors/mountains/decap)
@@ -18501,7 +18501,7 @@
 	icon_state = "tablewood1"
 	},
 /obj/item/paper/bsmith,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /obj/item/rogueweapon/tongs,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/town/dwarfin)
@@ -20031,7 +20031,7 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "hJe" = (
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "hJl" = (
@@ -30481,7 +30481,7 @@
 "lJU" = (
 /obj/machinery/anvil,
 /obj/item/rogueweapon/tongs,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "lJW" = (
@@ -36647,7 +36647,7 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/stone,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "ohz" = (
@@ -51603,7 +51603,7 @@
 /area/rogue/outdoors/town)
 "tRt" = (
 /obj/machinery/anvil/crafted,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /obj/item/rogueweapon/tongs,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
@@ -56165,7 +56165,7 @@
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "vEA" = (
 /obj/machinery/anvil/crafted,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "vEE" = (
@@ -57201,7 +57201,7 @@
 "vYj" = (
 /obj/machinery/anvil,
 /obj/item/rogueweapon/tongs,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/steel,
 /turf/open/floor/rogue/metal,
 /area/rogue/outdoors/mountains/decap)
 "vYk" = (
