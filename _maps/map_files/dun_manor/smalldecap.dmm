@@ -924,7 +924,7 @@
 /area/rogue/under/cave/undeadmanor)
 "lP" = (
 /obj/machinery/anvil/crafted,
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/iron,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "lS" = (

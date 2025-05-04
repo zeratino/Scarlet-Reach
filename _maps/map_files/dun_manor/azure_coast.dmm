@@ -5815,7 +5815,7 @@
 	icon_state = "longtable";
 	dir = 1
 	},
-/obj/item/rogueweapon/hammer,
+/obj/item/rogueweapon/hammer/stone,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
 "Mb" = (

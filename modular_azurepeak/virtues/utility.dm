@@ -91,7 +91,7 @@
 	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair, including how to polish arms and armor."
 	added_traits = list(TRAIT_SQUIRE_REPAIR)
 	added_stashed_items = list(
-		"Worker's Hammer" = /obj/item/rogueweapon/hammer,
+		"Worker's Hammer" = /obj/item/rogueweapon/hammer/iron,
 		"Polishing Cream" = /obj/item/polishing_cream, 
 		"Fine Brush" = /obj/item/armor_brush
 	)
