@@ -339,7 +339,6 @@
 			surroundings = get_environment(user)
 			for(var/atom/movable/IS in surroundings)
 				if(!R.subtype_reqs && (IS.type in subtypesof(A)))
-					to_chat(world, "we found a subtype and removed it")
 					surroundings.Remove(IS)
 			surroundings -= Deletion
 			if(ispath(A, /datum/reagent))
@@ -432,7 +431,6 @@
 		if(DL)
 			var/atom/movable/A = DL
 			if(R.blacklist.Find(A.type))
-				to_chat(world, "we found a blacklist and skipped")
 				continue
 		else
 			qdel(DL)
