@@ -267,11 +267,11 @@
 	force = 12
 	force_wielded = 25
 	name = "improvised billhook"
-	desc = "Looks hastily made."
+	desc = "Looks hastily made, even a little flimsy."
 	icon_state = "billhook"
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 100
-	max_integrity = 200
+	max_integrity = 250
 	wdefense = 4
 	throwforce = 10
 
@@ -585,7 +585,7 @@
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/glaive, /datum/intent/spear/cut/glaive, /datum/intent/axe/chop/scythe, SPEAR_BASH)
 	name = "glaive"
-	desc = "A curved blade on a pole, specialised in durability and defence, but expensive to manufacture."
+	desc = "A curved blade on a pole, specialised in defence, but expensive to manufacture."
 	icon_state = "glaive"
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
