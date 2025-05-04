@@ -185,7 +185,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, SPEAR_CUT, SPEAR_BASH)
 	name = "spear"
-	desc = "This iron spear is great to impale goblins."
+	desc = "This iron spear is great to impale goblins. However its lack of reinforcements means it is ill prepared for combat against someone aiming to hew it in two!"
 	icon_state = "spear"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -198,6 +198,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 8
 	max_blade_int = 100
+	max_integrity = 300
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/polearms
@@ -253,10 +254,11 @@
 
 /obj/item/rogueweapon/spear/billhook
 	name = "billhook"
-	desc = "A neat hook. Used to pull riders from horses, as well as defend against said horses when used in a proper formation."
+	desc = "A neat hook. Used to pull riders from horses, as well as defend against said horses when used in a proper formation. The reinforcements along it's shaft grant it higher durability against attacks."
 	icon_state = "billhook"
 	smeltresult = /obj/item/ingot/steel
 	max_blade_int = 200
+	max_integrity = 500
 	minstr = 8
 	wdefense = 6
 	throwforce = 15
@@ -269,6 +271,7 @@
 	icon_state = "billhook"
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 100
+	max_integrity = 200
 	wdefense = 4
 	throwforce = 10
 
@@ -512,7 +515,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, /datum/intent/spear/cut/halberd, /datum/intent/sword/chop, SPEAR_BASH)
 	name = "halberd"
-	desc = "A steel halberd, the pinnicle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less."
+	desc = "A steel halberd, the pinnicle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less. The reinforcments along the shaft provide greater durability."
 	icon_state = "halberd"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -525,6 +528,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	minstr = 9
 	max_blade_int = 200
+	max_integrity = 500
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
@@ -545,9 +549,9 @@
 
 /obj/item/rogueweapon/halberd/holysee
 	name = "eclipsum halberd"
-	desc = "A mutual effort of Noc and Astrata's followers, this halberd was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite."
+	desc = "A mutual effort of Noc and Astrata's followers, this halberd was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite. The reinforced shaft provides greater durability."
 	icon_state = "gsspear"
-	max_integrity = 300
+	max_integrity = 600
 	force = 20
 	force_wielded = 35
 
@@ -555,11 +559,12 @@
 	possible_item_intents = list(/datum/intent/spear/thrust/eaglebeak, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop, SPEAR_BASH)
 	name = "bardiche"
-	desc = "A beautiful variant of the halberd."
+	desc = "A beautiful variant of the halberd. Its reinforced shaft provides it with greater durability against attacks."
 	icon_state = "bardiche"
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 200
+	max_integrity = 500
 
 /obj/item/rogueweapon/halberd/bardiche/scythe
 	name = "summer scythe"
@@ -585,6 +590,7 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
 	max_blade_int = 300
+	max_integrity = 300
 	wdefense = 9
 
 /obj/item/rogueweapon/halberd/glaive/getonmobprop(tag)
@@ -621,6 +627,7 @@
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/polearms
 	max_blade_int = 300
+	max_integrity = 500
 	blade_dulling = DULLING_BASHCHOP
 	walking_stick = TRUE
 	wdefense = 5
@@ -642,12 +649,13 @@
 
 /obj/item/rogueweapon/eaglebeak/lucerne
 	name = "lucerne"
-	desc = "A polehammer of simple iron. Fracture bone and dissent with simple brute force."
+	desc = "A polehammer of simple iron. Fracture bone and dissent with simple brute force. The studding along its shaft makes for a slightly more reinforced weapon."
 	force = 12
 	force_wielded = 25
 	icon_state = "polehammer"
 	smeltresult = /obj/item/ingot/iron
 	max_blade_int = 300
+	max_integrity = 350
 	sellprice = 40
 
 /datum/intent/spear/thrust/eaglebeak
