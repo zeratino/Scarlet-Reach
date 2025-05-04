@@ -12,8 +12,13 @@
 	vision_range = 5
 	aggro_vision_range = 9
 	base_intents = list(/datum/intent/simple/bite/honeyspider)
+	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
-					/obj/item/natural/silk = 2, /obj/item/alch/viscera = 1)
+							/obj/item/natural/silk = 2, 
+							/obj/item/alch/viscera = 1)
+	perfect_butcher_results = list (/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
+							/obj/item/natural/silk = 3, 
+							/obj/item/alch/viscera = 1)
 	faction = list("spiders")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	attack_sound = 'sound/combat/wooshes/punch/punchwoosh (2).ogg'
@@ -47,7 +52,7 @@
 	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/spider
-
+	melee_cooldown = HONEYSPIDER_ATTACK_SPEED
 	stat_attack = UNCONSCIOUS
 
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/mutated

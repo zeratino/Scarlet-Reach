@@ -389,6 +389,7 @@
 	spitoutmouth = FALSE
 	muteinmouth = FALSE
 	alternate_worn_layer  = 8.9 //On top of helmet
+	mill_result = /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals
 
 /obj/item/alch/rosa/equipped(mob/living/carbon/human/user, slot)
 	. = ..()

@@ -5,6 +5,21 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/neck.dmi'
 	bloody_icon_state = "bodyblood"
 	experimental_inhand = FALSE
+	alternate_worn_layer = NECK_LAYER
+	var/overarmor
+
+/obj/item/clothing/neck/roguetown/MiddleClick(mob/user, params)
+	. = ..()
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear \the [src] over my armor" : "wear \the [src] under my armor"]."))
+	if(overarmor)
+		alternate_worn_layer = NECK_LAYER
+	else
+		alternate_worn_layer = UNDER_ARMOR_LAYER
+	user.update_inv_neck()
+	user.update_inv_cloak()
+	user.update_inv_armor()
+	user.update_inv_shirt()
 
 /obj/item/clothing/neck/roguetown/coif
 	name = "coif"
@@ -513,3 +528,25 @@
 	dropshrink = 0.5
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_MASK
 	body_parts_covered = NECK|FACE
+
+/obj/item/clothing/neck/roguetown/luckcharm
+	name = "luck charm"
+	desc = "A cabbit's foot necklace. Some say it brings good luck."
+	icon_state = "luckcharm"
+	sellprice = 15
+	slot_flags = ITEM_SLOT_NECK
+	var/goodluckactivated = FALSE
+
+/obj/item/clothing/neck/roguetown/luckcharm/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_NECK)
+		user.change_stat("fortune", 1) //how much luck stat it gives when equipped
+		goodluckactivated = TRUE
+	return
+
+/obj/item/clothing/neck/roguetown/luckcharm/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(goodluckactivated == TRUE)
+		user.change_stat("fortune", -1) //how much luck stat taken away when unequipped
+		goodluckactivated = FALSE
+	return

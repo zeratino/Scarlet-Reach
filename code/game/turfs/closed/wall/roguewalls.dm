@@ -45,6 +45,10 @@
 	climbdiff = 3
 	damage_deflection = 10
 
+/turf/closed/wall/mineral/rogue/stone/turf_destruction()
+	loud_message("Sound of a crumbling stone wall rings out", hearing_distance = 14)
+	. = ..()
+
 /turf/closed/wall/mineral/rogue/stone/window
 	name = "stone window"
 	desc = "A window with solid and sturdy stone frame."
@@ -88,6 +92,9 @@
 	climbdiff = 3
 	damage_deflection = 10
 
+/turf/closed/wall/mineral/rogue/craftstone/turf_destruction()
+	loud_message("Sound of heavy stone bricks crumbling apart rings out", hearing_distance = 14)
+	. = ..()
 
 /turf/closed/wall/mineral/rogue/stonebrick
 	name = "brick wall"

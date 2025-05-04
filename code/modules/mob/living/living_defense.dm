@@ -1,6 +1,6 @@
 
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "blunt", absorb_text = null, soften_text = null, armor_penetration, penetrated_text, damage, blade_dulling, peeldivisor)
-	var/armor = getarmor(def_zone, attack_flag, damage, armor_penetration, blade_dulling, peeldivisor)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "blunt", absorb_text = null, soften_text = null, armor_penetration, penetrated_text, damage, blade_dulling, peeldivisor, intdamfactor)
+	var/armor = getarmor(def_zone, attack_flag, damage, armor_penetration, blade_dulling, peeldivisor, intdamfactor)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
 	if(armor > 0 && armor_penetration)
@@ -22,7 +22,7 @@
 	return armor
 
 
-/mob/living/proc/getarmor(def_zone, type, damage, armor_penetration, blade_dulling, peeldivisor)
+/mob/living/proc/getarmor(def_zone, type, damage, armor_penetration, blade_dulling, peeldivisor, intdamfactor)
 	return 0
 
 //this returns the mob's protection against eye damage (number between -1 and 2) from bright lights
@@ -44,6 +44,8 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/projectile/P, def_zone = BODY_ZONE_CHEST)
+	if(!prob(P.accuracy + P.bonus_accuracy))
+		def_zone = BODY_ZONE_CHEST
 	var/armor = run_armor_check(def_zone, P.flag, "", "",P.armor_penetration, damage = P.damage)
 
 	next_attack_msg.Cut()

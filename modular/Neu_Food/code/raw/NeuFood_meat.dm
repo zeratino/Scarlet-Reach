@@ -19,6 +19,22 @@
 	foodtype = MEAT
 	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
 
+/obj/item/reagent_containers/food/snacks/rogue/meat/attackby(obj/item/I, mob/living/user)
+	update_cooktime(user)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	if(istype(I, /obj/item/kitchen/rollingpin))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'modular/Neu_Food/sound/rollingpin.ogg', 100, TRUE, -1)
+			to_chat(user, span_notice("Tenderizing [src] into a nitzel."))
+			if(do_after(user,long_cooktime, target = src))
+				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/nitzel(loc)
+				qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
+	else 
+		return ..()
+
 /obj/item/reagent_containers/food/snacks/rogue/meat/steak
 	ingredient_size = 2
 	name = "raw meat"
@@ -28,7 +44,6 @@
 	slices_num = 2
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/beef
 	slice_bclass = BCLASS_CHOP
-
 
 /*	.............   Minced meat & stuffing sausages   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/meat/mince
@@ -82,8 +97,12 @@
 	name = "minced fish"
 	icon_state = "fishmince"
 
+/obj/item/reagent_containers/food/snacks/rogue/meat/mince/rabbit
+	name = "minced cabbit"
+	icon_state = "meatmince"
+
 /obj/item/reagent_containers/food/snacks/rogue/meat/mince/poultry
-	name = "mince"
+	name = "minced poultry"
 	icon_state = "meatmince"
 
 
@@ -114,6 +133,21 @@
 	slice_path = null
 	slices_num = 0
 
+/obj/item/reagent_containers/food/snacks/rogue/meat/spider/attackby(obj/item/I, mob/living/user)
+	update_cooktime(user)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	if(istype(I, /obj/item/kitchen/rollingpin))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'modular/Neu_Food/sound/rollingpin.ogg', 100, TRUE, -1)
+			to_chat(user, span_notice("Tenderizing [src] into a schnitzel."))
+			if(do_after(user,long_cooktime, target = src))
+				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/schnitzel(loc)
+				qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
+	else 
+		return ..()
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry
 	name = "plucked bird"
@@ -196,3 +230,21 @@
 	faretype = FARE_NEUTRAL
 	icon_state = "shellfish_meat_cooked"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = MEATSLAB_NUTRITION)
+
+/* ............. Cabbit Meat ................*/
+/obj/item/reagent_containers/food/snacks/rogue/meat/rabbit
+	name = "raw cabbit meat"
+	icon_state = "cabbitcutlet"
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/rabbit
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/rabbit/fried
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/rabbit/fried
+	slices_num = 1
+	ingredient_size = 1
+
+/* ............. Volf Meat ................*/
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak/wolf
+	name = "raw volf meat"
+	icon_state = "volfstrip"
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/beef		//Honestly, we don't need our own minced type on this one.
+	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/steak/wolf/fried
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/steak/wolf/fried
