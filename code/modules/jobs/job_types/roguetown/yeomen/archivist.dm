@@ -52,7 +52,6 @@
 		H.grant_language(/datum/language/celestial)
 		H.grant_language(/datum/language/hellspeak)
 		H.grant_language(/datum/language/orcish)
-		H.grant_language(/datum/language/canilunzt)
 		H.grant_language(/datum/language/grenzelhoftian)
 		H.grant_language(/datum/language/otavan)
 		H.grant_language(/datum/language/etruscan)

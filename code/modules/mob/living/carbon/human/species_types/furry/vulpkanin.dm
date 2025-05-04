@@ -105,7 +105,6 @@
 	)
 	languages = list(
 		/datum/language/common,
-		/datum/language/canilunzt
 	)
 
 /datum/species/vulpkanin/check_roundstart_eligible()
