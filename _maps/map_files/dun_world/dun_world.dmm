@@ -16235,6 +16235,10 @@
 /obj/machinery/light/rogue/forge,
 /turf/open/floor/rogue/metal,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
+"gkO" = (
+/obj/machinery/gear_painter,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors/town)
 "gkP" = (
 /obj/item/roguecoin/copper/pile,
 /obj/structure/closet/crate/chest/old_crate,
@@ -255794,7 +255798,7 @@ exD
 exD
 exD
 pWT
-pWT
+njB
 exD
 exD
 exD
@@ -256247,11 +256251,11 @@ pxc
 bVy
 hNc
 nqs
+njB
 pWT
+gkO
 pWT
-pWT
-pWT
-pWT
+njB
 phl
 pLh
 pLh
