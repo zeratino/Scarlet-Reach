@@ -53108,7 +53108,7 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/cave/orcdungeon)
 "uDo" = (
-/obj/item/clothing/suit/roguetown/armor/plate,
+/obj/random/loot/spider_cave,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
 "uDs" = (
@@ -180287,7 +180287,7 @@ fnC
 lBH
 ujm
 fnC
-uDo
+eXN
 eXN
 ujm
 ujm
@@ -181193,7 +181193,7 @@ fnC
 kEE
 xzj
 xzj
-eXN
+uDo
 ujm
 ujm
 ujm

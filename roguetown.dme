@@ -2064,6 +2064,7 @@
 #include "modular_azurepeak\code\game\objects\items\gwstrap.dm"
 #include "modular_azurepeak\code\game\objects\items\mundanities.dm"
 #include "modular_azurepeak\code\game\objects\items\quicksilver.dm"
+#include "modular_azurepeak\code\game\objects\items\random_loot.dm"
 #include "modular_azurepeak\code\game\objects\items\ritechalk.dm"
 #include "modular_azurepeak\code\game\objects\items\ritualcircles.dm"
 #include "modular_azurepeak\code\game\objects\items\spellbooks.dm"
