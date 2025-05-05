@@ -106,7 +106,7 @@
 	At Master level or above, you can find invisible creatures. \n \ You can track by right-clicking on your eye icon."
 	dreams = list(
 		"... your feet sink into the mud, forcing you to stop and re-evaluate. The storm is close, but not close enough, so you retrace your steps. Left, right, left, until you can manage to step on solid ground once more, taking a new route...",
-		"... you kneel, taking a deep look at the floor, studying the slightly sunk shapes in the dirt. Paw-tracks, one after the other, heading up a hill. With a smile, you carry on..."
+		"... you kneel, taking a deep look at the floor, studying the slightly sunk shapes in the dirt. Paw-tracks, one after the other, heading up a hill. With a smile, you carry on...",
 		"... the blood may have gotten lost in the rain, but the wounded man's boots are as fresh as jackberries, perfectly marked in the sand. You raise your bow, nock an arrow, and carefully trace them towards a cave..."
 	)
 
