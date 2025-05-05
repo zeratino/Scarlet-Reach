@@ -11,6 +11,7 @@
 
 /obj/item/reagent_containers/spidervenom_inert
 	list_reagents = list(/datum/reagent/toxin/spidervenom_inert = 10)
+	name = "Pale spider gland"
 	desc = "A squishy pale gland, filled to the brim with venom of the deadly Aragn spider. Feels cold to the touch."
 	icon = 'modular/Mapping/icons/webbing.dmi'
 	icon_state = "gland"

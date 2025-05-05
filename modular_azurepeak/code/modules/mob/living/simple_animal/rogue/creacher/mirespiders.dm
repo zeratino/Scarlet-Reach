@@ -179,10 +179,14 @@
     ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
     ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
     // I'll replace this with something better later. Stopgap for now to make killing them more than just a nuisance.
+
+/mob/living/simple_animal/hostile/rogue/mirespider_lurker/death(gibbed)
+    ..()
     if(prob(40))
-        butcher_results += /obj/item/reagent_containers/food/snacks/rogue/honey
+        new /obj/item/reagent_containers/food/snacks/rogue/honey(loc)
     if(prob(10))
-        butcher_results += /obj/item/roguegem/violet
+        new /obj/item/roguegem/violet(loc)
+    update_icon()
 
 /datum/intent/simple/bite/mirespider_lurker
     clickcd = MIRESPIDER_LURKER_ATTACK_SPEED
