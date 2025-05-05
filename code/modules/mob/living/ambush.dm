@@ -67,11 +67,27 @@ GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 15 SECONDS) // Cooldown for each in
 		for(var/mob/living/V in victimsa)
 			V.mob_timers["ambushlast"] = world.time
 		var/spawnedtype = pickweight(AR.ambush_mobs)
+		var/list/mobs_to_spawn = list()
+		var/max_spawns = 3
 		var/mustype = 1
-		for(var/i in 1 to CLAMP(victims*1,2,3))
+
+		if(istype(spawnedtype, /mob/living))
+			mobs_to_spawn += spawnedtype
+			max_spawns = CLAMP(victims*1, 2, 3)
+		else if(istype(spawnedtype, /datum/ambush_config))
+			var/datum/ambush_config/A = spawnedtype
+			for(var/type_path in A.mob_types)
+				var/amt = A.mob_types[type_path]
+				for(var/i in 1 to amt)
+					mobs_to_spawn += type_path
+			max_spawns = mobs_to_spawn.len
+
+		for(var/i in 1 to max_spawns)
 			var/spawnloc = pick(possible_targets)
 			if(spawnloc)
-				var/mob/spawnedmob = new spawnedtype(spawnloc)
+				var/mob_type = mobs_to_spawn[1]
+				mobs_to_spawn.Cut(1, 2)
+				var/mob/spawnedmob = new mob_type(spawnloc)
 				if(istype(spawnedmob, /mob/living/simple_animal/hostile))
 					var/mob/living/simple_animal/hostile/M = spawnedmob
 					M.attack_same = FALSE
