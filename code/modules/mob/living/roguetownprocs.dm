@@ -333,7 +333,7 @@
 					else
 						flash_fullscreen("blackflash2")
 
-					var/dam2take = round((get_complex_damage(AB,user,FALSE)/2),1)
+					var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 					if(dam2take)
 						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
 							dam2take = dam2take * intenty.masteritem?.intdamage_factor

@@ -42,6 +42,7 @@
 	t2 = /obj/effect/proc_holder/spell/targeted/shapeshift/dendor
 	t3 = /obj/effect/proc_holder/spell/targeted/conjure_glowshroom
 	t4 = /obj/effect/proc_holder/spell/self/howl/call_of_the_moon
+	extra_spell = /obj/effect/proc_holder/spell/invoked/spiderspeak
 	confess_lines = list(
 		"DENDOR PROVIDES!",
 		"THE TREEFATHER BRINGS BOUNTY!",

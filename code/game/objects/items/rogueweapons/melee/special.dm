@@ -381,7 +381,7 @@
 	wdefense = 6
 	max_blade_int = 80
 
-/obj/item/rogueweapon/woodstaff/getonmobprop(tag)
+/obj/item/rogueweapon/woodstaff/militia/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)

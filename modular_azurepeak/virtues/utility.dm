@@ -48,7 +48,7 @@
 
 	if(mapswitch == 0)
 		return
-	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary")
+	if(recipient.mind?.assigned_role == "Adventurer" || recipient.mind?.assigned_role == "Mercenary" || recipient.mind?.assigned_role == "Court Agent")
 		// Find tavern area for spawning
 		var/area/spawn_area
 		for(var/area/A in world)
@@ -91,8 +91,8 @@
 	desc = "I was once a squire in training, but failed to achieve knighthood. Though my dreams of glory were dashed, I retained my knowledge of equipment maintenance and repair, including how to polish arms and armor."
 	added_traits = list(TRAIT_SQUIRE_REPAIR)
 	added_stashed_items = list(
-		"Worker's Hammer" = /obj/item/rogueweapon/hammer/iron,
-		"Polishing Cream" = /obj/item/polishing_cream, 
+		"Hammer" = /obj/item/rogueweapon/hammer/iron,
+		"Polishing Cream" = /obj/item/polishing_cream,
 		"Fine Brush" = /obj/item/armor_brush
 	)
 	

@@ -58,7 +58,7 @@
 	chargetime = 0
 	penfactor = 200
 	swingdelay = 0
-	damfactor = 0.1
+	damfactor = 0.05
 	item_d_type = "slash"
 	peel_divisor = 4
 
