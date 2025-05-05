@@ -208,11 +208,15 @@
 	name = "silky dress"
 	desc = "Despite not actually being made of silk, the legendary expertise needed to sew this puts the quality on par."
 	body_parts_covered = null
-	slot_flags = ITEM_SLOT_ARMOR
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	icon_state = "silkydress"
 	item_state = "silkydress"
 	sleevetype = null
 	sleeved = null
+
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress/random/Initialize()
+	color = pick("#e6e5e5", "#249589", "#a32121", "#428138", "#8747b1", "#007fff")
+	..()
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gown
 	icon = 'icons/roguetown/clothing/shirts_gown.dmi'
