@@ -285,6 +285,14 @@
 	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 0
 
+/datum/crafting_recipe/roguetown/prepared_woodstaff
+	name = "prepared wood staff"
+	result = list(/obj/item/rogueweapon/woodstaff/prepared)
+	reqs = list(/obj/item/rogueweapon/woodstaff)
+	tools = list(/obj/item/rogueweapon/huntingknife)
+	skillcraft = /datum/skill/craft/carpentry
+	craftdiff = 0
+
 /datum/crafting_recipe/roguetown/woodsword
 	name = "wood sword"
 	result = list(/obj/item/rogueweapon/mace/wsword,
