@@ -2,7 +2,7 @@
 	force = 10
 	force_wielded = 35
 	name = "otherworldly axe"
-	desc = "A strange axe, who knows where it came from. It feels cold and unusually heavy"
+	desc = "A strange axe, who knows where it came from. It feels cold and unusually heavy."
 	icon_state = "dreamaxe"
 	minstr = 13
 	max_blade_int = 250
@@ -16,7 +16,7 @@
 	// to do, make this burn you if you don't regularly soak it.
 	force = 15
 	force_wielded = 40
-	desc = "A strange axe, who knows where it came from. It is searing hot to the blade, the hilt is barely able to be held"
+	desc = "A strange axe, who knows where it came from. It is searing hot to the blade, the hilt is barely able to be held."
 	icon_state = "dreamaxeactive"
 	max_blade_int = 500
 	wdefense = 6
