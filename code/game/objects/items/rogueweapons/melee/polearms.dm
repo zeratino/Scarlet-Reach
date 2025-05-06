@@ -295,6 +295,18 @@
 	max_integrity = 50
 	throwforce = 20
 
+// Copper spear, no point to adjust force just slightly better integrity
+/obj/item/rogueweapon/spear/stone/copper
+	name = "copper spear"
+	desc = "A simple spear with a copper tip. More durable than stone, but not much better."
+	pixel_y = 0
+	pixel_x = 0
+	max_integrity = 100
+	icon = 'icons/roguetown/weapons/32.dmi'
+	dam_icon = 'icons/effects/item_damage32.dmi'
+	icon_state = "cspear"
+	smeltresult = null
+
 /obj/item/rogueweapon/fishspear
 	force = 20
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH, SPEAR_CAST) //bash is for nonlethal takedowns, only targets limbs

@@ -596,6 +596,17 @@
 	minstr = 4
 	wdefense = 2
 
+// This typepath is so fucked bruh but I am not repeating code and not dropping a massive merge conflict for now
+/obj/item/rogueweapon/sword/iron/messer/copper 
+	name = "copper messer"
+	desc = "A copper hunting sword. Less durable than its iron counterpart."
+	force = 20 // Slightly worse
+	icon_state = "cmesser"
+	max_integrity = 150
+	minstr = 4
+	wdefense = 2
+	smeltresult = /obj/item/ingot/copper
+
 /obj/item/rogueweapon/sword/short/messer
 	name = "messer"
 	desc = "A \"Großesmesser\" of disputed Grenzel origin, meaning greatknife. It's a basic single-edge sword for civilian and military use. It excels at slicing and chopping, and it's made of steel. \
@@ -1041,6 +1052,16 @@
 				"eastabove" = 1,
 				"westabove" = 0,
 				)
+
+/obj/item/rogueweapon/sword/long/romphaia/copper
+	name = "copper romphaia"
+	desc = "A romphaia made of copper. Less durable and powerful than its steel counterpart. It has great cutting power."
+	icon_state = "crhomphaia"
+	force = 22
+	force_wielded = 26
+	max_integrity = 100
+	smeltresult = /obj/item/ingot/copper
+
 /obj/item/rogueweapon/sword/long/oathkeeper
 	name = "Oathkeeper"
 	desc = "An ornate golden blade with a ruby embedded in the hilt. Granted to the Knight Commander for their valiant service to the crown."
