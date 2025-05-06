@@ -183,7 +183,7 @@
 	penfactor = 20
 
 /datum/intent/mace/smash/wood/ranged
-	range = 2
+	reach = 2
 
 /obj/item/rogueweapon/mace/cudgel
 	name = "cudgel"

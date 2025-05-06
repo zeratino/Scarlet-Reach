@@ -27,7 +27,7 @@
 	item_d_type = "blunt"
 
 /datum/intent/spear/bash/ranged
-	range = 2
+	reach = 2
 
 /datum/intent/spear/cut
 	name = "cut"
