@@ -105,8 +105,7 @@
 		/datum/body_marking/harlequinreversed,
 	)
 	languages = list(
-		/datum/language/common,
-		/datum/language/felid
+		/datum/language/common
 	)
 	descriptor_choices = list(
 		/datum/descriptor_choice/height,
