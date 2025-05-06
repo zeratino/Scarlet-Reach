@@ -25,7 +25,7 @@
 	appro_skill = /datum/skill/craft/weaponsmithing
 	req_bar = /obj/item/ingot/copper
 	created_item = /obj/item/rogueweapon/huntingknife/copper
-	createditem_num = 1
+	createditem_num = 2
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/copper/cmesser
@@ -41,7 +41,7 @@
 	req_bar = /obj/item/ingot/copper
 	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/rogueweapon/spear/stone/copper
-	createditem_num = 1
+	createditem_num = 2
 	craftdiff = 0
 
 /datum/anvil_recipe/weapons/copper/crhomphaia

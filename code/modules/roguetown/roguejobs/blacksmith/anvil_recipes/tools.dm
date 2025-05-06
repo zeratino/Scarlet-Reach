@@ -2,6 +2,21 @@
 	i_type = "Utilities"
 	craftdiff = 1
 
+// --------- Copper -----------
+// /datum/anvil_recipe/tools/pote/copper
+// 	name = "Cooking pot (copper)"
+// 	req_bar = /obj/item/ingot/copper
+// 	created_item = /obj/item/reagent_containers/glass/bucket/pot/copper
+
+// /datum/anvil_recipe/tools/platter
+// 	name = "2x Platters (copper)"
+// 	req_bar = /obj/item/ingot/copper
+// 	created_item = /obj/item/plate/copper
+// 	craftdiff = 1
+// 	createditem_num = 1
+
+
+
 // --------- IRON -----------
 
 /datum/anvil_recipe/tools/iron/blowrod
