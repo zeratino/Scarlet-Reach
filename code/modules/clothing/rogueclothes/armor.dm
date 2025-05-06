@@ -651,6 +651,17 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
+/obj/item/clothing/suit/roguetown/armor/plate/half/copper
+	name = "heart protector"
+	desc = "Very simple and crude protection for the chest. Ancient fighters once used similar gear, with better quality..."
+	icon_state = "copperchest"
+	max_integrity = 150
+	armor = list("blunt" = 75, "slash" = 75, "stab" = 75, "piercing" = 40, "fire" = 0, "acid" = 0)
+	smeltresult = /obj/item/ingot/copper
+	body_parts_covered = CHEST
+	armor_class = ARMOR_CLASS_LIGHT
+	smelt_bar_num = 2
+
 /obj/item/clothing/suit/roguetown/armor/plate/half/elven
 	name = "elven guardian cuirass"
 	desc = "A cuirass made of steel with a thin decorative gold plating. Lightweight and durable."
