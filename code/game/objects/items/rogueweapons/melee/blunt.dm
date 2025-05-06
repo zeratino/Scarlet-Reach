@@ -182,6 +182,8 @@
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
 	penfactor = 20
 
+/datum/intent/mace/smash/wood/ranged
+	range = 2
 
 /obj/item/rogueweapon/mace/cudgel
 	name = "cudgel"
