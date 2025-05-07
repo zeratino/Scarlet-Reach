@@ -105,15 +105,16 @@
 					attack_obj(I, user)
 				return
 			else
-				if(I.obj_broken && istype(I, /obj/item/clothing))
-					var/obj/item/clothing/cloth = I
-					cloth.obj_fix()
 				playsound(loc, 'sound/foley/sewflesh.ogg', 50, TRUE, -2)
 				user.visible_message(span_info("[user] repairs [I]!"))
 				if(I.body_parts_covered != I.body_parts_covered_dynamic)
 					user.visible_message(span_info("[user] repairs [I]'s coverage!"))
 					I.repair_coverage()
 				I.obj_integrity = min(I.obj_integrity + 10 + skill, I.max_integrity)
+				if(I.obj_broken && istype(I, /obj/item/clothing) && I.obj_integrity >= I.max_integrity)
+					var/obj/item/clothing/cloth = I
+					cloth.obj_fix()
+					return
 				if(do_after(user, CLICK_CD_MELEE, target = I))
 					attack_obj(I, user)
 		return
