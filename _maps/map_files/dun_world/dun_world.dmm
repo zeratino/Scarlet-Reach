@@ -950,9 +950,8 @@
 /obj/structure/closet/crate/drawer/random{
 	pixel_y = 0
 	},
-/obj/item/scomstone/garrison,
 /obj/item/roguegem/diamond,
-/obj/item/scomstone/garrison,
+/obj/item/clothing/ring/active/nomag,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -8961,7 +8960,6 @@
 /obj/item/roguekey/manor,
 /obj/item/roguekey/sergeant,
 /obj/item/roguekey/sergeant,
-/obj/item/scomstone/bad/garrison,
 /obj/item/scomstone/bad/garrison,
 /obj/item/scomstone/bad/garrison,
 /obj/item/scomstone/bad/garrison,
@@ -44084,7 +44082,6 @@
 	pixel_y = -32
 	},
 /obj/item/rope/chain,
-/obj/item/scomstone/garrison,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "qUs" = (
@@ -46657,7 +46654,6 @@
 	pixel_y = -32
 	},
 /obj/item/scomstone/bad/garrison,
-/obj/item/scomstone/garrison,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "rWU" = (
@@ -55223,7 +55219,6 @@
 "vjF" = (
 /obj/structure/closet/crate/drawer,
 /obj/item/scomstone/bad/garrison,
-/obj/item/scomstone/garrison,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "vjN" = (
