@@ -292,6 +292,7 @@
 	desc = "A beastye built by Abyssor in the image of a knight. Hard shell, squishy interior."
 	icon_state = "clam"
 	faretype = FARE_NEUTRAL
+	no_rarity_sprite = TRUE
 	sellprice = 15
 	fried_type = /obj/item/reagent_containers/food/snacks/rogue/fryfish/clam
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/fryfish/clam
