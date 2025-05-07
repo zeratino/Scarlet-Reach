@@ -24951,7 +24951,9 @@
 /obj/structure/fluff/railing/border{
 	dir = 8
 	},
-/obj/structure/roguemachine/scomm,
+/obj/structure/roguemachine/mail{
+	mailtag = "Streets (East)"
+	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "jyb" = (
@@ -31625,6 +31627,10 @@
 "mgK" = (
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/exposed/town/keep)
+"mgM" = (
+/obj/structure/roguemachine/scomm,
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town)
 "mgR" = (
 /obj/item/grown/log/tree/small,
 /obj/item/grown/log/tree/stick,
@@ -47972,6 +47978,9 @@
 	},
 /turf/open/transparent/openspace,
 /area/rogue/indoors/shelter/woods)
+"ssg" = (
+/turf/closed/wall/mineral/rogue/stonebrick,
+/area/rogue/outdoors/town/roofs)
 "ssj" = (
 /obj/effect/decal/cobbleedge{
 	dir = 10;
@@ -343949,13 +343958,13 @@ aBB
 aBB
 aBB
 gVP
-iJD
+gKh
 wgL
 vzM
 kRg
 cLA
 bzY
-iJD
+dpx
 aBB
 aBB
 eGx
@@ -344853,13 +344862,13 @@ aBB
 aBB
 aBB
 gVP
-iJD
+gKh
 xWk
 xWk
 xWk
 kRg
 tCU
-iJD
+dpx
 aBB
 aBB
 aBB
@@ -345759,9 +345768,9 @@ aBB
 aBB
 cDX
 uBc
-iJD
+kzw
 uBc
-iJD
+kzw
 uBc
 cDX
 aBB
@@ -358781,7 +358790,7 @@ uBc
 sjW
 uBc
 cDX
-jew
+mgM
 jew
 jew
 uBc
@@ -508920,7 +508929,7 @@ vmi
 vmi
 iXc
 vmi
-bGf
+ssg
 kSK
 kSK
 kSK
