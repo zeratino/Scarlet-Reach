@@ -9495,8 +9495,8 @@
 /area/rogue/indoors/town/church/chapel)
 "dvW" = (
 /obj/structure/floordoor/open{
-	redstone_id = "dwarven_ruinsb";
-	name = "Dwarven Bridge"
+	name = "Dwarven Bridge";
+	redstone_id = "dwarven_ruinsb"
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -9602,9 +9602,9 @@
 "dxo" = (
 /obj/structure/table/wood/crafted,
 /obj/structure/bars/passage/shutter{
-	redstone_id = "forgotten_artificer";
+	max_integrity = 15000;
 	name = "Lockdown Shutter";
-	max_integrity = 15000
+	redstone_id = "forgotten_artificer"
 	},
 /turf/open/floor/rogue/concrete/bronze,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -10046,9 +10046,9 @@
 /area/rogue/under/underdark)
 "dGG" = (
 /obj/structure/gate{
+	gid = "dwarven_ruinsg";
 	name = "Dwarven Gate";
-	redstone_id = "dwarven_ruinsg";
-	gid = "dwarven_ruinsg"
+	redstone_id = "dwarven_ruinsg"
 	},
 /turf/open/floor/rogue/concrete/bronze,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -10798,8 +10798,8 @@
 /area/rogue/under/underdark)
 "dWy" = (
 /obj/structure/lever{
-	redstone_id = "dwarven_artificer";
-	name = "Artificers Gate"
+	name = "Artificers Gate";
+	redstone_id = "dwarven_artificer"
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -10969,9 +10969,9 @@
 /area/rogue/indoors/town)
 "dYW" = (
 /obj/structure/bars/passage{
-	redstone_id = "dwarven_artificer";
+	max_integrity = 15000;
 	name = "Dwarven Artificer";
-	max_integrity = 15000
+	redstone_id = "dwarven_artificer"
 	},
 /turf/open/floor/rogue/concrete/bronze,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -16409,9 +16409,9 @@
 /area/rogue/under/town/basement/keep)
 "fVL" = (
 /obj/structure/chair/wood/rogue{
+	can_buckle = 0;
 	dir = 4;
-	pixel_x = -7;
-	can_buckle = 0
+	pixel_x = -7
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -20961,8 +20961,8 @@
 /area/rogue/indoors/town/bath)
 "hCU" = (
 /obj/structure/lever{
-	redstone_id = "forgotten_artificer";
-	name = "Lockdown"
+	name = "Lockdown";
+	redstone_id = "forgotten_artificer"
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -38299,10 +38299,10 @@
 "oaP" = (
 /obj/structure/table/wood/crafted,
 /obj/structure/lever{
-	redstone_id = "dwarven_ruinsb";
-	pixel_y = 15;
 	name = "Dwarven Bridge";
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 15;
+	redstone_id = "dwarven_ruinsb"
 	},
 /turf/open/floor/carpet/inn,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -39135,9 +39135,9 @@
 /area/rogue/outdoors/town)
 "orB" = (
 /obj/structure/bars/passage/shutter{
-	redstone_id = "forgotten_artificer";
+	max_integrity = 15000;
 	name = "Lockdown Shutter";
-	max_integrity = 15000
+	redstone_id = "forgotten_artificer"
 	},
 /turf/open/floor/rogue/concrete/bronze,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -39426,8 +39426,8 @@
 /area/rogue/under/town/sewer)
 "oxb" = (
 /obj/effect/decal/cobbleedge{
-	icon_state = "borderfall";
-	dir = 4
+	dir = 4;
+	icon_state = "borderfall"
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -44034,8 +44034,8 @@
 	pixel_y = 8
 	},
 /obj/structure/floordoor/open{
-	redstone_id = "dwarven_artificer";
-	name = "Dwarven Bridge"
+	name = "Dwarven Bridge";
+	redstone_id = "dwarven_artificer"
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -46522,8 +46522,8 @@
 /area/rogue/under/cave/orcdungeon)
 "qYI" = (
 /obj/structure/floordoor/open{
-	redstone_id = "dwarven_artificer";
-	name = "Dwarven Bridge"
+	name = "Dwarven Bridge";
+	redstone_id = "dwarven_artificer"
 	},
 /obj/effect/decal/cobbleedge{
 	dir = 10;
@@ -47850,8 +47850,8 @@
 	name = "rusted bars"
 	},
 /obj/effect/oneway/baroness{
-	opacity = 1;
-	desc = "A magical barrier that prevents you from accessing whatever lay on the other side."
+	desc = "A magical barrier that prevents you from accessing whatever lay on the other side.";
+	opacity = 1
 	},
 /obj/structure/bars/passage{
 	density = 0;
@@ -48937,8 +48937,8 @@
 	pixel_y = 8
 	},
 /obj/structure/floordoor/open{
-	redstone_id = "dwarven_artificer";
-	name = "Dwarven Bridge"
+	name = "Dwarven Bridge";
+	redstone_id = "dwarven_artificer"
 	},
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -49732,8 +49732,8 @@
 /area/rogue/outdoors/town/roofs)
 "skg" = (
 /obj/structure/fluff/clock{
-	obj_broken = 1;
 	icon_state = "bclock";
+	obj_broken = 1;
 	obj_integrity = 40
 	},
 /turf/open/floor/rogue/cobble,
@@ -60252,9 +60252,9 @@
 	pixel_y = 8
 	},
 /obj/structure/bars/passage/shutter{
-	redstone_id = "forgotten_artificer";
+	max_integrity = 15000;
 	name = "Lockdown Shutter";
-	max_integrity = 15000
+	redstone_id = "forgotten_artificer"
 	},
 /turf/open/floor/rogue/concrete/bronze,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -60302,8 +60302,8 @@
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "wbG" = (
 /obj/structure/chair/bench{
-	dir = 8;
-	can_buckle = 0
+	can_buckle = 0;
+	dir = 8
 	},
 /obj/structure/fluff/walldeco/church/line{
 	dir = 4
@@ -62364,8 +62364,8 @@
 /area/rogue/indoors/shelter)
 "wPH" = (
 /obj/effect/decal/cobbleedge{
-	icon_state = "borderfall";
-	dir = 4
+	dir = 4;
+	icon_state = "borderfall"
 	},
 /obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/herringbone,
@@ -63451,9 +63451,9 @@
 /area/rogue/outdoors/beach)
 "xlW" = (
 /obj/structure/bars/passage{
-	redstone_id = "dwarven_artificer";
+	max_integrity = 15000;
 	name = "Dwarven Artificer";
-	max_integrity = 15000
+	redstone_id = "dwarven_artificer"
 	},
 /obj/effect/decal/cobbleedge{
 	dir = 10;
@@ -182957,10 +182957,10 @@ ujm
 ujm
 ujm
 ujm
+fnC
+ujm
 ujm
 jNI
-jNI
-fnC
 ujm
 ujm
 ujm
@@ -183411,7 +183411,7 @@ ujm
 ujm
 fnC
 jNI
-fnC
+jNI
 fnC
 fnC
 jNI
