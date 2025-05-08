@@ -52,6 +52,14 @@
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/hide/cured
 
+/obj/item/clothing/wrists/roguetown/bracers/copper
+	name = "copper bracers"
+	desc = "Copper forearm guards that offer some protection while looking rather stylish"
+	icon_state = "copperarm"
+	item_state = "copperarm"
+	smeltresult = /obj/item/ingot/copper
+	armor = list("blunt" = 50, "slash" = 50, "stab" = 40,  "piercing" = 50, "fire" = 0, "acid" = 0)
+
 /obj/item/clothing/wrists/roguetown/wrappings
 	name = "solar wrappings"
 	slot_flags = ITEM_SLOT_WRISTS

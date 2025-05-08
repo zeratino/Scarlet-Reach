@@ -202,6 +202,15 @@
 	grid_width = 32
 	grid_height = 96
 
+/obj/item/rogueweapon/mace/cudgel/copper
+	name = "copper bludgeon"
+	desc = "An extremely crude weapon for cruder bastards."
+	force = 15
+	icon_state = "cbludgeon"
+	force_wielded = 20
+	smeltresult = /obj/item/ingot/copper
+	wdefense = 2
+
 /obj/item/rogueweapon/mace/cudgel/justice
 	name = "'Justice'"
 	desc = "The icon of the right of office of the Marshal. While mostly ceremonial in design, it serves it's purpose in dishing out some much needed justice."

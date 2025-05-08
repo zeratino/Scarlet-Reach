@@ -561,7 +561,7 @@
 	name = "short sword"
 	desc = "An archaic iron sword."
 	icon_state = "iswordshort"
-	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short)
+	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
 	gripped_intents = null
 	minstr = 4
 	wdefense = 3
@@ -569,6 +569,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	grid_width = 32
 	grid_height = 96
+
+/obj/item/rogueweapon/sword/iron/short/gladius
+	name = "gladius"
+	desc = "A bronze short sword with a slightly wider end, and no guard. Best used together with a shield, thrusted directly into your enemy's guts."
+	icon_state = "gladius"
+	max_integrity = 200
+	wdefense = 3
 
 /obj/item/rogueweapon/sword/iron/short/chipped
 	force = 17
@@ -595,6 +602,17 @@
 	gripped_intents = null
 	minstr = 4
 	wdefense = 2
+
+// This typepath is so fucked bruh but I am not repeating code and not dropping a massive merge conflict for now
+/obj/item/rogueweapon/sword/iron/messer/copper 
+	name = "copper messer"
+	desc = "A copper hunting sword. Less durable than its iron counterpart."
+	force = 20 // Slightly worse
+	icon_state = "cmesser"
+	max_integrity = 150
+	minstr = 4
+	wdefense = 2
+	smeltresult = /obj/item/ingot/copper
 
 /obj/item/rogueweapon/sword/short/messer
 	name = "messer"
@@ -804,19 +822,6 @@
 	wdefense = 6
 	wbalance = 1
 
-/obj/item/rogueweapon/sword/gladius
-	force = 22
-	name = "gladius"
-	desc = "A bronze short sword with a slightly wider end, and no guard. Compliments a shield."
-	icon_state = "gladius"
-	gripped_intents = null
-	smeltresult = /obj/item/ingot/bronze
-	smelt_bar_num = 2
-	max_blade_int = 100
-	max_integrity = 200
-	dropshrink = 0.80
-	wdefense = 2
-
 /obj/item/rogueweapon/sword/silver
 	force = 24
 	name = "silver sword"
@@ -934,18 +939,18 @@
 				"westabove" = 0,
 				)
 
-/obj/item/rogueweapon/sword/long/romphaia
+/obj/item/rogueweapon/sword/long/rhomphaia
 	force = 25
 	force_wielded = 30
 	possible_item_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
-	icon_state = "romphaia"
-	name = "romphaia"
+	icon_state = "rhomphaia"
+	name = "rhomphaia"
 	desc = "A longsword with a hooked end for punching through armour."
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 125
 
-/obj/item/rogueweapon/sword/long/romphaia/getonmobprop(tag)
+/obj/item/rogueweapon/sword/long/rhomphaia/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -1041,6 +1046,16 @@
 				"eastabove" = 1,
 				"westabove" = 0,
 				)
+
+/obj/item/rogueweapon/sword/long/rhomphaia/copper
+	name = "copper rhomphaia"
+	desc = "A rhomphaia made of copper. Less durable and powerful than its steel counterpart. It has great cutting power."
+	icon_state = "crhomphaia"
+	force = 22
+	force_wielded = 26
+	max_integrity = 100
+	smeltresult = /obj/item/ingot/copper
+
 /obj/item/rogueweapon/sword/long/oathkeeper
 	name = "Oathkeeper"
 	desc = "An ornate golden blade with a ruby embedded in the hilt. Granted to the Knight Commander for their valiant service to the crown."

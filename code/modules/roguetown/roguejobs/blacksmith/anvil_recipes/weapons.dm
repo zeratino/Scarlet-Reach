@@ -3,6 +3,55 @@
 	craftdiff = 1
 	i_type = "Weapons"
 
+/// COPPER WEAPONS
+/datum/anvil_recipe/weapons/copper/caxe
+	name = "Copper Hatchet (+1 Copper)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/ingot/copper)
+	created_item = /obj/item/rogueweapon/stoneaxe/handaxe/copper
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/copper/cbludgeon
+	name = "Copper Bludgeon (+1 Stick)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/mace/cudgel/copper
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/copper/cdagger
+	name = "x2 Copper Knives"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/rogueweapon/huntingknife/copper
+	createditem_num = 2
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/copper/cmesser
+	name = "Copper Messer"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/rogueweapon/sword/iron/messer/copper
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/copper/cspears
+	name = "2x Copper Spears (+ 1 Small Log)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/spear/stone/copper
+	createditem_num = 2
+	craftdiff = 0
+
+/datum/anvil_recipe/weapons/copper/crhomphaia
+	name = "Copper Rhomphaia (+ 1 Bar)"
+	appro_skill = /datum/skill/craft/weaponsmithing
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/ingot/copper)
+	created_item = /obj/item/rogueweapon/sword/long/rhomphaia/copper
+	craftdiff = 0
+
 /// IRON WEAPONS
 
 /datum/anvil_recipe/weapons/iron/sword
@@ -316,11 +365,11 @@
 	created_item = /obj/item/rogueweapon/fishspear
 	craftdiff = 2
 
-/datum/anvil_recipe/weapons/steel/romphaia
-	name = "Romphaia (+1 Steel)"
+/datum/anvil_recipe/weapons/steel/rhomphaia
+	name = "Rhomphaia (+1 Steel)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel)
-	created_item = /obj/item/rogueweapon/sword/long/romphaia
+	created_item = /obj/item/rogueweapon/sword/long/rhomphaia
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/steel/falx
@@ -440,7 +489,7 @@
 /datum/anvil_recipe/weapons/gladius
 	name = "Gladius"
 	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/rogueweapon/sword/gladius
+	created_item = /obj/item/rogueweapon/sword/iron/short/gladius
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/bronze/spear
