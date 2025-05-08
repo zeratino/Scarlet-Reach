@@ -688,7 +688,7 @@
 	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/grown/log/tree/stick)
 	i_type = "Weapons"
 
-/datum/anvil_recipe/weapons/psy/mace
+/datum/anvil_recipe/weapons/psyF/mace
 	name = "Psydonian Mace (+1 B. Silver, +1 Stick)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
