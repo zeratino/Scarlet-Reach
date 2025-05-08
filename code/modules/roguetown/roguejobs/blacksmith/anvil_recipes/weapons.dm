@@ -489,7 +489,7 @@
 /datum/anvil_recipe/weapons/gladius
 	name = "Gladius"
 	req_bar = /obj/item/ingot/bronze
-	created_item = /obj/item/rogueweapon/sword/gladius
+	created_item = /obj/item/rogueweapon/sword/iron/short/gladius
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/bronze/spear

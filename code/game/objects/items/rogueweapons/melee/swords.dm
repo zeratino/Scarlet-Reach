@@ -561,7 +561,7 @@
 	name = "short sword"
 	desc = "An archaic iron sword."
 	icon_state = "iswordshort"
-	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short)
+	possible_item_intents = list(/datum/intent/sword/cut/short, /datum/intent/sword/thrust/short, /datum/intent/sword/peel)
 	gripped_intents = null
 	minstr = 4
 	wdefense = 3
@@ -569,6 +569,13 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	grid_width = 32
 	grid_height = 96
+
+/obj/item/rogueweapon/sword/iron/short/gladius
+	name = "gladius"
+	desc = "A bronze short sword with a slightly wider end, and no guard. Best used together with a shield, thrusted directly into your enemy's guts."
+	icon_state = "gladius"
+	max_integrity = 200
+	wdefense = 3
 
 /obj/item/rogueweapon/sword/iron/short/chipped
 	force = 17
@@ -814,19 +821,6 @@
 	gripped_intents = null
 	wdefense = 6
 	wbalance = 1
-
-/obj/item/rogueweapon/sword/gladius
-	force = 22
-	name = "gladius"
-	desc = "A bronze short sword with a slightly wider end, and no guard. Compliments a shield."
-	icon_state = "gladius"
-	gripped_intents = null
-	smeltresult = /obj/item/ingot/bronze
-	smelt_bar_num = 2
-	max_blade_int = 100
-	max_integrity = 200
-	dropshrink = 0.80
-	wdefense = 2
 
 /obj/item/rogueweapon/sword/silver
 	force = 24
