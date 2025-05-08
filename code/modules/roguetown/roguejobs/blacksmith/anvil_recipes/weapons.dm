@@ -159,10 +159,11 @@
 	createditem_num = 4
 
 /datum/anvil_recipe/weapons/iron/javelin
-	name = "Iron Javelin (+1 Small Log)"
+	name = "2x Iron Javelin (+1 Small Log)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/ammo_casing/caseless/rogue/javelin
+	createditem_num = 2
 	craftdiff = 1
 
 /// STEEL WEAPONS
@@ -352,10 +353,11 @@
 	createditem_num = 4
 
 /datum/anvil_recipe/weapons/steel/javelin
-	name = "Steel Javelin (+1 Small Log)"
+	name = "2x Steel Javelin (+1 Small Log)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/grown/log/tree/small)
 	created_item = /obj/item/ammo_casing/caseless/rogue/javelin/steel
+	createditem_num = 2
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/steel/fishspear
