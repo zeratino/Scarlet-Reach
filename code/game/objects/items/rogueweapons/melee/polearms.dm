@@ -547,6 +547,7 @@
 	name = "eclipsum halberd"
 	desc = "A mutual effort of Noc and Astrata's followers, this halberd was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite. The reinforced shaft provides greater durability."
 	icon_state = "gsspear"
+	max_integrity = 300
 	force = 20
 	force_wielded = 35
 
