@@ -3,6 +3,38 @@
 	craftdiff = 1
 
 // --------- Copper -----------
+/datum/anvil_recipe/tools/sickle/copper
+	name = "Copper Sickle (+Stick)"
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/sickle/copper
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/pick/copper
+	name = "Copper Pick (+Stick)"
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/pick/copper
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/pitchfork/copper
+	name = "Copper Pitchfork (+Stick x2)"
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/grown/log/tree/stick, /obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/pitchfork/copper
+	i_type = "Tools"
+
+/datum/anvil_recipe/tools/lamptern/copper
+	name = "Copper Lamptern"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/flashlight/flare/torch/lantern/copper
+
+/datum/anvil_recipe/tools/hammer/copper
+	name = "Copper Hammer (+Stick)"
+	req_bar = /obj/item/ingot/copper
+	additional_items = list(/obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/hammer/copper
+	i_type = "Tools"
 
 
 // --------- IRON -----------
@@ -95,28 +127,28 @@
 	i_type = "Tools"
 
 /datum/anvil_recipe/tools/iron/sickle
-	name = "Sickle (+1 Stick)"
+	name = "Iron Sickle (+1 Stick)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/sickle
 	i_type = "Tools"
 
 /datum/anvil_recipe/tools/iron/pick
-	name = "Pickaxe (+1 Stick)"
+	name = "Iron Pickaxe (+1 Stick)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/pick
 	i_type = "Tools"
 
 /datum/anvil_recipe/tools/iron/hoe
-	name = "Hoe (+2 Sticks)"
+	name = "Iron Hoe (+2 Sticks)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/grown/log/tree/stick,/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/hoe
 	i_type = "Tools"
 
 /datum/anvil_recipe/tools/iron/pitchfork
-	name = "Pitchfork (+2 Sticks)"
+	name = "Iron Pitchfork (+2 Sticks)"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/grown/log/tree/stick,/obj/item/grown/log/tree/stick)
 	created_item = /obj/item/rogueweapon/pitchfork
