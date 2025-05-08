@@ -182,6 +182,8 @@
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
 	penfactor = 20
 
+/datum/intent/mace/smash/wood/ranged
+	reach = 2
 
 /obj/item/rogueweapon/mace/cudgel
 	name = "cudgel"
@@ -199,6 +201,15 @@
 	resistance_flags = FLAMMABLE
 	grid_width = 32
 	grid_height = 96
+
+/obj/item/rogueweapon/mace/cudgel/copper
+	name = "copper bludgeon"
+	desc = "An extremely crude weapon for cruder bastards."
+	force = 15
+	icon_state = "cbludgeon"
+	force_wielded = 20
+	smeltresult = /obj/item/ingot/copper
+	wdefense = 2
 
 /obj/item/rogueweapon/mace/cudgel/justice
 	name = "'Justice'"

@@ -127,6 +127,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 	return ..()
 
+// Battle Axe
 /obj/item/rogueweapon/stoneaxe/battle
 	force = 25
 	force_wielded = 30
@@ -221,6 +222,17 @@
 	wlength = WLENGTH_NORMAL
 	toolspeed = 2
 
+
+// Copper Hatchet
+/obj/item/rogueweapon/stoneaxe/handaxe/copper
+	force = 13
+	name = "copper hatchet"
+	desc = "A copper hand axe. It is not very durable."
+	max_integrity = 100 // Half of the norm
+	icon_state = "chatchet"
+	smeltresult = /obj/item/ingot/copper
+
+
 /obj/item/rogueweapon/stoneaxe/handaxe
 	force = 19
 	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
@@ -228,7 +240,6 @@
 	desc = "An iron hand axe."
 	icon_state = "hatchet"
 	minstr = 1
-	dropshrink = 0.75
 	max_blade_int = 400
 	smeltresult = /obj/item/ingot/iron
 	gripped_intents = null
@@ -236,10 +247,9 @@
 
 /obj/item/rogueweapon/stoneaxe/woodcut/steel
 	icon_state = "saxe"
-	force = 22
-	force_wielded = 28
 	desc = "A steel woodcutting axe. Performs much better than its iron counterpart."
 	force = 26
+	force_wielded = 28
 	max_blade_int = 500
 	smeltresult = /obj/item/ingot/steel
 	wdefense = 3

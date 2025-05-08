@@ -674,7 +674,14 @@
 			if("onbelt")
 				return list("shrink" = 0.42,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-	
+// Copper lamellar cap
+/obj/item/clothing/head/roguetown/helmet/coppercap
+	name = "lamellar cap"
+	desc = "A heavy lamellar cap made out of copper, a primitive material with an effective design to keep the head safe"
+	icon_state = "lamellar"
+	smeltresult = /obj/item/ingot/copper
+	armor = list("blunt" = 50, "slash" = 50, "stab" = 50, "piercing" = 20, "fire" = 0, "acid" = 0)
+	max_integrity = 150
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
 	name = "skull cap"
