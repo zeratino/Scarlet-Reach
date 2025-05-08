@@ -6002,7 +6002,7 @@
 	icon_state = "tablewood1"
 	},
 /obj/item/rope/chain,
-/obj/item/kitchen/fork/ironfork,
+/obj/item/kitchen/fork/iron,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/shelter/woods)
 "crw" = (
@@ -12653,18 +12653,18 @@
 /obj/item/rogueweapon/huntingknife/cleaver,
 /obj/item/rogueweapon/huntingknife/cleaver,
 /obj/item/clothing/head/roguetown/chef,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/spoon/ironspoon,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/spoon/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
 /obj/item/kitchen/rollingpin,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
@@ -20793,8 +20793,8 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
-/obj/item/kitchen/fork/ironfork,
-/obj/item/kitchen/fork/ironfork,
+/obj/item/kitchen/fork/iron,
+/obj/item/kitchen/fork/iron,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/tavern)
 "hZK" = (
@@ -25510,7 +25510,7 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/kitchen/fork/ironfork,
+/obj/item/kitchen/fork/iron,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/outdoors/town)
 "jQl" = (

@@ -3,18 +3,6 @@
 	craftdiff = 1
 
 // --------- Copper -----------
-// /datum/anvil_recipe/tools/pote/copper
-// 	name = "Cooking pot (copper)"
-// 	req_bar = /obj/item/ingot/copper
-// 	created_item = /obj/item/reagent_containers/glass/bucket/pot/copper
-
-// /datum/anvil_recipe/tools/platter
-// 	name = "2x Platters (copper)"
-// 	req_bar = /obj/item/ingot/copper
-// 	created_item = /obj/item/plate/copper
-// 	craftdiff = 1
-// 	createditem_num = 1
-
 
 
 // --------- IRON -----------
@@ -154,31 +142,6 @@
 	created_item = /obj/item/rogueweapon/thresher
 	i_type = "Tools"
 
-/datum/anvil_recipe/tools/iron/pot
-	name = "Pot"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/reagent_containers/glass/bucket/pot
-
-/datum/anvil_recipe/tools/iron/fork
-	name = "Iron Fork x3"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/kitchen/fork/ironfork
-	createditem_num = 3
-	craftdiff = 1
-
-/datum/anvil_recipe/tools/iron/spoon
-	name = "Iron Spoon x3"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/kitchen/spoon/ironspoon
-	createditem_num = 3
-	craftdiff = 1
-
-/datum/anvil_recipe/tools/iron/bowl
-	name = "Iron Bowl"
-	req_bar = /obj/item/ingot/iron
-	created_item = /obj/item/reagent_containers/glass/bowl/iron
-	craftdiff = 1
-
 /datum/anvil_recipe/tools/scissors
 	name = "Scissors"
 	req_bar = /obj/item/ingot/iron
@@ -244,3 +207,66 @@
 	craftdiff = 2
 
 // --------- BRONZE RECIPES -----------
+
+// --------- COOKING RECIPES -----------
+/datum/anvil_recipe/tools/iron/pot
+	name = "Cooking Pot (Iron)"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/reagent_containers/glass/bucket/pot
+
+/datum/anvil_recipe/tools/pote/copper
+	name = "Cooking Pot (Copper)"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/reagent_containers/glass/bucket/pot/copper
+
+/datum/anvil_recipe/tools/platter
+	name = "2x Platters (Copper)"
+	req_bar = /obj/item/ingot/copper
+	created_item = /obj/item/cooking/platter/copper
+	craftdiff = 1
+	createditem_num = 1
+
+/datum/anvil_recipe/tools/platter/tin
+	name = "2x Platters (Tin)"
+	req_bar = /obj/item/ingot/tin
+	created_item = /obj/item/cooking/platter/pewter
+
+/datum/anvil_recipe/tools/platter/gold
+	name = "2x Platters (Gold)"
+	req_bar = /obj/item/ingot/gold
+	created_item = /obj/item/cooking/platter/gold
+
+/datum/anvil_recipe/tools/platter/silver
+	name = "2x Platters (Silver)"
+	req_bar = /obj/item/ingot/silver
+	created_item = /obj/item/cooking/platter/silver
+
+/datum/anvil_recipe/tools/spoon
+	name = "Iron Spoon x3"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/kitchen/spoon/iron
+	createditem_num = 3
+	craftdiff = 1
+
+/datum/anvil_recipe/tools/spoon/tin
+	name = "Tin Spoon x3"
+	req_bar = /obj/item/ingot/tin
+	created_item = /obj/item/kitchen/spoon/tin
+
+/datum/anvil_recipe/tools/fork
+	name = "Iron Fork x3"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/kitchen/fork/iron
+	createditem_num = 3
+	craftdiff = 1
+
+/datum/anvil_recipe/tools/fork/tin
+	name = "Tin Fork x3"
+	req_bar = /obj/item/ingot/tin
+	created_item = /obj/item/kitchen/fork/tin
+
+/datum/anvil_recipe/tools/iron/bowl
+	name = "Iron Bowl"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/reagent_containers/glass/bowl/iron
+	craftdiff = 1
