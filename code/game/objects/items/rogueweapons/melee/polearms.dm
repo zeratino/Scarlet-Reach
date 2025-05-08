@@ -26,6 +26,9 @@
 	damfactor = 0.8
 	item_d_type = "blunt"
 
+/datum/intent/spear/bash/ranged
+	reach = 2
+
 /datum/intent/spear/cut
 	name = "cut"
 	blade_class = BCLASS_CUT
@@ -843,11 +846,23 @@
 	name = "naledian warstaff"
 	desc = "A staff carrying the crescent moon of Psydon's knowledge, as well as the black and gold insignia of the war scholars."
 	icon_state = "naledistaff"
+	possible_item_intents = list(SPEAR_BASH)
+	gripped_intents = list(/datum/intent/spear/bash/ranged,/datum/intent/mace/smash/wood/ranged)
 	force = 18
 	force_wielded = 22
 	max_integrity = 250
 
-/datum/intent/spear/bash/quarterstaff
+/obj/item/rogueweapon/woodstaff/naledi/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.8,"sx" = -9,"sy" = 5,"nx" = 9,"ny" = 5,"wx" = -4,"wy" = 4,"ex" = 4,"ey" = 4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.8,"sx" = 8,"sy" = 0,"nx" = -1,"ny" = 0,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+
+
+/datum/intent/spear/bash/ranged/quarterstaff
 	damfactor = 1
 
 /datum/intent/spear/thrust/quarterstaff
@@ -865,7 +880,7 @@
 	desc = "A staff that makes any journey easier. Durable and swift, capable of bludgeoning stray volves and ruffians alike. Its length allow it to be used for a thrusting attack."
 	force = 15
 	force_wielded = 20
-	gripped_intents = list(/datum/intent/spear/bash/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff"
 	max_integrity = 300
 
@@ -874,7 +889,7 @@
 	desc = "A quarterstaff reinforced with iron tips. It is capable of dealing more damage than a wooden one, and its blunt ends make for a decent blunt thrusting weapon."
 	force = 16
 	force_wielded = 22
-	gripped_intents = list(/datum/intent/spear/bash/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
 	icon_state = "quarterstaff_iron"
 	max_integrity = 300
 
@@ -883,6 +898,6 @@
 	desc = "A quarterstaff reinforced with steel tips and steel rings, blurring the line between a light polehammer and a reinforced quarterstaff. Extremely durable, and more than capable of bludgeoning brigands to death."
 	force = 18
 	force_wielded = 25
-	gripped_intents = list(/datum/intent/spear/bash/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
 	icon_state = "quarterstaff_steel"
 	max_integrity = 500

@@ -1290,15 +1290,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			str += "NO DEFENSE"
 	return str
 
-/obj/item/obj_break(mob/living/carbon/user, damage_flag)
+/obj/item/obj_break(damage_flag)
 	..()
 
-	if (wielded)
-		ungrip(user, show_message = FALSE)
 	update_damaged_state()
 	if(!ismob(loc))
 		return
 	var/mob/M = loc
+
+	if(altgripped || wielded)
+		ungrip(M, FALSE)
+
 	to_chat(M, "\The [src] BREAKS...!")
 
 /obj/item/obj_fix()
