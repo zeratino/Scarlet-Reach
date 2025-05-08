@@ -118,11 +118,6 @@
 	hoe_damage = 25
 	work_time = 15 SECONDS
 
-/obj/item/rogueweapon/hoe/copper
-	name = "copper hoe"
-	icon_state = "choe"
-	smeltresult = /obj/item/ingot/copper
-
 /obj/item/rogueweapon/hoe/getonmobprop(tag)
 	. = ..()
 	if(tag)
