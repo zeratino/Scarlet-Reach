@@ -945,18 +945,18 @@
 				"westabove" = 0,
 				)
 
-/obj/item/rogueweapon/sword/long/romphaia
+/obj/item/rogueweapon/sword/long/rhomphaia
 	force = 25
 	force_wielded = 30
 	possible_item_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
-	icon_state = "romphaia"
-	name = "romphaia"
+	icon_state = "rhomphaia"
+	name = "rhomphaia"
 	desc = "A longsword with a hooked end for punching through armour."
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 125
 
-/obj/item/rogueweapon/sword/long/romphaia/getonmobprop(tag)
+/obj/item/rogueweapon/sword/long/rhomphaia/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -1053,9 +1053,9 @@
 				"westabove" = 0,
 				)
 
-/obj/item/rogueweapon/sword/long/romphaia/copper
-	name = "copper romphaia"
-	desc = "A romphaia made of copper. Less durable and powerful than its steel counterpart. It has great cutting power."
+/obj/item/rogueweapon/sword/long/rhomphaia/copper
+	name = "copper rhomphaia"
+	desc = "A rhomphaia made of copper. Less durable and powerful than its steel counterpart. It has great cutting power."
 	icon_state = "crhomphaia"
 	force = 22
 	force_wielded = 26

@@ -49,7 +49,7 @@
 	appro_skill = /datum/skill/craft/weaponsmithing
 	req_bar = /obj/item/ingot/copper
 	additional_items = list(/obj/item/ingot/copper)
-	created_item = /obj/item/rogueweapon/sword/long/romphaia/copper
+	created_item = /obj/item/rogueweapon/sword/long/rhomphaia/copper
 	craftdiff = 0
 
 /// IRON WEAPONS
@@ -365,11 +365,11 @@
 	created_item = /obj/item/rogueweapon/fishspear
 	craftdiff = 2
 
-/datum/anvil_recipe/weapons/steel/romphaia
-	name = "Romphaia (+1 Steel)"
+/datum/anvil_recipe/weapons/steel/rhomphaia
+	name = "Rhomphaia (+1 Steel)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel)
-	created_item = /obj/item/rogueweapon/sword/long/romphaia
+	created_item = /obj/item/rogueweapon/sword/long/rhomphaia
 	craftdiff = 2
 
 /datum/anvil_recipe/weapons/steel/falx
