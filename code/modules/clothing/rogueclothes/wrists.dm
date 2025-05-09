@@ -17,7 +17,7 @@
 	body_parts_covered = ARMS
 	icon_state = "bracers"
 	item_state = "bracers"
-	armor = list("blunt" = 90, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
+	armor = list("blunt" = 30, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 	resistance_flags = FIRE_PROOF

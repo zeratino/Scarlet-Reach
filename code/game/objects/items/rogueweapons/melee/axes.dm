@@ -43,9 +43,9 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = 10
+	penfactor = -60
 	swingdelay = 5
-	damfactor = 0.8
+	damfactor = 1.1
 	item_d_type = "blunt"
 
 //axe objs ฅ^•ﻌ•^ฅ
@@ -74,6 +74,7 @@
 	pickup_sound = 'sound/foley/equip/rummaging-03.ogg'
 	gripped_intents = list(/datum/intent/axe/chop/stone)
 	resistance_flags = FLAMMABLE
+	blade_dulling = DULLING_SHAFT_WOOD
 
 
 /obj/item/rogueweapon/stoneaxe/getonmobprop(tag)
@@ -311,12 +312,14 @@
 	gripped_intents = null
 	wdefense = 4
 	is_silver = TRUE
+	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe
 	name = "psydonian war axe"
 	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
 	smeltresult = /obj/item/ingot/steel
+	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe/ComponentInitialize()
 	. = ..()								//+3 force, +50 blade int, +50 int, +1 def, make silver
@@ -351,7 +354,7 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/iron
 	associated_skill = /datum/skill/combat/axes
-	blade_dulling = DULLING_BASHCHOP
+	blade_dulling = DULLING_SHAFT_WOOD
 	wdefense = 6
 
 /obj/item/rogueweapon/greataxe/getonmobprop(tag)

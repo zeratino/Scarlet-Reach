@@ -43,9 +43,9 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = 30
+	penfactor = -50
 	swingdelay = 0
-	damfactor = 0.6
+	damfactor = 1
 	item_d_type = "blunt"
 
 /datum/intent/sword/peel
@@ -93,8 +93,8 @@
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
-	armor = list("blunt" = 50, "slash" = 50, "stab" = 50, "piercing" = 0)
-	damage_deflection = 15
+	armor = list("blunt" = 60, "slash" = 50, "stab" = 50, "piercing" = 0)
+	damage_deflection = 14
 	name = "sword"
 	desc = "A simple steel sword, clean and effective."
 	icon_state = "sword1"
@@ -117,6 +117,7 @@
 	flags_1 = CONDUCT_1
 	throwforce = 10
 	thrown_bclass = BCLASS_CUT
+	blade_dulling = DULLING_SHAFT_METAL
 	//dropshrink = 0.75
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/steel
@@ -209,8 +210,9 @@
 /obj/item/rogueweapon/sword/long
 	force = 25
 	force_wielded = 30
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
+	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
 	icon_state = "longsword"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "longsword"
@@ -244,6 +246,7 @@
 			if("wielded") return list("shrink" = 0.6,"sx" = 9,"sy" = -4,"nx" = -7,"ny" = 1,"wx" = -9,"wy" = 2,"ex" = 10,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 5,"sturn" = -190,"wturn" = -170,"eturn" = -10,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 			if("onback") return list("shrink" = 0.5, "sx" = -1, "sy" = 2, "nx" = 0, "ny" = 2, "wx" = 2, "wy" = 1, "ex" = 0, "ey" = 1, "nturn" = 0, "sturn" = 0, "wturn" = 70, "eturn" = 15, "nflip" = 1, "sflip" = 1, "wflip" = 1, "eflip" = 1, "northabove" = 1, "southabove" = 0, "eastabove" = 0, "westabove" = 0)
 			if("onbelt") return list("shrink" = 0.4, "sx" = -4, "sy" = -6, "nx" = 5, "ny" = -6, "wx" = 0, "wy" = -6, "ex" = -1, "ey" = -6, "nturn" = 100, "sturn" = 156, "wturn" = 90, "eturn" = 180, "nflip" = 0, "sflip" = 0, "wflip" = 0, "eflip" = 0, "northabove" = 0, "southabove" = 1, "eastabove" = 1, "westabove" = 0)
+			if("altgrip") return list("shrink" = 0.6,"sx" = 2,"sy" = 3,"nx" = -7,"ny" = 1,"wx" = -8,"wy" = 0,"ex" = 8,"ey" = -1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -135,"sturn" = -35,"wturn" = 45,"eturn" = 145,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 
 /obj/item/rogueweapon/sword/long/malumflamm
 	name = "forgefiend"
@@ -256,9 +259,11 @@
 	desc = "A wicked and red blade. Called forth from the edge of what should be known. In Her name."
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
+	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
 	force = 30
 	force_wielded = 35
 	icon_state = "zizosword"
+	blade_dulling = DULLING_SHAFT_GRAND
 
 /obj/item/rogueweapon/sword/long/zizo/pickup(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_CABAL))
@@ -383,6 +388,7 @@
 	force_wielded = 55
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
 	icon_state = "vlord"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "vlord"
@@ -403,6 +409,7 @@
 	max_integrity = 9999
 	throwforce = 15
 	thrown_bclass = BCLASS_CUT
+	blade_dulling = DULLING_SHAFT_GRAND
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
 	sellprice = 363

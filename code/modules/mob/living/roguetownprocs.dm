@@ -335,6 +335,8 @@
 
 					var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 					if(dam2take)
+						if(!user.mind)
+							dam2take = dam2take * 0.25
 						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
 							dam2take = dam2take * intenty.masteritem?.intdamage_factor
 						used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
@@ -635,6 +637,8 @@
 		if(prob(probclip) && IS && IU)
 			var/dam2take = round((get_complex_damage(IU, user, FALSE)/2),1)
 			if(dam2take)
+				if(!user.mind)
+					dam2take = dam2take * 0.25
 				if(dam2take > 0 && IU.intdamage_factor != 0)
 					dam2take = dam2take * IU.intdamage_factor
 				IS.take_damage(max(dam2take,1), BRUTE, IU.d_type)
