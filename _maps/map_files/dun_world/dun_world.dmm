@@ -38651,6 +38651,14 @@
 /obj/effect/landmark/start/mercenary,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
+"ojs" = (
+/obj/structure/mineral_door/wood{
+	icon_state = "wcv";
+	locked = 1;
+	lockid = "mage"
+	},
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/town/magician)
 "oju" = (
 /obj/structure/mirror,
 /turf/open/floor/rogue/ruinedwood{
@@ -43873,6 +43881,8 @@
 /obj/item/clothing/mask/cigarette/pipe/westman,
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /obj/item/scrying,
+/obj/item/roguekey/manor,
+/obj/item/roguekey/manor,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/magician)
 "qcY" = (
@@ -519623,13 +519633,13 @@ iIg
 pvR
 iSm
 iSm
-gxt
+ojs
 iSm
 iSm
 iSm
 iSm
 iSm
-gxt
+ojs
 iSm
 iSm
 uTc
