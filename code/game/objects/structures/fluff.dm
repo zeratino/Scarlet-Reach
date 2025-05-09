@@ -11,14 +11,26 @@
 	max_integrity = 150
 	var/deconstructible = TRUE
 
-/obj/structure/fluff/empty_sleeper/nanotrasen
-	name = "broken hypersleep chamber"
-	desc = "A Nanotrasen hypersleep chamber - this one appears broken. \
-		There are exposed bolts for easy disassembly using a wrench."
-	icon_state = "sleeper-o"
+/obj/structure/fluff/pillow
+	name = ""
+	desc = ""
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "pillow"
+	density = FALSE
 
-/obj/structure/fluff/empty_sleeper/syndicate
-	icon_state = "sleeper_s-open"
+/obj/structure/fluff/pillow1
+	name = ""
+	desc = ""
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "pillow1"
+	density = FALSE
+
+/obj/structure/fluff/pillow2
+	name = ""
+	desc = ""
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "pillow2"
+	density = FALSE
 
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
 	name = "drake statue"
@@ -1200,6 +1212,12 @@
 	plane = GAME_PLANE_UPPER
 	blade_dulling = DULLING_BASH
 	max_integrity = 300
+
+/obj/structure/fluff/statue/shisha/hookah
+	name = "shisha pipe"
+	desc = "A traditional shisha pipe, this one is broken."
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "hookah"
 
 /obj/structure/fluff/headstake
 	name = "head on a stake"

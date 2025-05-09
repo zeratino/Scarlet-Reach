@@ -122,16 +122,12 @@
 	name = "harem window"
 	icon_state = "harem2-solid"
 	base_state = "harem2-solid"
+	opacity = TRUE
 
 /obj/structure/roguewindow/harem3
 	name = "harem window"
 	icon_state = "harem3-solid"
 	base_state = "harem3-solid"
-
-/obj/structure/roguewindow/harem4
-	name = "harem window"
-	icon_state = "harem4-solid"
-	base_state = "harem4-solid"
 
 /obj/structure/roguewindow/openclose/Initialize()
 	lockdir = dir
