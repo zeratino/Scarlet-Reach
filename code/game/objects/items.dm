@@ -438,7 +438,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					inspec += "Great"
 
 		if(alt_intents)
-			inspec += "\n<b>ALT-GRIP</b>"
+			inspec += "\n<b>ALT-GRIP (RIGHT CLICK WHILE IN HAND)</b>"
+
+		var/shafttext = get_blade_dulling_text(src, verbose = TRUE)
+		if(shafttext)
+			inspec += "\n<b>SHAFT:</b> [shafttext]"
 
 		if(gripped_intents)
 			inspec += "\n<b>TWO-HANDED</b>"
@@ -458,7 +462,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
 		
 		if(intdamage_factor)
-			inspec += "\n<b>INTEGRITY DAMAGE:</b>[intdamage_factor * 100]%"
+			inspec += "\n<b>INTEGRITY DAMAGE:</b> [intdamage_factor * 100]%"
 
 //**** CLOTHING STUFF
 
@@ -1261,7 +1265,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(altgripped || wielded) //Trying to unwield it
 		ungrip(user)
 		return
-	if(alt_intents)
+	if(alt_intents && !gripped_intents)
 		altgrip(user)
 	if(gripped_intents)
 		wield(user)
