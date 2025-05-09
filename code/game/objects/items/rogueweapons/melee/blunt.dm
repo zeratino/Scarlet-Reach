@@ -405,7 +405,6 @@
 	smeltresult = /obj/item/ingot/iron
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	wdefense = 3
-	intdamage_factor = 1.1
 
 /obj/item/rogueweapon/mace/warhammer/steel
 	force = 25
@@ -451,6 +450,7 @@
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	misscost = 1
 	swingdelay = 15
+	clickcd = 15
 	penfactor = 80
 	damfactor = 0.9
 	item_d_type = "stab"
