@@ -1130,6 +1130,14 @@
 /turf/open/floor/rogue/tile/checkeralt
 	icon_state = "tile"
 
+/turf/open/floor/rogue/tile/harem
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "harem"
+	
+/turf/open/floor/rogue/tile/harem1
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "harem1"
+
 /turf/open/floor/rogue/concrete
 	icon_state = "concretefloor1"
 	landsound = 'sound/foley/jumpland/stoneland.wav'

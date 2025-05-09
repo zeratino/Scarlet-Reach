@@ -73,3 +73,10 @@
 	icon_state = "bounty-open"
 	color = null
 	alpha = 255
+
+/obj/structure/curtain/rogue
+	icon_type = "curtain"
+	icon_state = "curtain-open"
+	icon = 'icons/roguetown/misc/structure.dmi'
+	color = null
+	alpha = 255
