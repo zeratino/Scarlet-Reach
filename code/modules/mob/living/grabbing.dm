@@ -224,9 +224,11 @@
 					if(M.IsStun())
 						if(!do_after(user, stun_dur + 1, needhand = 0, target = M))
 							pincount = 0
+							qdel(src)
 							break
 						if(!(src in M.grabbedby))
 							pincount = 0
+							qdel(src)
 							break
 						M.Stun(stun_dur - pincount * 2)	
 						M.Immobilize(stun_dur)	//Made immobile for the whole do_after duration, though
