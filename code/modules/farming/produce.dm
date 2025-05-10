@@ -88,7 +88,7 @@
 	tastes = list("rice" = 1)
 	can_distill = TRUE
 	distill_reagent = /datum/reagent/consumable/ethanol/sake
-	distill_amt = 12
+	distill_amt = 24
 	grind_results = list(/datum/reagent/floure = 10)
 
 /obj/item/reagent_containers/food/snacks/grown/apple
