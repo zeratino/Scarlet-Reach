@@ -26961,7 +26961,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town)
 "kcQ" = (
-/mob/living/carbon/human/species/human/northern/searaider/ambush,
+/mob/living/carbon/human/species/goblin/npc/ambush/sea,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/beach/forest)
 "kdg" = (
@@ -35553,7 +35553,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/under/cave/dukecourt)
 "nuj" = (
-/mob/living/carbon/human/species/human/northern/searaider/ambush,
+/mob/living/carbon/human/species/goblin/npc/ambush/sea,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest)
 "nus" = (
@@ -47993,7 +47993,7 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town/tavern)
 "shU" = (
-/mob/living/carbon/human/species/human/northern/searaider/ambush,
+/mob/living/carbon/human/species/goblin/npc/ambush/sea,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/beach/forest)
 "sia" = (
@@ -52212,7 +52212,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "tKc" = (
-/mob/living/carbon/human/species/human/northern/searaider/ambush,
+/mob/living/carbon/human/species/goblin/npc/ambush/sea,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "wooden_floort"
 	},
@@ -150236,7 +150236,7 @@ lpq
 lpq
 lpq
 yhV
-sJx
+nuj
 lpq
 lpq
 lpq
@@ -150685,7 +150685,7 @@ sJx
 kIM
 sJx
 sJx
-kcQ
+lpq
 lpq
 lpq
 sJx
@@ -151592,7 +151592,7 @@ sJx
 sJx
 sJx
 sJx
-nuj
+sJx
 lpq
 sJx
 lpq
@@ -152034,7 +152034,7 @@ sJx
 kVu
 dpo
 dpo
-tKc
+dpo
 jNf
 wZT
 wHb
@@ -152486,7 +152486,7 @@ sJx
 lLx
 jZC
 cWO
-dpo
+tKc
 dpo
 wZT
 sJx
@@ -152944,7 +152944,7 @@ kVu
 sJx
 sJx
 sJx
-sJx
+nuj
 vKF
 sJx
 sJx
@@ -153838,7 +153838,7 @@ fce
 mKL
 uIq
 uIq
-uIq
+shU
 uIq
 sJx
 lLx
@@ -154291,7 +154291,7 @@ mKL
 mKL
 uIq
 uIq
-shU
+uIq
 sJx
 vyH
 oeh
