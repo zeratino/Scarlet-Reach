@@ -51,7 +51,8 @@
 	var/mob/attacker
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
 		var/obj/item/I = hitby
-		attacker = I.thrownby
+		if(I && I?.thrownby)
+			attacker = I.thrownby
 	if(attack_type == PROJECTILE_ATTACK)
 		var/obj/projectile/P = hitby
 		attacker = P.firer
