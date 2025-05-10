@@ -9,6 +9,7 @@
 	icon = 'icons/roguetown/weapons/32.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	flags_1 = null
+	armor = list("blunt" = 50, "slash" = 25, "stab" = 0, "piercing" = 0)
 	force = 10
 	throwforce = 5
 	throw_speed = 1
@@ -50,10 +51,12 @@
 	var/mob/attacker
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
 		var/obj/item/I = hitby
-		attacker = I.thrownby
+		if(I?.thrownby)
+			attacker = I.thrownby
 	if(attack_type == PROJECTILE_ATTACK)
 		var/obj/projectile/P = hitby
-		attacker = P.firer
+		if(P?.firer)
+			attacker = P.firer
 	if(attacker && istype(attacker))
 		if (!owner.can_see_cone(attacker))
 			return FALSE
