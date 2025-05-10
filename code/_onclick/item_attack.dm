@@ -320,12 +320,12 @@
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.5
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.7
 				if(BCLASS_STAB)
@@ -340,12 +340,12 @@
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.25
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.4
 				if(BCLASS_STAB)
@@ -360,12 +360,12 @@
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.5
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.5
 				if(BCLASS_STAB)
