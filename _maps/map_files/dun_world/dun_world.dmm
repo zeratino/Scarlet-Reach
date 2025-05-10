@@ -1902,6 +1902,10 @@
 "aKU" = (
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"aLc" = (
+/obj/structure/flora/roguegrass/water/reeds,
+/turf/open/water/swamp,
+/area/rogue/under/cave/fishmandungeon)
 "aLe" = (
 /obj/structure/fluff/statue/myth,
 /turf/open/floor/rogue/naturalstone,
@@ -132236,7 +132240,7 @@ sJo
 jiL
 iVT
 dPx
-dPx
+aLc
 dza
 tAE
 ckb
@@ -133141,7 +133145,7 @@ dza
 igI
 dPx
 dPx
-sJo
+hal
 dza
 sYj
 sYj
