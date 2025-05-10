@@ -295,7 +295,7 @@
 			shake_camera(user, 1, 1)
 			miner.mind.add_sleep_experience(/datum/skill/labor/mining, (miner.STAINT*0.2))
 		if(DULLING_SHAFT_CONJURED)
-			dullfactor = 1
+			dullfactor = 1.2
 		if(DULLING_SHAFT_WOOD)	//Weak to cut / chop. No changes vs stab, resistant to blunt
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
