@@ -217,6 +217,7 @@
 #define DULLING_SHAFT_REINFORCED 7
 #define DULLING_SHAFT_METAL 8
 #define DULLING_SHAFT_GRAND 9
+#define DULLING_SHAFT_CONJURED 10
 //see get_complex_damage()
 
 //NOTE: INTENT_HOTKEY_* defines are not actual intents!
