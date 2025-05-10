@@ -10,7 +10,7 @@
 	passive_generation = 3
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/grain
+/datum/roguestock/stockpile/grain
 	name = "Grain"
 	desc = "Spelt grain."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/wheat
@@ -23,7 +23,7 @@
 	passive_generation = 3
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/oat
+/datum/roguestock/stockpile/oat
 	name = "Oats"
 	desc = "A cereal grain."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/oat
@@ -36,7 +36,7 @@
 	passive_generation = 3
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/garlick
+/datum/roguestock/stockpile/garlick
 	name = "Garlick"
 	desc = "A pungent root vegetable."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/garlick/rogue
@@ -49,7 +49,7 @@
 	passive_generation = 3
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/apple
+/datum/roguestock/stockpile/apple
 	name = "Apple"
 	desc = "Harvested produce."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/apple
@@ -62,7 +62,7 @@
 	passive_generation = 3
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/meat
+/datum/roguestock/stockpile/meat
 	name = "Meat"
 	desc = "Edible flesh harvested from animals."
 	item_type = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
@@ -75,7 +75,7 @@
 	passive_generation = 2
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/fishmince
+/datum/roguestock/stockpile/fishmince
 	name = "Fish Mince"
 	desc = "Descaled and ground fish meat."
 	item_type = /obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish
@@ -88,7 +88,7 @@
 	passive_generation = 2
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/poultry
+/datum/roguestock/stockpile/poultry
 	name = "Bird Meat"
 	desc = "Edible flesh harvested from birds."
 	item_type = /obj/item/reagent_containers/food/snacks/rogue/meat/poultry
@@ -101,7 +101,7 @@
 	passive_generation = 1
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/rabbit
+/datum/roguestock/stockpile/rabbit
 	name = "Cabbit Meat"
 	desc = "Edible flesh harvested from cabbits."
 	item_type = /obj/item/reagent_containers/food/snacks/rogue/meat/rabbit
@@ -114,7 +114,7 @@
 	passive_generation = 2
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/egg
+/datum/roguestock/stockpile/egg
 	name = "Egg"
 	desc = "Egg laid by a hen."
 	item_type = /obj/item/reagent_containers/food/snacks/egg
@@ -127,7 +127,7 @@
 	passive_generation = 2
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/fat
+/datum/roguestock/stockpile/fat
 	name = "Fat"
 	desc = "Greasy flesh from an animal."
 	item_type = /obj/item/reagent_containers/food/snacks/fat
@@ -140,7 +140,7 @@
 	passive_generation = 2
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/tallow
+/datum/roguestock/stockpile/tallow
 	name = "Tallow"
 	desc = "Shelf-stabilized fatty tissue."
 	item_type = /obj/item/reagent_containers/food/snacks/tallow
@@ -153,7 +153,7 @@
 	passive_generation = 2
 	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/butter
+/datum/roguestock/stockpile/butter
 	name = "Butter"
 	desc = "The product of milk and salt."
 	item_type = /obj/item/reagent_containers/food/snacks/butter
@@ -164,8 +164,9 @@
 	export_price = 13
 	importexport_amt = 5
 	passive_generation = 1
+	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/cheese
+/datum/roguestock/stockpile/cheese
 	name = "Cheese"
 	desc = "The product of milk and salt."
 	item_type = /obj/item/reagent_containers/food/snacks/rogue/cheese
@@ -176,8 +177,9 @@
 	export_price = 5
 	importexport_amt = 5
 	passive_generation = 1
+	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/jacksberry
+/datum/roguestock/stockpile/jacksberry
 	name = "Jacksberries"
 	desc = "Sweet berries, prime for winemaking."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/berries/rogue
@@ -188,8 +190,9 @@
 	export_price = 3
 	importexport_amt = 10
 	passive_generation = 2
+	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/onion
+/datum/roguestock/stockpile/onion
 	name = "Onion"
 	desc = "A bulb vegetable."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/onion/rogue
@@ -200,8 +203,9 @@
 	export_price = 3
 	importexport_amt = 10
 	passive_generation = 2
+	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/cabbage
+/datum/roguestock/stockpile/cabbage
 	name = "Cabbage"
 	desc = "A leafy vegetable."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/cabbage/rogue
@@ -212,8 +216,9 @@
 	export_price = 3
 	importexport_amt = 10
 	passive_generation = 2
+	category = "Foodstuffs"
 
-/datum/roguestock/stockpile/salt/potato
+/datum/roguestock/stockpile/potato
 	name = "Potato"
 	desc = "An interesting tuber."
 	item_type = /obj/item/reagent_containers/food/snacks/grown/potato/rogue
@@ -224,3 +229,4 @@
 	export_price = 3
 	importexport_amt = 10
 	passive_generation = 2
+	category = "Foodstuffs"
