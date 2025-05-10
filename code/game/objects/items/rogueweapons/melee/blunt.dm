@@ -6,7 +6,7 @@
 	attack_verb = list("strikes", "hits")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = -70
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.1
 	swingdelay = 0
 	icon_state = "instrike"
@@ -17,7 +17,7 @@
 	blade_class = BCLASS_SMASH
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
-	penfactor = -100
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.5
 	swingdelay = 10
 	icon_state = "insmash"
@@ -175,11 +175,11 @@
 
 /datum/intent/mace/strike/wood
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
-	penfactor = -60
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 
 /datum/intent/mace/smash/wood
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
-	penfactor = -100
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 
 /datum/intent/mace/smash/wood/ranged
 	reach = 2

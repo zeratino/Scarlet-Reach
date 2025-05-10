@@ -1560,6 +1560,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/pen = I.armor_penetration
 	if(user.used_intent?.penfactor)
 		pen = I.armor_penetration + user.used_intent.penfactor
+	if(I.d_type == "blunt")
+		pen = -100
 
 //	var/armor_block = H.run_armor_check(affecting, "I.d_type", span_notice("My armor has protected my [hit_area]!"), span_warning("My armor has softened a hit to my [hit_area]!"),pen)
 
