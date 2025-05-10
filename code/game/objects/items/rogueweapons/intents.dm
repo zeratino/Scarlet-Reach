@@ -75,7 +75,7 @@
 	if(damfactor != 1)
 		inspec += "\n<b>Damage:</b> [damfactor]"
 	if(penfactor)
-		inspec += "\n<b>Armor Penetration:</b> [penfactor]"
+		inspec += "\n<b>Armor Penetration:</b> [penfactor < 0 ? "NONE" : penfactor]"
 	if(get_chargetime())
 		inspec += "\n<b>Charge Time</b>"
 	if(movement_interrupt)
@@ -632,7 +632,7 @@
 	animname = "strike"
 	hitsound = list('sound/combat/hits/blunt/daze_hit.ogg')
 	chargetime = 0
-	penfactor = -50
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	swingdelay = 6
 	damfactor = 1
 	item_d_type = "blunt"

@@ -96,7 +96,7 @@
 	blade_class = BCLASS_BLUNT
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
-	penfactor = -30
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.3
 	item_d_type = "blunt"
 
@@ -108,7 +108,7 @@
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	reach = 1
-	penfactor = -60
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 2.5
 	chargetime = 10
 	no_early_release = TRUE
@@ -118,7 +118,7 @@
 
 /datum/intent/rend/reach
 	name = "long rend"
-	penfactor = -30
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	misscost = 5
 	chargetime = 5
 	damfactor = 2
