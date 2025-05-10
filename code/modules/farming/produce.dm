@@ -389,3 +389,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 0)
 	dropshrink = 0.5
 	rotprocess = null
+
+/obj/item/reagent_containers/food/snacks/grown/coffee
+	name = "coffee cherry"
+	desc = "A small sweet, small red fruit that contains coffee bean(s) inside. Can be grounded in a millstone for coffee beans."
+	icon_state = "coffee"
+	seed = /obj/item/seeds/coffee
+	tastes = list("hibicus sweetness" = 1)
+	bitesize = 1
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	mill_result = /obj/item/reagent_containers/food/snacks/grown/coffeebeans
+	rotprocess = null
