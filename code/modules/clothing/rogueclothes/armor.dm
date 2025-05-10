@@ -471,7 +471,7 @@
 	name = "longcoat"
 	desc = "A padded longcoat meant to keep you warm in the frigid winters"
 	icon_state = "longcoat"
-	color = null
+	color = CLOTHING_BLACK
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
