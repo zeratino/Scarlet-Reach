@@ -37931,6 +37931,10 @@
 /obj/item/bedsheet/rogue/double_pelt,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
+"nGk" = (
+/obj/machinery/light/rogue/firebowl/standing,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cavewet/bogcaves)
 "nGl" = (
 /obj/structure/mineral_door/wood/fancywood{
 	locked = 1;
@@ -51710,10 +51714,6 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town/roofs)
-"sFd" = (
-/obj/machinery/light/rogue/campfire,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves)
 "sFg" = (
 /obj/structure/spider/stickyweb,
 /turf/open/water/swamp,
@@ -122665,7 +122665,7 @@ mVO
 mVO
 lus
 xMv
-sFd
+nGk
 xMv
 mVO
 mVO
@@ -126284,7 +126284,7 @@ uEf
 mVO
 mVO
 mVO
-xMv
+nGk
 xMv
 xMv
 mVO
@@ -129002,7 +129002,7 @@ xMv
 mVO
 xMv
 xMv
-xMv
+nGk
 mVO
 abA
 abA
@@ -133522,7 +133522,7 @@ mVO
 mVO
 mVO
 mVO
-xMv
+nGk
 xMv
 mgO
 lRk
@@ -134892,7 +134892,7 @@ xVI
 flF
 noa
 xoA
-iOS
+wxz
 iOS
 xoA
 npf
