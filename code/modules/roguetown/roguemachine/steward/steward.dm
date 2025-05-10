@@ -18,7 +18,7 @@
 	var/locked = FALSE
 	var/keycontrol = "steward"
 	var/current_tab = TAB_MAIN
-	var/compact = FALSE
+	var/compact = TRUE
 	var/list/excluded_jobs = list("Wretch","Vagabond","Adventurer")
 	var/current_category = "Raw Materials"
 	var/list/categories = list("Raw Materials", "Foodstuffs")

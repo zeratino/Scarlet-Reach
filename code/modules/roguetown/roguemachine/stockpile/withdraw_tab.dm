@@ -1,7 +1,7 @@
 /datum/withdraw_tab
 	var/stockpile_index = -1
 	var/budget = 0
-	var/compact = FALSE
+	var/compact = TRUE
 	var/current_category = "Raw Materials"
 	var/list/categories = list("Raw Materials", "Foodstuffs")
 	var/obj/structure/roguemachine/parent_structure = null
