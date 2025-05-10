@@ -146,7 +146,7 @@
 	icon_state = "metalshaft"
 
 /obj/item/rogueweapon/attackby(obj/item/W, mob/living/user, params)
-	if(istype(W, /obj/item/shaft) && blade_dulling != DULLING_SHAFT_GRAND && (blade_dulling > DULLING_FLOOR))	//hacky
+	if(istype(W, /obj/item/shaft) && (blade_dulling != DULLING_SHAFT_GRAND && blade_dulling != DULLING_SHAFT_CONJURED) && (blade_dulling > DULLING_FLOOR))	//hacky
 		user.visible_message(span_info("[user] begins to replace the shaft on [src]..."))
 		if(do_after(user, 50))
 			user.visible_message(span_info("[user] replaces the shaft with [W]."))

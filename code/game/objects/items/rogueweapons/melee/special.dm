@@ -26,7 +26,7 @@
 	blade_class = BCLASS_BLUNT
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
-	penfactor = -100
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	item_d_type = "blunt"
 
 /datum/intent/lord_electrocute
@@ -343,7 +343,7 @@
 	attack_verb = list("punches", "clocks")
 	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
 	chargetime = 0
-	penfactor = -40
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1
 	swingdelay = 0
 	icon_state = "inpunch"
@@ -355,7 +355,7 @@
 	blade_class = BCLASS_SMASH
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
-	penfactor = -80
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.3
 	swingdelay = 6
 	icon_state = "insmash"

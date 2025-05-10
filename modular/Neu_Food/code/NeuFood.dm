@@ -5,9 +5,6 @@
  *						*
  * * * * * * * * * * * **/
 
-// CONTAINMENT ZONE - marked for death
-/obj/item/reagent_containers/powder/flour/salt // salt being subtype of flour is terrible for so many reasons repath to  /obj/item/reagent_containers/powder/salt
-
 
 /*	........   Templates / Base items   ................ */
 /obj/item/reagent_containers // added vars used in neu cooking, might be used for other things too in the future. How it works is in each items attackby code.
@@ -321,9 +318,9 @@
  *								*
  * * * * * * * * * * * * * * * 	*/
 
-// -------------- POWDER (flour) -----------------
+// -------------- Flour -----------------
 /obj/item/reagent_containers/powder/flour
-	name = "powder"
+	name = "flour"
 	desc = "With this ambition, we build an empire."
 	gender = PLURAL
 	icon_state = "flour"
@@ -353,7 +350,7 @@
 	playsound(get_turf(user), 'modular/Neu_Food/sound/splishy.ogg', 100, TRUE, -1)
 	if(do_after(user, short_cooktime, target = src))
 		add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-		name = "wet powder"
+		name = "wet flour"
 		desc = "Destined for greatness, at your hands."
 		R.reagents.remove_reagent(/datum/reagent/water, 10)
 		water_added = TRUE

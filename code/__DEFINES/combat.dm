@@ -217,6 +217,7 @@
 #define DULLING_SHAFT_REINFORCED 7
 #define DULLING_SHAFT_METAL 8
 #define DULLING_SHAFT_GRAND 9
+#define DULLING_SHAFT_CONJURED 10
 //see get_complex_damage()
 
 //NOTE: INTENT_HOTKEY_* defines are not actual intents!
@@ -335,3 +336,6 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 #define BULLET_ACT_FORCE_PIERCE		"PIERCE"	//It pierces through the object regardless of the bullet being piercing by default.
 #define BULLET_ACT_TURF				"TURF"		//It hit us but it should hit something on the same turf too. Usually used for turfs.
 #define BULLET_ACT_MISS				"MISS"
+
+//Weapon values
+#define BLUNT_DEFAULT_PENFACTOR		-100

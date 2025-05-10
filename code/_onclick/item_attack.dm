@@ -294,6 +294,8 @@
 			newforce = newforce * (8+(mineskill*1.5))
 			shake_camera(user, 1, 1)
 			miner.mind.add_sleep_experience(/datum/skill/labor/mining, (miner.STAINT*0.2))
+		if(DULLING_SHAFT_CONJURED)
+			dullfactor = 1.2
 		if(DULLING_SHAFT_WOOD)	//Weak to cut / chop. No changes vs stab, resistant to blunt
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
@@ -318,12 +320,12 @@
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.5
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.7
 				if(BCLASS_STAB)
@@ -338,12 +340,12 @@
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.25
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.4
 				if(BCLASS_STAB)
@@ -358,12 +360,12 @@
 			switch(user.used_intent.blade_class)
 				if(BCLASS_CUT)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.5
 				if(BCLASS_CHOP)
 					if(!I.remove_bintegrity(1))
-						cont = FALSE
+						dullfactor = 0
 					else
 						dullfactor = 0.5
 				if(BCLASS_STAB)

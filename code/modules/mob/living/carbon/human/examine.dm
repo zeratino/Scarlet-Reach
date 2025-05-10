@@ -878,5 +878,7 @@
 			return "[verbose ? "Metal shaft" : "(M. shaft)"]"
 		if(DULLING_SHAFT_GRAND)
 			return "[verbose ? "Grand shaft" : "(G. shaft)"]"
+		if(DULLING_SHAFT_CONJURED)
+			return "[verbose ? "Conjured shaft" : "(C. shaft)"]"
 		else
 			return null

@@ -6,7 +6,7 @@
 	attack_verb = list("strikes", "hits")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = -70
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.1
 	swingdelay = 0
 	icon_state = "instrike"
@@ -17,7 +17,7 @@
 	blade_class = BCLASS_SMASH
 	attack_verb = list("smashes")
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
-	penfactor = -100
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.5
 	swingdelay = 10
 	icon_state = "insmash"
@@ -175,11 +175,11 @@
 
 /datum/intent/mace/strike/wood
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
-	penfactor = -60
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 
 /datum/intent/mace/smash/wood
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
-	penfactor = -100
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 
 /datum/intent/mace/smash/wood/ranged
 	reach = 2
@@ -396,7 +396,7 @@
 
 /obj/item/rogueweapon/mace/warhammer
 	force = 20
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/warhammer/pick)
 	gripped_intents = null
 	name = "warhammer"
 	desc = "Made to punch through armor and skull alike."
@@ -405,10 +405,11 @@
 	smeltresult = /obj/item/ingot/iron
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	wdefense = 3
+	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/mace/warhammer/steel
 	force = 25
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/warhammer/pick, /datum/intent/mace/warhammer/stab)
 	name = "steel warhammer"
 	desc = "A fine steel warhammer, makes a satisfying sound when paired with a knight's helm."
 	icon_state = "swarhammer"
@@ -450,6 +451,7 @@
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	misscost = 1
 	swingdelay = 15
+	clickcd = 15
 	penfactor = 80
 	damfactor = 0.9
 	item_d_type = "stab"
