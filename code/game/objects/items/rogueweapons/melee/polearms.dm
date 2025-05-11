@@ -907,6 +907,7 @@
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
 	icon_state = "quarterstaff_iron"
 	max_integrity = 300
+	blade_dulling = DULLING_SHAFT_REINFORCED
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/steel
 	name = "steel quarterstaff"
@@ -916,3 +917,4 @@
 	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
 	icon_state = "quarterstaff_steel"
 	max_integrity = 500
+	blade_dulling = DULLING_SHAFT_REINFORCED
