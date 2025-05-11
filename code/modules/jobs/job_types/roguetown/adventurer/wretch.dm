@@ -394,6 +394,62 @@
 	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Holy See")
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
 
+// Hedge Mage, a pure mage adventurer sidegrade to Necromancer without the Necromancer free spells and forced patron. More spellpoints, otherwise mostly the same.
+/datum/advclass/wretch/hedgemage
+	name = "Hedge Mage"
+	tutorial = "They reject your genius, they cast you out, they call you unethical. They do not understand the SACRIFICES you must make. But it does not matter anymore, your power eclipse any of those fools, save for the Court Magos themselves. Show them true magic. Why do I have an eyepatch?"
+	allowed_sexes = list(MALE, FEMALE)
+	allowed_races = RACES_ALL_KINDS
+	outfit = /datum/outfit/job/roguetown/wretch/hedgemage
+	category_tags = list(CTAG_WRETCH)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_MAGEARMOR, TRAIT_OUTLAW, TRAIT_ARCYNE_T3)
+
+// Warlock on purpose has nearly the same fit as a Adv Mage / Mage Associate who cast conjure armor roundstart. Call it meta disguise.
+/datum/outfit/job/roguetown/wretch/hedgemage/pre_equip(mob/living/carbon/human/H)
+	mask = /obj/item/clothing/mask/rogue/eyepatch // Chuunibyou up to 11.
+	head = /obj/item/clothing/head/roguetown/roguehood/black
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	gloves = /obj/item/clothing/gloves/roguetown/angle
+	cloak = /obj/item/clothing/suit/roguetown/shirt/robe/black
+	belt = /obj/item/storage/belt/rogue/leather
+	beltr = /obj/item/reagent_containers/glass/bottle/rogue/manapot
+	neck = /obj/item/clothing/neck/roguetown/leather // No iron gorget vs necro. They will have to acquire one in round.
+	beltl = /obj/item/rogueweapon/huntingknife
+	backl = /obj/item/storage/backpack/rogue/satchel
+	backr = /obj/item/rogueweapon/woodstaff/ruby
+	backpack_contents = list(/obj/item/spellbook_unfinished/pre_arcyne = 1, /obj/item/roguegem/amethyst = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 4, TRUE)
+	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
+	H.cmode_music = 'sound/music/combat_cult.ogg'
+	if(H.age == AGE_OLD)
+		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
+		H.mind.adjust_spellpoints(2)
+	H.change_stat("intelligence", 4)
+	H.change_stat("endurance", 1)
+	H.change_stat("speed", 1)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+	H.mind.adjust_spellpoints(8) // Unlike Rogue Mage, who gets 6 but DExpert, this one don't have DExpert but have more spell points than anyone but the CM. 
+	GLOB.outlawed_players += H.real_name
+	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
+	if (!my_crime)
+		my_crime = "crimes against the Crown"
+	var/bounty_total
+	bounty_total = rand(151, 250)
+	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
+	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+
+
 /datum/advclass/wretch/berserker
 	name = "Berserker"
 	tutorial = "You are a warrior feared for your brutality, dedicated to using your might for your own gain. Might equals right, and you are the reminder of such a saying."
