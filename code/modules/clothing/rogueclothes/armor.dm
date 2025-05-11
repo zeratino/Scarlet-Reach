@@ -542,6 +542,7 @@
 	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
 	armor = list("blunt" = 70, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
+	armor_class = ARMOR_CLASS_LIGHT
 	icon_state = "spellcasterrobe"
 	icon = 'icons/roguetown/clothing/armor.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'

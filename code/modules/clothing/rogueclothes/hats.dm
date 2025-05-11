@@ -45,7 +45,7 @@
 	blocksound = SOFTHIT
 
 /obj/item/clothing/head/roguetown/spellcasterhat
-	name = "spellcaster hat"
+	name = "spellsinger hat"
 	desc = "An oddly shaped hat made of tightly-sewn leather, commonly worn by spellswords."
 	icon_state = "spellcasterhat"
 	item_state = "spellcasterhat"
