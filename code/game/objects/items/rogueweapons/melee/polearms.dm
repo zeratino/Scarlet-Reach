@@ -722,6 +722,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
+	blade_dulling = DULLING_SHAFT_METAL
 	minstr = 9
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
@@ -797,6 +798,7 @@
 	gripsprite = TRUE
 	wlength = WLENGTH_GREAT
 	w_class = WEIGHT_CLASS_BULKY
+	blade_dulling = DULLING_SHAFT_METAL
 	minstr = 8
 	smeltresult = /obj/item/ingot/steel
 	associated_skill = /datum/skill/combat/swords
