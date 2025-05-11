@@ -98,3 +98,28 @@
 		return TRUE
 	revert_cast()
 	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/heart_weave
+    name = "Heartweave"
+    desc = "Link your life force to another, taking their wounds as your own."
+    overlay_state = "love"
+    range = 1
+    chargetime = 0
+	associated_skill = /datum/skill/magic/holy
+    invocation = "By Eora's mercy, let their wounds by mine!"
+    invocation_type = "whisper"
+    sound = 'sound/magic/magnet.ogg'
+    recharge_time = 60 SECONDS
+    devotion_cost = 100
+    miracle = TRUE
+    antimagic_allowed = TRUE
+
+/obj/effect/proc_holder/spell/invoked/heart_weave/cast(list/targets, mob/living/user)
+	if(isliving(targets[1]))
+	    if(!do_after(user, 8 SECONDS, target = target))
+        	to_chat(user, span_warning("The bond requires focused concentration!"))
+        	revert_cast()
+        	return FALSE
+		return TRUE
+	revert_cast()
+	return FALSE

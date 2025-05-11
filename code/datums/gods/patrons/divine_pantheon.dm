@@ -160,7 +160,7 @@
 	mob_traits = list(TRAIT_EMPATH, TRAIT_EXTEROCEPTION)
 	t1 = /obj/effect/proc_holder/spell/invoked/bud
 	t2 = /obj/effect/proc_holder/spell/invoked/eoracurse
-	t3 = null
+	t3 = /obj/effect/proc_holder/spell/invoked/heart_weave
 	confess_lines = list(
 		"EORA BRINGS US TOGETHER!",
 		"HER BEAUTY IS EVEN IN THIS TORMENT!",
