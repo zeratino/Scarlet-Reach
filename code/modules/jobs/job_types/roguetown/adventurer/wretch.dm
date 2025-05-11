@@ -117,14 +117,7 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backl = /obj/item/storage/backpack/rogue/satchel //gwstraps landing on backr asyncs with backpack_contents
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1)
-	GLOB.outlawed_players += H.real_name
-	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
-	if (!my_crime)
-		my_crime = "crimes against the Crown"
-	var/bounty_total
-	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+	wretch_select_bounty(H)
 
 /datum/advclass/wretch/outlaw
 	name = "Outlaw"
@@ -184,14 +177,7 @@
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 2)
 	H.change_stat("speed", 3)
-	GLOB.outlawed_players += H.real_name
-	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
-	if (!my_crime)
-		my_crime = "crimes against the Crown"
-	var/bounty_total
-	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+	wretch_select_bounty(H)
 
 /datum/advclass/wretch/poacher
 	name = "Poacher"
@@ -258,14 +244,7 @@
 	H.change_stat("constitution", 1) // No straight upgrade to perception / speed to not stack one stat too high, but still stronger than MAA Skirm out of town.
 	H.change_stat("perception", 2)
 	H.change_stat("speed", 2)
-	GLOB.outlawed_players += H.real_name
-	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
-	if (!my_crime)
-		my_crime = "crimes against the Crown"
-	var/bounty_total
-	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+	wretch_select_bounty(H)
 
 /datum/advclass/wretch/heretic
 	name = "Heretic"
@@ -332,12 +311,7 @@
 	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 	if (!my_crime)
 		my_crime = "crimes against the Crown"
-	var/bounty_total
-	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Holy See")
-	H.cmode_music = 'sound/music/combat_cult.ogg'
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+	wretch_select_bounty(H)
 
 /datum/advclass/wretch/necromancer
 	name = "Necromancer"
@@ -391,10 +365,7 @@
 	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 	if (!my_crime)
 		my_crime = "crimes against the Crown"
-	var/bounty_total
-	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Holy See")
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
+	wretch_select_bounty(H)
 
 // Hedge Mage, a pure mage adventurer sidegrade to Necromancer without the Necromancer free spells and forced patron. More spellpoints, otherwise mostly the same.
 /datum/advclass/wretch/hedgemage
@@ -443,15 +414,7 @@
 	H.change_stat("speed", 1)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	H.mind.adjust_spellpoints(8) // Unlike Rogue Mage, who gets 6 but DExpert, this one don't have DExpert but have more spell points than anyone but the CM. 
-	GLOB.outlawed_players += H.real_name
-	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
-	if (!my_crime)
-		my_crime = "crimes against the Crown"
-	var/bounty_total
-	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
-	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
-
+	wretch_select_bounty(H)
 
 /datum/advclass/wretch/berserker
 	name = "Berserker"
@@ -520,11 +483,27 @@
 	H.change_stat("intelligence", -1)
 	H.change_stat("perception", -1)
 	H.change_stat("speed", 1)
-	GLOB.outlawed_players += H.real_name
+	wretch_select_bounty(H)
+	
+// Proc for wretch to select a bounty
+/proc/wretch_select_bounty(mob/living/carbon/human/H)
+	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Azuria", "The Grenzelhoftian Holy See", "The Otavan Holy See")
+	if(bounty_poster == "The Justiciary of Azuria")
+		GLOB.outlawed_players += H.real_name
+	else
+		GLOB.excommunicated_players += H.real_name
+	// Felinid said we should gate it at 100 or so on at the lowest, so that wretch cannot ezmode it.
+	var/bounty_severity = input(H, "How severe are your crimes?", "Bounty Amount") as anything in list("Misdeed", "Harm towards lyfe", "Horrific atrocities")
+	var/bounty_total = rand(350, 500) // Just in case
+	switch(bounty_severity)
+		if("Misdeed")
+			bounty_total = rand(130, 200)
+		if("Harm towards lyfe")
+			bounty_total = rand(200, 350)
+		if("Horrific atrocities")
+			bounty_total = rand(350, 500) // Let's not make it TOO profitable
 	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 	if (!my_crime)
 		my_crime = "crimes against the Crown"
-	var/bounty_total
-	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Justiciary of Azuria")
+	add_bounty(H.real_name, bounty_total, FALSE, my_crime, bounty_poster)
 	to_chat(H, span_danger("You are an Antagonistic role. You are expected, by choosing to be a wretch, to sow chaos and division amongst the town while driving a story. Failure to use proper gravitas for this may get you punished for Low Role Play standards."))
