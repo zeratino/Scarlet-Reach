@@ -1,3 +1,4 @@
+// Wretch, soft antagonists. Giving them 9 points as stat (matching mercs) on average since they're a driving antagonist on AP or assistant antagonist. 
 /datum/job/roguetown/wretch
 	title = "Wretch"
 	flag = WRETCH
@@ -103,9 +104,9 @@
 	)
 	var/armorchoice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
 	armor = armors[armorchoice]
-	H.change_stat("strength", 2)
+	H.change_stat("strength", 2) // Deserter are the knight-equivalence. They get a balanced, straightforward 2 2 3 statspread to endure and overcome.
 	H.change_stat("constitution", 2)
-	H.change_stat("endurance", 1)
+	H.change_stat("endurance", 3)
 	gloves = /obj/item/clothing/gloves/roguetown/chain
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	neck = /obj/item/clothing/neck/roguetown/bevor
@@ -180,7 +181,6 @@
 		if ("Whip")
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 			beltl = /obj/item/rogueweapon/whip
-	H.change_stat("strength", -1)
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 2)
 	H.change_stat("speed", 3)
@@ -254,7 +254,8 @@
 		if ("My Bow Is Enough")
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 			head = /obj/item/clothing/head/roguetown/duelhat
-	H.change_stat("endurance", 1)
+	H.change_stat("endurance", 2)
+	H.change_stat("constitution", 1) // No straight upgrade to perception / speed to not stack one stat too high, but still stronger than MAA Skirm out of town.
 	H.change_stat("perception", 2)
 	H.change_stat("speed", 2)
 	GLOB.outlawed_players += H.real_name
@@ -304,7 +305,7 @@
 		if("Flail")
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 			beltr = /obj/item/rogueweapon/flail/sflail
-	H.change_stat("strength", 2)
+	H.change_stat("strength", 2)  // Heretic is by far the best class with access to rituals (as long as they play a god with ritual), holy and heavy armor. So they keep 7 points.
 	H.change_stat("constitution", 2)
 	H.change_stat("endurance", 1)
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
@@ -376,7 +377,8 @@
 	if(H.age == AGE_OLD)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.mind.adjust_spellpoints(2)
-	H.change_stat("intelligence", 4)
+	H.change_stat("intelligence", 4) // Necromancer get the most +4 Int, +2 Perception just like Sorc (Adv Mage), and a bit of endurance / speed
+	H.change_stat("perception", 2)
 	H.change_stat("endurance", 1)
 	H.change_stat("speed", 1)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
@@ -435,7 +437,8 @@
 	if(H.age == AGE_OLD)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.mind.adjust_spellpoints(2)
-	H.change_stat("intelligence", 4)
+	H.change_stat("intelligence", 4) // Same stat spread as necromancer, same reasoning
+	H.change_stat("perception", 2)
 	H.change_stat("endurance", 1)
 	H.change_stat("speed", 1)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
@@ -511,10 +514,10 @@
 		if ("Sword")
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 			beltr = /obj/item/rogueweapon/sword/falx
-	H.change_stat("strength", 3)
+	H.change_stat("strength", 3) // Literally same stat spread as Atgervi Shaman
 	H.change_stat("endurance", 1)
 	H.change_stat("constitution", 2)
-	H.change_stat("intelligence", -3)
+	H.change_stat("intelligence", -1)
 	H.change_stat("perception", -1)
 	H.change_stat("speed", 1)
 	GLOB.outlawed_players += H.real_name
