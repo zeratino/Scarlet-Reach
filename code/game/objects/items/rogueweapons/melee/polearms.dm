@@ -751,7 +751,6 @@
 	smeltresult = /obj/item/ingot/iron
 	smelt_bar_num = 3
 	max_blade_int = 200
-	blade_dulling = DULLING_SHAFT_METAL
 	wdefense = 4
 	force = 14
 	force_wielded = 35
