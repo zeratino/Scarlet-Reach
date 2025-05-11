@@ -761,6 +761,7 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
 	max_blade_int = 300
+	force_wielded = 35
 
 /obj/item/rogueweapon/greatsword/psygsword
 	name = "Apocrypha"
