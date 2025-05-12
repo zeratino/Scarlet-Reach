@@ -28,6 +28,7 @@
 	icon_state = "coffeebeans"
 	tastes = list("unpleasant bitterness" = 1)
 	bitesize = 1
+	seed = /obj/item/seeds/coffee
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	cooked_type = /obj/item/reagent_containers/food/snacks/grown/coffeebeansroasted
 	rotprocess = null
