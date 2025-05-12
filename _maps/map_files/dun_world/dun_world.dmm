@@ -59858,11 +59858,16 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors/town/magician)
 "vUz" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
 /obj/structure/roguemachine/mail{
 	mailtag = "Streets (East)"
 	},
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/rtfield)
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "horzw"
+	},
+/area/rogue/outdoors/town)
 "vUB" = (
 /obj/structure/stairs{
 	dir = 1
@@ -158113,7 +158118,7 @@ jLU
 xWY
 bwv
 jLU
-wlf
+vUz
 hmG
 tXb
 jLU
@@ -242533,7 +242538,7 @@ iBS
 exD
 exD
 exD
-flT
+wFc
 sxy
 jHB
 keu
@@ -273374,7 +273379,7 @@ kBx
 iKD
 wxe
 blL
-vUz
+ebU
 ebU
 ebU
 ika
