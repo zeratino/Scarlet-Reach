@@ -24,8 +24,9 @@
 	desc = "The he-form of the Twinned Gods, the combined amalgam of single-bodied Noc and Astrata that opens his eyes during pondorous Night. He gifted man knowledge of divinity and magicks. A single form begets two Gods that shift at Dusk and Dawn but always endures, even at dae."
 	worshippers = "Wizards and Scholars"
 	mob_traits = list(TRAIT_NIGHT_OWL, TRAIT_NOCSIGHT)
-	t1 = /obj/effect/proc_holder/spell/invoked/blindness/miracle
-	t2 = /obj/effect/proc_holder/spell/invoked/invisibility/miracle
+	t1 = /obj/effect/proc_holder/spell/invoked/invisibility/miracle
+	t2 = /obj/effect/proc_holder/spell/invoked/blindness/miracle
+	t3 = /obj/effect/proc_holder/spell/self/noc_spell_bundle
 	confess_lines = list(
 		"NOC IS NIGHT!",
 		"NOC SEES ALL!",
@@ -42,7 +43,7 @@
 	t2 = /obj/effect/proc_holder/spell/targeted/shapeshift/dendor
 	t3 = /obj/effect/proc_holder/spell/targeted/conjure_glowshroom
 	t4 = /obj/effect/proc_holder/spell/self/howl/call_of_the_moon
-	extra_spell = /obj/effect/proc_holder/spell/invoked/spiderspeak
+	extra_spells = list(/obj/effect/proc_holder/spell/invoked/spiderspeak = CLERIC_T0)
 	confess_lines = list(
 		"DENDOR PROVIDES!",
 		"THE TREEFATHER BRINGS BOUNTY!",
@@ -88,7 +89,7 @@
 	t1 = /obj/effect/proc_holder/spell/invoked/avert
 	t2 = /obj/effect/proc_holder/spell/targeted/abrogation
 	t3 = /obj/effect/proc_holder/spell/targeted/churn
-	extra_spell = /obj/effect/proc_holder/spell/targeted/soulspeak
+	extra_spells = list(/obj/effect/proc_holder/spell/targeted/soulspeak = CLERIC_T0)
 	confess_lines = list(
 		"ALL SOULS FIND THEIR WAY TO NECRA!",
 		"THE UNDERMAIDEN IS OUR FINAL REPOSE!",
@@ -143,7 +144,7 @@
 	t2 = /obj/effect/proc_holder/spell/invoked/heatmetal
 	t3 = /obj/effect/proc_holder/spell/invoked/hammerfall
 	t4 = /obj/effect/proc_holder/spell/invoked/craftercovenant
-	extra_spell = /obj/effect/proc_holder/spell/invoked/malum_flame_rogue
+	extra_spells = list(/obj/effect/proc_holder/spell/invoked/malum_flame_rogue = CLERIC_T0)
 	confess_lines = list(
 		"MALUM IS MY MUSE!",
 		"TRUE VALUE IS IN THE TOIL!",
