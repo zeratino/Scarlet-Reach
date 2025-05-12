@@ -17,6 +17,9 @@
 
 	wander = TRUE
 
+/mob/living/carbon/human/species/human/northern/militia/guard //variant that just stands around, if you want to place them as set dressing. will fight back vs hostile mobs
+	wander = FALSE
+
 /* /mob/living/carbon/human/species/human/northern/militia/retaliate(mob/living/L)
 	var/newtarg = target
 	.=..()
