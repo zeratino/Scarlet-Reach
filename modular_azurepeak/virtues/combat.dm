@@ -26,17 +26,13 @@
 	if (!recipient.devotion)
 		// only give non-devotionists orison... and t0 for some reason (this is probably a bad idea)
 		var/datum/devotion/new_faith = new /datum/devotion(recipient, recipient.patron)
-		var/datum/patron/our_patron = new_faith.patron
-		new_faith.max_devotion = CLERIC_REQ_1 - 20
-		new_faith.max_progression = CLERIC_REQ_1 - 20
-		recipient.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/orison)
 		if (!HAS_TRAIT(recipient, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(recipient, TRAIT_HEAVYARMOR) && !HAS_TRAIT(recipient, TRAIT_DODGEEXPERT) && !HAS_TRAIT(recipient, TRAIT_CRITICAL_RESISTANCE))
-			recipient.mind?.AddSpell(new our_patron.t0)
+			new_faith.grant_miracles(recipient, cleric_tier = CLERIC_T0, passive_gain = FALSE, devotion_limit = (CLERIC_REQ_1 - 20))	//Capped to T0 miracles.
 	else
 		// for devotionists, bump up their maximum 1 tier and give them a TINY amount of passive devo gain
 		var/datum/devotion/our_faith = recipient.devotion
-		our_faith.passive_devotion_gain += 0.15
+		our_faith.passive_devotion_gain += CLERIC_REGEN_DEVOTEE
 		switch (our_faith.max_devotion)
 			if (CLERIC_REQ_0)
 				our_faith.max_devotion = CLERIC_REQ_1
