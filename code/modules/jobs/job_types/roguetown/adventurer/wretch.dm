@@ -308,10 +308,6 @@
 	C.grant_spells(H)
 	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
 	START_PROCESSING(SSobj, C)
-	GLOB.excommunicated_players += H.real_name
-	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
-	if (!my_crime)
-		my_crime = "crimes against the Crown"
 	wretch_select_bounty(H)
 
 /datum/advclass/wretch/necromancer
@@ -362,10 +358,6 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer)
 	H.mind.adjust_spellpoints(5)
-	GLOB.excommunicated_players += H.real_name
-	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
-	if (!my_crime)
-		my_crime = "crimes against the Crown"
 	wretch_select_bounty(H)
 
 // Hedge Mage, a pure mage adventurer sidegrade to Necromancer without the Necromancer free spells and forced patron. More spellpoints, otherwise mostly the same.
