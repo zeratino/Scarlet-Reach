@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	. = ..()
 	set_species(/datum/species/human/northern)
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
-	is_silent = FALSE //they're talkin. is there a reason we turned this off?
+	is_silent = TRUE
 
 
 /mob/living/carbon/human/species/human/northern/highwayman/after_creation()
