@@ -681,6 +681,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			return FALSE
 		if(nonabstract_req && (isbrain(user)))
 			return FALSE
+
+	if(ishuman(user)) // Make the button red out and unselectable
+		var/mob/living/carbon/human/H = user
+		if(H.handcuffed && gesture_required)
+			return FALSE
 	
 	if((invocation_type == "whisper" || invocation_type == "shout") && isliving(user))
 		var/mob/living/living_user = user
