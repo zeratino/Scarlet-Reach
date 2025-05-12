@@ -17,6 +17,7 @@
 	spell_tier = 3
 	invocation = "Impedio!"
 	invocation_type = "shout"
+	gesture_required = TRUE // Offensive spell
 	glow_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	overlay_state = "ensnare"
