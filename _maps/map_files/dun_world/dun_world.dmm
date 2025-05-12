@@ -23282,6 +23282,9 @@
 /obj/item/seeds/onion,
 /obj/item/seeds/onion,
 /obj/structure/closet/crate/chest/wicker,
+/obj/item/seeds/rice,
+/obj/item/seeds/rice,
+/obj/item/seeds/rice,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
 	},
@@ -65814,6 +65817,15 @@
 /obj/item/seeds/wheat/oat,
 /obj/item/seeds/wheat/oat,
 /obj/structure/closet/crate/chest/wicker,
+/obj/item/seeds/nut,
+/obj/item/seeds/nut,
+/obj/item/seeds/nut,
+/obj/item/seeds/poppy,
+/obj/item/seeds/poppy,
+/obj/item/seeds/poppy,
+/obj/item/seeds/coffee,
+/obj/item/seeds/coffee,
+/obj/item/seeds/coffee,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
 	},
