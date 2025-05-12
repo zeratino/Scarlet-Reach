@@ -15552,7 +15552,7 @@
 	locked = 1;
 	lockid = "baroness"
 	},
-/obj/item/roguegem,
+/obj/item/roguegem/ruby,
 /obj/item/book/granter/spell/blackstone/frostbolt,
 /turf/open/floor/rogue/wood/herringbone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
@@ -29281,7 +29281,7 @@
 /area/rogue/indoors/town)
 "kBL" = (
 /obj/structure/table/vtable,
-/obj/item/roguegem{
+/obj/item/roguegem/ruby{
 	pixel_y = 10
 	},
 /obj/item/roguegem/blue,
@@ -41330,8 +41330,8 @@
 	},
 /area/rogue/indoors/town/manor)
 "oYo" = (
-/obj/item/roguegem,
-/obj/item/roguegem,
+/obj/item/roguegem/ruby,
+/obj/item/roguegem/ruby,
 /obj/item/roguegem/violet,
 /obj/item/roguegem/yellow,
 /obj/item/roguegem/green,
@@ -58880,7 +58880,7 @@
 	},
 /obj/item/roguegem/diamond,
 /obj/structure/fluff/walldeco/bigpainting/lake,
-/obj/item/roguegem,
+/obj/item/roguegem/ruby,
 /obj/item/clothing/ring/ruby,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/under/cave/licharena)
