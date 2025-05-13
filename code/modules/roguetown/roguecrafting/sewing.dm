@@ -905,7 +905,7 @@
 
 /datum/crafting_recipe/roguetown/sewing/halfrobe
 	name = "baggy half-robe (2 fibers, 3 cloth)"
-	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/hierophant)
+	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant)
 	reqs = list(/obj/item/natural/cloth = 3,
 	            /obj/item/natural/fibers = 2)
 	tools = list(/obj/item/needle)
