@@ -146,6 +146,45 @@
 	color = "#FFFFFF"
 	shiftable = FALSE
 
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
+	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
+	name = "grenzelhoftian hip-shirt"
+	desc = "Padded shirt for extra comfort and protection, adorned in vibrant colors."
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
+	icon_state = "grenzelshirt"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/stonekeep_merc.dmi'
+	boobed = TRUE
+	detail_tag = "_detail"
+	detail_color = CLOTHING_WHITE
+	max_integrity = 250 // Slightly stronger than base, a reward for unique drip
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	color = "#FFFFFF"
+	var/picked = FALSE
+	shiftable = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft/attack_right(mob/user)
+	..()
+	if(!picked)
+		var/choice = input(user, "Choose a color.", "Grenzelhoft colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
+		picked = TRUE
+		detail_color = playerchoice
+		detail_tag = "_detail"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_shirt()
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
 /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
 	color = "#646464"
 

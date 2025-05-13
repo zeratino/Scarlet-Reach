@@ -1784,9 +1784,10 @@
 	desc = "My cure is most effective."
 	icon_state = "physhat"
 
+// Grenzel unique drip head. Pretend it is a secrete (A type of hat with a hidden helmet underneath). Same stats as kettle
 /obj/item/clothing/head/roguetown/grenzelhofthat
 	name = "grenzelhoft plume hat"
-	desc = "Slaying monsters or fair maidens: Grenzelhoft stands."
+	desc = "Slaying monsters or fair maidens: Grenzelhoft stands. Contains a hidden metallic cap underneath to protect the head from blows."
 	icon_state = "grenzelhat"
 	item_state = "grenzelhat"
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -1795,7 +1796,9 @@
 	detail_tag = "_detail"
 	dynamic_hair_suffix = ""
 	max_integrity = 150
-	armor = list("blunt" = 10, "slash" = 20, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
+	body_parts_covered = HEAD|HAIR|EARS
+	armor = list("blunt" = 70, "slash" = 90, "piercing" = 30, "stab" = 70, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	sewrepair = TRUE
 	var/picked = FALSE
 

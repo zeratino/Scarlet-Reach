@@ -456,12 +456,14 @@
 	sellprice = 12
 
 /datum/crafting_recipe/roguetown/leather/grenzelboots
-	name = "grenzelhoftian boots (2 fibers, 2 leather)"
+	name = "grenzelhoftian boots (1 fibers, 1 leather, 1 fur, 1 tallow)"
 	result = list(/obj/item/clothing/shoes/roguetown/grenzelhoft)
-	reqs = list(/obj/item/natural/hide/cured = 2,
-	            /obj/item/natural/fibers = 2)
+	reqs = list(/obj/item/natural/hide/cured = 1,
+	            /obj/item/reagent_containers/food/snacks/tallow = 1,
+				/obj/item/natural/fur = 1,
+	            /obj/item/natural/fibers = 1)
 	tools = list(/obj/item/needle)
-	craftdiff = 4
+	craftdiff = 6
 	sellprice = 15
 	
 /datum/crafting_recipe/roguetown/leather/otavanboots

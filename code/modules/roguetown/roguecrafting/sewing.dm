@@ -654,14 +654,14 @@
 	sellprice = 30
 
 /datum/crafting_recipe/roguetown/sewing/grenzelshirt
-	name = "grenzelhoftian hip-shirt (2 fibers, 3 cloth, 1 silk)"
-	result = list(/obj/item/clothing/suit/roguetown/shirt/grenzelhoft)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 2,
+	name = "grenzelhoftian hip-shirt (4 fibers, 6 cloth, 1 silk)"
+	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft)
+	reqs = list(/obj/item/natural/cloth = 6,
+				/obj/item/natural/fibers = 4,
 				/obj/item/natural/silk = 1)
 	tools = list(/obj/item/needle)
 	craftdiff = 5
-	sellprice = 20
+	sellprice = 35
 
 /datum/crafting_recipe/roguetown/sewing/silktunic
 	name = "ornate silk tunic (2 fibers, 2 cloth, 2 silk)"
@@ -741,14 +741,14 @@
 	sellprice = 5
 
 /datum/crafting_recipe/roguetown/sewing/grenzelpants
-	name = "grenzelhoftian paumpers (1 fibers, 2 cloth, 1 leather)"
-	result = list(/obj/item/clothing/under/roguetown/grenzelpants)
-	reqs = list(/obj/item/natural/cloth = 2,
-				/obj/item/natural/fibers = 1,
+	name = "grenzelhoftian paumpers (2 fibers, 4 cloth, 1 leather)"
+	result = list(/obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants)
+	reqs = list(/obj/item/natural/cloth = 4,
+				/obj/item/natural/fibers = 2,
 				/obj/item/natural/hide/cured = 1)
 	tools = list(/obj/item/needle)
 	craftdiff = 4
-	sellprice = 15
+	sellprice = 25
 
 /datum/crafting_recipe/roguetown/sewing/shadowpants
 	name = "silk pants (2 fibers, 2 cloth)"
