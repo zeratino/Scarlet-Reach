@@ -120,6 +120,7 @@
 				icon_state = "[initial(icon_state)]_t"
 			flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR
 			body_parts_covered = NECK|HAIR|EARS|HEAD
+			body_parts_covered_dynamic = NECK|HAIR|EARS|HEAD
 			if(ishuman(user))
 				var/mob/living/carbon/H = user
 				H.update_inv_head()
@@ -277,6 +278,7 @@
 			if(hidesnoutADJ == TRUE)
 				flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 			body_parts_covered = NECK|HAIR|EARS|HEAD
+			body_parts_covered_dynamic = NECK|HAIR|EARS|HEAD // Magically heal from peeling but whatever
 			if(ishuman(user))
 				var/mob/living/carbon/H = user
 				H.update_inv_head()
