@@ -87,10 +87,11 @@
 			r_hand = /obj/item/rogueweapon/mace/cudgel //From thief PR
 			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
@@ -101,7 +102,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 			H.cmode_music = 'sound/music/combat_bandit_brigand.ogg'
-			var/weapons = list("Mace + Heather Shield","Dagger + Crossbow", "Axe + Heather Shield")
+			var/weapons = list("Mace + Heather Shield","Dagger + Crossbow", "Axe + Heather Shield", "Bardiche")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			H.set_blindness(0)
 			switch(weapon_choice)
@@ -118,6 +119,10 @@
 					H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
 					beltl = /obj/item/rogueweapon/stoneaxe/battle
 					backr = /obj/item/rogueweapon/shield/heater
+				if ("Bardiche")
+					H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+					l_hand = /obj/item/rogueweapon/halberd/bardiche
+					backr = /obj/item/gwstrap
 			H.change_stat("constitution", 3)
 			H.change_stat("endurance", 2)
 			H.change_stat("speed", 2)//Still the speed class
