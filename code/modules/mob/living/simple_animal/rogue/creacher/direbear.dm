@@ -49,7 +49,6 @@
 	simple_detect_bonus = 40	//No sneaking by our boy..
 	deaggroprob = 0
 	defprob = 40
-	defdrain = 10
 	del_on_deaggro = 2 MINUTES
 	retreat_health = 0.3
 	food = 0
