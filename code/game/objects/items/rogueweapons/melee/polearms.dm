@@ -20,6 +20,7 @@
 /datum/intent/spear/bash
 	name = "bash"
 	blade_class = BCLASS_BLUNT
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = 10
