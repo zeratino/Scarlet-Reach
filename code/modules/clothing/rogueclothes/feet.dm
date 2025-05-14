@@ -115,7 +115,7 @@
 
 
 /obj/item/clothing/shoes/roguetown/simpleshoes/buckle
-	name = "shoes"
+	name = "buckled shoes"
 	icon_state = "buckleshoes"
 	color = null
 
