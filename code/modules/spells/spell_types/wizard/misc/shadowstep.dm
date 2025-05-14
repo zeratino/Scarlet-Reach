@@ -12,6 +12,7 @@
 	chargetime = 0 SECONDS
 	recharge_time = 30 SECONDS
 	hide_charge_effect = TRUE
+	gesture_required = TRUE // Mobility spell
 	spell_tier = 2
 	// This is super telegraphed so it shouldn't need any whisper. It can stay silent as a unique.
 	var/area_of_effect = 1
