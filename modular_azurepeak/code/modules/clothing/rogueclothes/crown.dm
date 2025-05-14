@@ -1,7 +1,7 @@
 #define GARRISON_CROWN_COLOR "#C2A245"
 
 /obj/item/clothing/head/roguetown/crown/serpcrown
-	name = "Crown of Azure Peak"
+	name = "Crown of Azuria"
 	article = "the"
 	desc = "Heavy is the head that wears this."
 	icon_state = "serpcrown"
@@ -14,7 +14,7 @@
 	var/listening = TRUE
 	var/speaking = TRUE
 	var/garrisonline = TRUE
-	var/messagereceivedsound = 'sound/misc/garrisonscom.ogg'
+	var/messagereceivedsound = 'sound/misc/scom.ogg'
 	var/hearrange = 0 // Only hearable by wearer
 	flags_1 = HEAR_1
 
@@ -34,7 +34,7 @@
 
 /obj/item/clothing/head/roguetown/crown/serpcrown/attack_right(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	var/input_text = input(user, "Enter your royal decree:", "Crown Decree")
+	var/input_text = input(user, "Enter your ducal message:", "Crown SCOM")
 	if(input_text)
 		var/usedcolor = user.voice_color
 		if(user.voicecolor_override)
@@ -102,35 +102,3 @@
 		I.send_speech(message, hearrange, I, , spans, message_language=language)
 	else
 		send_speech(message, hearrange, src, , spans, message_language=language)
-
-/obj/item/clothing/head/roguetown/crown/serpcrown/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
-	if(speaker.loc != loc && !ismob(loc))
-		return
-	if(!ishuman(speaker))
-		return
-	if(!listening)
-		return
-	var/mob/living/carbon/human/H = speaker
-	var/usedcolor = H.voice_color
-	if(H.voicecolor_override)
-		usedcolor = H.voicecolor_override
-	if(raw_message)
-		if(length(raw_message) > 100)
-			raw_message = "<small>[raw_message]</small>"
-		if(garrisonline)
-			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" // Prettying up for Garrison line
-			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)
-				S.repeat_message(raw_message, src, usedcolor, message_language)
-			for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
-				S.repeat_message(raw_message, src, usedcolor, message_language)
-			for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
-				if(S.garrisonline)
-					S.repeat_message(raw_message, src, usedcolor, message_language)
-			return
-		for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
-			if(!S.calling)
-				S.repeat_message(raw_message, src, usedcolor, message_language)
-		for(var/obj/item/scomstone/S in SSroguemachine.scomm_machines)
-			S.repeat_message(raw_message, src, usedcolor, message_language)
-		for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
-			S.repeat_message(raw_message, src, usedcolor, message_language)
