@@ -904,19 +904,19 @@
 	sellprice = 17
 
 /datum/crafting_recipe/roguetown/sewing/halfrobe
-	name = "baggy half-robe (2 fibers, 3 cloth)"
+	name = "hierophant's shawl (5 fibers, 6 cloth)"
 	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant)
-	reqs = list(/obj/item/natural/cloth = 3,
-	            /obj/item/natural/fibers = 2)
+	reqs = list(/obj/item/natural/cloth = 6,
+	            /obj/item/natural/fibers = 5)
 	tools = list(/obj/item/needle)
 	craftdiff = 4
 	sellprice = 15
 
 /datum/crafting_recipe/roguetown/sewing/monkrobe
-	name = "monk robe (2 fibers, 2 cloth)"
+	name = "pontifex's qaba (5 fibers, 6 cloth)"
 	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/pointfex)
-	reqs = list(/obj/item/natural/cloth = 2,
-	            /obj/item/natural/fibers = 2)
+	reqs = list(/obj/item/natural/cloth = 6,
+	            /obj/item/natural/fibers = 5)
 	tools = list(/obj/item/needle)
 	craftdiff = 4
 	sellprice = 15

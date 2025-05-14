@@ -437,7 +437,7 @@
 	sellprice = 11
 
 /datum/crafting_recipe/roguetown/leather/baggyleatherpants
-	name = "baggy leather pants (1 fibers, 1 cloth, 2 leather)"
+	name = "pontifex's chaqchur (1 fibers, 1 cloth, 2 leather)"
 	result = list(/obj/item/clothing/under/roguetown/trou/leather/pontifex)
 	reqs = list(/obj/item/natural/cloth = 1,
 	            /obj/item/natural/fibers = 1,
@@ -487,10 +487,11 @@
 	sellprice = 25
 
 /datum/crafting_recipe/roguetown/leather/monkleather
-	name = "asymetrical leather vest (1 cloth, 2 leather)"
+	name = "pontifex's kaftan (1 cloth, 4 leather, 1 tallow)"
 	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex)
-	reqs = list(/obj/item/natural/hide/cured = 2,
-	            /obj/item/natural/cloth = 1)
+	reqs = list(/obj/item/natural/hide/cured = 4,
+	            /obj/item/natural/cloth = 1,
+				/obj/item/reagent_containers/food/snacks/tallow = 1)
 	tools = list(/obj/item/needle)
 	craftdiff = 5
 	sellprice = 23
