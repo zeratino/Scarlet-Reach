@@ -161,7 +161,6 @@
             BP = L.get_bodypart(BODY_ZONE_CHEST)
         BP.receive_damage(shared_damage, 0)
         L.update_damage_overlays()
-        //L.apply_damage(shared_damage, damagetype)
         //Potentially bite ourselves :(
         if(prob(wound_chance))
             L.visible_message(span_danger("[L]'s wounds bleed profusely!"))
