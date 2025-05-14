@@ -159,8 +159,6 @@
         BP = L.get_bodypart(check_zone(def_zone))
         if(!BP)
             BP = L.get_bodypart(BODY_ZONE_CHEST)
-        to_chat(world, "<span class='boldannounce'>[def_zone]</span>")
-        to_chat(world, "<span class='boldannounce'>[BP]</span>")
         BP.receive_damage(shared_damage, 0)
         L.update_damage_overlays()
         //L.apply_damage(shared_damage, damagetype)
@@ -170,9 +168,7 @@
             BP.add_wound(/datum/wound/bite/small)
 
 /datum/component/eora_bond/proc/on_heal(datum/source, healing_on_tick, healing_datum)
-    to_chat(world, "<span class='boldannounce'>HEAL START</span>")
     if( !isliving(parent) || source != parent || istype(healing_datum, /datum/status_effect/buff/healing/eora))
-        to_chat(world, "<span class='boldannounce'>HEAL ABORT</span>")
         return
     
     healing_on_tick = healing_on_tick * heal_share
@@ -181,7 +177,6 @@
         target_to_heal = partner
     else
         target_to_heal = caster
-    to_chat(world, "<span class='boldannounce'>[target_to_heal] TO HEAL for [healing_on_tick] and with [source]</span>")
 
     target_to_heal.apply_status_effect(/datum/status_effect/buff/healing/eora, healing_on_tick)
 
