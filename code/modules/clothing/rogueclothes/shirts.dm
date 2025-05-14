@@ -213,6 +213,7 @@
 	item_state = "silkydress"
 	sleevetype = null
 	sleeved = null
+	flags_inv = HIDECROTCH|HIDEBOOB
 
 /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/random/Initialize()
 	color = pick("#e6e5e5", "#249589", "#a32121", "#428138", "#8747b1", "#007fff")
@@ -443,13 +444,14 @@
 	color = pick("#e6e5e5", "#52BE80", "#C39BD3", "#EC7063","#5DADE2")
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy
-	slot_flags = ITEM_SLOT_ARMOR
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 	name = "sheer dress"
 	desc = "A scandalously short dress made of extra fine fibers, making it semi-sheer."
 	body_parts_covered = null
 	icon_state = "sexydress"
 	sleevetype = null
 	sleeved = null
+	flags_inv = HIDECROTCH|HIDEBOOB
 	color = "#a90707"
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/Initialize()
