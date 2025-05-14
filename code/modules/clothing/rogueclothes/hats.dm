@@ -369,7 +369,7 @@
 	sewrepair = TRUE
 
 /obj/item/clothing/head/roguetown/bardhat
-	name = "hat"
+	name = "bard's hat"
 	icon_state = "bardhat"
 	sewrepair = TRUE
 
@@ -1719,6 +1719,7 @@
 	icon_state = "shawl"
 
 /obj/item/clothing/head/roguetown/articap
+	name = "artificer's cap"
 	desc = "A sporting cap with a small gear adornment. Popular fashion amongst engineers."
 	icon_state = "articap"
 

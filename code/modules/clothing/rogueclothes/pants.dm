@@ -83,7 +83,7 @@
 	..()
 
 /obj/item/clothing/under/roguetown/tights/sailor
-	name = "pants"
+	name = "sailor's pants"
 	icon_state = "sailorpants"
 
 /obj/item/clothing/under/roguetown/webs
