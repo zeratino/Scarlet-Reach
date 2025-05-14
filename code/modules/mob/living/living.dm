@@ -1029,6 +1029,7 @@
 
 /mob/living/proc/end_submit()
 	surrendering = 0
+	update_mobility()
 
 
 /mob/proc/stop_attack(message = FALSE)
