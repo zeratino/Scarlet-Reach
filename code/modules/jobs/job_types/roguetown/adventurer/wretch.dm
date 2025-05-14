@@ -46,6 +46,7 @@
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_HEAVYARMOR, TRAIT_OUTLAW, TRAIT_NOBLE)
+	cmode_music = 'sound/music/combat_bandit.ogg'
 
 /datum/outfit/job/roguetown/wretch/deserter/pre_equip(mob/living/carbon/human/H)
 	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
@@ -305,9 +306,7 @@
 	beltl = /obj/item/roguekey/inhumen
 	backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/ritechalk = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
-	C.grant_spells(H)
-	H.verbs += list(/mob/living/carbon/human/proc/devotionreport, /mob/living/carbon/human/proc/clericpray)
-	START_PROCESSING(SSobj, C)
+	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR)	//Minor regen, can level up to T4.
 	wretch_select_bounty(H)
 
 /datum/advclass/wretch/necromancer

@@ -44,11 +44,11 @@
 			r_hand = /obj/item/rogueweapon/greatsword/grenz
 		if("Halberdier")
 			H.set_blindness(0)
-			to_chat(H, span_warning("You are a Halberdier from Grenzelhoft, a skilled user of poleamrs and axes. Though you prefer them combined."))
+			to_chat(H, span_warning("You are a Halberdier from Grenzelhoft, a skilled user of polearms and axes. Though you prefer them combined."))
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)//Now you actually get your fabled axe skill
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)

@@ -20,6 +20,7 @@
 /datum/intent/spear/bash
 	name = "bash"
 	blade_class = BCLASS_BLUNT
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	penfactor = 10
@@ -537,7 +538,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, /datum/intent/spear/cut/halberd, /datum/intent/sword/chop, SPEAR_BASH)
 	name = "halberd"
-	desc = "A steel halberd, the pinnicle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less. The reinforcments along the shaft provide greater durability."
+	desc = "A steel halberd, the pinnacle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less. The reinforcements along the shaft provide greater durability."
 	icon_state = "halberd"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -886,12 +887,9 @@
 /datum/intent/spear/thrust/quarterstaff
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
-	penfactor = 20
-
-/datum/intent/spear/thrust/quarterstaff/metal
-	blade_class = BCLASS_BLUNT
-	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
-	penfactor = 40
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	damfactor = 1.3 // Adds up to be slightly stronger than an unenhanced ebeak strike.
+	chargetime = 6 // Meant to be stronger than a bash, but with a delay.
 
 /obj/item/rogueweapon/woodstaff/quarterstaff
 	name = "wooden quarterstaff"
@@ -904,20 +902,22 @@
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 	name = "iron quarterstaff"
-	desc = "A quarterstaff reinforced with iron tips. It is capable of dealing more damage than a wooden one, and its blunt ends make for a decent blunt thrusting weapon."
+	desc = "A quarterstaff reinforced with iron tips. It is capable of dealing more damage than a wooden one, and its blunt ends make for a decent blunt thrusting weapon. Can be used to bash down your opponents weapons."
 	force = 16
 	force_wielded = 22
-	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_iron"
 	max_integrity = 300
 	blade_dulling = DULLING_SHAFT_REINFORCED
+	intdamage_factor = 1.2
 
 /obj/item/rogueweapon/woodstaff/quarterstaff/steel
 	name = "steel quarterstaff"
-	desc = "A quarterstaff reinforced with steel tips and steel rings, blurring the line between a light polehammer and a reinforced quarterstaff. Extremely durable, and more than capable of bludgeoning brigands to death."
+	desc = "A quarterstaff reinforced with steel tips and steel rings, blurring the line between a light polehammer and a reinforced quarterstaff. Extremely durable, and more than capable of bludgeoning brigands to death. Durable enough to break your opponents weapons."
 	force = 18
 	force_wielded = 25
-	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff/metal)
+	gripped_intents = list(/datum/intent/spear/bash/ranged/quarterstaff, /datum/intent/spear/thrust/quarterstaff)
 	icon_state = "quarterstaff_steel"
 	max_integrity = 500
 	blade_dulling = DULLING_SHAFT_REINFORCED
+	intdamage_factor = 1.2
