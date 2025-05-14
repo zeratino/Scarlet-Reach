@@ -833,6 +833,30 @@
 	M.Scale(0.7,0.7)
 	src.transform = M
 
+/obj/structure/fluff/statue/femalestatue1
+	icon = 'icons/roguetown/misc/ay.dmi'
+	icon_state = "2"
+	pixel_x = -32
+	pixel_y = -16
+
+/obj/structure/fluff/statue/femalestatue1/Initialize()
+	. = ..()
+	var/matrix/M = new
+	M.Scale(0.7,0.7)
+	src.transform = M
+
+/obj/structure/fluff/statue/femalestatue2
+	icon = 'icons/roguetown/misc/ay.dmi'
+	icon_state = "5"
+	pixel_x = -32
+	pixel_y = -16
+
+/obj/structure/fluff/statue/femalestatue2/Initialize()
+	. = ..()
+	var/matrix/M = new
+	M.Scale(0.7,0.7)
+	src.transform = M
+
 /obj/structure/fluff/statue/femalestatue/zizo
 	icon = 'icons/roguetown/misc/ay.dmi'
 	icon_state = "4"
