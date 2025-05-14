@@ -1029,34 +1029,6 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
 
-//datum/crafting_recipe/roguetown/sewing/stockings_black
-//	name = "black stockings (1 fibers, 1 cloth)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/black)
-//	reqs = list(/obj/item/natural/cloth = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/stockings_blue
-//	name = "blue stockings (1 fibers, 1 cloth)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/blue)
-//	reqs = list(/obj/item/natural/cloth = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/stockings_red
-//	name = "red stockings (1 fibers, 1 cloth)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/red)
-//	reqs = list(/obj/item/natural/cloth = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
-
-///datum/crafting_recipe/roguetown/sewing/stockings_purple
-//	name = "purple stockings (1 fibers, 1 cloth)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/purple)
-//	reqs = list(/obj/item/natural/cloth = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
-
 /datum/crafting_recipe/roguetown/sewing/stockings_white_silk
 	name = "silk stockings (1 fibers, 1 silk)"
 	result = list(/obj/item/clothing/under/roguetown/tights/stockings/silk/white)
@@ -1064,63 +1036,11 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 5
 
-//datum/crafting_recipe/roguetown/sewing/stockings_black_silk
-//	name = "black silk stockings (1 fibers, 1 silk)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/silk/black)
-//	reqs = list(/obj/item/natural/silk = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 5
-
-//datum/crafting_recipe/roguetown/sewing/stockings_blue_silk
-//	name = "blue silk stockings (1 fibers, 1 silk)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/silk/blue)
-//	reqs = list(/obj/item/natural/silk = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 5
-
-//datum/crafting_recipe/roguetown/sewing/stockings_red_silk
-//	name = "red silk stockings (1 fibers, 1 silk)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/silk/red)
-//	reqs = list(/obj/item/natural/silk = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 5
-
-//datum/crafting_recipe/roguetown/sewing/stockings_purple_silk
-//	name = "purple silk stockings (1 fibers, 1 silk)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/silk/purple)
-//	reqs = list(/obj/item/natural/silk = 1,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 5
-
 /datum/crafting_recipe/roguetown/sewing/stockings_white_fishnet
 	name = "fishnet stockings (2 fibers)"
 	result = list(/obj/item/clothing/under/roguetown/tights/stockings/fishnet/white)
 	reqs = list(/obj/item/natural/fibers = 2)
 	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/stockings_black_fishnet
-//	name = "black fishnet stockings (2 fibers)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/fishnet/black)
-//	reqs = list(/obj/item/natural/fibers = 2)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/stockings_blue_fishnet
-//	name = "blue fishnet stockings (2 fibers)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/fishnet/blue)
-//	reqs = list(/obj/item/natural/fibers = 2)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/stockings_red_fishnet
-//	name = "red fishnet stockings (2 fibers)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/fishnet/red)
-//	reqs = list(/obj/item/natural/fibers = 2)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/stockings_purple_fishnet
-//	name = "purple fishnet stockings (2 fibers)"
-//	result = list(/obj/item/clothing/under/roguetown/tights/stockings/fishnet/purple)
-//	reqs = list(/obj/item/natural/fibers = 2)
-//	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/strapless_dress
 	name = "strapless dress (1 fibers, 2 cloth)"
@@ -1128,34 +1048,6 @@
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/strapless_dress_black
-//	name = "black strapless dress (1 fibers, 2 cloth)"
-//	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/black)
-//	reqs = list(/obj/item/natural/cloth = 2,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/strapless_dress_blue
-//	name = "blue strapless dress (1 fibers, 2 cloth)"
-//	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/blue)
-//	reqs = list(/obj/item/natural/cloth = 2,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/strapless_dress_red
-//	name = "red strapless dress (1 fibers, 2 cloth)"
-//	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/red)
-//	reqs = list(/obj/item/natural/cloth = 2,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
-
-//datum/crafting_recipe/roguetown/sewing/strapless_dress_purple
-//	name = "purple strapless dress (1 fibers, 2 cloth)"
-//	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/gen/strapless/purple)
-//	reqs = list(/obj/item/natural/cloth = 2,
-//				/obj/item/natural/fibers = 1)
-//	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/sewing/strapless_dress_alt
 	name = "strapless dress alt (1 fibers, 1 cloth)"
