@@ -102,6 +102,33 @@
 	verbage = "makes"
 	skillcraft = /datum/skill/craft/carpentry
 
+/datum/crafting_recipe/roguetown/structure/display_stand
+	name = "display stand"
+	reqs = list(/obj/item/grown/log/tree/small = 2, /obj/item/grown/log/tree/stick = 2)
+	result = /obj/structure/mannequin
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 2
+	skillcraft = /datum/skill/craft/carpentry
+
+/datum/crafting_recipe/roguetown/structure/mannequin_female
+	name = "mannequin (female)"
+	reqs = list(/obj/item/grown/log/tree/small = 2, /obj/item/grown/log/tree/stick = 2)
+	result = /obj/structure/mannequin/male/female
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 2
+	skillcraft = /datum/skill/craft/carpentry
+
+/datum/crafting_recipe/roguetown/structure/mannequin_male
+	name = "mannequin (male)"
+	reqs = list(/obj/item/grown/log/tree/small = 2, /obj/item/grown/log/tree/stick = 2)
+	result = /obj/structure/mannequin/male
+	verbage_simple = "construct"
+	verbage = "constructs"
+	craftdiff = 2
+	skillcraft = /datum/skill/craft/carpentry
+
 /obj/structure/fermenting_barrel/crafted
 	sellprice = 6
 
