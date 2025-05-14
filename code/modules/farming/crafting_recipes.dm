@@ -16,33 +16,6 @@
 	skillcraft = /datum/skill/craft/carpentry
 	time = 4 SECONDS
 
-/datum/crafting_recipe/roguetown/structure/display_stand
-	name = "display stand"
-	reqs = list(/obj/item/grown/log/tree/small = 2, /obj/item/grown/log/tree/stick = 2)
-	result = /obj/structure/mannequin
-	verbage_simple = "construct"
-	verbage = "constructs"
-	craftdiff = 2
-	time = 4 SECONDS
-
-/datum/crafting_recipe/roguetown/structure/mannequin_female
-	name = "mannequin (female)"
-	reqs = list(/obj/item/grown/log/tree/small = 2, /obj/item/grown/log/tree/stick = 2)
-	result = /obj/structure/mannequin/male/female
-	verbage_simple = "construct"
-	verbage = "constructs"
-	craftdiff = 2
-	time = 4 SECONDS
-
-/datum/crafting_recipe/roguetown/structure/mannequin_male
-	name = "mannequin (male)"
-	reqs = list(/obj/item/grown/log/tree/small = 2, /obj/item/grown/log/tree/stick = 2)
-	result = /obj/structure/mannequin/male
-	verbage_simple = "construct"
-	verbage = "constructs"
-	craftdiff = 2
-	time = 4 SECONDS
-
 /datum/crafting_recipe/roguetown/dryleaf
 	name = "dry swampweed"
 	result = /obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry
