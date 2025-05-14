@@ -49,7 +49,6 @@
 	minimum_distance = 0
 	deaggroprob = 0
 	defprob = 30
-	defdrain = 13
 	del_on_deaggro = 99 SECONDS
 	retreat_health = 0
 	food = 0

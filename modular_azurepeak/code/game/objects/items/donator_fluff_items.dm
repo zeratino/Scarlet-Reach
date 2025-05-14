@@ -3,7 +3,7 @@
 //Plexiant's donator item - rapier
 /obj/item/rogueweapon/sword/rapier/aliseo
 	name = "Rapier di Aliseo"
-	desc = "A rapier of sporting a steel blade and decrotive silver-plating. Elaborately designed in classic intricate yet functional Etrucian style, the pummel appears to be embedded with a cut emerald with a family crest engraved in the fine leather grip of the handle." 
+	desc = "A rapier of sporting a steel blade and decrotive silver-plating. Elaborately designed in classic intricate yet functional Etrucian style, the pummel appears to be embedded with a cut emerald with a family crest engraved in the fine leather grip of the handle."
 	icon_state = "plex"
 	icon = 'modular_azurepeak/icons/obj/items/donor_weapons_64.dmi'
 
@@ -57,23 +57,10 @@
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/gilded/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/list/colors = list(		//Uses same colors as lord colors for simplicty & blending.
-		"PURPLE"="#8747b1", 
-		"RED"="#8b2323", 	
-		"BLACK"="#2b292e", 
-		"BROWN"="#61462c", 	
-		"GREEN"="#264d26", 	
-		"BLUE"="#173266", 	
-		"YELLOW"="#ffcd43", 
-		"TEAL"="#249589", 	
-		"AZURE"="#007fff", 	
-		"WHITE"="#ffffff",	
-		"ORANGE"="#df8405",	
-		"MAGENTA"="#962e5c")
-		var/choice = input(user, "Choose a color.", "Orle") as anything in colors
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
-		detail_color = colors[choice]
+		detail_color = colorlist[choice]
 		detail_tag = "_detail"
 		update_icon()
 		if(loc == user && ishuman(user))
@@ -110,3 +97,14 @@
 					var/mob/living/carbon/H = user
 					H.update_inv_head()
 		user.update_fov_angles()
+
+//Zydras donator item - bathmatron padded dress
+/obj/item/clothing/suit/roguetown/armor/armordress/alt/zydrasdress //armor dress worn by Bathmatrons/Bathmasters
+	name = "padded silky dress"
+	desc = "A gorgeous black and gold dress with built-in padding for protection."
+	icon_state = "zydrasdress"
+	item_state = "zydrasdress"
+	sleevetype = "zydrasdress"
+	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
+	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
+	sleeved = 'modular_azurepeak/icons/clothing/onmob/donor_sleeves_armor.dmi' //No sleeves

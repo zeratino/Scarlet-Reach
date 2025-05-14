@@ -40,7 +40,6 @@
 	faction = list("rogueanimal")
 	deaggroprob = 15
 	defprob = 30
-	defdrain = 10
 	dodgetime = 10
 	del_on_deaggro = 99 SECONDS
 	

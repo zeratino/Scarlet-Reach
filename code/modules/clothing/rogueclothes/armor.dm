@@ -535,6 +535,22 @@
 	. = ..()
 	color = pick(CLOTHING_PURPLE, null,CLOTHING_GREEN, CLOTHING_RED)
 
+/obj/item/clothing/suit/roguetown/shirt/robe/spellcasterrobe
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "spellsinger robes"
+	desc = "A set of reinforced, leather-padded robes worn by spellblades."
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
+	armor = list("blunt" = 70, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
+	armor_class = ARMOR_CLASS_LIGHT
+	icon_state = "spellcasterrobe"
+	icon = 'icons/roguetown/clothing/armor.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
+	sleeved = null
+	color = null
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+
 //MEDIUM ARMOR//
 
 /obj/item/clothing/suit/roguetown/armor/chainmail

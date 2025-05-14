@@ -19,6 +19,7 @@
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_MEDIUM
+	gesture_required = TRUE
 	range = 7
 	var/delay = 3
 	var/damage = 0 // damage based off your str 
