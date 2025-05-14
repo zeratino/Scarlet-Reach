@@ -1,6 +1,9 @@
+#define GARRISON_CROWN_COLOR "#C2A245"
+
 /obj/item/clothing/head/roguetown/crown/serpcrown
-	name = "crown of azure peak"
-	desc = ""
+	name = "\the Crown of Azure Peak"
+	article = "the"
+	desc = "Heavy is the head that wears this."
 	icon_state = "serpcrown"
 	//dropshrink = 0
 	dynamic_hair_suffix = null
@@ -47,7 +50,7 @@
 			for(var/obj/item/listenstone/S in SSroguemachine.scomm_machines)
 				S.repeat_message(input_text, src, usedcolor)
 		if(garrisonline)
-			input_text = "<big><span style='color: [GARRISON_SCOM_COLOR]'>[input_text]</span></big>" // Prettying up for Garrison line
+			input_text = "<big><span style='color: [GARRISON_CROWN_COLOR]'>[input_text]</span></big>" // Prettying up for Garrison line
 			for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
 				S.repeat_message(input_text, src, usedcolor)
 			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)
