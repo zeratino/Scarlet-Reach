@@ -224,7 +224,7 @@
 /obj/effect/proc_holder/spell/invoked/heartweave
     name = "Heartweave"
     desc = "Forge a symbiotic bond between two souls."
-    overlay_state = "love"
+    overlay_state = "bliss"
     range = 2
     chargetime = 0.5 SECONDS
     invocation = "By Eora's grace, let our fates intertwine!"
