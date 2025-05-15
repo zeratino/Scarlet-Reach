@@ -207,7 +207,7 @@
 /obj/item/clothing/suit/roguetown/shirt/dress/silkydress
 	name = "silky dress"
 	desc = "Despite not actually being made of silk, the legendary expertise needed to sew this puts the quality on par."
-	body_parts_covered = null
+	body_parts_covered = CHEST|GROIN|ARMS|VITALS
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_ARMOR
 	icon_state = "silkydress"
 	item_state = "silkydress"
@@ -452,11 +452,10 @@
 	sleevetype = null
 	sleeved = null
 	flags_inv = HIDECROTCH|HIDEBOOB
-	color = "#a90707"
 
-/obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/Initialize()
+/obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/random/Initialize()
 	. = ..()
-	color = pick("#a90707", "#16239a", "#d68fbd", CLOTHING_BLACK)
+	color = pick(CLOTHING_WHITE, CLOTHING_RED, CLOTHING_PURPLE, CLOTHING_MAGENTA, CLOTHING_TEAL, CLOTHING_BLACK)
 
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/black/Initialize()
 	. = ..()
