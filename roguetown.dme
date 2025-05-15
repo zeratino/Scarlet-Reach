@@ -1129,6 +1129,7 @@
 #include "code\modules\cargo\packsrogue\tools.dm"
 #include "code\modules\cargo\packsrogue\wardrobe.dm"
 #include "code\modules\cargo\packsrogue\weapons.dm"
+#include "code\modules\cargo\packsrogue\merchant\merchant_potions.dm"
 #include "code\modules\chatter\chatter.dm"
 #include "code\modules\client\asset_cache.dm"
 #include "code\modules\client\assets_rogue.dm"
