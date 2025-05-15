@@ -744,14 +744,6 @@
 	icon_state = "woman"
 	gender = FEMALE
 
-/obj/structure/mannequin/armory
-	name = "display stand"
-	desc = "It looks like a decorative training dummy."
-
-/obj/structure/mannequin/armory/Initialize(mapload)
-
-
-
 /*
 * Allows mannequins to wear pants,
 * gloves, and shoes.
