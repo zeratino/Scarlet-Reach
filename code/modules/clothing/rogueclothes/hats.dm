@@ -1800,8 +1800,8 @@
 	dynamic_hair_suffix = ""
 	max_integrity = 150
 	body_parts_covered = HEAD|HAIR|EARS
-	armor = list("blunt" = 70, "slash" = 90, "piercing" = 30, "stab" = 70, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = list("blunt" = 70, "slash" = 70, "stab" = 50, "piercing" = 30, "fire" = 0, "acid" = 0) // spellsinger hat stats
 	sewrepair = TRUE
 	var/picked = FALSE
 
