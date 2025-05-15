@@ -1029,6 +1029,7 @@
 
 /mob/living/proc/end_submit()
 	surrendering = 0
+	update_mobility()
 
 
 /mob/proc/stop_attack(message = FALSE)
@@ -1795,9 +1796,9 @@
 				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					emote("huh")
 					to_chat(M, span_danger("[src] sees me! I'm found!"))
-					M.update_sneak_invis()
 					M.mob_timers[MT_INVISIBILITY] = world.time
 					M.mob_timers[MT_FOUNDSNEAK] = world.time
+					M.update_sneak_invis(reset = TRUE)
 			else
 				if(M.m_intent == MOVE_INTENT_SNEAK || M.mob_timers[MT_INVISIBILITY] > world.time)
 					if(M.client?.prefs.showrolls)

@@ -21,6 +21,7 @@
 	glow_color = GLOW_COLOR_ICE
 	glow_intensity = GLOW_INTENSITY_LOW
 	cost = 1
+	gesture_required = TRUE // Offensive spell
 
 	xp_gain = TRUE
 	miracle = FALSE

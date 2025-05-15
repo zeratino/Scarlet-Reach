@@ -30,7 +30,11 @@
 			beltl = /obj/item/rogueweapon/huntingknife
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/woodstaff
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/spellbook_unfinished/pre_arcyne = 1)
+			backpack_contents = list(
+				/obj/item/flashlight/flare/torch = 1,
+				/obj/item/spellbook_unfinished/pre_arcyne = 1,
+				/obj/item/roguegem/amethyst = 1,
+				)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
@@ -52,15 +56,14 @@
 			ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 		if("Spellsinger")
 			to_chat(H, span_warning("You belong to a school of bards renowned for their study of both the arcane and the arts."))
-			head = /obj/item/clothing/head/roguetown/bucklehat
-			mask = /obj/item/clothing/mask/rogue/ragmask/black
+			head = /obj/item/clothing/head/roguetown/spellcasterhat
 			shoes = /obj/item/clothing/shoes/roguetown/boots
-			pants = /obj/item/clothing/under/roguetown/tights/purple
+			pants = /obj/item/clothing/under/roguetown/trou/leather
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
-			gloves = /obj/item/clothing/gloves/roguetown/fingerless
+			gloves = /obj/item/clothing/gloves/roguetown/angle
 			belt = /obj/item/storage/belt/rogue/leather
-			armor = /obj/item/clothing/suit/roguetown/shirt/tunic/black
-			cloak = /obj/item/clothing/cloak/raincloak/purple
+			neck = /obj/item/clothing/neck/roguetown/gorget/steel
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/spellcasterrobe
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -69,6 +72,7 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mockery)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/music, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
