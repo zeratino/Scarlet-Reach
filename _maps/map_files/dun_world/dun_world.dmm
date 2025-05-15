@@ -12123,6 +12123,13 @@
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/bog)
+"etj" = (
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	pixel_y = 1
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/under/town/basement/keep)
 "etk" = (
 /obj/item/restraints/legcuffs/beartrap/armed/camouflage,
 /turf/open/floor/rogue/dirt/road,
@@ -17003,6 +17010,7 @@
 /obj/item/clothing/gloves/roguetown/fingerless_leather,
 /obj/item/clothing/gloves/roguetown/fingerless_leather,
 /obj/machinery/light/rogue/torchholder/l,
+/obj/item/clothing/gloves/roguetown/fingerless_leather,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "gef" = (
@@ -34243,13 +34251,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
-"mqu" = (
-/obj/effect/decal/cobbleedge{
-	dir = 8;
-	pixel_y = 1
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/town/basement/keep)
 "mqv" = (
 /obj/item/natural/stone,
 /turf/open/floor/rogue/naturalstone,
@@ -45455,6 +45456,7 @@
 /obj/structure/rack/rogue,
 /obj/item/clothing/gloves/roguetown/chain/iron,
 /obj/item/clothing/gloves/roguetown/chain/iron,
+/obj/item/clothing/gloves/roguetown/chain/iron,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "qlQ" = (
@@ -53162,6 +53164,7 @@
 /area/rogue/outdoors/bog)
 "sXi" = (
 /obj/structure/rack/rogue,
+/obj/item/clothing/shoes/roguetown/boots/armor/iron,
 /obj/item/clothing/shoes/roguetown/boots/armor/iron,
 /obj/item/clothing/shoes/roguetown/boots/armor/iron,
 /turf/open/floor/rogue/cobble,
@@ -62371,6 +62374,7 @@
 /area/rogue/outdoors/mountains)
 "whB" = (
 /obj/structure/rack/rogue,
+/obj/item/clothing/gloves/roguetown/angle,
 /obj/item/clothing/gloves/roguetown/angle,
 /obj/item/clothing/gloves/roguetown/angle,
 /turf/open/floor/rogue/cobble,
@@ -162225,7 +162229,7 @@ mIO
 eWv
 gAa
 hXA
-mqu
+etj
 bYC
 kSu
 eWv
@@ -162674,7 +162678,7 @@ qgS
 iad
 bYC
 lDp
-mqu
+etj
 qLZ
 bnM
 wCC
