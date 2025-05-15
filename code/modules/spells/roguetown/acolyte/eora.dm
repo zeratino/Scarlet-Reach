@@ -116,7 +116,7 @@
 /datum/component/eora_bond/partner
     ispartner = TRUE
 
-/datum/component/eora_bond/Initialize(mob/living/partner_mob, mob/living/caster_mob)
+/datum/component/eora_bond/Initialize(mob/living/partner_mob, mob/living/caster_mob, var/holy_skill)
     if(!isliving(parent) || !isliving(partner_mob))
         return COMPONENT_INCOMPATIBLE
 
@@ -127,6 +127,15 @@
 
     partner = partner_mob
     caster = caster_mob
+    
+    var/bonus_mod = 0
+    if(holy_skill > 4)
+        bonus_mod = 0.05
+    damage_share = 0.1 + (0.05 * holy_skill) + bonus_mod
+    heal_share = 0.1 + (0.05 * holy_skill) + bonus_mod
+    wound_chance = 40 - (5 * holy_skill)
+
+    to_chat(world, span_warning("[heal_share]"))
 
     // Correct signal name
     RegisterSignal(parent, COMSIG_MOB_APPLY_DAMGE, PROC_REF(on_damage))
@@ -224,6 +233,7 @@
     recharge_time = 60 SECONDS
     miracle = TRUE
     devotion_cost = 75
+    associated_skill = /datum/skill/magic/holy
 
 /obj/effect/proc_holder/spell/invoked/heartweave/cast(list/targets, mob/living/user)
     var/mob/living/target = targets[1]
@@ -249,9 +259,10 @@
         revert_cast()
         return FALSE
 
+    var/holy_skill = user.mind?.get_skill_level(associated_skill)
     // Add component to both participants without mutual recursion
-    user.AddComponent(/datum/component/eora_bond, target, user)
-    target.AddComponent(/datum/component/eora_bond/partner, target, user)
+    user.AddComponent(/datum/component/eora_bond, target, user, holy_skill)
+    target.AddComponent(/datum/component/eora_bond/partner, target, user, holy_skill)
     
     user.visible_message(
         span_notice("A golden tether forms between [user] and [target]!"),

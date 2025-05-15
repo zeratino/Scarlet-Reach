@@ -187,8 +187,8 @@
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/lesser_heal 			= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/bud					= CLERIC_T1,
-					/obj/effect/proc_holder/spell/invoked/eoracurse				= CLERIC_T2,
-					/obj/effect/proc_holder/spell/invoked/heartweave			= CLERIC_T3,
+					/obj/effect/proc_holder/spell/invoked/heartweave			= CLERIC_T2,
+					/obj/effect/proc_holder/spell/invoked/eoracurse				= CLERIC_T3,
 	)
 	confess_lines = list(
 		"EORA BRINGS US TOGETHER!",
