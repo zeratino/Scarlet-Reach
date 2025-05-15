@@ -1130,6 +1130,9 @@
 /turf/open/floor/rogue/tile/checkeralt
 	icon_state = "tile"
 
+/turf/open/floor/rogue/tile/brownbrick
+	icon_state = "brown"
+
 /turf/open/floor/rogue/tile/harem
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "harem"
