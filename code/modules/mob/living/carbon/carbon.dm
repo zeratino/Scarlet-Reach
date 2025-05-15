@@ -390,6 +390,8 @@
 	if((STASTR > 10))
 		var/time_mod = (STASTR - 10) * 20 SECONDS
 		breakouttime -= time_mod
+	if(mind && mind.has_antag_datum(/datum/antagonist/zombie))
+		breakouttime = 10 SECONDS
 	if(STASTR > 15)
 		cuff_break = INSTANT_CUFFBREAK
 		breakouttime = I.breakouttime
