@@ -808,6 +808,7 @@
 /obj/structure/rack/rogue,
 /obj/item/rogueweapon/sword,
 /obj/item/rogueweapon/sword,
+/obj/item/rogueweapon/sword,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "aoJ" = (
@@ -6733,6 +6734,21 @@
 	},
 /turf/open/floor/rogue/woodturned/nosmooth,
 /area/rogue/outdoors/mountains)
+"cvY" = (
+/obj/structure/rack/rogue/shelf,
+/obj/item/reagent_containers/glass/bottle/rogue/healthpot{
+	pixel_y = 32;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpot{
+	pixel_y = 32
+	},
+/obj/item/reagent_containers/glass/bottle/rogue/healthpot{
+	pixel_y = 32;
+	pixel_x = 6
+	},
+/turf/open/floor/rogue/tile,
+/area/rogue/under/town/basement/keep)
 "cvZ" = (
 /obj/structure/closet/crate/chest{
 	base_icon_state = "woodchestalt";
@@ -7847,6 +7863,10 @@
 	},
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"cQC" = (
+/obj/structure/mannequin,
+/turf/open/floor/rogue/tile,
+/area/rogue/under/town/basement/keep)
 "cQG" = (
 /obj/effect/decal/remains/bigrat,
 /turf/open/floor/rogue/cobble,
@@ -8060,9 +8080,9 @@
 "cUk" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
 /obj/structure/closet/crate/chest/neu,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
+/obj/item/clothing/cloak/stabard/guardhood,
+/obj/item/clothing/cloak/stabard/guardhood,
+/obj/item/clothing/cloak/stabard/guardhood,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/town/basement/keep)
 "cUr" = (
@@ -20697,8 +20717,6 @@
 /obj/item/clothing/cloak/stabard/surcoat/guard,
 /obj/item/clothing/cloak/stabard/surcoat/guard,
 /obj/item/clothing/cloak/stabard/surcoat/guard,
-/obj/item/clothing/cloak/stabard/guardhood,
-/obj/item/clothing/cloak/stabard/guardhood,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/town/basement/keep)
 "htV" = (
@@ -45916,7 +45934,6 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/woods)
 "quV" = (
-/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 /obj/structure/closet/crate/chest/old_crate,
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot,
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot,
@@ -47634,8 +47651,6 @@
 /obj/item/clothing/cloak/tabard/knight/guard,
 /obj/item/clothing/cloak/tabard/knight/guard,
 /obj/item/clothing/cloak/tabard/knight/guard,
-/obj/item/clothing/cloak/stabard/guardhood,
-/obj/item/clothing/cloak/stabard/guardhood,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/town/basement/keep)
 "raa" = (
@@ -162097,7 +162112,7 @@ jfm
 gFm
 mFr
 iad
-bHV
+cQC
 bHV
 cUj
 iad
@@ -162549,7 +162564,7 @@ iad
 iad
 iad
 iad
-bHV
+cQC
 bHV
 fvC
 iad
@@ -163001,7 +163016,7 @@ kAF
 eWv
 vBu
 iad
-bHV
+cQC
 bHV
 nTv
 iad
@@ -163453,7 +163468,7 @@ pWB
 eWv
 dZz
 iad
-bHV
+cvY
 bHV
 bHV
 iad
