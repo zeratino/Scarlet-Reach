@@ -31,6 +31,9 @@
 /area/rogue/indoors/town/manor)
 "aaK" = (
 /obj/structure/table/wood,
+/obj/item/candle/gold/lit{
+	pixel_y = 5
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "aaM" = (
@@ -737,6 +740,7 @@
 	dir = 8;
 	icon_state = "largetable"
 	},
+/obj/item/candle/candlestick/silver/lit,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "anw" = (
@@ -1574,6 +1578,14 @@
 	pixel_y = 10
 	},
 /obj/item/cooking/platter/silver,
+/obj/item/kitchen/fork/silver{
+	pixel_x = 14;
+	pixel_y = 6
+	},
+/obj/item/kitchen/spoon/gold{
+	pixel_y = 5;
+	pixel_x = -10
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -2232,9 +2244,8 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/reagent_containers/glass/cup/wooden{
-	pixel_x = -8;
-	pixel_y = 4
+/obj/item/candle/gold/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
@@ -2889,6 +2900,17 @@
 /area/rogue/indoors/town/magician)
 "bbz" = (
 /obj/structure/table/wood,
+/obj/item/kitchen/fork/silver{
+	pixel_x = 14;
+	pixel_y = 6
+	},
+/obj/item/kitchen/spoon/silver{
+	pixel_y = 5;
+	pixel_x = -14
+	},
+/obj/item/reagent_containers/glass/bowl/silver{
+	pixel_x = 2
+	},
 /turf/open/floor/rogue/tile/masonic{
 	dir = 1
 	},
@@ -3419,10 +3441,10 @@
 	},
 /area/rogue/outdoors/woods)
 "bmn" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/eaglebeak/lucerne,
-/turf/open/floor/rogue/tile,
-/area/rogue/under/town/basement/keep)
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bowl/silver,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "bmv" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -3818,6 +3840,9 @@
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "longtable"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -5440,6 +5465,16 @@
 	dir = 1
 	},
 /area/rogue/outdoors/beach)
+"bWn" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/silver/lit{
+	pixel_y = 6
+	},
+/turf/open/floor/rogue/ruinedwood,
+/area/rogue/outdoors/town/roofs)
 "bWx" = (
 /obj/structure/glowshroom,
 /turf/open/floor/rogue/cobblerock,
@@ -5876,6 +5911,13 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/cell)
+"chv" = (
+/obj/item/tablecloth/silk{
+	pixel_x = 6;
+	pixel_y = -5
+	},
+/turf/closed/wall/mineral/rogue/wooddark/end,
+/area/rogue/indoors/town)
 "chA" = (
 /obj/structure/fluff/walldeco/bigpainting/lake{
 	pixel_x = 0
@@ -6185,6 +6227,9 @@
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "longtable"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
@@ -7590,9 +7635,14 @@
 	},
 /area/rogue/indoors/town)
 "cNi" = (
-/obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/rogue/ruinedwood,
-/area/rogue/outdoors/town/roofs)
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town)
 "cNl" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/tile{
@@ -8391,6 +8441,15 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
+"dau" = (
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "daD" = (
 /obj/structure/handcart,
 /obj/item/natural/stone,
@@ -8427,6 +8486,15 @@
 /obj/structure/fluff/railing/border,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"daV" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/town)
 "daY" = (
 /obj/structure/roguewindow/openclose/reinforced,
 /turf/open/floor/rogue/blocks/newstone/alt,
@@ -8439,6 +8507,7 @@
 /area/rogue/indoors/town)
 "dbn" = (
 /obj/structure/mineral_door/wood/donjon{
+	dir = 1;
 	locked = 1;
 	lockid = "nightman"
 	},
@@ -10278,6 +10347,9 @@
 	pixel_x = -17;
 	pixel_y = 9
 	},
+/obj/item/candle/silver/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/town/physician)
 "dLE" = (
@@ -11181,6 +11253,10 @@
 /obj/structure/roguerock,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/cave/orcdungeon)
+"eeu" = (
+/obj/structure/fermenting_barrel/random/water,
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/town/bath)
 "eeF" = (
 /obj/effect/decal/remains/mole,
 /turf/open/floor/rogue/dirt,
@@ -11995,13 +12071,11 @@
 	dir = 4;
 	icon_state = "largetable"
 	},
-/obj/item/reagent_containers/glass/cup/steel{
+/obj/item/reagent_containers/glass/cup/golden/small{
 	pixel_x = -6;
 	pixel_y = 20
 	},
-/obj/item/reagent_containers/glass/cup/steel{
-	pixel_x = -6
-	},
+/obj/item/reagent_containers/glass/cup/golden/small,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/shop)
 "ess" = (
@@ -13129,6 +13203,7 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
+/obj/item/candle/silver/lit,
 /turf/open/floor/rogue/carpet,
 /area/rogue/under/town/basement/keep)
 "eMk" = (
@@ -13469,7 +13544,12 @@
 /obj/item/reagent_containers/glass/cup/silver{
 	name = "pewter goblet";
 	pixel_x = 9;
-	pixel_y = 10
+	pixel_y = 10;
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!"
+	},
+/obj/item/candle/silver/lit{
+	pixel_y = 5;
+	pixel_x = -10
 	},
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/indoors/town/manor)
@@ -13983,6 +14063,10 @@
 /obj/item/rogueweapon/huntingknife/chefknife,
 /obj/item/book/rogue/yeoldecookingmanual{
 	pixel_x = 10
+	},
+/obj/item/candle/gold/lit{
+	pixel_x = -10;
+	pixel_y = 10
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
@@ -14689,6 +14773,10 @@
 	pixel_y = 10
 	},
 /obj/item/cooking/platter/silver,
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_x = 5;
+	pixel_y = 7
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "fmU" = (
@@ -14696,6 +14784,10 @@
 /obj/item/reagent_containers/glass/bottle/rogue/whitewine{
 	pixel_x = -12;
 	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = 8;
+	pixel_y = 7
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -14936,6 +15028,10 @@
 	dir = 1;
 	icon_state = "longtable_mid"
 	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_x = 5;
+	pixel_y = 7
+	},
 /obj/item/reagent_containers/glass/bottle/rogue/whitewine{
 	pixel_x = -12;
 	pixel_y = 8
@@ -15088,6 +15184,9 @@
 /obj/structure/fluff/walldeco/rpainting/crown{
 	pixel_x = 32;
 	pixel_y = 0
+	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -15346,6 +15445,10 @@
 "fyX" = (
 /obj/structure/table/wood{
 	icon_state = "longtable_mid"
+	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_x = -10;
+	pixel_y = 12
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -16235,6 +16338,9 @@
 "fRL" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood3"
+	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/manor)
@@ -17420,11 +17526,12 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/orcdungeon)
 "gpi" = (
-/obj/structure/rack/rogue,
-/obj/item/reagent_containers/glass/cup/wooden,
-/obj/item/reagent_containers/glass/cup/wooden,
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/town/basement/keep)
+/obj/structure/table/wood,
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "gpj" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/blocks/stonered/tiny,
@@ -17990,6 +18097,9 @@
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -19454,10 +19564,15 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/beach/forest)
 "hay" = (
-/obj/machinery/light/rogue/torchholder/l,
-/obj/structure/fermenting_barrel/random/water,
-/turf/open/floor/rogue/blocks,
-/area/rogue/under/town/basement/keep)
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/rogue/indoors/town/magician)
 "haH" = (
 /turf/open/water/bath,
 /area/rogue/indoors/town/bath)
@@ -21292,6 +21407,10 @@
 	pixel_x = 10;
 	pixel_y = 6
 	},
+/obj/item/candle/silver/lit{
+	pixel_y = 10;
+	pixel_x = -10
+	},
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/indoors/town/manor)
 "hFX" = (
@@ -21929,6 +22048,7 @@
 	dir = 9;
 	icon_state = "largetable"
 	},
+/obj/item/candle/silver/lit,
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -22182,6 +22302,9 @@
 /obj/structure/table/wood{
 	dir = 8;
 	icon_state = "largetable"
+	},
+/obj/item/kitchen/spoon/gold{
+	pixel_y = 4
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -24282,6 +24405,9 @@
 	dir = 5;
 	icon_state = "largetable"
 	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "iKK" = (
@@ -25410,6 +25536,13 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/chapel)
+"jdB" = (
+/obj/structure/table/wood,
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town)
 "jdF" = (
 /obj/structure/fluff/railing/wood{
 	dir = 4;
@@ -25982,6 +26115,9 @@
 "joB" = (
 /obj/structure/table/wood,
 /obj/item/book/rogue/abyssor,
+/obj/item/candle/gold/lit{
+	pixel_y = 5
+	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/manor)
 "joE" = (
@@ -26280,6 +26416,9 @@
 /obj/structure/fluff/wallclock{
 	dir = 3
 	},
+/obj/item/candle/gold/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/church,
 /area/rogue/indoors/town/church/chapel)
 "juB" = (
@@ -26305,13 +26444,9 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/silver{
 	name = "pewter goblet";
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/cup/silver{
-	name = "pewter goblet";
 	pixel_x = -10;
-	pixel_y = 4
+	pixel_y = 4;
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!"
 	},
 /turf/open/floor/rogue/tile/masonic/single,
 /area/rogue/indoors/town/manor)
@@ -27742,6 +27877,9 @@
 	icon_state = "longtable_mid"
 	},
 /obj/structure/fluff/wallclock,
+/obj/item/candle/gold/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "jWn" = (
@@ -28658,6 +28796,10 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_x = -10;
+	pixel_y = 12
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -28995,11 +29137,11 @@
 /area/rogue/outdoors/exposed/town/keep)
 "kvh" = (
 /obj/structure/table/wood,
-/obj/item/candle/yellow/lit{
-	pixel_y = 5
-	},
 /obj/structure/fluff/walldeco/painting/queen{
 	pixel_x = 32
+	},
+/obj/item/candle/silver/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
@@ -31100,6 +31242,9 @@
 /obj/structure/table/wood{
 	icon_state = "longtable"
 	},
+/obj/item/candle/gold/lit{
+	pixel_y = 5
+	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/magician)
 "llg" = (
@@ -31467,6 +31612,7 @@
 	dir = 8;
 	icon_state = "largetable"
 	},
+/obj/item/candle/candlestick/silver/lit,
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -32804,6 +32950,27 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/spider,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/orcdungeon)
+"lSh" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 5
+	},
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/indoors/town/manor)
+"lSm" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood3"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 5
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/town/manor)
 "lSo" = (
 /obj/structure/mineral_door/wood/fancywood{
 	lockid = "manor";
@@ -33624,6 +33791,9 @@
 /turf/open/floor/rogue/tile/masonic/single,
 /area/rogue/under/cave/dukecourt)
 "mhD" = (
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "tablewood1"
@@ -35284,6 +35454,10 @@
 	dir = 6;
 	icon_state = "largetable"
 	},
+/obj/item/tablecloth/silk{
+	pixel_x = -6;
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -35812,6 +35986,9 @@
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "mYz" = (
 /obj/structure/table/wood,
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -36219,6 +36396,10 @@
 	icon_state = "tablewood1"
 	},
 /obj/item/reagent_containers/glass/bottle/rogue/beer/hagwoodbitter,
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = -8;
+	pixel_y = 4
+	},
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
 "nfI" = (
@@ -36351,6 +36532,14 @@
 "nix" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
+	},
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_x = -10;
+	pixel_y = 10
+	},
+/obj/item/kitchen/fork/gold{
+	pixel_x = 12;
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
@@ -36504,6 +36693,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 8
 	},
+/obj/item/reagent_containers/glass/bowl/gold,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "nkH" = (
@@ -37694,6 +37884,9 @@
 	dir = 4;
 	icon_state = "largetable"
 	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
+	},
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -38799,6 +38992,11 @@
 /area/rogue/indoors/town)
 "ocm" = (
 /obj/structure/table/wood,
+/obj/item/cooking/platter/gold,
+/obj/item/kitchen/fork/silver{
+	pixel_x = 14;
+	pixel_y = 6
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town)
 "oco" = (
@@ -38882,6 +39080,9 @@
 "oee" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/under/town/basement/keep)
@@ -39158,6 +39359,10 @@
 /obj/item/reagent_containers/glass/cup/golden{
 	pixel_x = 8
 	},
+/obj/item/kitchen/spoon/gold{
+	pixel_y = -16;
+	pixel_x = -6
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -39235,6 +39440,9 @@
 /obj/structure/table/wood{
 	dir = 8;
 	icon_state = "longtable"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 5
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/magician)
@@ -39552,6 +39760,7 @@
 	dir = 4;
 	icon_state = "longtable"
 	},
+/obj/item/candle/silver/lit,
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/town/manor)
 "oqR" = (
@@ -40045,6 +40254,24 @@
 "ozV" = (
 /turf/open/floor/rogue/volcanic,
 /area/rogue/outdoors/mountains/decap)
+"oAc" = (
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable_mid"
+	},
+/obj/item/kitchen/fork/silver{
+	pixel_x = 12;
+	pixel_y = 6
+	},
+/obj/item/kitchen/spoon/silver{
+	pixel_y = 5;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_y = 5
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/manor)
 "oAd" = (
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/hexstone,
@@ -41101,8 +41328,15 @@
 	dir = 8;
 	icon_state = "longtable"
 	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = 8;
+	pixel_y = 7
+	},
 /obj/item/reagent_containers/glass/bottle/rogue/elfred{
 	pixel_x = -12
+	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = 8
 	},
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/town/manor)
@@ -41120,6 +41354,7 @@
 	dir = 4;
 	icon_state = "largetable"
 	},
+/obj/item/candle/candlestick/silver/lit,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/manor)
 "oSm" = (
@@ -41348,12 +41583,12 @@
 	},
 /area/rogue/under/cave/dukecourt)
 "oWO" = (
-/obj/structure/fluff/railing/border,
-/obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/rogue/rooftop{
-	icon_state = "roofg"
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
 	},
-/area/rogue/outdoors/town/roofs)
+/obj/item/kitchen/spoon/tin,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town)
 "oWV" = (
 /mob/living/carbon/human/species/skeleton/npc/ambush,
 /turf/open/floor/rogue/concrete,
@@ -41434,6 +41669,9 @@
 /area/rogue/outdoors/town)
 "oYb" = (
 /obj/structure/table/wood,
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/tile/masonic{
 	dir = 8
 	},
@@ -41711,6 +41949,9 @@
 /obj/structure/table/wood{
 	dir = 6;
 	icon_state = "largetable"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -42230,6 +42471,9 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/cell)
 "plF" = (
@@ -42640,6 +42884,9 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
+/obj/item/candle/gold/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town/shop)
 "ptT" = (
@@ -42741,6 +42988,10 @@
 	name = "pewter bowl";
 	pixel_x = 3;
 	pixel_y = 5
+	},
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_x = 10;
+	pixel_y = 10
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -42872,6 +43123,9 @@
 "pxW" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
@@ -43861,6 +44115,14 @@
 	pixel_x = -8;
 	pixel_y = 6
 	},
+/obj/item/kitchen/spoon/gold{
+	pixel_y = 5;
+	pixel_x = -10
+	},
+/obj/item/kitchen/fork/silver{
+	pixel_x = 12;
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/tile/masonic{
 	dir = 8
 	},
@@ -44228,10 +44490,10 @@
 /area/rogue/under/cave/licharena)
 "pVa" = (
 /obj/item/natural/feather,
-/obj/item/candle/skull/lit{
+/obj/structure/closet/crate/drawer,
+/obj/item/candle/gold/lit{
 	pixel_y = 6
 	},
-/obj/structure/closet/crate/drawer,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/shop)
 "pVb" = (
@@ -45225,7 +45487,9 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/candle/yellow,
+/obj/item/candle/silver/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -45241,6 +45505,9 @@
 "qnP" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/dwarfin)
@@ -45514,6 +45781,9 @@
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "longtable"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 5
 	},
 /turf/open/floor/rogue/carpet,
 /area/rogue/indoors/town/manor)
@@ -46214,6 +46484,9 @@
 	dir = 1;
 	icon_state = "tablewood1"
 	},
+/obj/item/candle/gold/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/town/roofs)
 "qFr" = (
@@ -46223,6 +46496,22 @@
 "qFy" = (
 /obj/structure/rack/rogue/shelf/big,
 /obj/structure/rack/rogue/shelf,
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = -6;
+	pixel_y = 42
+	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_x = -6;
+	pixel_y = 20
+	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = 8;
+	pixel_y = 42
+	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_x = 8;
+	pixel_y = 20
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "qFI" = (
@@ -46719,6 +47008,9 @@
 /obj/structure/table/wood{
 	icon_state = "map5"
 	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_y = 8
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "qNz" = (
@@ -46731,6 +47023,9 @@
 	},
 /obj/machinery/light/rogue/wallfire/candle{
 	pixel_y = -32
+	},
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -47105,6 +47400,9 @@
 "qUQ" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
+	},
+/obj/item/candle/silver/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
@@ -47557,6 +47855,9 @@
 "rfb" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -48314,6 +48615,15 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
+"rtm" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
+	},
+/turf/open/floor/carpet/inn,
+/area/rogue/indoors/town/tavern)
 "rty" = (
 /obj/effect/landmark/mapGenerator/rogue/decap,
 /turf/closed/mineral/rogue/bedrock,
@@ -48355,7 +48665,10 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/reagent_containers/glass/cup/wooden,
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = -6;
+	pixel_y = 5
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "rtM" = (
@@ -48516,7 +48829,10 @@
 /area/rogue/under/cave/fishmandungeon)
 "rwo" = (
 /obj/structure/table/church,
-/obj/item/candle/yellow,
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_x = 10;
+	pixel_y = 10
+	},
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/town/church/chapel)
 "rwp" = (
@@ -48738,6 +49054,15 @@
 	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/exposed/town/keep)
+"rAU" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/gold/lit{
+	pixel_y = 6
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town/shop)
 "rBl" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 4
@@ -49064,8 +49389,8 @@
 /obj/structure/fluff/walldeco/psybanner{
 	pixel_y = 29
 	},
-/obj/item/candle/yellow/lit{
-	pixel_y = 5
+/obj/item/candle/gold/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/chapel)
@@ -49224,6 +49549,9 @@
 "rJA" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -49614,6 +49942,14 @@
 	name = "pewter goblet";
 	pixel_x = -11
 	},
+/obj/item/kitchen/fork/gold{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/kitchen/fork/silver{
+	pixel_x = 12;
+	pixel_y = 6
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "rSJ" = (
@@ -49682,6 +50018,22 @@
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "longtable"
+	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_x = 8;
+	pixel_y = 20
+	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_x = -6;
+	pixel_y = 20
+	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = 8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = -6;
+	pixel_y = 5
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
@@ -50042,6 +50394,9 @@
 /obj/structure/fluff/walldeco/rpainting{
 	pixel_x = 32;
 	pixel_y = 0
+	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -51155,8 +51510,10 @@
 	},
 /obj/item/reagent_containers/glass/cup/silver{
 	name = "pewter goblet";
-	pixel_x = -11
+	pixel_x = -11;
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!"
 	},
+/obj/item/candle/silver/lit,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "sqQ" = (
@@ -52311,6 +52668,9 @@
 /obj/structure/fluff/railing/border{
 	dir = 4
 	},
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "tablewood1"
@@ -52423,6 +52783,13 @@
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "longtable"
+	},
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_y = 8
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
@@ -52600,6 +52967,10 @@
 /area/rogue/outdoors/beach/forest)
 "sUn" = (
 /obj/structure/table/wood,
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_x = 10;
+	pixel_y = 10
+	},
 /turf/open/floor/rogue/carpet/lord/right,
 /area/rogue/indoors/town/manor)
 "sUp" = (
@@ -53305,7 +53676,23 @@
 	dir = 1;
 	icon_state = "tablewood1"
 	},
+/obj/item/tablecloth/silk{
+	pixel_x = -6;
+	pixel_y = 10
+	},
 /obj/machinery/light/rogue/wallfire/candle/l,
+/obj/item/tablecloth/silk{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/obj/item/tablecloth/silk{
+	pixel_x = -6;
+	pixel_y = -5
+	},
+/obj/item/tablecloth/silk{
+	pixel_x = 6;
+	pixel_y = -5
+	},
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -53567,6 +53954,9 @@
 	dir = 1;
 	icon_state = "tablewood1"
 	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
+	},
 /turf/open/floor/rogue/carpet,
 /area/rogue/indoors/town/manor)
 "tlo" = (
@@ -53656,12 +54046,8 @@
 	},
 /obj/item/reagent_containers/glass/cup/silver{
 	name = "pewter goblet";
-	pixel_x = -11
-	},
-/obj/item/reagent_containers/glass/cup/silver{
-	name = "pewter goblet";
-	pixel_x = 11;
-	pixel_y = 10
+	pixel_x = -11;
+	desc = "A pewter goblet, cheaper than silver, but with a similar shine!"
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/manor)
@@ -53843,6 +54229,10 @@
 /obj/structure/table/church{
 	icon_state = "churchtable_end"
 	},
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_x = -10;
+	pixel_y = 10
+	},
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/town/church/chapel)
 "tpY" = (
@@ -53880,11 +54270,20 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church/chapel)
 "tqO" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/huntingknife/idagger/steel/special,
-/obj/item/rogueweapon/huntingknife/idagger/steel/special,
-/turf/open/floor/rogue/tile,
-/area/rogue/under/town/basement/keep)
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/obj/item/tablecloth/silk{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/manor)
 "tqT" = (
 /obj/structure/fluff/railing/border{
 	dir = 9
@@ -54193,6 +54592,23 @@
 /obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/town)
+"txn" = (
+/obj/structure/table/wood{
+	icon_state = "longtable"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_x = -10;
+	pixel_y = 10
+	},
+/obj/item/kitchen/fork/silver{
+	pixel_x = 12;
+	pixel_y = 6
+	},
+/obj/item/kitchen/spoon/gold{
+	pixel_y = 4
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/manor)
 "txF" = (
 /obj/structure/bars/pipe{
 	dir = 8
@@ -55088,6 +55504,9 @@
 /area/rogue/under/cave/fishmandungeon)
 "tNO" = (
 /obj/structure/table/wood,
+/obj/item/candle/silver/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/outdoors/mountains)
 "tNR" = (
@@ -55685,6 +56104,9 @@
 /obj/structure/table/wood{
 	icon_state = "longtable"
 	},
+/obj/item/candle/gold/lit{
+	pixel_y = 5
+	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/magician)
 "tYe" = (
@@ -56044,6 +56466,9 @@
 /area/rogue/indoors/town/tavern)
 "udZ" = (
 /obj/structure/closet/crate/drawer,
+/obj/item/candle/gold/lit{
+	pixel_y = 6
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/shop)
 "uei" = (
@@ -56828,6 +57253,7 @@
 	dir = 10;
 	icon_state = "largetable"
 	},
+/obj/item/candle/silver/lit,
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
 	},
@@ -57175,6 +57601,17 @@
 	dir = 1;
 	icon_state = "longtable_mid"
 	},
+/obj/item/kitchen/fork/gold{
+	pixel_x = 12;
+	pixel_y = 6
+	},
+/obj/item/kitchen/spoon/silver{
+	pixel_y = 5;
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/glass/cup/golden/small{
+	pixel_y = 8
+	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/manor)
 "uzP" = (
@@ -57388,6 +57825,7 @@
 	icon_state = "largetable";
 	pixel_x = -5
 	},
+/obj/item/reagent_containers/glass/bowl/silver,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "uEp" = (
@@ -57489,6 +57927,9 @@
 /obj/structure/table/wood{
 	dir = 1;
 	icon_state = "longtable"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -58147,6 +58588,9 @@
 	dir = 1;
 	icon_state = "tablewood1"
 	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town/magician)
 "uTb" = (
@@ -58803,6 +59247,9 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -58879,6 +59326,18 @@
 /obj/item/cooking/platter,
 /obj/item/cooking/platter/pewter,
 /obj/item/cooking/platter/pewter,
+/obj/item/reagent_containers/glass/bowl/silver{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/glass/bowl/silver{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/glass/bowl/silver{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/glass/bowl/gold,
+/obj/item/reagent_containers/glass/bowl/gold,
+/obj/item/reagent_containers/glass/bowl/gold,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/manor)
 "veP" = (
@@ -58906,6 +59365,13 @@
 "vfl" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
+	},
+/obj/item/reagent_containers/glass/cup/silver/small{
+	pixel_x = 8
+	},
+/obj/item/kitchen/spoon/gold{
+	pixel_y = 5;
+	pixel_x = -10
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
@@ -59762,6 +60228,9 @@
 /area/rogue/indoors)
 "vwo" = (
 /obj/structure/table/wood,
+/obj/item/candle/candlestick/silver/lit{
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/tile/masonic/single,
 /area/rogue/indoors/town/manor)
 "vwp" = (
@@ -60246,6 +60715,9 @@
 /obj/structure/table/wood{
 	dir = 10;
 	icon_state = "largetable"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -60993,8 +61465,8 @@
 /obj/structure/fluff/walldeco/psybanner{
 	pixel_y = 29
 	},
-/obj/item/candle/yellow/lit{
-	pixel_y = 5
+/obj/item/candle/gold/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/chapel)
@@ -61462,7 +61934,9 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
-/obj/item/candle/yellow/lit,
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "vZU" = (
@@ -62062,6 +62536,9 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
+/obj/item/candle/candlestick/silver/single/lit{
+	pixel_y = 9
+	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -62299,8 +62776,8 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/candle/yellow/lit{
-	pixel_x = 8
+/obj/item/candle/gold/lit{
+	pixel_y = 6
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/dwarfin)
@@ -62473,7 +62950,10 @@
 	dir = 6;
 	icon_state = "largetable"
 	},
-/obj/item/candle/yellow,
+/obj/item/candle/silver/lit{
+	pixel_y = 5;
+	pixel_x = -10
+	},
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church/chapel)
 "wrP" = (
@@ -63203,6 +63683,25 @@
 /obj/structure/table/wood{
 	icon_state = "longtable"
 	},
+/obj/item/candle/gold/lit{
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
+"wFY" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/cup/silver{
+	name = "pewter goblet";
+	pixel_x = -11
+	},
+/obj/item/kitchen/fork/silver{
+	pixel_x = 14;
+	pixel_y = 6
+	},
+/obj/item/kitchen/fork/gold{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "wGh" = (
@@ -63423,6 +63922,11 @@
 /obj/item/listenstone,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
+"wKA" = (
+/obj/structure/fluff/walldeco/wantedposter,
+/mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
+/turf/open/floor/rogue/blocks/green,
+/area/rogue/under/town/sewer)
 "wKH" = (
 /obj/item/cooking/platter/silver,
 /turf/open/floor/rogue/blocks/platform,
@@ -63535,6 +64039,9 @@
 "wNb" = (
 /obj/structure/table/wood{
 	icon_state = "map2"
+	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -64404,6 +64911,11 @@
 /obj/structure/bookcase,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/skeletoncrypt)
+"xfz" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bowl/gold,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "xfC" = (
 /obj/effect/decal/cobbleedge{
 	icon_state = "cobbleedge-n"
@@ -66145,6 +66657,10 @@
 /obj/structure/table/wood{
 	icon_state = "map4"
 	},
+/obj/item/tablecloth/silk{
+	pixel_x = -6;
+	pixel_y = 6
+	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "xNX" = (
@@ -67033,6 +67549,11 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
+/obj/item/kitchen/fork/silver{
+	pixel_x = 14;
+	pixel_y = 6
+	},
+/obj/item/kitchen/fork/tin,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town)
 "yew" = (
@@ -67149,6 +67670,15 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town)
+"ygG" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/candle/candlestick/gold/single/lit{
+	pixel_y = 9
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/tavern)
 "ygS" = (
 /obj/effect/decal/cobbleedge{
 	dir = 8
@@ -67327,6 +67857,19 @@
 /obj/structure/roguemachine/mail,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"ykd" = (
+/obj/item/clothing/mask/cigarette/rollie/nicotine,
+/obj/item/clothing/mask/cigarette/rollie/nicotine,
+/obj/item/clothing/mask/cigarette/rollie/nicotine,
+/obj/structure/table/wood{
+	dir = 1;
+	icon_state = "longtable"
+	},
+/obj/item/candle/candlestick/gold/lit{
+	pixel_y = 12
+	},
+/turf/open/floor/rogue/tile/bfloorz,
+/area/rogue/under/town/basement/keep)
 "ykm" = (
 /obj/effect/decal/cobbleedge{
 	dir = 6
@@ -129545,7 +130088,7 @@ eFz
 wnt
 llO
 xAN
-ylh
+wKA
 mMx
 ylh
 pby
@@ -132264,7 +132807,7 @@ cxj
 pAx
 bkT
 bkT
-cLP
+eeu
 nYb
 wqV
 kAd
@@ -137239,7 +137782,7 @@ qnD
 qnD
 qnD
 qnD
-tXU
+qnD
 dbn
 hyX
 ckq
@@ -172470,7 +173013,7 @@ ogs
 ogs
 iad
 wCC
-pxW
+dau
 bgr
 jkB
 oyV
@@ -283658,7 +284201,7 @@ vxe
 bIg
 wic
 rXn
-nix
+txn
 dWM
 kMx
 xHQ
@@ -284110,7 +284653,7 @@ vxe
 bIg
 gxw
 rXn
-uzO
+oAc
 mnB
 xwF
 ruD
@@ -290894,7 +291437,7 @@ lKO
 pqo
 lKo
 lKO
-pqo
+chv
 lKo
 lKO
 pqo
@@ -369573,9 +370116,9 @@ kSK
 tvR
 lUf
 uyR
+rtm
 eVJ
-eVJ
-eVJ
+rtm
 tvR
 qfx
 udU
@@ -370457,7 +371000,7 @@ lKo
 nxt
 kRg
 aoW
-ycK
+daV
 lKo
 kSK
 kSK
@@ -378169,7 +378712,7 @@ kSK
 ikL
 lAs
 oNu
-scf
+rAU
 ikL
 ikL
 ikL
@@ -379517,8 +380060,8 @@ rUb
 xWk
 xWk
 pCd
-vfl
-rtL
+oWO
+cNi
 eKH
 kSK
 kSK
@@ -402535,7 +403078,7 @@ vmi
 vmi
 vmi
 tRE
-fRL
+lSm
 cXk
 nGl
 uQS
@@ -406190,7 +406733,7 @@ muB
 nwa
 muB
 muB
-uSZ
+hay
 iSm
 wBK
 fuw
@@ -477164,7 +477707,7 @@ jlW
 qcy
 kUG
 kUG
-vbV
+ygG
 tvR
 kSK
 bGf
@@ -481226,7 +481769,7 @@ tvR
 dJN
 dzd
 pvg
-ezW
+rtm
 tvR
 qEt
 tCw
@@ -485734,16 +486277,16 @@ bGf
 bGf
 mCk
 yet
-cNi
+wnA
 wnA
 wnA
 oEG
+kSK
 sWF
 kSK
 kSK
-kSK
-kSK
-oWO
+sWF
+mCk
 wnA
 wnA
 wnA
@@ -486638,7 +487181,7 @@ bGf
 bGf
 mCk
 yet
-qFm
+bWn
 wnA
 wnA
 oEG
@@ -497485,7 +498028,7 @@ bGf
 kSK
 paa
 kRg
-ocm
+jdB
 ocm
 umt
 kRg
@@ -515088,8 +515631,8 @@ vxe
 vxe
 qFk
 woi
-rSH
-aaK
+wFY
+bmn
 xFX
 uQS
 kby
@@ -515541,7 +516084,7 @@ vxe
 uQS
 woi
 kLU
-aaK
+gpi
 xFX
 uQS
 iag
