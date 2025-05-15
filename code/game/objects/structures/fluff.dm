@@ -12,25 +12,29 @@
 	var/deconstructible = TRUE
 
 /obj/structure/fluff/pillow
-	name = ""
+	name = "pillows"
 	desc = ""
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "pillow"
 	density = FALSE
 
-/obj/structure/fluff/pillow1
-	name = ""
-	desc = ""
-	icon = 'icons/roguetown/misc/structure.dmi'
-	icon_state = "pillow1"
-	density = FALSE
+/obj/structure/fluff/pillow/red
+	color = CLOTHING_RED
 
-/obj/structure/fluff/pillow2
-	name = ""
-	desc = ""
-	icon = 'icons/roguetown/misc/structure.dmi'
-	icon_state = "pillow2"
-	density = FALSE
+/obj/structure/fluff/pillow/blue
+	color = CLOTHING_BLUE
+
+/obj/structure/fluff/pillow/green
+	color = CLOTHING_GREEN
+
+/obj/structure/fluff/pillow/magenta
+	color = CLOTHING_MAGENTA
+
+/obj/structure/fluff/pillow/purple
+	color = CLOTHING_PURPLE
+
+/obj/structure/fluff/pillow/black
+	color = CLOTHING_BLACK
 
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
 	name = "drake statue"
