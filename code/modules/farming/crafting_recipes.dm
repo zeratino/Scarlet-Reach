@@ -71,7 +71,7 @@
 	verbage = "rolls"
 	craftdiff = 0
 
-/datum/crafting_recipe/roguetown/sigdry
+/datum/crafting_recipe/roguetown/rocknutdry
 	name = "rocknut zig"
 	result = /obj/item/clothing/mask/cigarette/rollie/nicotine
 	reqs = list(/obj/item/reagent_containers/powder/rocknut = 1,
