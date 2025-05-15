@@ -105,7 +105,7 @@
 /datum/component/eora_bond
     var/mob/living/carbon/partner
     var/mob/living/carbon/caster
-    var/duration = 300 SECONDS
+    var/duration = 900 SECONDS
     var/max_distance = 7
     var/damage_share = 0.4
     var/heal_share = 0.4
