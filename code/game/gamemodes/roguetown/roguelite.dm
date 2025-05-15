@@ -1,4 +1,4 @@
-
+#define ROGUELITE_PLAYER_LIMIT 25
 // Roguelite mode - the simplest version, with only bandits OR werewolves
 /datum/game_mode/chaosmode/roguelite
 	name = "roguelite"
@@ -9,27 +9,13 @@
 	required_enemies = 0
 	recommended_enemies = 0
 	enemy_minimum_age = 0
-	votable = 1
+	votable = TRUE
 	probability = 99
 
 	announce_span = "danger"
 	announce_text = "The town may have been infiltrated! Watch your back..."
 	
 	var/chosen_antag = ""  // Will be either "bandits" or "werewolves"
-
-// Override can_start to enforce player minimum
-/datum/game_mode/chaosmode/roguelite/can_start()
-	var/playerC = 0
-	for(var/i in GLOB.new_player_list)
-		var/mob/dead/new_player/player = i
-		if(player.ready == PLAYER_READY_TO_PLAY)
-			playerC++
-	
-	if(!GLOB.Debug2)
-		if(playerC < required_players)
-			return FALSE
-	
-	return TRUE
 
 // Override pre_setup to clear any previously selected antagonists
 /datum/game_mode/chaosmode/roguelite/pre_setup()
@@ -40,8 +26,8 @@
 	for(var/A in GLOB.special_roles_rogue)
 		allantags |= get_players_for_role(A)
 	
-	if(num_players() <= 30) // Need at least a chunk of people before we start throwing ne'er-do-wells into the mix.
-		log_game("Roguelite is active, but less than 30 playercount. Antags will not be picked automatically.")
+	if(num_players() <= ROGUELITE_PLAYER_LIMIT) // Need at least a chunk of people before we start throwing ne'er-do-wells into the mix.
+		log_game("Roguelite is active, but less than 25 readied playercount. Antags will not be picked automatically.")
 		return TRUE
 	else // Randomly choose between bandits or werewolves
 		if(prob(50))
