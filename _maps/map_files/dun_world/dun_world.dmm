@@ -3354,7 +3354,7 @@
 "bko" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
-	lockid = "garrison";
+	lockid = "knight";
 	name = "squireroom door"
 	},
 /turf/open/floor/rogue/cobble,
@@ -8914,7 +8914,7 @@
 "djh" = (
 /obj/structure/mineral_door/wood/fancywood{
 	locked = 1;
-	lockid = "garrison";
+	lockid = "knight";
 	name = "Knight's Chamber"
 	},
 /turf/open/floor/rogue/tile/bfloorz,
@@ -17465,6 +17465,10 @@
 /obj/item/storage/belt/rogue/leather/steel/tasset,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
+"goo" = (
+/obj/structure/rack/rogue/shelf,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "gow" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
 /turf/open/floor/rogue/churchmarble,
@@ -33453,7 +33457,7 @@
 /obj/structure/mineral_door/wood{
 	icon_state = "wcv";
 	locked = 1;
-	lockid = "manor";
+	lockid = "knight";
 	name = "royal guard quarters"
 	},
 /turf/open/floor/rogue/cobble,
@@ -57221,10 +57225,6 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/under/underdark)
-"urN" = (
-/obj/structure/rack/rogue/shelf,
-/turf/open/floor/rogue/cobble,
-/area/rogue/under/town/basement/keep)
 "urT" = (
 /obj/structure/table/wood{
 	dir = 1;
@@ -63369,7 +63369,7 @@
 "wzF" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
-	lockid = "armory"
+	lockid = "knight"
 	},
 /obj/structure/fluff/walldeco/alarm{
 	pixel_x = 32;
@@ -163549,7 +163549,7 @@ bHV
 lSh
 iad
 bYC
-urN
+goo
 wCC
 wCC
 wCC
