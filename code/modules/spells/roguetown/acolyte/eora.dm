@@ -135,8 +135,6 @@
     heal_share = 0.1 + (0.05 * holy_skill) + bonus_mod
     wound_chance = 40 - (5 * holy_skill)
 
-    to_chat(world, span_warning("[heal_share]"))
-
     // Correct signal name
     RegisterSignal(parent, COMSIG_MOB_APPLY_DAMGE, PROC_REF(on_damage))
     RegisterSignal(parent, COMSIG_LIVING_MIRACLE_HEAL_APPLY, PROC_REF(on_heal))
@@ -208,6 +206,7 @@
         ))
     
     if(partner)
+        partner.remove_status_effect(/datum/status_effect/eora_bond)
         var/datum/component/eora_bond/other = partner.GetComponent(/datum/component/eora_bond)
         if(other)
             other.partner = null
