@@ -129,7 +129,7 @@
     caster = caster_mob
     
     var/bonus_mod = 0
-    if(holy_skill > 4)
+    if(holy_skill >= 4)
         bonus_mod = 0.05
     damage_share = 0.1 + (0.05 * holy_skill) + bonus_mod
     heal_share = 0.1 + (0.05 * holy_skill) + bonus_mod
