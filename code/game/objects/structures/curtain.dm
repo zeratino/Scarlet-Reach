@@ -82,7 +82,7 @@
 	color = "#007fff"
 
 /obj/structure/curtain/green
-	color = "#428138"
+	color = CLOTHING_DARK_GREEN
 
 /obj/structure/curtain/purple
 	color = "#8747b1"
