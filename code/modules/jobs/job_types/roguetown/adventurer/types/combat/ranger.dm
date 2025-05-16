@@ -133,8 +133,9 @@
 
 		if("Biome Wanderer")
 			to_chat(H, span_warning("The dangers of the wilds vary upon the plains they rest upon, You happen to be experienced in many."))
+			head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 			shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
+			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			belt = /obj/item/storage/belt/rogue/leather
@@ -143,7 +144,7 @@
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut // Technical main weapon?
 			backpack_contents = list(/obj/item/rogueweapon/huntingknife = 1, /obj/item/flashlight/flare/torch/lantern = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE) // Base skill, if not wanted, pick another weapon.
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE) // On par with battlemaster.
@@ -152,9 +153,9 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE) // Still a ranger, nerfed.
+			H.mind.adjust_skillrank(/datum/skill/craft/tanning, 1, TRUE) // Still a ranger, nerfed. Want more? Go do it yourself, buddy.
 			H.mind.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE) // Won't really equate to much.
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 			ADD_TRAIT(H, TRAIT_OUTDOORSMAN, TRAIT_GENERIC)
 			var/weapons = list("Recurve Bow","Billhook","Sling")
@@ -170,8 +171,8 @@
 					backr = /obj/item/gwstrap
 				if("Sling")
 					H.mind.adjust_skillrank(/datum/skill/combat/slings, 3, TRUE)
-					beltr = /obj/item/quiver/sling/iron
-					beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
+					beltl = /obj/item/quiver/sling/iron
+					r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 			var/armors = list("Light Armor","Medium Armor")
 			var/armor_choice = input("Choose your armor.", "TAKE UP ARMS") as anything in armors
 			switch(armor_choice)
@@ -186,6 +187,8 @@
 					gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 					ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 					H.set_blindness(0)
-			H.change_stat("perception", 2)
+			H.change_stat("perception", 2) // Look far, but not too far.
 			H.change_stat("speed", 1)
 			H.change_stat("endurance", 1)
+			H.change_stat("strength", 1)
+			H.change_stat("intelligence", 1) // Adaptive to their surroundings.
