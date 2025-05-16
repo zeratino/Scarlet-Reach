@@ -25,6 +25,7 @@
 						/obj/item/rogueore/iron=1,
 						/obj/item/flashlight/flare/torch = 1,
 						/obj/item/recipe_book/blacksmithing = 1,
+						/obj/item/recipe_book/survival = 1,
 						)
 	ADD_TRAIT(H, TRAIT_TRAINED_SMITH, TRAIT_GENERIC)
 	if(H.pronouns == HE_HIM)

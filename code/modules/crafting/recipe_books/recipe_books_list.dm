@@ -57,6 +57,7 @@
 		/datum/crafting_recipe/roguetown/ceramics
 		)
 
+// This book should be widely given to everyone
 /obj/item/recipe_book/survival
 	name = "The Survival Handbook"
 	icon_state = "book6_0"
