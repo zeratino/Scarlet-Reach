@@ -25,6 +25,7 @@
 						/obj/item/pestle = 1,
 						/obj/item/ritechalk = 1,
 						/obj/item/candle/yellow = 2,
+						/obj/item/recipe_book/alchemy = 1
 						)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/shapeshift/crow)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
