@@ -4,9 +4,11 @@
 // With a few exceptions atm to be cleared out later.
 // Quarterstaff, carpentry etc. you know.
 // Previously known as items.dm
+/datum/crafting_recipe/roguetown/
+	always_availible = TRUE
+
 /datum/crafting_recipe/roguetown/survival
 	abstract_type = /datum/crafting_recipe/roguetown/survival/
-	always_availible = TRUE
 	skillcraft = /datum/skill/craft/crafting
 
 /datum/crafting_recipe/roguetown/survival/tneedle
