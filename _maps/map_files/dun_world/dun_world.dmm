@@ -60795,6 +60795,7 @@
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "vCO" = (
 /obj/machinery/light/rogue/wallfire/candle/blue,
+/obj/structure/roguemachine/vaultbank,
 /turf/open/floor/rogue/tile{
 	icon_state = "glyph5"
 	},
