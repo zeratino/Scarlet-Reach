@@ -54,7 +54,13 @@
 						/obj/item/rogueweapon/hammer/steel = 1,
 						/obj/item/rogueweapon/handsaw = 1,
 						/obj/item/rogueweapon/chisel = 1,
-						/obj/item/lockpickring/mundane = 1)
+						/obj/item/lockpickring/mundane = 1,
+						/obj/item/recipe_book/blacksmithing = 1,
+						/obj/item/recipe_book/engineering = 1,
+						/obj/item/recipe_book/ceramics = 1,
+						/obj/item/recipe_book/builder = 1,
+						/obj/item/recipe_book/survival = 1,
+						)
 	H.change_stat("strength", 1)
 	H.change_stat("intelligence", 2)
 	H.change_stat("endurance", 1)
