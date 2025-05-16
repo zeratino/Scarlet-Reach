@@ -190,5 +190,4 @@
 			H.change_stat("perception", 2) // Look far, but not too far.
 			H.change_stat("speed", 1)
 			H.change_stat("endurance", 1)
-			H.change_stat("strength", 1)
 			H.change_stat("intelligence", 1) // Adaptive to their surroundings.
