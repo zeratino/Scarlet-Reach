@@ -1,4 +1,5 @@
 /datum/crafting_recipe/roguetown/sewing
+	abstract_type = /datum/crafting_recipe/roguetown/sewing
 	tools = list(/obj/item/needle)
 	skillcraft = /datum/skill/misc/sewing
 	subtype_reqs = TRUE		//For subtypes of fur
