@@ -96,7 +96,7 @@
 
 	html += {"<div>
 		      <strong>Requirements</strong>
-			<br>"}
+			  <br>"}
 
 	for(var/atom/path as anything in reqs)
 		var/count = reqs[path]
@@ -160,4 +160,4 @@
 	return html
 
 /datum/crafting_recipe/proc/show_menu(mob/user)
-	user << browse(generate_html(user),"window=recipe;size=500x810")
+	user << browse(generate_html(user),"window=new_recipe;size=500x810")
