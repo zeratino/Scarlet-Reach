@@ -20,6 +20,13 @@
 
 	types = list(/datum/anvil_recipe)
 
+/obj/item/recipe_book/artificer
+	name = "The Artificer's Handbook"
+	icon_state = "book4_0"
+	base_icon_state = "book3"
+
+	types = list(/datum/crafting_recipe/roguetown/engineering)
+
 // TBD - Cauldron Recipes
 /obj/item/recipe_book/alchemy
 	name = "The Great Work: Secrets of Transmutation"
