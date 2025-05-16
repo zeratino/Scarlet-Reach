@@ -144,8 +144,8 @@
 	worshippers = "The Sick, Phyicians, Apothecaries"
 	mob_traits = list(TRAIT_EMPATH, TRAIT_ROT_EATER)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
+					/obj/effect/proc_holder/spell/invoked/diagnose				= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/lesser_heal 			= CLERIC_T0,
-					/obj/effect/proc_holder/spell/invoked/diagnose				= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/heal					= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/attach_bodypart		= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/cure_rot				= CLERIC_T3,
