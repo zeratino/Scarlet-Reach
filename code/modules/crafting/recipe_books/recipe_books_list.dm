@@ -14,3 +14,10 @@
 
 	types = list(/datum/crafting_recipe/roguetown/sewing)
 
+/obj/item/recipe_book/blacksmithing
+	name = "The Smith’s Legacy"
+	desc = "Penned by Aldric Forgeheart, Master Blacksmith"
+	icon_state ="book3_0"
+	base_icon_state = "book3"
+
+	types = list(/datum/anvil_recipe)

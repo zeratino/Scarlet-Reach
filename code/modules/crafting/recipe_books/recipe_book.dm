@@ -79,6 +79,8 @@
 			for(var/atom/sub_path as anything in sorted_types)
 				if(is_abstract(sub_path))
 					continue
+				if(!sub_path.name)
+					continue
 				html += "<a href='byond://?src=\ref[src];pick_recipe=[sub_path]'>[initial(sub_path.name)]</a> <br>"
 		else
 			html += "<a href='byond://?src=\ref[src];pick_recipe=[path]'>[initial(path.name)]</a> <br>"
@@ -96,6 +98,9 @@
 		if(ispath(path, /datum/crafting_recipe))
 			var/datum/crafting_recipe/real_path = new path
 			real_path.show_menu(current_reader)
+		else if(ispath(path, /datum/anvil_recipe))
+			var/datum/anvil_recipe/real_path = new path
+			real_path.show_menu(current_reader)
 		// if(ispath(path, /datum/repeatable_crafting_recipe))
 		// 	var/datum/repeatable_crafting_recipe/real_path = new path
 		// 	real_path.show_menu(current_reader)
@@ -110,9 +115,6 @@
 		// 	real_path.show_menu(current_reader)
 		// else if(ispath(path, /datum/molten_recipe))
 		// 	var/datum/molten_recipe/real_path = new path
-		// 	real_path.show_menu(current_reader)
-		// else if(ispath(path, /datum/anvil_recipe))
-		// 	var/datum/anvil_recipe/real_path = new path
 		// 	real_path.show_menu(current_reader)
 		// else if(ispath(path, /datum/pottery_recipe))
 		// 	var/datum/pottery_recipe/real_path = new path
