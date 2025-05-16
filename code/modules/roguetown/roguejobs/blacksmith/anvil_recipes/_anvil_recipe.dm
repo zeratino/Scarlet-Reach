@@ -207,7 +207,10 @@
 	if(craftdiff > 0)
 		html += "For those of [SSskills.level_names_plain[craftdiff]] skills<br>"
 	else
-		html += "Suitable for all skills<br>"	
+		html += "Suitable for all skills<br>"
+
+	if(appro_skill == /datum/skill/craft/engineering) // SNOWFLAKE!!!
+		html += "in Engineering<br>"
 
 	html += {"<div>
 		      <strong>Requirements</strong>
