@@ -4,7 +4,7 @@
 	icon = 'icons/roguetown/items/books.dmi'
 
 	grid_width = 32
-	grid_height = 64
+	grid_height = 32
 	var/list/types = list()
 	var/mob/current_reader
 	var/open
