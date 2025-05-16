@@ -5,8 +5,8 @@
 	base_icon_state = "book8"
 
 	types = list(
-	/datum/crafting_recipe/roguetown/leather, 		
 	/datum/crafting_recipe/roguetown/tallow,
+	/datum/crafting_recipe/roguetown/leather, 		
 	)
 
 /obj/item/recipe_book/sewing
