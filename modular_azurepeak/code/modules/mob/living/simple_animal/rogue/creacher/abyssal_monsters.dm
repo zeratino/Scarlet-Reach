@@ -1,34 +1,25 @@
 /mob/living/simple_animal/hostile/rogue/dreamfiend
-    icon = 'modular_hearthstone/icons/mob/mirespider_big.dmi'
-    name = "mire lurker"
-    icon_state = "lurker"
-    icon_living = "lurker"
-    icon_dead = "lurker_dead"
+    icon = 'modular_hearthstone/icons/mob/abyssal_small.dmi'
+    name = "minor dream fiend"
+    icon_state = "dreamfiend"
+    icon_living = "dreamfiend"
+    icon_dead = "dreamfiend"
 
-    faction = list("zombie", "spiders")
+    faction = list("dream")
     attack_sound = list('sound/vo/mobs/spider/attack (1).ogg','sound/vo/mobs/spider/attack (2).ogg','sound/vo/mobs/spider/attack (3).ogg','sound/vo/mobs/spider/attack (4).ogg')
 
     base_intents = list(/datum/intent/simple/bite/mirespider_lurker)
-    butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/spider = 4,
-                        /obj/item/natural/hide = 3,
-                        /obj/item/natural/silk = 4, /obj/item/alch/viscera = 4)
 
     health = MIRESPIDER_LURKER_HEALTH
     maxHealth = MIRESPIDER_LURKER_HEALTH
-    melee_damage_lower = 35
-    melee_damage_upper = 70
+    melee_damage_lower = 5
+    melee_damage_upper = 5
 
-    STACON = 9
-    STASTR = 9
-    STASPD = 14
-    // These things will crit. Slow attacks, devestating consequences.
-    STAPER = 15
-    pixel_x = -4
+    AIStatus = AI_OFF
+    can_have_ai = FALSE
 
-    ai_controller = /datum/ai_controller/mirespider_lurker
-    projectiletype = /obj/projectile/bullet/spider
+    ai_controller = /datum/ai_controller/assassin
 
-    ranged = 1
-    minimum_distance = 1
-    ranged_cooldown_time = 100
-    check_friendly_fire = 1
+/mob/living/simple_animal/hostile/rogue/dreamfiend/Initialize()
+    AddElement(/datum/element/ai_retaliate_limited)
+    . = ..()
