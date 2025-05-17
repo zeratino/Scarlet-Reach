@@ -100,9 +100,9 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	H.STAINT = 1
 	if(prob(50))
 		r_hand = /obj/item/rogueweapon/sword/iron
+		l_hand = /obj/item/rogueweapon/shield/wood
 	else
 		r_hand = /obj/item/rogueweapon/greataxe
-	l_hand = /obj/item/rogueweapon/shield/wood
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	if(prob(30))
 		neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
