@@ -143,8 +143,6 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	else
 		r_hand = /obj/item/rogueweapon/greataxe
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	if(prob(30))
-		neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 	H.STASPD = 9
 	H.STACON = rand(10,12) //so their limbs no longer pop off like a skeleton
 	H.STAEND = 15
