@@ -77,13 +77,6 @@
 	item_state = "chaincoif"
 	flags_inv = HIDEHAIR
 	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "piercing" = 20, "fire" = 0, "acid" = 0)
-
-/obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	name = "ancient coif"
-	desc = "a coif made of ancient alloys. Aeon's grasp lifted from its form."
-	icon_state = "achaincoif"
-	smeltresult = /obj/item/ingot/aaslag
-
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
@@ -94,6 +87,13 @@
 	blocksound = CHAINHIT
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
+
+
+/obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	name = "ancient coif"
+	desc = "a coif made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "achaincoif"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/neck/roguetown/chaincoif/AdjustClothes(mob/user)
 	if(loc == user)
