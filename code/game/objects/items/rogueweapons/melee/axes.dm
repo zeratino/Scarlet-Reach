@@ -208,6 +208,7 @@
 	force = 17
 	force_wielded = 20
 	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 //Pickaxe-axe ; Technically both a tool and a weapon, but it goes here due to weapon function. Subtype of woodcutter axe, mostly a weapon.
 /obj/item/rogueweapon/stoneaxe/woodcut/pick

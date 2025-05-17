@@ -101,6 +101,7 @@
 	force = 22
 	max_integrity = 175
 	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/flail/sflail/paflail
 	name = "ancient flail"

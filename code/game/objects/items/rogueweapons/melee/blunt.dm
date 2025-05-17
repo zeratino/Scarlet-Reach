@@ -77,6 +77,7 @@
 	force = 17
 	force_wielded = 21
 	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 
 /obj/item/rogueweapon/mace/church
@@ -370,6 +371,7 @@
 	force_wielded = 22
 	icon_state = "ancient_supermace"
 	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/mace/goden/steel
 	name = "grand mace"
@@ -448,6 +450,7 @@
 	smeltresult = /obj/item/ingot/aalloy
 	force = 17
 	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/mace/warhammer/steel
 	force = 25

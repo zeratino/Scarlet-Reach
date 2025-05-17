@@ -368,6 +368,7 @@
 	force = 12
 	max_integrity = 225
 	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/knuckles/paknuckles
 	name = "ancient knuckles"

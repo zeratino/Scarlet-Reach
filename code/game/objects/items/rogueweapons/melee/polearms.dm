@@ -230,6 +230,7 @@
 	force = 13
 	force_wielded = 22
 	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/spear/paalloy
 	name = "ancient spear"
@@ -611,6 +612,7 @@
 	force_wielded = 22
 	icon_state = "ancient_bardiche"
 	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/halberd/bardiche/paalloy
 	name = "ancient bardiche"
@@ -785,6 +787,7 @@
 	max_integrity = 180
 	icon_state = "ancient_gsw"
 	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 
 /obj/item/rogueweapon/greatsword/paalloy

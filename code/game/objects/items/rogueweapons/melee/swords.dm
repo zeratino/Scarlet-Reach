@@ -591,6 +591,7 @@
 	max_integrity = 75
 	force = 18
 	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/sword/iron/short/gladius
 	name = "gladius"
@@ -606,6 +607,7 @@
 	max_integrity = 150
 	icon_state = "agladius"
 	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/sword/iron/short/gladius/pagladius
 	name = "ancient gladius"
@@ -701,6 +703,7 @@
 	force = 18
 	max_integrity = 115
 	icon_state = "akhopesh"
+	blade_dulling = DULLING_SHAFT_CONJURED
 
 /obj/item/rogueweapon/sword/sabre/palloy
 	name = "ancient khopesh"
