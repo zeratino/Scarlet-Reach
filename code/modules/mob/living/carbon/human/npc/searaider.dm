@@ -53,7 +53,6 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	var/hairf = pick(list(/datum/sprite_accessory/hair/head/lowbraid, 
 						/datum/sprite_accessory/hair/head/countryponytailalt))
 	var/hairm = pick(list(/datum/sprite_accessory/hair/head/ponytailwitcher, 
-						/datum/sprite_accessory/hair/head/mohawk,
 						/datum/sprite_accessory/hair/head/lowbraid))
 	var/beard = pick(list(/datum/sprite_accessory/hair/facial/viking,
 						/datum/sprite_accessory/hair/facial/manly,
