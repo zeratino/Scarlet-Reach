@@ -54,7 +54,7 @@
 	name = "Tea"
 	description = "Tea leaves brewed into a hot drink. Slight hint of bitterness. Smooth."
 	reagent_state = LIQUID
-	color = "#89ab82"
+	color = "#508141" // Deeper green to make it look better
 	taste_description = "smooth grassiness" // Yeah, uh.
 	metabolization_rate = REAGENTS_METABOLISM
 	alpha = 173
