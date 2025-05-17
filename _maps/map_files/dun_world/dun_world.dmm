@@ -3543,17 +3543,10 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/exposed/town/keep)
 "bnM" = (
-/obj/effect/decal/cobbleedge{
-	dir = 10;
-	pixel_y = 1
-	},
 /obj/structure/rack/rogue,
 /obj/item/clothing/suit/roguetown/armor/leather/hide,
 /obj/item/clothing/suit/roguetown/armor/leather/hide,
-/obj/effect/decal/cobbleedge{
-	dir = 9
-	},
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "bnX" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -7977,10 +7970,7 @@
 /area/rogue/under/town/basement)
 "cSx" = (
 /obj/structure/rack/rogue,
-/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
-/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
-/obj/item/quiver/sling/iron,
-/obj/item/quiver/sling/iron,
+/obj/item/rogueweapon/whip,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "cSE" = (
@@ -10812,7 +10802,7 @@
 /obj/item/clothing/mask/rogue/wildguard,
 /obj/item/clothing/mask/rogue/wildguard,
 /obj/item/clothing/mask/rogue/wildguard,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "dVE" = (
 /obj/structure/bed/rogue/inn/hay,
@@ -16844,9 +16834,9 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/underdark)
 "gaB" = (
-/obj/structure/bars,
 /obj/effect/decal/cobbleedge{
-	dir = 5
+	dir = 10;
+	pixel_y = 1
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
@@ -18177,6 +18167,10 @@
 /obj/item/clothing/suit/roguetown/armor/chainmail/iron,
 /obj/item/clothing/suit/roguetown/armor/chainmail/iron,
 /obj/item/clothing/suit/roguetown/armor/chainmail/iron,
+/obj/effect/decal/cobbleedge{
+	dir = 8;
+	pixel_y = 1
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "gAe" = (
@@ -22426,6 +22420,10 @@
 /obj/item/clothing/suit/roguetown/armor/plate/half/iron,
 /obj/effect/decal/cobbleedge{
 	dir = 9
+	},
+/obj/effect/decal/cobbleedge{
+	dir = 9;
+	pixel_x = 13
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
@@ -28175,9 +28173,11 @@
 /turf/open/floor/rogue/churchrough,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "kbH" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/whip,
-/turf/open/floor/rogue/cobble,
+/obj/structure/bars,
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
+/turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "kbR" = (
 /obj/structure/bed/rogue/inn/wool,
@@ -35170,11 +35170,7 @@
 /obj/structure/rack/rogue,
 /obj/item/clothing/head/roguetown/helmet/kettle,
 /obj/item/clothing/head/roguetown/helmet/kettle,
-/obj/effect/decal/cobbleedge{
-	dir = 10;
-	pixel_y = 1
-	},
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "mIT" = (
 /obj/structure/roguemachine/scomm{
@@ -47029,11 +47025,7 @@
 /obj/item/clothing/suit/roguetown/armor/gambeson,
 /obj/item/clothing/suit/roguetown/armor/gambeson,
 /obj/item/clothing/suit/roguetown/armor/gambeson,
-/obj/effect/decal/cobbleedge{
-	dir = 8;
-	pixel_y = 1
-	},
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "qMx" = (
 /obj/effect/decal/cleanable/blood,
@@ -52366,6 +52358,14 @@
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
+"sHr" = (
+/obj/structure/rack/rogue,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/town/basement/keep)
 "sHs" = (
 /obj/effect/decal/cobbleedge{
 	dir = 1;
@@ -158648,7 +158648,7 @@ wCC
 eDX
 aoH
 wCC
-kbH
+cSx
 bYC
 vtx
 bYC
@@ -159100,7 +159100,7 @@ qhq
 tVi
 pIU
 wCC
-cSx
+sHr
 bYC
 xxL
 gZP
@@ -160457,7 +160457,7 @@ eWv
 eWv
 eWv
 eWv
-gaB
+kbH
 wCC
 wCC
 wCC
@@ -161355,7 +161355,7 @@ bHV
 ept
 iad
 bYC
-eWv
+gaB
 eWv
 eWv
 eWv
@@ -161808,10 +161808,10 @@ cUj
 iad
 bYC
 dVC
-eWv
+bil
 kTj
 cCk
-eWv
+bil
 bYC
 bYC
 vrC
@@ -162260,10 +162260,10 @@ fvC
 iad
 bYC
 mIO
-eWv
+wCC
 gAa
 hXA
-bil
+wCC
 bYC
 kSu
 eWv
@@ -162712,7 +162712,7 @@ qgS
 iad
 bYC
 lDp
-bil
+wCC
 qLZ
 bnM
 wCC
