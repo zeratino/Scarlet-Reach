@@ -5,7 +5,7 @@
 	slot_flags = ITEM_SLOT_HIP
 	var/base_icon_state = "basic_book"
 	unique = TRUE
-	firefuel = 2 MINUTES
+	firefuel = 5 MINUTES
 	dropshrink = 0.6
 	drop_sound = 'sound/foley/dropsound/book_drop.ogg'
 	force = 5
