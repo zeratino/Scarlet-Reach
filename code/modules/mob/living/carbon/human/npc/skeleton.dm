@@ -92,7 +92,7 @@
 	H.STAEND = 15
 	H.STAINT = 1
 
-	var/skeletonclass = rand(1,10)
+	var/skeletonclass = rand(1,11)
 	if(skeletonclass < 4) // basic ass skele. Kinda sucks.
 		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
 		pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
@@ -102,7 +102,7 @@
 		else
 			r_hand = /obj/item/rogueweapon/sword/iron/short/ashort
 		return
-	if(skeletonclass < 7) // Skeletal Pirate. Avast ye.
+	if(skeletonclass < 6) // Skeletal Pirate. Avast ye.
 		head =  /obj/item/clothing/head/roguetown/helmet/tricorn
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
 		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
@@ -114,7 +114,7 @@
 		else
 			r_hand = /obj/item/rogueweapon/knuckles/aknuckles
 		return
-	if(skeletonclass < 9) // Skeletal MAA Equal. Getting kinda up there in being dangerous.
+	if(skeletonclass < 8) // Skeletal MAA Equal. Getting kinda up there in being dangerous.
 		cloak = /obj/item/clothing/cloak/stabard/surcoat/guard // Ooo Spooky Old Dead MAA
 		head = /obj/item/clothing/head/roguetown/helmet/heavy/aalloy
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
@@ -127,7 +127,7 @@
 		l_hand = /obj/item/rogueweapon/shield/tower/metal/alloy
 		r_hand = /obj/item/rogueweapon/spear/aalloy
 		return
-	if(skeletonclass < 10) // Skeletal Khopesh wielders(kinda spooky cultist sorta vibes idk?)
+	if(skeletonclass <= 10) // Skeletal Khopesh wielders(kinda spooky cultist sorta vibes idk?)
 		cloak = /obj/item/clothing/cloak/hierophant
 		mask = /obj/item/clothing/mask/rogue/facemask/aalloy
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
@@ -140,7 +140,7 @@
 		r_hand = /obj/item/rogueweapon/sword/sabre/palloy
 		l_hand = /obj/item/rogueweapon/sword/sabre/palloy
 		return
-	if(skeletonclass == 10) // Withered Dread Knight
+	if(skeletonclass == 11) // Withered Dread Knight
 		cloak = /obj/item/clothing/cloak/tabard/blkknight
 		head = /obj/item/clothing/head/roguetown/helmet/heavy/guard/aalloy
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/aalloy
