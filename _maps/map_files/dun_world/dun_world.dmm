@@ -12216,6 +12216,9 @@
 	dir = 10;
 	icon_state = "cobbleedge-n"
 	},
+/obj/structure/fluff/walldeco/customflag{
+	pixel_x = -32
+	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "euK" = (
@@ -30860,6 +30863,12 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
+"lce" = (
+/obj/structure/fluff/walldeco/customflag{
+	pixel_x = -32
+	},
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/town)
 "lcg" = (
 /obj/structure/closet/crate/drawer,
 /turf/open/floor/rogue/blocks/stonered,
@@ -258972,7 +258981,7 @@ pWT
 sns
 sns
 vOG
-sns
+lce
 pWT
 pWT
 pWT
@@ -493559,7 +493568,7 @@ afK
 oMF
 cIz
 vvb
-bGf
+kSK
 lvw
 fPu
 sJu
@@ -495367,7 +495376,7 @@ afK
 qUu
 cMj
 vvb
-bGf
+kSK
 kSK
 kSK
 kSK
