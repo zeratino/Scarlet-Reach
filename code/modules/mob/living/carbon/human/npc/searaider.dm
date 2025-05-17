@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 /datum/outfit/job/roguetown/human/species/human/northern/searaider/pre_equip(mob/living/carbon/human/H)
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	if(prob(50))
-		wrists = /obj/item/clothing/wrists/roguetown/bracers
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
 	if(prob(50))
@@ -99,13 +99,13 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 	H.STAPER = 10
 	H.STAINT = 1
 	if(prob(50))
-		r_hand = /obj/item/rogueweapon/sword
+		r_hand = /obj/item/rogueweapon/sword/iron
 	else
-		r_hand = /obj/item/rogueweapon/stoneaxe/battle
+		r_hand = /obj/item/rogueweapon/greataxe
 	l_hand = /obj/item/rogueweapon/shield/wood
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	if(prob(30))
-		neck = /obj/item/clothing/neck/roguetown/chaincoif
+		neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 		H.eye_color = pick("27becc", "35cc27", "000000")
 	H.hair_color = pick ("4f4f4f", "61310f", "faf6b9")
 	H.facial_hair_color = H.hair_color
