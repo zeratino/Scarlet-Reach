@@ -7976,14 +7976,12 @@
 /turf/open/water/swamp,
 /area/rogue/under/town/basement)
 "cSx" = (
-/obj/structure/closet/crate/roguecloset,
-/obj/item/storage/belt/rogue/pouch,
-/obj/item/storage/belt/rogue/pouch,
-/obj/item/storage/belt/rogue/pouch,
-/obj/structure/fluff/walldeco/customflag{
-	pixel_y = 32
-	},
-/turf/open/floor/rogue/blocks,
+/obj/structure/rack/rogue,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
+/obj/item/quiver/sling/iron,
+/obj/item/quiver/sling/iron,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "cSE" = (
 /obj/item/clothing/head/roguetown/helmet/blacksteel/bucket,
@@ -16846,8 +16844,10 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/underdark)
 "gaB" = (
-/obj/structure/rack/rogue,
-/obj/item/rogueweapon/whip,
+/obj/structure/bars,
+/obj/effect/decal/cobbleedge{
+	dir = 5
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "gaH" = (
@@ -19552,8 +19552,7 @@
 /obj/structure/closet/crate/roguecloset,
 /obj/item/storage/backpack/rogue/satchel,
 /obj/item/storage/backpack/rogue/satchel,
-/obj/item/storage/backpack/rogue/satchel,
-/turf/open/floor/rogue/blocks,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "gZR" = (
 /obj/item/roguegem/violet,
@@ -28177,11 +28176,8 @@
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "kbH" = (
 /obj/structure/rack/rogue,
-/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
-/obj/item/gun/ballistic/revolver/grenadelauncher/sling,
-/obj/item/quiver/sling/iron,
-/obj/item/quiver/sling/iron,
-/turf/open/floor/rogue/blocks,
+/obj/item/rogueweapon/whip,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "kbR" = (
 /obj/structure/bed/rogue/inn/wool,
@@ -65958,11 +65954,14 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/skeletoncrypt)
 "xxL" = (
-/obj/effect/decal/cobbleedge{
-	dir = 9
-	},
 /obj/machinery/light/rogue/torchholder/l,
-/turf/open/floor/rogue/blocks,
+/obj/structure/fluff/walldeco/customflag{
+	pixel_y = 32
+	},
+/obj/structure/closet/crate/chest/neu,
+/obj/item/storage/belt/rogue/pouch,
+/obj/item/storage/belt/rogue/pouch,
+/turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "xxY" = (
 /obj/structure/noose/gallows{
@@ -158649,7 +158648,7 @@ wCC
 eDX
 aoH
 wCC
-bYC
+kbH
 bYC
 vtx
 bYC
@@ -159101,8 +159100,8 @@ qhq
 tVi
 pIU
 wCC
-bYC
 cSx
+bYC
 xxL
 gZP
 bYC
@@ -159553,11 +159552,11 @@ eWv
 tCD
 tJB
 cCe
-rZb
-eWv
 wCC
-ilI
-eWv
+rZb
+wCC
+wCC
+hdy
 eho
 eWv
 tbx
@@ -160005,8 +160004,8 @@ eWv
 fYo
 bOb
 eWv
+qhq
 uWE
-eWv
 wCC
 wCC
 tbx
@@ -160452,13 +160451,13 @@ bHV
 ojQ
 iad
 bYC
-kbH
 eWv
 eWv
 eWv
 eWv
-eho
 eWv
+eWv
+gaB
 wCC
 wCC
 wCC
@@ -160909,8 +160908,8 @@ eWv
 pBL
 bhZ
 eWv
-pjA
 eWv
+pjA
 wCC
 wCC
 gKE
@@ -161356,13 +161355,13 @@ bHV
 ept
 iad
 bYC
-gaB
+eWv
+eWv
 eWv
 eWv
 eWv
 eWv
 bYC
-ilI
 qhq
 wCC
 bYC
