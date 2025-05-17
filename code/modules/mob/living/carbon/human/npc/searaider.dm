@@ -68,11 +68,18 @@ GLOBAL_LIST_INIT(searaider_aggro, world.file2list("strings/rt/searaideraggroline
 		new_hair.set_accessory_type(hairm, null, src)
 		new_facial.set_accessory_type(beard, null, src)
 
-	new_hair.accessory_colors = "#C1A287"
-	new_hair.hair_color = "#C1A287"
-	new_facial.accessory_colors = "#C1A287"
-	new_facial.hair_color = "#C1A287"
-	hair_color = "#C1A287"
+	if(prob(50))
+		new_hair.accessory_colors = "#C1A287"
+		new_hair.hair_color = "#C1A287"
+		new_facial.accessory_colors = "#C1A287"
+		new_facial.hair_color = "#C1A287"
+		hair_color = "#C1A287"
+	else
+		new_hair.accessory_colors = "#A56B3D"
+		new_hair.hair_color = "#A56B3D"
+		new_facial.accessory_colors = "#A56B3D"
+		new_facial.hair_color = "#A56B3D"
+		hair_color = "#A56B3D"
 
 	head.add_bodypart_feature(new_hair)
 	head.add_bodypart_feature(new_facial)
