@@ -24,7 +24,9 @@
 		user.visible_message("<font color='yellow'>[user] makes a fist at [target]!</font>")
 		if(target.anti_magic_check(TRUE, TRUE))
 			return FALSE
-		target.adjustStaminaLoss(125)
+		if(istype(target, /mob/living/carbon))
+			var/mob/living/carbon = target
+			carbon.adjustStaminaLoss(125)
 		target.Dizzy(10)
 		target.blur_eyes(20)
 		target.emote("drown")
