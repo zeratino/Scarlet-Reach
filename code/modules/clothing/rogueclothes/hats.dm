@@ -676,16 +676,17 @@
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
 	name = "skull cap"
-	desc = "A helmet which covers the top of the head."
+	desc = "An iron helmet which covers the top of the head."
 	icon_state = "skullcap"
 	body_parts_covered = HEAD|HAIR
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/clothing/head/roguetown/helmet/horned
 	name = "horned cap"
-	desc = "A helmet with two horns poking out of the sides."
+	desc = "An iron helmet with two horns poking out of the sides."
 	icon_state = "hornedcap"
 	body_parts_covered = HEAD|HAIR
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/clothing/head/roguetown/helmet/winged
 	name = "winged cap"
