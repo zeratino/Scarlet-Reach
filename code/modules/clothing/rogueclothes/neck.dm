@@ -96,7 +96,6 @@
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing/head/standard_coif/chain/mantle)
 
-
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	name = "iron chain coif"
 	icon_state = "ichaincoif"
