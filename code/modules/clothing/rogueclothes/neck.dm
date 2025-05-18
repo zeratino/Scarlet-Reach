@@ -105,6 +105,9 @@
 	body_parts_covered = NECK|MOUTH|NOSE|HAIR|EARS|HEAD
 	adjustable = CAN_CADJUST
 
+/obj/item/clothing/neck/roguetown/chaincoif/full/ComponentInitialize()
+	return
+
 /obj/item/clothing/neck/roguetown/chaincoif/full/AdjustClothes(mob/user)
 	if(loc == user)
 		if(adjustable == CAN_CADJUST)

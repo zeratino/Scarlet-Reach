@@ -29,7 +29,6 @@
 		toggle_open(C)
 	if(toggle_sound)
 		playsound(C, toggle_sound, 50, TRUE, -1)
-		to_chat(world,"playing a sound [toggle_sound]")
 	C.update_icon()
 	H.update_fov_angles()
 
