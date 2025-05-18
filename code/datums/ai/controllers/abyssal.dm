@@ -10,27 +10,6 @@
 		BB_RETALIATE_COOLDOWN = 0
 	)
 
-/datum/element/ai_retaliate_limited
-	var/static/list/retaliate_blackboard_keys = list(
-		BB_BASIC_MOB_RETALIATE_LIST,
-		BB_RETALIATE_ATTACKS_LEFT
-	)
-
-/datum/element/ai_retaliate_limited/Attach(mob/living/target)
-	. = ..()
-	if(!ismob(target))
-		return ELEMENT_INCOMPATIBLE
-	target.AddElement(/datum/element/relay_attackers)
-	RegisterSignal(target, COMSIG_ATOM_WAS_ATTACKED, PROC_REF(on_attacked))
-
-/datum/element/ai_retaliate_limited/Detach(datum/source, ...)
-	. = ..()
-	UnregisterSignal(source, COMSIG_ATOM_WAS_ATTACKED)
-
-/datum/element/ai_retaliate_limited/proc/on_attacked(mob/victim, atom/attacker)
-	SIGNAL_HANDLER
-	victim.ai_controller?.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, attacker)
-
 /datum/ai_planning_subtree/basic_melee_attack_subtree/abyssal
 	melee_attack_behavior = /datum/ai_behavior/basic_melee_attack/abyssal
 

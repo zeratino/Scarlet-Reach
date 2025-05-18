@@ -21,5 +21,5 @@
     ai_controller = /datum/ai_controller/assassin
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/Initialize()
-    AddElement(/datum/element/ai_retaliate_limited)
+    AddElement(/datum/element/ai_retaliate)
     . = ..()
