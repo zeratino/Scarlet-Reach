@@ -91,7 +91,7 @@
 	name = "ceramic statue"
 	desc = "A ceramic statue, shining in its eligance!"
 	icon = 'icons/roguetown/items/cooking.dmi'
-	icon_state = "claystatuecook1"
+	icon_state = "claystatuecooked1"
 	smeltresult = null	//No resource return
 	sellprice = 15		//Iron is worth 20, so these gotta be a little cheaper
 
