@@ -137,8 +137,8 @@
 		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
 		neck = /obj/item/clothing/neck/roguetown/gorget/aalloy
 		gloves = /obj/item/clothing/gloves/roguetown/chain/aalloy
-		r_hand = /obj/item/rogueweapon/sword/sabre/palloy
-		l_hand = /obj/item/rogueweapon/sword/sabre/palloy
+		r_hand = /obj/item/rogueweapon/sword/sabre/alloy
+		l_hand = /obj/item/rogueweapon/sword/sabre/alloy
 		return
 	if(skeletonclass == 11) // Withered Dread Knight
 		cloak = /obj/item/clothing/cloak/tabard/blkknight

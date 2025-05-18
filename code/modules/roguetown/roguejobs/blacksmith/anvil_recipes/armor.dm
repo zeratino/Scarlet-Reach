@@ -158,7 +158,7 @@
 /datum/anvil_recipe/armor/paalloy/hauberk
 	name = "Purified Alloy Hauberk(+1 Purified Alloy)"
 	req_bar = /obj/item/ingot/purifiedaalloy
-	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
+	created_item = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
 	additional_items = list(/obj/item/ingot/purifiedaalloy)
 	craftdiff = 3
 
