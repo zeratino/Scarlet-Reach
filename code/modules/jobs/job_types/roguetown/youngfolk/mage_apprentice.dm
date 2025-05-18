@@ -140,7 +140,7 @@
 	backpack_contents = list(
 		/obj/item/roguegem/amethyst = 1, 
 		/obj/item/recipe_book/alchemy = 1,
-    /obj/item/spellbook_unfinished/pre_arcyne = 1
+    	/obj/item/spellbook_unfinished/pre_arcyne = 1
 		)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
