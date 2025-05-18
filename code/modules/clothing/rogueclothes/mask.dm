@@ -231,25 +231,9 @@
 	experimental_onhip = TRUE
 	sewrepair = TRUE
 
-/obj/item/clothing/mask/rogue/shepherd/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_wear_mask()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
-			body_parts_covered = NECK|MOUTH
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_wear_mask()
+/obj/item/clothing/mask/rogue/shepherd/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_mask)
 
 /obj/item/clothing/mask/rogue/shepherd/shadowmask
 	name = "purple halfmask"
@@ -295,25 +279,9 @@
 	experimental_onhip = TRUE
 	sewrepair = TRUE
 
-/obj/item/clothing/mask/rogue/ragmask/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_wear_mask()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
-			body_parts_covered = NECK|MOUTH
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_wear_mask()
+/obj/item/clothing/mask/rogue/ragmask/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_mask)
 
 /obj/item/clothing/mask/rogue/lordmask/naledi
 	name = "war scholar's mask"
@@ -335,25 +303,9 @@
 	adjustable = CAN_CADJUST
 	toggle_icon_state = FALSE
 
-/obj/item/clothing/mask/rogue/exoticsilkmask/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			flags_inv = null
-			body_parts_covered = NECK
-			to_chat(user, span_notice("You pull down the [src] to expose your face."))
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_wear_mask()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDEFACIALHAIR
-			body_parts_covered = NECK|MOUTH
-			to_chat(user, span_notice("You pull the [src] back up to cover your face."))
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_wear_mask()
+/obj/item/clothing/mask/rogue/exoticsilkmask/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_mask)
 
 /obj/item/clothing/mask/rogue/blindfold
 	name = "blindfold"

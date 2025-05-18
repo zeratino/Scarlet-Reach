@@ -112,30 +112,8 @@
 	icon_state = "deserthood"
 	hidesnoutADJ = FALSE
 
-/obj/item/clothing/head/roguetown/roguehood/shalal/hijab/AdjustClothes(mob/user)	//Only differences from parent are the absence of HIDEFACE flag and FOV flags
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR
-			body_parts_covered = NECK|HAIR|EARS|HEAD
-			body_parts_covered_dynamic = NECK|HAIR|EARS|HEAD
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-				H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			if(mask_override == TRUE)
-				flags_inv = initial(flags_inv)
-			else
-				flags_inv = null
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-					H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
+/obj/item/clothing/head/roguetown/roguehood/shalal/hijab/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_hood/hijab)
 	
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
@@ -268,34 +246,9 @@
 	color = pick("#4756d8", "#759259", "#bf6f39", "#c1b144", "#b8252c")
 	..()
 
-/obj/item/clothing/head/roguetown/roguehood/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-			if(hidesnoutADJ == TRUE)
-				flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-			body_parts_covered = NECK|HAIR|EARS|HEAD
-			body_parts_covered_dynamic = NECK|HAIR|EARS|HEAD // Magically heal from peeling but whatever
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-				H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
-			block2add = FOV_BEHIND
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			if(mask_override == TRUE)
-				flags_inv = initial(flags_inv)
-			else
-				flags_inv = null
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-					H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/roguehood/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_hood)
 
 
 /obj/item/clothing/head/roguetown/menacing
@@ -772,6 +725,10 @@
 	smelt_bar_num = 2
 	armor = list("blunt" = 40, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)
 
+/obj/item/clothing/head/roguetown/helmet/sallet/visored/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet/sallet)
+
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
@@ -793,28 +750,6 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
-
-/obj/item/clothing/head/roguetown/helmet/sallet/visored/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "[initial(icon_state)]_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_cover = null
-			flags_inv = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDESNOUT
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
 
 /obj/item/clothing/head/roguetown/helmet/sallet/elven
 	desc = "A steel helmet with a thin gold plating designed for Elven woodland guardians."
@@ -845,30 +780,10 @@
 			if("onbelt")
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/clothing/head/roguetown/helmet/otavan/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "otavahelm_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/otavan/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet/otavan)
+
 
 /obj/item/clothing/head/roguetown/helmet/heavy
 	name = "barbute"
@@ -942,29 +857,9 @@
 		user.Stun(40)
 	..()
 
-/obj/item/clothing/head/roguetown/helmet/heavy/zizo/AdjustClothes(mob/user)
-	if(loc == user)
-		if(frogstyle)
-			return
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "[initial(icon_state)]_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_cover = null
-			flags_inv = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/zizo/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet/zizo)
 
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard
@@ -1003,30 +898,8 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/black
 	color = CLOTHING_GREY
 
-/obj/item/clothing/head/roguetown/helmet/heavy/knight/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "knightum"
-			body_parts_covered = HEAD|HAIR|EARS
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1055,30 +928,8 @@
 	desc = "Holy lamb, sacrificial hero, blessed idiot - Psydon endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
 	icon_state = "armet"
 
-/obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "armet_raised"
-			body_parts_covered = HEAD|HAIR|EARS
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1205,30 +1056,9 @@
 			if("onbelt")
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "psydonarmet_raised"
-			body_parts_covered = HEAD|HAIR|EARS
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1339,30 +1169,8 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "hounskull_visor_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1392,30 +1200,8 @@
 	icon_state = "bascinet"
 
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "bascinet_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/attackby(obj/item/W, mob/living/user, params)
@@ -1493,30 +1279,9 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "klappvisier_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth
 	name = "froggemund helmet"
@@ -1961,26 +1726,9 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 
-/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "volfplate_visor_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS
-			flags_cover = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 /obj/item/clothing/head/roguetown/helmet/leather/advanced
 	name = "hardened leather helmet"
@@ -2058,28 +1806,7 @@
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/antler/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "wardenhelm_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/bascinet/antler/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
  

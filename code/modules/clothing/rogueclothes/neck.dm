@@ -35,26 +35,9 @@
 	toggle_icon_state = TRUE
 	sewrepair = TRUE
 
-/obj/item/clothing/neck/roguetown/coif/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_neck()
-				H.update_inv_head()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEHAIR
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_neck()
-					H.update_inv_head()
+/obj/item/clothing/neck/roguetown/coif/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_coif)
 
 /obj/item/clothing/neck/roguetown/leather
 	name = "hardened leather gorget"
@@ -88,26 +71,9 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
-/obj/item/clothing/neck/roguetown/chaincoif/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_neck()
-				H.update_inv_head()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEHAIR
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_neck()
-					H.update_inv_head()
+/obj/item/clothing/neck/roguetown/chaincoif/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_coif/chain)
 
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	name = "chain mantle"
@@ -119,25 +85,9 @@
 	slot_flags = ITEM_SLOT_NECK
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 
-/obj/item/clothing/neck/roguetown/chaincoif/chainmantle/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_neck()
-				H.update_inv_head()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDESNOUT|HIDEFACIALHAIR|HIDEFACE
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_neck()
+/obj/item/clothing/neck/roguetown/chaincoif/chainmantle/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing/head/standard_coif/chain/mantle)
 
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron
