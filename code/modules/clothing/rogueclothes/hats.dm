@@ -65,7 +65,8 @@
 	icon = 'icons/roguetown/clothing/head.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' //Overrides slot icon behavior
 	alternate_worn_layer  = 8.9 //On top of helmet
-	body_parts_covered = NECK
+	body_parts_covered = NECK|HAIR|EARS|HEAD
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	sleevetype = null
 	sleeved = null
@@ -75,6 +76,7 @@
 	toggle_icon_state = TRUE
 	max_integrity = 100
 	sewrepair = TRUE
+	block2add = FOV_BEHIND
 
 /obj/item/clothing/head/roguetown/roguehood/shalal
 	name = "keffiyeh"
@@ -111,9 +113,10 @@
 	item_state = "hijab"
 	icon_state = "deserthood"
 	hidesnoutADJ = FALSE
+	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR	//Does not hide face.
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_hood/hijab)
+	AddComponent(/datum/component/adjustable_clothing/head/standard_hood)
 	
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
@@ -859,7 +862,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet/zizo)
+	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
 
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard
