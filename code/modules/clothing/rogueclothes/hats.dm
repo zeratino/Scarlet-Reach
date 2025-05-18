@@ -1672,40 +1672,6 @@
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
 
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm
-	name = "leather miners helmet"
-	desc = "A leather kettle-like helmet with a headlamp, fueled by magiks."
-	icon_state = "minerslamp"
-	var/on = FALSE
-	light_outer_range = 4 //less than a torch; basically good for one person.
-	light_power = 1
-	light_color = LIGHT_COLOR_ORANGE
-	light_system = MOVABLE_LIGHT
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/MiddleClick(mob/user)
-	if(.)
-		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	playsound(loc, 'sound/misc/toggle_lamp.ogg', 100)
-	toggle_helmet_light(user)
-	to_chat(user, span_info("I toggle [src] [on ? "on" : "off"]."))
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/proc/toggle_helmet_light(mob/living/user)
-	on = !on
-	set_light_on(on)
-	update_icon()
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/update_icon()
-	icon_state = "minerslamp[on]"
-	item_state = "minerslamp[on]"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		H.update_inv_head()
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtonIcon(force = TRUE)
-	..()
-
 /obj/item/clothing/head/roguetown/wizhat
 	name = "wizard hat"
 	desc = "Used to distinguish dangerous wizards from senile old men."
