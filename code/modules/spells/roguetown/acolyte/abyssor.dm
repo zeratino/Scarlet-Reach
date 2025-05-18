@@ -155,6 +155,8 @@
 	for(var/turf/T in range(target_turf, outer_tele_radius))
 		if(T in range(target_turf, inner_tele_radius))
 			continue
+		if(istransparentturf(T))
+			continue
 		if(T.density && !include_dense)
 			continue
 		if(T.teleport_restricted && !include_teleport_restricted)
