@@ -21,7 +21,7 @@
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	gesture_required = TRUE
 	range = 7
-	var/delay = 7
+	var/delay = 5
 	var/damage = 0 // damage based off your str 
 	var/area_of_effect = 0
 
@@ -50,7 +50,7 @@
 				return 
 
 			if(L.STASTR <= 15)
-				L.adjustBruteLoss(30)
+				L.adjustBruteLoss(60)
 				L.Knockdown(5)
 				to_chat(L, "<span class='userdanger'>You're magically weighed down, losing your footing!</span>")
 			else
@@ -78,5 +78,5 @@
 	name = "rippling arcyne energy"
 	desc = "Get out of the way!"
 	randomdir = FALSE
-	duration = 7 SECONDS
+	duration = 5 SECONDS
 	layer = MASSIVE_OBJ_LAYER
