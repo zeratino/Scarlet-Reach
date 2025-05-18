@@ -97,7 +97,7 @@
 
 /obj/item/roguestatue/clay/Initialize()
 	. = ..()
-	icon_state = "claystatuecook[pick(1,2)]"
+	icon_state = "claystatuecooked[pick(1,2)]"
 
 /obj/item/roguestatue/glass
 	name = "glass statue"
