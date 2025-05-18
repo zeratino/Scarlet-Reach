@@ -47,7 +47,7 @@
 			if(L.anti_magic_check())
 				visible_message(span_warning("The gravity fades away around you [L] "))  //antimagic needs some testing
 				playsound(get_turf(L), 'sound/magic/magic_nulled.ogg', 100)
-				return 
+				return TRUE
 
 			if(L.STASTR <= 15)
 				L.adjustBruteLoss(60)
@@ -59,7 +59,7 @@
 				to_chat(L, "<span class='userdanger'>You're magically weighed down, and your strength resist!</span>")
 			
 			
-
+	return TRUE
 /obj/effect/temp_visual/gravity
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "hierophant_squares"
