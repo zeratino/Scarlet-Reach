@@ -38,11 +38,6 @@
 	to_chat(H, span_alertsyndie("I am a BANDIT!"))
 	to_chat(H, span_boldwarning("Long ago I did a crime worthy of my bounty being hung on the wall outside of the local inn. I live now with fellow free men in reverence to MATTHIOS whose idol grants us boons and wishes when fed the money, treasures, and metals of the civilized wretches. As a member of the free men, I worship MATTHIOS first and foremost, though I may have allegiance to other deities."))
 
-	if (!(istype(H.patron, /datum/patron/inhumen/zizo) || istype(H.patron, /datum/patron/inhumen/matthios) || istype(H.patron, /datum/patron/inhumen/graggar) || istype(H.patron, /datum/patron/inhumen/baotha)))
-		to_chat(H, span_warning("My former deity has abandoned me.. Matthios is my new master."))
-		H.set_patron(/datum/patron/inhumen/matthios)	//We allow other heretics into the cool-kids club, but if you are a tennite/psydonian it sets you to matthiosan.
-
-
 /* /datum/antagonist/bandit/greet()
 	to_chat(owner.current, span_alertsyndie("I am a BANDIT!"))
 	to_chat(owner.current, span_info("Long ago I did a crime worthy of my bounty being hung on the wall outside of the local inn. I must feed the idol money and valuable metals to satisfy my greed!"))
