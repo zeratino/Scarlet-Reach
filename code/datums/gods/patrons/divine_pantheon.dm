@@ -69,6 +69,7 @@
 					/obj/effect/proc_holder/spell/invoked/abyssor_bends			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/abyssheal				= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/call_mossback			= CLERIC_T3,
+					/obj/effect/proc_holder/spell/invoked/call_dreamfiend		= CLERIC_T4
 	)
 	confess_lines = list(
 		"ABYSSOR COMMANDS THE WAVES!",

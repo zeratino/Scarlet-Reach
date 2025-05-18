@@ -118,3 +118,68 @@
 	else
 		to_chat(user, span_warning("The targeted location is blocked. My call fails to draw a mossback."))
 		return FALSE
+
+/obj/effect/proc_holder/spell/invoked/call_dreamfiend
+	name = "Summon Dreamfiend"
+	overlay_state = "thebends"
+	range = 7
+	no_early_release = TRUE
+	charging_slowdown = 1
+	chargetime = 2 SECONDS
+	sound = 'sound/foley/bubb (1).ogg'
+	invocation = "From the dream, consume!"
+	invocation_type = "shout"
+	recharge_time = 300 SECONDS
+	miracle = TRUE
+	devotion_cost = 150
+
+	// Teleport parameters
+	var/inner_tele_radius = 1
+	var/outer_tele_radius = 2
+	var/include_dense = FALSE
+	var/include_teleport_restricted = FALSE
+
+/obj/effect/proc_holder/spell/invoked/call_dreamfiend/cast(list/targets, mob/living/user)
+	. = ..()
+	var/mob/living/carbon/target = targets[1]
+	
+	if(!istype(target))
+		to_chat(user, span_warning("This spell only works on creatures capable of dreaming!"))
+		revert_cast()
+		return FALSE
+
+	var/turf/target_turf = get_turf(target)
+	var/list/turfs = list()
+
+	// Reused turf selection logic from blink_to_target
+	for(var/turf/T in range(target_turf, outer_tele_radius))
+		if(T in range(target_turf, inner_tele_radius))
+			continue
+		if(T.density && !include_dense)
+			continue
+		if(T.teleport_restricted && !include_teleport_restricted)
+			continue
+		if(T.x>world.maxx-outer_tele_radius || T.x<outer_tele_radius)
+			continue
+		if(T.y>world.maxy-outer_tele_radius || T.y<outer_tele_radius)
+			continue
+		turfs += T
+
+	if(!length(turfs))
+		for(var/turf/T in orange(target_turf, outer_tele_radius))
+			if(!(T in orange(target_turf, inner_tele_radius)))
+				turfs += T
+
+	if(!length(turfs))
+		to_chat(user, span_warning("No valid space to manifest the dreamfiend!"))
+		revert_cast()
+		return FALSE
+
+	var/turf/spawn_turf = pick(turfs)
+	
+	var/mob/living/simple_animal/hostile/rogue/dreamfiend/F = new(spawn_turf)
+	F.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
+	F.ai_controller.set_blackboard_key(BB_MAIN_TARGET, target)
+	
+	F.visible_message(span_notice("A [F] manifests following after [target]... countless teeth bared with hostility!"))
+	return TRUE

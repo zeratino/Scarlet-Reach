@@ -19,12 +19,10 @@
 	can_have_ai = FALSE
 
 	ai_controller = /datum/ai_controller/assassin
-	var/main_target
 	var/next_blink = 0
 	var/blink_cooldown = 5 SECONDS
 	var/inner_tele_radius = 1
 	var/outer_tele_radius = 2
-	var/include_space = FALSE
 	var/include_dense = FALSE
 	var/include_teleport_restricted = FALSE
 	var/sound1 = 'sound/magic/blink.ogg'
@@ -32,8 +30,6 @@
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/Initialize()
 	AddElement(/datum/element/ai_retaliate)
-	if(main_target)
-		ai_controller.set_blackboard_key(BB_MAIN_TARGET, main_target)
 	. = ..()
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/proc/blink_to_target(var/mob/target)
@@ -46,6 +42,8 @@
 
 	for(var/turf/T in range(target,outer_tele_radius))
 		if(T in range(target,inner_tele_radius))
+			continue
+		if(istransparentturf(T))
 			continue
 		if(T.density && !include_dense)
 			continue
