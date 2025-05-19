@@ -11438,6 +11438,10 @@
 "ehD" = (
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/under/town/basement)
+"ehI" = (
+/obj/structure/fluff/candle,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/town/bath)
 "ehN" = (
 /turf/open/floor/rogue/snowpatchy,
 /area/rogue/outdoors/mountains)
@@ -24860,6 +24864,7 @@
 /area/rogue/indoors/shelter/woods)
 "iRE" = (
 /obj/structure/table/vtable/v2,
+/obj/structure/fluff/candle,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town/bath)
 "iRH" = (
@@ -38436,6 +38441,9 @@
 /obj/effect/landmark/start/archivist,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town)
+"nSd" = (
+/turf/closed/mineral/rogue/bedrock,
+/area/rogue/indoors/town/bath)
 "nSj" = (
 /obj/structure/roguemachine/stockpile,
 /turf/open/floor/rogue/cobblerock,
@@ -54462,6 +54470,9 @@
 /obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/town)
+"txj" = (
+/turf/closed/mineral/random/rogue/high,
+/area/rogue/indoors/town/bath)
 "txn" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -119466,7 +119477,7 @@ bhJ
 miF
 miF
 miF
-qHj
+miF
 qHj
 qHj
 qHj
@@ -119918,11 +119929,11 @@ bhJ
 miF
 miF
 miF
+miF
 qHj
-ogs
-ogs
-ogs
-ogs
+qHj
+qHj
+qHj
 rqY
 ono
 ono
@@ -120371,10 +120382,10 @@ miF
 miF
 miF
 qHj
-ogs
-rqY
-rqY
-rqY
+qHj
+txj
+txj
+txj
 rqY
 qaB
 ono
@@ -120824,10 +120835,10 @@ miF
 miF
 qHj
 ogs
-fij
-tBD
-ono
-gXu
+nSd
+nSd
+nSd
+rqY
 sok
 ono
 ono
@@ -121276,9 +121287,9 @@ miF
 qHj
 qHj
 ogs
-fij
-ono
-ono
+rqY
+rqY
+rqY
 rqY
 gXu
 rNm
@@ -121728,9 +121739,9 @@ fCP
 qHj
 qHj
 ogs
-rqY
-rKY
-ubp
+fij
+tBD
+ono
 gXu
 wSF
 wSF
@@ -122180,10 +122191,10 @@ rqY
 btb
 rqY
 rqY
-rqY
-mqc
+fij
 ono
-rNm
+ono
+rqY
 wSF
 wSF
 wSF
@@ -122633,9 +122644,9 @@ rqY
 rqY
 rqY
 rqY
-rqY
-rqY
-rqY
+rKY
+ubp
+gXu
 wSF
 wSF
 wSF
@@ -123084,10 +123095,10 @@ rqY
 rqY
 nIU
 nIU
-nIU
-nIU
 rqY
-rqY
+mqc
+ono
+rNm
 wSF
 wSF
 wSF
@@ -123536,8 +123547,8 @@ rqY
 rqY
 nIU
 nIU
-nIU
-nIU
+rqY
+rqY
 rqY
 rqY
 iFs
@@ -131673,7 +131684,7 @@ uhD
 uhD
 uhD
 pHd
-wSF
+ehI
 tba
 vWb
 wSF
@@ -132128,7 +132139,7 @@ rqY
 qdv
 qdv
 rqY
-wSF
+ehI
 wSF
 iBX
 haH

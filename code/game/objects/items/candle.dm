@@ -88,6 +88,26 @@
 	if(put_out_candle())
 		user.visible_message(span_notice("[user] snuffs [src]."))
 
+/obj/item/candle/candles
+	name = "candles"
+	desc = ""
+	icon = 'icons/roguetown/items/lighting.dmi'
+	icon_state = "floorcandle"
+	density = FALSE
+	anchored = TRUE
+	infinite = TRUE
+
+/obj/item/candle/candles/update_icon()
+	icon_state = "floorcandle[lit ? "_lit" : ""]"
+
+/obj/item/candle/attack_hand(mob/user)
+	if(put_out_candle())
+		user.visible_message(span_notice("[user] snuffs [src]."))
+
+/obj/item/candle/candles/lit
+	icon_state = "floorcandle_lit"
+	start_lit = TRUE
+
 /obj/item/candle/yellow
 	icon = 'icons/roguetown/items/lighting.dmi'
 
