@@ -97,7 +97,7 @@
 		/obj/item/seeds/sweetleaf = 1, 
 		/obj/item/seeds/pipeweed = 1,
 		/obj/item/recipe_book/alchemy = 1,
-    /obj/item/spellbook_unfinished/pre_arcyne = 1
+		/obj/item/spellbook_unfinished/pre_arcyne = 1
 		)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
