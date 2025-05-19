@@ -48,15 +48,12 @@
 	damfactor = 1
 
 /datum/intent/spear/cut/bardiche
-    damfactor = 1.0
-    chargetime = 1
+    damfactor = 1.2
+    chargetime = 0
 
 /datum/intent/spear/cut/glaive
 	damfactor = 1.2
 	chargetime = 0
-
-/datum/intent/spear/cut/bardiche/scythe
-	reach = 2
 
 /datum/intent/spear/cast
 	name = "cast"
@@ -625,7 +622,7 @@
 	name = "summer scythe"
 	desc = "Summer's verdancy runs through the head of this scythe. All the more to sow."
 	icon_state = "dendorscythe"
-	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche/scythe, /datum/intent/axe/chop/scythe, SPEAR_BASH)
+	gripped_intents = list(/datum/intent/spear/thrust/eaglebeak, /datum/intent/spear/cut/bardiche, /datum/intent/axe/chop/scythe, SPEAR_BASH)
 
 /obj/item/rogueweapon/halberd/psyhalberd
 	name = "Stigmata"
