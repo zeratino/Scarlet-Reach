@@ -294,6 +294,9 @@
 /obj/item/clothing/mask/rogue/ragmask/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/rummaging-03.ogg', null, (UPD_HEAD|UPD_MASK))	//Standard mask
 
+/obj/item/clothing/mask/rogue/ragmask/red //predyed mask for NPCs
+	color = CLOTHING_RED
+
 /obj/item/clothing/mask/rogue/lordmask/naledi
 	name = "war scholar's mask"
 	item_state = "naledimask"
