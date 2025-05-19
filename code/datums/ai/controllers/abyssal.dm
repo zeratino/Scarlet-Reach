@@ -43,7 +43,6 @@
 /datum/ai_behavior/basic_melee_attack/abyssal/perform(delta_time, datum/ai_controller/controller, target_key, targetting_datum_key, hiding_location_key)
 	var/retaliation_count = controller.blackboard[BB_RETALIATE_ATTACKS_LEFT]
 	var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
-	to_chat(world, span_boldannounce("RETALIATION COUNT - [retaliation_count]"))
 
 	if(retaliation_count <= 0)
 		controller.set_blackboard_key(BB_RETALIATE_ATTACKS_LEFT, 2)
@@ -75,7 +74,6 @@
 		if (current_time >= last_decrease)
 			controller.set_blackboard_key(BB_RETALIATE_ATTACKS_LEFT, max(retaliation_count - 1, 0))
 			controller.set_blackboard_key(BB_RETALIATE_COOLDOWN, current_time + 2 SECONDS)
-			to_chat(world, span_boldannounce("LOWERED AMOUNT"))
 		dreamfiend.ClickOn(target, list())
 
 	if(sidesteps_after && prob(33)) //this is so fucking hacky, but going off og code this is exactly how it goes ignoring movetimers
@@ -99,7 +97,6 @@
 		var/main_target = controller.blackboard[BB_MAIN_TARGET]
 		controller.clear_blackboard_key(BB_BASIC_MOB_RETALIATE_LIST)
 		controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
-		to_chat(world, span_boldannounce("CLEARED THAT TARGET"))
 
 /datum/ai_behavior/basic_melee_attack/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
