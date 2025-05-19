@@ -1,5 +1,21 @@
 /datum/ai_controller/assassin
-	movement_delay = 2 SECONDS
+	movement_delay = MINOR_DREAMFIEND_MOVEMENT_SPEED
+
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/blink_if_far,
+		/datum/ai_planning_subtree/target_retaliate,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree/abyssal
+	)
+	blackboard = list(
+		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic(),
+		BB_RETALIATE_ATTACKS_LEFT = 0,
+		BB_BASIC_MOB_RETALIATE_LIST = list(),
+		BB_RETALIATE_COOLDOWN = 0,
+		BB_MAIN_TARGET = null
+	)
+
+/datum/ai_controller/assassin/ancient
+	movement_delay = ANCIENT_DREAMFIEND_MOVEMENT_SPEED
 
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/blink_if_far,
@@ -38,12 +54,6 @@
 	if(!targetting_datum.can_attack(dreamfiend, target))
 		finish_action(controller, FALSE, target_key)
 		return
-	
-	// to_chat(world, span_boldannounce("[get_dist(dreamfiend, target)]"))
-	// if(get_dist(dreamfiend, target) <= 5)
-	// 	//Attempt to blink!
-	// 	to_chat(world, span_boldannounce("BLINKING TO MY GUY"))
-	// 	dreamfiend.blink_to_target(target)
 
 	var/hiding_target = targetting_datum.find_hidden_mobs(dreamfiend, target) //If this is valid, theyre hidden in something!
 
@@ -92,19 +102,20 @@
 		var/mob/target = controller.blackboard[target_key]
 		var/mob/main_target = controller.blackboard[BB_MAIN_TARGET]
 		controller.clear_blackboard_key(target_key)
+		var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
 		if(target != main_target && main_target.stat == 0)
 			//We lost the person we really want to kill... keep trying to teleport to them and kill them.
-			var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
 			dreamfiend.blink_to_target(target)
 			controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
+		else if(main_target.stat != 0)
+			dreamfiend.return_to_abyssor()
 
 /datum/ai_planning_subtree/blink_if_far
 
 /datum/ai_planning_subtree/blink_if_far/SelectBehaviors(datum/ai_controller/controller, seconds_per_tick)
 	var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
 	var/mob/target = controller.blackboard[BB_BASIC_MOB_CURRENT_TARGET]
-
-	if(!target || get_dist(dreamfiend, target) <= 5)
+	if(!target || get_dist(dreamfiend, target) <= 5 )
 		return
 
 	// Attempt to blink and halt further planning if successful
