@@ -7,7 +7,7 @@
 
 	//Not a crab, but mossbacks respect other creations of Abyssor...
 	faction = list("dream", "crabs")
-	attack_sound = list('sound/vo/mobs/spider/attack (1).ogg','sound/vo/mobs/spider/attack (2).ogg','sound/vo/mobs/spider/attack (3).ogg','sound/vo/mobs/spider/attack (4).ogg')
+	attack_sound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
 
 	base_intents = list(/datum/intent/simple/bite)
 
@@ -27,8 +27,9 @@
 	var/outer_tele_radius = 2
 	var/include_dense = FALSE
 	var/include_teleport_restricted = FALSE
-	var/sound1 = 'sound/magic/blink.ogg'
-	var/sound2 = 'sound/magic/blink.ogg'
+	var/sound1 = 'modular_azurepeak/sound/mobs/abyssal/abyssal_idle.ogg'
+	var/sound2 = 'modular_azurepeak/sound/mobs/abyssal/abyssal_teleport.ogg'
+	var/desummon_timer = 8 SECONDS
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/major
 	icon = 'modular_hearthstone/icons/mob/abyssal_medium.dmi'
@@ -40,6 +41,9 @@
 	melee_damage_lower = 50
 	melee_damage_upper = 90
 	melee_cooldown = MAJOR_DREAMFIEND_ATTACK_SPEED
+	desummon_timer = 12 SECONDS
+
+	attack_sound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/ancient
 	icon = 'modular_hearthstone/icons/mob/abyssal_large.dmi'
@@ -53,11 +57,49 @@
 	melee_damage_upper = 120
 	base_intents = list(/datum/intent/simple/dreamfiend_ancient)
 	melee_cooldown = ANCIENT_DREAMFIEND_ATTACK_SPEED
+	desummon_timer = 20 SECONDS
+
+	STACON = 20
+	STASTR = 20
+	STAPER = 20
 
 	ai_controller = /datum/ai_controller/assassin/ancient
+	attack_sound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
+
+/mob/living/simple_animal/hostile/rogue/dreamfiend/get_sound(input)
+    switch(input)
+        if("aggro")
+            return pick('modular_azurepeak/sound/mobs/abyssal/abyssal_aggro.ogg')
+        if("pain")
+            return pick('modular_azurepeak/sound/mobs/abyssal/abyssal_pain.ogg')
+        if("death")
+            return pick('modular_azurepeak/sound/mobs/abyssal/abyssal_pain.ogg')
+        if("idle")
+            return pick('modular_azurepeak/sound/mobs/abyssal/abyssal_idle.ogg')
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/Initialize()
 	AddElement(/datum/element/ai_retaliate)
+	ADD_TRAIT(src, TRAIT_NOBREATH, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_KNEESTINGER_IMMUNITY, INNATE_TRAIT)
+	. = ..()
+
+/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/Initialize()
+	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOFIRE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_BASHDOORS, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_ORGAN_EATER, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NASTY_EATER, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOSTINK, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_STRONGBITE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_BREADY, TRAIT_GENERIC)
 	. = ..()
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/proc/blink_to_target(var/mob/target)
@@ -104,26 +146,30 @@
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/proc/return_to_abyssor()
 	src.visible_message(span_notice("The [src] starts to fade out of reality!"))
-	if(do_after(src, 8 SECONDS, FALSE))
+	if(do_after(src, desummon_timer, FALSE, target = src))
 		qdel(src)
 
-/mob/living/simple_animal/hostile/rogue/dreamfiend/death(gibbed)
-	..()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/death()
 	if(prob(5))
 		new /obj/item/roguegem/yellow(loc)
 	//Was it even real?!
 	new /obj/effect/decal/cleanable/dreamfiend_ichor(loc)
 	qdel(src)
 
-/mob/living/simple_animal/hostile/rogue/dreamfiend/major/death(gibbed)
-	..()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/major/death()
 	if(prob(1))
 		new /obj/item/rogueweapon/greataxe/dreamscape(loc)
 	new /obj/effect/decal/cleanable/dreamfiend_ichor/large(loc)
+	var/main_target = ai_controller.blackboard[BB_MAIN_TARGET]
+	for(var/i in 1 to 2)
+		var/mob/living/simple_animal/hostile/rogue/dreamfiend/F = new(loc)
+		F.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
+		F.ai_controller.set_blackboard_key(BB_MAIN_TARGET, main_target)
+	if(main_target)
+		src.visible_message(span_notice("some dreamfiends split forth front the body of the [src] following after [main_target]... countless teeth bared with hostility!"))
 	qdel(src)
 
-/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/death(gibbed)
-	..()
+/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/death()
 	if(prob(50))
 		if(prob(1))
 			new /obj/item/rogueweapon/greataxe/dreamscape/active(loc)
@@ -156,12 +202,5 @@
 	attack_verb = list("eviscerates", "tears at")
 	animname = "cut"
 	blade_class = BCLASS_CHOP
-	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
+	hitsound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
 	penfactor = 30
-
-/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/AttackingTarget()
-	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(L.reagents)
-			L.reagents.add_reagent(/datum/reagent/toxin/venom, 1)
