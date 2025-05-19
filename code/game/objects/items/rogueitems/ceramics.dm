@@ -59,7 +59,7 @@
 /obj/item/natural/clay/claycup
 	name = "unglazed clay flask"
 	icon = 'icons/roguetown/items/cooking.dmi'
-	icon_state = "claycuperaw"
+	icon_state = "claycupraw"
 	desc = "A small flask fashioned from clay. Still needs to be glazed to be useful."
 	cooked_type = /obj/item/reagent_containers/glass/cup/claycup
 
@@ -67,7 +67,7 @@
 	name = "clay flask"
 	desc = "A small ceramic flask."
 	icon = 'icons/roguetown/items/cooking.dmi'
-	icon_state = "claybottlecook"
+	icon_state = "claycupcook"
 	sellprice = 3
 	reagent_flags = OPENCONTAINER	//So it doesn't appear through
 
