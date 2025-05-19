@@ -1,7 +1,7 @@
 //GLOBAL_LIST_INIT(militia_aggro, world.file2list("strings/rt/militiaaggrolines.txt")) //this doesn't exit but feel free to make it
 
-/mob/living/carbon/human/species/human/northern/militia //weak peasant infantry. Neutral but can be given factions for events. 
-	aggressive=1
+/mob/living/carbon/human/species/human/northern/militia //weak peasant infantry. Neutral but can be given factions for events. doesn't attack players. 
+	aggressive=1 //they attack things. INCLUDING SAIGAS (THIS MEANS THEY WILL AGGRO ON PEOPLES MOUNTS)
 	mode = AI_IDLE
 	faction = list("neutral")
 	ambushable = FALSE
@@ -13,13 +13,14 @@
 
 
 /mob/living/carbon/human/species/human/northern/militia/ambush
-	aggressive=1
 
 	wander = TRUE
 
-/mob/living/carbon/human/species/human/northern/militia/guard //variant that just stands around, if you want to place them as set dressing. will fight back vs hostile mobs
+/mob/living/carbon/human/species/human/northern/militia/guard //variant that doesn't wander, if you want to place them as set dressing. will aggro enemies and animals
 	wander = FALSE
 
+
+	
 /* /mob/living/carbon/human/species/human/northern/militia/retaliate(mob/living/L)
 	var/newtarg = target
 	.=..()
@@ -79,6 +80,7 @@
 	. = ..() */
 
 /datum/outfit/job/roguetown/human/species/human/northern/militia/pre_equip(mob/living/carbon/human/H)
+	cloak = /obj/item/clothing/cloak/stabard/guard
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	if(prob(50))
