@@ -103,7 +103,6 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/rogue/dreamfiend/proc/blink_to_target(var/mob/target)
-	to_chat(world, span_boldannounce("BLINKY TIME YIPPEE"))
 	if(world.time < next_blink || QDELETED(target) || target.stat == DEAD)
 		return FALSE
 
