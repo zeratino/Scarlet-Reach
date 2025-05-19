@@ -630,8 +630,7 @@
 	smelt_bar_num = 3
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/cloak/holysee
 	name = "holy silver vestments"

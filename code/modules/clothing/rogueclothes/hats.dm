@@ -78,13 +78,17 @@
 	sewrepair = TRUE
 	block2add = FOV_BEHIND
 
+/obj/item/clothing/head/roguetown/roguehood/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/cloak (3).ogg', null, (UPD_HEAD|UPD_MASK))	//Standard hood
+
 /obj/item/clothing/head/roguetown/roguehood/shalal
 	name = "keffiyeh"
 	desc = "A protective covering worn by those native to the desert."
 	color = "#b8252c"
 	icon_state = "shalal"
 	item_state = "shalal"
-	flags_inv = HIDEHAIR|HIDEFACIALHAIR
+	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDEEARS
 	sleevetype = null
 	sleeved = null
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -108,20 +112,16 @@
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
 	name = "hijab"
-	flags_inv = null
 	desc = "Flowing like blood from a wound, this tithe of cloth-and-silk spills out to the shoulders. It carries the telltale mark of Naledian stitcheries."
 	item_state = "hijab"
 	icon_state = "deserthood"
 	hidesnoutADJ = FALSE
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR	//Does not hide face.
+	block2add = null
 
-/obj/item/clothing/head/roguetown/roguehood/shalal/hijab/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_hood)
-	
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	name = "heavy hood"
-	flags_inv = null
 	desc = "This thick lump of burlap completely shrouds your head, protecting it from harsh weather and nosey protagonists alike."
 	color = CLOTHING_BROWN
 	item_state = "heavyhood"
@@ -248,11 +248,6 @@
 /obj/item/clothing/head/roguetown/roguehood/mage/Initialize()
 	color = pick("#4756d8", "#759259", "#bf6f39", "#c1b144", "#b8252c")
 	..()
-
-/obj/item/clothing/head/roguetown/roguehood/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_hood)
-
 
 /obj/item/clothing/head/roguetown/menacing
 	name = "sack hood"
@@ -729,8 +724,7 @@
 	armor = list("blunt" = 40, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet/sallet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), null, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Sallet. Does not hide anything when opened.
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -784,8 +778,7 @@
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/otavan/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet/otavan)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), HIDEEARS, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Otavan. Only hides ears when open.
 
 
 /obj/item/clothing/head/roguetown/helmet/heavy
@@ -911,7 +904,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard
@@ -965,7 +958,7 @@
 	color = CLOTHING_GREY
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -995,7 +988,7 @@
 	icon_state = "armet"
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1123,8 +1116,7 @@
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1236,7 +1228,7 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1267,7 +1259,7 @@
 
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/attackby(obj/item/W, mob/living/user, params)
@@ -1346,8 +1338,7 @@
 		add_overlay(pic)
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth
 	name = "froggemund helmet"
@@ -1759,8 +1750,7 @@
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/heavy/volfplate/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/leather/advanced
 	name = "hardened leather helmet"
@@ -1839,6 +1829,4 @@
 	experimental_onhip = FALSE
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/antler/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_helmet)
- 
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet

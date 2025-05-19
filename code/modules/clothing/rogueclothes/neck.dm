@@ -36,8 +36,7 @@
 	sewrepair = TRUE
 
 /obj/item/clothing/neck/roguetown/coif/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_coif)
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Soundless coif
 
 /obj/item/clothing/neck/roguetown/leather
 	name = "hardened leather gorget"
@@ -72,16 +71,13 @@
 
 
 /obj/item/clothing/neck/roguetown/chaincoif/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_coif/chain)
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/chain_equip.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
 
 /obj/item/clothing/neck/roguetown/chaincoif/paalloy
 	name = "ancient coif"
 	desc = "a coif made of ancient alloys. Aeon's grasp lifted from its form."
 	icon_state = "achaincoif"
 	smeltresult = /obj/item/ingot/aaslag
-
-/obj/item/clothing/neck/roguetown/chaincoif/paalloy/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_coif/chain)
 
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	name = "chain mantle"
@@ -94,7 +90,7 @@
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_coif/chain/mantle)
+	AddComponent(/datum/component/adjustable_clothing, (NECK|MOUTH), null, null, 'sound/foley/equip/equip_armor_chain.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	name = "iron chain coif"

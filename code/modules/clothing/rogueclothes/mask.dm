@@ -245,8 +245,7 @@
 	sewrepair = TRUE
 
 /obj/item/clothing/mask/rogue/shepherd/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_mask)
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/rummaging-03.ogg', null, (UPD_HEAD|UPD_MASK))	//Standard mask
 
 /obj/item/clothing/mask/rogue/shepherd/shadowmask
 	name = "purple halfmask"
@@ -293,8 +292,7 @@
 	sewrepair = TRUE
 
 /obj/item/clothing/mask/rogue/ragmask/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_mask)
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/rummaging-03.ogg', null, (UPD_HEAD|UPD_MASK))	//Standard mask
 
 /obj/item/clothing/mask/rogue/lordmask/naledi
 	name = "war scholar's mask"
@@ -317,8 +315,7 @@
 	toggle_icon_state = FALSE
 
 /obj/item/clothing/mask/rogue/exoticsilkmask/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/adjustable_clothing/head/standard_mask)
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/rummaging-03.ogg', null, (UPD_HEAD|UPD_MASK))	//Standard mask
 
 /obj/item/clothing/mask/rogue/blindfold
 	name = "blindfold"

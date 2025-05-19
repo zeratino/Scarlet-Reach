@@ -4,6 +4,10 @@
 		Note: The component assumes the item's default state (sprite & flags wise) is "ON". IE visor closed, hood on, coif on, mask on etc.
 		Make sure to adjust your inv flags & body coverage accordingly.
 */
+#define UPD_HEAD (1 << 0)
+#define UPD_MASK (1 << 1)
+#define UPD_NECK (1 << 2)
+
 /datum/component/adjustable_clothing
 	///Body coverage zones (For armor) it should have when open. body_coverage_dynamic will take these.
 	var/flags_open
@@ -19,13 +23,21 @@
 	var/toggled_open = FALSE
 	///The block2add the item is meant to have on toggle.
 	var/fov_open = null
+	///Inv. update flags
+	var/update_flags
 
-/datum/component/adjustable_clothing/Initialize()
+/datum/component/adjustable_clothing/Initialize(arg_open_flags, arg_inv_flags, arg_cover_flags, arg_sound, arg_fov, arg_update_flags)
 	if(!isclothing(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_ATOM_ATTACK_RIGHT, PROC_REF(on_attack_right))
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
 	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
+	flags_open = arg_open_flags
+	flags_inv_open = arg_inv_flags
+	flags_cover_open = arg_cover_flags
+	toggle_sound = arg_sound
+	fov_open = arg_fov
+	update_flags = arg_update_flags
 	
 /datum/component/adjustable_clothing/proc/on_attack_right(mob/user)
 	var/obj/item/clothing/C = parent
@@ -39,6 +51,7 @@
 	if(toggle_sound)
 		playsound(C, toggle_sound, 50, TRUE, -1)
 	C.update_icon()
+	update_inv(H)
 	H.update_fov_angles()
 
 //We force it closed to make sure we can't equip an opened item if one IS on the ground somehow.
@@ -88,65 +101,28 @@
 	C.icon_state = "[initial(C.icon_state)]"
 	toggled_open = FALSE
 
-/datum/component/adjustable_clothing/head/on_attack_right(mob/user)
-	. = ..()
-	var/obj/item/clothing/C = parent
-	if(!ishuman(C.loc))
+/datum/component/adjustable_clothing/proc/update_inv(mob/living/carbon/human/H)
+	if(update_flags & (UPD_HEAD|UPD_MASK|UPD_NECK))
+		H.update_inv_head()
+		H.update_inv_wear_mask()
+		H.update_inv_neck()
 		return
-	var/mob/living/carbon/human/H = C.loc
-	H.update_inv_head()
-	H.update_inv_wear_mask()
-
-/datum/component/adjustable_clothing/head/standard_helmet
-	toggle_sound = 'sound/items/visor.ogg'
-	flags_open = HEAD|EARS|HAIR
-	flags_inv_open = HIDEEARS|HIDEHAIR
-	flags_cover_open = null
-	fov_open = null
-
-/datum/component/adjustable_clothing/head/standard_helmet/sallet
-	flags_open = HEAD|EARS|HAIR
-	flags_inv_open = null
-	flags_cover_open = null
-	fov_open = null
-/datum/component/adjustable_clothing/head/standard_helmet/otavan
-	flags_inv_open = HIDEEARS
-
-/datum/component/adjustable_clothing/head/standard_hood
-	toggle_sound = 'sound/foley/equip/cloak (3).ogg'
-	flags_open = NECK
-	flags_inv_open = null
-	flags_cover_open = null
-	fov_open = null
-
-/datum/component/adjustable_clothing/head/standard_mask
-	toggle_sound = 'sound/foley/equip/rummaging-03.ogg'
-	flags_open = NECK
-	flags_inv_open = null
-	flags_cover_open = null
-	fov_open = null
-
-/datum/component/adjustable_clothing/head/standard_coif
-	toggle_sound = null
-	flags_open = NECK
-	flags_inv_open = null
-	flags_cover_open = null
-	fov_open = null
-
-/datum/component/adjustable_clothing/head/standard_coif/on_attack_right(mob/user)
-	. = ..()
-	var/obj/item/clothing/C = parent
-	if(!ishuman(C.loc))
+	if(update_flags & (UPD_HEAD|UPD_MASK))
+		H.update_inv_head()
+		H.update_inv_wear_mask()
 		return
-	var/mob/living/carbon/human/H = C.loc
-	H.update_inv_neck()
+	if(update_flags & (UPD_MASK|UPD_NECK))
+		H.update_inv_wear_mask()
+		H.update_inv_neck()
+		return
+	if(update_flags & UPD_HEAD)
+		H.update_inv_head()
+		return
+	if(update_flags & UPD_NECK)
+		H.update_inv_neck()
+		return
+	if(update_flags & UPD_MASK)
+		H.update_inv_wear_mask()
+		return
 
-/datum/component/adjustable_clothing/head/standard_coif/chain
-	toggle_sound = 'sound/foley/equip/equip_armor_chain.ogg'
-
-/datum/component/adjustable_clothing/head/standard_coif/chain/mantle
-	flags_open = NECK|MOUTH
-	flags_inv_open = null
-	flags_cover_open = null
-	fov_open = null
 
