@@ -1126,6 +1126,8 @@
 #include "code\modules\cargo\packsrogue\merchant\food.dm"
 #include "code\modules\cargo\packsrogue\merchant\livestock.dm"
 #include "code\modules\cargo\packsrogue\merchant\luxury.dm"
+#include "code\modules\cargo\packsrogue\merchant\merchant_crate.dm"
+#include "code\modules\cargo\packsrogue\merchant\merchant_gems.dm"
 #include "code\modules\cargo\packsrogue\merchant\merchant_potions.dm"
 #include "code\modules\cargo\packsrogue\merchant\rawmat.dm"
 #include "code\modules\cargo\packsrogue\merchant\seeds.dm"

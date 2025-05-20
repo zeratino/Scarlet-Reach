@@ -76,11 +76,6 @@
 	cost = 30
 	contains = list(/obj/item/rogue/instrument/vocals)
 
-/datum/supply_pack/rogue/luxury/toper
-	name = "Toper"
-	cost = 55
-	contains = list(/obj/item/roguegem/yellow)
-
 
 /datum/supply_pack/rogue/luxury/silverdagger
 	name = "Silver Dagger"

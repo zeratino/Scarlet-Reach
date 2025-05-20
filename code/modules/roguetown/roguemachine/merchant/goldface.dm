@@ -27,6 +27,7 @@
 		"Apparel",
 		"Armor",
 		"Consumable",
+		"Gems",
 		"Luxury",
 		"Livestock",
 		"Potions",
