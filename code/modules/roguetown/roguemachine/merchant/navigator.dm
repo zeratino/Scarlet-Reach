@@ -1,4 +1,4 @@
-/obj/item/roguemachine/merchant
+/obj/item/roguemachine/navigator
 	name = "navigator"
 	desc = "A machine that attracts the attention of trading balloons."
 	icon = 'icons/roguetown/misc/machines.dmi'
@@ -19,7 +19,7 @@
 	layer = BELOW_OBJ_LAYER
 	anchored = TRUE
 
-/obj/item/roguemachine/merchant/attack_hand(mob/living/user)
+/obj/item/roguemachine/navigator/attack_hand(mob/living/user)
 	if(!anchored)
 		return ..()
 	user.changeNext_move(CLICK_CD_MELEE)
@@ -37,7 +37,7 @@
 	popup.set_content(contents)
 	popup.open()
 
-/obj/item/roguemachine/merchant/update_icon()
+/obj/item/roguemachine/navigator/update_icon()
 	if(!anchored)
 		w_class = WEIGHT_CLASS_BULKY
 		set_light(0)
@@ -45,7 +45,7 @@
 	w_class = WEIGHT_CLASS_GIGANTIC
 	set_light(2, 2, 2, l_color = "#1b7bf1")
 
-/obj/item/roguemachine/merchant/Initialize()
+/obj/item/roguemachine/navigator/Initialize()
 	. = ..()
 	if(anchored)
 		START_PROCESSING(SSroguemachine, src)
@@ -56,12 +56,12 @@
 			continue
 		new /obj/structure/roguemachine/balloon_pad(T)
 
-/obj/item/roguemachine/merchant/Destroy()
+/obj/item/roguemachine/navigator/Destroy()
 	STOP_PROCESSING(SSroguemachine, src)
 	set_light(0)
 	return ..()
 
-/obj/item/roguemachine/merchant/process()
+/obj/item/roguemachine/navigator/process()
 	if(!anchored)
 		return TRUE
 	if(world.time > next_airlift)

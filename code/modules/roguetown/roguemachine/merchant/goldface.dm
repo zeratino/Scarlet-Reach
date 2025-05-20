@@ -6,7 +6,7 @@
 
 #define UPGRADE_NOTAX		(1<<0)
 
-/obj/structure/roguemachine/merchantvend
+/obj/structure/roguemachine/goldface
 	name = "GOLDFACE"
 	desc = "Gilded tombs do worms enfold."
 	icon = 'icons/roguetown/misc/machines.dmi'
@@ -36,11 +36,11 @@
 		"Weapons"
 	)
 
-/obj/structure/roguemachine/merchantvend/Initialize()
+/obj/structure/roguemachine/goldface/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/structure/roguemachine/merchantvend/update_icon()
+/obj/structure/roguemachine/goldface/update_icon()
 	cut_overlays()
 	if(obj_broken)
 		set_light(0)
@@ -49,7 +49,7 @@
 	add_overlay(mutable_appearance(icon, "vendor-merch"))
 
 
-/obj/structure/roguemachine/merchantvend/attackby(obj/item/P, mob/user, params)
+/obj/structure/roguemachine/goldface/attackby(obj/item/P, mob/user, params)
 	if(istype(P, /obj/item/roguekey))
 		var/obj/item/roguekey/K = P
 		if(K.lockid == lockid)
@@ -76,7 +76,7 @@
 		return attack_hand(user)
 	..()
 
-/obj/structure/roguemachine/merchantvend/Topic(href, href_list)
+/obj/structure/roguemachine/goldface/Topic(href, href_list)
 	. = ..()
 	if(!ishuman(usr))
 		return
@@ -132,7 +132,7 @@
 				playsound(loc, 'sound/misc/gold_misc.ogg', 100, FALSE, -1)
 	return attack_hand(usr)
 
-/obj/structure/roguemachine/merchantvend/attack_hand(mob/living/user)
+/obj/structure/roguemachine/goldface/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -170,7 +170,7 @@
 			var/datum/supply_pack/PA = SSmerchant.supply_packs[pack]
 			if(PA.group == current_cat)
 				pax += PA
-		for(var/datum/supply_pack/PA in sortList(pax))
+		for(var/datum/supply_pack/PA in sortNames(pax))
 			var/costy = PA.cost
 			if(!(upgrade_flags & UPGRADE_NOTAX))
 				costy=round(costy+(SStreasury.tax_value * costy))
@@ -183,18 +183,18 @@
 	popup.set_content(contents)
 	popup.open()
 
-/obj/structure/roguemachine/merchantvend/obj_break(damage_flag)
+/obj/structure/roguemachine/goldface/obj_break(damage_flag)
 	..()
 	budget2change(budget)
 	set_light(0)
 	update_icon()
 	icon_state = "goldvendor0"
 
-/obj/structure/roguemachine/merchantvend/Destroy()
+/obj/structure/roguemachine/goldface/Destroy()
 	set_light(0)
 	return ..()
 
-/obj/structure/roguemachine/merchantvend/Initialize()
+/obj/structure/roguemachine/goldface/Initialize()
 	. = ..()
 	update_icon()
 //	held_items[/obj/item/reagent_containers/glass/bottle/rogue/wine] = list("PRICE" = rand(23,33),"NAME" = "vino")

@@ -316,7 +316,7 @@
 /area/rogue/indoors)
 "ju" = (
 /obj/structure/roguemachine/atm,
-/obj/structure/roguemachine/merchantvend,
+/obj/structure/roguemachine/goldface,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors)
 "jM" = (

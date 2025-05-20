@@ -35404,7 +35404,7 @@
 	},
 /area/rogue/indoors/town/church/chapel)
 "mML" = (
-/obj/item/roguemachine/merchant,
+/obj/item/roguemachine/navigator,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/shop)
 "mMP" = (
@@ -56405,7 +56405,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "uam" = (
-/obj/structure/roguemachine/merchantvend,
+/obj/structure/roguemachine/goldface,
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/shop)
