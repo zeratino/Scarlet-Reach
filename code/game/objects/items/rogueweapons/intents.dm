@@ -200,7 +200,7 @@
 	if(mob_light)
 		qdel(mob_light)
 	if(mob_charge_effect)
-		mastermob.vis_contents -= mob_charge_effect
+		mastermob?.vis_contents -= mob_charge_effect
 
 
 /datum/intent/use
