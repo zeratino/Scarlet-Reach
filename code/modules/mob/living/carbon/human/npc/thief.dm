@@ -130,6 +130,7 @@
 	l_hand = /obj/item/rogueweapon/huntingknife/idagger
 	if(prob(50))
 		l_hand = /obj/item/rogueweapon/huntingknife/copper
+	H.STASTR = 11
 	H.STASPD = 16
 	H.STACON = 11
 	H.STAEND = 11
