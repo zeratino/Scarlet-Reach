@@ -27844,7 +27844,6 @@
 /obj/item/roguekey/garrison,
 /obj/item/roguekey/mercenary,
 /obj/item/roguekey/tavern,
-/obj/item/roguekey/merchant,
 /obj/item/roguekey/physician,
 /obj/item/roguekey/artificer,
 /obj/item/roguekey/farm,
