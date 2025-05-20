@@ -98,7 +98,7 @@
 		controller.clear_blackboard_key(BB_BASIC_MOB_RETALIATE_LIST)
 		controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
 
-/datum/ai_behavior/basic_melee_attack/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
+/datum/ai_behavior/basic_melee_attack/abyssal/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
 	if(!succeeded)
 		var/mob/target = controller.blackboard[target_key]
@@ -262,3 +262,36 @@
 			controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
 		else if(main_target == null || main_target.stat != 0)
 			dreamfiend.return_to_abyssor()
+
+/datum/ai_controller/dreamfiend_unbound
+	movement_delay = MINOR_DREAMFIEND_MOVEMENT_SPEED
+	ai_movement = /datum/ai_movement/basic_avoidance
+
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/simple_find_target/closest,
+		/datum/ai_planning_subtree/blink_if_far,
+		/datum/ai_planning_subtree/target_retaliate,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree
+	)
+	blackboard = list(
+		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic(),
+		BB_BASIC_MOB_RETALIATE_LIST = list(),
+	)
+	idle_behavior = /datum/idle_behavior/idle_random_walk
+
+/datum/ai_controller/dreamfiend_unbound_ancient
+	movement_delay = MINOR_DREAMFIEND_MOVEMENT_SPEED
+	ai_movement = /datum/ai_movement/basic_avoidance
+
+	planning_subtrees = list(
+        /datum/ai_planning_subtree/simple_find_target/closest,
+		/datum/ai_planning_subtree/blink_if_far,
+		/datum/ai_planning_subtree/target_retaliate,
+		/datum/ai_planning_subtree/basic_melee_attack_subtree,
+		/datum/ai_planning_subtree/kick
+	)
+	blackboard = list(
+		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic(),
+		BB_BASIC_MOB_RETALIATE_LIST = list(),
+	)
+	idle_behavior = /datum/idle_behavior/idle_random_walk

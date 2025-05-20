@@ -36,6 +36,10 @@
 	name = "major dream fiend"
 	pixel_x = -4
 
+	STACON = 15
+	STASTR = 15
+	STAPER = 15
+
 	health = MAJOR_DREAMFIEND_HEALTH
 	maxHealth = MAJOR_DREAMFIEND_HEALTH
 	melee_damage_lower = 50
@@ -196,10 +200,32 @@
 	icon = 'modular_hearthstone/icons/mob/abyssal_large.dmi'
 
 /datum/intent/simple/dreamfiend_ancient
-	name = "devestating bite"
+	name = "devastating bite"
 	icon_state = "inchop"
 	attack_verb = list("eviscerates", "tears at")
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	hitsound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
 	penfactor = 30
+
+// EVENT mobs and mappable mobs. (USE SPARINGLY)
+/mob/living/simple_animal/hostile/rogue/dreamfiend/unbound
+	attack_sound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
+	ai_controller = /datum/ai_controller/dreamfiend_unbound
+
+/mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound
+	attack_sound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
+	ai_controller = /datum/ai_controller/dreamfiend_unbound
+
+/mob/living/simple_animal/hostile/rogue/dreamfiend/major/unbound/death()
+	if(prob(1))
+		new /obj/item/rogueweapon/greataxe/dreamscape(loc)
+	new /obj/effect/decal/cleanable/dreamfiend_ichor/large(loc)
+	for(var/i in 1 to 2)
+		new /mob/living/simple_animal/hostile/rogue/dreamfiend/unbound(loc)
+	src.visible_message(span_notice("Some dreamfiends split forth front the body of the [src]!"))
+	qdel(src)
+
+/mob/living/simple_animal/hostile/rogue/dreamfiend/ancient/unbound
+	attack_sound = list('modular_azurepeak/sound/mobs/abyssal/abyssal_attack.ogg','modular_azurepeak/sound/mobs/abyssal/abyssal_attack2.ogg')
+	ai_controller = /datum/ai_controller/dreamfiend_unbound_ancient
