@@ -33,6 +33,7 @@
 		"Potions",
 		"Raw Materials",
 		"Seeds",
+		"Tools",
 		"Wardrobe",
 		"Weapons"
 	)
