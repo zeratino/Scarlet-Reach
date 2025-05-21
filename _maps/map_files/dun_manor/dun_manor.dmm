@@ -2473,6 +2473,10 @@
 /obj/item/reagent_containers/glass/cup/golden,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
+"bHp" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cave)
 "bHt" = (
 /obj/structure/lever/wall{
 	dir = 4;
@@ -3610,10 +3614,6 @@
 	},
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/garrison)
-"cvy" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/trollbog,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cave)
 "cvA" = (
 /obj/structure/closet/crate/roguecloset/dark,
 /turf/open/floor/rogue/blocks/stonered,
@@ -7056,6 +7056,11 @@
 /obj/item/paper/scroll,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"ePd" = (
+/obj/structure/roguemachine/goldface,
+/obj/machinery/light/rogue/wallfire/candle,
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/town/shop)
 "ePj" = (
 /obj/structure/closet/crate/chest/wicker,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -10151,10 +10156,6 @@
 /obj/item/reagent_containers/food/snacks/grown/wheat,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
-"hfk" = (
-/obj/item/roguemachine/navigator,
-/turf/open/floor/rogue/concrete,
-/area/rogue/indoors/town/shop)
 "hfp" = (
 /obj/structure/stairs,
 /turf/open/floor/rogue/wood,
@@ -23317,11 +23318,6 @@
 /obj/structure/well,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
-"qoZ" = (
-/obj/structure/roguemachine/goldface,
-/obj/machinery/light/rogue/wallfire/candle,
-/turf/open/floor/rogue/concrete,
-/area/rogue/indoors/town/shop)
 "qpo" = (
 /obj/structure/closet/crate/drawer,
 /obj/machinery/light/rogue/wallfire/candle{
@@ -23625,6 +23621,10 @@
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town)
+"qAH" = (
+/obj/item/roguemachine/navigator,
+/turf/open/floor/rogue/concrete,
+/area/rogue/indoors/town/shop)
 "qAQ" = (
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
@@ -35557,7 +35557,7 @@ uBR
 uBR
 dSI
 qli
-cvy
+bHp
 ygT
 won
 dSI
@@ -71695,7 +71695,7 @@ xqr
 nCN
 hvn
 kWL
-qoZ
+ePd
 dRV
 tZa
 pEf
@@ -120055,7 +120055,7 @@ qhb
 tNt
 osE
 dRV
-hfk
+qAH
 dRV
 osE
 vVR
