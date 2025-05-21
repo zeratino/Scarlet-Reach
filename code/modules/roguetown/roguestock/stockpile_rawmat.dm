@@ -24,6 +24,19 @@
 	stockpile_limit = 50
 	passive_generation = 2
 
+/datum/roguestock/stockpile/stone
+	name = "Stone"
+	desc = "Stones. Used for construction"
+	item_type = /obj/item/natural/stone
+	held_items = list(10, 0)
+	payout_price = 0
+	withdraw_price = 1
+	transport_fee = 0
+	export_price = 1
+	importexport_amt = 10
+	stockpile_limit = 0
+	passive_generation = 10 // Free rocks!!
+
 /datum/roguestock/stockpile/glass
 	name = "Glass Batch"	//'Raw' glass
 	desc = "A mixture of finely ground materials that is used to make glass."
