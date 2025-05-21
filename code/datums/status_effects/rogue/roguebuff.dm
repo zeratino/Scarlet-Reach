@@ -61,7 +61,7 @@
 /datum/status_effect/buff/druqks/baotha/on_remove()
 	. = ..()
 	REMOVE_TRAIT(owner, TRAIT_CRACKHEAD, TRAIT_MIRACLE)
-	owner.visible_message("[src]'s eyes appear to return to normal.")
+	owner.visible_message("[owner]'s eyes appear to return to normal.")
 
 /datum/status_effect/buff/druqks/on_apply()
 	. = ..()
