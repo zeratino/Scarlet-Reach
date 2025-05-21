@@ -89,9 +89,4 @@
 				var/turf/sourceturf = get_turf(usr)
 				if((speakturf in get_hear(7, sourceturf)) || wp == 1)
 					to_chat(C, "<font color='["#6699CC"]'><b><span class='prefix'>[prefix]:</span> <EM>[src.mob.name][added_text]:</EM> <span class='message'>[msg]</span></b></font>")
-	for(var/client/C in GLOB.admins)
-		if(CHAT_GHOSTEARS)
-			if(C in mobs)
-				continue
-			to_chat(C, "<font color='["#6699CC"]'><b><span class='prefix'>[prefix]:</span> <EM>[src.mob.name] ([mob.ckey]) <A href='?_src_=holder;[HrefToken()];mute=[ckey];mute_type=[MUTE_LOOC]'><font color='[(muted & MUTE_LOOC)?"red":"blue"]'>MUTE</font></a>:</EM> <span class='message'>[msg]</span></b></font>")
 	to_chat(usr, "<font color='["#6699CC"]'><b><span class='prefix'>[prefix]:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]</span></b></font>")
