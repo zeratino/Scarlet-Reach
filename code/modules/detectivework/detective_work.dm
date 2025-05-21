@@ -26,6 +26,8 @@
 		. = D.fibers
 
 /atom/proc/add_fingerprint_list(list/fingerprints)		//ASSOC LIST FINGERPRINT = FINGERPRINT
+	if(QDELETED(src))
+		return
 	if(length(fingerprints))
 		. = AddComponent(/datum/component/forensics, fingerprints)
 
