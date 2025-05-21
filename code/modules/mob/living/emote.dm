@@ -517,12 +517,10 @@
 				message_param = "kisses %t deeply."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_EARS)
 				message_param = "kisses %t on the ear."
-				var/mob/living/carbon/human/E = target
-				if(iself(E) || ishalfelf(E))
-					if(!E.cmode)
-						to_chat(target, span_love("It tickles..."))
 			else if(H.zone_selected == BODY_ZONE_PRECISE_R_EYE || H.zone_selected == BODY_ZONE_PRECISE_L_EYE)
 				message_param = "kisses %t on the brow."
+			else if(H.zone_selected == BODY_ZONE_PRECISE_SKULL)
+				message_param = "kisses %t on the forehead."
 			else
 				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
@@ -618,13 +616,15 @@
 
 
 /datum/emote/living/slap/run_emote(mob/user, params, type_override, intentional)
-	message_param = initial(message_param) // reset
-	// RATWOOD MODULAR START
+	message_param = initial(message_param)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.zone_selected == BODY_ZONE_PRECISE_GROIN)
 			message_param = "slaps %t's ass!"
-	// RATWOOD MODULAR END
+		else if(H.zone_selected == BODY_ZONE_PRECISE_SKULL)
+			message_param = "slaps %t's head!"
+		else if(H.zone_selected == BODY_ZONE_PRECISE_L_HAND || H.zone_selected == BODY_ZONE_PRECISE_R_HAND)
+			message_param = "slaps %t's hand!"
 	..()
 
 /mob/living/carbon/human/verb/emote_slap()
