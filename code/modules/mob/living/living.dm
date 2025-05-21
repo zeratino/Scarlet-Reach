@@ -394,6 +394,8 @@
 		else
 			M.LAssailant = usr
 
+		M.update_damage_hud()
+
 		// Makes it so people who recently broke out of grabs cannot be grabbed again
 		if(TIMER_COOLDOWN_RUNNING(M, "broke_free") && M.stat == CONSCIOUS)
 			M.visible_message(span_warning("[M] slips from [src]'s grip."), \
