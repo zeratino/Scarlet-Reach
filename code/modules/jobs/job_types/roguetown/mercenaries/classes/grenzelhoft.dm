@@ -63,6 +63,7 @@
 			H.change_stat("constitution", 2)
 			H.change_stat("perception", -1)
 			H.change_stat("speed", 1)
+			r_hand = /obj/item/rogueweapon/halberd
 
 	//General gear regardless of class.
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
