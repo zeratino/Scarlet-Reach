@@ -341,6 +341,11 @@
 
 	return TRUE
 
+/atom/movable/screen/alert/status_effect/buff/abyssal
+	name = "Abyssal strength"
+	desc = "I feel an unnatural power dwelling in my limbs."
+	icon_state = "abyssal"
+
 #define ABYSSAL_FILTER "abyssal_glow"
 
 /datum/status_effect/buff/abyssal
@@ -353,6 +358,7 @@
 	var/fortune_malus = 0
 	var/perception_malus = 0
 	var/outline_colour ="#00051f"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/abyssal
 	examine_text = "SUBJECTPRONOUN has muscles swollen with a strange pale strength."
 	id = "abyssal_strength"
 	duration = 600 SECONDS
