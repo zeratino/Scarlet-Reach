@@ -184,7 +184,7 @@
 					prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 				weapon_parry = FALSE
 			else
-				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				defender_skill = H.mind?.get_skill_level(used_weapon?.associated_skill)
 				prob2defend += highest_defense
 				weapon_parry = TRUE
 
