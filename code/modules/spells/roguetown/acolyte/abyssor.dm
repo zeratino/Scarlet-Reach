@@ -233,13 +233,18 @@
 		to_chat(user, span_warning("[target] is already blessed with Abyssor's strength."))
 		revert_cast()
 		return FALSE
-	
+
 	var/anglerfish_found = FALSE
-    for(var/obj/item/I in user.held_items)
-        if(istype(I, /obj/item/reagent_containers/food/snacks/fish/angler))
-            qdel(I)
-            anglerfish_found = TRUE
-            break
+	var/list/held_items = list()
+
+	for(var/obj/item/I in user.held_items)
+		held_items += I
+
+	for(var/obj/item/I in held_items)
+		if(istype(I, /obj/item/reagent_containers/food/snacks/fish/angler))
+			qdel(I)
+			anglerfish_found = TRUE
+			break
 
 	if(!anglerfish_found)
 		to_chat(user, span_warning("An anglerfish is required to channel the abyssal energies!"))
