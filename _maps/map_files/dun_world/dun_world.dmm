@@ -23353,6 +23353,15 @@
 /obj/machinery/light/rogue/wallfire/candle{
 	pixel_y = -32
 	},
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
+/obj/effect/spawner/lootdrop/potion_stats,
 /turf/open/floor/rogue/tile/tilerg,
 /area/rogue/indoors/town/shop)
 "ioh" = (
@@ -27872,7 +27881,6 @@
 /obj/item/roguekey/garrison,
 /obj/item/roguekey/mercenary,
 /obj/item/roguekey/tavern,
-/obj/item/roguekey/merchant,
 /obj/item/roguekey/physician,
 /obj/item/roguekey/artificer,
 /obj/item/roguekey/farm,
@@ -35447,7 +35455,7 @@
 	},
 /area/rogue/indoors/town/church/chapel)
 "mML" = (
-/obj/item/roguemachine/merchant,
+/obj/item/roguemachine/navigator,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/shop)
 "mMP" = (
@@ -56492,7 +56500,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "uam" = (
-/obj/structure/roguemachine/merchantvend,
+/obj/structure/roguemachine/goldface,
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/shop)
