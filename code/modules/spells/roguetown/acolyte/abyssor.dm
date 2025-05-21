@@ -211,7 +211,7 @@
 	//Each dreamfiend has a different name to call!
 	invocation = "shogg vulgt!"
 	invocation_type = "shout"
-	recharge_time = 5 SECONDS
+	recharge_time = 600 SECONDS
 	miracle = TRUE
 	devotion_cost = 300
 
@@ -224,10 +224,10 @@
 		revert_cast()
 		return FALSE
 
-	// if(target == user)
-	// 	to_chat(user, span_warning("You must maintain the connection to the dreamfiend from a safe spiritual distance or risk being consumed yourself!"))
-	// 	revert_cast()
-	// 	return FALSE
+	if(target == user)
+		to_chat(user, span_warning("You must maintain the connection to the dreamfiend from a safe spiritual distance or risk being consumed yourself!"))
+		revert_cast()
+		return FALSE
 
 	if(target.mind.has_spell(/obj/effect/proc_holder/spell/invoked/abyssal_strength))
 		to_chat(user, span_warning("[target] is already blessed with Abyssor's strength."))
@@ -249,7 +249,7 @@
 	//Each dreamfiend has a different name to call!
 	invocation = "shogg vulgt!"
 	invocation_type = "shout"
-	recharge_time = 10 SECONDS
+	recharge_time = 900 SECONDS
 
 	var/stage = 1
 	var/casts_in_stage = 0
@@ -300,11 +300,11 @@
 
 	if(stage < 3)
 		casts_in_stage++
-		if(casts_in_stage >= 2)
+		if(casts_in_stage > 2)
 			stage++
 			casts_in_stage = 0
 			if(stage == 3)
-				to_chat(user, span_warning("I can feel countless slimy and oozing teeth biting into my skin!"))
+				to_chat(user, span_warning("I can feel countless slimy and oozing teeth biting into my skin! Something horrifying is observing me!"))
 			else
 				to_chat(user, span_warning("The whispers in your head grow louder..."))
 	else
@@ -336,7 +336,7 @@
 	var/outline_colour ="#00051f"
 	examine_text = "SUBJECTPRONOUN has muscles swollen with a strange pale strength."
 	id = "abyssal_strength"
-	duration = 5 SECONDS
+	duration = 600 SECONDS
 
 /datum/status_effect/buff/abyssal/on_creation(mob/living/new_owner, new_str, new_con, new_end, new_fort, new_speed, new_per)
 	str_buff = new_str
