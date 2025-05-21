@@ -26,7 +26,7 @@
 			return FALSE
 		if(istype(target, /mob/living/carbon))
 			var/mob/living/carbon = target
-			carbon.adjustStaminaLoss(125)
+			carbon.adjustStaminaLoss(-50)
 		target.Dizzy(10)
 		target.blur_eyes(20)
 		target.emote("drown")
@@ -121,7 +121,7 @@
 
 /obj/effect/proc_holder/spell/invoked/call_dreamfiend
 	name = "Summon Dreamfiend"
-	overlay_state = "thebends"
+	overlay_state = "dreamfiend"
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
@@ -202,7 +202,7 @@
 
 /obj/effect/proc_holder/spell/invoked/abyssal_infusion
 	name = "Abyssal Infusion"
-	overlay_state = "thebends"
+	overlay_state = "abyssal_infusion"
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
@@ -233,6 +233,18 @@
 		to_chat(user, span_warning("[target] is already blessed with Abyssor's strength."))
 		revert_cast()
 		return FALSE
+	
+	var/anglerfish_found = FALSE
+    for(var/obj/item/I in user.held_items)
+        if(istype(I, /obj/item/reagent_containers/food/snacks/fish/angler))
+            qdel(I)
+            anglerfish_found = TRUE
+            break
+
+	if(!anglerfish_found)
+		to_chat(user, span_warning("An anglerfish is required to channel the abyssal energies!"))
+		revert_cast()
+		return FALSE
 
 	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/abyssal_strength)
 
@@ -240,7 +252,7 @@
 
 /obj/effect/proc_holder/spell/invoked/abyssal_strength
 	name = "Abyssal Strength"
-	overlay_state = "thebends"
+	overlay_state = "abyssal_strength1"
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
@@ -270,7 +282,7 @@
 		return FALSE
 
 	var/list/stats = list(
-		"str" = 3,
+		"str" = 3 + ((stage - 1) * 1),
 		"con" = 1 + (stage * 2),
 		"end" = 1 + (stage * 2),
 		"fort" = 1 - (stage * 2),
@@ -319,6 +331,8 @@
 		stats["speed"],
 		stats["per"]
 	)
+
+	overlay_state = "abyssal_strength[stage]"
 
 	return TRUE
 
