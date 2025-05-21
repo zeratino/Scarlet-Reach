@@ -447,6 +447,7 @@
 
 /datum/status_effect/buff/healing/on_remove()
 	owner.remove_filter(MIRACLE_HEALING_FILTER)
+	owner.update_damage_hud()
 	
 /atom/movable/screen/alert/status_effect/buff/fortify
 	name = "Fortifying Miracle"
