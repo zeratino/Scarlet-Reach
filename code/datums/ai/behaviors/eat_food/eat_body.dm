@@ -38,7 +38,7 @@
 
 	living_pawn.face_atom()
 	living_pawn.visible_message(span_danger("[living_pawn] starts to rip apart [target]!"))
-	if(do_after(living_pawn, 10 SECONDS, target = target)) // Eating time
+	if(do_mob(basic_mob, target, 10 SECONDS)) // Eating time
 		if(C)	//carbon corpse disposal
 			var/obj/item/bodypart/limb
 			var/list/limb_list = list(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
@@ -62,7 +62,7 @@
 				playsound(living_pawn, pick(living_pawn.attack_sound), 100, TRUE, -1)
 			target.gib()
 	finish_action(controller, TRUE)
-
+finish_action(controller, FALSE)
 
 /datum/ai_behavior/eat_dead_body/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
@@ -79,5 +79,6 @@
 /datum/ai_behavior/eat_dead_body/mimic/finish_action(datum/ai_controller/controller, succeeded, target_key, targetting_datum_key, hiding_location_key)
 	. = ..()
 	if(!succeeded)
-		controller.clear_blackboard_key(target_key)
-		controller.pawn.icon_state = "mimic"
+		var/mob/living/simple_animal/hostile/basic_mob = controller.pawn
+		if(!basic_mob.stat) // if the mimic's not dead
+			basic_mob.Aggro() // someone interrupted us! go get 'em!
