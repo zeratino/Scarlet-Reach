@@ -28,6 +28,7 @@
 		"Armor",
 		"Consumable",
 		"Gems",
+		"Instruments",
 		"Luxury",
 		"Livestock",
 		"Potions",
