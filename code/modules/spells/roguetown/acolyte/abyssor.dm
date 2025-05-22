@@ -300,7 +300,7 @@
 	var/spawn_type
 	switch(stage)
 		if(1)
-			summon_chance = 5 + casts_in_stage * 35
+			summon_chance = 5 + (casts_in_stage * 35)
 			spawn_type = stage_mobs[1]
 		if(2)
 			summon_chance = 10 + (casts_in_stage * 40)
