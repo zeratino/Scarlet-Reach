@@ -105,7 +105,7 @@
 		var/mob/main_target = controller.blackboard[BB_MAIN_TARGET]
 		controller.clear_blackboard_key(target_key)
 		var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
-		if(target != main_target && main_target.stat == 0)
+		if(main_target != null && target != main_target && main_target.stat == 0)
 			//We lost the person we really want to kill... keep trying to teleport to them and kill them.
 			dreamfiend.blink_to_target(target)
 			controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
@@ -256,7 +256,7 @@
 		var/mob/main_target = controller.blackboard[BB_MAIN_TARGET]
 		controller.clear_blackboard_key(target_key)
 		var/mob/living/simple_animal/hostile/rogue/dreamfiend/dreamfiend = controller.pawn
-		if(target != main_target && main_target.stat == 0)
+		if(main_target != null && target != main_target && main_target.stat == 0)
 			//We lost the person we really want to kill... keep trying to teleport to them and kill them.
 			dreamfiend.blink_to_target(target)
 			controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, main_target)
