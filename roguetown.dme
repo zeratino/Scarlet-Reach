@@ -801,6 +801,7 @@
 #include "code\game\objects\effects\spawners\clutter_spawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\loot_chests.dm"
+#include "code\game\objects\effects\spawners\loot_spawners.dm"
 #include "code\game\objects\effects\spawners\lootdrop.dm"
 #include "code\game\objects\effects\spawners\roguemapgen.dm"
 #include "code\game\objects\effects\spawners\structure.dm"

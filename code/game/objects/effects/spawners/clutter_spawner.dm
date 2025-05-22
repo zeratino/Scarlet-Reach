@@ -1,6 +1,6 @@
 /*map spawners featuring clutter objects from the thi5f pr and other goods of daily living*/
 
-/obj/effect/spawner/lootdrop/roguetown/cheap_clutter_spawner
+/obj/effect/spawner/lootdrop/cheap_clutter_spawner
 	name = "cheap clutter spawner"
 	lootcount = 1
 	loot = list(
@@ -24,7 +24,7 @@
 		/obj/item/roguestatue/iron = 1,
 	)
 
-/obj/effect/spawner/lootdrop/roguetown/valuable_clutter_spawner
+/obj/effect/spawner/lootdrop/valuable_clutter_spawner
 	name = "valuable clutter spawner"
 	lootcount = 1
 	loot = list(
@@ -37,16 +37,15 @@
 		/obj/item/rogueweapon/hammer/steel = 1,
 	)
 
-/obj/effect/spawner/lootdrop/roguetown/cheap_candle_spawner
-	name = "valuable candle spawner"
+/obj/effect/spawner/lootdrop/cheap_candle_spawner
+	name = "cheap candle spawner"
 	lootcount = 1
 	loot = list(
-		/obj/item/candle/lit = 1,
-		/obj/item/candle/yellow/lit = 1,
+		/obj/item/candle/yellow/lit = 10,
 		/obj/item/candle/skull/lit = 1,
 	)
 
-/obj/effect/spawner/lootdrop/roguetown/valuable_candle_spawner
+/obj/effect/spawner/lootdrop/valuable_candle_spawner
 	name = "valuable candle spawner"
 	lootcount = 1
 	loot = list(
@@ -58,7 +57,7 @@
 		/obj/item/candle/silver/lit = 1,
 	)
 
-/obj/effect/spawner/lootdrop/roguetown/cheap_tableware_spawner
+/obj/effect/spawner/lootdrop/cheap_tableware_spawner
 	name = "valuable tableware spawner"
 	lootcount = 1
 	loot = list(
@@ -72,7 +71,7 @@
 		/obj/item/reagent_containers/glass/bowl/iron = 1,
 	)
 
-/obj/effect/spawner/lootdrop/roguetown/valuable_tableware_spawner
+/obj/effect/spawner/lootdrop/valuable_tableware_spawner
 	name = "valuable tableware spawner"
 	lootcount = 1
 	loot = list(
@@ -86,7 +85,7 @@
 		/obj/item/reagent_containers/glass/bowl/silver = 1,
 	)
 
-/obj/effect/spawner/lootdrop/roguetown/cheap_jewelry_spawner
+/obj/effect/spawner/lootdrop/cheap_jewelry_spawner
 	name = "cheap jewelry spawner"
 	lootcount = 1
 	loot = list(
@@ -109,7 +108,7 @@
 		/obj/item/clothing/neck/roguetown/luckcharm = 1,
 	)
 
-/obj/effect/spawner/lootdrop/roguetown/valuable_jewelry_spawner
+/obj/effect/spawner/lootdrop/valuable_jewelry_spawner
 	name = "valuable jewelry spawner"
 	lootcount = 1
 	loot = list(

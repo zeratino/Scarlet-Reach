@@ -1,4 +1,8 @@
-//these chests roll a semi-randomized number of loot objects from their tables. based on paxilloot.
+/*
+* these chests roll a semi-randomized number of loot objects from their tables. based on paxilloot ฅ^•ﻌ•^ฅ
+* you can mix and match lootspawners but the dice roll will spawn from each in the list. meaning if your loot_weighted_list
+* has lots of entries the loot_spawn_dice_string should be small or you'll create giant client murdering piles of stuff
+*/
 
 /obj/structure/closet/crate/chest/loot_chest
 	storage_capacity = 100
@@ -21,9 +25,10 @@
 	locked = TRUE
 	max_integrity = 1000
 	loot_weighted_list = list(
-		/obj/effect/spawner/lootdrop/roguetown/valuable_jewelry_spawner = 1,
+		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1,
 	)
-	loot_spawn_dice_string = "2d2"
+	loot_spawn_dice_string = "1d2"
 
 /obj/structure/closet/crate/chest/loot_chest/locked/indestructible //party up with rogues NOW
 	max_integrity = INFINITY
+	lock_strength = 200
