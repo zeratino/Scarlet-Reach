@@ -16,7 +16,15 @@
 	var/upgrade_flags
 	var/current_cat = "1"
 	var/lockid = "nightman"
-	var/list/categories = list("Alcohols", "Bulk", "Drugs")
+	var/list/categories = list(
+		"Alcohols", 
+		"Bulk", 
+		"Drugs",
+		"Exotic Apparel",
+		"Exotic Food",
+		"Instruments",
+		"Roguery",
+		)
 
 /obj/structure/roguemachine/bathvend/Initialize()
 	. = ..()
