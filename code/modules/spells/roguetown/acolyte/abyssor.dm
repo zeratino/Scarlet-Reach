@@ -252,6 +252,7 @@
 		return FALSE
 
 	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/abyssal_strength)
+	to_chat(user, span_warning("I feel like a new ability.. some ancient power has unlocked in my mind."))
 
 	return TRUE
 
