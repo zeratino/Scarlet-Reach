@@ -267,7 +267,7 @@
 	//Each dreamfiend has a different name to call!
 	invocation = "shogg vulgt!"
 	invocation_type = "shout"
-	recharge_time = 900 SECONDS
+	recharge_time = 750 SECONDS
 
 	var/stage = 1
 	var/casts_in_stage = 0
@@ -362,7 +362,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/abyssal
 	examine_text = "SUBJECTPRONOUN has muscles swollen with a strange pale strength."
 	id = "abyssal_strength"
-	duration = 600 SECONDS
+	duration = 450 SECONDS
 
 /datum/status_effect/buff/abyssal/on_creation(mob/living/new_owner, new_str, new_con, new_end, new_fort, new_speed, new_per)
 	str_buff = new_str
