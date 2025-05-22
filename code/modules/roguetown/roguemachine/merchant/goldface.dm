@@ -27,6 +27,7 @@
 		"Apparel",
 		"Armor",
 		"Consumable",
+		"Foreign Weapons",
 		"Gems",
 		"Instruments",
 		"Luxury",
