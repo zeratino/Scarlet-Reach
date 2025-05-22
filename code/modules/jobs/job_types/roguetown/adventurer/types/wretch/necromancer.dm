@@ -45,5 +45,5 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/bonechill)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer)
-	H.mind.adjust_spellpoints(15)
+	H.mind.adjust_spellpoints(18)
 	wretch_select_bounty(H)

@@ -174,7 +174,7 @@
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
 		H.change_stat("intelligence", 4)
 		H.change_stat("perception", 3)
-		H.mind.adjust_spellpoints(12)
+		H.mind.adjust_spellpoints(15)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
