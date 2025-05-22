@@ -7,6 +7,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	item_flags = NOBLUDGEON
 	resistance_flags = FLAMMABLE // Let it be burnt to be disposed
+	dropshrink = 0.6
 
 	/// What fragrance is the perfume
 	var/datum/pollutant/fragrance/fragrance_type
