@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 /obj/structure/pressure_plate //vanderlin port
 	name = "pressure plate"
 	desc = "Be careful. Stepping on this could either mean a bomb exploding or a door closing on you."
-	icon = 'icons/roguetown/misc/structure.dmi'
+	icon = 'icons/roguetown/misc/traps.dmi'
 	icon_state = "pressureplate"
 	max_integrity = 45 // so it gets destroyed when used to explode a bomb
 	density = FALSE

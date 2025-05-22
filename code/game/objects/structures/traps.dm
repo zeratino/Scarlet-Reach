@@ -5,7 +5,7 @@
 	icon_state = "trap"
 	density = FALSE
 	anchored = TRUE
-	alpha = 50 //initially quite hidden when not "recharging"
+	alpha = 60 //initially quite hidden when not "recharging"
 	var/flare_message = span_warning("the trap flares brightly!")
 	var/last_trigger = 0
 	var/time_between_triggers = 600 //takes a minute to recharge
@@ -16,8 +16,9 @@
 	var/def_zone = BODY_ZONE_CHEST //
 	var/used_time = 14 // interaction time for disabling traps, scales down with trap skill
  
+
 	var/list/static/ignore_typecache
-	var/list/mob/immune_minds = list()
+	var/list/mob/immune_minds = list() //unused and a bit weird, helpful for making mobs immune to the traps without TRAIT_LIGHT_STEP
 
 	var/sparks = TRUE
 	var/datum/effect_system/spark_spread/spark_system
@@ -32,6 +33,7 @@
 	if(!ignore_typecache)
 		ignore_typecache = typecacheof(list(
 			/obj/effect,
+			/obj/projectile,
 			/mob/dead))
 
 /obj/structure/trap/Destroy()
@@ -66,6 +68,8 @@
 			used_time = 14 SECONDS
 			if(C.mind)
 				used_time -= max((C.mind.get_skill_level(/datum/skill/craft/traps) * 2 SECONDS), 2 SECONDS)
+				C.visible_message(span_notice("[C] begins disarming \the [src]."), \
+						span_notice("I start disarming \the [src]."))
 			if(do_after(user, used_time, target = src))
 				armed = FALSE
 				update_icon()
@@ -94,7 +98,7 @@
 
 /obj/structure/trap/proc/flare()
 	// Makes the trap visible, and starts the cooldown until it's
-	// able to be triggered again. 
+	// able to be triggered again.
 	alpha = 200
 	last_trigger = world.time
 	charges--
@@ -255,7 +259,7 @@
 	max_integrity = 500
 
 /obj/structure/trap/saw_blades/trap_effect(mob/living/L)
-	to_chat(L, span_danger("<B>The ground quakes beneath your feet!</B>"))
+	to_chat(L, span_danger("<B>A whirling blade erupts from beneath your feet!</B>"))
 	def_zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", damage = trap_damage))
 	playsound(src, 'sound/gore/flesh_eat_01.ogg', 70, TRUE)
@@ -320,7 +324,7 @@
 	var/fired = /obj/projectile/bullet/reusable/arrow/stone/wall_projectile
 
 /obj/projectile/bullet/reusable/arrow/stone/wall_projectile
-	speed = 7
+	speed = 6
 
 /obj/structure/trap/wall_projectile/Initialize(mapload)
 	. = ..()
@@ -350,7 +354,7 @@
 	fired = /obj/projectile/magic/frostbolt/wall_projectile
 
 /obj/projectile/magic/frostbolt/wall_projectile
-	speed = 7
+	speed = 6
 	damage = 20
 	armor_penetration = 5
 
@@ -359,7 +363,7 @@
 	fired = /obj/projectile/magic/acidsplash/wall_projectile
 
 /obj/projectile/magic/acidsplash/wall_projectile
-	speed = 7
+	speed = 6
 
 /obj/structure/trap/rock_fall
 	name = "rock fall trap"
@@ -385,10 +389,37 @@
 	max_integrity = 500
 
 /obj/structure/trap/water/trap_effect(mob/living/L)
-	to_chat(L, span_danger("<B>You are doused and knocked to your feet by a spray of water!</B>"))
+	to_chat(L, span_danger("<B>You are doused and knocked off your feet by a torrent of water!</B>"))
 	for(var/obj/O in L.contents) //Checks for light sources in the mob's inventory. Tyvm to LynxSolstice for the extinguish code
 		O.extinguish() //Extinguishes light sources on the mob hit by the trap.
 	playsound(src, 'sound/foley/water_land2.ogg', 70, TRUE)
 	L.Paralyze(10)
 	var/obj/effect/particle_effect/water/spray = new(get_turf(src))
 	QDEL_IN(spray, 100)
+
+/obj/structure/trap/curse
+	name = "deactivated trap" //Im not activated guys I swear Im a broken trap I dont work
+	icon = 'icons/roguetown/misc/traps.dmi'
+	icon_state = "base_trap_plate"
+	time_between_triggers = 100
+	max_integrity = 500
+	alpha = 255
+
+/obj/structure/trap/curse/hidden
+	name = "curse trap"
+	icon = 'icons/roguetown/misc/traps.dmi'
+	icon_state = "base_trap_plate"
+	time_between_triggers = 100
+	max_integrity = 500
+	alpha = 35
+
+/obj/structure/trap/curse/trap_effect(mob/living/L)
+	to_chat(L, span_danger("<B>A cruel joke has been played on you!</B>"))
+	L.add_stress(/datum/stressevent/thefool)
+	playsound(src, 'sound/magic/mockery.ogg', 60, TRUE)
+	L.apply_status_effect(/datum/status_effect/debuff/viciousmockery)
+
+/datum/stressevent/thefool
+	timer = 10 MINUTES
+	stressadd = 2
+	desc = span_boldgreen("I've been made a fool of.")
