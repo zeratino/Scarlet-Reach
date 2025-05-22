@@ -52,6 +52,17 @@
 	effectedstats = list("intelligence" = 5,"speed" = 3,"fortune" = -5)
 	duration = 2 MINUTES
 
+/datum/status_effect/buff/druqks/baotha
+
+/datum/status_effect/buff/druqks/baotha/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_CRACKHEAD, TRAIT_MIRACLE)
+
+/datum/status_effect/buff/druqks/baotha/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_CRACKHEAD, TRAIT_MIRACLE)
+	owner.visible_message("[owner]'s eyes appear to return to normal.")
+
 /datum/status_effect/buff/druqks/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/high)
