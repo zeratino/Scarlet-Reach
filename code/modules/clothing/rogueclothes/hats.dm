@@ -199,6 +199,7 @@
 	color = null
 	icon_state = "dendormask"
 	item_state = "dendormask"
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
