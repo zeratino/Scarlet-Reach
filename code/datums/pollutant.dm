@@ -18,6 +18,7 @@
 	/// Scent of the smell
 	var/scent
 
+// This is not called in anyway that matter same w/ Vanderlin don't use it yet
 /datum/pollutant/proc/on_life(parent)
 	return
 
@@ -34,13 +35,17 @@
 	return
 
 
-/datum/pollutant/fragrance/on_life(parent)
+/datum/pollutant/fragrance/on_smell(parent)
 	. = ..()
 	for(var/mob/living/carbon/human/H in view(1, parent))
 		if(!H)
 			continue
 		if(!considered_alive(H.mind))
 			continue
+		if(H.has_stress_event(/datum/stressevent/perfume))
+			continue
+	
+		H.add_stress(/datum/stressevent/perfume)
 
 ///Smoke coming from cigarettes and fires
 /datum/pollutant/smoke //and mirrors

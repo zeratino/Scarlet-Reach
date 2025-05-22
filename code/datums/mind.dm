@@ -409,6 +409,8 @@
 
 /datum/mind/proc/get_skill_level(skill)
 	var/datum/skill/S = GetSkillRef(skill)
+	if(S)
+		return known_skills[S]
 	return known_skills[S] || SKILL_LEVEL_NONE
 
 /datum/mind/proc/print_levels(user)
