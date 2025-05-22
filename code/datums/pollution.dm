@@ -69,7 +69,7 @@
 		if(!(pollutant.pollutant_flags & POLLUTANT_BREATHE_ACT))
 			continue
 		var/amount = pollutants[type]
-		pollutant.breathe_act(victim, amount)
+		pollutant.breathe_act(victim, amount, total_amount)
 
 /// When a user smells this pollution
 /datum/pollution/proc/smell_act(mob/living/sniffer)
