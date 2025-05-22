@@ -252,7 +252,7 @@
 		return FALSE
 
 	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/abyssal_strength)
-	to_chat(target, span_warning("I feel like a new ability.. some ancient power has unlocked in my mind."))
+	to_chat(target, span_warning("My mind writhes, revealing a new ability."))
 
 	return TRUE
 
@@ -300,7 +300,7 @@
 	var/spawn_type
 	switch(stage)
 		if(1)
-			summon_chance = casts_in_stage * 45
+			summon_chance = 5 + casts_in_stage * 35
 			spawn_type = stage_mobs[1]
 		if(2)
 			summon_chance = 10 + (casts_in_stage * 40)
