@@ -800,6 +800,7 @@
 #include "code\game\objects\effects\effect_system\effects_water.dm"
 #include "code\game\objects\effects\particles\weather.dm"
 #include "code\game\objects\effects\spawners\clutter_spawner.dm"
+#include "code\game\objects\effects\spawners\equipment_spawners.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\spawners\loot_chests.dm"
 #include "code\game\objects\effects\spawners\loot_spawners.dm"

@@ -1,4 +1,6 @@
-/*map spawners featuring clutter objects from the thi5f pr and other goods of daily living*/
+/*
+* map spawners with items from the thi5f pr and other objects of daily living ฅ^•ﻌ•^ฅ
+*/
 
 /obj/effect/spawner/lootdrop/cheap_clutter_spawner
 	name = "cheap clutter spawner"

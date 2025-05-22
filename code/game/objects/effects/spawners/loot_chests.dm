@@ -13,8 +13,8 @@
 	anchored = TRUE
 	/// our lootspawners. the spawner's lootcount var works additively with our dice string below and must be at least 1.
 	var/list/loot_weighted_list = list(
-		/obj/effect/spawner/lootdrop/roguetown/general_loot_hi = 1,
-		/obj/effect/spawner/lootdrop/roguetown/general_loot_mid = 1,
+		/obj/effect/spawner/lootdrop/general_loot_hi = 1,
+		/obj/effect/spawner/lootdrop/general_loot_mid = 1,
 	)
 	/// a string of dice to use when rolling number of contents.
 	var/loot_spawn_dice_string = "1d4+1"
@@ -30,19 +30,18 @@
 	locked = TRUE
 	max_integrity = 1000
 	loot_weighted_list = list(
-		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1,
-		/obj/effect/spawner/lootdrop/roguetown/general_loot_hi = 1,
-		/obj/effect/spawner/lootdrop/roguetown/general_loot_mid = 1,
+		/obj/effect/spawner/lootdrop/general_loot_hi = 4,
+		/obj/effect/spawner/lootdrop/general_loot_mid = 1,
 	)
-	loot_spawn_dice_string = "1d2"
+	loot_spawn_dice_string = "1d2+1"
 
 /obj/structure/closet/crate/chest/loot_chest/locked/indestructible //party up with rogues NOW
 	max_integrity = INFINITY
 	lock_strength = 200
 	loot_weighted_list = list(
-		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 2,
-		/obj/effect/spawner/lootdrop/roguetown/general_loot_hi = 3,
-		/obj/effect/spawner/lootdrop/roguetown/general_loot_mid = 1,
+		/obj/effect/spawner/lootdrop/valuable_jewelry_spawner = 1,
+		/obj/effect/spawner/lootdrop/general_loot_hi = 4,
+		/obj/effect/spawner/lootdrop/general_loot_mid = 1,
 	)
 
 /obj/effect/landmark/chest_or_mimic/loot_chest
