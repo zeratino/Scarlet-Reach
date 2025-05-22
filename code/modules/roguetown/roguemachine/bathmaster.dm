@@ -21,7 +21,6 @@
 		"Bulk", 
 		"Drugs",
 		"Exotic Apparel",
-		"Exotic Food",
 		"Instruments",
 		"Roguery",
 		)
