@@ -29,12 +29,8 @@ SUBSYSTEM_DEF(treasury)
 	var/list/bank_accounts = list()
 	var/list/noble_incomes = list()
 	var/list/stockpile_datums = list()
-	var/multiple_item_penalty = 0.66
-	var/interest_rate = 0.15
 	var/next_treasury_check = 0
 	var/list/log_entries = list()
-	var/list/vault_accounting = list() //used for the vault count, cleared every fire()
-
 
 /datum/controller/subsystem/treasury/Initialize()
 	treasury_value = rand(500,1000)
@@ -53,7 +49,6 @@ SUBSYSTEM_DEF(treasury)
 /datum/controller/subsystem/treasury/fire(resumed = 0)
 	if(world.time > next_treasury_check)
 		next_treasury_check = world.time + rand(5 MINUTES, 8 MINUTES)
-		vault_accounting = list()
 		if(SSticker.current_state == GAME_STATE_PLAYING)
 			for(var/datum/roguestock/X in stockpile_datums)
 				if(!X.stable_price && !X.transport_item)
@@ -65,32 +60,9 @@ SUBSYSTEM_DEF(treasury)
 				A.held_items[2] += A.passive_generation
 				A.held_items[2] = min(A.held_items[2],10) //To a maximum of 10
 		var/area/A = GLOB.areas_by_type[/area/rogue/indoors/town/vault]
-		var/amt_to_generate = 0
-		for(var/obj/item/I in A)
-			if(!isturf(I.loc))
-				continue
-			amt_to_generate += add_to_vault(I)
-		for(var/obj/structure/closet/C in A)
-			for(var/obj/item/I in C.contents)
-				amt_to_generate += add_to_vault(I)
-		amt_to_generate = amt_to_generate - (amt_to_generate * queens_tax)
-		amt_to_generate = round(amt_to_generate)
-		give_money_treasury(amt_to_generate, "wealth hoard")
 		for(var/obj/structure/roguemachine/vaultbank/VB in A)
 			if(istype(VB))
 				VB.update_icon()
-		send_ooc_note("Income from wealth hoard: +[amt_to_generate]", job = list("Grand Duke", "Steward", "Clerk"))
-
-/datum/controller/subsystem/treasury/proc/add_to_vault(var/obj/item/I)
-	if(I.get_real_price() <= 0 || istype(I, /obj/item/roguecoin))
-		return
-	if(!I.submitted_to_stockpile)
-		I.submitted_to_stockpile = TRUE
-	if(I.type in vault_accounting)
-		vault_accounting[I.type] *= multiple_item_penalty
-	else
-		vault_accounting[I.type] = I.get_real_price()
-	return (vault_accounting[I.type]*interest_rate)
 
 /datum/controller/subsystem/treasury/proc/create_bank_account(name, initial_deposit)
 	if(!name)
