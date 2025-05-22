@@ -371,7 +371,7 @@
 			for(var/datum/roguestock/bounty/A in SStreasury.stockpile_datums)
 				contents += "[A.name]<BR>"
 				contents += "[A.desc]<BR>"
-				contents += "Total Collected: [A.held_items[1] + A.held_items[2]]<BR>"
+				contents += "Total Collected: [SStreasury.minted]<BR>"
 				if(A.percent_bounty)
 					contents += "Bounty Price: <a href='?src=\ref[src];setbounty=\ref[A]'>[A.payout_price]%</a><BR><BR>"
 				else
