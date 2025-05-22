@@ -362,7 +362,7 @@
 
 /datum/crafting_recipe/roguetown/survival/woodbucket
 	name = "wooden bucket"
-	result = /obj/item/reagent_containers/glass/bucket/wooden
+	result = /obj/item/reagent_containers/glass/bucket
 	reqs = list(/obj/item/grown/log/tree/small = 1)
 	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 0
