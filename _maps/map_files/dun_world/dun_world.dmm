@@ -61815,6 +61815,9 @@
 /obj/item/seeds/coffee,
 /obj/item/seeds/coffee,
 /obj/item/seeds/coffee,
+/obj/item/seeds/tea,
+/obj/item/seeds/tea,
+/obj/item/seeds/tea,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
 	},
