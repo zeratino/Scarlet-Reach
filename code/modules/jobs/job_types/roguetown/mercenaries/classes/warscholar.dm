@@ -75,7 +75,7 @@
 			H.change_stat("constitution", -1)
 			H.change_stat("perception", 1)
 			H.change_stat("intelligence", 3)
-			H.mind.adjust_spellpoints(18)
+			H.mind.adjust_spellpoints(12)
 			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
