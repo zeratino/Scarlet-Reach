@@ -19,6 +19,7 @@
 	var/keycontrol = "steward"
 	var/current_tab = TAB_MAIN
 	var/compact = TRUE
+	var/total_deposit = 0
 	var/list/excluded_jobs = list("Wretch","Vagabond","Adventurer")
 	var/current_category = "Raw Materials"
 	var/list/categories = list("Raw Materials", "Foodstuffs")
@@ -267,11 +268,15 @@
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_LOG]'>\[Log\]</a><BR>"
 			contents += "</center>"
 		if(TAB_BANK)
+			var/total_deposit = 0
+			for(var/bank_account in SStreasury.bank_accounts)
+				total_deposit += SStreasury.bank_accounts[bank_account]
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a>"
 			contents += " <a href='?src=\ref[src];compact=1'>\[Compact: [compact? "ENABLED" : "DISABLED"]\]</a><BR>"
 			contents += "<center>Bank<BR>"
 			contents += "--------------<BR>"
-			contents += "Treasury: [SStreasury.treasury_value]m</center><BR>"
+			contents += "Treasury: [SStreasury.treasury_value]m<BR>"
+			contents += "Reserve Ratio: [round(SStreasury.treasury_value / total_deposit * 100)]%</center><BR>"
 			contents += "<a href='?src=\ref[src];payroll=1'>\[Pay by Class\]</a><BR><BR>"
 			if(compact)
 				for(var/mob/living/carbon/human/A in SStreasury.bank_accounts)
