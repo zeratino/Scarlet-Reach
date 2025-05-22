@@ -26,6 +26,7 @@ SUBSYSTEM_DEF(treasury)
 	var/tax_value = 0.11
 	var/queens_tax = 0.15
 	var/treasury_value = 0
+	var/mint_multiplier = 1.25 // 1.25 leave a healthy profit margin after standard 80 - 85% collectable
 	var/list/bank_accounts = list()
 	var/list/noble_incomes = list()
 	var/list/stockpile_datums = list()
@@ -51,7 +52,7 @@ SUBSYSTEM_DEF(treasury)
 		next_treasury_check = world.time + rand(5 MINUTES, 8 MINUTES)
 		if(SSticker.current_state == GAME_STATE_PLAYING)
 			for(var/datum/roguestock/X in stockpile_datums)
-				if(!X.stable_price && !X.transport_item)
+				if(!X.stable_price && !X.mint_item)
 					if(X.demand < initial(X.demand))
 						X.demand += rand(5,15)
 					if(X.demand > initial(X.demand))
@@ -190,6 +191,7 @@ SUBSYSTEM_DEF(treasury)
 /datum/controller/subsystem/treasury/proc/log_to_steward(log)
 	log_entries += log
 	return
+
 /datum/controller/subsystem/treasury/proc/distribute_estate_incomes()
 	for(var/mob/living/welfare_dependant in noble_incomes)
 		var/how_much = noble_incomes[welfare_dependant]
