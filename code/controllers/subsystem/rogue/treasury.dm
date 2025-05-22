@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(treasury)
 	var/list/log_entries = list()
 
 /datum/controller/subsystem/treasury/Initialize()
-	treasury_value = rand(500,1000)
+	treasury_value = rand(1000, 2000)
 
 	for(var/path in subtypesof(/datum/roguestock/bounty))
 		var/datum/D = new path
