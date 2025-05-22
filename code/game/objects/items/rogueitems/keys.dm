@@ -46,6 +46,7 @@
 	destroy_sound = 'sound/items/pickbreak.ogg'
 	resistance_flags = FIRE_PROOF
 	associated_skill = /datum/skill/misc/lockpicking	//Doesn't do anything, for tracking purposes only
+	always_destroy = TRUE
 
 	grid_width = 32
 	grid_height = 64
@@ -220,6 +221,12 @@
 	desc = "This key opens the garrison's armory."
 	icon_state = "hornkey"
 	lockid = "armory"
+
+/obj/item/roguekey/knight
+	name = "knight's key"
+	desc = "This is a key to the knight's chambers."
+	icon_state = "ekey"
+	lockid = "knight"
 
 /obj/item/roguekey/merchant
 	name = "merchant's key"

@@ -937,7 +937,7 @@
 		clear_fullscreen("brute")*/
 
 	var/hurtdamage = ((get_complex_pain() / (STAEND * 10)) * 100) //what percent out of 100 to max pain
-	if(hurtdamage)
+	if(hurtdamage > 5) //float
 		var/severity = 0
 		switch(hurtdamage)
 			if(5 to 20)

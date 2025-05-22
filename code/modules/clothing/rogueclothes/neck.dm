@@ -35,26 +35,8 @@
 	toggle_icon_state = TRUE
 	sewrepair = TRUE
 
-/obj/item/clothing/neck/roguetown/coif/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_neck()
-				H.update_inv_head()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEHAIR
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_neck()
-					H.update_inv_head()
+/obj/item/clothing/neck/roguetown/coif/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Soundless coif
 
 /obj/item/clothing/neck/roguetown/leather
 	name = "hardened leather gorget"
@@ -76,7 +58,6 @@
 	item_state = "chaincoif"
 	flags_inv = HIDEHAIR
 	armor = list("blunt" = 30, "slash" = 60, "stab" = 45, "piercing" = 20, "fire" = 0, "acid" = 0)
-
 	max_integrity = 200
 	resistance_flags = FIRE_PROOF
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
@@ -88,26 +69,15 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 
-/obj/item/clothing/neck/roguetown/chaincoif/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_neck()
-				H.update_inv_head()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEHAIR
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_neck()
-					H.update_inv_head()
+
+/obj/item/clothing/neck/roguetown/chaincoif/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/chain_equip.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
+
+/obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	name = "ancient coif"
+	desc = "a coif made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "achaincoif"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	name = "chain mantle"
@@ -119,26 +89,8 @@
 	slot_flags = ITEM_SLOT_NECK
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 
-/obj/item/clothing/neck/roguetown/chaincoif/chainmantle/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = null
-			body_parts_covered = NECK
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_neck()
-				H.update_inv_head()
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDESNOUT|HIDEFACIALHAIR|HIDEFACE
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_neck()
-
+/obj/item/clothing/neck/roguetown/chaincoif/chainmantle/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (NECK|MOUTH), null, null, 'sound/foley/equip/equip_armor_chain.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	name = "iron chain coif"
@@ -147,6 +99,15 @@
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = 150
 
+
+/obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
+	name = "decrepit coif"
+	desc = "a decrepit old coif. Aeon's grasp is upon it."
+	icon_state = "achaincoif"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 100
+
+
 /obj/item/clothing/neck/roguetown/chaincoif/full
 	name = "full chain coif"
 	icon_state = "fchaincoif"
@@ -154,6 +115,9 @@
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = NECK|MOUTH|NOSE|HAIR|EARS|HEAD
 	adjustable = CAN_CADJUST
+
+/obj/item/clothing/neck/roguetown/chaincoif/full/ComponentInitialize()
+	return
 
 /obj/item/clothing/neck/roguetown/chaincoif/full/AdjustClothes(mob/user)
 	if(loc == user)
@@ -213,6 +177,13 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	blocksound = PLATEHIT
 
+/obj/item/clothing/neck/roguetown/gorget/aalloy
+	name = "decrepit gorget"
+	desc = "a decrepit, worn out gorget. Aeon's grasp is upon it."
+	icon_state = "ancientgorget"
+	max_integrity = 100
+	smeltresult = /obj/item/ingot/aalloy
+
 /obj/item/clothing/neck/roguetown/gorget/copper
 	name = "neck protector"
 	icon_state = "copperneck"
@@ -245,6 +216,13 @@
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 300
 	icon_state = "sgorget"
+
+/obj/item/clothing/neck/roguetown/gorget/paalloy
+	name = "ancient gorget"
+	desc = "A gorget made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "ancientgorget"
+	max_integrity = 300
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/neck/roguetown/gorget/prisoner/Initialize()
 	. = ..()
@@ -296,6 +274,17 @@
 		sleeved = initial(sleeved)
 	
 	return TRUE
+
+/obj/item/clothing/neck/roguetown/psicross/aalloy
+	name = "decrepit psicross"
+	desc = "Surely this one endures?"
+	icon_state = "psycross_a"
+
+
+/obj/item/clothing/neck/roguetown/zcross/aalloy
+	name = "decrepit zcross"
+	desc = "A symbol of progress from a era with reason to believe in it."
+	icon_state = "zcross_a"
 
 /obj/item/clothing/neck/roguetown/psicross/astrata
 	name = "amulet of Astrata"
@@ -357,38 +346,39 @@
 	sellprice = 50
 
 /obj/item/clothing/neck/roguetown/psicross/silver/pickup(mob/user)
-	. = ..()
+	..()
+
+	if(!ishuman(user))
+		return
 	var/mob/living/carbon/human/H = user
 	if(!H.mind)
 		return
 	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
 	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
-	if(ishuman(H))
-		if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
+		to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
+		H.Knockdown(20)
+		H.adjustFireLoss(60)
+		H.Paralyze(20)
+		H.fire_act(1,5)
+	if(V_lord)
+		if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
 			to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-			H.Knockdown(20)
-			H.adjustFireLoss(60)
-			H.Paralyze(20)
-			H.fire_act(1,5)
-		if(V_lord)
-			if(V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
-				to_chat(H, span_userdanger("I can't pick up the silver, it is my BANE!"))
-				H.Knockdown(10)
-				H.Paralyze(10)
-		if(W && W.transformed == TRUE)
-			to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
-			H.Knockdown(20)
-			H.Paralyze(20)
+			H.Knockdown(10)
+			H.Paralyze(10)
+	if(W && W.transformed == TRUE)
+		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
+		H.Knockdown(20)
+		H.Paralyze(20)
 
 /obj/item/clothing/neck/roguetown/psicross/silver/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if (!.)
-		return FALSE
+	..()
 
 	if(!ishuman(M))
 		return FALSE
 	var/mob/living/carbon/human/H = M
 	if(!H.mind)
-		return TRUE
+		return FALSE
 	var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
 	var/datum/antagonist/werewolf/W = H.mind.has_antag_datum(/datum/antagonist/werewolf/)
 	if(H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
@@ -397,14 +387,19 @@
 		H.adjustFireLoss(60)
 		H.Paralyze(20)
 		H.fire_act(1,5)
+		return FALSE
 	if(V_lord && V_lord.vamplevel < 4 && !H.mind.has_antag_datum(/datum/antagonist/vampirelord/lesser))
 		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
 		H.Knockdown(10)
 		H.Paralyze(10)
+		return FALSE
 	if(W && W.transformed == TRUE)
 		to_chat(H, span_userdanger("I can't equip the silver, it is my BANE!"))
 		H.Knockdown(20)
 		H.Paralyze(20)
+		return FALSE
+
+	return TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/g
 	name = "golden psycross"

@@ -1,4 +1,5 @@
 /datum/crafting_recipe/roguetown/sewing
+	abstract_type = /datum/crafting_recipe/roguetown/sewing
 	tools = list(/obj/item/needle)
 	skillcraft = /datum/skill/misc/sewing
 	subtype_reqs = TRUE		//For subtypes of fur
@@ -1055,3 +1056,23 @@
 	reqs = list(/obj/item/natural/cloth = 1,
 				/obj/item/natural/fibers = 1)
 	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/spellsingerrobes
+	name = "spellsinger robes (4 fibers, 6 cloth, 1 silk)"
+	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/spellcasterrobe)
+	reqs = list(/obj/item/natural/cloth = 6,
+	            /obj/item/natural/fibers = 4,
+				/obj/item/natural/silk = 1)
+	tools = list(/obj/item/needle)
+	craftdiff = 6
+	sellprice = 30
+
+/datum/crafting_recipe/roguetown/sewing/spellsingerhat
+	name = "spellsinger hat (1 fibers, 1 cloth, 2 silk)"
+	result = list(/obj/item/clothing/head/roguetown/spellcasterhat)
+	reqs = list(/obj/item/natural/cloth = 1,
+	            /obj/item/natural/fibers = 1,
+				/obj/item/natural/silk = 2)
+	tools = list(/obj/item/needle)
+	craftdiff = 6
+	sellprice = 20

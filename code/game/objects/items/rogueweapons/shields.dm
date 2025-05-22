@@ -49,8 +49,10 @@
 /obj/item/rogueweapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the projectile", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	var/mob/attacker
+	var/obj/item/I
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
-		var/obj/item/I = hitby
+		if(istype(hitby, /obj/item)) // can't trust mob -> item assignments
+			I = hitby
 		if(I?.thrownby)
 			attacker = I.thrownby
 	if(attack_type == PROJECTILE_ATTACK)
@@ -203,6 +205,20 @@
 			if("onback")
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 	return ..()
+
+/obj/item/rogueweapon/shield/tower/metal/alloy
+	name = "decrepit shield"
+	desc = "A decrepit, worn out shield. Aeon's grasp is upon it."
+	max_integrity = 150
+	wdefense = 9
+	icon_state = "ancientsh"
+	smeltresult = /obj/item/ingot/aalloy
+
+/obj/item/rogueweapon/shield/tower/metal/palloy
+	name = "ancient shield"
+	desc = "A ancient, venerable shield. Aeon's grasp has been lifted from it."
+	icon_state = "ancientsh"
+	smeltresult = /obj/item/ingot/purifiedaalloy
 
 /obj/item/rogueweapon/shield/buckler
 	name = "buckler shield"
