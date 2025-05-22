@@ -36,12 +36,15 @@
 
 /datum/outfit/job/roguetown/dungeoneer/pre_equip(mob/living/carbon/human/H)
 	..()
-	head = /obj/item/clothing/head/roguetown/menacing
-	pants = /obj/item/clothing/under/roguetown/trou
-	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
+	head = /obj/item/clothing/head/roguetown/necrahood
+	pants = /obj/item/clothing/under/roguetown/trou/leather/mourning
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/councillor//Just so I don't have to make another subtype just for it to start black.
+	armor = /obj/item/clothing/suit/roguetown/armor/leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	cloak = /obj/item/clothing/cloak/stabard/dungeon
-	belt = /obj/item/storage/belt/rogue/leather
+	gloves = /obj/item/clothing/gloves/roguetown/leather/black
+	cloak = /obj/item/clothing/suit/roguetown/shirt/robe/necra
+	belt = /obj/item/storage/belt/rogue/leather/black
 	beltr = /obj/item/rogueweapon/whip/antique
 	beltl = /obj/item/storage/keyring/dungeoneer
 	backr = /obj/item/storage/backpack/rogue/satchel/black
@@ -50,10 +53,9 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE) //hilarious
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
@@ -64,7 +66,6 @@
 	H.change_stat("endurance", 1)
 	H.change_stat("constitution", 2)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
-	H.verbs |= /mob/living/carbon/human/proc/torture_victim
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+//Torture victim is for inquisition - doesn't even work without a psicross anymore so maybe come up with a variant for him specifically?
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_GUARDSMAN, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_DUNGEONMASTER, TRAIT_GENERIC)
