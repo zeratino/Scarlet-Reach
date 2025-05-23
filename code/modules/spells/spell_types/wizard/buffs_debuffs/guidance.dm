@@ -2,7 +2,7 @@
 	name = "Guidance"
 	overlay_state = "guidance"
 	desc = "Makes one's hand travel true, blessing them with arcyne luck in combat. (+20% chance to bypass parry / dodge, +20% chance to parry / dodge)"
-	cost = 1
+	cost = 2
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1
