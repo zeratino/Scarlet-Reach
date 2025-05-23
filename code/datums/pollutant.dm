@@ -104,3 +104,23 @@
 	name = "strawberry"
 	scent = "strawberries"
 	color = "#fc5a8d"
+
+/datum/pollutant/fragrance/cinnamon
+	name = "cinnamon"
+	scent = "cinnamon"
+	color = "#d2691e"
+
+/datum/pollutant/fragrance/frankincense
+	name = "frankincense"
+	scent = "frankincense"
+	color = "#dea670"
+
+/datum/pollutant/fragrance/sandalwood
+	name = "sandalwood"
+	scent = "sandalwood"
+	color = "#e9e1c2"
+
+/datum/pollutant/fragrance/myrrh
+	name = "myrrh"
+	scent = "myrrh"
+	color = "#9e8574"

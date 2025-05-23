@@ -100,3 +100,20 @@
 	name = "strawberry perfume"
 	fragrance_type = /datum/pollutant/fragrance/strawberry
 
+/obj/item/perfume/cinnamon
+	name = "cinnamon perfume"
+	fragrance_type = /datum/pollutant/fragrance/cinnamon
+
+// "Premium" perfumes they are more expensive by default
+// No special mechanical effects
+/obj/item/perfume/frankincense
+	name = "frankincense perfume"
+	fragrance_type = /datum/pollutant/fragrance/frankincense
+
+/obj/item/perfume/sandalwood
+	name = "sandalwood perfume"
+	fragrance_type = /datum/pollutant/fragrance/sandalwood
+
+/obj/item/perfume/myrrh
+	name = "myrrh perfume"
+	fragrance_type = /datum/pollutant/fragrance/myrrh
