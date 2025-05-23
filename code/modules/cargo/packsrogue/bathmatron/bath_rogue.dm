@@ -1,4 +1,5 @@
 // Thievery Related Supplies. I sure hope this don't go wrong!!!
+// Took lockpicks out so it don't get spammed. Get the expensive hairpins instead.
 
 /datum/supply_pack/rogue/bath_rogue
 	group = "Roguery"
@@ -14,12 +15,6 @@
 		/obj/item/rope/chain,
 		/obj/item/rope/chain,
 	)
-
-// Same as merchant
-/datum/supply_pack/rogue/bath_rogue/lockpicks
-	name = "Lockpicks"
-	cost = 20
-	contains = list(/obj/item/lockpickring/mundane)
 
 /datum/supply_pack/rogue/bath_rogue/goldpin
 	name = "Golden Hairpin"
