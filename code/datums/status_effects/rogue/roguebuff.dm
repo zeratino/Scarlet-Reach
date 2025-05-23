@@ -347,6 +347,11 @@
 	desc = "My home. I watch vigilantly and respond swiftly."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/barkeepbuff
+	name = "Vigilant Tavernkeep"
+	desc = "My home. I watch vigilantly and respond swiftly."
+	icon_state = "buff"
+
 /atom/movable/screen/alert/status_effect/buff/knightbuff
 	name = "Sworn Defender"
 	desc = "I've sworn an oath to defend this castle. My resolve will not waver."
@@ -361,6 +366,18 @@
 	id = "wardenbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/wardenbuff
 	effectedstats = list("speed" = 1, "perception" = 3) 
+
+/datum/status_effect/buff/barkeepbuff
+	id = "barkeepbuff"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/barkeepbuff
+	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "strength" = 3) 
+
+/datum/status_effect/buff/barkeepbuff/process()
+
+	.=..()
+	var/area/rogue/our_area = get_area(owner)
+	if(!(our_area.tavern_area))
+		owner.remove_status_effect(/datum/status_effect/buff/barkeepbuff)
 
 /datum/status_effect/buff/guardbuffone
 	id = "guardbuffone"
