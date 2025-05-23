@@ -137,6 +137,9 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "light direbear cloak"
 	path = /obj/item/clothing/cloak/darkcloak/bear/light
 
+/datum/loadout_item/volfmantle
+	name = "Volf Mantle"
+	path = /obj/item/clothing/cloak/volfmantle
 
 //SHOES
 /datum/loadout_item/darkboots
