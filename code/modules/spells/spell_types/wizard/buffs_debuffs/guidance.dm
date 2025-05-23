@@ -43,7 +43,7 @@
 #define GUIDANCE_FILTER "guidance_glow"
 /atom/movable/screen/alert/status_effect/buff/guidance
 	name = "Guidance"
-	desc = "Arcyne assistance guides my hands. (+15% chance to bypass parry / dodge, +15% chance to parry / dodge)"
+	desc = "Arcyne assistance guides my hands. (+20% chance to bypass parry / dodge, +20% chance to parry / dodge)"
 	icon_state = "buff"
 
 /datum/status_effect/buff/guidance
