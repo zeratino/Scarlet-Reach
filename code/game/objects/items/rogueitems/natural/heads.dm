@@ -12,6 +12,7 @@
 	desc = "the head of a fearsome volf."
 	icon_state = "volfhead"
 	layer = 3.1
+	grid_height = 32
 	sellprice = 10
 
 /obj/item/natural/head/goat
@@ -19,6 +20,7 @@
 	desc = "the head of a simple goat."
 	icon_state = "goathead"
 	layer = 3.1
+	grid_height = 32
 	sellprice = 5
 
 /obj/item/natural/head/fox
@@ -26,6 +28,7 @@
 	desc = "the head of a majestic venard."
 	icon_state = "foxhead"
 	layer = 3.1
+	grid_height = 32
 	sellprice = 6
 
 /obj/item/natural/head/saiga
@@ -33,6 +36,7 @@
 	desc = "the head of a proud saiga."
 	icon_state = "saigahead"
 	layer = 3.1
+	grid_height = 32
 	sellprice = 12
 
 /obj/item/natural/head/direbear
@@ -40,23 +44,23 @@
 	desc = "the head of a terrifying direbear."
 	icon_state = "direbearhead"
 	layer = 3.1
-	sellprice = 16
+	sellprice = 20
 
 /obj/item/natural/head/mole
 	name = "mole head"
 	desc = "the head of a lesser mole."
 	icon_state = "molehead"
 	layer = 3.1
-	w_class = WEIGHT_CLASS_HUGE
-	twohands_required = TRUE
-	sellprice = 16
+	sellprice = 20
 
 /obj/item/natural/head/troll
 	name = "troll head"
 	desc = "the head of a giant troll."
 	icon_state = "trollhead"
 	layer = 3.1
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_NORMAL // We want them to be placeable in headhook
+	grid_height = 96
+	grid_width = 96
 	twohands_required = TRUE
 	sellprice = 110
 
@@ -76,8 +80,8 @@
 	desc = "the head of an unusually large rat."
 	icon_state = "roushead"
 	layer = 3.1
-	grid_height = 64
-	grid_width = 64
+	grid_height = 32
+	grid_width = 32
 	sellprice = 10
 
 /obj/item/natural/head/honeyspider
@@ -85,6 +89,32 @@
 	desc = "the head of a venomous honeyspider."
 	icon_state = "spiderhead"
 	layer = 3.1
-	grid_height = 64
-	grid_width = 64
+	grid_height = 32
+	grid_width = 32
+	sellprice = 10
+
+/obj/item/natural/head/mirespider
+	name = "mire spider head"
+	desc = "the head of a disgusting 'little' mire spider."
+	icon_state = "mirespiderhead"
+	layer = 3.1
+	grid_height = 32
+	grid_width = 32
+	sellprice = 10
+
+/obj/item/natural/head/mirelurker
+	name = "mire lurker head"
+	desc = "the head of a terrifyingly large mire lurker."
+	icon_state = "mirelurkerhead"
+	layer = 3.1
+	grid_height = 32
+	sellprice = 20
+
+/obj/item/natural/head/mirespider_paralytic
+	name = "aragn head"
+	desc = "the head of the wretched aragn."
+	icon_state = "mirespider_paralytichead"
+	layer = 3.1
+	grid_height = 32
+	grid_width = 32
 	sellprice = 10

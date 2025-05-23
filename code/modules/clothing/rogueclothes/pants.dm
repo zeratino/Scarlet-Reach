@@ -453,7 +453,7 @@
 	icon_state = "achainkilt"
 	smeltresult = /obj/item/ingot/aaslag
 
-/obj/item/clothing/under/roguetown/chainlegs/iron/kilt/
+/obj/item/clothing/under/roguetown/chainlegs/iron/kilt
 	name = "iron chain kilt"
 	desc = "Interlinked metal rings that drape down all the way to the ankles."
 	icon_state = "ichainkilt"
