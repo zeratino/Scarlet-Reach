@@ -2,7 +2,7 @@
 	/// Name of the pollutant, if null will be treated as abstract and wont be initialized as singleton
 	var/name
 	/// Flags of the pollutant, determine whether it has an appearance, smell, touch act, breath act
-	var/pollutant_flags = NONE
+	var/pollutant_flags = POLLUTANT_SMELL // No flag results in runtime, so fix that.
 	/// Below are variables for appearance
 	/// What color will the pollutant be, can be left null
 	var/color
@@ -27,7 +27,7 @@
 	return
 
 ///When a carbon mob breathes in the pollutant
-/datum/pollutant/proc/breathe_act(mob/living/carbon/victim, amount)
+/datum/pollutant/proc/breathe_act(mob/living/carbon/victim, amount, total_amount)
 	return
 
 ///When a carbon mob smells scents this is called
