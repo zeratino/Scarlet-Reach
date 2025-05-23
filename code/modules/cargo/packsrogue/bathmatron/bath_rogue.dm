@@ -67,6 +67,6 @@
 
 /datum/supply_pack/rogue/bath_rogue/grappler
 	name = "Grappler"
-	cost = 120
+	cost = 200
 	contains = list(/obj/item/grapplinghook)
 
