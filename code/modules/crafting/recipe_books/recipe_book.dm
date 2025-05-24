@@ -131,7 +131,7 @@
 			@import url('https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap');
 			body {
 				font-family: "Charm", cursive;
-				font-size: 1.2em;
+				font-size: 1em;
 				text-align: center;
 				margin: 20px;
 				color: #3e2723;
@@ -144,7 +144,7 @@
 			}
 			h1 {
 				text-align: center;
-				font-size: 2em;
+				font-size: 1.5em;
 				border-bottom: 2px solid #3e2723;
 				padding-bottom: 10px;
 				margin-bottom: 20px;
@@ -299,8 +299,11 @@
 	// Add recipes based on current category
 	for(var/atom/path as anything in types)
 		if(is_abstract(path))
-			for(var/atom/sub_path as anything in subtypesof(path))
+			var/list/sorted_types = sortNames(subtypesof(path)) // Edit vs Vander lin - Sort
+			for(var/atom/sub_path as anything in sorted_types)
 				if(is_abstract(sub_path))
+					continue
+				if(!sub_path.name) // Also skip if there's no names
 					continue
 
 				var/recipe_name = initial(sub_path.name)
@@ -387,7 +390,7 @@
 					noMatchesMsg.style.display = anyVisible ? 'none' : 'block';
 
 					// Remember the query
-					window.location.replace('byond://?src=\\ref[src];action=remember_query&query=${encodeURIComponent(query)}');
+					window.location.replace(`byond://?src=\\ref[src];action=remember_query&query=${encodeURIComponent(query)}`);
 				}
 
 				// Initialize search based on any current query
@@ -483,8 +486,6 @@
 		html += "<h2 class='recipe-title'>[recipe_name]</h2>"
 		html += "<p>[recipe_description]</p>"
 
-	// Back button with direct link - kinda really not needed lol
-	html += "<button class='back-btn' onclick=\"location.href='byond://?src=\ref[src];action=clear_recipe'\">Back to Recipe List</button>"
 	html += "</div>"
 
 	return html

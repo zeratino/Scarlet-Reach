@@ -173,7 +173,7 @@
 			@import url('https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap');
 			body {
 				font-family: "Charm", cursive;
-				font-size: 1.2em;
+				font-size: 1em;
 				text-align: center;
 				margin: 20px;
 				background-color: #f4efe6;
