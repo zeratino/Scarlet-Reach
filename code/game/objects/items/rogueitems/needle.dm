@@ -1,7 +1,7 @@
 /obj/item/needle
 	name = "needle"
 	icon_state = "needle"
-	desc = "This sharp needle can sew wounds, cloth and can be used for self defence if you're crazy."
+	desc = "This sharp needle can sew wounds, mend clothing, and stab someone if you’re desperate."
 	icon = 'icons/roguetown/items/misc.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'

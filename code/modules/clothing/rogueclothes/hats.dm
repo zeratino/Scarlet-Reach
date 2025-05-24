@@ -199,9 +199,14 @@
 	color = null
 	icon_state = "dendormask"
 	item_state = "dendormask"
+	icon = 'icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' 
+	body_parts_covered = MOUTH
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+	mask_override = TRUE
 
 /obj/item/clothing/head/roguetown/necromhood
 	name = "necromancers hood"
