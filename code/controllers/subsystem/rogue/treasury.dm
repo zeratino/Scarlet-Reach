@@ -38,6 +38,8 @@ SUBSYSTEM_DEF(treasury)
 	var/total_deposit_tax = 0
 	var/total_vault_income = 0
 	var/total_noble_income = 0
+	var/total_import = 0
+	var/total_export = 0
 
 /datum/controller/subsystem/treasury/Initialize()
 	treasury_value = rand(500,1000)
