@@ -1128,6 +1128,7 @@
 #include "code\modules\cargo\packsrogue\Sellsword.dm"
 #include "code\modules\cargo\packsrogue\Things.dm"
 #include "code\modules\cargo\packsrogue\bathmatron\bath_clothes.dm"
+#include "code\modules\cargo\packsrogue\bathmatron\bath_perfume.dm"
 #include "code\modules\cargo\packsrogue\bathmatron\bath_rogue.dm"
 #include "code\modules\cargo\packsrogue\bathmatron\bulk.dm"
 #include "code\modules\cargo\packsrogue\bathmatron\drugs.dm"
