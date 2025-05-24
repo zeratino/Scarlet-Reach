@@ -215,9 +215,12 @@
 		QDEL_NULL(water_top_overlay)
 
 /turf/open/water/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum, damage_flag = "blunt")
-	if(isobj(AM))
-		var/obj/O = AM
-		O.extinguish()
+	if(!isobj(AM))
+		return
+	var/obj/O = AM
+	if(!O.extinguishable)
+		return
+	O.extinguish()
 
 /turf/open/water/get_slowdown(mob/user)
 	var/returned = slowdown
@@ -279,6 +282,8 @@
 
 /turf/open/water/swamp/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
+	if(HAS_TRAIT(AM, TRAIT_LEECHIMMUNE))
+		return
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/C = AM
@@ -314,6 +319,8 @@
 
 /turf/open/water/swamp/deep/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
+	if(HAS_TRAIT(AM, TRAIT_LEECHIMMUNE))
+		return
 	if(isliving(AM) && !AM.throwing)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/C = AM

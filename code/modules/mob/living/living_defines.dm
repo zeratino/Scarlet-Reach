@@ -6,6 +6,8 @@
 	see_in_dark = 8
 	hud_possible = list(ANTAG_HUD)
 	
+	typing_indicator_enabled = TRUE
+	
 	var/resize = 1 //Badminnery resize
 	var/lastattacker = null
 	var/lastattackerckey = null
@@ -133,7 +135,6 @@
 	var/surrendering = 0
 
 	var/defprob = 50 //base chance to defend against this mob's attacks, for simple mob combat
-	var/defdrain = 5
 	var/encumbrance = 0
 
 	var/eyesclosed = 0

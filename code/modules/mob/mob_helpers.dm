@@ -528,6 +528,9 @@
 			mmb_intent.movement_interrupt = ranged_ability.movement_interrupt
 			mmb_intent.charging_slowdown = ranged_ability.charging_slowdown
 			mmb_intent.chargedloop = ranged_ability.chargedloop
+			mmb_intent.glow_intensity = ranged_ability.glow_intensity
+			mmb_intent.glow_color = ranged_ability.glow_color
+			mmb_intent.mob_charge_effect = ranged_ability.mob_charge_effect
 			mmb_intent.update_chargeloop()
 	
 	if(hud_used)		
@@ -590,11 +593,7 @@
 /mob
 	var/last_aimhchange = 0
 	var/aimheight = 11
-	var/cmode_music = list(
-						'sound/music/combat.ogg',
-						'sound/music/combat2.ogg',
-						'sound/music/combat_weird.ogg',
-						)
+	var/cmode_music = list('sound/music/combat_old.ogg') //This should minimize the lag it creates by picking from multiple ones
 
 /mob/proc/aimheight_change(input)
 	var/old_zone = zone_selected

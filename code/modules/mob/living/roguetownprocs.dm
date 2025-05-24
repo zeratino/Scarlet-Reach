@@ -1,3 +1,4 @@
+#define BASE_PARRY_STAMINA_DRAIN 5 // Unmodified stamina drain for parry, now a var instead of setting on simplemobs
 /proc/accuracy_check(zone, mob/living/user, mob/living/target, associated_skill, datum/intent/used_intent, obj/item/I)
 	if(!zone)
 		return
@@ -140,7 +141,7 @@
 			last_parry = world.time
 			if(intenty && !intenty.canparry)
 				return FALSE
-			var/drained = user.defdrain
+			var/drained = BASE_PARRY_STAMINA_DRAIN
 			var/weapon_parry = FALSE
 			var/offhand_defense = 0
 			var/mainhand_defense = 0
@@ -198,10 +199,10 @@
 					prob2defend -= (attacker_skill * 20)
 
 			if(HAS_TRAIT(src, TRAIT_GUIDANCE))
-				prob2defend += 15
+				prob2defend += 20
 
 			if(HAS_TRAIT(user, TRAIT_GUIDANCE))
-				prob2defend -= 15
+				prob2defend -= 20
 
 			// parrying while knocked down sucks ass
 			if(!(mobility_flags & MOBILITY_STAND))
@@ -216,6 +217,9 @@
 			prob2defend = clamp(prob2defend, 5, 90)
 			if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
 				prob2defend = clamp(prob2defend, 5, 70)
+			if(!H?.check_armor_skill())
+				prob2defend = clamp(prob2defend, 5, 75)			//Caps your max parry to 75 if using armor you're not trained in. Bad dexerity.
+				drained = drained + 5							//More stamina usage for not being trained in the armor you're using.
 
 			//Dual Wielding
 			var/attacker_dualw
@@ -332,6 +336,10 @@
 
 					var/dam2take = round((get_complex_damage(AB,user,used_weapon.blade_dulling)/2),1)
 					if(dam2take)
+						if(!user.mind)
+							dam2take = dam2take * 0.25
+						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
+							dam2take = dam2take * intenty.masteritem?.intdamage_factor
 						used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
 					return TRUE
 				else
@@ -391,15 +399,21 @@
 						dirry += NORTH
 						dirry += SOUTH
 				var/turf/turfy
-				for(var/x in shuffle(dirry.Copy()))
-					turfy = get_step(src,x)
-					if(turfy)
-						if(turfy.density)
-							continue
-						for(var/atom/movable/AM in turfy)
-							if(AM.density)
+				if(fixedeye)
+					var/dodgedir = turn(dir, 180)
+					var/turf/turfcheck = get_step(src, dodgedir)
+					if(turfcheck && !turfcheck.density)
+						turfy = turfcheck
+				if(!turfy)
+					for(var/x in shuffle(dirry.Copy()))
+						turfy = get_step(src,x)
+						if(turfy)
+							if(turfy.density)
 								continue
-						break
+							for(var/atom/movable/AM in turfy)
+								if(AM.density)
+									continue
+							break
 				if(pulledby)
 					return FALSE
 				if(!turfy)
@@ -521,10 +535,10 @@
 						prob2defend = prob2defend + (H.mind.get_skill_level(/datum/skill/combat/unarmed) * 10)
 
 		if(HAS_TRAIT(L, TRAIT_GUIDANCE))
-			prob2defend += 15
+			prob2defend += 20
 
 		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
-			prob2defend -= 15
+			prob2defend -= 20
 
 		// dodging while knocked down sucks ass
 		if(!(L.mobility_flags & MOBILITY_STAND))
@@ -606,6 +620,32 @@
 		src.visible_message(span_warning("<b>[src]</b> dodges [user]'s attack!"))
 	else
 		src.visible_message(span_warning("<b>[src]</b> easily dodges [user]'s attack!"))
+	if(get_dist(src, user) <= user.used_intent?.reach)	//We are still in range of the attacker's weapon post-dodge
+		var/probclip = 50
+		var/obj/item/IS = L.get_active_held_item()
+		var/obj/item/IU = U.get_active_held_item()
+		if(IS)
+			if(IS.wlength > WLENGTH_NORMAL)
+				probclip += (IS.wlength - WLENGTH_NORMAL) * 10	//if wlength isn't standardised this might skyrocket it to >100%
+			else
+				probclip -= (WLENGTH_NORMAL - IS.wlength) * 10
+		var/dist = (user.used_intent?.reach - get_dist(src, user)) - 1 //-1 because we already are in range and triggered this check to begin with.
+		if(dist > 0)
+			probclip += dist * 10
+		if(L.STALUC != U.STALUC)
+			var/lucmod = L.STALUC - U.STALUC
+			probclip += lucmod * 10
+		if(prob(probclip) && IS && IU)
+			var/dam2take = round((get_complex_damage(IU, user, FALSE)/2),1)
+			if(dam2take)
+				if(!user.mind)
+					dam2take = dam2take * 0.25
+				if(dam2take > 0 && IU.intdamage_factor != 0)
+					dam2take = dam2take * IU.intdamage_factor
+				IS.take_damage(max(dam2take,1), BRUTE, IU.d_type)
+
+			user.visible_message(span_warning("<b>[user]</b> clips [src]'s weapon!"))
+			playsound(user, 'sound/misc/weapon_clip.ogg', 100)
 	dodgecd = FALSE
 //		if(H)
 //			if(H.IsOffBalanced())

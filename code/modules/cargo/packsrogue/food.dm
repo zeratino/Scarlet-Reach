@@ -3,23 +3,6 @@
 	crate_name = "merchant guild's crate"
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
-/datum/supply_pack/rogue/food/healthpot
-	name = "Healing Potion"
-	cost = 80
-	contains = list(
-					/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-					/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-					/obj/item/reagent_containers/glass/bottle/rogue/healthpot,
-				)
-
-/datum/supply_pack/rogue/food/manapot
-	name = "Manna Potion"
-	cost = 80
-	contains = list(
-					/obj/item/reagent_containers/glass/bottle/rogue/manapot,
-					/obj/item/reagent_containers/glass/bottle/rogue/manapot,
-					/obj/item/reagent_containers/glass/bottle/rogue/manapot,
-				)
 
 /datum/supply_pack/rogue/food/wineb
 	name = "Wine"

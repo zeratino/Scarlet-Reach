@@ -115,9 +115,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	// non-clothing items
 	var/datum/dog_fashion/dog_fashion = null
 
-	//Tooltip vars
-	var/force_string //string form of an item's force. Edit this var only to set a custom force string
-	var/last_force_string_check = 0
 	var/tip_timer
 
 	var/trigger_guard = TRIGGER_GUARD_NONE
@@ -132,6 +129,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//Grinder vars
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
+	var/mill_result = null // What it grinds into on a millstone or similar.
 
 	var/canMouseDown = FALSE
 	var/can_parry = FALSE
@@ -153,6 +151,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/wbalance = 0
 	var/wdefense = 0 //better at defending
 	var/minstr = 0  //for weapons
+	var/intdamage_factor = 0	//%-age of our raw damage that is dealt to armor or weapon on hit / parry.
 
 	var/sleeved = null
 	var/sleevetype = null
@@ -332,8 +331,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		new path(src)
 	actions_types = null
 
-	if(force_string)
-		item_flags |= FORCE_STRING_OVERRIDE
 
 	if(!hitsound)
 		if(damtype == "fire")
@@ -417,6 +414,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/list/inspec = list(span_notice("Properties of [src.name]"))
 		if(minstr)
 			inspec += "\n<b>MIN.STR:</b> [minstr]"
+		
+		if(force)
+			inspec += "\n<b>FORCE:</b> [get_force_string(force)]"
+		if(gripped_intents && !wielded)
+			inspec += "\n<b>WIELDED FORCE:</b> [get_force_string(force_wielded)]"
 
 		if(wbalance)
 			inspec += "\n<b>BALANCE: </b>"
@@ -436,7 +438,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 					inspec += "Great"
 
 		if(alt_intents)
-			inspec += "\n<b>ALT-GRIP</b>"
+			inspec += "\n<b>ALT-GRIP (RIGHT CLICK WHILE IN HAND)</b>"
+
+		var/shafttext = get_blade_dulling_text(src, verbose = TRUE)
+		if(shafttext)
+			inspec += "\n<b>SHAFT:</b> [shafttext]"
 
 		if(gripped_intents)
 			inspec += "\n<b>TWO-HANDED</b>"
@@ -454,6 +460,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(associated_skill && associated_skill.name)
 			inspec += "\n<b>SKILL:</b> [associated_skill.name]"
+		
+		if(intdamage_factor)
+			inspec += "\n<b>INTEGRITY DAMAGE:</b> [intdamage_factor * 100]%"
 
 //**** CLOTHING STUFF
 
@@ -469,10 +478,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 						inspec += "<b>[capitalize(zone)]</b> | "
 				else
 					var/list/zones = list()
-					//We have some part peeled, so we turn the printout into verbose mode and highlight the missing coverage.
-					for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, verbose = TRUE))
+					//We have some part peeled, so we turn the printout into precise mode and highlight the missing coverage.
+					for(var/zoneorg in body_parts_covered2organ_names(C.body_parts_covered, precise = TRUE))
 						zones += zoneorg
-					for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, verbose = TRUE))
+					for(var/zonedyn in body_parts_covered2organ_names(C.body_parts_covered_dynamic, precise = TRUE))
 						inspec += "<b>[capitalize(zonedyn)]</b> | "
 						if(zonedyn in zones)
 							zones.Remove(zonedyn)
@@ -1043,38 +1052,25 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 /obj/item/proc/on_juice()
 
-/obj/item/proc/set_force_string()
+/obj/item/proc/get_force_string(var/force)
 	switch(force)
-		if(0 to 4)
-			force_string = "very low"
-		if(4 to 7)
-			force_string = "low"
-		if(7 to 10)
-			force_string = "medium"
-		if(10 to 11)
-			force_string = "high"
-		if(11 to 20) //12 is the force of a toolbox
-			force_string = "robust"
-		if(20 to 25)
-			force_string = "very robust"
+		if(0 to 9)
+			return "Puny"
+		if(10 to 14)
+			return "Weak"
+		if(15 to 19)
+			return "Modest"
+		if(20 to 24)
+			return "Fine"
+		if(25 to 29)
+			return "Great"
+		if(30 to 35)
+			return "Grand"
 		else
-			force_string = "exceptionally robust"
-	last_force_string_check = force
-
-/obj/item/proc/openTip(location, control, params, user)
-	if(last_force_string_check != force && !(item_flags & FORCE_STRING_OVERRIDE))
-		set_force_string()
-	if(!(item_flags & FORCE_STRING_OVERRIDE))
-		openToolTip(user,src,params,title = name,content = "[desc]<br>[force ? "<b>Force:</b> [force_string]" : ""]",theme = "")
-	else
-		openToolTip(user,src,params,title = name,content = "[desc]<br><b>Force:</b> [force_string]",theme = "")
+			return "Mighty"
 
 /obj/item/MouseEntered(location, control, params)
 	. = ..()
-	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && usr.client.prefs.enable_tips && !QDELETED(src))
-		var/timedelay = usr.client.prefs.tip_delay/100
-		var/user = usr
-		tip_timer = addtimer(CALLBACK(src, PROC_REF(openTip), location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 
 /obj/item/MouseExited()
 	. = ..()
@@ -1256,7 +1252,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(altgripped || wielded) //Trying to unwield it
 		ungrip(user)
 		return
-	if(alt_intents)
+	if(alt_intents && !gripped_intents)
 		altgrip(user)
 	if(gripped_intents)
 		wield(user)
@@ -1285,15 +1281,17 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			str += "NO DEFENSE"
 	return str
 
-/obj/item/obj_break(mob/living/carbon/user, damage_flag)
+/obj/item/obj_break(damage_flag)
 	..()
 
-	if (wielded)
-		ungrip(user, show_message = FALSE)
 	update_damaged_state()
 	if(!ismob(loc))
 		return
 	var/mob/M = loc
+
+	if(altgripped || wielded)
+		ungrip(M, FALSE)
+
 	to_chat(M, "\The [src] BREAKS...!")
 
 /obj/item/obj_fix()
@@ -1309,7 +1307,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		obj_destroyed = TRUE
 		burn()
 		return TRUE
-	if (ismob(loc))
+	if (ismob(loc) && !always_destroy)
 		return FALSE
 
 	obj_destroyed = TRUE
@@ -1344,7 +1342,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(peel_count >= peel_threshold)
 				body_parts_covered_dynamic &= ~coveragezone
 				playsound(src, 'sound/foley/peeled_coverage.ogg', 100)
-				var/list/peeledpart = body_parts_covered2organ_names(coveragezone, verbose = TRUE)
+				var/list/peeledpart = body_parts_covered2organ_names(coveragezone, precise = TRUE)
 				var/parttext
 				if(length(peeledpart))
 					parttext = peeledpart[1]	//There should really only be one bodypart that gets exposed here.

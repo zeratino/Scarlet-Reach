@@ -36,11 +36,12 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/smelting, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/ceramics, 3, TRUE)	//Just for basic pottery/glass stuff.
 
 	head = /obj/item/clothing/head/roguetown/articap
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket
 	cloak = /obj/item/clothing/cloak/apron/waist/brown
-	gloves = /obj/item/clothing/gloves/roguetown/grenzelgloves/blacksmith
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith
 	pants = /obj/item/clothing/under/roguetown/trou/artipants
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/artificer
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
@@ -50,9 +51,15 @@
 	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
-						/obj/item/rogueweapon/hammer/claw = 1,
+						/obj/item/rogueweapon/hammer/steel = 1,
+						/obj/item/rogueweapon/handsaw = 1,
+						/obj/item/rogueweapon/chisel = 1,
 						/obj/item/lockpickring/mundane = 1,
-						/obj/item/clothing/cloak/apron/blacksmith = 1
+						/obj/item/recipe_book/blacksmithing = 1,
+						/obj/item/recipe_book/engineering = 1,
+						/obj/item/recipe_book/ceramics = 1,
+						/obj/item/recipe_book/builder = 1,
+						/obj/item/recipe_book/survival = 1,
 						)
 	H.change_stat("strength", 1)
 	H.change_stat("intelligence", 2)
