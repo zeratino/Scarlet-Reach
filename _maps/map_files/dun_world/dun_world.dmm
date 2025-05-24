@@ -6264,8 +6264,8 @@
 	dir = 9;
 	icon_state = "largetable"
 	},
-/obj/item/paper/scroll,
-/obj/item/natural/feather,
+/obj/item/perfume/frankincense,
+/obj/item/perfume/myrrh,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church/chapel)
 "cmJ" = (
@@ -22456,6 +22456,8 @@
 	icon_state = "largetable"
 	},
 /obj/item/paper/scroll,
+/obj/item/paper/scroll,
+/obj/item/natural/feather,
 /obj/item/natural/feather,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church/chapel)
