@@ -88,6 +88,8 @@
 //sword objs ฅ^•ﻌ•^ฅ
 
 /obj/item/rogueweapon/sword
+	name = "arming sword"
+	desc = "A long steel blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations."
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	force = 22
 	force_wielded = 25
@@ -95,8 +97,6 @@
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
 	armor = list("blunt" = 60, "slash" = 50, "stab" = 50, "piercing" = 0)
 	damage_deflection = 14
-	name = "arming sword"
-	desc = "A long steel blade attached to a hilt, separated by a crossguard. The arming sword has been Psydonia's implement of war by excellence for generations."
 	icon_state = "sword1"
 	icon = 'icons/roguetown/weapons/32.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/rogue_lefthand.dmi'
@@ -876,7 +876,7 @@
 
 /obj/item/rogueweapon/sword/cutlass
 	name = "cutlass"
-	desc = "Used by pirates and deckhands."
+	desc = "The mariner's special: A short, broad sabre with a slightly curved blade optimized for slashing."
 	icon_state = "cutlass"
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel)
 	gripped_intents = null
@@ -886,7 +886,7 @@
 /obj/item/rogueweapon/sword/silver
 	force = 24
 	name = "silver sword"
-	desc = "A sword forged of pure silver. The guard is fashioned into a cross."
+	desc = "A sword forged of pure silver, the guard fashioned into a cross - a weapon to ward off creechers of evil."
 	icon_state = "silversword"
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
@@ -895,11 +895,11 @@
 	max_integrity = 200
 
 /obj/item/rogueweapon/sword/long/blackflamb
+	name = "blacksteel flamberge"
+	desc = "An uncommon kind of sword with a characteristically undulating style of blade, made with an equally rare metal. The wave in the blade is considered to contribute a flame-like quality to its appearance, turning it into a menacing sight. \"Flaming swords\" are often the protagonists of Otavan epics and other knights' tales."
 	force = 20
 	force_wielded = 32
 	icon_state = "blackflamb"
-	name = "blacksteel flamberge"
-	desc = "A strange sword with a winding blade forged of blacksteel and a rontz pommel."
 	smeltresult = /obj/item/ingot/blacksteel
 	max_integrity = 200
 
@@ -1001,13 +1001,13 @@
 				)
 
 /obj/item/rogueweapon/sword/long/rhomphaia
+	name = "rhomphaia"
+	desc = "An ancient sword similar to the falx, with the key difference of its curve being less pronounced - feared for its ability to strike and thrust with precision."
 	force = 25
 	force_wielded = 30
 	possible_item_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut/falx, /datum/intent/sword/strike, /datum/intent/sword/chop/falx, /datum/intent/sword/peel)
 	icon_state = "rhomphaia"
-	name = "rhomphaia"
-	desc = "A longsword with a hooked end for punching through armour."
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 125
 
@@ -1110,7 +1110,7 @@
 
 /obj/item/rogueweapon/sword/long/rhomphaia/copper
 	name = "copper rhomphaia"
-	desc = "A rhomphaia made of copper. Less durable and powerful than its steel counterpart. It has great cutting power."
+	desc = "An ancient sword similar to the falx, with the key difference of its curve being less pronounced - feared for its ability to strike and thrust with precision. This one is made of copper, making it weaker."
 	icon_state = "crhomphaia"
 	force = 22
 	force_wielded = 26
@@ -1119,7 +1119,7 @@
 
 /obj/item/rogueweapon/sword/long/oathkeeper
 	name = "Oathkeeper"
-	desc = "An ornate golden blade with a ruby embedded in the hilt. Granted to the Knight Commander for their valiant service to the crown."
+	desc = "An ornate golden longsword with a ruby embedded in the hilt, given to the Knight Commander for their valiant service to the crown."
 	sellprice = 140
 	force = 26
 	force_wielded = 35
@@ -1136,13 +1136,13 @@
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/sword/long/holysee
+	name = "eclipsum sword"
+	desc = "A deadly longsword born of Astratan and Nocite hands, this blade was forged with both silver and gold alike. Blessed to hold strength and bring hope, whether it be during the dae or the nite."
 	force = 34
 	force_wielded = 50
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/chop)
 	icon_state = "eclipsum"
-	name = "eclipsum sword"
-	desc = "A mutual effort of Noc and Astrata's followers, this blade was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite."
 	is_silver = TRUE
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 2
