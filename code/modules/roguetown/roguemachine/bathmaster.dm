@@ -22,6 +22,7 @@
 		"Drugs",
 		"Exotic Apparel",
 		"Instruments",
+		"Perfumes",
 		"Roguery",
 		)
 
