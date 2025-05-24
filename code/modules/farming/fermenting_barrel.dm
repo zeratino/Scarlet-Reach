@@ -226,3 +226,25 @@
 /obj/structure/fermenting_barrel/nocshine/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/consumable/ethanol/beer/nocshine,900)
+
+/obj/structure/fermenting_barrel/coffee
+	desc = "A barrel with the mark of a brewed cup of coffee.  A strong, bitter drink that rejuvenates the body and mind."
+
+/obj/structure/fermenting_barrel/coffee/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/caffeine/coffee, 900)
+
+/obj/structure/fermenting_barrel/tea
+	desc = "A barrel with several Kazengunese characters on it indicating the vintage of the tea within. A mild, refreshing drink that calms the mind and body. Hopefully its quality is \
+	still intact after being stored in a barrel."
+
+/obj/structure/fermenting_barrel/tea/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/consumable/caffeine/tea, 900)
+
+/obj/structure/fermenting_barrel/rose_tea
+	desc = "A barrel with a mark of a rose over it. Generic rose tea brewed with rose. Refreshing and calming, with minor restorative effects."
+
+/obj/structure/fermenting_barrel/rose_tea/Initialize()
+	. = ..()
+	reagents.add_reagent(/datum/reagent/water/rosewater, 900)
