@@ -33710,13 +33710,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
-"lXU" = (
-/obj/structure/mineral_door/wood{
-	locked = 1;
-	lockid = "garrison"
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/indoors/town)
 "lXW" = (
 /obj/structure/bookcase/random/archive,
 /turf/open/floor/rogue/cobble,
@@ -378376,7 +378369,7 @@ xdi
 bjX
 jdu
 jdu
-kAi
+mHg
 aUO
 aUO
 aUO
@@ -378389,7 +378382,7 @@ aUO
 aUO
 aUO
 aUO
-lXU
+vwK
 haZ
 tSF
 jdu
@@ -379278,7 +379271,7 @@ aBB
 aBB
 aBB
 phl
-kAi
+mHg
 phl
 bGf
 bGf
