@@ -195,7 +195,7 @@
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	can_buckle = 1
 	buckle_lying = 0
-	breakoutextra = 1 MINUTES
+	breakoutextra = 2 MINUTES
 	buckleverb = "tie"
 
 /obj/structure/fluff/walldeco/chains/Initialize()
