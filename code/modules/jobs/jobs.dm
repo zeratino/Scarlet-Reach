@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(nonhuman_positions, list(
 
 GLOBAL_LIST_INIT(noble_positions, list(
 	"Grand Duke",
-	"Consort",
+	"Suitor",
 	"Prince",
 	"Hand",
 	"Knight Captain",

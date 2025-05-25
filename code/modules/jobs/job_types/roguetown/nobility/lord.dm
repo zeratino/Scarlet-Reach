@@ -275,3 +275,21 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	ADD_TRAIT(recruit, TRAIT_NOBLE, TRAIT_GENERIC)
 	REMOVE_TRAIT(recruit, TRAIT_OUTLANDER, ADVENTURER_TRAIT)
 	return TRUE
+
+/obj/effect/proc_holder/spell/self/convertrole/servant
+	name = "Recruit Servant"
+	new_role = "Servant"
+	overlay_state = "recruit_servant"
+	recruitment_faction = "Servants"
+	recruitment_message = "Serve the crown, %RECRUIT!"
+	accept_message = "FOR THE CROWN!"
+	refuse_message = "I refuse."
+	recharge_time = 100
+
+/obj/effect/proc_holder/spell/self/convertrole/bog
+	name = "Recruit Warden"
+	new_role = "Warden"
+	recruitment_faction = "Bog Guard"
+	recruitment_message = "Serve the Wardens, %RECRUIT!"
+	accept_message = "FOR THE GROVE!"
+	refuse_message = "I refuse."
