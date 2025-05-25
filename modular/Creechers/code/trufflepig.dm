@@ -102,7 +102,7 @@
 	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/truffles)
 	footstep_type = FOOTSTEP_MOB_SHOE
 	pooptype = /obj/item/natural/poo/horse
-	faction = list("goats")
+	faction = list("pigs")
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bites"
 	melee_damage_lower = 8
