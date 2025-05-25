@@ -996,31 +996,27 @@
 	sellprice = 90
 
 /datum/crafting_recipe/roguetown/sewing/exoticsilkbra
-	name = "exotic silk bra (3 silk, 1 gold ring)"
+	name = "exotic silk bra (5 silk)"
 	result = list (/obj/item/clothing/suit/roguetown/shirt/exoticsilkbra)
-	reqs = list(/obj/item/natural/silk = 3,
-				/obj/item/clothing/ring/gold = 1)
+	reqs = list(/obj/item/natural/silk = 5)
 	craftdiff = 6
 
 /datum/crafting_recipe/roguetown/sewing/anklets
-	name = "exotic silk anklets (3 silk, 1 gold ring)"
+	name = "exotic silk anklets (5 silk)"
 	result = list (/obj/item/clothing/shoes/roguetown/anklets)
-	reqs = list(/obj/item/natural/silk = 3,
-				/obj/item/clothing/ring/gold = 1)
+	reqs = list(/obj/item/natural/silk = 5)
 	craftdiff = 6
 
 /datum/crafting_recipe/roguetown/sewing/exoticsilkbelt
-	name = "exotic silk belt (3 silk, 1 gold ring)"
+	name = "exotic silk belt (5 silk)"
 	result = list (/obj/item/storage/belt/rogue/leather/exoticsilkbelt)
-	reqs = list(/obj/item/natural/silk = 3,
-				/obj/item/clothing/ring/gold = 1)
+	reqs = list(/obj/item/natural/silk = 5)
 	craftdiff = 6
 
 /datum/crafting_recipe/roguetown/sewing/exoticsilkmask
-	name = "exotic silk mask (3 silk, 1 gold ring)"
+	name = "exotic silk mask (5 silk)"
 	result = list (/obj/item/clothing/mask/rogue/exoticsilkmask)
-	reqs = list(/obj/item/natural/silk = 3,
-				/obj/item/clothing/ring/gold = 1)
+	reqs = list(/obj/item/natural/silk = 5)
 	craftdiff = 6
 
 /datum/crafting_recipe/roguetown/sewing/stockings_white
