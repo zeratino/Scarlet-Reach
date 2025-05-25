@@ -808,15 +808,7 @@
 	bitesize = 3
 	eat_effect = /datum/status_effect/buff/foodbuff
 	rotprocess = SHELFLIFE_LONG
-	plateable = TRUE
-
-/obj/item/reagent_containers/food/snacks/rogue/hcakeslice/plated
-	icon_state = "honeycakeslice_plated"
-	rotprocess = SHELFLIFE_EXTREME
-	faretype = FARE_LAVISH
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	trash = /obj/item/cooking/platter
-
+	
 // -------------- CHEESECAKE -----------------
 
 /obj/item/reagent_containers/food/snacks/rogue/ccakeuncooked
@@ -858,14 +850,6 @@
 	bitesize = 2
 	eat_effect = /datum/status_effect/buff/foodbuff
 	rotprocess = SHELFLIFE_LONG
-	plateable = TRUE
-
-/obj/item/reagent_containers/food/snacks/rogue/ccakeslice/plated
-	icon_state = "cheesecake_slice_plated"
-	rotprocess = SHELFLIFE_EXTREME
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	faretype = FARE_LAVISH
-	trash = /obj/item/cooking/platter
 
 /* maybe split up spider honey cake WIP
 	desc = "A cake glazed with spider-honey, a favorite dish among the Dark Elf nobility in Grimoria. Symbol of authority, a delicious residue covers the sweet cake which causes playful stinging and numbness in the mouth."

@@ -75,18 +75,6 @@
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
 
-/obj/item/reagent_containers/food/snacks/rogue/bun_grenz/plated
-	icon_state = "grenzbun_plated"
-	item_state = "plate_food"
-	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
-	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
-	faretype = FARE_FINE
-	experimental_inhand = FALSE
-	w_class = WEIGHT_CLASS_BULKY
-	bonus_reagents = list(/datum/reagent/consumable/nutriment = 2)
-	trash = /obj/item/cooking/platter
-	rotprocess = SHELFLIFE_EXTREME
-
 /*	.............   Raston   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/bun_raston
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
