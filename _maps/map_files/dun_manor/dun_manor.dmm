@@ -14074,7 +14074,7 @@
 /obj/structure/mineral_door/wood{
 	locked = 1;
 	lockid = "physician";
-	name = "apothacary bunks"
+	name = "apothecary bunks"
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
