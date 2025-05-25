@@ -27,6 +27,9 @@
 /obj/structure/fluff/pillow/green
 	color = CLOTHING_DARK_GREEN
 
+/obj/structure/fluff/pillow/brown
+	color = CLOTHING_BROWN
+
 /obj/structure/fluff/pillow/magenta
 	color = CLOTHING_MAGENTA
 

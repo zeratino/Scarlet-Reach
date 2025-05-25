@@ -236,8 +236,14 @@
 /obj/item/roguekey/townie // For use in round-start available houses in town. Do not use default lockID.
 	name = "town dwelling key"
 	desc = "The key of some townie's home. Hope it's not lost."
-	icon_state ="brownkey"
+	icon_state = "brownkey"
 	lockid = "townie"
+
+/obj/item/roguekey/bath // For use in round-start available bathhouse quarters. Do not use default lockID.
+	name = "bathhouse quarter key"
+	desc = "The key to an employee's quarters. Hope it's not lost."
+	icon_state = "brownkey"
+	lockid = "bath"
 
 /obj/item/roguekey/tavern
 	name = "tavern key"
