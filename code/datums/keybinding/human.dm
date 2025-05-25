@@ -47,6 +47,28 @@
 	H.smart_equipbag(SLOT_BACK_L) // These fucking shits are reversed in the UI, so keep it like this for symmetry
 	return TRUE
 
+/datum/keybinding/human/bag_equip_beltl
+	hotkey_keys = list("AltE")
+	name = "bag_equip_beltl"
+	full_name = "Bag Equip Left"
+	description = "Put held item in the right backpack slot or take out the most recent item from the right backpack slot"
+
+/datum/keybinding/human/bag_equip_beltl/down(client/user)
+	var/mob/living/carbon/human/H = user.mob
+	H.smart_equipbag(SLOT_BELT_L)
+	return TRUE
+
+/datum/keybinding/human/bag_equip_beltr
+	hotkey_keys = list("AltQ")
+	name = "bag_equip_backr"
+	full_name = "Bag Equip Right"
+	description = "Put held item in the right backpack slot or take out the most recent item from the right backpack slot"
+
+/datum/keybinding/human/bag_equip_beltr/down(client/user)
+	var/mob/living/carbon/human/H = user.mob
+	H.smart_equipbag(SLOT_BELT_R)
+	return TRUE
+
 /datum/keybinding/human/fixeye
 	hotkey_keys = list("F")
 	name = "fix_eye"
