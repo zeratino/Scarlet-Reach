@@ -162,17 +162,6 @@
 	can_saddle = TRUE//Hooooooog rider
 	remains_type = /obj/effect/decal/remains/pig
 
-/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/get_sound(input)
-	switch(input)
-		if("aggro")
-			return pick('modular/Creechers/sound/pighangry.ogg')
-		if("pain")
-			return pick('modular/Creechers/sound/pighangry.ogg')
-		if("death")
-			return pick('sound/vo/mobs/cow/death (1).ogg','sound/vo/mobs/cow/death (2).ogg')
-		if("idle")
-			return pick('modular/Creechers/sound/pig1.ogg','modular/Creechers/sound/pig2.ogg',)
-
 /mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/simple_limb_hit(zone)
 	if(!zone)
 		return ""
@@ -272,7 +261,7 @@
 			var/mutable_appearance/mounted = mutable_appearance(icon, "piggie_mounted", 4.3)
 			add_overlay(mounted)
 
-/mob/living/simple_animal/hostile/retaliate/rogue/hog/tame
+/mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame
 	tame = TRUE
 
 /mob/living/simple_animal/hostile/retaliate/rogue/swine/hog/tame/saddled/Initialize()
