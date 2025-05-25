@@ -19852,6 +19852,7 @@
 /obj/machinery/light/rogue/torchholder/l{
 	dir = 8
 	},
+/obj/structure/roguemachine/scomm/r,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "gYE" = (
@@ -20768,11 +20769,12 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/sewer)
 "hnr" = (
-/obj/structure/fluff/railing/border{
-	dir = 6
+/obj/structure/roguemachine/mail{
+	pixel_y = -32;
+	mailtag = "Wardens"
 	},
-/turf/open/floor/rogue/blocks/green,
-/area/rogue/under/town/sewer)
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town)
 "hns" = (
 /obj/structure/stairs/fancy/l{
 	dir = 1
@@ -27233,10 +27235,8 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/basement)
 "jyK" = (
-/obj/structure/roguemachine/mail/l{
-	mailtag = "Wardens"
-	},
 /obj/machinery/light/rogue/torchholder/l,
+/obj/structure/roguemachine/scomm/l,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "jyO" = (
@@ -37285,10 +37285,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
-"ndS" = (
-/obj/structure/fluff/railing/border,
-/turf/open/floor/rogue/blocks/green,
-/area/rogue/under/town/sewer)
 "ndU" = (
 /obj/structure/fluff/walldeco/customflag,
 /turf/closed/wall/mineral/rogue/stone,
@@ -50443,11 +50439,11 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "rEL" = (
-/obj/structure/stairs{
-	dir = 4
+/obj/structure/roguemachine/scomm{
+	pixel_y = -32
 	},
-/turf/open/floor/rogue/blocks/green,
-/area/rogue/under/town/sewer)
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town)
 "rES" = (
 /obj/structure/bed/rogue,
 /obj/item/bedsheet/rogue/wool,
@@ -68461,12 +68457,6 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
-"xRh" = (
-/obj/structure/fluff/railing/border{
-	dir = 10
-	},
-/turf/open/floor/rogue/blocks/green,
-/area/rogue/under/town/sewer)
 "xRt" = (
 /obj/structure/mineral_door/wood/donjon/stone{
 	locked = 1
@@ -128632,7 +128622,7 @@ xAN
 ylh
 mMx
 ylh
-dlK
+hAg
 cxj
 haH
 haH
@@ -129083,8 +129073,8 @@ xCK
 dlK
 ylh
 mMx
-hnr
 ylh
+xAN
 rqY
 haH
 haH
@@ -129535,8 +129525,8 @@ xCK
 amm
 mMx
 mMx
-ndS
-rEL
+ylh
+xAN
 rqY
 haH
 haH
@@ -129987,8 +129977,8 @@ uvk
 dlK
 ylh
 mMx
-xRh
-dlK
+ylh
+xAN
 rqY
 rqY
 rqY
@@ -358713,7 +358703,7 @@ bzY
 bSF
 jew
 jew
-jew
+hnr
 hsA
 pLh
 aBB
@@ -360521,7 +360511,7 @@ phl
 oea
 jew
 jew
-jew
+rEL
 smx
 phl
 bGf
