@@ -61726,11 +61726,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town)
 "vGW" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/turf/closed,
-/area/rogue/indoors/town)
+)
 "vHd" = (
 /obj/effect/landmark/start/churchling,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -147916,7 +147912,7 @@ mMx
 xNL
 xAN
 xIA
-kIT
+vGW
 ayT
 ayT
 ayT
@@ -258624,7 +258620,7 @@ sns
 lKo
 xBd
 kRg
-vGW
+arJ
 kRg
 qFN
 lKo
