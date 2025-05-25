@@ -52,6 +52,17 @@
 	effectedstats = list("intelligence" = 5,"speed" = 3,"fortune" = -5)
 	duration = 2 MINUTES
 
+/datum/status_effect/buff/druqks/baotha
+
+/datum/status_effect/buff/druqks/baotha/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_CRACKHEAD, TRAIT_MIRACLE)
+
+/datum/status_effect/buff/druqks/baotha/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_CRACKHEAD, TRAIT_MIRACLE)
+	owner.visible_message("[owner]'s eyes appear to return to normal.")
+
 /datum/status_effect/buff/druqks/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/high)
@@ -336,6 +347,11 @@
 	desc = "My home. I watch vigilantly and respond swiftly."
 	icon_state = "buff"
 
+/atom/movable/screen/alert/status_effect/buff/barkeepbuff
+	name = "Vigilant Tavernkeep"
+	desc = "My home. I watch vigilantly and respond swiftly."
+	icon_state = "buff"
+
 /atom/movable/screen/alert/status_effect/buff/knightbuff
 	name = "Sworn Defender"
 	desc = "I've sworn an oath to defend this castle. My resolve will not waver."
@@ -350,6 +366,18 @@
 	id = "wardenbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/wardenbuff
 	effectedstats = list("speed" = 1, "perception" = 3) 
+
+/datum/status_effect/buff/barkeepbuff
+	id = "barkeepbuff"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/barkeepbuff
+	effectedstats = list("constitution" = 1,"endurance" = 1, "speed" = 1, "strength" = 3) 
+
+/datum/status_effect/buff/barkeepbuff/process()
+
+	.=..()
+	var/area/rogue/our_area = get_area(owner)
+	if(!(our_area.tavern_area))
+		owner.remove_status_effect(/datum/status_effect/buff/barkeepbuff)
 
 /datum/status_effect/buff/guardbuffone
 	id = "guardbuffone"

@@ -55,7 +55,7 @@
 
 /datum/supply_pack/rogue/alcohol/wineraneshen
 	name = "Ranesheni Wine"
-	cost = 20
+	cost = 15
 	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/wine)
 
 /datum/supply_pack/rogue/alcohol/winegrenzel
