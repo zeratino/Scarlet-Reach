@@ -13,6 +13,7 @@
 	dropshrink = 0.6
 	slices_num = 1
 	slice_bclass = BCLASS_CHOP
+	chopping_sound = TRUE
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3)
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/meat/fish
 	eat_effect = /datum/status_effect/debuff/uncookedfood
