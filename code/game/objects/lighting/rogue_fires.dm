@@ -6,6 +6,7 @@
 
 /obj/machinery/light/rogue/firebowl
 	name = "brazier"
+	desc = "A healthy flame roars within a wide metal bowl."
 	icon = 'icons/roguetown/misc/lighting.dmi'
 	icon_state = "stonefire1"
 	bulb_colour = "#ffa35c"
@@ -117,6 +118,7 @@
 
 /obj/machinery/light/rogue/wallfire
 	name = "fireplace"
+	desc = "A warm fire dances between a pile of half-burnt logs upon a bed of glowing embers."
 	icon_state = "wallfire1"
 	base_state = "wallfire"
 	light_outer_range = 4 //slightly weaker than a torch
@@ -129,6 +131,7 @@
 
 /obj/machinery/light/rogue/wallfire/candle
 	name = "candles"
+	desc = "Tiny flames flicker to the slightest breeze and offer enough light to see."
 	icon_state = "wallcandle1"
 	base_state = "wallcandle"
 	crossfire = FALSE
@@ -138,6 +141,7 @@
 
 /obj/machinery/light/rogue/wallfire/candle/off
 	name = "candles"
+	desc = "Cold wax sticks in sad half-melted repose. All they need is a spark."
 	icon_state = "wallcandle0"
 	base_state = "wallcandle"
 	crossfire = FALSE
@@ -206,6 +210,7 @@
 
 /obj/machinery/light/rogue/torchholder
 	name = "sconce"
+	desc = "A wall-mounted fixture that allows a torch to offer light while freeing the hands for other tasks."
 	icon_state = "torchwall1"
 	base_state = "torchwall"
 	density = FALSE
@@ -363,6 +368,7 @@
 
 /obj/machinery/light/rogue/hearth
 	name = "hearth"
+	desc = "A hearth of stones carefully arranged to support a pan or a pot above a steady bed of embers."
 	icon_state = "hearth1"
 	base_state = "hearth"
 	density = TRUE
@@ -692,6 +698,7 @@
 
 /obj/machinery/light/rogue/campfire
 	name = "campfire"
+	desc = "Oily smoke curls from a weak sputtering flame."
 	icon_state = "badfire1"
 	base_state = "badfire"
 	density = FALSE
@@ -737,6 +744,7 @@
 /obj/machinery/light/rogue/campfire/densefire
 	icon_state = "densefire1"
 	base_state = "densefire"
+	desc = "A proper roaring fire to keep the dark at bay and the body warm."
 	density = TRUE
 	layer = 2.8
 	brightness = 5
