@@ -151,19 +151,6 @@
 	structurecraft = /obj/machinery/tanningrack
 	req_table = FALSE
 
-/datum/crafting_recipe/roguetown/cooking/saltfish
-	name = "saltfish"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/fish = 1,
-		/obj/item/reagent_containers/powder/salt = 1)
-	parts = list(
-		/obj/item/reagent_containers/food/snacks/fish = 1)
-	result = /obj/item/reagent_containers/food/snacks/rogue/saltfish
-	req_table = FALSE
-	craftdiff = 0
-	subtype_reqs = TRUE
-	structurecraft = /obj/machinery/tanningrack
-
 /datum/crafting_recipe/roguetown/cooking/raisins
 	name = "raisins"
 	reqs = list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue = 1)
@@ -246,27 +233,6 @@
 		icon_state = "jerk2"
 	if(bitecount == 4)
 		icon_state = "jerk1"
-
-// -------------- SALTFISH -----------------
-/obj/item/reagent_containers/food/snacks/rogue/saltfish
-	eat_effect = null
-	icon = 'icons/roguetown/misc/fish.dmi'
-	name = "saltfish"
-	icon_state = ""
-	desc = "Dried fish."
-	faretype = FARE_POOR
-	fried_type = null
-	bitesize = 4
-	slice_path = null
-	tastes = list("salted meat" = 1)
-	rotprocess = null
-	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
-	dropshrink = 0.6
-
-/obj/item/reagent_containers/food/snacks/rogue/saltfish/CheckParts(list/parts_list, datum/crafting_recipe/R)
-	for(var/obj/item/reagent_containers/food/snacks/M in parts_list)
-		icon_state = "[initial(M.icon_state)]dried"
-		qdel(M)
 
 // -------------- SALO (salted fat) -----------------
 /obj/item/reagent_containers/food/snacks/fat/salo
