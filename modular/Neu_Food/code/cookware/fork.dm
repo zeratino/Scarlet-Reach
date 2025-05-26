@@ -2,6 +2,8 @@
 	name = "wooden fork"	
 	icon = 'modular/Neu_Food/icons/cookware/fork.dmi'
 	icon_state = "fork_wooden"
+	flags_1 = CONDUCT_1
+	hitsound = 'sound/blank.ogg'
 	force = 0
 	w_class = WEIGHT_CLASS_TINY
 

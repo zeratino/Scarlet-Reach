@@ -27,3 +27,9 @@
 	name = "silver spoon"
 	icon_state = "spoon_silver"
 	sellprice = 20
+
+// NUKE THIS FUCKING TYPEPATH WHEN WE HAVE TIME
+/obj/item/kitchen/spoon/plastic
+	name = "wooden spoon"
+	desc = "Good for soup."
+	icon_state = "spoon"
