@@ -1,9 +1,10 @@
 /obj/item/cooking/pan
-	force = 20
-	throwforce = 15
-	possible_item_intents = list(/datum/intent/mace/strike/pan)
 	name = "frypan"
 	desc = "Two in one: Cook and smash heads."
+	icon = 'modular/Neu_Food/icons/cookware/pan.dmi'
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	experimental_inhand = FALSE
 	icon_state = "pan"
 	wlength = WLENGTH_SHORT
 	sharpness = IS_BLUNT
@@ -14,6 +15,9 @@
 	has_inspect_verb = TRUE // For snowflake and allowing you to examine the pan's properties lmao
 	swingsound = list('sound/combat/wooshes/blunt/shovel_swing.ogg','sound/combat/wooshes/blunt/shovel_swing2.ogg')
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
+	force = 20
+	throwforce = 15
+	possible_item_intents = list(/datum/intent/mace/strike/pan)
 	wdefense = 2
 	grid_width = 32
 	grid_height = 64

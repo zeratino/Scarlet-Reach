@@ -2,7 +2,7 @@
 	force = 10
 	name = "pot"
 	desc = "A pot made out of iron. It can hold a lot of liquid."
-	icon = 'modular/Neu_Food/icons/cooking.dmi'
+	icon = 'modular/Neu_Food/icons/cookware/pot.dmi'
 	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
 	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
 	experimental_inhand = FALSE
