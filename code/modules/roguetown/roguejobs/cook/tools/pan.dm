@@ -15,7 +15,6 @@
 	swingsound = list('sound/combat/wooshes/blunt/shovel_swing.ogg','sound/combat/wooshes/blunt/shovel_swing2.ogg')
 	drop_sound = 'sound/foley/dropsound/shovel_drop.ogg'
 	wdefense = 2
-	ingsize = 3
 	grid_width = 32
 	grid_height = 64
 
