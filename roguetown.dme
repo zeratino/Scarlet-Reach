@@ -2109,6 +2109,7 @@
 #include "modular\Neu_Food\code\cookware\fork.dm"
 #include "modular\Neu_Food\code\cookware\misc_cookware.dm"
 #include "modular\Neu_Food\code\cookware\pan.dm"
+#include "modular\Neu_Food\code\cookware\peppermill.dm"
 #include "modular\Neu_Food\code\cookware\platter.dm"
 #include "modular\Neu_Food\code\cookware\pot.dm"
 #include "modular\Neu_Food\code\cookware\spoon.dm"

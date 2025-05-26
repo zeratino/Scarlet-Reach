@@ -17,7 +17,6 @@
 	sellprice = 1
 	drinksounds = list('sound/items/drink_cup (1).ogg','sound/items/drink_cup (2).ogg','sound/items/drink_cup (3).ogg','sound/items/drink_cup (4).ogg','sound/items/drink_cup (5).ogg')
 	fillsounds = list('sound/items/fillcup.ogg')
-	var/in_use // so you can't spam eating with spoon
 
 /obj/item/reagent_containers/glass/bowl/aalloy
 	name = "decrepit bowl"
@@ -74,14 +73,8 @@
 	. = ..()
 	if(istype(I, /obj/item/kitchen/spoon))
 		if(reagents.total_volume > 0)
-			beingeaten()
 			if(do_after(user, 1 SECONDS, target = src))
 				playsound(src,'sound/misc/eat.ogg', rand(30,60), TRUE)
 				visible_message(span_info("[user] eats from [src]."))
 				addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, trans_to), user, min(amount_per_transfer_from_this,5), TRUE, TRUE, FALSE, user, FALSE, INGEST), 5)
 		return TRUE
-
-/obj/item/reagent_containers/glass/bowl/proc/beingeaten()
-	in_use = TRUE
-	sleep(10)
-	in_use = FALSE

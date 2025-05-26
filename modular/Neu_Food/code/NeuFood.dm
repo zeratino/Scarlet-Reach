@@ -96,24 +96,6 @@
 	experimental_onhip = FALSE
 	experimental_onback = FALSE
 
-/obj/item/reagent_containers/peppermill // new with some animated art
-	name = "pepper mill"
-	desc = "Let the lord have his snack; Twist the head until it cracks."
-	icon = 'modular/Neu_Food/icons/cooking.dmi'
-	icon_state = "peppermill"
-	layer = CLOSED_BLASTDOOR_LAYER // obj layer + a little, small obj layering above convenient
-	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
-	list_reagents = list(/datum/reagent/consumable/blackpepper = 5)
-	reagent_flags = TRANSPARENT
-
-/obj/item/tablecloth/silk
-	name = "silk tablecloth"
-	desc = "A fancy silk tablecloth, laid out for diplomatic feasts and other important events."
-	icon = 'modular/Neu_Food/icons/cooking.dmi'
-	icon_state = "tablecloth_silk"
-	sellprice = 40
-	w_class = WEIGHT_CLASS_NORMAL
-
 /obj/item/book/rogue/yeoldecookingmanual // new book with some tips to learn
 	name = "Ye olde ways of cookinge"
 	desc = "Penned by Svend Fatbeard, butler in the fourth generation"
