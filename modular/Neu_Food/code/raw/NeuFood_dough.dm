@@ -425,7 +425,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/toastcrumbs
 	name = "toast crumbs"
 	desc = "Toast crumbs, perfect for adding a crunch to deep fried food."
-	icon = 'modular/Neu_Food/icons/deep_fried.dmi'
+	icon = 'modular/Neu_Food/icons/raw/raw_deep_fried.dmi'
 	icon_state = "toastcrumbs"
 	slices_num = 0
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
