@@ -974,6 +974,7 @@
 	lockid = null //Will be randomized
 
 /obj/structure/mineral_door/wood/bath/bathmaid
+	icon_state = "woodwindow"
 	resident_advclass = list(/datum/advclass/nightmaiden)
 	lockid = "bath_attendant"
 
