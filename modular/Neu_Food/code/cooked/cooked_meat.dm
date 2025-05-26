@@ -136,6 +136,17 @@
 	else
 		return ..()
 
+/*	.................  Spiced Baked Poultry  ................... */
+// Leaving it here instead of meal cuz it has no sprite
+/obj/item/reagent_containers/food/snacks/rogue/meat/poultry/baked/spiced
+	name = "spiced bird-roast"
+	desc = "A plump bird, roasted perfection, spiced to taste divine."
+	faretype = FARE_LAVISH
+	portable = FALSE
+	color = "#ffc0c0"
+	tastes = list("spicy birdmeat" = 1)
+	eat_effect = /datum/status_effect/buff/foodbuff
+
 /*	.............   Frybird   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/cutlet/fried
 	eat_effect = null
