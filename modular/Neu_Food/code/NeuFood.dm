@@ -86,64 +86,6 @@
 		playsound(get_turf(user), 'modular/Neu_Food/sound/chopping_block.ogg', 60, TRUE, -1) // added some choppy sound
 */
 /*	........   Kitchen tools / items   ................ */
-/obj/item/kitchen/spoon
-	name = "wooden spoon"
-	desc = "Traditional utensil for shoveling soup into your mouth, or to churn butter with."
-	icon = 'modular/Neu_Food/icons/cooking.dmi'
-	icon_state = "spoon"
-	force = 0
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/kitchen/spoon/aalloy
-	name = "decrepit spoon"
-	icon_state = "aspoon"
-
-/obj/item/kitchen/spoon/iron
-	name = "iron spoon"
-	icon_state = "spoon_iron"
-
-/obj/item/kitchen/spoon/tin
-	name = "pewter spoon"
-	icon_state = "spoon_iron"
-
-/obj/item/kitchen/spoon/gold
-	name = "gold spoon"
-	icon_state = "spoon_gold"
-	sellprice = 10
-
-/obj/item/kitchen/spoon/silver
-	name = "silver spoon"
-	icon_state = "spoon_silver"
-	sellprice = 20
-
-/obj/item/kitchen/fork
-	name = "wooden fork"	
-	icon = 'modular/Neu_Food/icons/cooking.dmi'
-	icon_state = "fork_wooden"
-	force = 0
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/kitchen/fork/aalloy
-	name = "decrepit fork"
-	icon_state = "afork"
-
-/obj/item/kitchen/fork/iron
-	name = "iron fork"
-	icon_state = "fork_iron"
-
-/obj/item/kitchen/fork/tin
-	name = "pewter fork"
-	icon_state = "fork_iron"
-
-/obj/item/kitchen/fork/gold
-	name = "gold fork"
-	icon_state = "fork_gold"
-	sellprice = 10
-
-/obj/item/kitchen/fork/silver
-	name = "silver fork"
-	icon_state = "fork_silver"
-	sellprice = 20
 
 /obj/item/kitchen/rollingpin
 	icon = 'modular/Neu_Food/icons/cooking.dmi'
