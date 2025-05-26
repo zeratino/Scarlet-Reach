@@ -1,8 +1,12 @@
 /obj/item/reagent_containers/glass/cup
 	name = "metal cup"
 	desc = "A sturdy cup of metal. Often seen in the hands of warriors, wardens, and other sturdy folk."
+	icon = 'modular/Neu_Food/icons/cookware/cup.dmi'
 	icon_state = "iron"
 	force = 5
+	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
+	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
+	experimental_inhand = FALSE
 	throwforce = 10
 	reagent_flags = OPENCONTAINER
 	amount_per_transfer_from_this = 6
@@ -23,7 +27,7 @@
 	cut_overlays()
 
 	if(reagents.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('modular/Neu_Food/icons/cooking.dmi', "[icon_state]filling")
+		var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state]filling")
 
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		filling.alpha = mix_alpha_from_reagents(reagents.reagent_list)
