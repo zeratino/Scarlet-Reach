@@ -1113,7 +1113,7 @@
 /area/rogue/outdoors/town)
 "aLF" = (
 /obj/structure/closet/crate/chest,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "aLV" = (
@@ -3831,7 +3831,7 @@
 /area/rogue/indoors/town/church/basement)
 "cCv" = (
 /obj/structure/closet/crate/chest/old_crate,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "cCz" = (
@@ -6348,7 +6348,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/town/basement)
 "emy" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "emP" = (
@@ -8262,7 +8262,7 @@
 	dir = 1;
 	icon_state = "longtable_mid"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church/chapel)
 "fFN" = (
@@ -8707,7 +8707,7 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "gaU" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/town)
 "gaV" = (
@@ -9594,7 +9594,7 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/physician)
 "gKA" = (
@@ -10056,7 +10056,7 @@
 	dir = 8;
 	icon_state = "largetable"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town)
 "hbs" = (
@@ -10165,7 +10165,7 @@
 	dir = 10;
 	icon_state = "largetable"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden{
+/obj/item/reagent_containers/glass/bucket{
 	pixel_x = 2;
 	pixel_y = 8
 	},
@@ -11706,7 +11706,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
 "irh" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/town)
 "irq" = (
@@ -14074,7 +14074,7 @@
 /obj/structure/mineral_door/wood{
 	locked = 1;
 	lockid = "physician";
-	name = "apothacary bunks"
+	name = "apothecary bunks"
 	},
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
@@ -14713,8 +14713,8 @@
 	icon_state = "shelf_biggest";
 	pixel_y = 0
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/item/flint,
 /obj/item/natural/bundle/stick,
 /obj/item/natural/bundle/stick,
@@ -19844,7 +19844,7 @@
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/rtfield)
 "nQJ" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "nQL" = (
@@ -20385,7 +20385,7 @@
 /obj/structure/table/wood{
 	icon_state = "longtable"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden{
+/obj/item/reagent_containers/glass/bucket{
 	pixel_x = -6;
 	pixel_y = 15
 	},
@@ -20560,7 +20560,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "opJ" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
 "opL" = (
@@ -21616,7 +21616,7 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "pbg" = (
@@ -21817,7 +21817,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 9
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "pja" = (
@@ -22598,7 +22598,7 @@
 	dir = 9;
 	icon_state = "largetable"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "pKF" = (
@@ -23211,7 +23211,7 @@
 	dir = 1;
 	icon_state = "tablewood1"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "qkO" = (
@@ -23542,7 +23542,7 @@
 /area/rogue/indoors/town/church/chapel)
 "qzA" = (
 /obj/structure/closet/crate/roguecloset,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
@@ -24094,7 +24094,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/shelter/woods)
 "qTv" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/exposed/town/keep)
 "qTD" = (
@@ -24358,7 +24358,7 @@
 /obj/structure/table/wood{
 	icon_state = "longtable"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden{
+/obj/item/reagent_containers/glass/bucket{
 	pixel_x = -6;
 	pixel_y = 15
 	},
@@ -25684,7 +25684,7 @@
 	},
 /area/rogue/outdoors/town)
 "rVQ" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "rWN" = (
@@ -26371,7 +26371,7 @@
 	dir = 4
 	},
 /obj/structure/closet/crate/chest/old_crate,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "sux" = (
@@ -28367,7 +28367,7 @@
 /turf/open/water/sewer,
 /area/rogue/under/town/sewer)
 "tOl" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/dwarfin)
 "tOq" = (
@@ -28755,7 +28755,7 @@
 /area/rogue/outdoors/mountains)
 "ucs" = (
 /obj/structure/rack/rogue,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "ucu" = (
@@ -29847,7 +29847,7 @@
 	base_icon_state = "woodchestalt";
 	icon_state = "woodchestalt"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "horzw"
 	},
@@ -31831,7 +31831,7 @@
 	icon_state = "longtable"
 	},
 /obj/machinery/light/rogue/wallfire/candle,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "wwX" = (
@@ -32115,7 +32115,7 @@
 /area/rogue/indoors/town)
 "wEc" = (
 /obj/item/roguebin/water,
-/obj/item/reagent_containers/glass/bucket/wooden{
+/obj/item/reagent_containers/glass/bucket{
 	pixel_x = -6;
 	pixel_y = 15
 	},
@@ -33907,7 +33907,7 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 1
 	},
@@ -34091,7 +34091,7 @@
 /obj/item/cooking/platter,
 /obj/item/cooking/platter,
 /obj/item/cooking/platter,
-/obj/item/reagent_containers/glass/bucket/wooden,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church)
 "xOb" = (

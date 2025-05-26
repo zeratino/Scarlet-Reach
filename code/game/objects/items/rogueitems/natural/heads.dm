@@ -92,3 +92,29 @@
 	grid_height = 32
 	grid_width = 32
 	sellprice = 10
+
+/obj/item/natural/head/mirespider
+	name = "mire spider head"
+	desc = "the head of a disgusting 'little' mire spider."
+	icon_state = "mirespiderhead"
+	layer = 3.1
+	grid_height = 32
+	grid_width = 32
+	sellprice = 10
+
+/obj/item/natural/head/mirelurker
+	name = "mire lurker head"
+	desc = "the head of a terrifyingly large mire lurker."
+	icon_state = "mirelurkerhead"
+	layer = 3.1
+	grid_height = 32
+	sellprice = 20
+
+/obj/item/natural/head/mirespider_paralytic
+	name = "aragn head"
+	desc = "the head of the wretched aragn."
+	icon_state = "mirespider_paralytichead"
+	layer = 3.1
+	grid_height = 32
+	grid_width = 32
+	sellprice = 10
