@@ -13,6 +13,8 @@
 	var/revived = FALSE
 	var/next_idle_sound
 
+	antag_flags = FLAG_FAKE_ANTAG
+
 	// CACHE VARIABLES SO ZOMBIFICATION CAN BE CURED
 	var/was_i_undead = FALSE
 	var/special_role

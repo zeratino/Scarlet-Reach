@@ -26,7 +26,8 @@
 	virtue_restrictions = list(/datum/virtue/utility/noble)
 
 /datum/outfit/job/roguetown/priest
-	allowed_patrons = list(/datum/patron/divine/astrata)
+	job_bitflag = BITFLAG_CHURCH
+	//allowed_patrons = list(/datum/patron/divine/astrata)	- This honestly isn't needed anymore cus revival is inherant on the role + lore stuff. Test run it.
 
 /datum/outfit/job/roguetown/priest/pre_equip(mob/living/carbon/human/H)
 	..()

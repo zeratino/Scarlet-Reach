@@ -86,6 +86,10 @@
 					if(baited)
 						var/bp = baited.baitpenalty // Penalty to fishing chance based on how good bait is. Lower is better.
 						var/fishchance = 100 // Total fishing chance, deductions applied below
+						if(has_world_trait(/datum/world_trait/fishing_decrease))
+							fishchance -= 25
+						if(has_world_trait(/datum/world_trait/fishing_increase))
+							fishchance += 40
 						if(user.mind)
 							if(!sl) // If we have zero fishing skill...
 								fishchance -= 50 // 50% chance to fish base

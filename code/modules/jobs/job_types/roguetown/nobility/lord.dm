@@ -45,6 +45,9 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	display_order = JDO_LADY
 	give_bank_account = TRUE
 
+/datum/outfit/job/roguetown/lord
+	job_bitflag = BITFLAG_ROYALTY
+
 /datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
 	if(L)

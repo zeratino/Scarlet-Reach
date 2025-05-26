@@ -160,6 +160,7 @@
 	slowdown = 0
 	smooth = SMOOTH_TRUE
 	neighborlay = "snowedge"
+	spread_chance = 0
 
 /turf/open/floor/rogue/snow/Initialize()
 	dir = pick(GLOB.cardinals)
@@ -182,6 +183,7 @@
 	smooth = SMOOTH_TRUE
 	canSmoothWith = list(/turf/open/floor/rogue/snowrough,)
 	neighborlay = "snowroughedge"
+	spread_chance = 0
 
 /turf/open/floor/rogue/snowrough/Initialize()
 	dir = pick(GLOB.cardinals)
@@ -305,6 +307,9 @@
 						/turf/open/floor/rogue/snowrough,)
 	neighborlay = "grassedge"
 
+	spread_chance = 15
+	burn_power = 6
+
 /turf/open/floor/rogue/grass/Initialize()
 	dir = pick(GLOB.cardinals)
 //	GLOB.dirt_list += src
@@ -336,6 +341,7 @@
 	muddy = FALSE
 	bloodiness = 20
 	dirt_amt = 3
+	spread_chance = 8
 
 /turf/open/floor/rogue/dirt
 	name = "dirt"

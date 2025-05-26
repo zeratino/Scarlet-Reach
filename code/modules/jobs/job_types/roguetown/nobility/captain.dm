@@ -36,6 +36,7 @@
 	belt = /obj/item/storage/belt/rogue/leather/plaquesilver
 	cloak = /obj/item/clothing/cloak/stabard
 	id = /obj/item/scomstone/garrison
+	job_bitflag = BITFLAG_ROYALTY | BITFLAG_GARRISON
 
 /datum/job/roguetown/captain/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()

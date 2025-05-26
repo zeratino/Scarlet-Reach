@@ -95,7 +95,11 @@
 
 	var/mugshot_set = FALSE
 
-	var/heretic_nickname   // Nickname used for heretic commune
+	var/heretic_nickname 	// Nickname used for heretic commune
+
+	var/picking = FALSE		// Variable that lets the event picker see if someones getting chosen or not
+	
+	var/job_bitflag = NONE	// the bitflag our job applied
 
 /datum/mind/New(key)
 	src.key = key
@@ -409,6 +413,8 @@
 
 /datum/mind/proc/get_skill_level(skill)
 	var/datum/skill/S = GetSkillRef(skill)
+	if(!(S in known_skills))
+		return SKILL_LEVEL_NONE
 	return known_skills[S] || SKILL_LEVEL_NONE
 
 /datum/mind/proc/print_levels(user)
@@ -474,6 +480,8 @@
 	else
 		A.on_gain()
 	log_game("[key_name(src)] has gained antag datum [A.name]([A.type])")
+	var/client/picked_client = src.current?.client
+	picked_client?.mob?.mind.picking = FALSE
 	return A
 
 /datum/mind/proc/remove_antag_datum(datum_type)

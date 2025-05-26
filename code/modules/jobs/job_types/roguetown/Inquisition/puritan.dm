@@ -24,6 +24,7 @@
 /datum/outfit/job/roguetown/puritan
 	name = "Inquisitor"
 	jobtype = /datum/job/roguetown/puritan
+	job_bitflag = BITFLAG_CHURCH	//Counts as church.
 	allowed_patrons = list(/datum/patron/old_god)
 
 /datum/job/roguetown/puritan/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
