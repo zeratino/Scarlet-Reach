@@ -371,7 +371,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/cave)
 "agv" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp,
 /area/rogue/under/cave/goblindungeon)
 "agC" = (
@@ -1812,7 +1812,7 @@
 /area/rogue/under/town/sewer)
 "aGW" = (
 /obj/structure/glowshroom,
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "aGX" = (
@@ -2319,7 +2319,7 @@
 	dir = 1;
 	icon_state = "tablewood1"
 	},
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "aPH" = (
@@ -2647,7 +2647,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/shelter/woods)
 "aWn" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/grassyel,
@@ -3363,7 +3363,7 @@
 	},
 /area/rogue/outdoors/town)
 "bhV" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/churchmarble,
@@ -3528,7 +3528,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/physician)
 "blI" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains)
 "blL" = (
@@ -6163,7 +6163,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/town/bath)
 "cjN" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/church,
@@ -6492,7 +6492,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/exposed/town/keep)
 "cpM" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "cpQ" = (
@@ -10419,7 +10419,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/town)
 "dJZ" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/underdark)
 "dKf" = (
@@ -10848,7 +10848,7 @@
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "dSQ" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "dSU" = (
@@ -12300,7 +12300,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "esB" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/glowshroom{
 	icon_state = "glowshroom2"
 	},
@@ -15047,7 +15047,7 @@
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/under/underdark)
 "foE" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/closed/wall/mineral/rogue/stone/blue_moss,
 /area/rogue/indoors/cave)
 "foH" = (
@@ -17028,7 +17028,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "fYa" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "fYi" = (
@@ -18004,7 +18004,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains/decap)
 "gqx" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/bars/pipe{
 	dir = 1;
 	pixel_x = 25
@@ -18847,7 +18847,7 @@
 /area/rogue/indoors/town)
 "gGQ" = (
 /obj/item/natural/stone,
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/churchmarble,
@@ -19365,7 +19365,7 @@
 	},
 /area/rogue/indoors/town/garrison)
 "gQh" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/closed/mineral/random/rogue,
 /area/rogue/under/cave/goblindungeon)
 "gQp" = (
@@ -20508,7 +20508,7 @@
 /obj/structure/glowshroom{
 	icon_state = "glowshroom2"
 	},
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/mountains/decap)
 "hix" = (
@@ -22429,7 +22429,7 @@
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "hPS" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "hPT" = (
@@ -23966,7 +23966,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "iqY" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp/deep,
 /area/rogue/under/cavewet/bogcaves)
 "irb" = (
@@ -24201,7 +24201,7 @@
 /turf/open/floor/rogue/grassyel,
 /area/rogue/indoors/town)
 "iwm" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/water/swamp/deep,
@@ -26187,7 +26187,7 @@
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/indoors/shelter/mountains/decap)
 "jeC" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/effect/decal/cleanable/greenglow{
 	alpha = 150;
 	color = "#755f48"
@@ -26347,7 +26347,7 @@
 	},
 /area/rogue/indoors/town)
 "jhm" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/effect/decal/cleanable/greenglow{
 	alpha = 150;
 	color = "#755f48"
@@ -27410,7 +27410,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "jCd" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp/deep,
 /area/rogue/under/cave/goblindungeon)
 "jCi" = (
@@ -27448,7 +27448,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "jCN" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 1;
 	locked = 1
@@ -29647,7 +29647,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/goblindungeon)
 "ksJ" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "ktj" = (
@@ -29968,7 +29968,7 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/dwarfin)
 "kyh" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/naturalstone,
@@ -30367,7 +30367,7 @@
 /area/rogue/outdoors/woods)
 "kEl" = (
 /obj/structure/roguerock,
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "kEq" = (
@@ -30894,7 +30894,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/skeletoncrypt)
 "kPH" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/water/swamp/deep,
@@ -31633,7 +31633,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/shelter)
 "lep" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/water/swamp,
@@ -32057,7 +32057,7 @@
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/town/church/basement)
 "llR" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark)
 "lmd" = (
@@ -32617,7 +32617,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/mountains/decap)
 "lue" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
 "lun" = (
@@ -32801,7 +32801,7 @@
 	},
 /area/rogue/under/cave)
 "lyC" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/closed/wall/mineral/rogue/stone/blue_moss,
@@ -35152,7 +35152,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/shelter/mountains)
 "mqX" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/mountains/decap)
 "mqZ" = (
@@ -35257,7 +35257,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town)
 "mtn" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/bars/pipe,
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
@@ -35646,7 +35646,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "mAA" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/sewer,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "mAB" = (
@@ -37222,7 +37222,7 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/bath)
 "ndy" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/grass,
@@ -38517,7 +38517,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/town/sewer)
 "nAg" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/under/cave/goblindungeon)
 "nAh" = (
@@ -40296,7 +40296,7 @@
 /turf/open/water/ocean/deep,
 /area/rogue/outdoors/beach)
 "ogZ" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "ohb" = (
@@ -40851,7 +40851,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/town)
 "osD" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/glowshroom{
 	icon_state = "glowshroom2"
 	},
@@ -41175,7 +41175,7 @@
 /obj/structure/fluff/railing/fence{
 	dir = 4
 	},
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp,
 /area/rogue/under/cave/goblindungeon)
 "oyV" = (
@@ -41812,7 +41812,7 @@
 /area/rogue/indoors)
 "oJf" = (
 /obj/item/natural/rock,
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/underdark)
 "oJs" = (
@@ -42989,7 +42989,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/fishmandungeon)
 "pdo" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/dirt,
@@ -43006,7 +43006,7 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/bog)
 "pdH" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/goblindungeon)
 "pdJ" = (
@@ -44068,7 +44068,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors/cave)
 "pxD" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp/deep,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "pxF" = (
@@ -44438,7 +44438,7 @@
 /turf/open/water/ocean,
 /area/rogue/outdoors/beach)
 "pCL" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "pCN" = (
@@ -44876,7 +44876,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town)
 "pKa" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "pKd" = (
@@ -45957,7 +45957,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
 "qcd" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblindungeon)
 "qce" = (
@@ -46904,7 +46904,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "que" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
 "qum" = (
@@ -47585,7 +47585,7 @@
 /turf/open/floor/rogue/church,
 /area/rogue/indoors/cave)
 "qEY" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave)
 "qFa" = (
@@ -49399,7 +49399,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "rmQ" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave/goblindungeon)
 "rmU" = (
@@ -51055,7 +51055,7 @@
 /turf/open/floor/rogue/dirt/ambush,
 /area/rogue/outdoors/beach/forest)
 "rRP" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/cave)
 "rRQ" = (
@@ -51496,7 +51496,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
 "rZh" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/bars/pipe{
 	dir = 4
 	},
@@ -52181,7 +52181,7 @@
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/town/sewer)
 "skP" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "skS" = (
@@ -53197,7 +53197,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "szn" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/closed,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "szF" = (
@@ -55170,7 +55170,7 @@
 	},
 /area/rogue/indoors/town/manor)
 "tle" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -55561,7 +55561,7 @@
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/rtfield)
 "trW" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "tsc" = (
@@ -57271,7 +57271,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
 "tVA" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp/deep,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "tVG" = (
@@ -57609,7 +57609,7 @@
 /turf/open/water/swamp,
 /area/rogue/outdoors/bog)
 "uaV" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -58234,7 +58234,7 @@
 /obj/structure/bars/pipe{
 	dir = 4
 	},
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "ulH" = (
@@ -59111,7 +59111,7 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/cave/dukecourt)
 "uCL" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/glowshroom{
 	icon_state = "glowshroom2"
 	},
@@ -59168,7 +59168,7 @@
 /obj/structure/fluff/railing/fence{
 	dir = 1
 	},
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblindungeon)
 "uDX" = (
@@ -59382,7 +59382,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "uHQ" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "uHY" = (
@@ -59845,7 +59845,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "uQQ" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/machinery/light/small{
 	color = "#b51d12";
 	dir = 4;
@@ -61346,7 +61346,7 @@
 /turf/open/water/pond,
 /area/rogue/outdoors/woods)
 "vqJ" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/grassred,
@@ -62322,7 +62322,7 @@
 	},
 /area/rogue/indoors/town)
 "vHK" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/under/cave/dungeon1/gethsmane)
 "vHQ" = (
@@ -62516,7 +62516,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement)
 "vLe" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/floor/rogue/dirt,
@@ -64457,7 +64457,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/church)
 "wrl" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp,
 /area/rogue/indoors/cave)
 "wrF" = (
@@ -66027,7 +66027,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "wWy" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp/deep,
 /area/rogue/indoors/cave)
 "wWz" = (
@@ -66820,7 +66820,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblindungeon)
 "xln" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp,
 /area/rogue/under/cavewet/bogcaves)
 "xlt" = (
@@ -67638,7 +67638,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/bath)
 "xBi" = (
-/obj/structure/spacevine{
+/obj/structure/vine{
 	opacity = 1
 	},
 /turf/open/water/swamp,
@@ -68724,7 +68724,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
 "xYs" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/open/water/swamp,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "xYx" = (
@@ -68822,7 +68822,7 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/town/garrison)
 "xZl" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /turf/closed/wall/mineral/rogue/stone/moss,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "xZw" = (
@@ -69497,7 +69497,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/garrison)
 "yjX" = (
-/obj/structure/spacevine,
+/obj/structure/vine,
 /obj/structure/flora/roguegrass/maneater/real,
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
