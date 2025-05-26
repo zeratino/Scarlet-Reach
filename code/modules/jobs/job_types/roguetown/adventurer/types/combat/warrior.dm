@@ -85,7 +85,7 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
 
 		if("Duelist")
 			to_chat(H, span_warning("You are an esteemed swordsman who foregoes armor in exchange for a more nimble fighting style."))
@@ -128,13 +128,14 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			backr = /obj/item/rogueweapon/shield/buckler
 			belt = /obj/item/storage/belt/rogue/leather
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1, /obj/item/recipe_book/survival = 1)
 
 		if("Barbarian")
 			to_chat(H, span_warning("You are a brutal warrior who foregoes armor in order to showcase your raw strength. You specialize in unarmed combat and wrestling."))
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -145,15 +146,24 @@
 			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_gronn.ogg'
 			H.set_blindness(0)
-			var/weapons = list("Katar","Battle Axe","MY BARE HANDS!!!")
+			var/weapons = list("Katar","Axe","Sword","Club","Spear","MY BARE HANDS!!!")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if ("Katar")
 					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 					beltr = /obj/item/rogueweapon/katar
-				if("Battle Axe")
+				if("Axe")
 					H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-					beltr = /obj/item/rogueweapon/stoneaxe/battle
+					beltr = /obj/item/rogueweapon/stoneaxe/boneaxe
+				if("Sword")
+					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+					beltr = /obj/item/rogueweapon/sword/short
+				if("Club")
+					H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+					beltr = /obj/item/rogueweapon/mace/woodclub
+				if("Spear")
+					H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
+					r_hand = /obj/item/rogueweapon/spear/bonespear
 				if ("MY BARE HANDS!!!")
 					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 					ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
@@ -216,7 +226,7 @@
 			neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 			head = /obj/item/clothing/head/roguetown/bucklehat
 			gloves = /obj/item/clothing/gloves/roguetown/angle
-			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1)
+			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
 			beltl = pick(/obj/item/reagent_containers/glass/bottle/alchemical/strpot, 
 						/obj/item/reagent_containers/glass/bottle/alchemical/conpot, 
 						/obj/item/reagent_containers/glass/bottle/alchemical/endpot,
@@ -263,4 +273,5 @@
 			shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
 			backl = /obj/item/storage/backpack/rogue/satchel   
 			belt = /obj/item/storage/belt/rogue/leather        
-			beltr = /obj/item/rogueweapon/whip                
+			beltr = /obj/item/rogueweapon/whip
+			backpack_contents = list(/obj/item/recipe_book/survival = 1)            

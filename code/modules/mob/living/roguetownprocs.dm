@@ -1,3 +1,4 @@
+#define BASE_PARRY_STAMINA_DRAIN 5 // Unmodified stamina drain for parry, now a var instead of setting on simplemobs
 /proc/accuracy_check(zone, mob/living/user, mob/living/target, associated_skill, datum/intent/used_intent, obj/item/I)
 	if(!zone)
 		return
@@ -140,7 +141,7 @@
 			last_parry = world.time
 			if(intenty && !intenty.canparry)
 				return FALSE
-			var/drained = user.defdrain
+			var/drained = BASE_PARRY_STAMINA_DRAIN
 			var/weapon_parry = FALSE
 			var/offhand_defense = 0
 			var/mainhand_defense = 0
@@ -183,7 +184,10 @@
 					prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 				weapon_parry = FALSE
 			else
-				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				if(used_weapon)
+					defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				else
+					defender_skill = H.mind?.get_skill_level(/datum/skill/combat/unarmed)
 				prob2defend += highest_defense
 				weapon_parry = TRUE
 

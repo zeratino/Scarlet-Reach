@@ -19,7 +19,7 @@
 	movement_interrupt = TRUE
 	antimagic_allowed = FALSE
 	charging_slowdown = 3
-	cost = 1
+	cost = 2
 	spell_tier = 2 // Spellblade tier.
 
 	invocation = "Arma Exoriantur!"
@@ -67,9 +67,11 @@
 
 	var/obj/item/rogueweapon/R = new weapon_choice(user.drop_location())
 	R.blade_dulling = DULLING_SHAFT_CONJURED
-	R.AddComponent(/datum/component/conjured_item, CONJURE_DURATION)
+	R.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill)
 	user.put_in_hands(R)
 	return TRUE
 
+/obj/effect/proc_holder/spell/invoked/conjure_weapon/miracle
+	associated_skill = /datum/skill/magic/holy
 
 #undef CONJURE_DURATION

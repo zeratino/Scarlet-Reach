@@ -43,7 +43,7 @@
 
 /obj/item/clothing/under/roguetown/tights
 	name = "tights"
-	desc = "A pair of form fitting tights."
+	desc = "A pair of form-fitting tights."
 	gender = PLURAL
 	icon_state = "tights"
 	item_state = "tights"
@@ -83,7 +83,7 @@
 	..()
 
 /obj/item/clothing/under/roguetown/tights/sailor
-	name = "pants"
+	name = "sailor's pants"
 	icon_state = "sailorpants"
 
 /obj/item/clothing/under/roguetown/webs
@@ -156,6 +156,38 @@
 	icon_state = "fencerpants"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
+	name = "grenzelhoftian paumpers"
+	desc = "Padded pants for extra comfort and protection, adorned in vibrant colors."
+	icon_state = "grenzelpants"
+	item_state = "grenzelpants"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/stonekeep_merc.dmi'
+	detail_tag = "_detail"
+	var/picked = FALSE
+	armor_class = ARMOR_CLASS_LIGHT
+
+/obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants/attack_right(mob/user)
+	..()
+	if(!picked)
+		var/choice = input(user, "Choose a color.", "Grenzelhoft colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
+		picked = TRUE
+		detail_color = playerchoice
+		detail_tag = "_detail"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_pants()
+
+/obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
 /obj/item/clothing/under/roguetown/trou/leather/mourning
 	name = "mourning trousers"
 	icon_state = "leathertrou"
@@ -181,7 +213,7 @@
 
 /obj/item/clothing/under/roguetown/trou/artipants
 	name = "tinker trousers"
-	desc = "Thick leather trousers to protect from sparks or stray gear projectiles. Judging by the wear, its had plenty of use."
+	desc = "Thick leather trousers designed to protect the wearer from sparks or stray gear projectiles. Judging by the scouring, its had plenty of use."
 	icon_state = "artipants"
 	item_state = "artipants"
 
@@ -214,6 +246,9 @@
 
 /obj/item/clothing/under/roguetown/skirt/red
 	color = CLOTHING_RED
+
+/obj/item/clothing/under/roguetown/skirt/brown
+	color = CLOTHING_BROWN
 
 /obj/item/clothing/under/roguetown/chainlegs
 	name = "steel chain chausses"
@@ -313,6 +348,19 @@
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP)
 
+/obj/item/clothing/under/roguetown/platelegs/aalloy
+	name = "decrepit plate chausses"
+	desc = "Decrepit, old plate chausses. Aeon's grasp is upon them."
+	icon_state = "ancientplate_legs"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 150
+
+/obj/item/clothing/under/roguetown/platelegs/paalloy
+	name = "ancient plate chausses"
+	desc = "Plate chausses formed out of ancient alloys. Aeon's grasp lifted from them."
+	icon_state = "ancientplate_legs"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/clothing/under/roguetown/platelegs/matthios
 	max_integrity = 600
 	name = "gilded leggings"
@@ -386,64 +434,26 @@
 /obj/item/clothing/under/roguetown/loincloth/pink
 	color = "#b98ae3"
 
-/obj/item/clothing/under/roguetown/grenzelpants
-	name = "grenzelhoftian paumpers"
-	desc = "Padded pants for extra comfort and protection, adorned in vibrant colors."
-	icon_state = "grenzelpants"
-	item_state = "grenzelpants"
-	sleeved = 'icons/roguetown/clothing/onmob/helpers/stonekeep_merc.dmi'
-	detail_tag = "_detail"
-	armor = list("blunt" = 30, "slash" = 10, "stab" = 20, "piercing" = 0, "fire" = 0, "acid" = 0)
-	prevent_crits = list(BCLASS_BLUNT)
-	var/picked = FALSE
-	armor_class = ARMOR_CLASS_LIGHT
-
-/obj/item/clothing/under/roguetown/grenzelpants/attack_right(mob/user)
-	..()
-	if(!picked)
-		var/list/colors = list(
-		"Swan White"="#ffffff",
-		"Lavender"="#865c9c",
-		"Royal Purple"="#5E4687",
-		"Wine Rouge"="#752B55",
-		"Sow's skin"="#CE929F",
-		"Knight's Red"="#933030",
-		"Madroot Red"="#AD4545",
-		"Marigold Orange"="#E2A844",
-		"Politely, Yuck"="#685542",
-		"Astrata's Yellow"="#FFFD8D",
-		"Bog Green"="#375B48",
-		"Seafoam Green"="#49938B",
-		"Woad Blue"="#395480",
-		"Cornflower Blue"="#749EE8",
-		"Blacksteel Grey"="#404040",)
-
-		var/choice = input(user, "Choose a color.", "Grenzelhoft colors") as anything in colors
-		var/playerchoice = colors[choice]
-		picked = TRUE
-		detail_color = playerchoice
-		detail_tag = "_detail"
-		update_icon()
-		if(loc == user && ishuman(user))
-			var/mob/living/carbon/H = user
-			H.update_inv_pants()
-
-/obj/item/clothing/under/roguetown/grenzelpants/update_icon()
-	cut_overlays()
-	if(get_detail_tag())
-		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
-		pic.appearance_flags = RESET_COLOR
-		if(get_detail_color())
-			pic.color = get_detail_color()
-		add_overlay(pic)
-
 /obj/item/clothing/under/roguetown/chainlegs/kilt
 	name = "steel chain kilt"
 	desc = "Interlinked metal rings that drape down all the way to the ankles."
 	icon_state = "chainkilt"
 	item_state = "chainkilt"
 
-/obj/item/clothing/under/roguetown/chainlegs/iron/kilt/
+/obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
+	name = "decrepit chain kilt"
+	desc = "A decrepit old kilt. Aeon's grasp is upon it."
+	icon_state = "achainkilt"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 125
+
+/obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	name = "ancient chain kilt"
+	desc = "A kilt formed out of ancient alloys. Aeon's grasp lifted from it."
+	icon_state = "achainkilt"
+	smeltresult = /obj/item/ingot/aaslag
+
+/obj/item/clothing/under/roguetown/chainlegs/iron/kilt
 	name = "iron chain kilt"
 	desc = "Interlinked metal rings that drape down all the way to the ankles."
 	icon_state = "ichainkilt"

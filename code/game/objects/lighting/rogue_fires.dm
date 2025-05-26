@@ -6,6 +6,7 @@
 
 /obj/machinery/light/rogue/firebowl
 	name = "brazier"
+	desc = "A healthy flame roars within a wide metal bowl."
 	icon = 'icons/roguetown/misc/lighting.dmi'
 	icon_state = "stonefire1"
 	bulb_colour = "#ffa35c"
@@ -117,9 +118,10 @@
 
 /obj/machinery/light/rogue/wallfire
 	name = "fireplace"
+	desc = "A warm fire dances between a pile of half-burnt logs upon a bed of glowing embers."
 	icon_state = "wallfire1"
 	base_state = "wallfire"
-	brightness = 10
+	light_outer_range = 4 //slightly weaker than a torch
 	bulb_colour = "#ffa35c"
 	density = FALSE
 	fueluse = 0
@@ -129,6 +131,7 @@
 
 /obj/machinery/light/rogue/wallfire/candle
 	name = "candles"
+	desc = "Tiny flames flicker to the slightest breeze and offer enough light to see."
 	icon_state = "wallcandle1"
 	base_state = "wallcandle"
 	crossfire = FALSE
@@ -138,10 +141,12 @@
 
 /obj/machinery/light/rogue/wallfire/candle/off
 	name = "candles"
+	desc = "Cold wax sticks in sad half-melted repose. All they need is a spark."
 	icon_state = "wallcandle0"
 	base_state = "wallcandle"
 	crossfire = FALSE
 	cookonme = FALSE
+	light_outer_range = 0
 	pixel_y = 32
 	soundloop = null
 	status = LIGHT_BURNED
@@ -195,7 +200,7 @@
 
 /obj/machinery/light/rogue/wallfire/candle/weak
 	light_power = 0.9
-	light_outer_range =  6
+	light_outer_range =  4
 /obj/machinery/light/rogue/wallfire/candle/weak/l
 	pixel_x = -32
 	pixel_y = 0
@@ -205,9 +210,11 @@
 
 /obj/machinery/light/rogue/torchholder
 	name = "sconce"
+	desc = "A wall-mounted fixture that allows a torch to offer light while freeing the hands for other tasks."
 	icon_state = "torchwall1"
 	base_state = "torchwall"
 	density = FALSE
+	light_outer_range = 5 //same as the held torch, if you put a torch into a sconce, it shouldn't magically become twice as bright, it's inconsistent.
 	var/obj/item/flashlight/flare/torch/torchy
 	fueluse = FALSE //we use the torch's fuel
 	no_refuel = TRUE
@@ -361,6 +368,7 @@
 
 /obj/machinery/light/rogue/hearth
 	name = "hearth"
+	desc = "A hearth of stones carefully arranged to support a pan or a pot above a steady bed of embers."
 	icon_state = "hearth1"
 	base_state = "hearth"
 	density = TRUE
@@ -591,8 +599,106 @@
 	QDEL_NULL(boilloop)
 	. = ..()
 
+/obj/machinery/light/rogue/hearth/mobilestove // thanks to Reen and Ppooch for their help on this. If any of this is slopcode, its my slopcode, not theirs. They only made improvements.
+	name = "mobile stove"
+	desc = "A portable bronze stovetop. The underside is covered in an esoteric pattern of small tubes. Whatever heats the hob is hidden inside the body of the device"
+	icon_state = "hobostove1"
+	base_state = "hobostove"
+	brightness = 4
+	bulb_colour ="#4ac77e"
+	density = FALSE
+	anchored = TRUE
+	climbable = FALSE
+	climb_offset = FALSE
+	layer = TABLE_LAYER
+	on = FALSE
+	no_refuel = TRUE
+	status = LIGHT_BURNED
+	crossfire = FALSE
+	soundloop = /datum/looping_sound/blank  //datum path is a blank.ogg
+
+/obj/machinery/light/rogue/hearth/mobilestove/MiddleClick(mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(attachment)
+		if(istype(attachment, /obj/item/cooking/pan))
+			if(!food)
+				if(!user.put_in_active_hand(attachment))
+					attachment.forceMove(user.loc)
+				attachment = null
+				update_icon()
+				return
+			if(!user.put_in_active_hand(food))
+				food.forceMove(user.loc)
+			food = null
+			update_icon()
+			return
+		if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
+			if(!user.put_in_active_hand(attachment))
+				attachment.forceMove(user.loc)
+			attachment = null
+			update_icon()
+			boilloop.stop()
+	else
+		if(!on)
+			user.visible_message(span_notice("[user] begins packing up \the [src]."))
+			if(!do_after(user, 2 SECONDS, TRUE, src))
+				return
+			var/obj/item/mobilestove/new_mobilestove = new /obj/item/mobilestove(get_turf(src))
+			new_mobilestove.color = src.color
+			qdel(src)
+			return
+
+		var/mob/living/carbon/human/H = user
+		if(!istype(user))
+			return
+		H.visible_message(span_notice("[user] begins packing up \the [src]. It's still hot!"))
+		if(!do_after(H, 40, target = src))
+			return
+		var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
+		to_chat(H, span_warning("HOT! I burned myself!"))
+		if(affecting && affecting.receive_damage( 0, 5 ))        // 5 burn damage
+			H.update_damage_overlays()
+		var/obj/item/mobilestove/new_mobilestove = new /obj/item/mobilestove(get_turf(src))
+		new_mobilestove.color = src.color
+		burn_out()
+		qdel(src)
+		return
+
+/obj/item/mobilestove
+	name = "packed stove"
+	desc = "A portable bronze stovetop. The underside is covered in an esoteric pattern of small tubes. Whatever heats the hob is hidden inside the body of the device"
+	icon = 'icons/roguetown/misc/lighting.dmi'
+	icon_state = "hobostovep"
+	w_class = WEIGHT_CLASS_NORMAL
+	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
+	grid_width = 32
+	grid_height = 64
+
+/obj/item/mobilestove/attack_self(mob/user, params)
+	..()
+	var/turf/T = get_turf(loc)
+	if(!isfloorturf(T))
+		to_chat(user, span_warning("I need ground to plant this on!"))
+		return
+	for(var/obj/A in T)
+		if(istype(A, /obj/structure))
+			to_chat(user, span_warning("I need some free space to deploy a [src] here!"))
+			return
+		if(A.density && !(A.flags_1 & ON_BORDER_1))
+			to_chat(user, span_warning("There is already something here!</span>"))
+			return
+	user.visible_message(span_notice("[user] begins placing \the [src] down on the ground."))
+	if(do_after(user, 2 SECONDS, TRUE, src))
+		var/obj/machinery/light/rogue/hearth/mobilestove/new_mobilestove = new /obj/machinery/light/rogue/hearth/mobilestove(get_turf(src))
+		new_mobilestove.color = src.color
+		qdel(src)
+
 /obj/machinery/light/rogue/campfire
 	name = "campfire"
+	desc = "Oily smoke curls from a weak sputtering flame."
 	icon_state = "badfire1"
 	base_state = "badfire"
 	density = FALSE
@@ -638,6 +744,7 @@
 /obj/machinery/light/rogue/campfire/densefire
 	icon_state = "densefire1"
 	base_state = "densefire"
+	desc = "A proper roaring fire to keep the dark at bay and the body warm."
 	density = TRUE
 	layer = 2.8
 	brightness = 5

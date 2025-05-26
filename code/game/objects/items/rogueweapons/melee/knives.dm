@@ -104,6 +104,17 @@
 	grid_height = 64
 	grid_width = 32
 
+/obj/item/rogueweapon/huntingknife/Initialize()
+	. = ..()
+	var/static/list/slapcraft_recipe_list = list(
+		/datum/crafting_recipe/roguetown/survival/peasantry/maciejowski_knife,
+		)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+		)
+
 /obj/item/rogueweapon/huntingknife/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -212,6 +223,21 @@
 	smeltresult = /obj/item/ingot/iron
 	blade_dulling = DULLING_SHAFT_REINFORCED
 
+/obj/item/rogueweapon/huntingknife/idagger/adagger
+	name = "decrepit dagger"
+	desc = "an incredibly withered daggered. Aeon's grasp is upon its form."
+	force = 12
+	max_integrity = 75
+	icon_state = "adagger"
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/padagger
+	name = "ancient dagger"
+	desc = "A dagger made of ancient alloys. Aeon's grasp has been lifted from its form."
+	icon_state = "adagger"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/rogueweapon/huntingknife/idagger/steel
 	name = "steel dagger"
 	desc = "This is a dagger made of solid steel, more durable."
@@ -222,7 +248,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/holysee
 	name = "eclipsum dagger"
-	desc = "A mutual effort of Noc and Astrata's followers, this dagger was forged with both Silver and Gold alike. Blessed to hold strength and bring hope. Whether dae or nite."
+	desc = "A blade forged from the Holy metals of the twinned gods Noc and Astrata, Silver and Gold fused under an Eclipse and blessed, these daggers are very grudgingly given out by the Grenzelhoftian See to ordained Priests of the Ten."
 	force = 25
 	max_integrity = 200
 	icon_state = "gsdagger"
@@ -410,6 +436,13 @@
 	sellprice = 1
 	thrown_damage_flag = "piercing"		//Checks piercing type like an arrow.
 
+/obj/item/rogueweapon/huntingknife/throwingknife/aalloy
+	name = "decrepit tossblade"
+	desc = "A decrepit old tossblade. You ought to throw cutlery instead."
+	icon_state = "throw_knifea"
+	force = 7
+	throwforce = 16
+
 /obj/item/rogueweapon/huntingknife/throwingknife/steel
 	name = "steel tossblade"
 	desc = "There are rumors of some sea-marauders loading these into metal tubes with explosive powder to launch then fast and far. Probably won't catch on."
@@ -420,6 +453,11 @@
 	icon_state = "throw_knifes"
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 30, "embedded_fall_chance" = 5)
 	sellprice = 2
+
+/obj/item/rogueweapon/huntingknife/throwingknife/steel/palloy
+	name = "ancient alloy tossblade"
+	desc = "A tossblade crafted of ancient alloy. Aeon's grasp has been lifted from its form."
+	icon_state = "throw_knifea"
 
 /obj/item/rogueweapon/huntingknife/throwingknife/psydon
 	name = "psydonian tossblade"
@@ -484,7 +522,7 @@
 					var/new_style = input(user, "Choose their hairstyle", "Hair Styling") as null|anything in valid_hairstyles
 					if(new_style)
 						user.visible_message(span_notice("[user] begins styling [H]'s hair..."), span_notice("You begin styling [H == user ? "your" : "[H]'s"] hair..."))
-						if(!do_after(user, 60 SECONDS, target = H))
+						if(!do_after(user, 30 SECONDS, target = H))
 							to_chat(user, span_warning("The styling was interrupted!"))
 							return
 						

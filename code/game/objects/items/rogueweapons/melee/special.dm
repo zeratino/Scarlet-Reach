@@ -361,6 +361,21 @@
 	icon_state = "insmash"
 	item_d_type = "blunt"
 
+/obj/item/rogueweapon/knuckles/aknuckles
+	name = "decrepit knuckles"
+	desc = "a set of knuckles made of ancient metals, Aeon's grasp wither their form."
+	icon_state = "aknuckle"
+	force = 12
+	max_integrity = 225
+	smeltresult = /obj/item/ingot/aalloy
+	blade_dulling = DULLING_SHAFT_CONJURED
+
+/obj/item/rogueweapon/knuckles/paknuckles
+	name = "ancient knuckles"
+	desc = "a set of knuckles made of ancient metals, Aeon's grasp has been lifted from their form."
+	icon_state = "aknuckle"
+	smeltresult = /obj/item/ingot/aaslag
+
 
 /obj/item/rogueweapon/knuckles/eora
 	name = "close caress"
@@ -379,6 +394,7 @@
 	desc = "Clubs - and their spiked descendants - are older than most languages and civilizations. Tyme hasn't made them any less deadly, however. "
 	icon_state = "peasantwarclub"
 	icon = 'icons/roguetown/weapons/64.dmi'
+	smeltresult = /obj/item/rogueore/coal
 	sharpness = IS_SHARP
 	walking_stick = TRUE
 	wdefense = 6
@@ -404,6 +420,7 @@
 	minstr = 10
 	max_blade_int = 100
 	anvilrepair = /datum/skill/craft/carpentry
+	smeltresult = /obj/item/rogueore/coal
 	wdefense = 4
 	wbalance = -1
 
@@ -420,6 +437,7 @@
 	max_blade_int = 100
 	max_integrity = 200
 	anvilrepair = /datum/skill/craft/carpentry
+	smeltresult = /obj/item/rogueore/coal
 	resistance_flags = FIRE_PROOF
 	light_system = MOVABLE_LIGHT
 	light_power = 5
@@ -565,7 +583,7 @@
 	minstr = 8
 	max_blade_int = 100
 	anvilrepair = /datum/skill/craft/carpentry
-	smeltresult = /obj/item/ingot/iron
+	smeltresult = /obj/item/rogueore/coal
 	associated_skill = /datum/skill/labor/farming
 	blade_dulling = DULLING_SHAFT_WOOD
 	walking_stick = TRUE
@@ -614,6 +632,7 @@
 	max_integrity = 600
 	associated_skill = /datum/skill/combat/axes
 	anvilrepair = /datum/skill/craft/weaponsmithing
+	smeltresult = /obj/item/ingot/steel
 	wdefense = 5
 	wbalance = -1
 
@@ -626,6 +645,7 @@
 	force = 18
 	force_wielded = 25
 	anvilrepair = /datum/skill/craft/carpentry
+	smeltresult = /obj/item/ingot/iron
 	wdefense = 3
 	wbalance = -1
 	intdamage_factor = 0.6
