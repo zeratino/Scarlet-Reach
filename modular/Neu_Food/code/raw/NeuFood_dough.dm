@@ -5,280 +5,7 @@
  *						*
  * * * * * * * * * * * **/
 
-
-
-/*	.................   Dough   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/dough_base
-	name = "unfinished dough"
-	desc = "With a little more ambition, you will conquer."
-	icon_state = "dough_base"
-	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/reagent_containers/food/snacks/rogue/dough_base/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/powder/flour))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading.ogg', 100, TRUE, -1)
-			to_chat(user, span_notice("Kneading in more powder..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/dough(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to work it."))
-	else
-		return ..()
-
-/obj/item/reagent_containers/food/snacks/rogue/dough
-	name = "dough"
-	desc = "The triumph of all bakers."
-	icon_state = "dough"
-	slices_num = 2
-	slice_batch = TRUE
-	slice_path = /obj/item/reagent_containers/food/snacks/rogue/doughslice
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/bread
-	w_class = WEIGHT_CLASS_NORMAL
-	slice_sound = TRUE
-
-/obj/item/reagent_containers/food/snacks/rogue/dough/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/butterslice))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading_alt.ogg', 90, TRUE, -1)
-			to_chat(user, span_notice("Kneading butter into the dough..."))
-			if(do_after(user,long_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/butterdough(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/raisins))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading.ogg', 100, TRUE, -1)
-			to_chat(user, span_notice("Kneading the dough and adding raisins..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/rbread_half(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	if(istype(I, /obj/item/kitchen/rollingpin))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/rollingpin.ogg', 100, TRUE, -1)
-			to_chat(user, span_notice("Rolling [src] into cracker dough."))
-			if(do_after(user,long_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/hardtack_raw(loc)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	else
-		return ..()
-
-/*	.................   Smalldough   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/doughslice
-	name = "smalldough"
-	icon_state = "doughslice"
-	slices_num = 0
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/bun
-	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("dough" = 1)
-
-/obj/item/reagent_containers/food/snacks/rogue/doughslice/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading_alt.ogg', 90, TRUE, -1)
-			to_chat(user, span_notice("Adding fresh cheese..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesebun_raw(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/doughslice))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading.ogg', 100, TRUE, -1)
-			to_chat(user, span_notice("Combining dough..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/dough(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	if(istype(I, /obj/item/clothing/neck/roguetown/psicross/astrata))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading_alt.ogg', 90, TRUE, -1)
-			to_chat(user, span_notice("Pressing the shape of Astrata's cross into the bun..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw(loc)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	if(istype(I, /obj/item/clothing/neck/roguetown/psicross)) // This is gonna be messy cuz other are subtypes
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/kneading_alt.ogg', 90, TRUE, -1)
-			to_chat(user, span_notice("Pressing the shape of the psycross into the bun..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw(loc)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	else
-		return ..()
-
-/*	.................   Butterdough   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/butterdough
-	name = "butterdough"
-	desc = "What is a triumph, to a legacy?"
-	icon_state = "butterdough"
-	color = "#feffc1"
-	slices_num = 2
-	slice_batch = TRUE
-	slice_path = /obj/item/reagent_containers/food/snacks/rogue/butterdoughslice
-	w_class = WEIGHT_CLASS_NORMAL
-	slice_sound = TRUE
-
-/obj/item/reagent_containers/food/snacks/rogue/butterdough/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/egg))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-			to_chat(user, span_notice("Working egg into the dough, shaping it into a cake..."))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/eggbreak.ogg', 100, TRUE, -1)
-			if(do_after(user,long_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/cake_base(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	else
-		return ..()
-
-/*	.................   Butterdough piece   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/butterdoughslice
-	name = "butterdough piece"
-	desc = "A slice of pedigree, to create lines of history."
-	icon_state = "butterdoughslice"
-	color = "#feffc1"
-	slices_num = 0
-	fried_type = /obj/item/reagent_containers/food/snacks/rogue/frybread
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/pastry
-	w_class = WEIGHT_CLASS_NORMAL
-
-// Dough + rolling pin on table = flat dough. RT got some similar proc for this.
-/obj/item/reagent_containers/food/snacks/rogue/butterdoughslice/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/kitchen/rollingpin))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'modular/Neu_Food/sound/rollingpin.ogg', 100, TRUE, -1)
-			to_chat(user, span_notice("Flattening [src]..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/piedough(loc)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/raisins))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-			to_chat(user, span_notice("Adding raisins to the dough..."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/biscuit_raw(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to roll it out!"))
-	if(I.get_sharpness())
-		if(!isdwarf(user))
-			to_chat(user, span_warning("You lack knowledge of dwarven pastries!"))
-			return
-		else
-			if(isturf(loc)&& (found_table))
-				playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-				to_chat(user, span_notice("Cutting the dough in strips and making a prezzel..."))
-				if(do_after(user,short_cooktime, target = src))
-					add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-					new /obj/item/reagent_containers/food/snacks/rogue/foodbase/prezzel_raw(loc)
-					qdel(src)
-			else
-				to_chat(user, span_warning("You need to put [src] on a table to cut it!"))
-	else
-		..()
-
-/*	.................   Piedough   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/piedough
-	name = "piedough"
-	desc = "The beginning of greater things to come."
-	icon_state = "piedough"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/foodbase/piebottom
-	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/reagent_containers/food/snacks/rogue/piedough/attackby(obj/item/I, mob/living/user, params)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/truffles))
-		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 50, TRUE, -1)
-		to_chat(user, span_notice("Making a handpie..."))
-		if(do_after(user,short_cooktime, target = src))
-			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-			var/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/mushroom/handpie= new(get_turf(user))
-			user.put_in_hands(handpie)
-			qdel(I)
-			qdel(src)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/meat/mince))
-		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 50, TRUE, -1)
-		to_chat(user, span_notice("Making a handpie..."))
-		if(do_after(user,short_cooktime, target = src))
-			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-			var/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/mince/handpie= new(get_turf(user))
-			user.put_in_hands(handpie)
-			qdel(I)
-			qdel(src)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/grown/berries/rogue/poison))
-		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 50, TRUE, -1)
-		to_chat(user, span_notice("Making a handpie..."))
-		if(do_after(user,short_cooktime, target = src))
-			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-			var/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/poison/handpie= new(get_turf(user))
-			user.put_in_hands(handpie)
-			qdel(I)
-			qdel(src)
-	else if(istype(I, /obj/item/reagent_containers/food/snacks/grown/berries/rogue))
-		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 50, TRUE, -1)
-		to_chat(user, span_notice("Making a handpie..."))
-		if(do_after(user,short_cooktime, target = src))
-			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-			var/obj/item/reagent_containers/food/snacks/rogue/foodbase/handpieraw/berry/handpie= new(get_turf(user))
-			user.put_in_hands(handpie)
-			qdel(I)
-			qdel(src)
-	else
-		return ..()
-
-
 /*	.................   Hardtack   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/hardtack_raw
-	name = "raw hardtack"
-	desc = "Doughy, soft, unacceptable."
-	icon_state = "raw_tack"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
-	w_class = WEIGHT_CLASS_NORMAL
-	eat_effect = null
-
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
 	name = "hardtack"
 	desc = "Very, very hard and dry."
@@ -514,20 +241,7 @@
 
 /* 	.................   Crossbuns   ................... */
 // Astrata variant
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw
-	name = "raw crossbun"
-	desc = "A raw dough with the shape of Astrata's cross pressed onto it. In Her Lights."
-	icon = 'modular/Neu_Food/icons/buns.dmi'
-	icon_state = "crossbun_raw"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crossbun
 
-// Psydon variant
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw
-	name = "raw psycrossbun"
-	desc = "A raw dough with the shape of a Psycross pressed onto it. He ENDURES."
-	icon = 'modular/Neu_Food/icons/buns.dmi'
-	icon_state = "psycrossbun_raw"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
 
 /obj/item/reagent_containers/food/snacks/rogue/crossbun
 	name = "crossbun"
@@ -599,14 +313,6 @@
 	rotprocess = SHELFLIFE_EXTREME
 	eat_effect = /datum/status_effect/buff/foodbuff
 
-/*	.................   Biscuit   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/biscuit_raw
-	name = "uncooked raisin biscuit"
-	icon_state = "biscuit_raw"
-	color = "#ecce61"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/biscuit
-	w_class = WEIGHT_CLASS_NORMAL
-	eat_effect = null
 
 /obj/item/reagent_containers/food/snacks/rogue/biscuit
 	name = "biscuit"
@@ -627,13 +333,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	eat_effect = null
 
-/*	.................   Prezzel   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/prezzel_raw
-	name = "uncooked prezzel"
-	icon_state = "prezzel_raw"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/prezzel
-	w_class = WEIGHT_CLASS_NORMAL
-	eat_effect = null
 
 /obj/item/reagent_containers/food/snacks/rogue/prezzel
 	name = "prezzel"
@@ -645,42 +344,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 3
 	eat_effect = /datum/status_effect/buff/foodbuff
-
-
-/*	.................   Raisin bread   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/rbread_half
-	name = "half-done raisin dough"
-	desc = "Add more raisins!"
-	icon_state = "dough_raisin"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	w_class = WEIGHT_CLASS_NORMAL
-	rotprocess = 30 MINUTES
-
-/obj/item/reagent_containers/food/snacks/rogue/rbread_half/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/raisins))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-			to_chat(user, span_notice("Adding the last of the raisins, puffing up the dough for baking."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to work it."))
-	else
-		return ..()
-
-/obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked
-	name = "loaf of raisins"
-	icon_state = "raisinbreaduncooked"
-	slices_num = 0
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/raisinbread
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	w_class = WEIGHT_CLASS_NORMAL
-	rotprocess = 30 MINUTES
 
 /obj/item/reagent_containers/food/snacks/rogue/raisinbread
 	name = "raisin loaf"
@@ -768,6 +431,85 @@
 	else
 		return ..()
 
+/*	.................   Hardtack   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/hardtack_raw
+	name = "raw hardtack"
+	desc = "Doughy, soft, unacceptable."
+	icon_state = "raw_tack"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
+	w_class = WEIGHT_CLASS_NORMAL
+	eat_effect = null
+
+/* 	.................   Crossbuns   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw
+	name = "raw crossbun"
+	desc = "A raw dough with the shape of Astrata's cross pressed onto it. In Her Lights."
+	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon_state = "crossbun_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crossbun
+
+// Psydon variant
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw
+	name = "raw psycrossbun"
+	desc = "A raw dough with the shape of a Psycross pressed onto it. He ENDURES."
+	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon_state = "psycrossbun_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
+
+/*	.................   Biscuit   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/biscuit_raw
+	name = "uncooked raisin biscuit"
+	icon_state = "biscuit_raw"
+	color = "#ecce61"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/biscuit
+	w_class = WEIGHT_CLASS_NORMAL
+	eat_effect = null
+
+/*	.................   Prezzel   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/prezzel_raw
+	name = "uncooked prezzel"
+	icon_state = "prezzel_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/prezzel
+	w_class = WEIGHT_CLASS_NORMAL
+	eat_effect = null
+
+
+/*	.................   Raisin bread   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/rbread_half
+	name = "half-done raisin dough"
+	desc = "Add more raisins!"
+	icon_state = "dough_raisin"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	w_class = WEIGHT_CLASS_NORMAL
+	rotprocess = 30 MINUTES
+
+/obj/item/reagent_containers/food/snacks/rogue/rbread_half/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/raisins))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
+			to_chat(user, span_notice("Adding the last of the raisins, puffing up the dough for baking."))
+			if(do_after(user,short_cooktime, target = src))
+				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked(loc)
+				qdel(I)
+				qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a table to work it."))
+	else
+		return ..()
+
+/obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked
+	name = "loaf of raisins"
+	icon_state = "raisinbreaduncooked"
+	slices_num = 0
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/raisinbread
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	w_class = WEIGHT_CLASS_NORMAL
+	rotprocess = 30 MINUTES
+
+
 // -------------- SPIDER-HONEY CAKE (Zybantu) -----------------
 /obj/item/reagent_containers/food/snacks/rogue/hcakeuncooked
 	name = "unbaked cake"
@@ -854,3 +596,4 @@
 /* maybe split up spider honey cake WIP
 	desc = "A cake glazed with spider-honey, a favorite dish among the Dark Elf nobility in Grimoria. Symbol of authority, a delicious residue covers the sweet cake which causes playful stinging and numbness in the mouth."
 */
+
