@@ -6,7 +6,7 @@
 
 /obj/machinery/light/rogue/firebowl
 	name = "brazier"
-	desc = "A healthy flame roars within a wide metal bowl."
+	desc = "A solid stone brazier. It's as sturdy as the mountains themselves."
 	icon = 'icons/roguetown/misc/lighting.dmi'
 	icon_state = "stonefire1"
 	bulb_colour = "#ffa35c"
@@ -61,12 +61,15 @@
 	icon_state = "stonefire0"
 	base_state = "stonefire"
 	status = LIGHT_BURNED
+	desc = "The fire is gone!"
 
 /obj/machinery/light/rogue/firebowl/stump
 	icon_state = "stumpfire1"
 	base_state = "stumpfire"
+	desc = "Somewhat crude, but it lights the long winding paths throughout the land."
 
 /obj/machinery/light/rogue/firebowl/church
+	desc = "A wide metal bowl mounted on a stand for a healthy roaring flame."
 	icon_state = "churchfire1"
 	base_state = "churchfire"
 
@@ -75,9 +78,11 @@
 	base_state = "churchfire"
 	soundloop = null
 	status = LIGHT_BURNED
+	desc = "The fire is gone!"
 
 /obj/machinery/light/rogue/firebowl/standing
 	name = "standing fire"
+	desc = "Wrought metal spun into a surprisingly stable stand for a large candle to sit upon."
 	icon_state = "standing1"
 	base_state = "standing"
 	bulb_colour = "#ff9648"
@@ -89,6 +94,7 @@
 	icon_state = "standingb1"
 	base_state = "standingb"
 	bulb_colour = "#7b60f3"
+	desc = "Soft and blue like the moon's light."
 
 /obj/machinery/light/rogue/firebowl/standing/proc/knock_over() //use this later for jump impacts and shit
 	icon_state = "[base_state]over"
@@ -190,6 +196,7 @@
 	bulb_colour = "#7b60f3"
 	icon_state = "wallcandleb1"
 	base_state = "wallcandleb"
+	desc = "Tiny bluish flames flicker gently like the stars themselves."
 
 /obj/machinery/light/rogue/wallfire/candle/blue/r
 	pixel_y = 0
@@ -210,7 +217,7 @@
 
 /obj/machinery/light/rogue/torchholder
 	name = "sconce"
-	desc = "A wall-mounted fixture that allows a torch to offer light while freeing the hands for other tasks."
+	desc = "A wall-mounted fixture that allows a torch to illuminate the area while freeing the hands for other tasks."
 	icon_state = "torchwall1"
 	base_state = "torchwall"
 	density = FALSE
@@ -344,6 +351,7 @@
 
 /obj/machinery/light/rogue/chand
 	name = "chandelier"
+	desc = "A dazzling and resplendant array of candles held aloft by a dozen slender metal arms joined together and suspended from the ceiling."
 	icon_state = "chand1"
 	base_state = "chand"
 	icon = 'icons/roguetown/misc/tallwide.dmi'
@@ -744,7 +752,7 @@
 /obj/machinery/light/rogue/campfire/densefire
 	icon_state = "densefire1"
 	base_state = "densefire"
-	desc = "A proper roaring fire to keep the dark at bay and the body warm."
+	desc = "A ring of stones offers the fire enough protection from the wind to keep the dark at bay and the body warm."
 	density = TRUE
 	layer = 2.8
 	brightness = 5
