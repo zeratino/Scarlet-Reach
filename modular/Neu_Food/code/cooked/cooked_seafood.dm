@@ -1,6 +1,6 @@
 // Cooked seafood. Not including special meals.
 /obj/item/reagent_containers/food/snacks/rogue/fryfish
-	icon = 'modular/Neu_Food/icons/cooked/seafood.dmi'
+	icon = 'modular/Neu_Food/icons/cooked/cooked_seafood.dmi'
 	trash = null
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("fish" = 1)
