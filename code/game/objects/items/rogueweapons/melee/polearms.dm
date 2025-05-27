@@ -589,7 +589,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, /datum/intent/spear/cut/halberd, /datum/intent/sword/chop, SPEAR_BASH)
 	name = "halberd"
-	desc = "A steel halberd, the pinnacle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less. The reinforcements along the shaft provide greater durability."
+	desc = "A steel halberd, the pinnacle of all cumulative melee weapon knowledge. The only downside is the cost, so it's rarely seen outside of the guardsmans' hands. The reinforcements along the shaft provide greater durability."
 	icon_state = "halberd"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
