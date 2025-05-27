@@ -300,3 +300,6 @@
 
 /obj/item/storage/keyring/mageapprentice
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/tower)
+
+/obj/item/storage/keyring/soilson
+	keys = list(/obj/item/roguekey/farm, /obj/item/roguekey/apartments/stable1, /obj/item/roguekey/apartments/stable2)
