@@ -68,6 +68,7 @@
 	if(!istype(NT, /turf/open/transparent/openspace) && !(locate(/obj/structure/flora/roguetree/stump) in NT))//if i don't add the stump check it spawns however many zlevels it goes up because of src recursion
 		new /obj/structure/flora/roguetree/stump(NT)
 	playsound(src, 'sound/misc/treefall.ogg', 100, FALSE)
+	GLOB.azure_round_stats[STATS_TREES_CUT]++
 	. = ..()
 
 /obj/structure/flora/newtree/attack_hand(mob/user)

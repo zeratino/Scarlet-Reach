@@ -14,7 +14,7 @@
 	base_antags = 1
 	maximum_antags = 2
 
-	weight = 12
+	weight = 2	//i hate you
 
 	earliest_start = 0 SECONDS
 
@@ -22,34 +22,33 @@
 	antag_datum = /datum/antagonist/lich
 
 	restricted_roles = list(
-		"Monarch",
+		"Grand Duke",
+		"Grand Duchess",
 		"Consort",
 		"Dungeoneer",
-		"Inquisitor",
+		"Sergeant",
 		"Men-at-arms",
+		"Marshal",
 		"Merchant",
 		"Priest",
 		"Acolyte",
-		"Adepts",
+		"Martyr",
 		"Templar",
+		"Councillor",
 		"Bandit",
 		"Prince",
 		"Princess",
 		"Hand",
 		"Steward",
-		"Feldsher",
+		"Court Physician",
 		"Town Elder",
 		"Captain",
 		"Archivist",
-		"Merchant",
-		"Royal Knight",
-		"Garrison Guard",
-		"Jailor",
+		"Knight",
 		"Court Magician",
-		"Forest Warden",
 		"Inquisitor",
-		"Adepts",
-		"Forest Guard",
+		"Orthodoxist",
+		"Warden",
 		"Squire",
 		"Veteran",
 		"Apothecary"

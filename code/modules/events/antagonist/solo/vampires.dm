@@ -9,7 +9,7 @@
 	antag_flag = ROLE_NBEAST
 	shared_occurence_type = SHARED_HIGH_THREAT
 
-	weight = 12
+	weight = 6
 
 	denominator = 80
 
@@ -22,34 +22,33 @@
 	antag_datum = /datum/antagonist/vampirelord
 
 	restricted_roles = list(
-		"Monarch",
+		"Grand Duke",
+		"Grand Duchess",
 		"Consort",
 		"Dungeoneer",
-		"Inquisitor",
+		"Sergeant",
 		"Men-at-arms",
+		"Marshal",
 		"Merchant",
 		"Priest",
 		"Acolyte",
-		"Adepts",
+		"Martyr",
 		"Templar",
+		"Councillor",
 		"Bandit",
 		"Prince",
 		"Princess",
 		"Hand",
 		"Steward",
-		"Feldsher",
+		"Court Physician",
 		"Town Elder",
 		"Captain",
 		"Archivist",
-		"Merchant",
-		"Royal Knight",
-		"Garrison Guard",
-		"Jailor",
+		"Knight",
 		"Court Magician",
-		"Forest Warden",
 		"Inquisitor",
-		"Adepts",
-		"Forest Guard",
+		"Orthodoxist",
+		"Warden",
 		"Squire",
 		"Veteran",
 		"Apothecary"

@@ -10,14 +10,15 @@
 	minor_roleset = TRUE
 
 	needed_job = list(
-		"Consort" ,
-		"Hand" ,
-		"Prince" ,
+		"Consort",
+		"Hand",
+		"Prince",
+		"Princess",
 		"Captain",
+		"Marshal",
+		"Sergeant",
 		"Steward",
-		"Court Magician",
-		"Archivist",
-		"Town Elder"
+		"Court Magician"
 	)
 
 	base_antags = 1
@@ -25,7 +26,7 @@
 
 	earliest_start = 0 SECONDS
 
-	weight = 8
+	weight = 10
 
 	typepath = /datum/round_event/antagonist/solo/aspirants
 

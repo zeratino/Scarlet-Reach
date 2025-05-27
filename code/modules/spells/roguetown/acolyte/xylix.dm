@@ -39,6 +39,7 @@
 			revert_cast()
 			return FALSE
 		target.apply_status_effect(/datum/status_effect/debuff/viciousmockery)	
+		GLOB.azure_round_stats[STATS_PEOPLE_MOCKED]++
 		return TRUE
 	revert_cast()
 	return FALSE

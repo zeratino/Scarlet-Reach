@@ -9,40 +9,43 @@
 	minor_roleset = TRUE
 
 	restricted_roles = list(
-		"Monarch",
+		"Grand Duke",
+		"Grand Duchess",
 		"Consort",
+		"Dungeoneer",
+		"Sergeant",
+		"Men-at-arms",
+		"Marshal",
+		"Merchant",
+		"Priest",
+		"Acolyte",
+		"Martyr",
+		"Templar",
+		"Councillor",
 		"Prince",
 		"Princess",
 		"Hand",
 		"Steward",
-		"Feldsher",
+		"Court Physician",
 		"Town Elder",
 		"Captain",
 		"Archivist",
-		"Merchant",
-		"Priest",
-		"Templar",
-		"Acolytes",
-		"Royal Knight",
-		"Garrison Guard",
-		"Jailor",
+		"Knight",
 		"Court Magician",
-		"Men-at-arms",
-		"Dungeoneer",
-		"Forest Warden",
 		"Inquisitor",
-		"Adepts",
-		"Forest Guard",
+		"Orthodoxist",
+		"Warden",
 		"Squire",
-		"Veteran"
+		"Veteran",
+		"Apothecary"
 	)
 
 	base_antags = 4
-	maximum_antags = 8
+	maximum_antags = 6
 
 	earliest_start = 0 SECONDS
 
-	weight = 8
+	weight = 16
 
 	typepath = /datum/round_event/antagonist/solo/bandits
 

@@ -69,15 +69,6 @@ SUBSYSTEM_DEF(ticker)
 	var/failedstarts = 0
 	var/list/manualmodes = list()
 
-	//**ROUNDEND STATS**
-	var/deaths = 0			//total deaths in the round
-	var/blood_lost = 0
-	var/tri_gained = 0
-	var/tri_lost = 0
-
-	var/list/cuckers = list()
-	var/cums = 0
-
 	var/gamemode_voted = FALSE
 	var/end_party = FALSE
 	var/last_lobby = 0
@@ -194,7 +185,7 @@ SUBSYSTEM_DEF(ticker)
 					++totalPlayersReady
 			
 			if(!gamemode_voted)
-				SSvote.initiate_vote("gamemode", "Psydon", timeLeft/2)
+				SSvote.initiate_vote("storyteller", "Psydon", timeLeft/2)
 				gamemode_voted = TRUE
 
 			if(start_immediately)

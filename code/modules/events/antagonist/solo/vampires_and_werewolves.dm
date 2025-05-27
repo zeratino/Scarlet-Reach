@@ -15,39 +15,38 @@
 
 	earliest_start = 0 SECONDS
 
-	weight = 8
+	weight = 4
 
 	typepath = /datum/round_event/antagonist/solo/vampires_and_werewolves
 
 	restricted_roles = list(
-		"Monarch",
+		"Grand Duke",
+		"Grand Duchess",
 		"Consort",
 		"Dungeoneer",
-		"Inquisitor",
+		"Sergeant",
 		"Men-at-arms",
+		"Marshal",
 		"Merchant",
 		"Priest",
 		"Acolyte",
-		"Adepts",
+		"Martyr",
 		"Templar",
+		"Councillor",
 		"Bandit",
 		"Prince",
 		"Princess",
 		"Hand",
 		"Steward",
-		"Feldsher",
+		"Court Physician",
 		"Town Elder",
 		"Captain",
 		"Archivist",
-		"Merchant",
-		"Royal Knight",
-		"Garrison Guard",
-		"Jailor",
+		"Knight",
 		"Court Magician",
-		"Forest Warden",
 		"Inquisitor",
-		"Adepts",
-		"Forest Guard",
+		"Orthodoxist",
+		"Warden",
 		"Squire",
 		"Veteran",
 		"Apothecary"

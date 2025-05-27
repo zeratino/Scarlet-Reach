@@ -1,6 +1,184 @@
 #define POPCOUNT_SURVIVORS "survivors"					//Not dead at roundend
 #define POPCOUNT_ESCAPEES "escapees"					//Not dead and on centcom/shuttles marked as escaped
 
+// General statistics
+
+#define STATS_MOAT_FALLERS "moat_fallers"
+#define STATS_ANKLES_BROKEN "ankles_broken"
+#define STATS_PEOPLE_SMITTEN "people_smitten"
+#define STATS_TRIUMPHS_AWARDED "triumphs_awarded"
+#define STATS_TRIUMPHS_STOLEN "triumphs_stolen"
+#define STATS_PRAYERS_MADE "prayers_made"
+#define STATS_SKILLS_LEARNED "skills_learned"
+#define STATS_DEADITES_ALIVE "deadites_alive"
+
+// Influence related statistics
+
+//Psydon
+#define STATS_HUMEN_DEATHS "humen_deaths"
+#define STATS_ALIVE_TIEFLINGS "alive_tieflings"
+
+//Astratan
+#define STATS_LAWS_AND_DECREES_MADE "laws_and_decrees_made"
+#define STATS_ALIVE_NOBLES "alive_nobles"
+#define STATS_NOBLE_DEATHS "noble_deaths"
+#define STATS_REVIVALS "revivals"
+#define STATS_TAXES_COLLECTED "taxes_collected"
+
+//Noc
+#define STATS_BOOKS_PRINTED "books_printed"
+#define STATS_LITERACY_TAUGHT "literacy_taught"
+#define STATS_BOOKS_BURNED "books_burned"
+#define STATS_SKILLS_DREAMED "skills_dreamed"
+
+//Necra
+#define STATS_SKELETONS_KILLED "skeletons_killed"
+#define STATS_GRAVES_ROBBED "graves_robbed"
+#define STATS_DEADITES_KILLED "deadites_killed"
+#define STATS_VAMPIRES_KILLED "vampires_killed"
+
+//Pestra
+#define STATS_POTIONS_BREWED "potions_brewed"
+#define STATS_WOUNDS_SEWED "wounds_healed"
+#define STATS_ROT_CURED "rot_cured"
+#define STATS_FOOD_ROTTED "food_rotted"
+
+//Dendor
+#define STATS_TREES_CUT "trees_cut"
+#define STATS_PLANTS_HARVESTED "plants_harvested"
+#define STATS_WEREVOLVES "werevolves"
+#define STATS_FOREST_DEATHS "forest_deaths"
+
+//Ravox
+#define STATS_COMBAT_SKILLS "combat_skills"
+#define STATS_PARRIES "parries"
+#define STATS_WARCRIES "warcries"
+#define STATS_YIELDS "yields"
+
+//Xylix
+#define STATS_LAUGHS_MADE "laughs_made"
+#define STATS_PEOPLE_MOCKED "people_mocked"
+#define STATS_CRITS_MADE "crits_made"
+#define STATS_SONGS_PLAYED "songs_played"
+
+//Malum
+#define STATS_MASTERWORKS_FORGED "masterworks_forged"
+#define STATS_ROCKS_MINED "ores_mined"
+#define STATS_CRAFT_SKILLS "craft_skills"
+#define STATS_BEARDS_SHAVED "beards_shaved"
+
+//Abyssor
+#define STATS_WATER_CONSUMED "water_consumed"
+#define STATS_FISH_CAUGHT "fish_caught"
+#define STATS_ABYSSOR_REMEMBERED "abyssor_remembered"
+#define STATS_LEECHES_EMBEDDED "leeches_embedded"
+#define STATS_PEOPLE_DROWNED "people_drowned"
+
+//Eora
+#define STATS_KISSES_MADE "kisses_made"
+#define STATS_PLEASURES "pleasures"
+#define STATS_HUGS_MADE "hugs_made"
+#define STATS_CLINGY_PEOPLE "clingy_people"
+
+//Zizo
+#define STATS_ZIZO_PRAISED "zizo_praised"
+#define STATS_DEADITES_WOKEN_UP "deadites_woken_up"
+#define STATS_CLERGY_DEATHS "priest_deaths"
+#define STATS_TORTURES "tortures"
+
+//Graggar
+#define STATS_BLOOD_SPILT "blood_spilt"
+#define STATS_ORGANS_EATEN "organs_eaten"
+#define STATS_DEATHS "deaths"
+#define STATS_PEOPLE_GIBBED "people_gibbed"
+
+//Baotha
+#define STATS_DRUGS_SNORTED "drugs_snorted"
+#define STATS_ALCOHOL_CONSUMED "alcohol_consumed"
+#define STATS_ALCOHOLICS "alcoholics"
+#define STATS_JUNKIES "junkies"
+
+//Matthios
+#define STATS_ITEMS_PICKPOCKETED "items_pickpocketed"
+#define STATS_SHRINE_VALUE "shrine_value"
+#define STATS_GREEDY_PEOPLE "tomb_deaths"
+#define STATS_LOCKS_PICKED "locks_picked"
+
+GLOBAL_LIST_INIT(azure_round_stats, list(
+	STATS_DEATHS = 0,
+	STATS_NOBLE_DEATHS = 0,
+	STATS_MOAT_FALLERS = 0,
+	STATS_ANKLES_BROKEN = 0,
+	STATS_PEOPLE_SMITTEN = 0,
+	STATS_BLOOD_SPILT = 0,
+	STATS_PEOPLE_GIBBED = 0,
+	STATS_TRIUMPHS_AWARDED = 0,
+	STATS_TRIUMPHS_STOLEN = 0,
+	STATS_DRUGS_SNORTED = 0,
+	STATS_BEARDS_SHAVED = 0,
+	STATS_TREES_CUT = 0,
+	STATS_PRAYERS_MADE = 0,
+	STATS_FISH_CAUGHT = 0,
+	STATS_ITEMS_PICKPOCKETED = 0,
+	STATS_MASTERWORKS_FORGED = 0,
+	STATS_TAXES_COLLECTED = 0,
+	STATS_ORGANS_EATEN = 0,
+	STATS_KISSES_MADE = 0,
+	STATS_LAUGHS_MADE = 0,
+	STATS_GRAVES_CONSECRATED = 0,
+	STATS_POTIONS_BREWED = 0,
+	STATS_REVIVALS = 0,
+	STATS_PLANTS_HARVESTED = 0,
+	STATS_LAWS_AND_DECREES_MADE = 0,
+	STATS_ALIVE_NOBLES = 0,
+	STATS_BOOKS_PRINTED = 0,
+	STATS_LITERACY_TAUGHT = 0,
+	STATS_BOOKS_BURNED = 0,
+	STATS_SKILLS_LEARNED = 0,
+	STATS_GRAVES_ROBBED = 0,
+	STATS_DEADITES_KILLED = 0,
+	STATS_VAMPIRES_KILLED = 0,
+	STATS_WOUNDS_SEWED = 0,
+	STATS_ROT_CURED = 0,
+	STATS_WEREVOLVES = 0,
+	STATS_FOREST_DEATHS = 0,
+	STATS_COMBAT_SKILLS = 0,
+	STATS_PARRIES = 0,
+	STATS_WARCRIES = 0,
+	STATS_YIELDS = 0,
+	STATS_PEOPLE_MOCKED = 0,
+	STATS_CRITS_MADE = 0,
+	STATS_ROCKS_MINED = 0,
+	STATS_CRAFT_SKILLS = 0,
+	STATS_ABYSSOR_REMEMBERED = 0,
+	STATS_LEECHES_EMBEDDED = 0,
+	STATS_HUGS_MADE = 0,
+	STATS_CLINGY_PEOPLE = 0,
+	STATS_ZIZO_PRAISED = 0,
+	STATS_DEADITES_ALIVE = 0,
+	STATS_CLERGY_DEATHS = 0,
+	STATS_ASSASSINATIONS = 0,
+	STATS_ALCOHOL_CONSUMED = 0,
+	STATS_ALCOHOLICS = 0,
+	STATS_JUNKIES = 0,
+	STATS_SHRINE_VALUE = 0,
+	STATS_GREEDY_PEOPLE = 0,
+	STATS_HUMEN_DEATHS = 0,
+	STATS_PLEASURES = 0,
+	STATS_SKILLS_DREAMED = 0,
+	STATS_ALIVE_TIEFLINGS = 0,
+	STATS_PEOPLE_DROWNED = 0,
+	STATS_MANA_SPENT = 0,
+	STATS_WATER_CONSUMED  = 0,
+	STATS_LOCKS_PICKED = 0,
+	STATS_SONGS_PLAYED = 0,
+	STATS_FOOD_ROTTED = 0,
+	STATS_TORTURES = 0,
+	STATS_DEADITES_WOKEN_UP = 0,
+))
+
+	GLOBAL_LIST_EMPTY(patron_follower_counts)
+
 /datum/controller/subsystem/ticker/proc/gather_roundend_feedback()
 	gather_antag_data()
 	var/json_file = file("[GLOB.log_directory]/round_end_data.json")
@@ -172,8 +350,6 @@
 
 	players_report()
 
-	stats_report()
-
 	CHECK_TICK
 
 	SSgamemode.store_roundend_data()
@@ -282,22 +458,6 @@
 			last.roundend_report_footer()
 
 
-	return
-
-/datum/controller/subsystem/ticker/proc/stats_report()
-	var/list/shit = list()
-	shit += "<br><span class='bold'>Δ--------------------Δ</span><br>"
-	shit += "<br><font color='#9b6937'><span class='bold'>Deaths:</span></font> [deaths]"
-	shit += "<br><font color='#af2323'><span class='bold'>Blood spilt:</span></font> [round(blood_lost / 100, 1)]L"
-	shit += "<br><font color='#36959c'><span class='bold'>TRIUMPH(s) Awarded:</span></font> [tri_gained]"
-	shit += "<br><font color='#a02fa4'><span class='bold'>TRIUMPH(s) Stolen:</span></font> [tri_lost * -1]"
-	shit += "<br><font color='#ffd4fd'><span class='bold'>Pleasures:</span></font> [cums]"
-	if(GLOB.confessors.len)
-		shit += "<br><font color='#93cac7'><span class='bold'>Confessors:</span></font> "
-		for(var/x in GLOB.confessors)
-			shit += "[x]"
-	shit += "<br><br><span class='bold'>∇--------------------∇</span>"
-	to_chat(world, "[shit.Join()]")
 	return
 
 /datum/controller/subsystem/ticker/proc/standard_reboot()
@@ -476,6 +636,8 @@
 /datum/controller/subsystem/ticker/proc/give_show_playerlist_button(client/C)
 	set waitfor = 0
 	to_chat(C,"<a href='?src=[C];playerlistrogue=1'>* SHOW PLAYER LIST *</a>")
+	to_chat(C,"<a href='byond://?src=[C];viewstats=1'>* View Statistics *</a>")
+	C.show_round_stats()
 	C.commendsomeone(forced = TRUE)
 
 /datum/action/report

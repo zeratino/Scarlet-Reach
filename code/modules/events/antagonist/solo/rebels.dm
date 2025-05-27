@@ -18,37 +18,36 @@
 	typepath = /datum/round_event/antagonist/solo/rebel
 	antag_datum = /datum/antagonist/prebel/head
 
-	weight = 4
+	weight = 2
 
 	restricted_roles = list(
-		"Monarch",
+		"Grand Duke",
+		"Grand Duchess",
 		"Consort",
 		"Dungeoneer",
-		"Inquisitor",
+		"Sergeant",
 		"Men-at-arms",
+		"Marshal",
 		"Merchant",
 		"Priest",
 		"Acolyte",
-		"Adepts",
+		"Martyr",
 		"Templar",
+		"Councillor",
 		"Bandit",
 		"Prince",
 		"Princess",
 		"Hand",
 		"Steward",
-		"Feldsher",
+		"Court Physician",
 		"Town Elder",
 		"Captain",
 		"Archivist",
-		"Merchant",
-		"Royal Knight",
-		"Garrison Guard",
-		"Jailor",
+		"Knight",
 		"Court Magician",
-		"Forest Warden",
 		"Inquisitor",
-		"Adepts",
-		"Forest Guard",
+		"Orthodoxist",
+		"Warden",
 		"Squire",
 		"Veteran",
 		"Apothecary"

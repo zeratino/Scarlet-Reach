@@ -447,6 +447,8 @@
 		if(H.rogfat_add(parrydrain))
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
+			if(src.client)
+				GLOB.azure_round_stats[STATS_PARRIES]++
 			if(istype(rmb_intent, /datum/rmb_intent/riposte))
 				src.visible_message(span_boldwarning("<b>[src]</b> ripostes [user] with [W]!"))
 			else
@@ -466,11 +468,15 @@
 		if(H.rogfat_add(parrydrain))
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))
+			if(src.client)
+				GLOB.azure_round_stats[STATS_PARRIES]++
 			return TRUE
 		else
 			to_chat(src, span_boldwarning("I'm too tired to parry!"))
 			return FALSE
 	else
+		if(src.client)
+			GLOB.azure_round_stats[STATS_PARRIES]++
 		playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 		return TRUE
 

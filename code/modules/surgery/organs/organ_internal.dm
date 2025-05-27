@@ -45,6 +45,8 @@
 	var/bodypart_emissive_blocker = TRUE
 	/// Type of organ DNA that this organ will create.
 	var/organ_dna_type = /datum/organ_dna
+	/// Original owner of the organ, the one who had it inside them last
+	var/mob/living/carbon/last_owner = null
 
 	grid_width = 32
 	grid_height = 32
@@ -62,6 +64,7 @@
 			qdel(replaced)
 
 	owner = M
+	last_owner = M
 	M.internal_organs |= src
 	M.internal_organs_slot[slot] = src
 	moveToNullspace()
@@ -136,6 +139,8 @@
 	S.icon = icon
 	S.icon_state = icon_state
 	S.w_class = w_class
+	S.organ_inside = src
+	forceMove(S)
 
 	return S
 
@@ -146,12 +151,19 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/organpoison = 1)
 	foodtype = RAW | MEAT | GROSS
 	eat_effect = /datum/status_effect/debuff/uncookedfood
+	var/obj/item/organ/organ_inside
 
 /obj/item/reagent_containers/food/snacks/organ/On_Consume(mob/living/eater)		//Graggarites looove eating organs, they loooove eating organs!
 	if(HAS_TRAIT(eater, TRAIT_ORGAN_EATER))
 		eat_effect = /datum/status_effect/buff/foodbuff
+	if(bitecount >= bitesize)
+		GLOB.azure_round_stats[STATS_ORGANS_EATEN]++
 	. = ..()
 	eat_effect = initial(eat_effect)
+
+/obj/item/reagent_containers/food/snacks/organ/Destroy()
+	QDEL_NULL(organ_inside)
+	return ..()
 
 /obj/item/organ/Initialize()
 	. = ..()

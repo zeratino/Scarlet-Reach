@@ -104,6 +104,7 @@
 					if(T != 0)
 						SStreasury.total_deposit_tax += T
 						say("Your deposit was taxed [T] mammon.")
+						GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += T
 				qdel(P)
 				playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 				return

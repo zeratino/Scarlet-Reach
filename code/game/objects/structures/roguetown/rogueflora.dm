@@ -73,6 +73,7 @@
 	if(stump_type)
 		new stump_type(loc)
 	playsound(src, 'sound/misc/treefall.ogg', 100, FALSE)
+	GLOB.azure_round_stats[STATS_TREES_CUT]++
 	. = ..()
 
 

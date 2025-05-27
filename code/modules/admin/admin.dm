@@ -306,16 +306,18 @@
 		to_chat(usr, span_warning("You do not have the rights to start a vote."))
 		return
 
-	var/list/allowed_modes = list("End Round", "Gamemode", "Custom")
+	var/list/allowed_modes = list("End Round", "Storyteller", "Custom")
 
 	var/type = input("What kind of vote?") as null|anything in allowed_modes
 	switch(type)
-		if("Gamemode")
-			type = "gamemode"
+		//if("Gamemode")
+			//type = "gamemode"
 		if("End Round")
 			type = "endround"
 		if("Custom")
 			type = "custom"
+		if("Storyteller")
+			type = "storyteller"
 	SSvote.initiate_vote(type, usr.key)
 
 /datum/admins/proc/adjustpq(mob/living/M in GLOB.mob_list)

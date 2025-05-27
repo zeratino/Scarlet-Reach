@@ -3,7 +3,7 @@
 	wave_type = /datum/migrant_wave/lich
 
 	weight = 6
-	max_occurrences = 2
+	max_occurrences = 1	//i hate it
 
 	earliest_start = 15 MINUTES
 

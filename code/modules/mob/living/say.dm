@@ -210,6 +210,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(!message)
 		return
 
+	if(findtext(message, "Abyssor"))	//funni
+		GLOB.azure_round_stats[STATS_ABYSSOR_REMEMBERED]++
+
 	spans |= speech_span
 
 	if(language)

@@ -69,6 +69,7 @@
 		feedback = "Praise Dendor for our harvest is bountiful."
 		modifier += 3
 
+	GLOB.azure_round_stats[STATS_PLANTS_HARVESTED]++
 	to_chat(user, span_notice(feedback))
 	yield_produce(modifier)
 
