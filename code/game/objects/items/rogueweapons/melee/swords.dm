@@ -95,7 +95,7 @@
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel)
 	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/peel)
-	armor = list("blunt" = 60, "slash" = 50, "stab" = 50, "piercing" = 0)
+	armor = ARMOR_SWORD
 	damage_deflection = 14
 	icon_state = "sword1"
 	icon = 'icons/roguetown/weapons/32.dmi'
