@@ -47,7 +47,12 @@
 			holdingknife = null
 			playsound(loc, 'sound/foley/equip/swordsmall1.ogg')
 			return TRUE
-	
+
+/obj/item/clothing/shoes/roguetown/boots/aalloy
+	name = "decrepit boots"
+	desc = "decrepit old leather boots."
+	max_integrity = 40
+	icon_state = "ancientboots"
 
 /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	name = "psydonian boots"
@@ -121,7 +126,7 @@
 
 /obj/item/clothing/shoes/roguetown/simpleshoes/lord
 	name = "shoes"
-	desc = ""
+	desc = "Common shoes for everyday wear by the peasantry."
 	gender = PLURAL
 	icon_state = "simpleshoe"
 	item_state = "simpleshoe"
@@ -138,11 +143,16 @@
 
 /obj/item/clothing/shoes/roguetown/sandals
 	name = "sandals"
-	desc = ""
+	desc = "A humble pair of sandals with adjustable straps that allow a snug fit for almost anyone."
 	gender = PLURAL
 	icon_state = "sandals"
 	item_state = "sandals"
 	sewrepair = TRUE
+
+/obj/item/clothing/shoes/roguetown/sandals/aalloy
+	name = "decrepit sandals"
+	desc = "Surely Psydon himself could've worn these sandals."
+	icon_state = "ancientsandals"
 
 /obj/item/clothing/shoes/roguetown/shalal
 	name = "babouche"
@@ -155,7 +165,7 @@
 /obj/item/clothing/shoes/roguetown/boots/leather
 	name = "leather boots"
 	//dropshrink = 0.75
-	desc = ""
+	desc = "Sturdy boots stitched together from tanned leather. They leak a little."
 	gender = PLURAL
 	icon_state = "leatherboots"
 	item_state = "leatherboots"
@@ -245,6 +255,7 @@
 
 /obj/item/clothing/shoes/roguetown/jester
 	name = "funny shoes"
+	desc = "The bells add a jostling jingle jangle to each step."
 	icon_state = "jestershoes"
 	detail_tag = "_detail"
 	resistance_flags = null
@@ -304,7 +315,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/furlinedanklets
 	name = "fur lined anklets"
-	desc = "Leather anklets lined with fur, foot remains bare."
+	desc = "Leather anklets lined with fur for a little extra protection while leaving the feet bare."
 	gender = PLURAL
 	icon_state = "furlinedanklets"
 	item_state = "furlinedanklets"
@@ -317,7 +328,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/clothlinedanklets
 	name = "cloth lined anklets"
-	desc = "Cloth anklets lined with with fibers, foot remains bare."
+	desc = "Cloth anklets lined with fibers for warmth while leaving the feet bare."
 	gender = PLURAL
 	icon_state = "clothlinedanklets"
 	item_state = "furlinedanklets"

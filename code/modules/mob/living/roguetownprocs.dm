@@ -127,9 +127,7 @@
 		if(INTENT_PARRY)
 			if(HAS_TRAIT(src, TRAIT_CHUNKYFINGERS))
 				return FALSE
-			if(pulledby == user && pulledby.grab_state >= GRAB_AGGRESSIVE)
-				return FALSE
-			if(pulling == user && grab_state >= GRAB_AGGRESSIVE)
+			if(pulledby || pulling)
 				return FALSE
 			if(world.time < last_parry + setparrytime)
 				if(!istype(rmb_intent, /datum/rmb_intent/riposte))
@@ -184,7 +182,10 @@
 					prob2defend += (defender_skill * 10)		// no bracers gonna be butts.
 				weapon_parry = FALSE
 			else
-				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				if(used_weapon)
+					defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				else
+					defender_skill = H.mind?.get_skill_level(/datum/skill/combat/unarmed)
 				prob2defend += highest_defense
 				weapon_parry = TRUE
 
@@ -359,9 +360,7 @@
 					testing("failparry")
 					return FALSE
 		if(INTENT_DODGE)
-			if(pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE)
-				return FALSE
-			if(pulling == user)
+			if(pulledby || pulling)
 				return FALSE
 			if(world.time < last_dodge + dodgetime)
 				if(!istype(rmb_intent, /datum/rmb_intent/riposte))

@@ -65,7 +65,8 @@
 	icon = 'icons/roguetown/clothing/head.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' //Overrides slot icon behavior
 	alternate_worn_layer  = 8.9 //On top of helmet
-	body_parts_covered = NECK
+	body_parts_covered = NECK|HAIR|EARS|HEAD
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	sleevetype = null
 	sleeved = null
@@ -75,6 +76,11 @@
 	toggle_icon_state = TRUE
 	max_integrity = 100
 	sewrepair = TRUE
+	block2add = FOV_BEHIND
+
+/obj/item/clothing/head/roguetown/roguehood/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/cloak (3).ogg', null, (UPD_HEAD|UPD_MASK))	//Standard hood
 
 /obj/item/clothing/head/roguetown/roguehood/shalal
 	name = "keffiyeh"
@@ -82,7 +88,7 @@
 	color = "#b8252c"
 	icon_state = "shalal"
 	item_state = "shalal"
-	flags_inv = HIDEHAIR|HIDEFACIALHAIR
+	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDEEARS
 	sleevetype = null
 	sleeved = null
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -106,41 +112,16 @@
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
 	name = "hijab"
-	flags_inv = null
 	desc = "Flowing like blood from a wound, this tithe of cloth-and-silk spills out to the shoulders. It carries the telltale mark of Naledian stitcheries."
 	item_state = "hijab"
 	icon_state = "deserthood"
 	hidesnoutADJ = FALSE
+	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR	//Does not hide face.
+	block2add = null
 
-/obj/item/clothing/head/roguetown/roguehood/shalal/hijab/AdjustClothes(mob/user)	//Only differences from parent are the absence of HIDEFACE flag and FOV flags
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR
-			body_parts_covered = NECK|HAIR|EARS|HEAD
-			body_parts_covered_dynamic = NECK|HAIR|EARS|HEAD
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-				H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			if(mask_override == TRUE)
-				flags_inv = initial(flags_inv)
-			else
-				flags_inv = null
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-					H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
-	
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	name = "heavy hood"
-	flags_inv = null
 	desc = "This thick lump of burlap completely shrouds your head, protecting it from harsh weather and nosey protagonists alike."
 	color = CLOTHING_BROWN
 	item_state = "heavyhood"
@@ -174,6 +155,7 @@
 
 /obj/item/clothing/head/roguetown/necrahood
 	name = "death shroud"
+	desc = "Wisps of dark fabric that cover your entire head and flutter gently in the breeze. Often worn by those who usher the dead to the afterlife."
 	color = null
 	icon_state = "necrahood"
 	item_state = "necrahood"
@@ -198,7 +180,7 @@
 
 /obj/item/clothing/head/roguetown/necramask
 	name = "death mask"
-	desc = "A hood with a decorated jaw bone at the chin,normally worn by some followers of Necra as a form of devotion"
+	desc = "A hood with a decorated jaw bone at the chin, normally worn by some followers of Necra as a form of devotion"
 	color = null
 	icon_state = "deathface"
 	item_state = "deathface"
@@ -214,13 +196,18 @@
 
 /obj/item/clothing/head/roguetown/dendormask
 	name = "briarmask"
-	desc = "A mask of wood worn by druids in service to Dendor."
+	desc = "A mask of wood and thorns worn by druids in service to Dendor."
 	color = null
 	icon_state = "dendormask"
 	item_state = "dendormask"
+	icon = 'icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' 
+	body_parts_covered = MOUTH
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+	mask_override = TRUE
 
 /obj/item/clothing/head/roguetown/necromhood
 	name = "necromancers hood"
@@ -268,44 +255,15 @@
 	color = pick("#4756d8", "#759259", "#bf6f39", "#c1b144", "#b8252c")
 	..()
 
-/obj/item/clothing/head/roguetown/roguehood/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			if(toggle_icon_state)
-				icon_state = "[initial(icon_state)]_t"
-			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-			if(hidesnoutADJ == TRUE)
-				flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-			body_parts_covered = NECK|HAIR|EARS|HEAD
-			body_parts_covered_dynamic = NECK|HAIR|EARS|HEAD // Magically heal from peeling but whatever
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-				H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
-			block2add = FOV_BEHIND
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			if(mask_override == TRUE)
-				flags_inv = initial(flags_inv)
-			else
-				flags_inv = null
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-					H.update_inv_wear_mask() //Snowflake case for Desert Merc hood
-		user.update_fov_angles()
-
-
 /obj/item/clothing/head/roguetown/menacing
 	name = "sack hood"
-	desc = "A hood commonly worn by executioners. Hides the face, the stigma of pulling that lever makes many executioners outcasts in their own right."
+	desc = "A hood commonly worn by executioners to hide their face; The stigma of such a role, and all the grisly work it entails, makes many executioners outcasts in their own right."
 	icon_state = "menacing"
 	item_state = "menacing"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
+	color = "#999999"
 	//dropshrink = 0.75
 
 /obj/item/clothing/head/roguetown/menacing/bandit
@@ -353,7 +311,7 @@
 
 /obj/item/clothing/head/roguetown/strawhat
 	name = "straw hat"
-	desc = "Keeps the sun off your head while toiling the fields."
+	desc = "It's scratchy and rustic, but at least it keeps the sun off your head while you toil in the fields."
 	icon_state = "strawhat"
 	sewrepair = TRUE
 
@@ -387,7 +345,7 @@
 
 /obj/item/clothing/head/roguetown/fedora
 	name = "archeologist's hat"
-	desc = "A strangely shaped hat with dust caked onto its aged leather."
+	desc = "A strangely-shaped hat with dust caked onto its aged leather."
 	icon_state = "curator"
 	item_state = "curator"
 	sewrepair = TRUE
@@ -432,7 +390,7 @@
 
 /obj/item/clothing/head/roguetown/chaperon
 	name = "chaperon hat"
-	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
+	desc = "A utilitarian yet fashionable hat traditionally made from a hood. Usually worn as a status symbol."
 	icon_state = "chaperon"
 	item_state = "chaperon"
 	sewrepair = TRUE
@@ -447,14 +405,14 @@
 
 /obj/item/clothing/head/roguetown/chaperon/greyscale
 	name = "chaperon hat"
-	desc = "A fashionable hat traditionally made from a hood, usually worn by the rich."
+	desc = "A utilitarian yet fashionable hat traditionally made from a hood. This one has been treated to take dyes more easily."
 	icon_state = "chap_alt"
 	item_state = "chap_alt"
 	color = "#dbcde0"
 
 /obj/item/clothing/head/roguetown/chaperon/noble
 	name = "noble's chaperon"
-	desc = "A decorated chaperon worn by those more influential in society."
+	desc = "A decorated chaperon worn by the more influential members of society."
 	icon_state = "noblechaperon"
 	item_state = "noblechaperon"
 	detail_tag = "_detail"
@@ -482,6 +440,10 @@
 	icon_state = "chap_alt"
 	item_state = "chap_alt"
 	color = "#7dcea0"
+
+/obj/item/clothing/head/roguetown/chaperon/greyscale/elder
+	name = "elder's chaperon hat"
+	color = "#007fff"
 
 /obj/item/clothing/head/roguetown/chef
 	name = "chef's hat"
@@ -604,6 +566,7 @@
 
 /obj/item/clothing/head/roguetown/nun
 	name = "nun's veil"
+	desc = "A humble hat for the faithful."
 	icon_state = "nun"
 	sellprice = 5
 	sewrepair = TRUE
@@ -668,7 +631,7 @@
 // Copper lamellar cap
 /obj/item/clothing/head/roguetown/helmet/coppercap
 	name = "lamellar cap"
-	desc = "A heavy lamellar cap made out of copper, a primitive material with an effective design to keep the head safe"
+	desc = "A heavy lamellar cap made out of copper. Despite the primitive material, it's an effective design that keeps the head safe."
 	icon_state = "lamellar"
 	smeltresult = /obj/item/ingot/copper
 	armor = list("blunt" = 50, "slash" = 50, "stab" = 50, "piercing" = 20, "fire" = 0, "acid" = 0)
@@ -676,16 +639,17 @@
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
 	name = "skull cap"
-	desc = "A helmet which covers the top of the head."
+	desc = "An iron helmet which covers the top of the head."
 	icon_state = "skullcap"
 	body_parts_covered = HEAD|HAIR
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/clothing/head/roguetown/helmet/horned
 	name = "horned cap"
-	desc = "A helmet with two horns poking out of the sides."
+	desc = "An iron helmet with two horns poking out of the sides."
 	icon_state = "hornedcap"
 	body_parts_covered = HEAD|HAIR
+	smeltresult = /obj/item/ingot/iron
 
 /obj/item/clothing/head/roguetown/helmet/winged
 	name = "winged cap"
@@ -771,6 +735,9 @@
 	smelt_bar_num = 2
 	armor = list("blunt" = 40, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)
 
+/obj/item/clothing/head/roguetown/helmet/sallet/visored/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), null, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Sallet. Does not hide anything when opened.
+
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
@@ -792,28 +759,6 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
-
-/obj/item/clothing/head/roguetown/helmet/sallet/visored/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "[initial(icon_state)]_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_cover = null
-			flags_inv = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDESNOUT
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
 
 /obj/item/clothing/head/roguetown/helmet/sallet/elven
 	desc = "A steel helmet with a thin gold plating designed for Elven woodland guardians."
@@ -844,30 +789,9 @@
 			if("onbelt")
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/clothing/head/roguetown/helmet/otavan/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "otavahelm_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/otavan/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), HIDEEARS, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Otavan. Only hides ears when open.
+
 
 /obj/item/clothing/head/roguetown/helmet/heavy
 	name = "barbute"
@@ -882,6 +806,55 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	max_integrity = 400
+
+/obj/item/clothing/head/roguetown/helmet/heavy/aalloy
+	name = "decrepit barbute"
+	desc = "A withered old barbute. Aeon's grasp is upon it."
+	max_integrity = 200
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	smeltresult = /obj/item/ingot/aalloy
+	icon_state = "ancientbarbute"
+
+/obj/item/clothing/head/roguetown/helmet/heavy/aalloy/attackby(obj/item/W, mob/living/user, params)
+	..()
+	if(istype(W, /obj/item/natural/feather) && !detail_tag)
+		var/choice = input(user, "Choose a color.", "Plume") as anything in colorlist
+		detail_color = colorlist[choice]
+		detail_tag = "_detail"
+		user.visible_message(span_warning("[user] adds [W] to [src]."))
+		user.transferItemToLoc(W, src, FALSE, FALSE)
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_head()
+
+/obj/item/clothing/head/roguetown/helmet/heavy/aalloy/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/helmet/heavy/paalloy
+	name = "ancient barbute"
+	desc = "A barbute crafted of ancient alloys. Aeon's grasp has been lifted from its form."
+	icon_state = "ancientbarbute"
+	smeltresult = /obj/item/ingot/aaslag
+
+/obj/item/clothing/head/roguetown/helmet/heavy/paalloy/attackby(obj/item/W, mob/living/user, params)
+	..()
+	if(istype(W, /obj/item/natural/feather) && !detail_tag)
+		var/choice = input(user, "Choose a color.", "Plume") as anything in colorlist
+		detail_color = colorlist[choice]
+		detail_tag = "_detail"
+		user.visible_message(span_warning("[user] adds [W] to [src]."))
+		user.transferItemToLoc(W, src, FALSE, FALSE)
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_head()
 
 /obj/item/clothing/head/roguetown/helmet/heavy/matthios
 	name = "gilded visage"
@@ -941,29 +914,9 @@
 		user.Stun(40)
 	..()
 
-/obj/item/clothing/head/roguetown/helmet/heavy/zizo/AdjustClothes(mob/user)
-	if(loc == user)
-		if(frogstyle)
-			return
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "[initial(icon_state)]_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_cover = null
-			flags_inv = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/zizo/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard
@@ -975,6 +928,20 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/guard/aalloy
+	name = "decrepit savoyard"
+	desc = "A decrepit old savoyard. Aeon's grasp is upon its form."
+	max_integrity = 200
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	smeltresult = /obj/item/ingot/aalloy
+	icon_state = "ancientsavoyard"
+
+/obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
+	name = "ancient savoyard"
+	desc = "A savoyard crafted of ancient materials. Aeon's grasp has been lifted from its form."
+	icon_state = "ancientsavoyard"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/head/roguetown/helmet/heavy/sheriff
 	name = "barred helmet"
@@ -1002,30 +969,8 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/black
 	color = CLOTHING_GREY
 
-/obj/item/clothing/head/roguetown/helmet/heavy/knight/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "knightum"
-			body_parts_covered = HEAD|HAIR|EARS
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1054,30 +999,8 @@
 	desc = "Holy lamb, sacrificial hero, blessed idiot - Psydon endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
 	icon_state = "armet"
 
-/obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "armet_raised"
-			body_parts_covered = HEAD|HAIR|EARS
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1204,30 +1127,8 @@
 			if("onbelt")
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
-/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "psydonarmet_raised"
-			body_parts_covered = HEAD|HAIR|EARS
-			flags_inv = HIDEEARS
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1269,7 +1170,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 	name = "noc helmet"
-	desc = "Headwear commonly worn by Templars in service to Noc. Without the night there can be no day, without Noc there can be no light in the dark hours."
+	desc = "Headwear commonly worn by Templars in service to Noc. Without the night there can be no day; without Noc there can be no light in the dark hours."
 	icon_state = "nochelm"
 	item_state = "nochelm"
 	emote_environment = 3
@@ -1281,7 +1182,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/necrahelm
 	name = "necra helmet"
-	desc = "Headwear commonly worn by Templars in service to Necra. Let its skeletal features remind you of the only thing which is guaranteed in life. You will die."
+	desc = "Headwear commonly worn by Templars in service to Necra. Let its skeletal features remind you of the only thing which is guaranteed in life: You will die."
 	icon_state = "necrahelm"
 	item_state = "necrahelm"
 	emote_environment = 3
@@ -1314,7 +1215,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet
 	name = "bascinet"
-	desc = "A steel bascinet helmet without a visor protecting the the head and ears."
+	desc = "A steel bascinet helmet. Though it lacks a visor, it still protects the head and ears."
 	icon_state = "bascinet_novisor"
 	item_state = "bascinet_novisor"
 	emote_environment = 3
@@ -1326,7 +1227,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface
 	name = "pigface bascinet"
-	desc = "A steel bascinet helmet with a pigface visor protecting the head, ears, nose, mouth, and eyes. Add a feather to show the colors of your family or allegiance."
+	desc = "A steel bascinet helmet with a pigface visor that protects the entire head and face. Add a feather to show the colors of your family or allegiance."
 	icon_state = "hounskull"
 	item_state = "hounskull"
 	adjustable = CAN_CADJUST
@@ -1338,30 +1239,8 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "hounskull_visor_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1387,34 +1266,12 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull
 	name = "hounskull bascinet"
-	desc = "A bascinet with a conical visor, prominent amongst those who remain unburdened with snouts and whiskers. Nestle a feather onto the rim to bare your pride."
+	desc = "A bascinet with a conical visor, favored by those with snouts and whiskers. Nestle a feather onto the rim to display your allegiance."
 	icon_state = "bascinet"
 
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "bascinet_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/attackby(obj/item/W, mob/living/user, params)
@@ -1458,7 +1315,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan
 	name = "\improper Etruscan bascinet"
-	desc = "A steel bascinet helmet of Etruscan origin, though also widely used in Grenzelhoft. Bears a straight visor, or \"klappvisier\", which can greatly reduce visibility."
+	desc = "A steel bascinet helmet with a straight visor, or \"klappvisier\", which can greatly reduce visibility. Though it was first developed in Etrusca, it is also widely used in Grenzelhoft."
 	icon_state = "klappvisier"
 	item_state = "klappvisier"
 	adjustable = CAN_CADJUST
@@ -1492,34 +1349,12 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "klappvisier_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth
 	name = "froggemund helmet"
-	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. Covers not just the head, but the neck as well. Add a cloth to show the colors of your family or allegiance."
+	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. It covers not only the entire head and face, but the neck as well. Add a cloth to show the colors of your family or allegiance."
 	icon_state = "frogmouth"
 	item_state = "frogmouth"
 	emote_environment = 3
@@ -1554,7 +1389,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/bascinet
 	name = "bascinet"
-	desc = "A steel bascinet helmet without a visor protecting the the head and ears."
+	desc = "A steel bascinet helmet. Though it lacks a visor for the face, it still protects the head and ears."
 	icon_state = "bascinet_novisor"
 	item_state = "bascinet_novisor"
 	emote_environment = 3
@@ -1580,7 +1415,7 @@
 /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
 	name = "volf helmet"
-	desc = "A leather helmet fashioned from a volf's pelt."
+	desc = "A leather helmet fashioned from a volf's head."
 	body_parts_covered = HEAD|HAIR|EARS
 	icon_state = "volfhead"
 	item_state = "volfhead"
@@ -1593,7 +1428,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/leather/saiga
 	name = "saiga skull"
-	desc = "Skull from big game. Looks like it could withstand some damage."
+	desc = "The skull of a fearsome saiga. Looks like it could withstand some damage."
 	icon_state = "saigahead"
 	item_state = "saigahead"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
@@ -1607,40 +1442,6 @@
 	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm
-	name = "leather miners helmet"
-	desc = "A leather kettle-like helmet with a headlamp, fueled by magiks."
-	icon_state = "minerslamp"
-	var/on = FALSE
-	light_outer_range = 4 //less than a torch; basically good for one person.
-	light_power = 1
-	light_color = LIGHT_COLOR_ORANGE
-	light_system = MOVABLE_LIGHT
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/MiddleClick(mob/user)
-	if(.)
-		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	playsound(loc, 'sound/misc/toggle_lamp.ogg', 100)
-	toggle_helmet_light(user)
-	to_chat(user, span_info("I toggle [src] [on ? "on" : "off"]."))
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/proc/toggle_helmet_light(mob/living/user)
-	on = !on
-	set_light_on(on)
-	update_icon()
-
-/obj/item/clothing/head/roguetown/helmet/leather/minershelm/update_icon()
-	icon_state = "minerslamp[on]"
-	item_state = "minerslamp[on]"
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		H.update_inv_head()
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.UpdateButtonIcon(force = TRUE)
-	..()
 
 /obj/item/clothing/head/roguetown/wizhat
 	name = "wizard hat"
@@ -1725,14 +1526,14 @@
 //............... Eora Helmet ............... //
 /obj/item/clothing/head/roguetown/helmet/sallet/eoran
 	name = "eora helmet"
-	desc = "A standard helmet forged in the style typical of Eoran worshippers, a simple yet practical protective piece of equipment. Upon it lays several laurels of flowers and other colorful ornaments, followed by several symbols and standards of the user's chapter, accomplishments or even punishment"
+	desc = "A simple yet protective helmet forged in the style typical of Eoran worshippers. Upon it lays several laurels of flowers and other colorful ornaments followed by symbols noting the accomplishments and punishments of the owner's chapter."
 	icon_state = "eorahelmsallet"
 	item_state = "eorahelmsallet"
 
 //................ Briar Thorns ............... //	- Dendor Briar
 /obj/item/clothing/head/roguetown/padded/briarthorns
 	name = "briar thorns"
-	desc = "The pain it causes perhaps can distract from the whispers of a mad God overpowering your sanity..."
+	desc = "The pain of wearing it might distract you from the whispers of a mad God overpowering your sanity..."
 	icon_state = "briarthorns"
 
 /obj/item/clothing/head/roguetown/padded/briarthorns/pickup(mob/living/user)
@@ -1767,7 +1568,7 @@
 // Grenzel unique drip head. Pretend it is a secrete (A type of hat with a hidden helmet underneath). Same stats as kettle
 /obj/item/clothing/head/roguetown/grenzelhofthat
 	name = "grenzelhoft plume hat"
-	desc = "Slaying monsters or fair maidens: Grenzelhoft stands. Contains a hidden metallic cap underneath to protect the head from blows."
+	desc = "Whether it's monsters or fair maidens, a true Grenzelhoftian slays both. This hat contains a hidden metallic cap underneath to protect the head from blows."
 	icon_state = "grenzelhat"
 	item_state = "grenzelhat"
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -1808,7 +1609,7 @@
 
 /obj/item/clothing/head/roguetown/eoramask
 	name = "eoran mask"
-	desc = "A silver rabbit mask worn by the faithful of Eora, usually during their rituals."
+	desc = "A silver mask in the likeness of a rabbit. Usually worn by the faithful of Eora during their rituals, but it's not like anyone's going to stop you. Right?"
 	color = null
 	icon_state = "eoramask"
 	item_state = "eoramask"
@@ -1854,7 +1655,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/tricorn/skull
 	icon_state = "tricorn_skull"
-	desc = "It has a skull sewn onto it. Clear sign of piracy"
+	desc = "It has a skull sewn onto it. A clear sign of piracy"
 
 /obj/item/clothing/head/roguetown/helmet/tricorn/lucky
 	name = "lucky tricorn"
@@ -1960,26 +1761,8 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 
-/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "volfplate_visor_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS
-			flags_cover = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
+/obj/item/clothing/head/roguetown/helmet/heavy/volfplate/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
 /obj/item/clothing/head/roguetown/helmet/leather/advanced
 	name = "hardened leather helmet"
@@ -2057,28 +1840,5 @@
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/antler/AdjustClothes(mob/user)
-	if(loc == user)
-		playsound(user, "sound/items/visor.ogg", 100, TRUE, -1)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "wardenhelm_raised"
-			body_parts_covered = HEAD|EARS|HAIR
-			flags_inv = HIDEEARS|HIDEHAIR
-			flags_cover = null
-			emote_environment = 0
-			update_icon()
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
-			emote_environment = 3
-			update_icon()
-			if(user)
-				if(ishuman(user))
-					var/mob/living/carbon/H = user
-					H.update_inv_head()
-		user.update_fov_angles()
- 
+/obj/item/clothing/head/roguetown/helmet/bascinet/antler/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet

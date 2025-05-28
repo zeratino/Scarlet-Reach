@@ -15,10 +15,12 @@
 	botched_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
 							/obj/item/natural/silk = 2, 
-							/obj/item/alch/viscera = 1)
+							/obj/item/alch/viscera = 1,
+							/obj/item/natural/head/honeyspider = 1)
 	perfect_butcher_results = list (/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 2,
 							/obj/item/natural/silk = 3, 
-							/obj/item/alch/viscera = 1)
+							/obj/item/alch/viscera = 1, 
+							/obj/item/natural/head/honeyspider = 1)
 	faction = list("spiders")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	attack_sound = 'sound/combat/wooshes/punch/punchwoosh (2).ogg'
@@ -45,7 +47,7 @@
 	retreat_health = 0.3
 	attack_sound = list('sound/vo/mobs/spider/attack (1).ogg','sound/vo/mobs/spider/attack (2).ogg','sound/vo/mobs/spider/attack (3).ogg','sound/vo/mobs/spider/attack (4).ogg')
 	aggressive = 1
-	rot_type = null
+	
 
 	//new ai, old ai off
 	AIStatus = AI_OFF

@@ -13,7 +13,7 @@
 
 /obj/structure/fluff/pillow
 	name = "pillows"
-	desc = ""
+	desc = "Soft plush pillows. Resting your head on one is so relaxing."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "pillow"
 	density = FALSE
@@ -41,7 +41,7 @@
 
 /obj/structure/fluff/drake_statue //Ash drake status spawn on either side of the necropolis gate in lavaland.
 	name = "drake statue"
-	desc = ""
+	desc = "Possibly the only time you'll ever see its likeness up close and live to tell the tale."
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "drake_statue"
 	pixel_x = -16
@@ -58,7 +58,7 @@
 
 /obj/structure/fluff/paper/stack
 	name = "dense stack of papers"
-	desc = ""
+	desc = "You can already feel your eyes glazing over and the boredom creeping in."
 	icon_state = "paperstack"
 
 /obj/structure/fluff/divine
@@ -231,7 +231,7 @@
 
 /obj/structure/fluff/railing/fence
 	name = "palisade"
-	desc = ""
+	desc = "A rudimentary barrier that might keep the monsters at bay."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	attacked_sound = 'sound/misc/woodhit.ogg'
 	destroy_sound = 'sound/misc/treefall.ogg'

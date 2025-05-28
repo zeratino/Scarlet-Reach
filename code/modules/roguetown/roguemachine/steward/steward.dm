@@ -4,6 +4,7 @@
 #define TAB_IMPORT 4
 #define TAB_BOUNTIES 5
 #define TAB_LOG 6
+#define TAB_STATISTICS 7
 
 /obj/structure/roguemachine/steward
 	name = "nerve master"
@@ -19,6 +20,7 @@
 	var/keycontrol = "steward"
 	var/current_tab = TAB_MAIN
 	var/compact = TRUE
+	var/total_deposit = 0
 	var/list/excluded_jobs = list("Wretch","Vagabond","Adventurer")
 	var/current_category = "Raw Materials"
 	var/list/categories = list("Raw Materials", "Foodstuffs")
@@ -73,6 +75,7 @@
 			return
 		var/amt = D.get_import_price()
 		SStreasury.treasury_value -= amt
+		SStreasury.total_import += amt
 		SStreasury.log_to_steward("-[amt] imported [D.name]")
 		if(amt >= 100) //Only announce big spending.
 			scom_announce("Azure Peak imports [D.name] for [amt] mammon.", )
@@ -96,6 +99,7 @@
 			D.held_items[1] = 0
 
 		SStreasury.treasury_value += amt
+		SStreasury.total_export += amt
 		SStreasury.log_to_steward("+[amt] exported [D.name]")
 		if(amt >= 100) //Only announce big spending.
 			scom_announce("Azure Peak exports [D.name] for [amt] mammon.")
@@ -146,6 +150,19 @@
 				if(newtax < D.withdraw_price)
 					scom_announce("The withdraw price for [D.name] was decreased.")
 				D.withdraw_price = newtax
+	if(href_list["setlimit"])
+		var/datum/roguestock/D = locate(href_list["setlimit"]) in SStreasury.stockpile_datums
+		if(!D)
+			return
+		var/newlimit = input(usr, "Set a new limit for [D.name]", src, D.stockpile_limit) as null|num
+		if(newlimit)
+			if(!usr.canUseTopic(src, BE_CLOSE) || locked)
+				return
+			if(findtext(num2text(newlimit), "."))
+				return
+			newlimit = CLAMP(newlimit, 0, 999)
+			scom_announce("The stockpile limit for [D.name] was changed to [newlimit].")
+			D.stockpile_limit = newlimit
 	if(href_list["givemoney"])
 		var/X = locate(href_list["givemoney"])
 		if(!X)
@@ -252,13 +269,18 @@
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_IMPORT]'>\[Import\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_BOUNTIES]'>\[Bounties\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_LOG]'>\[Log\]</a><BR>"
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_STATISTICS]'>\[Statistics\]</a><BR>"
 			contents += "</center>"
 		if(TAB_BANK)
+			var/total_deposit = 0
+			for(var/bank_account in SStreasury.bank_accounts)
+				total_deposit += SStreasury.bank_accounts[bank_account]
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a>"
 			contents += " <a href='?src=\ref[src];compact=1'>\[Compact: [compact? "ENABLED" : "DISABLED"]\]</a><BR>"
 			contents += "<center>Bank<BR>"
 			contents += "--------------<BR>"
-			contents += "Treasury: [SStreasury.treasury_value]m</center><BR>"
+			contents += "Treasury: [SStreasury.treasury_value]m<BR>"
+			contents += "Reserve Ratio: [round(SStreasury.treasury_value / total_deposit * 100)]%</center><BR>"
 			contents += "<a href='?src=\ref[src];payroll=1'>\[Pay by Class\]</a><BR><BR>"
 			if(compact)
 				for(var/mob/living/carbon/human/A in SStreasury.bank_accounts)
@@ -300,6 +322,7 @@
 					contents += " [A.held_items[1] + A.held_items[2]]"
 					contents += " | SELL: <a href='?src=\ref[src];setbounty=\ref[A]'>[A.payout_price]m</a>"
 					contents += " / BUY: <a href='?src=\ref[src];setprice=\ref[A]'>[A.withdraw_price]m</a>"
+					contents += " / LIMIT: <a href='?src=\ref[src];setlimit=\ref[A]'>[A.stockpile_limit]</a>"
 					if(A.importexport_amt)
 						contents += " <a href='?src=\ref[src];import=\ref[A]'>\[IMP [A.importexport_amt] ([A.get_import_price()])\]</a> <a href='?src=\ref[src];export=\ref[A]'>\[EXP [A.importexport_amt] ([A.get_export_price()])\]</a> <BR>"
 			else
@@ -368,10 +391,21 @@
 			contents += "--------------</center><BR><BR>"
 			for(var/i = SStreasury.log_entries.len to 1 step -1)
 				contents += "<span class='info'>[SStreasury.log_entries[i]]</span><BR>"
+		if(TAB_STATISTICS)
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a><BR>"
+			contents += "<center>Statistics:<BR>"
+			contents += "Known Economic Output: [SStreasury.economic_output]m<BR>"
+			contents += "Total Vault Income: [SStreasury.total_vault_income]m<BR>"
+			contents += "Total Deposit Tax: [SStreasury.total_deposit_tax]m<BR>"
+			contents += "Total Noble Estate Income: [SStreasury.total_noble_income]m<BR>"
+			contents += "Total Import: [SStreasury.total_import]m<BR>"
+			contents += "Total Export: [SStreasury.total_export]m<BR>"
+			contents += "Trade Balance: [SStreasury.total_export - SStreasury.total_import]m<BR>"
+			contents  += "</center><BR>"
 
 	if(!canread)
 		contents = stars(contents)
-	var/datum/browser/popup = new(user, "VENDORTHING", "", 500, 800)
+	var/datum/browser/popup = new(user, "VENDORTHING", "", 700, 800)
 	popup.set_content(contents)
 	popup.open()
 

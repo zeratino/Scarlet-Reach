@@ -1,5 +1,9 @@
 #define SHIELD_BASH		/datum/intent/shield/bash
 #define SHIELD_BLOCK		/datum/intent/shield/block
+#define SHIELD_BASH_METAL 	/datum/intent/shield/bash/metal
+#define SHIELD_BLOCK_METAL 	/datum/intent/shield/block/metal
+#define SHIELD_SMASH 		/datum/intent/shield/smash
+#define SHIELD_SMASH_METAL 	/datum/intent/shield/smash/metal
 #define SHIELD_BANG_COOLDOWN (3 SECONDS)
 
 /obj/item/rogueweapon/shield
@@ -15,7 +19,7 @@
 	throw_speed = 1
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
-	possible_item_intents = list(SHIELD_BASH, SHIELD_BLOCK)
+	possible_item_intents = list(SHIELD_BASH, SHIELD_BLOCK, SHIELD_SMASH)
 	block_chance = 0
 	sharpness = IS_BLUNT
 	wlength = WLENGTH_SHORT
@@ -49,8 +53,10 @@
 /obj/item/rogueweapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the projectile", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	var/mob/attacker
+	var/obj/item/I
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
-		var/obj/item/I = hitby
+		if(istype(hitby, /obj/item)) // can't trust mob -> item assignments
+			I = hitby
 		if(I?.thrownby)
 			attacker = I.thrownby
 	if(attack_type == PROJECTILE_ATTACK)
@@ -70,6 +76,7 @@
 	icon_state = "inbash"
 	hitsound = list('sound/combat/shieldbash_wood.ogg')
 	chargetime = 0
+	penfactor = BLUNT_DEFAULT_PENFACTOR
 	item_d_type = "blunt"
 
 /datum/intent/shield/bash/metal
@@ -86,6 +93,19 @@
 	item_d_type = "blunt"
 
 /datum/intent/shield/block/metal
+	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')
+
+/datum/intent/shield/smash
+	name = "smash"
+	blade_class = BCLASS_SMASH
+	attack_verb = list("smashes")
+	icon_state = "insmash"
+	hitsound = list('sound/combat/shieldbash_wood.ogg')
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	damfactor = 1.5
+	swingdelay = 10
+
+/datum/intent/shield/smash/metal
 	hitsound = list('sound/combat/parry/shield/metalshield (1).ogg')
 
 /obj/item/rogueweapon/shield/wood
@@ -184,6 +204,7 @@
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 3
+	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)
 	wlength = WLENGTH_NORMAL
 	resistance_flags = null
 	flags_1 = CONDUCT_1
@@ -204,6 +225,20 @@
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 	return ..()
 
+/obj/item/rogueweapon/shield/tower/metal/alloy
+	name = "decrepit shield"
+	desc = "A decrepit, worn out shield. Aeon's grasp is upon it."
+	max_integrity = 150
+	wdefense = 9
+	icon_state = "ancientsh"
+	smeltresult = /obj/item/ingot/aalloy
+
+/obj/item/rogueweapon/shield/tower/metal/palloy
+	name = "ancient shield"
+	desc = "A ancient, venerable shield. Aeon's grasp has been lifted from it."
+	icon_state = "ancientsh"
+	smeltresult = /obj/item/ingot/purifiedaalloy
+
 /obj/item/rogueweapon/shield/buckler
 	name = "buckler shield"
 	desc = "A sturdy buckler shield. Will block anything you can imagine."
@@ -213,15 +248,20 @@
 	throwforce = 10
 	dropshrink = 0.8
 	resistance_flags = null
+	possible_item_intents = list(SHIELD_BASH_METAL, SHIELD_BLOCK, SHIELD_SMASH_METAL)
 	wdefense = 9
 	coverage = 10
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	max_integrity = 300
 	blade_dulling = DULLING_BASH
-	associated_skill = 0
+	associated_skill = /datum/skill/combat/shields
 	grid_width = 32
 	grid_height = 64
+
+/obj/item/rogueweapon/shield/buckler/examine(mob/living/user)
+	. = ..()
+	. += "Buckler uses the skill of your active weapon to parry. Otherwise it uses your shields skill."
 
 /obj/item/rogueweapon/shield/buckler/proc/bucklerskill(mob/living/user)
 	if(!ishuman(user))
@@ -233,11 +273,11 @@
 		if(mainhand.can_parry)
 			weapon_parry = TRUE
 	if(istype(mainhand, /obj/item/rogueweapon/shield/buckler))
-		associated_skill = 0
+		associated_skill = /datum/skill/combat/shields
 	if(weapon_parry && mainhand.associated_skill)
 		associated_skill = mainhand.associated_skill
 	else
-		associated_skill = 0
+		associated_skill = /datum/skill/combat/shields
 
 /obj/item/rogueweapon/shield/buckler/getonmobprop(tag)
 	. = ..()

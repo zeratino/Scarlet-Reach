@@ -168,6 +168,23 @@
 	smeltresult = /obj/item/ingot/iron
 	sellprice = 25
 
+/obj/item/ingot/iron/Initialize(mapload, smelt_quality)
+	. = ..()
+	var/static/list/slapcraft_recipe_list = list(
+		/datum/crafting_recipe/roguetown/structure/plough,
+		/datum/crafting_recipe/roguetown/survival/peasantry/thresher,
+		/datum/crafting_recipe/roguetown/survival/peasantry/shovel,
+		/datum/crafting_recipe/roguetown/survival/peasantry/hoe,
+		/datum/crafting_recipe/roguetown/survival/peasantry/pitchfork,
+		/datum/crafting_recipe/roguetown/survival/quarterstaff_iron,
+		/datum/crafting_recipe/roguetown/survival/mantrap,
+		)
+
+	AddElement(
+		/datum/element/slapcrafting,\
+		slapcraft_recipes = slapcraft_recipe_list,\
+		)
+
 /obj/item/ingot/copper
 	name = "copper bar"
 	desc = "This bar causes a gentle tingling sensation when touched."
@@ -224,3 +241,26 @@
 	icon_state = "ingotsilvblessed"
 	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
 	sellprice = 100
+
+/obj/item/ingot/aalloy
+	name = "ancient alloy"
+	desc = "An old, decrepit slab of metal. Aeon has withered it's strength."
+	icon_state = "ingotancient"
+	smeltresult = /obj/item/ingot/aalloy
+	sellprice = 5
+
+
+/obj/item/ingot/purifiedaalloy
+	name = "purified ancient alloy"
+	desc = "An old slab of metal, sparked to life by Malum's craft."
+	icon_state = "ingotancient"
+	smeltresult = /obj/item/ingot/aaslag
+	sellprice = 100
+
+
+/obj/item/ingot/aaslag
+	name = "ancient slag"
+	desc = "What was once great, cannot be maintained forever."
+	icon_state = "ancientslag"
+	smeltresult = /obj/item/ingot/aaslag
+	sellprice = 0

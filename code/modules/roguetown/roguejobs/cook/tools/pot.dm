@@ -14,6 +14,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	reagent_flags = OPENCONTAINER
 	throwforce = 10
+	dropshrink = 1 // Override for bucket
 	volume = 198
 
 /obj/item/reagent_containers/glass/bucket/pot/update_icon()
@@ -39,6 +40,12 @@
 		if(do_after(user,2 SECONDS, target = src))
 			reagents.trans_to(I, reagents.total_volume)
 	return TRUE
+
+/obj/item/reagent_containers/glass/bucket/pot/aalloy
+	name = "decrepit pot"
+	desc = "A decrepit old pot. Aeon's grasp is upon it."
+	icon_state = "apote"
+	volume = 99
 
 /obj/item/reagent_containers/glass/bucket/pot/stone
 	name = "stone pot"

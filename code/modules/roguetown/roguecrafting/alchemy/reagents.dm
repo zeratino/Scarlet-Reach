@@ -209,6 +209,7 @@
 		if(istype(R, /datum/reagent/buff) && R != src)
 			holder.remove_reagent(R.type, 10)
 			// Rapidly purge stacking buffs
+	..()
 
 /datum/reagent/buff/strength
 	name = "Strength"
@@ -251,7 +252,7 @@
 /datum/reagent/buff/endurance
 	name = "Endurance"
 	color = "#ffff00"
-	taste_description = "goat urine"
+	taste_description = "oversweetened milk"
 
 /datum/reagent/buff/endurance/on_mob_life(mob/living/carbon/M)
 	M.apply_status_effect(/datum/status_effect/buff/alch/endurancepot)
@@ -269,7 +270,7 @@
 /datum/reagent/buff/fortune
 	name = "Fortune"
 	color = "#ffff00"
-	taste_description = "pig urine"
+	taste_description = "sour lemons"
 	metabolization_rate = REAGENTS_METABOLISM * 0.05
 
 /datum/reagent/buff/fortune/on_mob_life(mob/living/carbon/M)

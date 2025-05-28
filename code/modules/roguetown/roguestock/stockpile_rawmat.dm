@@ -8,6 +8,7 @@
 	transport_fee = 3
 	export_price = 5
 	importexport_amt = 10
+	stockpile_limit = 50
 	passive_generation = 5
 
 /datum/roguestock/stockpile/coal
@@ -20,7 +21,21 @@
 	transport_fee = 4
 	export_price = 6
 	importexport_amt = 10
+	stockpile_limit = 50
 	passive_generation = 2
+
+/datum/roguestock/stockpile/stone
+	name = "Stone"
+	desc = "Stones. Used for construction"
+	item_type = /obj/item/natural/stone
+	held_items = list(10, 0)
+	payout_price = 0
+	withdraw_price = 1
+	transport_fee = 0
+	export_price = 1
+	importexport_amt = 10
+	stockpile_limit = 0
+	passive_generation = 10 // Free rocks!!
 
 /datum/roguestock/stockpile/glass
 	name = "Glass Batch"	//'Raw' glass
@@ -32,6 +47,7 @@
 	transport_fee = 5
 	export_price = 5
 	importexport_amt = 10
+	stockpile_limit = 20
 	passive_generation = 3
 
 /datum/roguestock/stockpile/iron
@@ -44,6 +60,7 @@
 	transport_fee = 6
 	export_price = 8
 	importexport_amt = 10
+	stockpile_limit = 50
 	passive_generation = 2
 
 /datum/roguestock/stockpile/copper
@@ -56,6 +73,7 @@
 	transport_fee = 3
 	export_price = 5
 	importexport_amt = 10
+	stockpile_limit = 30
 	passive_generation = 2
 
 /datum/roguestock/stockpile/tin
@@ -68,6 +86,7 @@
 	transport_fee = 4
 	export_price = 5
 	importexport_amt = 10
+	stockpile_limit = 30
 	passive_generation = 2
 
 /datum/roguestock/stockpile/gold
@@ -79,6 +98,7 @@
 	withdraw_price = 75
 	transport_fee = 10
 	export_price = 75
+	stockpile_limit = 20
 	importexport_amt = 10
 
 /datum/roguestock/stockpile/silver
@@ -90,6 +110,7 @@
 	withdraw_price = 100
 	transport_fee = 10
 	export_price = 100
+	stockpile_limit = 20
 	importexport_amt = 10
 
 /datum/roguestock/stockpile/cloth
@@ -98,10 +119,11 @@
 	item_type = /obj/item/natural/cloth
 	held_items = list(0, 2)
 	payout_price = 3
-	withdraw_price = 5
+	withdraw_price = 3
 	transport_fee = 2
 	export_price = 5
 	importexport_amt = 10
+	stockpile_limit = 60
 	passive_generation = 2
 
 /datum/roguestock/stockpile/fibers
@@ -110,10 +132,11 @@
 	item_type = /obj/item/natural/fibers
 	held_items = list(0, 2)
 	payout_price = 1
-	withdraw_price = 3
+	withdraw_price = 1
 	transport_fee = 1
 	export_price = 3
 	importexport_amt = 10
+	stockpile_limit = 60
 	passive_generation = 4
 
 /datum/roguestock/stockpile/silk
@@ -122,10 +145,11 @@
 	item_type = /obj/item/natural/silk
 	held_items = list(0, 2)
 	payout_price = 2
-	withdraw_price = 3
+	withdraw_price = 2
 	transport_fee = 1
 	export_price = 4
 	importexport_amt = 10
+	stockpile_limit = 20
 	passive_generation = 1
 
 //natural/hide/cured must be defined/populated in sstreasury before natural/hide, for istype stockpile check to work
@@ -135,10 +159,11 @@
 	item_type = /obj/item/natural/hide/cured
 	held_items = list(2, 0)
 	payout_price = 3
-	withdraw_price = 7
+	withdraw_price = 3
 	transport_fee = 3
 	export_price = 7
 	importexport_amt = 10
+	stockpile_limit = 40
 	passive_generation = 3
 
 /datum/roguestock/stockpile/hide
@@ -147,10 +172,11 @@
 	item_type = /obj/item/natural/hide
 	held_items = list(0, 0)
 	payout_price = 8
-	withdraw_price = 12
+	withdraw_price = 8
 	transport_fee = 2
 	export_price = 12
 	importexport_amt = 5
+	stockpile_limit = 25
 	passive_generation = 2
 
 /datum/roguestock/stockpile/fur
@@ -159,8 +185,9 @@
 	item_type = /obj/item/natural/fur
 	held_items = list(0, 0)
 	payout_price = 10
-	withdraw_price = 15
+	withdraw_price = 10
 	transport_fee = 4
 	export_price = 15
 	importexport_amt = 5
+	stockpile_limit = 15
 	passive_generation = 1

@@ -39,6 +39,20 @@
 		else
 			return FALSE
 
+/obj/item/quiver/attack_self(mob/living/user)
+	..()
+
+	if (!arrows.len)
+		return
+	to_chat(user, span_warning("I begin to take out the arrows from [src], one by one..."))
+	for(var/obj/item/ammo_casing/caseless/rogue/arrow in arrows)
+		if(!do_after(user, 0.5 SECONDS))
+			return
+		arrow.forceMove(user.loc)
+		arrows -= arrow
+
+	update_icon()
+
 /obj/item/quiver/attackby(obj/A, loc, params)
 	if(A.type in subtypesof(/obj/item/ammo_casing/caseless/rogue))
 		if(A.type in subtypesof(/obj/item/ammo_casing/caseless/rogue/javelin))
@@ -128,13 +142,18 @@
 		arrows += A
 	update_icon()
 
+/obj/item/quiver/bodkin/Initialize()
+	. = ..()
+	for(var/i in 1 to max_storage)
+		var/obj/projectile/bullet/reusable/arrow/steel/A = new()
+		arrows += A
+	update_icon()
 
 /obj/item/quiver/javelin
 	name = "javelinbag"
 	desc = ""
 	icon_state = "javelinbag0"
 	item_state = "javelinbag"
-	slot_flags = ITEM_SLOT_BACK
 	max_storage = 4
 
 /obj/item/quiver/javelin/attack_turf(turf/T, mob/living/user)

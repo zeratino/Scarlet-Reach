@@ -23,6 +23,17 @@
 	max_integrity = 10
 	force = 10
 
+/obj/item/ammo_casing/caseless/rogue/bolt/aalloy
+	name = "decrepit bolt"
+	desc = "a decrepit old bolt, the head is nearly in shambles. Aeon's grasp is upon it."
+	icon_state = "ancientbolt"
+	projectile_type = /obj/projectile/bullet/reusable/bolt/aalloy
+
+/obj/item/ammo_casing/caseless/rogue/bolt/paalloy
+	name = "ancient bolt"
+	desc = "A ancient bolt. Aeon's grasp has been lifted from its form."
+	icon_state = "ancientbolt"
+
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
 	damage = 70
@@ -38,6 +49,10 @@
 	flag = "piercing"
 	speed = 0.5
 	npc_damage_mult = 2
+
+/obj/projectile/bullet/reusable/bolt/aalloy
+	damage = 40
+	armor_penetration = 30
 
 /obj/projectile/bullet/reusable/bolt/on_hit(atom/target)
 	. = ..()
@@ -88,12 +103,23 @@
 	shooters will."
 	projectile_type = /obj/projectile/bullet/reusable/arrow/iron
 
+/obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy 
+	name = "decrepit broadhead arrow"
+	desc = "A decrepit old arrow. Seems unlikely to penetrate anything."
+	icon_state = "ancientarrow"
+	projectile_type = /obj/projectile/bullet/reusable/arrow/iron/aalloy
+
 /obj/item/ammo_casing/caseless/rogue/arrow/steel
 	name = "steel bodkin arrow"
 	icon_state = "steelarrow"
 	desc = "Bundles of steam straightened dowels are notched at one end and fastened \
 	to steel-heads on another. Crafted for more well-prepared targets."
 	projectile_type = /obj/projectile/bullet/reusable/arrow/steel
+
+/obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
+	name = "ancient bodkin arrow"
+	desc = "a bodkin formed of ancient metals. Aeon's grasp lifted from its form."
+	icon_state = "ancientarrow"
 
 /obj/projectile/bullet/reusable/arrow
 	name = "arrow"
@@ -142,6 +168,12 @@
 	embedchance = 30
 	npc_damage_mult = 2
 
+/obj/projectile/bullet/reusable/arrow/iron/aalloy
+	name = "decrepit broadhead arrow"
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy
+	damage = 20
+	armor_penetration = 0
+
 /obj/projectile/bullet/reusable/arrow/steel
 	name = "bodkin arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/steel
@@ -175,29 +207,22 @@
 
 /obj/projectile/bullet/reusable/arrow/poison
 	name = "poison iron arrow"
-	damage = 20				//You deal a bunch of posion damage as it is, regardless of armor protection.
+	damage = 20	
 	damage_type = BRUTE
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "arrow_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron
 	range = 15
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
-	poisontype = /datum/reagent/berrypoison //Support for future variations of poison for arrow-crafting
-	poisonfeel = "burning" //Ditto
-	poisonamount = 5 //Support and balance for bodkins, which will hold less poison due to how
+	poisontype = /datum/reagent/stampoison
+	poisonamount = 2
+	slur = 10
+	eyeblur = 10
+	drowsy = 5
 
 /obj/projectile/bullet/reusable/arrow/poison/stone
 	name = "poison stone arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/stone
-
-/obj/projectile/bullet/reusable/arrow/poison/on_hit(atom/target, blocked = FALSE)
-	..()
-	if(!istype(target, /mob/living/simple_animal)) //On-hit for carbon mobs has been moved to projectile act in living_defense.dm, to ensure poison is not applied if armor prevents damage.
-		return
-	var/mob/living/simple_animal/M = target
-	M.show_message(span_danger("You feel an intense burning sensation spreading swiftly from the puncture!")) //In case a player is in control of the mob.
-	addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, adjustToxLoss), 100), 10 SECONDS)
-	addtimer(CALLBACK(M, TYPE_PROC_REF(/atom, visible_message), span_danger("[M] appears greatly weakened by the poison!")), 10 SECONDS)
 
 
 // PYRO AMMO
@@ -358,6 +383,7 @@
 	var/turf/T = get_turf(target)
 	for(var/obj/O in T)
 		O.extinguish()
+
 /obj/projectile/bullet/reusable/arrow/poison/stone
 	name = "stone arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/stone
@@ -506,6 +532,14 @@
 	heavy_metal = FALSE						//Stops spin animation, maybe.
 	thrown_damage_flag = "piercing"			//Checks peircing protection.
 
+/obj/item/ammo_casing/caseless/rogue/javelin/aalloy
+	name = "decrepit javelin"
+	desc = "A decrepit old javelin, surely used centuries ago. Aeon's grasp is upon its form."
+	icon_state = "ajavelin"
+	smeltresult = /obj/item/ingot/aalloy
+	throwforce = 20
+	force = 9
+
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
 	force = 16
 	armor_penetration = 50
@@ -517,6 +551,12 @@
 	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 45, "embedded_fall_chance" = 10) //Better than steel throwing knife by 10%
 	smeltresult = /obj/item/ingot/steel
+
+/obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
+	name = "ancient javelin"
+	desc = "A javelin made of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "ajavelin"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/ammo_casing/caseless/rogue/javelin/silver
 	name = "silver javelin"
@@ -589,6 +629,20 @@
 	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/stone
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "stone_sling_bullet"
+
+/obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
+	name = "decrepit sling bullet"
+	desc = "A decrepit ball of withered metal."
+	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/aalloy
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "ancient_sling_bullet"
+
+/obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy
+	name = "ancient sling bullet"
+	desc = "A ancient ball of re-awakened metal."
+	projectile_type = /obj/projectile/bullet/reusable/sling_bullet/paalloy
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "ancient_sling_bullet"
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/iron
 	name = "iron sling bullet"
@@ -668,6 +722,22 @@
 	icon = 'icons/roguetown/weapons/ammo.dmi'
 	icon_state = "musketball_proj"
 	
+/obj/projectile/bullet/reusable/sling_bullet/aalloy
+	name = "decrepit sling bullet"
+	damage = 15 
+	armor_penetration = 0
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/aalloy
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "musketball_proj"
+
+/obj/projectile/bullet/reusable/sling_bullet/paalloy
+	name = "ancient sling bullet"
+	damage = 30
+	armor_penetration = 30
+	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet/paalloy
+	icon = 'icons/roguetown/weapons/ammo.dmi'
+	icon_state = "musketball_proj"
+
 /obj/projectile/bullet/reusable/sling_bullet/iron
 	name = "iron sling bullet"
 	damage = 30

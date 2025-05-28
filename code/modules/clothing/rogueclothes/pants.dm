@@ -43,7 +43,7 @@
 
 /obj/item/clothing/under/roguetown/tights
 	name = "tights"
-	desc = "A pair of form fitting tights."
+	desc = "A pair of form-fitting tights."
 	gender = PLURAL
 	icon_state = "tights"
 	item_state = "tights"
@@ -213,7 +213,7 @@
 
 /obj/item/clothing/under/roguetown/trou/artipants
 	name = "tinker trousers"
-	desc = "Thick leather trousers to protect from sparks or stray gear projectiles. Judging by the wear, its had plenty of use."
+	desc = "Thick leather trousers designed to protect the wearer from sparks or stray gear projectiles. Judging by the scouring, its had plenty of use."
 	icon_state = "artipants"
 	item_state = "artipants"
 
@@ -348,6 +348,19 @@
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP)
 
+/obj/item/clothing/under/roguetown/platelegs/aalloy
+	name = "decrepit plate chausses"
+	desc = "Decrepit, old plate chausses. Aeon's grasp is upon them."
+	icon_state = "ancientplate_legs"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 150
+
+/obj/item/clothing/under/roguetown/platelegs/paalloy
+	name = "ancient plate chausses"
+	desc = "Plate chausses formed out of ancient alloys. Aeon's grasp lifted from them."
+	icon_state = "ancientplate_legs"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/clothing/under/roguetown/platelegs/matthios
 	max_integrity = 600
 	name = "gilded leggings"
@@ -427,7 +440,20 @@
 	icon_state = "chainkilt"
 	item_state = "chainkilt"
 
-/obj/item/clothing/under/roguetown/chainlegs/iron/kilt/
+/obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
+	name = "decrepit chain kilt"
+	desc = "A decrepit old kilt. Aeon's grasp is upon it."
+	icon_state = "achainkilt"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 125
+
+/obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	name = "ancient chain kilt"
+	desc = "A kilt formed out of ancient alloys. Aeon's grasp lifted from it."
+	icon_state = "achainkilt"
+	smeltresult = /obj/item/ingot/aaslag
+
+/obj/item/clothing/under/roguetown/chainlegs/iron/kilt
 	name = "iron chain kilt"
 	desc = "Interlinked metal rings that drape down all the way to the ankles."
 	icon_state = "ichainkilt"

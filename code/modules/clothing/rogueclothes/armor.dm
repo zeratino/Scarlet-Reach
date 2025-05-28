@@ -610,6 +610,19 @@
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle)
 
+/obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
+	name = "decrepit chainmail"
+	desc = "Decrepit old chainmail. Aeon's grasp is upon it."
+	icon_state = "ancientchain"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 50
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	name = "ancient chainmail"
+	desc = "Chainmail formed of ancient alloys. Aeon's grasp has been lifted from it."
+	icon_state = "ancientchain"
+	smeltresult = /obj/item/ingot/aaslag
+
 /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	icon_state = "ichainmail"
 	name = "chainmaille"
@@ -628,6 +641,19 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
+	name = "decrepit hauberk"
+	desc = "A hauberk worn out by time. Aeon's grasp is upon it."
+	icon_state = "ancienthauberk"
+	max_integrity = 50
+	smeltresult = /obj/item/ingot/aalloy
+
+/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
+	name = "ancient hauberk"
+	desc = "A hauberk formed out of ancient alloys. Aeon's grasp is upon it."
+	icon_state = "ancienthauberk"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate
 	slot_flags = ITEM_SLOT_ARMOR
@@ -681,10 +707,24 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
+/obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
+	name = "decrepit cuirass"
+	desc = "A withered cuirass. Aeon's grasp is upon its form."
+	icon_state = "ancientcuirass"
+	smeltresult = /obj/item/ingot/aalloy
+	max_integrity = 150
+
+/obj/item/clothing/suit/roguetown/armor/plate/half/paalloy
+	name = "ancient cuirass"
+	desc = "A cuirass of ancient alloys. Aeon's grasp lifted from its form."
+	icon_state = "ancientcuirass"
+	smeltresult = /obj/item/ingot/aaslag
+
+
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
 	icon_state = "flutedcuirass"
-	desc = "A sturdily made steel cuirass with tassets. Made to sustain, supposedly; though maybe not crossbow bolts."
+	desc = "A sturdy steel cuirass with tassets. Supposedly protective, though maybe not against crossbow bolts."
 
 	body_parts_covered = CHEST | VITALS | LEGS
 	max_integrity = 350
@@ -741,7 +781,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "steel half-plate"
-	desc = "\'Adventurer-fit\' plate armor with pauldrons. Not going to stop any daggers or bolts getting into the small gaps, recommended to layer with a gambeson."
+	desc = "\'Adventurer-fit\' plate armor with pauldrons. The poor fitting leaves many small gaps for daggers and bolts to pierce something vital, so a gambeson is recommended."
 	body_parts_covered = CHEST|GROIN|VITALS
 	icon_state = "halfplate"
 	item_state = "halfplate"
@@ -760,6 +800,22 @@
 /obj/item/clothing/suit/roguetown/armor/plate/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP)
+
+/obj/item/clothing/suit/roguetown/armor/plate/aalloy
+	name = "decrepit half-plate"
+	desc = "Worn out and decrepit halfplate. Aeon's grasp is upon it."
+	icon_state = "ancientplate"
+	item_state = "ancientplate"
+	max_integrity = 150
+	smeltresult = /obj/item/ingot/aalloy
+
+
+/obj/item/clothing/suit/roguetown/armor/plate/paalloy
+	name = "ancient half-plate"
+	desc = "Plate formed out of ancient alloys. Aeon's grasp has been lifted from it."
+	icon_state = "ancientplate"
+	item_state = "ancientplate"
+	smeltresult = /obj/item/ingot/aaslag
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted
 	name = "fluted half-plate"
@@ -973,7 +1029,7 @@
 /obj/item/clothing/suit/roguetown/armor/brigandine
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "brigandine"
-	desc = "Composite armour made according to an Etruscan tradition. It's a high-quality arched plate cuirass sewn into dyed leather fitted with a wide skirt at the bottom, to cover the knight's groin."
+	desc = "Composite armour made according to an Etruscan tradition. It's a high-quality arched plate cuirass sewn with dyed leather and fitted with a wide skirt at the bottom to cover the groin."
 	icon_state = "brigandine"
 	blocksound = SOFTHIT
 	body_parts_covered = CHEST|GROIN|VITALS|ARMS
@@ -1039,13 +1095,11 @@
 /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "coat of plates"
-	desc = "A leather coat with plates attached to it to increase protection while retaining mobility. The leather below might catch a dagger picking at it."
+	desc = "A leather coat with plates attached to increase protection while retaining mobility. The leather below might stop a dagger."
 	icon_state = "coat_of_plates"
 	blocksound = PLATEHIT
 	body_parts_covered = CHEST|GROIN|VITALS|ARMS
-	armor = list("blunt" = 10, "slash" = 100, "stab" = 80, "piercing" = 30, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
-	max_integrity = 300
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_HEAVY
@@ -1053,7 +1107,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat
 	name = "coat of the commander"
-	desc = "A thick boiled leather surcoat with plates concealed in it's many great folds. It weighs a ton and takes a great man to wear."
+	desc = "A thick boiled leather surcoat with enough plates concealed within the folds to offer superior protection. It weighs a ton and takes a great man to wear."
 	icon_state = "leathercoat"
 	item_state = "leathercoat"
 	var/picked = FALSE
@@ -1100,7 +1154,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "inquisitorial duster"
-	desc = "Metal plates reinforce this heavy coat, only the finest for the inquisition."
+	desc = "Metal plates reinforce this heavy coat; only the finest for the inquisition."
 	body_parts_covered = CHEST|VITALS|GROIN|LEGS|ARMS
 	allowed_sex = list(MALE, FEMALE)
 	icon_state = "inqcoat"
@@ -1121,7 +1175,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate
 	name = "blacksteel plate armor"
-	desc = "A suit of Full Plate smithed of durable blacksteel. With an internally layered gambeson, the piercing and blunt protection is unmatched among its heavy-plated peers."
+	desc = "A suit of Full Plate smithed from durable blacksteel. With an internally layered gambeson, the piercing and blunt protection is unmatched among its heavy-plated peers."
 	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
