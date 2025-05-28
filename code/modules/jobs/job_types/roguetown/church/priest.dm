@@ -27,7 +27,7 @@
 
 /datum/outfit/job/roguetown/priest
 	job_bitflag = BITFLAG_CHURCH
-	//allowed_patrons = list(/datum/patron/divine/astrata)	- This honestly isn't needed anymore cus revival is inherant on the role + lore stuff. Test run it.
+	allowed_patrons = list(/datum/patron/divine/astrata)	//We lock this cus head of church, acktully
 
 /datum/outfit/job/roguetown/priest/pre_equip(mob/living/carbon/human/H)
 	..()
