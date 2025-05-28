@@ -2100,6 +2100,7 @@
 #include "modular\code\modules\maturity-prompt\code\maturity_prompt.dm"
 #include "modular\code\modules\maturity-prompt\code\maturity_subsystem.dm"
 #include "modular\Creechers\code\trufflepig.dm"
+#include "code\modules\mob\living\simple_animal\rogue\farm\hog.dm"
 #include "modular\Mapping\icons\Mapping_aides.dm"
 #include "modular\Neu_Farming\code\eggs.dm"
 #include "modular\Neu_Food\cooking_helpers.dm"
