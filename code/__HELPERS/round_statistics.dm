@@ -2,9 +2,10 @@
 #define STATS_ALIVE_NORTHERN_HUMANS "alive_northern_humans"
 #define STATS_ALIVE_DWARVES "alive_dwarves"
 #define STATS_ALIVE_DARK_ELVES "alive_dark_elves"
-#define STATS_ALIVE_SNOW_ELVES "alive_snow_elves"
+#define STATS_ALIVE_WOOD_ELVES "alive_wood_elves"
 #define STATS_ALIVE_HALF_ELVES "alive_half_elves"
 #define STATS_ALIVE_HALF_ORCS "alive_half_orcs"
+#define STATS_ALIVE_GOBLINS "alive_goblins"
 #define STATS_ALIVE_KOBOLDS "alive_kobolds"
 #define STATS_ALIVE_LIZARDS "alive_lizards"
 #define STATS_ALIVE_AASIMAR "alive_aasimar"
@@ -54,6 +55,7 @@
 
 //Psydon
 #define STATS_HUMEN_DEATHS "humen_deaths"
+#define STATS_PSYCROSS_USERS "people_wearing_psycross"
 #define STATS_LUX_HARVESTED "lux_harvested"
 
 //Astratan
@@ -204,6 +206,7 @@ GLOBAL_LIST_INIT(azure_round_stats, list(
 	STATS_ALIVE_SNOW_ELVES = 0,
 	STATS_ALIVE_HALF_ELVES = 0,
 	STATS_ALIVE_HALF_ORCS = 0,
+	STATS_ALIVE_GOBLINS = 0,
 	STATS_ALIVE_KOBOLDS = 0,
 	STATS_ALIVE_LIZARDS = 0,
 	STATS_ALIVE_AASIMAR = 0,
@@ -245,9 +248,10 @@ GLOBAL_LIST_INIT(azure_round_stats, list(
 	STATS_ALIVE_TRADESMEN = 0,
 	STATS_LUX_REVIVALS = 0,
 	STATS_PLEASURES = 0,
-	STATS_SKILLS_DREAMED = 0))
+	STATS_SKILLS_DREAMED = 0,
+))
 
-	GLOBAL_LIST_EMPTY(patron_follower_counts)
+GLOBAL_LIST_EMPTY(patron_follower_counts)
 
 // Featured stats of the round
 #define FEATURED_STATS_TREE_FELLERS "tree_fellers"
@@ -374,11 +378,11 @@ GLOBAL_LIST_INIT(featured_stats, list(
 	var/list/stat_data = GLOB.featured_stats[stat_category]
 	var/job_title = ""
 
-	if(user.mind?.assigned_role && !is_unassigned_job(user.mind.assigned_role))
-		if(user.gender == FEMALE && user.mind.assigned_role.f_title)
-			job_title = " ([user.mind.assigned_role.f_title])"
+	if(user.mind?.assigned_role)
+		if(user.gender == FEMALE && user.mind.assigned_role)
+			job_title = " ([user.mind.assigned_role])"
 		else
-			job_title = " ([user.mind.assigned_role.title])"
+			job_title = " ([user.mind.assigned_role])"
 	else if(user.mind?.special_role)
 		job_title = " ([user.mind.special_role])"
 	else if(user.job)

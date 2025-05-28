@@ -346,7 +346,7 @@ GLOBAL_LIST_INIT(laws_of_the_land, initialize_laws_of_the_land())
 	var/law_text = GLOB.laws_of_the_land[law_index]
 	GLOB.laws_of_the_land -= law_text
 	priority_announce("[law_index]. [law_text]", "A LAW IS ABOLISHED", pick('sound/misc/new_law.ogg', 'sound/misc/new_law2.ogg'), "Captain")
-	GLOB.azure_round_stats[STATS_LAWS_MADE]--
+	GLOB.azure_round_stats[STATS_LAWS_AND_DECREES_MADE]--
 
 /proc/purge_laws()
 	GLOB.laws_of_the_land = list()

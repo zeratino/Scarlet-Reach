@@ -60,7 +60,7 @@
 		var/obj/stairs = new /obj/structure/stairs(partner)
 		stairs.dir = dirin
 
-/obj/structure/stairs/d/OnCrafted(dirin)
+/obj/structure/stairs/d/OnCrafted(dirin, mob/user)
 	dir = turn(dirin, 180)
 	var/turf/partner = get_step_multiz(get_turf(src), DOWN)
 	partner = get_step(partner, dirin)
@@ -69,7 +69,7 @@
 		stairs.dir = turn(dirin, 180)
 	record_featured_stat(FEATURED_STATS_CRAFTERS, user)
 
-/obj/structure/stairs/stone/d/OnCrafted(dirin)
+/obj/structure/stairs/stone/d/OnCrafted(dirin, mob/user)
 	dir = turn(dirin, 180)
 	var/turf/partner = get_step_multiz(get_turf(src), DOWN)
 	partner = get_step(partner, dirin)

@@ -70,6 +70,7 @@
 	. = ..()
 	if(!ishuman(usr))
 		return
+	var/mob/living/carbon/human/human_mob = usr
 	if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 		return
 	if(href_list["buy"])

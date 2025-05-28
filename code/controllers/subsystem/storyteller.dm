@@ -1119,9 +1119,10 @@ SUBSYSTEM_DEF(gamemode)
 	GLOB.azure_round_stats[STATS_ALIVE_NORTHERN_HUMANS] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_DWARVES] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_DARK_ELVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_SNOW_ELVES] = 0
+	GLOB.azure_round_stats[STATS_ALIVE_WOOD_ELVES] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_HALF_ELVES] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_HALF_ORCS] = 0
+	GLOB.azure_round_stats[STATS_ALIVE_GOBLINS] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_KOBOLDS] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_LIZARDS] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_AASIMAR] = 0
@@ -1162,7 +1163,7 @@ SUBSYSTEM_DEF(gamemode)
 			var/mob/living/carbon/human/human_mob = client.mob
 			GLOB.azure_round_stats[STATS_TOTAL_POPULATION]++
 			for(var/obj/item/clothing/neck/current_item in human_mob.get_equipped_items(TRUE))
-				if(current_item.type in list(/obj/item/clothing/neck/psicross, /obj/item/clothing/neck/psicross/silver, /obj/item/clothing/neck/psicross/g))
+				if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
 					GLOB.azure_round_stats[STATS_PSYCROSS_USERS]++
 					break
 			switch(human_mob.gender)
@@ -1181,11 +1182,11 @@ SUBSYSTEM_DEF(gamemode)
 					GLOB.azure_round_stats[STATS_ELDERLY_POPULATION]++
 			if(human_mob.is_noble())
 				GLOB.azure_round_stats[STATS_ALIVE_NOBLES]++
-			if(human_mob.mind.assigned_role.title in GLOB.garrison_positions)
+			if(human_mob.mind.assigned_role in GLOB.garrison_positions)
 				GLOB.azure_round_stats[STATS_ALIVE_GARRISON]++
-			if(human_mob.mind.assigned_role.title in GLOB.church_positions)
+			if(human_mob.mind.assigned_role in GLOB.church_positions)
 				GLOB.azure_round_stats[STATS_ALIVE_CLERGY]++
-			if((human_mob.mind.assigned_role.title in GLOB.serf_positions) || (human_mob.mind.assigned_role.title in GLOB.peasant_positions) || (human_mob.mind.assigned_role.title in GLOB.mercenary_positions))
+			if((human_mob.mind.assigned_role in GLOB.yeoman_positions) || (human_mob.mind.assigned_role in GLOB.peasant_positions) || (human_mob.mind.assigned_role in GLOB.mercenary_positions))
 				GLOB.azure_round_stats[STATS_ALIVE_TRADESMEN]++
 			if(human_mob.has_flaw(/datum/charflaw/clingy))
 				GLOB.azure_round_stats[STATS_CLINGY_PEOPLE]++
@@ -1203,12 +1204,14 @@ SUBSYSTEM_DEF(gamemode)
 				GLOB.azure_round_stats[STATS_ALIVE_DWARVES]++
 			if(isdarkelf(human_mob))
 				GLOB.azure_round_stats[STATS_ALIVE_DARK_ELVES]++
-			if(issnowelf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_SNOW_ELVES]++
+			if(iswoodelf(human_mob))
+				GLOB.azure_round_stats[STATS_ALIVE_WOOD_ELVES]++
 			if(ishalfelf(human_mob))
 				GLOB.azure_round_stats[STATS_ALIVE_HALF_ELVES]++
 			if(ishalforc(human_mob))
 				GLOB.azure_round_stats[STATS_ALIVE_HALF_ORCS]++
+			if(isgoblinp(human_mob))
+				GLOB.azure_round_stats[STATS_ALIVE_GOBLINS]++
 			if(iskobold(human_mob))
 				GLOB.azure_round_stats[STATS_ALIVE_KOBOLDS]++
 			if(islizard(human_mob))

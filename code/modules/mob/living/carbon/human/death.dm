@@ -67,7 +67,7 @@
 		if(ishumannorthern(src))
 			GLOB.azure_round_stats[STATS_HUMEN_DEATHS]++
 		if(mind)
-			if(mind.assigned_role.title in GLOB.church_positions)
+			if(mind.assigned_role in GLOB.church_positions)
 				GLOB.azure_round_stats[STATS_CLERGY_DEATHS]++
 			if(mind.has_antag_datum(/datum/antagonist/vampire))
 				GLOB.azure_round_stats[STATS_VAMPIRES_KILLED]++

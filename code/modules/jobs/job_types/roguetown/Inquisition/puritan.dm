@@ -279,4 +279,3 @@
 		say(pick(confessions), spans = list("torture"))
 		return
 	say(pick(innocent_lines), spans = list("torture"))
-	H.add_stress(/datum/stressevent/tortured)
