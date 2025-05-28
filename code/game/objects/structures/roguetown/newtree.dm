@@ -68,7 +68,6 @@
 	if(!istype(NT, /turf/open/transparent/openspace) && !(locate(/obj/structure/flora/roguetree/stump) in NT))//if i don't add the stump check it spawns however many zlevels it goes up because of src recursion
 		new /obj/structure/flora/roguetree/stump(NT)
 	playsound(src, 'sound/misc/treefall.ogg', 100, FALSE)
-	GLOB.azure_round_stats[STATS_TREES_CUT]++
 	. = ..()
 
 /obj/structure/flora/newtree/attack_hand(mob/user)
@@ -110,6 +109,14 @@
 			playsound(user, 'sound/foley/climb.ogg', 100, TRUE)
 			if(L.mind) // idk just following whats going on above
 				L.mind.add_sleep_experience(/datum/skill/misc/climbing, exp_to_gain, FALSE)
+
+/obj/structure/flora/newtree/attacked_by(obj/item/I, mob/living/user)
+	var/was_destroyed = obj_destroyed
+	. = ..()
+	if(.)
+		if(!was_destroyed && obj_destroyed)
+			record_featured_stat(FEATURED_STATS_TREE_FELLERS, user)
+			GLOB.azure_round_stats[STATS_TREES_CUT]++
 
 /obj/structure/flora/newtree/update_icon()
 	icon_state = ""

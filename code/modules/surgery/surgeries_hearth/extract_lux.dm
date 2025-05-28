@@ -46,5 +46,7 @@
 			"[user] extracts lux from [target]'s innards.",
 			"[user] extracts lux from [target]'s innards.")
 		new /obj/item/reagent_containers/lux(target.loc)
+		record_featured_stat(FEATURED_STATS_CRIMINALS, user)
+		GLOB.azure_round_stats[STATS_LUX_HARVESTED]++
 		target.apply_status_effect(/datum/status_effect/debuff/devitalised)
 	return TRUE

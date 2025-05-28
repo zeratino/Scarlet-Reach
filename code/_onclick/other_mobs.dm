@@ -453,6 +453,8 @@
 									V.log_message("has had \the [picked] stolen by [key_name(U)]", LOG_ATTACK, color="white")
 									U.log_message("has stolen \the [picked] from [key_name(V)]", LOG_ATTACK, color="white")
 									if(V.client && V.stat != DEAD)
+										record_featured_stat(FEATURED_STATS_THIEVES, U)
+										record_featured_stat(FEATURED_STATS_CRIMINALS, U)
 										GLOB.azure_round_stats[STATS_ITEMS_PICKPOCKETED]++
 								else
 									exp_to_gain /= 2 // these can be removed or changed on reviewer's discretion

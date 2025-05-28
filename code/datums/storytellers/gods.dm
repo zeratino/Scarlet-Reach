@@ -1,3 +1,18 @@
+/datum/storyteller/astrata
+	name = "Astrata"
+	desc = "Astrata will provide a balanced and varied experience. Consider this the default experience."
+	weight = 6
+	always_votable = TRUE
+	color_theme = "#FFD700"
+
+	influence_factors = list(
+		STATS_LAWS_AND_DECREES_MADE = list("points" = 2.75,"capacity" = 45),
+		STATS_ALIVE_NOBLES = list("points" = 3.75,"capacity" = 75),
+		STATS_NOBLE_DEATHS = list("points" = -5,"capacity" = -75),
+		STATS_ASTRATA_REVIVALS = list("points" = 6, "capacity" = 75),
+		STATS_TAXES_COLLECTED = list("points" = 0.175,"capacity" = 90),
+	)
+
 /datum/storyteller/noc
 	name = "Noc"
 	desc = "Noc will try to send more magical events."
@@ -14,9 +29,9 @@
 
 	influence_factors = list(
 		STATS_BOOKS_PRINTED = list("points" = 2, "capacity" = 40),
-		STATS_LITERACY_TAUGHT = list("points" = 10, "capacity" = 150),
-		STATS_BOOKS_BURNED = list("points" = -4, "capacity" = -100),
-		STATS_SKILLS_DREAMED = list("points" = 3, "capacity" = 100),
+		STATS_LITERACY_TAUGHT = list("points" = 20, "capacity" = 140),
+		STATS_BOOKS_BURNED = list("points" = -2.5, "capacity" = -50),
+		STATS_SKILLS_DREAMED = list("points" = 0.325, "capacity" = 100),
 	)
 
 /datum/storyteller/ravox
@@ -41,7 +56,7 @@
 	)
 
 	influence_factors = list(
-		STATS_COMBAT_SKILLS = list("points" = 3, "capacity" = 100),
+		STATS_COMBAT_SKILLS = list("points" = 2, "capacity" = 100),
 		STATS_PARRIES = list("points" = 0.15, "capacity" = 100),
 		STATS_WARCRIES = list("points" = 1, "capacity" = 60),
 		STATS_YIELDS = list("points" = -4, "capacity" = -40),
@@ -116,11 +131,11 @@
 	)
 
 	influence_factors = list(
-		STATS_DEATHS = list("points" = 1.55, "capacity" = 120),
-		STATS_SKELETONS_KILLED = list("points" = 5, "capacity" = 90),
-		STATS_GRAVES_ROBBED = list("points" = -5, "capacity" = -90),
-		STATS_DEADITES_KILLED = list("points" = 4, "capacity" = 100),
-		STATS_VAMPIRES_KILLED = list("points" = 10, "capacity" = 60),
+		STATS_DEATHS = list("points" = 1.5, "capacity" = 110),
+		STATS_SKELETONS_KILLED = list("points" = 5, "capacity" = 50),
+		STATS_GRAVES_ROBBED = list("points" = -5, "capacity" = -50),
+		STATS_DEADITES_KILLED = list("points" = 4, "capacity" = 90),
+		STATS_VAMPIRES_KILLED = list("points" = 12.5, "capacity" = 70),
 	)
 
 /datum/storyteller/pestra
@@ -136,10 +151,10 @@
 	)
 
 	influence_factors = list(
-		STATS_POTIONS_BREWED = list("points" = 3, "capacity" = 60),
+		STATS_POTIONS_BREWED = list("points" = 4.5, "capacity" = 80),
 		STATS_WOUNDS_SEWED = list("points" = 0.5, "capacity" = 100),
 		STATS_ROT_CURED = list("points" = 5, "capacity" = 70),
-		STATS_FOOD_ROTTED = list("points" = 0.3, "capacity" = 80),
+		STATS_FOOD_ROTTED = list("points" = 0.175, "capacity" = 80),
 	)
 
 /datum/storyteller/malum
@@ -162,7 +177,7 @@
 	)
 
 	influence_factors = list(
-		STATS_MASTERWORKS_FORGED = list("points" = 4, "capacity" = 80),
+		STATS_MASTERWORKS_FORGED = list("points" = 3.5, "capacity" = 85),
 		STATS_ROCKS_MINED = list("points" = 0.25, "capacity" = 100),
 		STATS_CRAFT_SKILLS = list("points" = 3, "capacity" = 100),
 		STATS_BEARDS_SHAVED = list("points" = -5, "capacity" = -50),
@@ -217,10 +232,10 @@
 	)
 
 	influence_factors = list(
-		STATS_TREES_CUT = list("points" = -0.2, "capacity" = -80),
-		STATS_PLANTS_HARVESTED = list("points" = 0.75, "capacity" = 125),
-		STATS_WEREVOLVES = list("points" = 10, "capacity" = 100),
-		STATS_FOREST_DEATHS = list("points" = 4.25, "capacity" = 90),
+		STATS_TREES_CUT = list("points" = -0.35, "capacity" = -60),
+		STATS_PLANTS_HARVESTED = list("points" = 0.8, "capacity" = 140),
+		STATS_WEREVOLVES = list("points" = 15, "capacity" = 80),
+		STATS_FOREST_DEATHS = list("points" = 6.25, "capacity" = 100),
 	)
 
 // INHUMEN
@@ -252,11 +267,11 @@
 	cost_variance = 50  // Events will be highly variable in cost
 
 	influence_factors = list(
-		STATS_NOBLE_DEATHS = list("points" = 7.5, "capacity" = 80),
-		STATS_DEADITES_WOKEN_UP = list("points" = 3.25, "capacity" = 100),
-		STATS_CLERGY_DEATHS = list("points" = 10, "capacity" = 100),
+		STATS_NOBLE_DEATHS = list("points" = 6, "capacity" = 80),
+		STATS_DEADITES_WOKEN_UP = list("points" = 3, "capacity" = 90),
+		STATS_CLERGY_DEATHS = list("points" = 10, "capacity" = 80),
+		STATS_TORTURES = list("points" = 4, "capacity" = 70),
 		STATS_BOOKS_BURNED = list("points" = -5, "capacity" = -50),
-		STATS_TORTURES = list("points" = 3.75, "capacity" = 75),
 	)
 
 /datum/storyteller/baotha
@@ -285,7 +300,7 @@
 	cost_variance = 30  // Makes events more erratic in timing
 
 	influence_factors = list(
-		STATS_DRUGS_SNORTED = list("points" = 3.5, "capacity" = 80),
+		STATS_DRUGS_SNORTED = list("points" = 4.5, "capacity" = 85),
 		STATS_ALCOHOL_CONSUMED = list("points" = 0.05, "capacity" = 90),
 		STATS_ALCOHOLICS = list("points" = 4, "capacity" = 60),
 		STATS_JUNKIES = list("points" = 5, "capacity" = 90),
@@ -315,10 +330,10 @@
 	)
 
 	influence_factors = list(
-		STATS_ORGANS_EATEN = list("points" = 4, "capacity" = 70),
-		STATS_DEATHS = list("points" = 1, "capacity" = 115),
-		STATS_PEOPLE_GIBBED = list("points" = 3, "capacity" = 50),
-		STATS_BLOOD_SPILT = list("points" = 0.00028, "capacity" = 90),
+		STATS_ORGANS_EATEN = list("points" = 3.25, "capacity" = 75),
+		STATS_DEATHS = list("points" = 5, "capacity" = 115),
+		STATS_PEOPLE_GIBBED = list("points" = 10, "capacity" = 50),
+		STATS_BLOOD_SPILT = list("points" = 0.000275, "capacity" = 90),
 	)
 
 	cost_variance = 10  // Less randomness, more direct
@@ -347,10 +362,10 @@
 	)
 
 	influence_factors = list(
-		STATS_ITEMS_PICKPOCKETED = list("points" = 4, "capacity" = 100),
-		STATS_SHRINE_VALUE = list("points" = 0.25, "capacity" = 100),
-		STATS_GREEDY_PEOPLE = list("points" = 4, "capacity" = 60),
-		STATS_LOCKS_PICKED = list("points" = 5, "capacity" = 110),
+		STATS_ITEMS_PICKPOCKETED = list("points" = 6, "capacity" = 90),
+		STATS_SHRINE_VALUE = list("points" = 0.15, "capacity" = 70),
+		STATS_GREEDY_PEOPLE = list("points" = 8, "capacity" = 70),
+		STATS_LOCKS_PICKED = list("points" = 4.5, "capacity" = 90),
 	)
 
 	cost_variance = 15  // Keeps a balance between predictability and randomness

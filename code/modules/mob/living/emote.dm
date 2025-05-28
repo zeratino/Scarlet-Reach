@@ -790,6 +790,11 @@
 				to_chat(C, span_warning("I try to scream but my voice fails me."))
 				. = FALSE
 
+/datum/emote/living/scream/run_emote(mob/user, params, type_override, intentional, targetted)
+	. = ..()
+	if(. && user.mind)
+		record_featured_stat(FEATURED_STATS_SCREAMERS, user)
+
 /datum/emote/living/scream/painscream
 	key = "painscream"
 	message = "screams in pain!"

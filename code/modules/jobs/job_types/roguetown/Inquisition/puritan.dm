@@ -200,6 +200,7 @@
 		src.visible_message(span_warning("[src] shoves the silver psycross in [H]'s face!"))
 		say(pick(torture_lines), spans = list("torture"))
 		H.emote("agony", forced = TRUE)
+		H.add_stress(/datum/stressevent/tortured)
 
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
@@ -252,6 +253,7 @@
 
 		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("patron")
+		H.add_stress(/datum/stressevent/tortured)
 		qdel(S)
 		return
 	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
@@ -277,3 +279,4 @@
 		say(pick(confessions), spans = list("torture"))
 		return
 	say(pick(innocent_lines), spans = list("torture"))
+	H.add_stress(/datum/stressevent/tortured)

@@ -33,6 +33,14 @@
 						user.put_in_hands(I)
 			return
 
+/obj/structure/flora/roguetree/attacked_by(obj/item/I, mob/living/user)
+	var/was_destroyed = obj_destroyed
+	. = ..()
+	if(.)
+		if(!was_destroyed && obj_destroyed)
+			record_featured_stat(FEATURED_STATS_TREE_FELLERS, user)
+			GLOB.azure_round_stats[STATS_TREES_CUT]++
+
 /obj/structure/flora/roguetree/spark_act()
 	fire_act()
 
@@ -73,7 +81,6 @@
 	if(stump_type)
 		new stump_type(loc)
 	playsound(src, 'sound/misc/treefall.ogg', 100, FALSE)
-	GLOB.azure_round_stats[STATS_TREES_CUT]++
 	. = ..()
 
 

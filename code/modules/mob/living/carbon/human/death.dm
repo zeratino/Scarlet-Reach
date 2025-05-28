@@ -59,6 +59,9 @@
 
 	if(client || mind)
 		GLOB.azure_round_stats[STATS_DEATHS]++
+		var/area_of_death = lowertext(get_area_name(src))
+		if(area_of_death == "wilderness")
+			GLOB.azure_round_stats[STATS_FOREST_DEATHS]++
 		if(is_noble())
 			GLOB.azure_round_stats[STATS_NOBLE_DEATHS]++
 		if(ishumannorthern(src))

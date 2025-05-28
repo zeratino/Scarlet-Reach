@@ -157,6 +157,7 @@
 	if(HAS_TRAIT(eater, TRAIT_ORGAN_EATER))
 		eat_effect = /datum/status_effect/buff/foodbuff
 	if(bitecount >= bitesize)
+		record_featured_stat(FEATURED_STATS_CRIMINALS, eater)
 		GLOB.azure_round_stats[STATS_ORGANS_EATEN]++
 	. = ..()
 	eat_effect = initial(eat_effect)

@@ -67,6 +67,7 @@
 	if(isopenturf(partner))
 		var/obj/stairs = new /obj/structure/stairs(partner)
 		stairs.dir = turn(dirin, 180)
+	record_featured_stat(FEATURED_STATS_CRAFTERS, user)
 
 /obj/structure/stairs/stone/d/OnCrafted(dirin)
 	dir = turn(dirin, 180)
@@ -75,6 +76,7 @@
 	if(isopenturf(partner))
 		var/obj/stairs = new /obj/structure/stairs/stone(partner)
 		stairs.dir = turn(dirin, 180)
+	record_featured_stat(FEATURED_STATS_CRAFTERS, user)
 
 /obj/structure/stairs/Initialize(mapload)
 	return ..()

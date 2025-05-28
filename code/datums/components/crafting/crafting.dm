@@ -146,6 +146,7 @@
 
 /atom/proc/OnCrafted(dirin, user)
 	dir = dirin
+	record_featured_stat(FEATURED_STATS_CRAFTERS, user)
 	return
 
 /obj/item/OnCrafted(dirin)

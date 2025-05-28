@@ -67,6 +67,7 @@
 	. = ..()
 	if(!ishuman(usr))
 		return
+	var/mob/living/carbon/human/human_mob = usr
 	if(href_list["buy"])
 		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 			return
@@ -82,11 +83,13 @@
 				recent_payments += held_items[O]["PRICE"]
 				if(!(drugrade_flags & DRUGRADE_NOTAX))
 					SStreasury.give_money_treasury(tax_amt, "purity import tax")
+					record_featured_stat(FEATURED_STATS_TAX_PAYERS, human_mob, tax_amt)
+					GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += tax_amt
 			else
 				say("Not enough!")
 				return
 		var/obj/item/I = new O(get_turf(src))
-		M.put_in_hands(I)
+		human_mob.put_in_hands(I)
 	if(href_list["change"])
 		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 			return
