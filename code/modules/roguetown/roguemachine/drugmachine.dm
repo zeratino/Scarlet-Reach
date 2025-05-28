@@ -71,7 +71,6 @@
 	if(href_list["buy"])
 		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 			return
-		var/mob/M = usr
 		var/O = text2path(href_list["buy"])
 		if(held_items[O]["PRICE"])
 			var/tax_amt = FLOOR(SStreasury.tax_value * held_items[O]["PRICE"], 1)

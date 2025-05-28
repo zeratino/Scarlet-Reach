@@ -587,9 +587,7 @@
 	if(!user || !target)
 		return
 	if(ishuman(target))
-		var/mob/living/carbon/H = target
 		playsound(target.loc, pick('sound/vo/hug.ogg'), 100, FALSE, -1)
-
 		if(user.mind)
 			GLOB.azure_round_stats[STATS_HUGS_MADE]++
 
