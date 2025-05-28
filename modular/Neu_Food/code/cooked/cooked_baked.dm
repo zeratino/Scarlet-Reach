@@ -1,14 +1,21 @@
-/* * * * * * * * * * * **
- *						*
- *		 NeuFood		*	- Basically add water to powder, then more powder
- *		 (Snacks)		*
- *						*
- * * * * * * * * * * * **/
+// Generic baked products. Also includes their intermediary forms (raw) before baking.
+// For consistency.
+
+/*	.................   Hardtack   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/hardtack_raw
+	name = "raw hardtack"
+	desc = "Doughy, soft, unacceptable."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
+	icon_state = "raw_tack"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
+	w_class = WEIGHT_CLASS_NORMAL
+	eat_effect = null
 
 /*	.................   Hardtack   ................... */
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
 	name = "hardtack"
 	desc = "Very, very hard and dry."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "tack6"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	faretype = FARE_POOR
@@ -35,6 +42,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/bread
 	name = "bread loaf"
 	desc = "One of the staple foods of the world, with the decline of magic, the loss of bread-duplication has led to mass famines around Grimoria."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "loaf6"
 	slices_num = 6
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/breadslice
@@ -70,6 +78,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/breadslice
 	name = "sliced bread"
 	desc = "A bit of comfort to start your dae."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "loaf_slice"
 	faretype = FARE_POOR
 	w_class = WEIGHT_CLASS_NORMAL
@@ -122,6 +131,7 @@
 //this is a child so we can be used in sammies
 /obj/item/reagent_containers/food/snacks/rogue/breadslice/toast
 	name = "toast"
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "toast"
 	faretype = FARE_NEUTRAL
 	tastes = list("crispy bread" = 1)
@@ -144,6 +154,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/breadslice/toast/buttered
 	name = "buttered toast"
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "toast_butter"
 	faretype = FARE_NEUTRAL
 	tastes = list("butter" = 1)
@@ -166,6 +177,7 @@
 // -------------- BREAD WITH FOOD ON IT (not american sandwich) -----------------
 /obj/item/reagent_containers/food/snacks/rogue/sandwich
 	desc = "A delightful piece of heaven, in every slice."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
 	faretype = FARE_NEUTRAL
 	rotprocess = 30 MINUTES
@@ -202,7 +214,8 @@
 /obj/item/reagent_containers/food/snacks/rogue/sandwich/bacon
 	tastes = list("bacon" = 1)
 	name = "bacon bread"
-	icon_state = "bread_bacon"
+	desc = "A slice of bread with a crispy bacon on top. A perfect breakfast. Why does it look like a salo?"
+	icon_state = "bread_salo" // Someone forgot the sprite for this one
 	foodtype = GRAIN | MEAT
 
 
@@ -210,6 +223,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/bun
 	name = "bun"
 	desc = "Portable, quaint and entirely consumable"
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "bun"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	faretype = FARE_POOR
@@ -239,14 +253,30 @@
 	else
 		return ..()
 
+
+/* 	.................   Crossbuns   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw
+	name = "raw crossbun"
+	desc = "A raw dough with the shape of Astrata's cross pressed onto it. In Her Lights."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
+	icon_state = "crossbun_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crossbun
+
+// Psydon variant
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw
+	name = "raw psycrossbun"
+	desc = "A raw dough with the shape of a Psycross pressed onto it. He ENDURES."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
+	icon_state = "psycrossbun_raw"
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
+
 /* 	.................   Crossbuns   ................... */
 // Astrata variant
-
 
 /obj/item/reagent_containers/food/snacks/rogue/crossbun
 	name = "crossbun"
 	desc = "Traditionally eaten for breakfast."
-	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun"
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
 	w_class = WEIGHT_CLASS_NORMAL
@@ -257,7 +287,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
 	name = "psycrossbun"
 	desc = "The bun endures."
-	icon = 'modular/Neu_Food/icons/buns.dmi'
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "psycrossbun"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
@@ -270,6 +300,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesebun_raw
 	name = "raw cheese bun"
 	desc = "Portable, quaint and entirely consumable"
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "cheesebun_raw"
 	color = "#ecce61"
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/cheesebun
@@ -281,6 +312,7 @@
 	name = "fresh cheese bun"
 	desc = "A treat from the Grenzelhoft kitchen."
 	faretype = FARE_FINE
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "cheesebun"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SMALLDOUGH_NUTRITION+FRESHCHEESE_NUTRITION)
 	w_class = WEIGHT_CLASS_NORMAL
@@ -292,6 +324,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/frybread
 	name = "frybread"
 	desc = "Flatbread fried at high heat with butter to give it a crispy outside. Staple of the elven kitchen."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "frybread"
 	faretype = FARE_FINE
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
@@ -300,54 +333,47 @@
 	bitesize = 3
 	eat_effect = /datum/status_effect/buff/foodbuff
 
-/*	.................   Pastry   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/pastry
-	name = "pastry"
-	desc = "Favored among children and sweetlovers."
-	icon_state = "pastry"
-	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
-	tastes = list("crispy butterdough" = 1)
-	faretype = FARE_FINE
+/*	.................   Raisin bread   ................... */
+/obj/item/reagent_containers/food/snacks/rogue/rbread_half
+	name = "half-done raisin dough"
+	desc = "Add more raisins!"
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
+	icon_state = "dough_raisin"
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	w_class = WEIGHT_CLASS_NORMAL
-	bitesize = 3
-	rotprocess = SHELFLIFE_EXTREME
-	eat_effect = /datum/status_effect/buff/foodbuff
+	rotprocess = 30 MINUTES
 
+/obj/item/reagent_containers/food/snacks/rogue/rbread_half/attackby(obj/item/I, mob/living/user, params)
+	var/found_table = locate(/obj/structure/table) in (loc)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/raisins))
+		if(isturf(loc)&& (found_table))
+			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
+			to_chat(user, span_notice("Adding the last of the raisins, puffing up the dough for baking."))
+			if(do_after(user,short_cooktime, target = src))
+				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				new /obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked(loc)
+				qdel(I)
+				qdel(src)
+		else
+			to_chat(user, span_warning("You need to put [src] on a table to work it."))
+	else
+		return ..()
 
-/obj/item/reagent_containers/food/snacks/rogue/biscuit
-	name = "biscuit"
-	desc = "A treat made for a wretched dog like you."
-	icon_state = "biscuit"
-	faretype = FARE_POOR
-	filling_color = "#F0E68C"
-	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT+SNACK_POOR)
+/obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked
+	name = "raw raisin loaf"
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
+	icon_state = "raisinbreaduncooked"
+	slices_num = 0
+	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/raisinbread
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	w_class = WEIGHT_CLASS_NORMAL
-	bitesize = 3
-	tastes = list("crispy butterdough" = 1, "raisins" = 1)
-	eat_effect = /datum/status_effect/buff/foodbuff
-
-/obj/item/reagent_containers/food/snacks/rogue/cookie		//It's a biscuit.......
-	name = "cookie of smiles"
-	icon_state = "cookie"
-	color = "#ecce61"
-	w_class = WEIGHT_CLASS_NORMAL
-	eat_effect = null
-
-
-/obj/item/reagent_containers/food/snacks/rogue/prezzel
-	name = "prezzel"
-	desc = "The next best thing since sliced bread, naturally, made by a dwarf."
-	icon_state = "prezzel"
-	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
-	faretype = FARE_FINE
-	tastes = list("crispy butterdough" = 1)
-	w_class = WEIGHT_CLASS_NORMAL
-	bitesize = 3
-	eat_effect = /datum/status_effect/buff/foodbuff
+	rotprocess = 30 MINUTES
 
 /obj/item/reagent_containers/food/snacks/rogue/raisinbread
 	name = "raisin loaf"
 	desc = "Bread enhanced with sweet raisins for a perfect addition to any meal."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "raisinbread6"
 	slices_num = 6
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/raisinbreadslice
@@ -382,6 +408,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/raisinbreadslice
 	name = "raisin loaf slice"
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "raisinbread_slice"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT-1)
 	w_class = WEIGHT_CLASS_NORMAL
@@ -393,207 +420,26 @@
 	eat_effect = /datum/status_effect/buff/foodbuff
 	dropshrink = 0.8
 
-/*	.................   Cake   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/cake_base
-	name = "cake base"
-	desc = "With this sweet thing, you shall make them sing."
-	icon_state = "cake"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	w_class = WEIGHT_CLASS_NORMAL
-	foodtype = GRAIN | DAIRY
-	rotprocess = SHELFLIFE_LONG
-
-/obj/item/reagent_containers/food/snacks/rogue/cake_base/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-			to_chat(user, span_notice("Spreading fresh cheese on the cake..."))
-			if(do_after(user,long_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/ccakeuncooked(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to work it."))
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/honey))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-			to_chat(user, span_notice("Slathering the cake with delicious spider honey..."))
-			if(do_after(user,long_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/hcakeuncooked(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to work it."))
-	else
-		return ..()
-
-/*	.................   Hardtack   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/hardtack_raw
-	name = "raw hardtack"
-	desc = "Doughy, soft, unacceptable."
-	icon_state = "raw_tack"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crackerscooked
-	w_class = WEIGHT_CLASS_NORMAL
-	eat_effect = null
-
-/* 	.................   Crossbuns   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/crossbun_raw
-	name = "raw crossbun"
-	desc = "A raw dough with the shape of Astrata's cross pressed onto it. In Her Lights."
-	icon = 'modular/Neu_Food/icons/buns.dmi'
-	icon_state = "crossbun_raw"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/crossbun
-
-// Psydon variant
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/psycrossbun_raw
-	name = "raw psycrossbun"
-	desc = "A raw dough with the shape of a Psycross pressed onto it. He ENDURES."
-	icon = 'modular/Neu_Food/icons/buns.dmi'
-	icon_state = "psycrossbun_raw"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/psycrossbun
-
-/*	.................   Biscuit   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/biscuit_raw
-	name = "uncooked raisin biscuit"
-	icon_state = "biscuit_raw"
-	color = "#ecce61"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/biscuit
-	w_class = WEIGHT_CLASS_NORMAL
-	eat_effect = null
-
-/*	.................   Prezzel   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/prezzel_raw
-	name = "uncooked prezzel"
-	icon_state = "prezzel_raw"
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/prezzel
-	w_class = WEIGHT_CLASS_NORMAL
-	eat_effect = null
-
-
-/*	.................   Raisin bread   ................... */
-/obj/item/reagent_containers/food/snacks/rogue/rbread_half
-	name = "half-done raisin dough"
-	desc = "Add more raisins!"
-	icon_state = "dough_raisin"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	w_class = WEIGHT_CLASS_NORMAL
-	rotprocess = 30 MINUTES
-
-/obj/item/reagent_containers/food/snacks/rogue/rbread_half/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/raisins))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
-			to_chat(user, span_notice("Adding the last of the raisins, puffing up the dough for baking."))
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to work it."))
-	else
-		return ..()
-
-/obj/item/reagent_containers/food/snacks/rogue/rbreaduncooked
-	name = "loaf of raisins"
-	icon_state = "raisinbreaduncooked"
-	slices_num = 0
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/raisinbread
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	w_class = WEIGHT_CLASS_NORMAL
-	rotprocess = 30 MINUTES
-
-
-// -------------- SPIDER-HONEY CAKE (Zybantu) -----------------
-/obj/item/reagent_containers/food/snacks/rogue/hcakeuncooked
-	name = "unbaked cake"
-	icon_state = "honeycakeuncook"
-	slices_num = 0
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/hcake
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	w_class = WEIGHT_CLASS_NORMAL
-	foodtype = GRAIN | DAIRY | SUGAR
-	rotprocess = SHELFLIFE_DECENT
-
-/obj/item/reagent_containers/food/snacks/rogue/hcake
-	name = "ranesheni cake"
-	desc = "Cake glazed with honey, in the famous ranesheni fashion, a delicious sweet treat."
-	icon_state = "honeycake"
-	slices_num = 8
-	slice_path = /obj/item/reagent_containers/food/snacks/rogue/hcakeslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 48)
-	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("cake"=1, "delicious honeyfrosting"=1)
-	foodtype = GRAIN | DAIRY | SUGAR
-	faretype = FARE_LAVISH
-	slice_batch = TRUE
-	slice_sound = TRUE
+/obj/item/reagent_containers/food/snacks/rogue/bun_grenz
+	list_reagents = list(/datum/reagent/consumable/nutriment = SAUSAGE_NUTRITION+SMALLDOUGH_NUTRITION)
+	tastes = list("savory sausage" = 1, "bread" = 1)
+	name = "grenzelbun"
+	desc = "Originally an elven cuisine composed of mortal races flesh and bread, the classic wiener in a bun, now modified and staple food of Grenzelhoft cuisine."
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
+	icon_state = "grenzbun"
+	foodtype = GRAIN | MEAT
+	faretype = FARE_NEUTRAL
+	warming = 5 MINUTES
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
-	bitesize = 16
 
-/obj/item/reagent_containers/food/snacks/rogue/hcakeslice
-	name = "ranesheni cake slice"
-	icon_state = "honeycakeslice"
-	slices_num = 0
-	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
-	faretype = FARE_FINE
-	w_class = WEIGHT_CLASS_NORMAL
-	cooked_type = null
-	foodtype = GRAIN | DAIRY | SUGAR
-	bitesize = 3
+/*	.............   Raston   ................ */
+/obj/item/reagent_containers/food/snacks/rogue/bun_raston
+	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_NUTRITIOUS)
+	tastes = list("cheese" = 1, "bread" = 1)
+	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
+	icon_state = "raston"
+	name = "raston"
+	desc = ""
+	rotprocess = SHELFLIFE_EXTREME
 	eat_effect = /datum/status_effect/buff/foodbuff
-	rotprocess = SHELFLIFE_LONG
-	
-// -------------- CHEESECAKE -----------------
-
-/obj/item/reagent_containers/food/snacks/rogue/ccakeuncooked
-	name = "unbaked cake of cheese"
-	icon_state = "cheesecakeuncook"
-	slices_num = 0
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/ccake
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
-	foodtype = GRAIN | DAIRY | SUGAR
-	w_class = WEIGHT_CLASS_NORMAL
-	rotprocess = SHELFLIFE_DECENT
-
-/obj/item/reagent_containers/food/snacks/rogue/ccake
-	name = "cheesecake"
-	desc = "Humenity's favored creation."
-	icon_state = "cheesecake"
-	slices_num = 8
-	slice_path = /obj/item/reagent_containers/food/snacks/rogue/ccakeslice
-	list_reagents = list(/datum/reagent/consumable/nutriment = 48)
-	faretype = FARE_FINE
-	w_class = WEIGHT_CLASS_NORMAL
-	tastes = list("cake"=1, "creamy cheese"=1)
-	foodtype = GRAIN | DAIRY | SUGAR
-	slice_batch = TRUE
-	slice_sound = TRUE
-	rotprocess = SHELFLIFE_LONG
-	eat_effect = /datum/status_effect/buff/foodbuff
-	bitesize = 16
-
-/obj/item/reagent_containers/food/snacks/rogue/ccakeslice
-	name = "cheesecake slice"
-	icon_state = "cheesecake_slice"
-	slices_num = 0
-	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
-	w_class = WEIGHT_CLASS_NORMAL
-	faretype = FARE_FINE
-	cooked_type = null
-	foodtype = GRAIN | DAIRY | SUGAR
-	bitesize = 2
-	eat_effect = /datum/status_effect/buff/foodbuff
-	rotprocess = SHELFLIFE_LONG
-
-/* maybe split up spider honey cake WIP
-	desc = "A cake glazed with spider-honey, a favorite dish among the Dark Elf nobility in Grimoria. Symbol of authority, a delicious residue covers the sweet cake which causes playful stinging and numbness in the mouth."
-*/
-
