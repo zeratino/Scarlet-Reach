@@ -34,7 +34,7 @@
 		var/mob/living/L = user
 		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(src.loc, "plantcross", 80, FALSE, -1)
-		if(do_after(L, rand(30,50) SECONDS, src))
+		if(do_after(L, rand(3,5) SECONDS, src))
 			if(!looty.len)
 				return
 			if(prob(50))
