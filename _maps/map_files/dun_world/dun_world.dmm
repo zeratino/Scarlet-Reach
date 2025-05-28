@@ -262,7 +262,9 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town)
 "aeA" = (
-/obj/structure/chair/wood/rogue/chair5,
+/obj/structure/chair/wood/rogue/throne{
+	color = "#f858b5ff"
+	},
 /obj/effect/landmark/start/nightman,
 /turf/open/floor/carpet/purple,
 /area/rogue/indoors/town/bath)
@@ -1636,6 +1638,18 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
+"aDe" = (
+/obj/structure/roguewindow/harem2{
+	max_integrity = 1000
+	},
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/obj/structure/fluff/railing/border{
+	dir = 4
+	},
+/turf/open/floor/rogue/tile/brownbrick,
+/area/rogue/indoors/town/bath)
 "aDj" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/blocks,
@@ -4363,9 +4377,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains)
 "bCQ" = (
-/obj/structure/chair/bench/ultimacouch/r{
-	icon_state = "ultimacochright"
-	},
+/obj/structure/chair/bench/ultimacouch/r,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
 "bCS" = (
@@ -4585,10 +4597,8 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "bFJ" = (
-/obj/structure/chair/bench/ultimacouch/r{
-	icon_state = "ultimacochright"
-	},
 /obj/effect/landmark/start/woodsman,
+/obj/structure/chair/bench/ultimacouch/r,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town)
 "bFR" = (
@@ -5770,9 +5780,7 @@
 /turf/closed/mineral/random/rogue,
 /area/rogue/outdoors/mountains/decap)
 "cbU" = (
-/obj/structure/chair/bench/ultimacouch/r{
-	icon_state = "ultimacochright"
-	},
+/obj/structure/chair/bench/ultimacouch/r,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town)
 "cbV" = (
@@ -10984,9 +10992,7 @@
 /turf/open/water/swamp/deep,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
 "dWK" = (
-/obj/structure/chair/bench/ultimacouch/r{
-	icon_state = "ultimacochright"
-	},
+/obj/structure/chair/bench/ultimacouch/r,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town/shop)
 "dWM" = (
@@ -13324,6 +13330,10 @@
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap)
+"eLM" = (
+/obj/structure/roguemachine/scomm/r,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/town/bath)
 "eLT" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -15470,9 +15480,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/scarymaze)
 "fuU" = (
-/obj/structure/chair/bench/ultimacouch/r{
-	icon_state = "ultimacochright"
-	},
+/obj/structure/chair/bench/ultimacouch/r,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/cave/mazedungeon)
 "fuY" = (
@@ -33966,6 +33974,11 @@
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/magician)
+"lMU" = (
+/obj/structure/chair/stool/rogue,
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/turf/open/floor/rogue/churchbrick,
+/area/rogue/indoors/town/bath)
 "lMW" = (
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/indoors/shelter/woods)
@@ -35499,6 +35512,10 @@
 "mqG" = (
 /turf/closed/wall/mineral/rogue/stone/window/blue_moss,
 /area/rogue/outdoors/mountains/decap)
+"mqI" = (
+/obj/structure/roguemachine/scomm,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/town/bath)
 "mqJ" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/orc_marauder/spear,
 /obj/item/chair/stool/bar/rogue,
@@ -40434,10 +40451,6 @@
 /obj/structure/chair/bench/church,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/shelter/mountains)
-"ofa" = (
-/obj/machinery/light/rogue/wallfire/candle/blue/l,
-/turf/open/floor/rogue/tile/harem2,
-/area/rogue/indoors/town/bath)
 "ofc" = (
 /obj/structure/closet/crate/chest/neu,
 /obj/item/reagent_containers/glass/bucket,
@@ -47164,8 +47177,10 @@
 /area/rogue/indoors/cave)
 "qsw" = (
 /obj/structure/bars,
-/obj/structure/curtain/black,
-/turf/open/water/swamp,
+/obj/structure/curtain/black{
+	alpha = 200
+	},
+/turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "qsx" = (
 /obj/machinery/light/rogue/torchholder/l,
@@ -58182,7 +58197,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/cave)
 "udq" = (
-/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/obj/structure/roguemachine/scomm/r,
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/indoors/town/bath)
 "udL" = (
@@ -60093,9 +60108,7 @@
 /turf/closed/wall/mineral/rogue/wooddark/vertical,
 /area/rogue/outdoors/beach)
 "uNB" = (
-/obj/structure/chair/bench/ultimacouch/r{
-	icon_state = "ultimacochright"
-	},
+/obj/structure/chair/bench/ultimacouch/r,
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/indoors/shelter)
 "uNE" = (
@@ -60126,18 +60139,6 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/food,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/shelter/mountains/decap)
-"uOm" = (
-/obj/structure/roguewindow/harem2{
-	opacity = 0
-	},
-/obj/structure/fluff/railing/border{
-	dir = 8
-	},
-/obj/structure/fluff/railing/border{
-	dir = 4
-	},
-/turf/open/floor/rogue/tile/brownbrick,
-/area/rogue/indoors/town/bath)
 "uOD" = (
 /obj/structure/chair/bench/church/smallbench,
 /turf/open/floor/carpet/red,
@@ -64374,9 +64375,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/church)
 "wgL" = (
-/obj/structure/chair/bench/ultimacouch/r{
-	icon_state = "ultimacochright"
-	},
+/obj/structure/chair/bench/ultimacouch/r,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "wgQ" = (
@@ -65241,7 +65240,9 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/beach/forest)
 "wuB" = (
-/obj/structure/roguewindow/harem2,
+/obj/structure/roguewindow/harem2{
+	max_integrity = 1000
+	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "wuD" = (
@@ -126195,8 +126196,8 @@ ogs
 qHj
 qHj
 qHj
-qHj
-qHj
+fju
+fju
 qHj
 sZN
 sZN
@@ -126647,9 +126648,9 @@ ogs
 qHj
 qHj
 qHj
-qHj
-qHj
-qHj
+fju
+fju
+fju
 qHj
 sZN
 orc
@@ -127100,9 +127101,9 @@ qHj
 qHj
 qHj
 qHj
-qHj
-qHj
-qHj
+fju
+fju
+fju
 orc
 orc
 tQC
@@ -127526,8 +127527,8 @@ xAN
 mMx
 ylh
 xAN
-bhJ
-miF
+ogs
+ogs
 ogs
 sUb
 haH
@@ -127553,8 +127554,8 @@ ogs
 qHj
 qHj
 toJ
-toJ
-htN
+fju
+fju
 htN
 tQC
 tQC
@@ -128005,7 +128006,7 @@ ogs
 ogs
 toJ
 htN
-htN
+fju
 fju
 fju
 xCK
@@ -128455,9 +128456,9 @@ mtu
 rqY
 rqY
 htN
-fju
-fju
-fju
+htN
+htN
+htN
 fju
 xCK
 xCK
@@ -128906,11 +128907,11 @@ haH
 haH
 haH
 qsw
-fju
-fju
-fju
-fju
-fju
+htN
+htN
+htN
+toJ
+toJ
 xCK
 xCK
 xCK
@@ -130701,7 +130702,7 @@ rqY
 wqQ
 wqQ
 uPY
-kKC
+mqI
 kKC
 dSj
 kKC
@@ -137488,7 +137489,7 @@ aKe
 kKC
 kKC
 pHh
-kKC
+eLM
 dSj
 kKC
 kKC
@@ -138391,8 +138392,8 @@ nJf
 rCG
 cVT
 cVT
+cVT
 iuA
-ofa
 fjy
 fjy
 wBV
@@ -138837,14 +138838,14 @@ sWY
 iwo
 sWY
 fjy
-sUb
+aDe
 cVT
 cVT
 rCG
 cVT
-eEw
+cVT
+cVT
 qEw
-fjy
 fjy
 fjy
 fjy
@@ -139294,9 +139295,9 @@ cVT
 cVT
 rCG
 cVT
+cVT
 eEw
 qEw
-fjy
 fjy
 fjy
 oSC
@@ -139741,14 +139742,14 @@ sWY
 wGn
 sWY
 fjy
+aDe
+cVT
+cVT
 sUb
-cVT
-cVT
-uOm
 xsi
 cVT
+lMU
 qEw
-fjy
 fjy
 fjy
 mBK
@@ -140196,11 +140197,11 @@ fjy
 rqY
 oBB
 qqz
-uOm
+sUb
 sfL
 udq
 rqY
-fjy
+rqY
 fjy
 fjy
 rAZ
