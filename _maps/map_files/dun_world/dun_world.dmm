@@ -7537,11 +7537,6 @@
 /area/rogue/indoors/town)
 "cIG" = (
 /obj/structure/roguemachine/scomm/r,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/mineral_door/wood/donjon{
 	locked = 1;
 	lockid = "nightman"
@@ -10967,11 +10962,6 @@
 "dWy" = (
 /obj/structure/roguewindow/harem3{
 	opacity = 1
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/structure/table/wood{
 	dir = 8;
@@ -14564,13 +14554,8 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "ffU" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/roguemachine/scomm/l,
+/obj/structure/roguemachine/withdraw,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "ffV" = (
@@ -18757,11 +18742,6 @@
 	},
 /obj/structure/fluff/railing/border{
 	dir = 4
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/machinery/light/rogue/wallfire/candle/weak/r,
 /turf/open/floor/rogue/tile/brownbrick,
@@ -26797,8 +26777,6 @@
 	icon_state = "shelf_biggest";
 	pixel_y = 0
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
-/obj/item/reagent_containers/glass/bucket/wooden,
 /obj/item/flint,
 /obj/item/natural/bundle/stick,
 /obj/item/natural/bundle/stick,
@@ -29156,6 +29134,7 @@
 	pixel_y = 38
 	},
 /obj/machinery/loom,
+/obj/machinery/light/rogue/wallfire/candle/l,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
 "kdg" = (
@@ -31140,11 +31119,6 @@
 	},
 /area/rogue/indoors/town)
 "kOi" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/machinery/light/rogue/torchholder{
 	dir = 1
 	},
@@ -33199,11 +33173,6 @@
 /obj/item/reagent_containers/glass/bottle/rogue/beer/rtoper,
 /obj/item/reagent_containers/glass/bottle/rogue/beer/rtoper{
 	pixel_x = 6
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
 	},
 /obj/structure/rack/rogue/shelf/big{
 	icon_state = "shelf_biggest";
@@ -37954,7 +37923,6 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
-/obj/item/reagent_containers/glass/bucket/wooden,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town/bath)
 "njV" = (
@@ -50673,11 +50641,6 @@
 /area/rogue/outdoors/beach/forest)
 "rBJ" = (
 /obj/structure/closet/crate/chest/old_crate,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/table/wood{
 	dir = 8;
 	icon_state = "largetable"
@@ -51562,6 +51525,13 @@
 	},
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/cave)
+"rSg" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/obj/machinery/gear_painter,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town)
 "rSp" = (
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/outdoors/mountains/decap/stepbelow)
@@ -58453,11 +58423,6 @@
 "uhI" = (
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/exposed/town/keep)
-"uhL" = (
-/obj/machinery/gear_painter,
-/obj/structure/roguemachine/withdraw,
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors/town)
 "uhM" = (
 /obj/structure/closet/dirthole/closed/loot,
 /obj/structure/gravemarker{
@@ -59485,12 +59450,6 @@
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue/under/cave)
 "uBM" = (
-/obj/structure/rack/rogue,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/chair/wood/rogue,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
@@ -65261,17 +65220,6 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/mountains/decap)
-"wuq" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/obj/machinery/light/rogue/torchholder{
-	dir = 4
-	},
-/turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/indoors/town)
 "wuv" = (
 /obj/structure/closet/crate/chest/wicker,
 /obj/item/reagent_containers/food/snacks/grown/wheat,
@@ -69511,11 +69459,6 @@
 /turf/open/water/swamp,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "xYt" = (
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/mannequin,
 /obj/item/clothing/head/roguetown/roguehood/black,
 /turf/open/floor/rogue/tile/harem2,
@@ -69685,18 +69628,6 @@
 /obj/machinery/light/rogue/wallfire/candle,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/shop)
-"yaG" = (
-/obj/structure/closet/crate/chest{
-	base_icon_state = "woodchestalt";
-	icon_state = "woodchestalt"
-	},
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/indoors/town)
 "yaJ" = (
 /obj/structure/pillory{
 	lockid = list("church")
@@ -257327,8 +257258,8 @@ alW
 alW
 scj
 cDX
-uhL
-wuq
+eKH
+eKH
 ffU
 uBM
 tUo
@@ -257780,7 +257711,7 @@ rbu
 rbu
 uBc
 kcZ
-yaG
+dra
 dra
 dra
 dVl
@@ -259139,7 +259070,7 @@ pYe
 bZF
 dra
 fcd
-dBl
+rSg
 vUD
 pWT
 exD
