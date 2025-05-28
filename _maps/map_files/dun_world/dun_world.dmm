@@ -938,10 +938,29 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/beach/forest)
 "ard" = (
-/obj/structure/table/wood,
-/obj/item/roguestatue/gold,
-/turf/open/floor/carpet/royalblack,
-/area/rogue/indoors/town/garrison)
+/obj/structure/closet/crate/chest,
+/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweeddry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry,
+/obj/item/reagent_containers/food/snacks/grown/rogue/sweetleafdry,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper,
+/turf/open/floor/rogue/churchbrick,
+/area/rogue/indoors/town/bath)
 "are" = (
 /obj/structure/stairs/stone{
 	dir = 1
@@ -5942,6 +5961,9 @@
 	},
 /obj/item/roguekey/warden,
 /obj/item/roguekey/warden,
+/obj/item/scomstone/bad/garrison,
+/obj/item/scomstone/bad/garrison,
+/obj/item/scomstone/bad/garrison,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
@@ -7504,9 +7526,7 @@
 	pixel_y = -32
 	},
 /obj/item/rope/chain,
-/obj/item/scomstone/bad/garrison,
-/obj/item/scomstone/bad/garrison,
-/obj/item/scomstone/bad/garrison,
+/obj/item/reagent_containers/glass/bottle/rogue/beer/voddena,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "cHP" = (
@@ -27593,7 +27613,6 @@
 "jCa" = (
 /obj/structure/closet/crate/roguecloset/inn,
 /obj/machinery/light/rogue/wallfire/candle,
-/obj/item/clothing/under/roguetown/skirt,
 /obj/item/roguekey/armory,
 /obj/item/roguekey/sheriff,
 /obj/item/roguekey/dungeon,
@@ -40082,7 +40101,6 @@
 /obj/structure/table/wood{
 	icon_state = "map4"
 	},
-/obj/item/roguestatue/silver,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/garrison)
 "nXh" = (
@@ -43153,7 +43171,6 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood3"
 	},
-/obj/item/clothing/ring/diamond,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/manor)
 "pcg" = (
@@ -52735,10 +52752,7 @@
 	},
 /area/rogue/outdoors/beach)
 "smk" = (
-/mob/living/carbon/human/species/elf/dark/drowraider{
-	faction = list("dundead");
-	wander = 0
-	},
+/mob/living/carbon/human/species/dwarfskeleton/ambush/knight/summoned,
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "smr" = (
@@ -63592,6 +63606,8 @@
 /obj/item/scomstone,
 /obj/item/rogueweapon/sword/long/blackflamb,
 /obj/effect/spawner/lootdrop/potion_stats,
+/obj/item/clothing/suit/roguetown/armor/plate/blacksteel_full_plate,
+/obj/item/clothing/gloves/roguetown/blacksteel/plategloves,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "vUe" = (
@@ -66101,6 +66117,8 @@
 /obj/item/roguegem/random,
 /obj/item/roguegem/diamond,
 /obj/item/listenstone,
+/obj/item/roguegem/random,
+/obj/item/roguegem/random,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dragonden)
 "wKA" = (
@@ -139744,7 +139762,7 @@ sWY
 fjy
 aDe
 cVT
-cVT
+ard
 sUb
 xsi
 cVT
@@ -508586,7 +508604,7 @@ fiK
 fiK
 jWw
 njb
-ard
+rDO
 pqR
 nBo
 jWw
@@ -517133,7 +517151,7 @@ vxe
 vxe
 vxe
 mYz
-uQS
+lyG
 uQS
 gyY
 cJk
@@ -519392,12 +519410,12 @@ lMc
 lMc
 lMc
 vxe
+bQX
 uQS
 uQS
 uQS
 uQS
-uQS
-uQS
+bQX
 vxe
 vxe
 vxe
