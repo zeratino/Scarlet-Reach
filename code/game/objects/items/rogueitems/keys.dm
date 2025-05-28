@@ -65,8 +65,8 @@
 	possible_item_intents = list(/datum/intent/use, /datum/intent/stab)
 	force = 10
 	throwforce = 5
+	max_integrity = null
 	dropshrink = 0.7
-	sellprice = 50
 	drop_sound = 'sound/items/gems (2).ogg'
 	destroy_sound = 'sound/items/pickbreak.ogg'
 	anvilrepair = /datum/skill/craft/armorsmithing
@@ -95,7 +95,6 @@
 	item_state = "silverpin"
 	icon = 'icons/roguetown/clothing/head.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head_items.dmi'
-	sellprice = 100
 	material = "silver"
 	is_silver = TRUE
 
