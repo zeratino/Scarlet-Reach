@@ -204,7 +204,7 @@
 							C.emote("choke")
 						var/choke_damage = user.STASTR * 0.75 // To stop strength-maxing entirely.
 						if(chokehold)
-							choke_damage *= 1.1		//Slight bonus
+							choke_damage *= 1.2		//Slight bonus
 						if(C.pulling == user && C.grab_state >= GRAB_AGGRESSIVE)
 							choke_damage *= 0.95	//Slight malice
 						C.adjustOxyLoss(choke_damage)
