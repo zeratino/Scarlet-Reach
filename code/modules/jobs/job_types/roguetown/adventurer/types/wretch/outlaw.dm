@@ -126,4 +126,5 @@
 			H.change_stat("constitution", 3)
 			H.change_stat("endurance", 2)
 			H.change_stat("speed", 2)//Still the speed class
+	H.grant_language(/datum/language/thievescant)
 	wretch_select_bounty(H)
