@@ -75,7 +75,7 @@
 /obj/item/clothing/suit/roguetown/armor/gambeson
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 	name = "gambeson"
-	desc = "A large shirt meant to be used below armor."
+	desc = "A large shirt meant to be worn below armor."
 	icon_state = "gambeson"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|VITALS
 	armor = list("blunt" = 60, "slash" = 40, "piercing" = 50, "stab" = 30, "fire" = 0, "acid" = 0)
@@ -91,14 +91,14 @@
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	name = "light gambeson"
-	desc = "A barely padded gambeson, typically worn by the peasantry as cheap yet fashionable armor for the whole body. May stop an arrow."
+	desc = "A thin barely-padded gambeson, typically worn by the peasantry as cheap yet fashionable armor for the whole body. May stop an arrow."
 	armor = list("blunt" = 40, "slash" = 30, "stab" = 20, "piercing" = 40, "fire" = 0, "acid" = 0)
 	prevent_crits = null // It won't help, like, at all.
 	sellprice = 10
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	name = "padded gambeson"
-	desc = "A gambeson with additional padding layers, hardened to make it more durable. Typically used as a layer under plate armor, it still cannot compare to proper armor. Will probably stop a crossbow bolt."
+	desc = "A gambeson with additional padding layers, hardened to make it more durable. It still does not compare to leather or metal, but it will probably stop a crossbow bolt, so it's typically worn to complement proper armor."
 	icon_state = "gambesonp"
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
 	armor = list("blunt" = 80, "slash" = 50, "stab" = 50, "piercing" = 80, "fire" = 0, "acid" = 0)

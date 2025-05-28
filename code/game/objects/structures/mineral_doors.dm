@@ -788,7 +788,7 @@
 		to_chat(user, span_warning("The door doesn't lock from this side."))
 
 /obj/structure/mineral_door/wood/donjon
-	desc = "dungeon door"
+	desc = "A solid metal door with a slot to peek through."
 	icon_state = "donjondir"
 	base_state = "donjon"
 	keylock = TRUE
