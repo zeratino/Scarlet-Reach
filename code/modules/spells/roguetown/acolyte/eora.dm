@@ -301,6 +301,7 @@
     var/mob/living/caster
     var/quality
     var/skill
+    var/bitesize_mod
 
 /datum/component/blessed_food/Initialize(mob/living/_caster, var/holy_skill)
     if(!isitem(parent) || !istype(parent, /obj/item/reagent_containers/food/snacks))
@@ -311,7 +312,7 @@
     var/obj/item/reagent_containers/food/snacks/F = parent
     //Better food being blessed heals more
     quality = F.faretype
-    F.bitesize = 1
+    bitesize_mod = 1 / (F.bitesize - F.bitecount)
     F.faretype = clamp(skill, 1, 5)
     F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#ff00ff", "size" = 1))
     RegisterSignal(F, COMSIG_FOOD_EATEN, .proc/on_food_eaten)
@@ -322,7 +323,7 @@
         eater.visible_message(span_notice("The divine energy fizzles harmlessly around [caster]."))
         return
     
-    eater.apply_status_effect(/datum/status_effect/buff/healing, quality + (skill / 5))
+    eater.apply_status_effect(/datum/status_effect/buff/healing, (quality + (skill / 5)) * bitesize_mod)
     eater.apply_status_effect(/datum/status_effect/buff/haste)
 
 /obj/effect/proc_holder/spell/invoked/bless_food
