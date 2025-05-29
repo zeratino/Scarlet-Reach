@@ -1487,6 +1487,11 @@
 	},
 /turf/open/floor/rogue/churchbrick,
 /area/rogue/under/cave/scarymaze)
+"ayl" = (
+/obj/machinery/light/rogue/wallfire/candle,
+/obj/structure/closet/crate/roguecloset/inn,
+/turf/open/floor/rogue/ruinedwood,
+/area/rogue/indoors/town)
 "aym" = (
 /obj/structure/flora/roguegrass,
 /obj/structure/flora/ausbushes/ywflowers,
@@ -28495,6 +28500,10 @@
 /obj/structure/glowshroom,
 /turf/open/water/swamp,
 /area/rogue/outdoors/bog)
+"jGy" = (
+/obj/item/grown/log/tree/stick,
+/turf/open/floor/rogue/grassyel,
+/area/rogue/outdoors/town)
 "jGE" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/floor/rogue/dirt/road,
@@ -38859,6 +38868,16 @@
 "nlW" = (
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/outdoors/town)
+"nmc" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/open/floor/rogue/woodturned,
+/area/rogue/outdoors/rtfield)
 "nmh" = (
 /obj/structure/mineral_door/bars,
 /turf/open/floor/rogue/blocks/green,
@@ -243672,7 +243691,7 @@ qyR
 qyR
 qyR
 qyR
-pWT
+njB
 pWT
 lKo
 lKO
@@ -244124,7 +244143,7 @@ qyR
 qyR
 tFL
 pWT
-pWT
+njB
 jhP
 cDX
 gyu
@@ -245022,12 +245041,12 @@ exD
 exD
 fpx
 pWT
-pWT
+njB
 qyR
+njB
 pWT
 pWT
-pWT
-pWT
+njB
 fpx
 fpx
 phl
@@ -245472,12 +245491,12 @@ exD
 exD
 exD
 fpx
-pWT
+njB
 qyR
 qyR
+njB
 pWT
-pWT
-pWT
+njB
 pWT
 fpx
 fpx
@@ -249099,7 +249118,7 @@ noA
 bax
 bax
 dLT
-qyR
+jGy
 qyR
 qyR
 fwB
@@ -251361,7 +251380,7 @@ njB
 qyR
 cYZ
 gta
-qyR
+jGy
 vcy
 nvV
 nvV
@@ -252716,7 +252735,7 @@ wJv
 oJw
 eRt
 hif
-qyR
+jGy
 qyR
 bvm
 wfd
@@ -256754,7 +256773,7 @@ noC
 noC
 noC
 avg
-pWT
+njB
 fpx
 fpx
 ibp
@@ -292904,7 +292923,7 @@ ebU
 lKo
 pqo
 lKo
-aFv
+kkv
 kkv
 kkv
 kkv
@@ -293356,8 +293375,8 @@ ebU
 lKo
 lKO
 lKo
-aFv
-aFv
+kkv
+kkv
 kkv
 kkv
 aFv
@@ -293808,7 +293827,7 @@ ebU
 cDX
 gyu
 cDX
-aFv
+kkv
 aFv
 kkv
 kkv
@@ -296990,8 +297009,8 @@ asY
 asY
 rsz
 asY
-kvV
-kvV
+moR
+nmc
 kvV
 mYZ
 ebU
@@ -297443,7 +297462,7 @@ pBc
 jRV
 asY
 kvV
-nHc
+moR
 kvV
 mYZ
 ebU
@@ -297896,7 +297915,7 @@ ebU
 rxe
 kvV
 kvV
-kvV
+nHc
 mYZ
 ebU
 ebU
@@ -389183,7 +389202,7 @@ aDs
 aDs
 bGf
 uBc
-aEz
+ayl
 apZ
 apZ
 cMj
