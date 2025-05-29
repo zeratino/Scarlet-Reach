@@ -644,6 +644,12 @@
 /obj/item/reagent_containers/glass/cup/wooden,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
+"ala" = (
+/obj/structure/bookcase/random_recipes,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/indoors/town)
 "alb" = (
 /obj/structure/roguemachine/scomm,
 /turf/open/floor/rogue/tile,
@@ -268598,7 +268604,7 @@ exD
 exD
 exD
 eKH
-xOt
+ala
 sYZ
 sYZ
 sYZ
@@ -269050,7 +269056,7 @@ exD
 exD
 exD
 eKH
-xOt
+ala
 iRg
 qps
 ucT
