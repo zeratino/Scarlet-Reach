@@ -34,23 +34,22 @@
 		var/mob/living/L = user
 		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(src.loc, "plantcross", 80, FALSE, -1)
-		if(do_after(L, rand(3,5) SECONDS, src))
+		if(do_after(L, rand(3,5), src))
 			if(!looty.len)
 				return
-			if(prob(50))
-				var/obj/item/B = pick_n_take(looty)
-				if(B)
-					B = new B(user.loc)
-					user.put_in_hands(B)
-					if(HAS_TRAIT(user, TRAIT_WOODWALKER))
-						var/obj/item/C = new B.type(user.loc)
-						user.put_in_hands(C)
-					user.visible_message(span_notice("[user] finds [HAS_TRAIT(user, TRAIT_WOODWALKER) ? "two of " : ""][B] in [src]."))
-					harvested = TRUE
-					timerid = addtimer(CALLBACK(src, PROC_REF(loot_replenish)), 5 MINUTES, flags = TIMER_STOPPABLE)
-					//add_filter("picked", 1, alpha_mask_filter(icon = icon('icons/effects/picked_overlay.dmi', "picked_overlay_[rand(1,3)]"), flags = MASK_INVERSE))
-					GLOB.harvested_herbs |= src
-					return
+			var/obj/item/B = pick_n_take(looty)
+			if(B)
+				B = new B(user.loc)
+				user.put_in_hands(B)
+				if(HAS_TRAIT(user, TRAIT_WOODWALKER))
+					var/obj/item/C = new B.type(user.loc)
+					user.put_in_hands(C)
+				user.visible_message(span_notice("[user] finds [HAS_TRAIT(user, TRAIT_WOODWALKER) ? "two of " : ""][B] in [src]."))
+				harvested = TRUE
+				timerid = addtimer(CALLBACK(src, PROC_REF(loot_replenish)), 5 MINUTES, flags = TIMER_STOPPABLE)
+				//add_filter("picked", 1, alpha_mask_filter(icon = icon('icons/effects/picked_overlay.dmi', "picked_overlay_[rand(1,3)]"), flags = MASK_INVERSE))
+				GLOB.harvested_herbs |= src
+				return
 			user.visible_message(span_notice("[user] searches through [src]."))
 
 /obj/structure/flora/roguegrass/herb/proc/loot_replenish()
