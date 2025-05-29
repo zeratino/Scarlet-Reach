@@ -77,7 +77,7 @@
 		add_overlay(pic)
 
 //Zydras donator item - merchant dress
-/obj/item/clothing/suit/roguetown/shirt/robe/merchant/zydrasdress //armor dress worn by Merchants
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress //Recolored silky dress
 	name = "Gold-Black silky dress"
 	desc = "A gorgeous black and gold dress. It seems the padding was removed."
 	icon_state = "zydrasdress"
