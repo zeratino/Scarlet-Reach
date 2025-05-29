@@ -329,6 +329,7 @@
 /obj/effect/proc_holder/spell/invoked/bless_food
     name = "Bless Food"
     invocation = "Eora, nourish this offering!"
+    desc = "Bless a food item. Items that take longer to eat heal slower. Skilled clergy can bless food more often. Finer food heals more."
     sound = 'sound/magic/magnet.ogg'
     req_items = list(/obj/item/clothing/neck/roguetown/psicross/eora)
     devotion_cost = 25
