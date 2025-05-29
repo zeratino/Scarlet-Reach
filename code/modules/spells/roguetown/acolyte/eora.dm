@@ -312,7 +312,7 @@
     var/obj/item/reagent_containers/food/snacks/F = parent
     //Better food being blessed heals more
     quality = F.faretype
-    bitesize_mod = 1 / (F.bitesize - F.bitecount)
+    bitesize_mod = 1 / F.bitesize
     F.faretype = clamp(skill, 1, 5)
     F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#ff00ff", "size" = 1))
     RegisterSignal(F, COMSIG_FOOD_EATEN, .proc/on_food_eaten)
