@@ -79,6 +79,13 @@
 	H.verbs |= /mob/living/carbon/human/proc/churchannouncement
 //	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)		- You are literally disinherited. Begone......
 
+/datum/job/priest/vice //just used to change the priest title
+	title = "Vice Priest"
+	f_title = "Vice Priestess"
+	flag = PRIEST
+	department_flag = CHURCHMEN
+	total_positions = 0
+	spawn_positions = 0
 
 /mob/living/carbon/human/proc/coronate_lord()
 	set name = "Coronate"

@@ -105,6 +105,7 @@
 	src.key = key
 	soulOwner = src
 	martial_art = default_martial_art
+	set_assigned_role(SSjob.GetJobType(/datum/job/unassigned))
 	sleep_adv = new /datum/sleep_adv(src)
 
 /datum/mind/Destroy()
@@ -816,6 +817,15 @@
 		for(var/O in A.objectives)
 			if(istype(O,objective_type))
 				return TRUE
+
+/// Setter for the assigned_role job datum.sync_mind()
+/datum/mind/proc/set_assigned_role(datum/job/new_role)
+	if(!istype(new_role))
+		new_role = ispath(new_role) ? SSjob.GetJobType(new_role) : SSjob.GetJob(new_role)
+	if(assigned_role == new_role)
+		return assigned_role
+	. = assigned_role
+	assigned_role = new_role
 
 /mob/proc/sync_mind()
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
