@@ -129,8 +129,6 @@
 	..()
 
 
-
-
 /*	............   Making cheese wheel   ................ */
 /obj/item/natural/cloth/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
@@ -140,7 +138,7 @@
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
 			if(do_after(user,3 SECONDS, target = src))
 				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_start(loc)
+				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel(loc)
 				qdel(I)
 				qdel(src)
 			return
@@ -148,80 +146,46 @@
 			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	..()
 
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_start
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel
 	name = "unfinished cheese wheel"
 	icon = 'modular/Neu_Food/icons/others/dairy.dmi'
 	icon_state = "cheesewheel_1"
 	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_start/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_two(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
-	else
-		return ..()
-
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_two
-	name = "unfinished cheese wheel"
-	icon = 'modular/Neu_Food/icons/others/dairy.dmi'
-	icon_state = "cheesewheel_2"
-	w_class = WEIGHT_CLASS_BULKY
-
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_two/attackby(obj/item/I, mob/living/user, params)
-	var/found_table = locate(/obj/structure/table) in (loc)
-	update_cooktime(user)
-	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
-		if(isturf(loc)&& (found_table))
-			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
-			if(do_after(user,short_cooktime, target = src))
-				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-				new /obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_three(loc)
-				qdel(I)
-				qdel(src)
-		else
-			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
-	else
-		return ..()
-
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_three
-	name = "unfinished cheese wheel"
-	icon_state = "cheesewheel_3"
-	w_class = WEIGHT_CLASS_BULKY
+	process_step = 1
 	var/mature_proc = .proc/maturing_done
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_three/attackby(obj/item/I, mob/living/user, params)
+
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
 	update_cooktime(user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/cheese))
-		if(isturf(loc)&& (found_table))
+		if(isturf(loc) && found_table)
+			if(process_step == 4)
+				return
 			playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 30, TRUE, -1)
-			if(do_after(user,short_cooktime, target = src))
+			if(do_after(user, short_cooktime, target = src))
 				add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+				process_step++
 				qdel(I)
-				name = "maturing cheese wheel"
-				icon_state = "cheesewheel_end"
-				desc = "Slowly solidifying, best left alone a bit longer."
-				addtimer(CALLBACK(src, mature_proc), 5 MINUTES)
+				switch(process_step)
+					if(2)
+						icon_state = "cheesewheel_2"
+					if(3)
+						icon_state = "cheesewheel_3"
+					if(4)
+						name = "maturing cheese wheel"
+						icon_state = "cheesewheel_end"
+						desc = "Slowly solidifying, best left alone a bit longer."
+						addtimer(CALLBACK(src, mature_proc), 5 MINUTES)
 		else
 			to_chat(user, span_warning("You need to put [src] on a table to work on it."))
 	else
 		return ..()
 
-/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel_three/proc/maturing_done()
+/obj/item/reagent_containers/food/snacks/rogue/foodbase/cheesewheel/proc/maturing_done()
 	playsound(src.loc, 'modular/Neu_Food/sound/rustle2.ogg', 100, TRUE, -1)
 	new /obj/item/reagent_containers/food/snacks/rogue/cheddar(loc)
 	new /obj/item/natural/cloth(loc)
 	qdel(src)
-
-
 
 
 // -------------- CHEESE -----------------
