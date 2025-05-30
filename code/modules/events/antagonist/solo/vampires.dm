@@ -9,7 +9,7 @@
 	antag_flag = ROLE_NBEAST
 	shared_occurence_type = SHARED_HIGH_THREAT
 
-	weight = 6
+	weight = 0		//Disabled cus vampires too strong
 
 	denominator = 80
 

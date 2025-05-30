@@ -26,7 +26,7 @@
 
 	earliest_start = 0 SECONDS
 
-	weight = 10
+	weight = 12
 
 	typepath = /datum/round_event/antagonist/solo/aspirants
 
