@@ -282,6 +282,11 @@
 	desc = span_red("Eating such a meal without a table? Churlish.")
 	timer = 2 MINUTES
 
+/datum/stressevent/graggar_culling_unfinished
+	stressadd = 1
+	desc = span_red("I must eat my opponent's heart before he eats MINE!")
+	timer = INFINITY
+
 /datum/stressevent/soulchurnerhorror
 	timer = 10 SECONDS
 	stressadd = 50

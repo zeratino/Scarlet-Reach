@@ -216,3 +216,8 @@
 	timer = 30 MINUTES
 	stressadd = -2
 	desc = span_green("Astrata's light shines brightly through me. I must not let others ever forget that.")
+
+/datum/stressevent/graggar_culling_finished
+	stressadd = -1
+	desc = span_green("I have prevailed over my rival! Graggar favours me now!")
+	timer = INFINITY
