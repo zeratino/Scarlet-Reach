@@ -25,21 +25,20 @@ GLOBAL_LIST_INIT(animal_migration_points, list())
 // For animals traveling into town
 /datum/round_event/animal_migration
 	var/list/animals = list()
-	/*var/static/list/valid_travel_points = \
-	list("vanderlin-forest_town-town", "vanderlin-mountain_town-town", "vanderlin-bog_town-town", \
-	"Rosewood_Howling", "rosewood-town-forest", \
-	"daftmarsh-town-to-outlands", "daftmarsh-forest-to-outlands", "daftmarsh-basin-to-outlands", "daftmarsh-cave-to-outlands")*/
+	var/static/list/valid_travel_points = \
+	list("bog1", "bog2", "bog3", \
+	"coast", "coast2", "townouter",)
 
 
 /datum/round_event/animal_migration/start()
 	. = ..()
-	var/list/tiles = list()
-	for(var/obj/structure/fluff/traveltile/tile in GLOB.traveltiles)
-		if(tile.aportalid != "vanderlin-forest_town-town")
+	var/list/points = list()
+	for(var/obj/structure/fluff/migration_point/point in GLOB.migrationpoints)
+		if(point.pointid != "townouter")
 			continue
-		tiles |= tile
+		points |= point
 
-	var/turf/start_turf = get_turf(pick(tiles))
+	var/turf/start_turf = get_turf(pick(points))
 	var/turf/end_turf = get_turf(pick(GLOB.animal_migration_points))
 	var/mob/living/simple_animal/hostile/retaliate/rogue/animal = pick(animals)
 	for(var/i = 1 to rand(3, 5))
@@ -63,3 +62,14 @@ GLOBAL_LIST_INIT(animal_migration_points, list())
 		/mob/living/simple_animal/hostile/retaliate/rogue/goat,
 		/mob/living/simple_animal/hostile/retaliate/rogue/saiga,
 	)
+
+//Snowflake marker for migrations. Dun_world got rid of travel tiles, so we snowflake it up in this bitch.
+/obj/structure/fluff/migration_point
+	name = "migration point"
+	icon = 'icons/mob/landmarks.dmi'
+	icon_state = "x"
+	invisibility = INVISIBILITY_ABSTRACT
+	density = FALSE
+	anchored = TRUE
+	max_integrity = 0
+	var/pointid = "REPLACETHIS"
