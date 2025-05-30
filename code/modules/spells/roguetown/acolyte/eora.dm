@@ -314,7 +314,10 @@
     quality = F.faretype
     bitesize_mod = 1 / F.bitesize
     F.faretype = clamp(skill, 1, 5)
-    F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#ff00ff", "size" = 1))
+    if(skill < 4)
+        F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#ff00ff", "size" = 1))
+    else
+        F.add_filter(BLESSED_FOOD_FILTER, 1, list("type" = "outline", "color" = "#f0b000", "size" = 1))
     RegisterSignal(F, COMSIG_FOOD_EATEN, .proc/on_food_eaten)
 
 /datum/component/blessed_food/proc/on_food_eaten(datum/source, mob/living/eater, mob/living/feeder)
@@ -324,7 +327,8 @@
         return
     
     eater.apply_status_effect(/datum/status_effect/buff/healing, (quality + (skill / 5)) * bitesize_mod)
-    eater.apply_status_effect(/datum/status_effect/buff/haste)
+    if(skill > 3)
+        eater.apply_status_effect(/datum/status_effect/buff/haste, 10 SECONDS)
 
 /obj/effect/proc_holder/spell/invoked/bless_food
     name = "Bless Food"
