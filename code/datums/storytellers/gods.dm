@@ -1,3 +1,19 @@
+/datum/storyteller/psydon
+	name = "Psydon"
+	desc = "Psydon will do little, events will be common as he takes a hands-off approach to the world. Consider this the 'extended' experience."
+	weight = 6
+	always_votable = TRUE
+	color_theme = "#80ced8"
+
+	//Has no influence, your actions will not impact him his spawn rates. Cus he's asleep.
+	//Tl;dr - higher event spawn rates to keep stuff interesting, no god intervention, no antags. (Raids and omens will still happen at normal rate.)
+	point_gains_multipliers = list(
+		EVENT_TRACK_MUNDANE = 1.2,
+		EVENT_TRACK_MODERATE = 1.2,
+		EVENT_TRACK_INTERVENTION = 0,			//No god intervention, cus he's asleep.
+		EVENT_TRACK_CHARACTER_INJECTION = 0,	//No antagonist spawns.
+	)
+
 /datum/storyteller/astrata
 	name = "Astrata"
 	desc = "Astrata will provide a balanced and varied experience. Consider this the default experience."
