@@ -323,6 +323,8 @@
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/sigdry,
+		/datum/crafting_recipe/roguetown/survival/sigdry/cheroot,
+		/datum/crafting_recipe/roguetown/survival/sigsweet/cheroot,
 		)
 
 	AddElement(
@@ -345,6 +347,7 @@
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/sigsweet,
+		/datum/crafting_recipe/roguetown/survival/sigsweet/cheroot,
 		)
 
 	AddElement(
