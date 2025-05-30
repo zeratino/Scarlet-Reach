@@ -50,12 +50,13 @@
 			if(I.w_class < WEIGHT_CLASS_GIGANTIC)
 				item_skip = TRUE
 		if(!item_skip)
-			if(used_intent.releasedrain)
+			if(used_intent.releasedrain && !used_intent.type == INTENT_GRAB)
 				rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 			if(used_intent.type == INTENT_GRAB)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					start_pulling(A) //add params to grab bodyparts based on loc
+					rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 					return
 			if(used_intent.type == INTENT_DISARM)
 				var/obj/AM = A
