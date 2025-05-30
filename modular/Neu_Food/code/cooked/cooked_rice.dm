@@ -3,7 +3,8 @@
 	name = "cooked rice"
 	desc = "Plain cooked rice, a staple food in many cultures."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_rice.dmi'
-	icon_state = "rice_cooked"
+	icon_state = "rice"
+	faretype = FARE_POOR
 	bitesize = 3
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	rotprocess = SHELFLIFE_LONG
@@ -42,6 +43,7 @@
 	desc = "Rice mixed with fatty pork."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_rice.dmi'
 	icon_state = "ricepork"
+	faretype = FARE_FINE
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
 
@@ -68,6 +70,7 @@
 	desc = "Rice mixed with fatty pork and fresh cucumbers."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_rice.dmi'
 	icon_state = "riceporkmeal"
+	faretype = FARE_LAVISH
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
 
@@ -79,6 +82,7 @@
 	desc = "Rice mixed with beef steak."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_rice.dmi'
 	icon_state = "ricebeef"
+	faretype = FARE_FINE
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
 
@@ -105,5 +109,6 @@
 	desc = "Rice mixed with beef steak and carrots."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_rice.dmi'
 	icon_state = "ricebeefmeal"
+	faretype = FARE_LAVISH
 	rotprocess = SHELFLIFE_LONG
 	eat_effect = /datum/status_effect/buff/foodbuff
