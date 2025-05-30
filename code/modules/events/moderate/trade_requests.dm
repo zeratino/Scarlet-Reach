@@ -93,7 +93,7 @@
 	track = EVENT_TRACK_MODERATE
 	typepath = /datum/round_event/trade_request
 	weight = 7
-	max_occurrences = 12
+	max_occurrences = 0
 	min_players = 0
 	earliest_start = 5 MINUTES
 
