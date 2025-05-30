@@ -25,6 +25,7 @@
 	cut_overlays()
 	var/mutable_appearance/honey_overlay = mutable_appearance(icon, /datum/reagent/consumable/honey)
 	if(honey_color)
+		honey_overlay.icon = 'modular/Neu_Food/icons/food.dmi'
 		honey_overlay.icon_state = "greyscale_honey"
 		honey_overlay.color = honey_color
 	add_overlay(honey_overlay)

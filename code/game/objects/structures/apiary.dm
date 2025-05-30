@@ -207,6 +207,7 @@
 	desc = "A structure housing bees that produce honey and pollinate plants."
 	icon = 'icons/obj/structures/apiary.dmi'
 	icon_state = "beebox-empty"
+	density = TRUE
 
 	var/stored_combs = 0
 	var/outside_bees = 0
@@ -394,7 +395,7 @@
 		if(prob(disease_severity / 10) && bee_count > 0)
 			bee_count--
 			if(prob(10))
-				visible_message("<span class='warning'>A bee falls from [src], twitching.</span>")
+				visible_message(span_warning("A bee falls from [src], twitching."))
 				var/obj/effect/decal/cleanable/insect/dead_bee = new(get_turf(src))
 				dead_bee.name = "dead bee"
 
@@ -411,7 +412,7 @@
 
 
 	if(disease_severity >= 100)
-		visible_message("<span class='warning'>[src] colony collapses from disease!</span>")
+		visible_message(span_warning("[src] colony collapses from disease!"))
 		bee_count = 0
 		outside_bees = 0
 		for(var/obj/effect/bees/B in bee_objects)
@@ -443,7 +444,7 @@
 		disease_type = pick("varroa_mites", "foulbrood", "wax_moths")
 		has_disease = TRUE
 		disease_severity = 10
-		visible_message("<span class='warning'>The bees in [src] seem agitated.</span>")
+		visible_message(span_warning("The bees in [src] seem agitated."))
 
 /obj/structure/apiary/proc/agitate_bees(chance, mob/user)
 	if(prob(chance) && bee_count > 0)
@@ -451,7 +452,7 @@
 		bee_count -= agitated_count
 		outside_bees += agitated_count
 
-		visible_message("<span class='warning'>Bees swarm out of [src] angrily!</span>")
+		visible_message(span_warning("Bees swarm out of [src] angrily!"))
 
 		for(var/i in 1 to agitated_count)
 			var/obj/effect/bees/B = new(get_turf(src))
@@ -524,7 +525,7 @@
 	swarm_progress += 0.1
 
 	if(swarm_progress > 80 && prob(10))
-		visible_message("<span class='warning'>The bees in [src] are extremely active!</span>")
+		visible_message(span_warning("The bees in [src] are extremely active!"))
 
 	if(swarm_progress >= 100)
 		create_swarm()
@@ -552,7 +553,7 @@
 	bee_count -= swarm_size
 
 	// Announce the swarm
-	visible_message("<span class='warning'>A swarm of bees emerges from [src]!</span>")
+	visible_message(span_warning("A swarm of bees emerges from [src]!"))
 
 	// Create a visual swarm effect
 	var/obj/effect/bee_swarm/swarm = new(get_turf(src))
@@ -627,7 +628,7 @@
 	new_queen.bee_color = pick("#FFD700", "#FFA500", "#FFFF00", "#DAA520")
 	new_queen.bee_disease_resistance = rand(80, 120)/100
 
-	visible_message("<span class='notice'>A new queen bee emerges from [src]!</span>")
+	visible_message(span_notice("A new queen bee emerges from [src]!"))
 
 	// Insert the queen into the hive
 	insert_queen(new_queen)
@@ -636,7 +637,7 @@
 	queen_bee = new_queen
 	queen_deceased = FALSE
 	max_bees = 30 + (queen_bee.bee_efficiency * 10) // Queen efficiency affects max colony size
-	visible_message("<span class='notice'>The bees in [src] welcome their new queen!</span>")
+	visible_message(span_notice("The bees in [src] welcome their new queen!"))
 	new_queen.forceMove(src)
 
 /obj/item/queen_bee
@@ -667,7 +668,7 @@
 		queen_health -= 0.05
 
 	if(queen_health <= 0)
-		visible_message("<span class='warning'>[src] dies of old age!</span>")
+		visible_message(span_warning("[src] dies of old age!"))
 		qdel(src)
 
 
@@ -700,16 +701,16 @@
 
 /obj/item/bee_smoker/attack_self(mob/user)
 	if(!active && fuel > 0)
-		to_chat(user, "<span class='notice'>You light [src].</span>")
+		to_chat(user, span_notice("You light [src]."))
 		active = TRUE
 		update_icon()
 		process_smoker(user)
 	else if(active)
-		to_chat(user, "<span class='notice'>You extinguish [src].</span>")
+		to_chat(user, span_notice("You extinguish [src]."))
 		active = FALSE
 		update_icon()
 	else
-		to_chat(user, "<span class='warning'>[src] is out of fuel!</span>")
+		to_chat(user, span_warning("[src] is out of fuel!"))
 
 /obj/item/bee_smoker/proc/process_smoker(mob/user)
 	if(!active)
@@ -718,7 +719,7 @@
 	if(fuel <= 0)
 		active = FALSE
 		update_icon()
-		to_chat(user, "<span class='warning'>[src] runs out of fuel!</span>")
+		to_chat(user, span_warning("[src] runs out of fuel!"))
 		return
 
 	// Create smoke effects
@@ -749,7 +750,7 @@
 	if(istype(I, /obj/item/natural/bundle/cloth))
 		var/obj/item/natural/bundle/cloth/C = I
 		if(C.amount >= 1 && fuel < max_fuel)
-			to_chat(user, "<span class='notice'>You stuff some cloth into [src].</span>")
+			to_chat(user, span_notice("You stuff some cloth into [src]."))
 			C.use(1)
 			fuel = min(fuel + 5, max_fuel)
 			return TRUE
@@ -776,37 +777,37 @@
 	if(istype(target, /obj/structure/apiary))
 		var/obj/structure/apiary/A = target
 
-		to_chat(user, "<span class='notice'>You carefully inspect [A].</span>")
+		to_chat(user, span_notice("You carefully inspect [A]."))
 
 		if(A.has_disease)
 			switch(A.disease_type)
 				if("varroa_mites")
-					to_chat(user, "<span class='warning'>You spot tiny mites crawling on the bees!</span>")
+					to_chat(user, span_warning("You spot tiny mites crawling on the bees!"))
 				if("foulbrood")
-					to_chat(user, "<span class='warning'>The honeycomb has a foul smell and appears discolored!</span>")
+					to_chat(user, span_warning("The honeycomb has a foul smell and appears discolored!"))
 				if("wax_moths")
-					to_chat(user, "<span class='warning'>You see small moths and their larvae in the hive!</span>")
+					to_chat(user, span_warning("You see small moths and their larvae in the hive!"))
 
 			// Report severity
 			if(A.disease_severity < 30)
-				to_chat(user, "<span class='notice'>The infection appears to be mild.</span>")
+				to_chat(user, span_notice("The infection appears to be mild."))
 			else if(A.disease_severity < 70)
-				to_chat(user, "<span class='warning'>The infection is moderately severe.</span>")
+				to_chat(user, span_warning("The infection is moderately severe."))
 			else
-				to_chat(user, "<span class='danger'>The infection is very severe! The colony may collapse soon!</span>")
+				to_chat(user, span_danger("The infection is very severe! The colony may collapse soon!"))
 		else
-			to_chat(user, "<span class='notice'>The bees appear to be healthy.</span>")
+			to_chat(user, span_notice("The bees appear to be healthy."))
 
 
 		// Report on bee count
 		if(A.bee_count + A.outside_bees == 0)
-			to_chat(user, "<span class='warning'>The hive is empty!</span>")
+			to_chat(user, span_warning("The hive is empty!"))
 		else if(A.bee_count + A.outside_bees < 5)
-			to_chat(user, "<span class='warning'>The colony is very small.</span>")
+			to_chat(user, span_warning("The colony is very small."))
 		else if(A.bee_count + A.outside_bees < 15)
-			to_chat(user, "<span class='notice'>The colony is moderate in size.</span>")
+			to_chat(user, span_notice("The colony is moderate in size."))
 		else
-			to_chat(user, "<span class='notice'>The colony is thriving with many bees!</span>")
+			to_chat(user, span_notice("The colony is thriving with many bees!"))
 
 /obj/item/bee_treatment
 	name = "bee medication"
@@ -825,10 +826,10 @@
 		var/obj/structure/apiary/A = target
 
 		if(!A.has_disease)
-			to_chat(user, "<span class='notice'>The bees don't appear to need treatment.</span>")
+			to_chat(user, span_notice("The bees don't appear to need treatment."))
 			return
 
-		to_chat(user, "<span class='notice'>You apply [src] to [A].</span>")
+		to_chat(user, span_notice("You apply [src] to [A]."))
 
 		// Treatment effectiveness
 		var/effectiveness = treatment_strength
@@ -845,9 +846,9 @@
 			A.has_disease = FALSE
 			A.disease_severity = 0
 			A.treatment_progress = 0
-			to_chat(user, "<span class='notice'>The bees appear to be recovering!</span>")
+			to_chat(user, span_notice("The bees appear to be recovering!"))
 		else
-			to_chat(user, "<span class='notice'>The treatment seems to be having some effect.</span>")
+			to_chat(user, span_notice("The treatment seems to be having some effect."))
 
 		// Agitate bees when treated
 		A.agitate_bees(20, user)
@@ -963,12 +964,12 @@
 
 	established = TRUE
 
-	visible_message("<span class='notice'>The swarm has established a new hive!</span>")
+	visible_message(span_notice("The swarm has established a new hive!"))
 	qdel(src)
 
 /obj/effect/bee_swarm/proc/swarm_timeout()
 	if(!established)
-		visible_message("<span class='notice'>The bee swarm disperses without finding a suitable home.</span>")
+		visible_message(span_notice("The bee swarm disperses without finding a suitable home."))
 		qdel(src)
 
 /obj/effect/bee_swarm/update_overlays()
@@ -1042,7 +1043,7 @@
 	addtimer(CALLBACK(src, PROC_REF(send_out_bees)), rand(100, 300))
 
 /obj/structure/beehive/wild/attack_hand(mob/user)
-	user.visible_message("<span class='warning'>[user] disturbs [src]!</span>", "<span class='warning'>You disturb the wild beehive!</span>")
+	user.visible_message(span_warning("[user] disturbs [src]!"), span_warning("You disturb the wild beehive!"))
 
 	var/protected = is_wearing_bee_protection(user)
 
@@ -1050,11 +1051,11 @@
 		agitate_bees(user)
 
 	if(protected && prob(30))
-		to_chat(user, "<span class='notice'>You manage to extract some honey!</span>")
+		to_chat(user, span_notice("You manage to extract some honey!"))
 		new /obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/wild(get_turf(src))
 
 /obj/structure/beehive/wild/proc/agitate_bees(mob/target)
-	visible_message("<span class='danger'>Bees swarm out of [src] angrily!</span>")
+	visible_message(span_danger("Bees swarm out of [src] angrily!"))
 
 	// Release angry bees
 	var/release_count = min(bee_count, rand(3, 8))
@@ -1137,6 +1138,7 @@
 	name = "wild honey"
 	desc = "Sweet wild honey. It has a more complex flavor than regular honey."
 	icon_state = "honey_wild"
+	honey_color = "#6d4633"
 	list_reagents = list(/datum/reagent/consumable/honey = 7, /datum/reagent/consumable/nutriment = 3)
 
 /obj/effect/decal/cleanable/insect
