@@ -207,7 +207,6 @@
 	desc = "A structure housing bees that produce honey and pollinate plants."
 	icon = 'icons/obj/structures/apiary.dmi'
 	icon_state = "beebox-empty"
-	density = TRUE
 
 	var/stored_combs = 0
 	var/outside_bees = 0
@@ -350,10 +349,9 @@
 		if(queen_bee)
 			to_chat(user, span_warning("There's already a queen!"))
 			return
-		else
-			new /obj/structure/apiary/starter(get_turf(src))
-			qdel(src)
-			qdel(I)
+		new /obj/structure/apiary/starter(get_turf(src))
+		qdel(src)
+		qdel(I)
 
 /obj/structure/apiary/proc/process_comb_gain()
 	if(!pollen)
@@ -821,7 +819,7 @@
 /obj/item/bee_treatment
 	name = "bee medication"
 	desc = "A treatment for bee diseases."
-	icon = 'icons/obj/reagentfillings.dmi'
+	icon = 'icons/roguetown/items/cooking.dmi'
 	icon_state = "clear_vial1"
 	var/treatment_type = "general"
 	var/treatment_strength = 30
