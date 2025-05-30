@@ -131,10 +131,6 @@
 	// Unarmed attacks are the only ones right now that have differing releasedrain, see unarmed attacks for their calc.
 	user.rogfat_add(user.used_intent.releasedrain + rmb_stam_penalty)
 	if(M.checkdefense(user.used_intent, user))
-		if(M.d_intent == INTENT_DODGE)
-			if(!user.used_intent.swingdelay)
-				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
-					user.do_attack_animation(M, user.used_intent.animname, used_item = src, used_intent = user.used_intent)
 		return
 
 
