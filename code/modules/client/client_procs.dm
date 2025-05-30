@@ -253,7 +253,18 @@ GLOBAL_LIST_EMPTY(respawncounts)
 	// Centered container with left-aligned content
 	data += "<div style='text-align: center;'>"
 	data += "<div style='display: inline-block; text-align: left; margin-left: auto; margin-right: auto;'>"
-	data += "[length(GLOB.featured_stats[current_featured]["entries"]) ? format_top_ten(current_featured) : "<div style='margin-top: 20px;'>Nobody</div>"]"
+	
+	var/stat_is_object = GLOB.featured_stats[current_featured]["object_stat"]
+	var/has_entries = length(GLOB.featured_stats[current_featured]["entries"])
+
+	if(has_entries)
+		if(stat_is_object)
+			data += format_top_ten_objects(current_featured)
+		else
+			data += format_top_ten(current_featured)
+	else
+		data += "<div style='margin-top: 20px;'>[stat_is_object ? "None" : "Nobody"]</div>"
+	
 	data += "</div>"
 	data += "</div>"
 	data += "</div>"
@@ -455,7 +466,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Astrata
 	data += god_ui_block("ASTRATA", "#ffd700", "#333300", "\
-		Number of followers: [astrata_followers] ([get_colored_influence_value(astrata_followers * SSgamemode.get_storyteller_follower_modifier(astrata_storyteller))])<br>\
+		Number of followers: [astrata_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(astrata_storyteller))])<br>\
 		Astrata revivals: [GLOB.azure_round_stats[STATS_ASTRATA_REVIVALS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(astrata_storyteller, STATS_ASTRATA_REVIVALS))])<br>\
 		Number of nobles: [GLOB.azure_round_stats[STATS_ALIVE_NOBLES]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(astrata_storyteller, STATS_ALIVE_NOBLES))])<br>\
 		Noble deaths: [GLOB.azure_round_stats[STATS_NOBLE_DEATHS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(astrata_storyteller, STATS_NOBLE_DEATHS))])<br>\
@@ -464,7 +475,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Noc
 	data += god_ui_block("NOC", "#e0e0e0", "#404040", "\
-		Number of followers: [noc_followers] ([get_colored_influence_value(noc_followers * SSgamemode.get_storyteller_follower_modifier(noc_storyteller))])<br>\
+		Number of followers: [noc_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(noc_storyteller))])<br>\
 		Books printed: [GLOB.azure_round_stats[STATS_BOOKS_PRINTED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(noc_storyteller, STATS_BOOKS_PRINTED))])<br>\
 		Literacy taught: [GLOB.azure_round_stats[STATS_LITERACY_TAUGHT]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(noc_storyteller, STATS_LITERACY_TAUGHT))])<br>\
 		Books burned: [GLOB.azure_round_stats[STATS_BOOKS_BURNED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(noc_storyteller, STATS_BOOKS_BURNED))])<br>\
@@ -472,7 +483,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Necra
 	data += god_ui_block("NECRA", "#666666", "#dddddd", "\
-		Number of followers: [necra_followers] ([get_colored_influence_value(necra_followers * SSgamemode.get_storyteller_follower_modifier(necra_storyteller))])<br>\
+		Number of followers: [necra_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(necra_storyteller))])<br>\
 		Total deaths: [GLOB.azure_round_stats[STATS_DEATHS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(necra_storyteller, STATS_DEATHS))])<br>\
 		Graves robbed: [GLOB.azure_round_stats[STATS_GRAVES_ROBBED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(necra_storyteller, STATS_GRAVES_ROBBED))])<br>\
 		Skeletons killed: [GLOB.azure_round_stats[STATS_SKELETONS_KILLED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(necra_storyteller, STATS_SKELETONS_KILLED))])<br>\
@@ -481,7 +492,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Pestra
 	data += god_ui_block("PESTRA", "#88cc88", "#224422", "\
-		Number of followers: [pestra_followers] ([get_colored_influence_value(pestra_followers * SSgamemode.get_storyteller_follower_modifier(pestra_storyteller))])<br>\
+		Number of followers: [pestra_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(pestra_storyteller))])<br>\
 		Potions brewed: [GLOB.azure_round_stats[STATS_POTIONS_BREWED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(pestra_storyteller, STATS_POTIONS_BREWED))])<br>\
 		Wounds sewed up: [GLOB.azure_round_stats[STATS_WOUNDS_SEWED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(pestra_storyteller, STATS_WOUNDS_SEWED))])<br>\
 		Food rotted: [GLOB.azure_round_stats[STATS_FOOD_ROTTED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(pestra_storyteller, STATS_FOOD_ROTTED))])<br>\
@@ -489,7 +500,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Dendor
 	data += god_ui_block("DENDOR", "#442200", "#ccaa88", "\
-		Number of followers: [dendor_followers] ([get_colored_influence_value(dendor_followers * SSgamemode.get_storyteller_follower_modifier(dendor_storyteller))])<br>\
+		Number of followers: [dendor_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(dendor_storyteller))])<br>\
 		Trees felled: [GLOB.azure_round_stats[STATS_TREES_CUT]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(dendor_storyteller, STATS_TREES_CUT))])<br>\
 		Plants harvested: [GLOB.azure_round_stats[STATS_PLANTS_HARVESTED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(dendor_storyteller, STATS_PLANTS_HARVESTED))])<br>\
 		Forest deaths: [GLOB.azure_round_stats[STATS_FOREST_DEATHS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(dendor_storyteller, STATS_FOREST_DEATHS))])<br>\
@@ -501,7 +512,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Ravox
 	data += god_ui_block("RAVOX", "#004400", "#aaffaa", "\
-		Number of followers: [ravox_followers] ([get_colored_influence_value(ravox_followers * SSgamemode.get_storyteller_follower_modifier(ravox_storyteller))])<br>\
+		Number of followers: [ravox_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(ravox_storyteller))])<br>\
 		Combat skills learned: [GLOB.azure_round_stats[STATS_COMBAT_SKILLS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(ravox_storyteller, STATS_COMBAT_SKILLS))])<br>\
 		Parries made: [GLOB.azure_round_stats[STATS_PARRIES]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(ravox_storyteller, STATS_PARRIES))])<br>\
 		Warcries made: [GLOB.azure_round_stats[STATS_WARCRIES]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(ravox_storyteller, STATS_WARCRIES))])<br>\
@@ -509,7 +520,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Xylix
 	data += god_ui_block("XYLIX", "#776161", "#aaaaaa", "\
-		Number of followers: [xylix_followers] ([get_colored_influence_value(xylix_followers * SSgamemode.get_storyteller_follower_modifier(xylix_storyteller))])<br>\
+		Number of followers: [xylix_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(xylix_storyteller))])<br>\
 		Laughs had: [GLOB.azure_round_stats[STATS_LAUGHS_MADE]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(xylix_storyteller, STATS_LAUGHS_MADE))])<br>\
 		Songs played: [GLOB.azure_round_stats[STATS_SONGS_PLAYED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(xylix_storyteller, STATS_SONGS_PLAYED))])<br>\
 		People mocked: [GLOB.azure_round_stats[STATS_PEOPLE_MOCKED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(xylix_storyteller, STATS_PEOPLE_MOCKED))])<br>\
@@ -517,7 +528,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Malum
 	data += god_ui_block("MALUM", "#a87a4c", "#332211", "\
-		Number of followers: [malum_followers] ([get_colored_influence_value(malum_followers * SSgamemode.get_storyteller_follower_modifier(malum_storyteller))])<br>\
+		Number of followers: [malum_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(malum_storyteller))])<br>\
 		Masterworks forged: [GLOB.azure_round_stats[STATS_MASTERWORKS_FORGED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(malum_storyteller, STATS_MASTERWORKS_FORGED))])<br>\
 		Rocks mined: [GLOB.azure_round_stats[STATS_ROCKS_MINED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(malum_storyteller, STATS_ROCKS_MINED))])<br>\
 		Craft skills learned: [GLOB.azure_round_stats[STATS_CRAFT_SKILLS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(malum_storyteller, STATS_CRAFT_SKILLS))])<br>\
@@ -525,7 +536,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Abyssor
 	data += god_ui_block("ABYSSOR", "#000066", "#6699ff", "\
-		Number of followers: [abyssor_followers] ([get_colored_influence_value(abyssor_followers * SSgamemode.get_storyteller_follower_modifier(abyssor_storyteller))])<br>\
+		Number of followers: [abyssor_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(abyssor_storyteller))])<br>\
 		Fish caught: [GLOB.azure_round_stats[STATS_FISH_CAUGHT]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(abyssor_storyteller, STATS_FISH_CAUGHT))])<br>\
 		Abyssor remembered: [GLOB.azure_round_stats[STATS_ABYSSOR_REMEMBERED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(abyssor_storyteller, STATS_ABYSSOR_REMEMBERED))])<br>\
 		Water consumed: [round(GLOB.azure_round_stats[STATS_WATER_CONSUMED], 0.1)] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(abyssor_storyteller, STATS_WATER_CONSUMED))])<br>\
@@ -534,7 +545,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Eora
 	data += god_ui_block("EORA", "#663366", "#ddaaff", "\
-		Number of followers: [eora_followers] ([get_colored_influence_value(eora_followers * SSgamemode.get_storyteller_follower_modifier(eora_storyteller))])<br>\
+		Number of followers: [eora_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(eora_storyteller))])<br>\
 		Kisses made: [GLOB.azure_round_stats[STATS_KISSES_MADE]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(eora_storyteller, STATS_KISSES_MADE))])<br>\
 		Pleasures had: [GLOB.azure_round_stats[STATS_PLEASURES]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(eora_storyteller, STATS_PLEASURES))])<br>\
 		Hugs made: [GLOB.azure_round_stats[STATS_HUGS_MADE]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(eora_storyteller, STATS_HUGS_MADE))])<br>\
@@ -561,7 +572,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Zizo
 	data += god_ui_block("ZIZO", "#660000", "#ffcccc", "\
-		Number of followers: [zizo_followers] ([get_colored_influence_value(zizo_followers * SSgamemode.get_storyteller_follower_modifier(zizo_storyteller))])<br>\
+		Number of followers: [zizo_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(zizo_storyteller))])<br>\
 		Deadites woken up: [GLOB.azure_round_stats[STATS_DEADITES_WOKEN_UP]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(zizo_storyteller, STATS_DEADITES_WOKEN_UP))])<br>\
 		Tortures performed: [GLOB.azure_round_stats[STATS_TORTURES]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(zizo_storyteller, STATS_TORTURES))])<br>\
 		Nobles killed: [GLOB.azure_round_stats[STATS_NOBLE_DEATHS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(zizo_storyteller, STATS_NOBLE_DEATHS))])<br>\
@@ -569,7 +580,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Graggar
 	data += god_ui_block("GRAGGAR", "#531e1e", "#ffaaaa", "\
-		Number of followers: [graggar_followers] ([get_colored_influence_value(graggar_followers * SSgamemode.get_storyteller_follower_modifier(graggar_storyteller))])<br>\
+		Number of followers: [graggar_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(graggar_storyteller))])<br>\
 		Organs eaten: [GLOB.azure_round_stats[STATS_ORGANS_EATEN]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(graggar_storyteller, STATS_ORGANS_EATEN))])<br>\
 		Blood spilt: [round(GLOB.azure_round_stats[STATS_BLOOD_SPILT] / 100)] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(graggar_storyteller, STATS_BLOOD_SPILT))])<br>\
 		Total deaths: [GLOB.azure_round_stats[STATS_DEATHS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(graggar_storyteller, STATS_DEATHS))])<br>\
@@ -577,7 +588,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Baotha
 	data += god_ui_block("BAOTHA", "#4a0044", "#ffbbff", "\
-		Number of followers: [baotha_followers] ([get_colored_influence_value(baotha_followers * SSgamemode.get_storyteller_follower_modifier(baotha_storyteller))])<br>\
+		Number of followers: [baotha_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(baotha_storyteller))])<br>\
 		Drugs snorted: [GLOB.azure_round_stats[STATS_DRUGS_SNORTED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(baotha_storyteller, STATS_DRUGS_SNORTED))])<br>\
 		Alcohol consumed: [GLOB.azure_round_stats[STATS_ALCOHOL_CONSUMED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(baotha_storyteller, STATS_ALCOHOL_CONSUMED))])<br>\
 		Number of alcoholics: [GLOB.azure_round_stats[STATS_ALCOHOLICS]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(baotha_storyteller, STATS_ALCOHOLICS))])<br>\
@@ -585,7 +596,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 
 	// Matthios
 	data += god_ui_block("MATTHIOS", "#3d1301", "#ddbb99", "\
-		Number of followers: [matthios_followers] ([get_colored_influence_value(matthios_followers * SSgamemode.get_storyteller_follower_modifier(matthios_storyteller))])<br>\
+		Number of followers: [matthios_followers] ([get_colored_influence_value(SSgamemode.get_follower_influence(matthios_storyteller))])<br>\
 		Items pickpocketed: [GLOB.azure_round_stats[STATS_ITEMS_PICKPOCKETED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(matthios_storyteller, STATS_ITEMS_PICKPOCKETED))])<br>\
 		Locks picked: [GLOB.azure_round_stats[STATS_LOCKS_PICKED]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(matthios_storyteller, STATS_LOCKS_PICKED))])<br>\
 		Value offered to his idol: [GLOB.azure_round_stats[STATS_SHRINE_VALUE]] ([get_colored_influence_value(SSgamemode.calculate_specific_influence(matthios_storyteller, STATS_SHRINE_VALUE))])<br>\

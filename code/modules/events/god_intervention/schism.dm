@@ -103,36 +103,58 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 
 		var/mob/living/carbon/human/selected_priest = null
 		var/was_supporter = FALSE
+		var/was_clergy = FALSE
 
-		// First try to find a challenger supporter who is clergy
+		// First try to find a challenger supporter who is also clergy
 		for(var/datum/weakref/supporter_ref in supporters_challenger)
 			var/mob/living/carbon/human/human_mob = supporter_ref.resolve()
-			if(human_mob && human_mob.stat != DEAD && human_mob.mind && (human_mob.mind.assigned_role in GLOB.church_positions))
+			if(human_mob && human_mob.stat != DEAD && human_mob.client && (human_mob.mind?.assigned_role in GLOB.church_positions) && human_mob.patron == challenger)
 				selected_priest = human_mob
 				was_supporter = TRUE
 				break
 
-		// If no supporter found, fall back to any clergy member who has challenger as his patron
+		// If no supporter found, fall back to any clergy member who has the challenger as his patron
 		if(!selected_priest)
 			for(var/mob/living/carbon/human/human_mob in GLOB.player_list)
-				if(human_mob.stat != DEAD && human_mob.mind && (human_mob.mind.assigned_role in GLOB.church_positions) && human_mob.patron == challenger)
+				if(human_mob.stat != DEAD && human_mob.client && (human_mob.mind?.assigned_role in GLOB.church_positions) && human_mob.patron == challenger)
 					selected_priest = human_mob
+					was_clergy = TRUE
+					break
+
+		// As a last resort, pick someone who has the challenger as his patron, is nonheretical species, is adult and is not a noble, garrison or a migrant
+		if(!selected_priest)
+			for(var/datum/weakref/supporter_ref in supporters_challenger)
+				var/mob/living/carbon/human/human_mob = supporter_ref.resolve()
+				if(human_mob && human_mob.stat != DEAD && human_mob.client && human_mob.patron == challenger && !human_mob.is_noble() && !(human_mob.mind?.assigned_role in GLOB.garrison_positions) && !(human_mob.mind?.assigned_role in GLOB.allmig_positions))
+					selected_priest = human_mob
+					was_supporter = TRUE
 					break
 
 		// Promote the selected priest if we found one
 		if(selected_priest)
-			selected_priest.mind.set_assigned_role(/datum/job/priest/vice)
-			selected_priest.job = "Vice Priest"
+			var/male
+			if(selected_priest.gender == FEMALE)
+				selected_priest.job = "Vice Priestess"
+				selected_priest.advjob = "Vice Priestess"
+				male = FALSE
+			else
+				selected_priest.job = "Vice Priest"
+				selected_priest.advjob = "Vice Priest"
+				male = TRUE
+			selected_priest.migrant_type = null
+			if(!was_clergy)
+				selected_priest.verbs |= /mob/living/carbon/human/proc/devotionreport
+				selected_priest.verbs |= /mob/living/carbon/human/proc/clericpray
 			selected_priest.verbs |= /mob/living/carbon/human/proc/churchexcommunicate
 			//selected_priest.verbs |= /mob/living/carbon/human/proc/churchcurse	- Add this back seperate later in a seperate PR. Good feature, PR too big tho.
 			selected_priest.verbs |= /mob/living/carbon/human/proc/churchannouncement
 
 			if(was_supporter)
-				to_chat(selected_priest, span_green("[challenger.name] smiles upon you! Your faithful support during the schism has been rewarded with the position of a Vice Priest!"))
+				to_chat(selected_priest, span_green("[challenger.name] smiles upon you! Your faithful support during the schism has been rewarded with the position of a [male ? "Vice Priest" : "Vice Priestess"]!"))
 			else
-				to_chat(selected_priest, span_green("Though you did not openly support [challenger.name] during the schism, you have been chosen to serve as a Vice Priest!"))
+				to_chat(selected_priest, span_green("Though you did not openly support [challenger.name] during the schism, you have been chosen to serve as a [male ? "Vice Priest" : "Vice Priestess"]!"))
 
-			priority_announce("[challenger.name] has selected [selected_priest.real_name] as a Vice Priest! Power sharing begins!", "Vice Priest rises")
+			priority_announce("[challenger.name] has selected [selected_priest.real_name] as a [male ? "Vice Priest" : "Vice Priestess"]! Power sharing begins!", "[male ? "Vice Priest" : "Vice Priestess"] rises")
 
 		for(var/datum/weakref/supporter_ref in supporters_astrata)
 			var/mob/living/carbon/human/supporter = supporter_ref.resolve()
@@ -246,8 +268,8 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 	name = "Schism within the Ten"
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/schism_within_ten
-	weight = 0		//Disabled so only staff can manually trigger it. Cool as shit intervention code, just doesn't fit our server in a 'normal' round. Cheers, Vander, actual banger.
-	max_occurrences = 0
+	weight = 1
+	max_occurrences = 0	//Disabled so only staff can manually trigger it. Cool as shit intervention code, just doesn't fit our server in a 'normal' round. Cheers, Vander, actual banger.
 	min_players = 60
 	earliest_start = 30 MINUTES
 	allowed_storytellers = list(/datum/storyteller/noc, /datum/storyteller/ravox, /datum/storyteller/necra, /datum/storyteller/xylix, /datum/storyteller/pestra, /datum/storyteller/abyssor, /datum/storyteller/dendor, /datum/storyteller/eora, /datum/storyteller/malum)
@@ -259,6 +281,8 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 
 	var/alternative_events = FALSE
 	for(var/datum/round_event_control/E in SSevents.control)
+		if(E.track != EVENT_TRACK_INTERVENTION)
+			continue
 		if(E == src)
 			continue
 		if(E.canSpawnEvent(players_amt, gamemode, fake_check))
@@ -303,7 +327,7 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 
 		if(human_mob.patron == strongest_challenger)
 			to_chat(human_mob, span_notice("You hear a divine calling from your patron - the time has come to challenge Astrata's authority! Prepare for the coming schism!"))
-			SEND_SOUND(human_mob, 'sound/magic/marked.ogg')
+			human_mob.playsound_local(human_mob, 'sound/magic/marked.ogg', 100)
 
 	new /datum/tennite_schism(strongest_challenger)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(announce_schism_start)), 2 MINUTES)

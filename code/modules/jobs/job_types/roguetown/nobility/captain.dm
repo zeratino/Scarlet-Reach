@@ -330,6 +330,7 @@
 		recruit.say(accept_message, forced = "[name]")
 	if(new_role)
 		recruit.job = new_role
+		SEND_SIGNAL(SSdcs, COMSIG_GLOB_ROLE_CONVERTED, recruiter, recruit, new_role)
 	return TRUE
 
 /obj/effect/proc_holder/spell/self/convertrole/guard

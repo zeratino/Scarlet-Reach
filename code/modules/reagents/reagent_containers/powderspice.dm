@@ -120,6 +120,7 @@
 
 	if(reagents.total_volume)
 		reagents.trans_to(M, reagents.total_volume, transfered_by = user, method = "swallow")
+		SEND_SIGNAL(M, COMSIG_DRUG_SNIFFED, user)
 		record_featured_stat(FEATURED_STATS_CRIMINALS, user)
 		GLOB.azure_round_stats[STATS_DRUGS_SNORTED]++
 	qdel(src)

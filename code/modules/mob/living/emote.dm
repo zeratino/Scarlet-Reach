@@ -590,6 +590,7 @@
 		playsound(target.loc, pick('sound/vo/hug.ogg'), 100, FALSE, -1)
 		if(user.mind)
 			GLOB.azure_round_stats[STATS_HUGS_MADE]++
+			SEND_SIGNAL(user, COMSIG_MOB_HUGGED, target)
 
 /datum/emote/living/holdbreath
 	key = "hold"

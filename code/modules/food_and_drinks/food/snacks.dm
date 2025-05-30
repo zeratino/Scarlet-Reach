@@ -301,6 +301,8 @@ All foods are distributed among various categories. Use common sense.
 	eater.taste(reagents)
 
 	if(!reagents.total_volume)
+		if(eat_effect == /datum/status_effect/debuff/rotfood)
+			SEND_SIGNAL(eater, COMSIG_ROTTEN_FOOD_EATEN, src)
 		var/mob/living/location = loc
 		var/obj/item/trash_item = generate_trash(location)
 		qdel(src)

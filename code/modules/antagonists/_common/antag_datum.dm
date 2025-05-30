@@ -177,6 +177,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 	else
 		testing("redtext")
 		report += span_redtextbig("The [name] has failed!")
+	report += "<br>"
 
 	return report.Join("<br>")
 

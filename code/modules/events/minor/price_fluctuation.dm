@@ -2,7 +2,7 @@
 	name = "Shipping Fluctuations"
 	track = EVENT_TRACK_MUNDANE
 	typepath = /datum/round_event/price_fluctuation
-	weight = 10
+	weight = 4
 	max_occurrences = 4
 	min_players = 0
 	earliest_start = 15 MINUTES

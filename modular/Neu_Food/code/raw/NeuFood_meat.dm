@@ -199,6 +199,9 @@
 /*	........   Fish sounds   ................ */
 /obj/item/reagent_containers/food/snacks/fish
 	chopping_sound = TRUE
+	slices_num = 2
+	/// Number representing how rare the fish is, 0 is the lowest common fish
+	var/rarity_rank = 0
 
 /* ............. fish chop ................*/
 /obj/item/reagent_containers/food/snacks/rogue/meat/fish

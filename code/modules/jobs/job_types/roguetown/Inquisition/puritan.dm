@@ -189,6 +189,7 @@
 	if(!found)
 		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
 	if(!H.stat)
+		SEND_SIGNAL(src, COMSIG_TORTURE_PERFORMED, H)
 		var/static/list/torture_lines = list(
 			"CONFESS!",
 			"TELL ME YOUR SECRETS!",
@@ -237,6 +238,7 @@
 		to_chat(src, span_warning("I need a large psycross structure nearby to extract this divination!"))
 		return
 	if(!H.stat)
+		SEND_SIGNAL(src, COMSIG_TORTURE_PERFORMED, H)
 		var/static/list/faith_lines = list(
 			"DO YOU DENY THE ALLFATHER?",
 			"WHO IS YOUR GOD?",

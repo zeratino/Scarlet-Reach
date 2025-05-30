@@ -67,7 +67,9 @@
 	if(isopenturf(partner))
 		var/obj/stairs = new /obj/structure/stairs(partner)
 		stairs.dir = turn(dirin, 180)
+	SEND_SIGNAL(user, COMSIG_ITEM_CRAFTED, user, type)
 	record_featured_stat(FEATURED_STATS_CRAFTERS, user)
+	record_featured_object_stat(FEATURED_STATS_CRAFTED_ITEMS, name)
 
 /obj/structure/stairs/stone/d/OnCrafted(dirin, mob/user)
 	dir = turn(dirin, 180)
@@ -76,7 +78,9 @@
 	if(isopenturf(partner))
 		var/obj/stairs = new /obj/structure/stairs/stone(partner)
 		stairs.dir = turn(dirin, 180)
+	SEND_SIGNAL(user, COMSIG_ITEM_CRAFTED, user, type)
 	record_featured_stat(FEATURED_STATS_CRAFTERS, user)
+	record_featured_object_stat(FEATURED_STATS_CRAFTED_ITEMS, name)
 
 /obj/structure/stairs/Initialize(mapload)
 	return ..()

@@ -1,3 +1,31 @@
+/// Divine pantheon storytellers
+#define DIVINE_STORYTELLERS list( \
+	/datum/storyteller/astrata, \
+	/datum/storyteller/noc, \
+	/datum/storyteller/ravox, \
+	/datum/storyteller/abyssor, \
+	/datum/storyteller/xylix, \
+	/datum/storyteller/necra, \
+	/datum/storyteller/pestra, \
+	/datum/storyteller/malum, \
+	/datum/storyteller/eora, \
+	/datum/storyteller/dendor, \
+	/datum/storyteller/psydon, \
+)
+
+//Yeah-yeah, he's not the same pantheon but suck it up, buttercup. We not makin' more defines.
+
+/// Inhumen pantheon storytellers
+#define INHUMEN_STORYTELLERS list( \
+	/datum/storyteller/zizo, \
+	/datum/storyteller/baotha, \
+	/datum/storyteller/graggar, \
+	/datum/storyteller/matthios, \
+)
+
+/// All storytellers
+#define STORYTELLERS_ALL (DIVINE_STORYTELLERS + INHUMEN_STORYTELLERS)
+
 /datum/storyteller/psydon
 	name = "Psydon"
 	desc = "Psydon will do little, events will be common as he takes a hands-off approach to the world. Consider this the 'extended' experience."
@@ -64,6 +92,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 0.75,
+		EVENT_TRACK_PERSONAL = 0.9,
 		EVENT_TRACK_MODERATE = 1,
 		EVENT_TRACK_INTERVENTION = 1,
 		EVENT_TRACK_CHARACTER_INJECTION = 1,	//Gaurenteed antagonist spawn
@@ -111,6 +140,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
+		EVENT_TRACK_PERSONAL = 1.1,
 		EVENT_TRACK_MODERATE = 0,
 		EVENT_TRACK_INTERVENTION = 0,
 		EVENT_TRACK_CHARACTER_INJECTION = 0,
@@ -139,6 +169,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1.25,
+		EVENT_TRACK_PERSONAL = 0.7,
 		EVENT_TRACK_MODERATE = 1.25,
 		EVENT_TRACK_INTERVENTION = 1.25,
 		EVENT_TRACK_CHARACTER_INJECTION = 0.5,	//High-chance antagonist spawn
@@ -185,6 +216,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
+		EVENT_TRACK_PERSONAL = 1.2,
 		EVENT_TRACK_MODERATE = 1,
 		EVENT_TRACK_INTERVENTION = 2,
 		EVENT_TRACK_CHARACTER_INJECTION = 1,	//Gaurenteed antagonist spawn
@@ -212,6 +244,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
+		EVENT_TRACK_PERSONAL = 1.4,
 		EVENT_TRACK_MODERATE = 1,
 		EVENT_TRACK_INTERVENTION = 2,
 		EVENT_TRACK_CHARACTER_INJECTION = 1,	//Gaurenteed antagonist spawn
@@ -240,6 +273,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
+		EVENT_TRACK_PERSONAL = 0.8,
 		EVENT_TRACK_MODERATE = 1,
 		EVENT_TRACK_INTERVENTION = 2,
 		EVENT_TRACK_CHARACTER_INJECTION = 1,	//Gaurenteed antagonist spawn
@@ -273,6 +307,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
+		EVENT_TRACK_PERSONAL = 1.2,
 		EVENT_TRACK_MODERATE = 1.1,
 		EVENT_TRACK_INTERVENTION = 1.5,
 		EVENT_TRACK_CHARACTER_INJECTION = 1,	//Gaurenteed antagonist spawn
@@ -306,6 +341,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1.1,
+		EVENT_TRACK_PERSONAL = 1.2,
 		EVENT_TRACK_MODERATE = 1.3,
 		EVENT_TRACK_INTERVENTION = 2,
 		EVENT_TRACK_CHARACTER_INJECTION = 0.7,	//High chance antagonist spawn
@@ -338,6 +374,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 0.8,
+		EVENT_TRACK_PERSONAL = 0.7,
 		EVENT_TRACK_MODERATE = 1.2,
 		EVENT_TRACK_INTERVENTION = 1.5,
 		EVENT_TRACK_CHARACTER_INJECTION = 1,	//Gaurenteed antagonist spawn
@@ -370,6 +407,7 @@
 
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1,
+		EVENT_TRACK_PERSONAL = 1.1,
 		EVENT_TRACK_MODERATE = 1.2,
 		EVENT_TRACK_INTERVENTION = 1.3,
 		EVENT_TRACK_CHARACTER_INJECTION = 1.5,	//Gaurenteed antagonist spawn

@@ -69,6 +69,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	if(holder)
 		var/adjusted_metabolization_rate = metabolization_rate
 		if(M.client)
+			record_featured_object_stat(FEATURED_STATS_DRINKS, name, adjusted_metabolization_rate)
 			if(istype(src, /datum/reagent/consumable/ethanol))
 				record_featured_stat(FEATURED_STATS_ALCOHOLICS, M, adjusted_metabolization_rate)
 				GLOB.azure_round_stats[STATS_ALCOHOL_CONSUMED] += metabolization_rate
