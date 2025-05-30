@@ -34,8 +34,8 @@
 		if(!src.can_speak_vocal())
 			to_chat(src,span_warning("I can't speak!"))
 			return FALSE
-		if(world.time < last_elder_announce + 300 SECONDS) // SET BACK TO 300 WHEN DONE DEBUGGING
-			to_chat(src, span_warning("You must wait [round((last_elder_announce + 300 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
+		if(world.time < last_elder_announce + 600 SECONDS)
+			to_chat(src, span_warning("You must wait [round((last_elder_announce + 600 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
 			return FALSE
 		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement.."))
 		if(do_after(src, 15 SECONDS, target = src)) // Reduced to 15 seconds from 30 on the original Herald PR. 15 is well enough time for sm1 to shove you.
