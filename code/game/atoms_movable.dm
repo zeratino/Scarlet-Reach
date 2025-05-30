@@ -770,10 +770,12 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, transform=rotated_transform, time = GLOB.pixel_diff_time, easing=LINEAR_EASING, flags = ANIMATION_PARALLEL)
 	animate(pixel_x = pixel_x - pixel_x_diff, pixel_y = pixel_y - pixel_y_diff, transform=initial_transform, time = GLOB.pixel_diff_time * 2, easing=SINE_EASING, flags = ANIMATION_PARALLEL)
 
-/atom/movable/proc/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent)
-	if(used_item)
+/atom/movable/proc/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect, item_animation_override = null, datum/intent/used_intent, simplified = FALSE)
+	if(used_item || !simplified)
 		var/animation_type = item_animation_override || used_intent?.get_attack_animation_type()
 		do_item_attack_animation(A, visual_effect_icon, used_item, animation_type = animation_type)
+		return
+	wiggle(A)
 
 
 /atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, animation_type = ATTACK_ANIMATION_SWIPE)

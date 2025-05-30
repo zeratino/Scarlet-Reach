@@ -106,7 +106,7 @@
 	if(user.used_intent.swingdelay)
 		if(!user.used_intent.noaa)
 			if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
-				user.do_attack_animation(M, user.used_intent.animname, user.used_intent.masteritem, used_intent = user.used_intent)
+				user.do_attack_animation(M, user.used_intent.animname, user.used_intent.masteritem, used_intent = user.used_intent, simplified = TRUE)
 		sleep(user.used_intent.swingdelay)
 	if(user.a_intent != cached_intent)
 		return
@@ -122,7 +122,7 @@
 		if(M.checkmiss(user))
 			if(!user.used_intent.swingdelay)
 				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
-					user.do_attack_animation(M, user.used_intent.animname, used_item = src, used_intent = user.used_intent)
+					user.do_attack_animation(M, user.used_intent.animname, used_item = src, used_intent = user.used_intent, simplified = TRUE)
 			return
 	var/rmb_stam_penalty = 0
 	if(istype(user.rmb_intent, /datum/rmb_intent/strong) || istype(user.rmb_intent, /datum/rmb_intent/swift))
@@ -178,13 +178,13 @@
 	if(item_flags & NOBLUDGEON)
 		return
 	if(O.attacked_by(src, user))
-		user.do_attack_animation(O)
+		user.do_attack_animation(O, simplified = TRUE)
 		return TRUE
 
 /obj/item/proc/attack_turf(turf/T, mob/living/user, multiplier)
 	if(T.max_integrity)
 		if(T.attacked_by(src, user, multiplier))
-			user.do_attack_animation(T)
+			user.do_attack_animation(T, simplified = TRUE)
 			return TRUE
 
 /atom/movable/proc/attacked_by()
