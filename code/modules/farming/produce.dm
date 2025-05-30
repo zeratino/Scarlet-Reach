@@ -463,6 +463,7 @@
 	name = "cucumber"
 	desc = "A long, green vegetable that is crunchy and refreshing. Can be sliced for easier consumption."
 	icon_state = "cucumber"
+	dropshrink = 0.75
 	slices_num = 2
 	slice_path = /obj/item/reagent_containers/food/snacks/rogue/veg/cucumber_sliced
 	tastes = list("cucumber" = 1)

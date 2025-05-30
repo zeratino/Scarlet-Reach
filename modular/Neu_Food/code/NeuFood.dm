@@ -20,7 +20,7 @@
 		long_cooktime = initial(long_cooktime)
 
 /obj/item/reagent_containers/food/snacks/rogue // base food type, for icons and cooktime, and to make it work with processes like pie making
-	icon = 'modular/Neu_Food/icons/food.dmi'
+	icon = 'modular/Neu_Food/icons/unused.dmi' // Still need a backup file lol
 	desc = ""
 	slices_num = 0
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
