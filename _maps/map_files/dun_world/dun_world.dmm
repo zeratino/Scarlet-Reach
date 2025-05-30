@@ -7060,13 +7060,6 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark)
-"cvH" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/fluff/railing/border{
-	dir = 9
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
 "cvK" = (
 /obj/structure/plasticflaps,
 /turf/open/floor/rogue/tile/brownbrick,
@@ -9879,6 +9872,12 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
+"dsl" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/closed/wall/mineral/rogue/wooddark/vertical,
+/area/rogue/indoors/town)
 "dsm" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
@@ -10447,6 +10446,12 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
+"dFa" = (
+/obj/structure/fluff/railing/border{
+	dir = 9
+	},
+/turf/closed/wall/mineral/rogue/wooddark/vertical,
+/area/rogue/indoors/town)
 "dFh" = (
 /obj/structure/stairs,
 /obj/machinery/light/rogue/torchholder/r,
@@ -14592,14 +14597,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/under/cavewet/bogcaves/sunkencity)
-"eZA" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/fluff/railing/border{
-	dir = 1
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
 "eZE" = (
 /obj/structure/fluff/railing/fence{
 	dir = 1
@@ -17542,6 +17539,12 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/shelter/woods)
+"fZu" = (
+/obj/structure/fluff/railing/border{
+	dir = 5
+	},
+/turf/closed/wall/mineral/rogue/wooddark,
+/area/rogue/indoors/town)
 "fZG" = (
 /obj/structure/bars,
 /turf/open/floor/rogue/hexstone,
@@ -29967,6 +29970,19 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/dungeon1/gethsmane)
+"khe" = (
+/obj/structure/fluff/walldeco/church/line{
+	dir = 1
+	},
+/obj/structure/fluff/walldeco/church/line,
+/obj/structure/fluff/walldeco/church/line{
+	dir = 4
+	},
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/town)
 "khf" = (
 /obj/item/reagent_containers/food/snacks/grown/apple,
 /obj/item/reagent_containers/food/snacks/grown/apple,
@@ -32687,12 +32703,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/town/manor)
-"lfB" = (
-/obj/structure/fluff/walldeco/church/line{
-	dir = 4
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/outdoors/town)
 "lfO" = (
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap)
@@ -46349,6 +46359,14 @@
 	icon_state = "roof"
 	},
 /area/rogue/under/underdark)
+"pMc" = (
+/obj/structure/fluff/walldeco/church/line{
+	dir = 8;
+	pixel_x = 14;
+	pixel_y = 0
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/town)
 "pMj" = (
 /obj/structure/closet/dirthole/grave,
 /turf/open/floor/rogue/dirt,
@@ -46698,13 +46716,6 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
-"pSE" = (
-/obj/structure/fluff/railing/border{
-	dir = 1
-	},
-/obj/machinery/light/rogue/firebowl/standing,
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
 "pSM" = (
 /obj/structure/flora/roguegrass/herb/random,
 /turf/open/floor/rogue/grassred,
@@ -50857,6 +50868,12 @@
 "rnI" = (
 /turf/open/floor/carpet/red,
 /area/rogue/under/town/basement/keep)
+"rnN" = (
+/obj/structure/fluff/railing/border{
+	dir = 1
+	},
+/turf/closed/wall/mineral/rogue/wooddark,
+/area/rogue/indoors/town)
 "rnT" = (
 /obj/item/natural/bundle/stick,
 /turf/open/floor/rogue/twig,
@@ -52233,14 +52250,6 @@
 /obj/effect/decal/cobbleedge{
 	dir = 10;
 	icon_state = "cobbleedge-w"
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
-"rLL" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/fluff/railing/border{
-	dir = 1
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
@@ -64670,13 +64679,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town)
-"vQV" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/fluff/railing/border{
-	dir = 1
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
 "vRF" = (
 /obj/structure/roguetent,
 /turf/open/floor/rogue/dirt/road,
@@ -279827,14 +279829,14 @@ fpx
 exD
 exD
 exD
-fpx
+exD
 fpx
 pWT
-tXM
-fLz
-bax
-tAO
-njB
+pWT
+pWT
+pWT
+pWT
+pWT
 pWT
 lKo
 pqo
@@ -280280,14 +280282,14 @@ exD
 exD
 exD
 fpx
-pwF
-bax
-iZO
 fpx
-fpx
-lAi
+pWT
+tXM
+fLz
 bax
-dLT
+bax
+tAO
+pWT
 lKo
 lKO
 lKo
@@ -280732,15 +280734,15 @@ exD
 exD
 exD
 fpx
-eFM
+pwF
+bax
+iZO
 fpx
 fpx
 fpx
-fpx
-fpx
-fpx
-lnA
-cDX
+lAi
+fLz
+fZu
 gyu
 cDX
 mgq
@@ -281182,17 +281184,17 @@ qhj
 exD
 exD
 exD
-eKa
-ksg
-rYO
+exD
+fpx
+eFM
 fpx
 fpx
 fpx
 fpx
 fpx
 fpx
-lnA
-lKo
+fpx
+dsl
 pqo
 lKo
 bAU
@@ -281634,17 +281636,17 @@ fpx
 exD
 exD
 exD
-exD
-aFa
-tUy
+eKa
+ksg
+rYO
 fpx
 fpx
 fpx
 fpx
 fpx
 fpx
-rLL
-lKo
+fpx
+dsl
 lKO
 lKo
 bAU
@@ -282086,8 +282088,8 @@ exD
 exD
 exD
 exD
-uTJ
-uSl
+exD
+aFa
 tUy
 fpx
 fpx
@@ -282095,8 +282097,8 @@ fpx
 fpx
 fpx
 fpx
-lnA
-cDX
+fpx
+rnN
 gyu
 cDX
 nwG
@@ -282547,8 +282549,8 @@ fpx
 fpx
 fpx
 fpx
-pSE
-lKo
+fpx
+dsl
 pqo
 lKo
 rni
@@ -282999,8 +283001,8 @@ fpx
 fpx
 fpx
 fpx
-vQV
-lKo
+fpx
+dsl
 lKO
 lKo
 rMf
@@ -283451,8 +283453,8 @@ fpx
 fpx
 fpx
 fpx
-vQV
-cDX
+fpx
+rnN
 gyu
 cDX
 rMf
@@ -283895,16 +283897,16 @@ nIq
 exD
 exD
 uTJ
-wAh
+uSl
 tUy
-lfB
-lfB
-lfB
-lfB
-lfB
-lfB
-lnA
-lKo
+fpx
+fpx
+fpx
+fpx
+fpx
+fpx
+fpx
+dsl
 pqo
 lKo
 nwG
@@ -284349,14 +284351,14 @@ exD
 uTJ
 wAh
 tUy
-fpx
-fpx
-fpx
-fpx
-fpx
-fpx
-lnA
-lKo
+pMc
+pMc
+pMc
+khe
+pMc
+pMc
+pMc
+dsl
 lKO
 lKo
 waL
@@ -284807,8 +284809,8 @@ fpx
 fpx
 fpx
 fpx
-eZA
-cDX
+fpx
+rnN
 gyu
 cDX
 waL
@@ -285259,8 +285261,8 @@ fpx
 fpx
 fpx
 fpx
-lnA
-lKo
+fpx
+dsl
 pqo
 lKo
 dqi
@@ -285711,8 +285713,8 @@ fpx
 fpx
 fpx
 fpx
-pSE
-lKo
+fpx
+dsl
 lKO
 lKo
 hLN
@@ -286163,8 +286165,8 @@ fpx
 fpx
 fpx
 fpx
-vQV
-cDX
+rcz
+rnN
 gyu
 cDX
 hLN
@@ -286615,8 +286617,8 @@ fpx
 fpx
 fpx
 fpx
-vQV
-lKo
+fpx
+dsl
 pqo
 lKo
 hLN
@@ -287067,8 +287069,8 @@ fpx
 fpx
 fpx
 fpx
-lnA
-lKo
+fpx
+dsl
 lKO
 lKo
 xZw
@@ -287519,8 +287521,8 @@ fpx
 fpx
 fpx
 fpx
-lnA
-cDX
+fpx
+rnN
 gyu
 cDX
 aat
@@ -287969,10 +287971,10 @@ miv
 tQj
 fpx
 fpx
+fpx
 sLN
 xGG
-cvH
-lKo
+dFa
 pqo
 lKo
 aat
@@ -288421,8 +288423,8 @@ pWT
 uHL
 sZD
 sZD
+sZD
 rRz
-pWT
 njB
 lKo
 lKO
