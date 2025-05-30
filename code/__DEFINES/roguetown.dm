@@ -75,6 +75,11 @@
 #define ARMOR_GRUDGEBEARER list("blunt" = 40, "slash" = 200, "stab" = 200, "piercing" = 100, "fire" = 0, "acid" = 0)
 #define ARMOR_ZIZOCONCSTRUCT list("blunt" = 60, "slash" = 70, "stab" = 70, "piercing" = 60, "fire" = 40, "acid" = 10)
 
+// Weapon balance defines
+#define WBALANCE_NORMAL 0
+#define WBALANCE_HEAVY -1
+#define WBALANCE_SWIFT 1
+
 //Coverage defines
 #define COVERAGE_HEAD_NOSE		( HEAD | HAIR | EARS | NOSE )
 #define COVERAGE_HEAD			( HEAD | HAIR | EARS )
