@@ -589,8 +589,6 @@
 			if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 				adf = round(adf * 0.6)
 			user.changeNext_move(adf)
-			if(get_dist(get_turf(user), get_turf(target)) <= user.used_intent.reach)
-				user.do_attack_animation(target, user.used_intent.animname, used_item = src, used_intent = user.used_intent)
 			playsound(get_turf(src), pick(swingsound), 100, FALSE, -1)
 			user.aftermiss()
 		if(!proximity_flag && ismob(target) && !user.used_intent?.noaa) //this block invokes miss cost clicking on seomone who isn't adjacent to you
@@ -600,8 +598,6 @@
 			if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 				adf = round(adf * 0.6)
 			user.changeNext_move(adf)
-			if(get_dist(get_turf(user), get_turf(target)) <= user.used_intent.reach)
-				user.do_attack_animation(target, user.used_intent.animname, used_item = src, used_intent = user.used_intent)
 			playsound(get_turf(src), pick(swingsound), 100, FALSE, -1)
 			user.aftermiss()
 
