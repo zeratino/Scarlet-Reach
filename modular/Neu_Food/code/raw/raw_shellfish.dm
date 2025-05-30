@@ -119,7 +119,10 @@
 	icon_state = "oyster_shell"
 	desc = ""
 	dropshrink = 0.5
+	w_class = WEIGHT_CLASS_TINY
 	sellprice = 3
+	grid_height = 32
+	grid_width = 32
 	
 // Close enough crab cake is raw shellfish
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/crabcakeraw
