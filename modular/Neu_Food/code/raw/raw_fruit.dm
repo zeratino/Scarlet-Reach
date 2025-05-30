@@ -1,10 +1,6 @@
-/obj/item/reagent_containers/food/snacks/grown/apple
-	slice_path = /obj/item/reagent_containers/food/snacks/rogue/fruit/apple_sliced
-	slices_num = 3
-	chopping_sound = TRUE
-
 /obj/item/reagent_containers/food/snacks/rogue/fruit/apple_sliced
 	name = "apple slice"
+	icon = 'modular/Neu_Food/icons/raw/raw_fruit.dmi'
 	icon_state = "apple_sliced"
 	desc = "A neatly sliced bit of apple. Nicer to eat. Refined, even."
 	faretype = FARE_FINE

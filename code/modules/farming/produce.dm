@@ -111,6 +111,9 @@
 	rotprocess = 20 MINUTES
 	can_distill = TRUE
 	distill_reagent = /datum/reagent/consumable/ethanol/beer/cider
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/fruit/apple_sliced
+	slices_num = 3
+	chopping_sound = TRUE
 	var/equippedloc = null
 	var/list/bitten_names = list()
 
