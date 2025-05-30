@@ -49,6 +49,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/meat/coppiette
 	eat_effect = null
 	name = "coppiette"
+	icon = 'modular/Neu_Food/icons/others/preserved_meat.dmi'
 	icon_state = "jerk5"
 	desc = "Dried meat sticks."
 	faretype = FARE_POOR
