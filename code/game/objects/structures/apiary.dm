@@ -345,6 +345,15 @@
 	stored_combs = 0
 	update_icon_state()
 
+/obj/structure/apiary/attackby(obj/item/I, mob/user, params) 
+	if(istype(I, /obj/item/queen_bee))
+		if(queen_bee)
+			to_chat(user, span_warning("There's already a queen!"))
+			return
+		else
+			new /obj/structure/apiary/starter(get_turf(src))
+			qdel(src)
+			qdel(I)
 
 /obj/structure/apiary/proc/process_comb_gain()
 	if(!pollen)
