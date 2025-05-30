@@ -750,8 +750,7 @@ GLOBAL_VAR_INIT(pixel_diff_time, 1)
 		var/animation_type = item_animation_override || used_intent?.get_attack_animation_type()
 		do_item_attack_animation(A, visual_effect_icon, used_item, animation_type = animation_type)
 
-	if(A == src)
-		return
+	return
 
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
