@@ -43051,6 +43051,12 @@
 /obj/item/rogueweapon/huntingknife/stoneknife,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
+"oJE" = (
+/obj/structure/stairs{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood,
+/area/rogue/indoors/town)
 "oJN" = (
 /obj/effect/spawner/lootdrop/roguetown/dungeon/food,
 /obj/structure/closet/crate/chest/wicker,
@@ -52281,6 +52287,12 @@
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/shelter)
+"rPo" = (
+/obj/structure/closet/crate/roguecloset/inn,
+/turf/open/floor/rogue/ruinedwood{
+	icon_state = "weird1"
+	},
+/area/rogue/outdoors/rtfield)
 "rPA" = (
 /turf/closed/wall/mineral/rogue/pipe{
 	icon_state = "iron_corner"
@@ -271961,8 +271973,8 @@ gyu
 cDX
 qfA
 jya
-sPF
-ghB
+rPo
+jil
 kIa
 jya
 cKe
@@ -272413,8 +272425,8 @@ pqo
 lKo
 qfA
 jya
-txo
-cGA
+sPF
+ghB
 mqt
 xoW
 cKe
@@ -272865,8 +272877,8 @@ lKO
 lKo
 qfA
 jya
-jil
-dEj
+txo
+cGA
 vBc
 jya
 cKe
@@ -273318,7 +273330,7 @@ cDX
 mIz
 sPF
 yeK
-oGW
+dEj
 oGW
 sPF
 jya
@@ -387674,7 +387686,7 @@ aDs
 aDs
 bGf
 uBc
-bzY
+oJE
 agM
 apZ
 hlY
