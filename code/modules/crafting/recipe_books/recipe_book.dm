@@ -59,6 +59,10 @@
 			temp_recipe = new path()
 			var/datum/anvil_recipe/r = temp_recipe
 			category = r.category
+		else if(ispath(path, /datum/book_entry))
+			temp_recipe = new path()
+			var/datum/book_entry/r = temp_recipe
+			category = r.category
 		// else if(ispath(path, /datum/orderless_slapcraft))
 		// 	temp_recipe = new path()
 		// 	var/datum/orderless_slapcraft/r = temp_recipe
@@ -90,10 +94,6 @@
 		// else if(ispath(path, /datum/runerituals))
 		// 	temp_recipe = new path()
 		// 	var/datum/runerituals/r = temp_recipe
-		// 	category = r.category
-		// else if(ispath(path, /datum/book_entry))
-		// 	temp_recipe = new path()
-		// 	var/datum/book_entry/r = temp_recipe
 		// 	category = r.category
 
 		// Clean up our temporary instance
