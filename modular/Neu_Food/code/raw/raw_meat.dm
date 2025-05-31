@@ -224,14 +224,6 @@
 	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked
 
-/obj/item/reagent_containers/food/snacks/rogue/meat/wiener
-	name = "raw wiener"
-	icon_state = "raw_wiener"
-	ingredient_size = 1
-	fried_type = /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked/wiener
-	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/meat/sausage/cooked/wiener
-
-
 /*	........   Fish sounds   ................ */
 /obj/item/reagent_containers/food/snacks/fish
 	chopping_sound = TRUE
