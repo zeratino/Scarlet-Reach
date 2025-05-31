@@ -428,6 +428,11 @@
 		var/datum/anvil_recipe/r = temp_recipe
 		recipe_name = initial(r.name)
 		recipe_html = get_recipe_specific_html(r, user)
+	else if(ispath(path, /datum/book_entry))
+		temp_recipe = new path()
+		var/datum/book_entry/r = temp_recipe
+		recipe_name = initial(r.name)
+		recipe_html = get_recipe_specific_html(r, user)
 	// else if(ispath(path, /datum/orderless_slapcraft))
 	// 	temp_recipe = new path()
 	// 	var/datum/orderless_slapcraft/r = temp_recipe
@@ -467,11 +472,6 @@
 	// else if(ispath(path, /datum/runerituals))
 	// 	temp_recipe = new path()
 	// 	var/datum/runerituals/r = temp_recipe
-	// 	recipe_name = initial(r.name)
-	// 	recipe_html = get_recipe_specific_html(r, user)
-	// else if(ispath(path, /datum/book_entry))
-	// 	temp_recipe = new path()
-	// 	var/datum/book_entry/r = temp_recipe
 	// 	recipe_name = initial(r.name)
 	// 	recipe_html = get_recipe_specific_html(r, user)
 
