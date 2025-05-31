@@ -1429,7 +1429,7 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	icon_state = "volfhead"
 	item_state = "volfhead"
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_HEAD_HELMET_BAD
 	max_integrity = 100
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST)
 	anvilrepair = null
