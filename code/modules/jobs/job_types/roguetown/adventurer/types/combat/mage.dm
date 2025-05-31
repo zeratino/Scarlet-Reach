@@ -76,6 +76,7 @@
 			beltr = /obj/item/rogueweapon/sword/sabre
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/airblade)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/conjure_weapon)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
