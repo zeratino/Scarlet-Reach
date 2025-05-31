@@ -10,6 +10,7 @@
 	shared_occurence_type = SHARED_HIGH_THREAT
 
 	weight = 0		//Disabled cus vampires too strong
+	max_occurrences = 0
 
 	denominator = 80
 

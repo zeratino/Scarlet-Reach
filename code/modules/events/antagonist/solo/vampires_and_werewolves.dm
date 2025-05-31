@@ -16,6 +16,7 @@
 	earliest_start = 0 SECONDS
 
 	weight = 0		//Disabled cus vampires too strong.
+	max_occurrences = 0
 
 	typepath = /datum/round_event/antagonist/solo/vampires_and_werewolves
 
