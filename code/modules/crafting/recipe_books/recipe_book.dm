@@ -111,7 +111,7 @@
 /obj/item/recipe_book/attack_self(mob/user)
 	. = ..()
 	current_reader = user
-	current_reader << browse(generate_html(user),"window=recipe;size=800x810")
+	current_reader << browse(generate_html(user),"window=recipe;size=1000x810")
 
 /obj/item/recipe_book/proc/generate_html(mob/user)
 	var/client/client = user
@@ -509,14 +509,14 @@
 			var/category = href_list["category"]
 			if(category)
 				current_category = category
-				current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+				current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 			return
 
 		if("search")
 			var/query = href_list["query"]
 			if(query)
 				search_query = query
-				current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+				current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 			return
 
 		if("remember_query")
@@ -530,39 +530,39 @@
 			if(recipe_path)
 				var/datum/path = text2path(recipe_path)
 				current_recipe = path
-				current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+				current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 			return
 
 		if("clear_recipe")
 			current_recipe = null
-			current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+			current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 			return
 
 	if(href_list["set_category"])
 		current_category = href_list["set_category"]
-		current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+		current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 		return
 
 	if(href_list["search"])
 		search_query = href_list["search"]
-		current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+		current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 		return
 
 	if(href_list["view_recipe"])
 		var/datum/path = text2path(href_list["view_recipe"])
 		current_recipe = path
-		current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+		current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 		return
 
 	if(href_list["clear_recipe"])
 		current_recipe = null
-		current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+		current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 		return
 
 	if(href_list["pick_recipe"])
 		var/datum/path = text2path(href_list["pick_recipe"])
 		current_recipe = path
-		current_reader << browse(generate_html(current_reader), "window=recipe;size=800x810")
+		current_reader << browse(generate_html(current_reader), "window=recipe;size=1000x810")
 
 /obj/item/recipe_book/Topic(href, href_list)
 	. = ..()
