@@ -602,6 +602,7 @@
 	name = "helmet"
 	desc = "A helmet that doesn't get any more simple in design."
 	body_parts_covered = HEAD|HAIR|NOSE
+	flags_inv = HIDEHAIR|HIDEEARS
 	icon_state = "nasal"
 	sleevetype = null
 	sleeved = null
@@ -619,6 +620,15 @@
 	grid_width = 64
 	experimental_onhip = TRUE
 	experimental_inhand = TRUE
+
+/obj/item/clothing/head/roguetown/helmet/MiddleClick(mob/user)
+	if(!ishuman(user))
+		return
+	if(flags_inv & HIDE_HEADTOP)
+		flags_inv &= ~HIDE_HEADTOP
+	else
+		flags_inv |= HIDE_HEADTOP
+	user.update_inv_head()
 
 /obj/item/clothing/head/roguetown/helmet/getonmobprop(tag)
 	if(tag)
@@ -1419,7 +1429,7 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	icon_state = "volfhead"
 	item_state = "volfhead"
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_HEAD_HELMET_BAD
 	max_integrity = 100
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST)
 	anvilrepair = null

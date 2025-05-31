@@ -9,7 +9,7 @@
 	volume = 27
 	fill_icon_thresholds = list(0, 33, 66, 100)
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
-	obj_flags = CAN_BE_HIT
+	obj_flags = CAN_BE_HIT|UNIQUE_RENAME
 	w_class = WEIGHT_CLASS_TINY
 	experimental_onhip = FALSE
 	experimental_inhand = FALSE
