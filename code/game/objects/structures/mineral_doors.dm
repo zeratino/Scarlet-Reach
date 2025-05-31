@@ -297,7 +297,7 @@
 	if(!windowed)
 		set_opacity(FALSE)
 	flick("[base_state]opening",src)
-	sleep(10)
+	sleep(2)
 	density = FALSE
 	door_opened = TRUE
 	layer = OPEN_DOOR_LAYER
@@ -318,7 +318,7 @@
 	if(!silent)
 		playsound(src, closeSound, 100)
 	flick("[base_state]closing",src)
-	sleep(10)
+	sleep(2)
 	density = TRUE
 	if(!windowed)
 		set_opacity(TRUE)
@@ -975,8 +975,6 @@
 /obj/structure/mineral_door/wood/bath/bathmaid
 	icon_state = "woodwindow"
 	resident_advclass = list(/datum/advclass/nightmaiden)
-	lockid = "bath_attendant"
 
 /obj/structure/mineral_door/wood/bath/courtesan
 	resident_advclass = list(/datum/advclass/nightmaiden/concubine, /datum/advclass/nightmaiden/courtesan)
-	lockid = "bath_courtesan"
