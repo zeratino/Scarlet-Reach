@@ -81,5 +81,6 @@
 		/datum/crafting_recipe/roguetown/survival/mortar,
 		/datum/crafting_recipe/roguetown/survival/pestle,
 		/datum/crafting_recipe/roguetown/alchemy,
+		/datum/alch_grind_recipe
 		)
  

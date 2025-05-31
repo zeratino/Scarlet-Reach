@@ -63,6 +63,10 @@
 			temp_recipe = new path()
 			var/datum/book_entry/r = temp_recipe
 			category = r.category
+		else if(ispath(path, /datum/alch_grind_recipe))
+			temp_recipe = new path()
+			var/datum/alch_grind_recipe/r = temp_recipe
+			category = r.category
 		// else if(ispath(path, /datum/orderless_slapcraft))
 		// 	temp_recipe = new path()
 		// 	var/datum/orderless_slapcraft/r = temp_recipe
@@ -433,6 +437,16 @@
 		var/datum/book_entry/r = temp_recipe
 		recipe_name = initial(r.name)
 		recipe_html = get_recipe_specific_html(r, user)
+	else if(ispath(path, /datum/alch_grind_recipe))
+		temp_recipe = new path()
+		var/datum/alch_grind_recipe/r = temp_recipe
+		recipe_name = initial(r.name)
+		recipe_html = get_recipe_specific_html(r, user)
+	// else if(ispath(path, /datum/alch_cauldron_recipe))
+	// 	temp_recipe = new path()
+	// 	var/datum/alch_cauldron_recipe/r = temp_recipe
+	// 	recipe_name = initial(r.name)
+	// 	recipe_html = get_recipe_specific_html(r, user)
 	// else if(ispath(path, /datum/orderless_slapcraft))
 	// 	temp_recipe = new path()
 	// 	var/datum/orderless_slapcraft/r = temp_recipe
