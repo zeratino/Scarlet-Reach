@@ -24271,11 +24271,11 @@
 /area/rogue/indoors/town/manor)
 "ilx" = (
 /obj/structure/closet/crate/chest,
-/obj/item/reagent_containers/food/snacks/rogue/meat/wiener,
-/obj/item/reagent_containers/food/snacks/rogue/meat/wiener,
-/obj/item/reagent_containers/food/snacks/rogue/meat/wiener,
-/obj/item/reagent_containers/food/snacks/rogue/meat/wiener,
-/obj/item/reagent_containers/food/snacks/rogue/meat/wiener,
+/obj/item/reagent_containers/food/snacks/rogue/meat/sausage,
+/obj/item/reagent_containers/food/snacks/rogue/meat/sausage,
+/obj/item/reagent_containers/food/snacks/rogue/meat/sausage,
+/obj/item/reagent_containers/food/snacks/rogue/meat/sausage,
+/obj/item/reagent_containers/food/snacks/rogue/meat/sausage,
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap)
 "ilz" = (
