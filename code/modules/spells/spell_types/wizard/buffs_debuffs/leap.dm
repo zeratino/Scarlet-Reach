@@ -4,7 +4,6 @@
 	cost = 2
 	releasedrain = 35
 	chargedrain = 1
-	chargedrain = 1
 	chargetime = 1 SECONDS
 	recharge_time = 2 MINUTES
 	warnie = "spellwarning"
