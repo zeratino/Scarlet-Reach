@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(animal_migration_points, list())
 	track = EVENT_TRACK_MUNDANE
 	typepath = /datum/round_event/animal_migration/passive
 	weight = 5
-	max_occurrences = 8
+	max_occurrences = 0	//Broken runtimes, can't figure out the fix. Fuck it.
 	min_players = 0
 	earliest_start = 5 MINUTES
 

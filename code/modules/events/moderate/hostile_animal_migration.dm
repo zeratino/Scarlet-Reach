@@ -3,7 +3,7 @@
 	track = EVENT_TRACK_MODERATE
 	typepath = /datum/round_event/animal_migration/hostile
 	weight = 5
-	max_occurrences = 8
+	max_occurrences = 0	//Broken runtimes, can't figure out the fix. Fuck it.
 	min_players = 0
 	earliest_start = 7 MINUTES
 
