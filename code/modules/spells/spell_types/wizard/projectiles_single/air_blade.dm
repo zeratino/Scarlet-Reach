@@ -13,7 +13,7 @@
 	clothes_req = FALSE
 	range = 6
 	projectile_type = /obj/projectile/energy/airblade
-	overlay_state = "force_dart" // Temporary
+	overlay_state = "air_blade"
 	sound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg')
 	active = FALSE
 	releasedrain = 15 // Same stamina cost as Arcyne bolt
