@@ -143,6 +143,7 @@
 	name = "teapot"
 	desc = "A teapot made out of ceramic. Used to serve tea, it can hold a lot of liquid. It can still spill, however."
 	volume = 99
+	dropshrink = 0.7
 	icon_state = "teapot"
 	sellprice = 20
 
@@ -171,6 +172,7 @@
 /obj/item/reagent_containers/glass/cup/ceramic
 	name = "teacup"
 	desc = "A tea cup made out of ceramic. Used to serve tea."
+	dropshrink = 0.7
 	icon_state = "cup"
 	sellprice = 10
 
