@@ -61,7 +61,7 @@
 				if(/datum/patron/inhumen/zizo)
 					H.cmode_music = 'sound/music/combat_cult.ogg'
 		if("Spellblade") // They get a unique spell of air slash
-			to_chat(H, span_warning("You are a skilled in both the arcyne art and the art of the blade. But you are not a master of either nor could you channel your magick in armor."))
+			to_chat(H, span_warning("You are skilled in both the arcyne art and the art of the blade. But you are not a master of either nor could you channel your magick in armor."))
 			head = /obj/item/clothing/head/roguetown/bucklehat
 			shoes = /obj/item/clothing/shoes/roguetown/boots
 			pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -73,7 +73,6 @@
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-			beltr = /obj/item/rogueweapon/sword/sabre
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/airblade)
