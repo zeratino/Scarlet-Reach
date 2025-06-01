@@ -16,7 +16,7 @@
 	overlay_state = "air_blade"
 	sound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg')
 	active = FALSE
-	releasedrain = 15 // Same stamina cost as Arcyne bolt
+	releasedrain = 20 // Same stamina cost as Arcyne bolt
 	chargedrain = 0
 	chargetime = 0
 	recharge_time = 8 SECONDS // 2x the recharge of Arcyne Bolt so not spammable
