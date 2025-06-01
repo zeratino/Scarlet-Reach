@@ -15,6 +15,7 @@
 	maximum_antags = 2
 
 	weight = 2	//i hate you
+	max_occurrences = 0	//event antag stuff for staff, no more.
 
 	earliest_start = 0 SECONDS
 
