@@ -6,7 +6,6 @@
 	school = "transmutation"
 	releasedrain = 50
 	chargedrain = 0
-	chargedrain = 1
 	chargetime = 1 SECONDS
 	recharge_time = 2 MINUTES
 	warnie = "spellwarning"
