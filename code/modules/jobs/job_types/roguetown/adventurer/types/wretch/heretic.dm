@@ -46,8 +46,9 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	gloves = /obj/item/clothing/gloves/roguetown/chain
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	pants = /obj/item/clothing/under/roguetown/trou/leather
+	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	cloak = /obj/item/clothing/cloak/cape
 	backl = /obj/item/storage/backpack/rogue/satchel
