@@ -69,14 +69,18 @@
 		testing("revived1")
 		var/mob/living/target = targets[1]
 		if(!target.mind)
+			revert_cast()
 			return FALSE
 		if(!target.mind.active)
 			to_chat(user, "Astrata is not done with [target], yet.")
+			revert_cast()
 			return FALSE
 		if(target == user)
+			revert_cast()
 			return FALSE
 		if(target.stat < DEAD)
 			to_chat(user, span_warning("Nothing happens."))
+			revert_cast()
 			return FALSE
 		if(GLOB.tod == "night")
 			to_chat(user, span_warning("Let there be light."))
@@ -92,6 +96,7 @@
 		target.adjustOxyLoss(-target.getOxyLoss()) //Ye Olde CPR
 		if(!target.revive(full_heal = FALSE))
 			to_chat(user, span_warning("Nothing happens."))
+			revert_cast()
 			return FALSE
 		testing("revived2")
 		var/mob/living/carbon/spirit/underworld_spirit = target.get_spirit()
