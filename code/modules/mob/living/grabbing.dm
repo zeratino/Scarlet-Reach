@@ -682,11 +682,12 @@
 						user.visible_message("[user] begins to infuse dark magic into [C]")
 						if(do_after(user, 30))
 							C.visible_message("[C] rises as a new spawn!")
-							C.rogstam_add(9999)
 							var/datum/antagonist/vampirelord/lesser/new_antag = new /datum/antagonist/vampirelord/lesser()
 							new_antag.sired = TRUE
 							C.mind.add_antag_datum(new_antag)
-							sleep(20)
+							sleep(10 SECONDS)
 							C.fully_heal()
+							C.rogstam = C.maxrogstam
+							C.update_health_hud()
 					if("No")
 						to_chat(user, span_warning("I decide [C] is unworthy."))
