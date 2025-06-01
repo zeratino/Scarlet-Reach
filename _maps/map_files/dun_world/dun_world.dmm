@@ -15061,7 +15061,7 @@
 /area/rogue/outdoors/town)
 "fgP" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/glass/cup/teapot/fancy,
+/obj/item/reagent_containers/glass/bucket/pot/teapot/fancy,
 /obj/item/reagent_containers/glass/cup/ceramic/fancy{
 	pixel_x = -10;
 	pixel_y = 10
@@ -44136,7 +44136,7 @@
 	dir = 6;
 	icon_state = "largetable"
 	},
-/obj/item/reagent_containers/glass/cup/teapot/fancy,
+/obj/item/reagent_containers/glass/bucket/pot/teapot/fancy,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "pcJ" = (
@@ -52960,7 +52960,7 @@
 	pixel_x = 9;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/glass/cup/teapot/fancy{
+/obj/item/reagent_containers/glass/bucket/pot/teapot/fancy{
 	pixel_x = -8;
 	pixel_y = 4
 	},
