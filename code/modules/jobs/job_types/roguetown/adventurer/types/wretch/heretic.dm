@@ -42,18 +42,17 @@
 	if (istype (H.patron, /datum/patron/inhumen/zizo))
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 		ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/black
-	cloak = /obj/item/clothing/cloak/cape/crusader
-	gloves = /obj/item/clothing/gloves/roguetown/chain/blk
-	pants = /obj/item/clothing/under/roguetown/chainlegs/blk
+	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	neck = /obj/item/clothing/neck/roguetown/gorget
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/blk
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/blk
-	belt = /obj/item/storage/belt/rogue/leather/steel
+	pants = /obj/item/clothing/under/roguetown/trou/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	cloak = /obj/item/clothing/cloak/cape
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/shield/tower/metal
+	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/roguekey/inhumen
 	backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/ritechalk = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
