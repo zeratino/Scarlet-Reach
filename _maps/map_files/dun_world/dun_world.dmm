@@ -8942,13 +8942,6 @@
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark)
-"dbx" = (
-/obj/structure/fluff/migration_point{
-	pointid = "townouter";
-	name = "town migration point"
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/rtfield)
 "dbX" = (
 /obj/structure/fluff/railing/wood,
 /turf/open/floor/rogue/dirt,
@@ -37210,13 +37203,6 @@
 /mob/living/simple_animal/hostile/rogue/skeleton/guard,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
-"mJk" = (
-/obj/structure/fluff/migration_point{
-	pointid = "bog3";
-	name = "bog migration point"
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/woods)
 "mJn" = (
 /obj/machinery/light/rogue/wallfire/candle/blue/r,
 /turf/open/floor/rogue/tile/bfloorz,
@@ -43622,13 +43608,6 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
-"oSZ" = (
-/obj/structure/fluff/migration_point{
-	pointid = "coast1";
-	name = "coast migration point"
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/woods)
 "oTf" = (
 /obj/structure/chair/wood/rogue/chair3{
 	dir = 4
@@ -66494,13 +66473,6 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
-"wvo" = (
-/obj/structure/fluff/migration_point{
-	pointid = "coast2";
-	name = "coast migration point"
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/woods)
 "wvx" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
 /turf/open/floor/rogue/cobble,
@@ -227490,7 +227462,7 @@ jFA
 xkH
 jFA
 jFA
-mJk
+jFA
 jFA
 jFA
 jFA
@@ -241878,7 +241850,7 @@ seL
 sNZ
 sNZ
 sNZ
-dbx
+sNZ
 sNZ
 sNZ
 sNZ
@@ -241998,7 +241970,7 @@ eTA
 xkH
 xkH
 jFA
-mJk
+jFA
 jFA
 jFA
 eTA
@@ -243387,7 +243359,7 @@ jFA
 jFA
 jFA
 jFA
-mJk
+jFA
 jFA
 jFA
 jFA
@@ -264161,7 +264133,7 @@ sZa
 jFA
 xkH
 jFA
-wvo
+jFA
 jFA
 xkH
 xkH
@@ -266347,7 +266319,7 @@ xkH
 xkH
 xkH
 jFA
-oSZ
+jFA
 xkH
 xkH
 lJO
