@@ -32,6 +32,7 @@
 		"Instruments",
 		"Luxury",
 		"Livestock",
+		"Perfumes",
 		"Potions",
 		"Raw Materials",
 		"Seeds",
