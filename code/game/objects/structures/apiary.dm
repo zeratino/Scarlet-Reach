@@ -197,6 +197,8 @@
 
 /obj/structure/apiary/starter
 	bee_count = 5
+	stored_combs = 0
+	comb_progress = 0
 
 /obj/structure/apiary/starter/Initialize()
 	. = ..()
