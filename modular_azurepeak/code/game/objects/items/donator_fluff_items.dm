@@ -51,7 +51,6 @@
 	desc = "A steel helmet with gilded trim which protects the ears, nose, and eyes."
 	icon_state = "gildedsallet_visor"
 	item_state = "gildedsallet_visor"
-	flags_inv = HIDEFACE|HIDESNOUT|HIDEHAIR		//Normal visored-sallet hides hair. This one doesn't.
 	icon = 'modular_azurepeak/icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'modular_azurepeak/icons/clothing/onmob/donor_clothes.dmi'
 
@@ -76,10 +75,10 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
-//Zydras donator item - bathmatron padded dress
-/obj/item/clothing/suit/roguetown/armor/armordress/alt/zydrasdress //armor dress worn by Bathmatrons/Bathmasters
-	name = "padded silky dress"
-	desc = "A gorgeous black and gold dress with built-in padding for protection."
+//Zydras donator item - merchant dress
+/obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress //Recolored silky dress
+	name = "Gold-Black silky dress"
+	desc = "A gorgeous black and gold dress. It seems the padding was removed."
 	icon_state = "zydrasdress"
 	item_state = "zydrasdress"
 	sleevetype = "zydrasdress"

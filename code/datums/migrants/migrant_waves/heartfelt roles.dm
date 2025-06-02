@@ -44,7 +44,6 @@
 		H.change_stat("fortune", 5)
 
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_NOSEGRAB, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
@@ -181,7 +180,6 @@
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_NOSEGRAB, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
@@ -248,14 +246,14 @@
 		H.change_stat("strength", -1)
 		H.change_stat("constitution", -1)
 		H.change_stat("intelligence", 4)
-		H.mind.adjust_spellpoints(11)
+		H.mind.adjust_spellpoints(36)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 			H.change_stat("speed", -1)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 1)
-			H.mind.adjust_spellpoints(2)
+			H.mind.adjust_spellpoints(6)
 			if(ishumannorthern(H))
 				belt = /obj/item/storage/belt/rogue/leather/plaquegold
 				cloak = null

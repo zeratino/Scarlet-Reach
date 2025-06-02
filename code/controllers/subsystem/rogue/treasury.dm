@@ -33,6 +33,12 @@ SUBSYSTEM_DEF(treasury)
 	var/list/stockpile_datums = list()
 	var/next_treasury_check = 0
 	var/list/log_entries = list()
+	var/economic_output = 0
+	var/total_deposit_tax = 0
+	var/total_vault_income = 0
+	var/total_noble_income = 0
+	var/total_import = 0
+	var/total_export = 0
 
 /datum/controller/subsystem/treasury/Initialize()
 	treasury_value = rand(1000, 2000)
@@ -197,6 +203,7 @@ SUBSYSTEM_DEF(treasury)
 	for(var/mob/living/welfare_dependant in noble_incomes)
 		var/how_much = noble_incomes[welfare_dependant]
 		give_money_treasury(how_much, silent = TRUE)
+		total_noble_income += how_much
 		if(welfare_dependant.job == "Merchant")
 			give_money_account(how_much, welfare_dependant, "The Guild")
 		else

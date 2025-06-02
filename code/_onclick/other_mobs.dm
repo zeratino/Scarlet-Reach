@@ -50,12 +50,13 @@
 			if(I.w_class < WEIGHT_CLASS_GIGANTIC)
 				item_skip = TRUE
 		if(!item_skip)
-			if(used_intent.releasedrain)
+			if(used_intent.releasedrain && !used_intent.type == INTENT_GRAB)
 				rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 			if(used_intent.type == INTENT_GRAB)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					start_pulling(A) //add params to grab bodyparts based on loc
+					rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 					return
 			if(used_intent.type == INTENT_DISARM)
 				var/obj/AM = A
@@ -274,7 +275,15 @@
 				if(!A.Adjacent(src))
 					return
 				if(A == src)
-					return
+					var/list/mobs_here = list()
+					for(var/mob/M in get_turf(src))
+						if(M.invisibility || M == src)
+							continue
+						mobs_here += M
+					if(mobs_here.len)
+						A = pick(mobs_here)
+					if(A == src) //auto aim couldn't select another target
+						return
 				if(IsOffBalanced())
 					to_chat(src, span_warning("I haven't regained my balance yet."))
 					return
@@ -404,7 +413,7 @@
 				if(ishuman(A))
 					var/mob/living/carbon/human/U = src
 					var/mob/living/carbon/human/V = A
-					var/thiefskill = src.mind.get_skill_level(/datum/skill/misc/stealing)
+					var/thiefskill = src.mind.get_skill_level(/datum/skill/misc/stealing) + (has_world_trait(/datum/world_trait/matthios_fingers) ? 1 : 0)
 					var/stealroll = roll("[thiefskill]d6")
 					var/targetperception = (V.STAPER)
 					var/list/stealablezones = list("chest", "neck", "groin", "r_hand", "l_hand")
@@ -452,6 +461,11 @@
 									to_chat(src, span_green("I stole [picked]!"))
 									V.log_message("has had \the [picked] stolen by [key_name(U)]", LOG_ATTACK, color="white")
 									U.log_message("has stolen \the [picked] from [key_name(V)]", LOG_ATTACK, color="white")
+									if(V.client && V.stat != DEAD)
+										SEND_SIGNAL(U, COMSIG_ITEM_STOLEN, V)
+										record_featured_stat(FEATURED_STATS_THIEVES, U)
+										record_featured_stat(FEATURED_STATS_CRIMINALS, U)
+										GLOB.azure_round_stats[STATS_ITEMS_PICKPOCKETED]++
 								else
 									exp_to_gain /= 2 // these can be removed or changed on reviewer's discretion
 									to_chat(src, span_warning("I didn't find anything there. Perhaps I should look elsewhere."))

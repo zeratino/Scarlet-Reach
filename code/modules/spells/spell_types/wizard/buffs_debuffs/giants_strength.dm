@@ -2,7 +2,7 @@
 	name = "Giant's Strength"
 	overlay_state = "giantsstrength"
 	desc = "Strengthen the target. (+3 Strength)" // Design Note: +3 instead of +5 for direct damage stats
-	cost = 2 // Direct DPS stats
+	cost = 4 // Direct DPS stats
 	xp_gain = TRUE
 	releasedrain = 60
 	chargedrain = 1
@@ -10,6 +10,7 @@
 	recharge_time = 2 MINUTES
 	warnie = "spellwarning"
 	school = "transmutation"
+	overlay_state = "giants_strength"
 	spell_tier = 2
 	invocation = "Vis Gigantis"
 	invocation_type = "whisper"

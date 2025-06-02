@@ -9,7 +9,6 @@
 #define TRAIT_XENOPHOBIC "Xenophobic"
 #define TRAIT_TOLERANT "Tolerant"
 #define TRAIT_LEAPER "Leaper"
-#define TRAIT_NOSEGRAB "Nosey"
 #define TRAIT_NUTCRACKER "Nutcracker"
 #define TRAIT_SEEPRICES "Skilled Appraiser"
 #define TRAIT_SEEPRICES_SHITTY "Appraiser"
@@ -47,7 +46,9 @@
 #define TRAIT_SQUIRE_REPAIR "Squire Knowledge"
 #define TRAIT_TRAINED_SMITH "Trained Smith"
 #define TRAIT_GUARDSMAN "Vigilant Guardsman"
+#define TRAIT_TAVERN_FIGHTER "Tavern Fighter"
 #define TRAIT_WOODSMAN "Talented Woodsman"
+#define TRAIT_DUNGEONMASTER "Ruthless Jailor"
 #define TRAIT_DEATHBARGAIN "Death Bargain" // Used by UNDERMAIDEN'S BARGAIN
 #define TRAIT_RITUALIST "Ritualist"  // Allows use of ritual chalk
 #define TRAIT_INQUISITION "Member of the Otavan Inquisition"
@@ -60,6 +61,7 @@
 #define TRAIT_PURITAN "Puritan"
 #define TRAIT_MIRROR_MAGIC "Mirror Magic"
 #define TRAIT_WITCH "They fear me, but I am useful to them."
+#define TRAIT_NOFATIGUE "Boundless Energy" //infinite fatigue (blue bar) but not infinite stamina
 
 
 //Hearthstone port (Tracking)
@@ -154,6 +156,7 @@
 
 GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
+	TRAIT_TAVERN_FIGHTER = span_info("I am vigilant in my duties. The Tavern is my home, none shall dare oppose me or skip out on payment."),
 	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the town of Azure Peak, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast of Azure Peak, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_DEATHBARGAIN = span_info("A horrible deal has been prepared in your name. May you never see it fulfilled..."),
@@ -170,7 +173,6 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_BEAUTIFUL = span_info("People love looking at my face"),
 	TRAIT_BAD_MOOD = span_warning("Everything just seems to piss me off"),
 	TRAIT_LEAPER = "I can leap like a frog, landing where I want.",
-	TRAIT_NOSEGRAB = "I love to grab idiots by their noses!",
 	TRAIT_NUTCRACKER = "I love kicking idiots on the nuts!",
 	TRAIT_SEEPRICES = "I can tell the prices of things down to the zenny.",
 	TRAIT_SEEPRICES_SHITTY = "I can tell the prices of things... <i>Kind of</i>.",
@@ -275,6 +277,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_ARCYNE_T2 = span_notice("I have received advanced training in the Arcyne arts, allowing me to learn basic combat spells"),
 	TRAIT_ARCYNE_T3 = span_notice("I am a full-fledged mage, and have access to devastating spells that affects a wide area."),
 	TRAIT_ARCYNE_T4 = span_notice("I'm a master of the Arcyne arts, and has access to some of the most powerful spells ever devised."),
+	TRAIT_NOFATIGUE = span_notice ("I don't need rest; I won't ever feel fatigue.")
 ))
 
 // trait accessor defines

@@ -4,6 +4,7 @@
 #define TAB_IMPORT 4
 #define TAB_BOUNTIES 5
 #define TAB_LOG 6
+#define TAB_STATISTICS 7
 
 /obj/structure/roguemachine/steward
 	name = "nerve master"
@@ -74,6 +75,7 @@
 			return
 		var/amt = D.get_import_price()
 		SStreasury.treasury_value -= amt
+		SStreasury.total_import += amt
 		SStreasury.log_to_steward("-[amt] imported [D.name]")
 		if(amt >= 100) //Only announce big spending.
 			scom_announce("Azure Peak imports [D.name] for [amt] mammon.", )
@@ -97,6 +99,7 @@
 			D.held_items[1] = 0
 
 		SStreasury.treasury_value += amt
+		SStreasury.total_export += amt
 		SStreasury.log_to_steward("+[amt] exported [D.name]")
 		if(amt >= 100) //Only announce big spending.
 			scom_announce("Azure Peak exports [D.name] for [amt] mammon.")
@@ -266,6 +269,7 @@
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_IMPORT]'>\[Import\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_BOUNTIES]'>\[Bounties\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_LOG]'>\[Log\]</a><BR>"
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_STATISTICS]'>\[Statistics\]</a><BR>"
 			contents += "</center>"
 		if(TAB_BANK)
 			var/total_deposit = 0
@@ -387,6 +391,17 @@
 			contents += "--------------</center><BR><BR>"
 			for(var/i = SStreasury.log_entries.len to 1 step -1)
 				contents += "<span class='info'>[SStreasury.log_entries[i]]</span><BR>"
+		if(TAB_STATISTICS)
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a><BR>"
+			contents += "<center>Statistics:<BR>"
+			contents += "Known Economic Output: [SStreasury.economic_output]m<BR>"
+			contents += "Total Vault Income: [SStreasury.total_vault_income]m<BR>"
+			contents += "Total Deposit Tax: [SStreasury.total_deposit_tax]m<BR>"
+			contents += "Total Noble Estate Income: [SStreasury.total_noble_income]m<BR>"
+			contents += "Total Import: [SStreasury.total_import]m<BR>"
+			contents += "Total Export: [SStreasury.total_export]m<BR>"
+			contents += "Trade Balance: [SStreasury.total_export - SStreasury.total_import]m<BR>"
+			contents  += "</center><BR>"
 
 	if(!canread)
 		contents = stars(contents)
