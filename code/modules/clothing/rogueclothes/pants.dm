@@ -439,11 +439,15 @@
 	desc = "Interlinked metal rings that drape down all the way to the ankles."
 	icon_state = "chainkilt"
 	item_state = "chainkilt"
+	sleevetype = "chainkilt"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
+	alternate_worn_layer = (SHOESLEEVE_LAYER-1)
 
 /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
 	name = "decrepit chain kilt"
 	desc = "A decrepit old kilt. Aeon's grasp is upon it."
 	icon_state = "achainkilt"
+	sleevetype = "achainkilt"
 	smeltresult = /obj/item/ingot/aalloy
 	max_integrity = 125
 
@@ -458,6 +462,9 @@
 	desc = "Interlinked metal rings that drape down all the way to the ankles."
 	icon_state = "ichainkilt"
 	item_state = "ichainkilt"
+	sleevetype = "ichainkilt"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
+	alternate_worn_layer = (SHOESLEEVE_LAYER-1)
 
 //----------------- BLACKSTEEL---------------------
 
