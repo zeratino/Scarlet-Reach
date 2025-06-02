@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(treasury)
 	var/tax_value = 0.11
 	var/queens_tax = 0.15
 	var/treasury_value = 0
-	var/mint_multiplier = 1 // 1x is meant to leave a margin after standard 80% collectable. Less than Bathmatron.
+	var/mint_multiplier = 0.8 // 1x is meant to leave a margin after standard 80% collectable. Less than Bathmatron.
 	var/minted = 0
 	var/list/bank_accounts = list()
 	var/list/noble_incomes = list()
