@@ -125,7 +125,7 @@
 	contains = list(/obj/item/clothing/head/roguetown/helmet/leather)
 
 /datum/supply_pack/rogue/Mage/leather/Lbracers
-	name = "Leather bracers"
+	name = "Leather Bracers"
 	cost = 5
 	contains = list(/obj/item/clothing/wrists/roguetown/bracers/leather)
 
