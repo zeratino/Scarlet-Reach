@@ -180,8 +180,9 @@
 				fracture_type = /datum/wound/fracture/chest
 			if(BODY_ZONE_PRECISE_GROIN)
 				fracture_type = /datum/wound/fracture/groin
+		if (target.has_status_effect(/datum/status_effect/buff/ozium))
+			target.emote ("groan")
 		bodypart.add_wound(fracture_type)
-	target.emote("scream")
 	return TRUE
 
 /// Drill bone
