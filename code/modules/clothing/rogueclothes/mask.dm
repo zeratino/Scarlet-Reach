@@ -1,3 +1,12 @@
+/obj/item/clothing/mask/rogue/MiddleClick(mob/user) 
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear \the [src] under my hair" : "wear \the [src] over my hair"]."))
+	if(overarmor)
+		alternate_worn_layer = HOOD_LAYER //Below Hair Layer
+	else
+		alternate_worn_layer = BACK_LAYER //Above Hair Layer
+	user.update_inv_wear_mask()
+
 /obj/item/clothing/mask/rogue
 	name = ""
 	icon = 'icons/roguetown/clothing/masks.dmi'
@@ -6,6 +15,7 @@
 	slot_flags = ITEM_SLOT_MASK
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
+	var/overarmor = TRUE
 
 /obj/item/clothing/mask/rogue/spectacles
 	name = "spectacles"
@@ -256,8 +266,8 @@
 	name = "plague mask"
 	desc = "What better laboratory than the blood-soaked battlefield?"
 	icon_state = "physmask"
-	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDEEARS|HIDESNOUT
-	body_parts_covered = FACE|EARS|EYES|MOUTH|NECK
+	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+	body_parts_covered = FACE|EYES|MOUTH
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	sewrepair = TRUE
 

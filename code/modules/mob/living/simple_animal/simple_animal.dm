@@ -238,6 +238,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	stop_automated_movement_when_pulled = TRUE
 	if(user)
 		owner = user
+		SEND_SIGNAL(user, COMSIG_ANIMAL_TAMED, src)
 	return
 
 //mob/living/simple_animal/examine(mob/user)
@@ -419,7 +420,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		ssaddle = null
 	if(butcher_results || guaranteed_butcher_results)
 		var/list/butcher = list()
-
 		if(butcher_results)
 			if(user.mind.get_skill_level(/datum/skill/labor/butchering) == 0)
 				if(prob(70))
@@ -447,11 +447,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				else
 					butcher = butcher_results
 			else
-				if(user.mind.get_skill_level(/datum/skill/labor/butchering) == 5)
+				if(user.mind.get_skill_level(/datum/skill/labor/butchering) >= 5)
 					butcher = perfect_butcher_results // only get the best results
 				else
 					butcher = butcher_results		// fallback incase skill doesn't get called
-
+		butcher ||= butcher_results // if the butcher value returns null, instead use default butcher_results
 		var/rotstuff = FALSE
 		var/datum/component/rot/simple/CR = GetComponent(/datum/component/rot/simple)
 		if(CR)
