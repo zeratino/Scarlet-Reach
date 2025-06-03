@@ -43,6 +43,9 @@
 			target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
 			target.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb/lesser)
 			target.equipOutfit(/datum/outfit/job/roguetown/greater_skeleton)
+			// Name selection popup for the new skeleton:
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "GREATER SKELETON"), 3 SECONDS)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_pronouns_and_body)), 7 SECONDS)
 			to_chat(user, span_notice("The crystal dissipates into dust."))
 			user.flash_fullscreen("redflash1")
 			new /obj/item/natural/glass/shard(get_turf(src))
@@ -58,3 +61,11 @@
 /obj/item/necro_relics/necro_crystal/Initialize()
 	. = ..()
 	set_light(2, 2, 1, l_color = "#551c1c")
+
+/mob/living/carbon/human/proc/choose_pronouns_and_body()
+    var/p_input = input(src, "Choose your character's pronouns", "Pronouns") as null|anything in GLOB.pronouns_list
+    if(p_input)
+        src.pronouns = p_input
+    if(alert(src, "Do you wish to change your frame?", "Body Type", "Yes", "No") == "Yes")
+        src.gender = (src.gender == "male") ? "female" : "male"
+    src.regenerate_icons()
