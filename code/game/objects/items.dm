@@ -225,16 +225,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	/// Number of torn sleves, important for salvaging calculations and examine text
 	var/torn_sleeve_number = 0
 	
-	var/list/attunement_values
-	///this is in KG
-	var/item_weight = 0
-	///this is a multiplier to the weight of items inside of this items contents
-	var/carry_multiplier = 1
-
-	/// angle of the icon, these are used for attack animations
+	/// Angle of the icon, these are used for attack animations.
 	var/icon_angle = 50 // most of our icons are angled
 
-	/// angle of the icon while wielded, these are used for attack animations, generally it's flat, but not always
+	/// Angle of the icon while wielded, these are used for attack animations. Generally it's flat, but not always.
 	var/icon_angle_wielded = 0
 
 /obj/item/Initialize()
