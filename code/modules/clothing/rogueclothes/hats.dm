@@ -13,6 +13,7 @@
 	var/mask_override = FALSE //override if we want to always respect our inv flags if the helm is in a mask slot
 	experimental_inhand = FALSE
 	var/hidesnoutADJ = FALSE
+	var/overarmor = TRUE
 
 /obj/item/clothing/head/roguetown/equipped(mob/user, slot)
 	. = ..()
@@ -55,6 +56,16 @@
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	sewrepair = TRUE
+
+/obj/item/clothing/head/roguetown/roguehood/MiddleClick(mob/user) 
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear \the [src] under my hair" : "wear \the [src] over my hair"]."))
+	if(overarmor)
+		alternate_worn_layer = HOOD_LAYER //Below Hair Layer
+	else
+		alternate_worn_layer = BACK_LAYER //Above Hair Layer
+	user.update_inv_wear_mask()
+	user.update_inv_head()
 
 /obj/item/clothing/head/roguetown/roguehood
 	name = "hood"
@@ -106,6 +117,7 @@
 	max_integrity = 100
 	sewrepair = TRUE
 	mask_override = TRUE
+	overarmor = FALSE
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
