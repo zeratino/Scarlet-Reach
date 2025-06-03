@@ -13,6 +13,7 @@
 	var/mask_override = FALSE //override if we want to always respect our inv flags if the helm is in a mask slot
 	experimental_inhand = FALSE
 	var/hidesnoutADJ = FALSE
+	var/overarmor = TRUE
 
 /obj/item/clothing/head/roguetown/equipped(mob/user, slot)
 	. = ..()
@@ -55,6 +56,16 @@
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	sewrepair = TRUE
+
+/obj/item/clothing/head/roguetown/roguehood/MiddleClick(mob/user) 
+	overarmor = !overarmor
+	to_chat(user, span_info("I [overarmor ? "wear \the [src] under my hair" : "wear \the [src] over my hair"]."))
+	if(overarmor)
+		alternate_worn_layer = HOOD_LAYER //Below Hair Layer
+	else
+		alternate_worn_layer = BACK_LAYER //Above Hair Layer
+	user.update_inv_wear_mask()
+	user.update_inv_head()
 
 /obj/item/clothing/head/roguetown/roguehood
 	name = "hood"
@@ -106,6 +117,7 @@
 	max_integrity = 100
 	sewrepair = TRUE
 	mask_override = TRUE
+	overarmor = FALSE
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
@@ -602,7 +614,6 @@
 	name = "helmet"
 	desc = "A helmet that doesn't get any more simple in design."
 	body_parts_covered = HEAD|HAIR|NOSE
-	flags_inv = HIDEHAIR|HIDEEARS
 	icon_state = "nasal"
 	sleevetype = null
 	sleeved = null
@@ -738,7 +749,7 @@
 	desc = "A steel helmet which protects the ears, nose, and eyes."
 	icon_state = "sallet_visor"
 	adjustable = CAN_CADJUST
-	flags_inv = HIDEFACE|HIDESNOUT
+	flags_inv = HIDEFACE|HIDESNOUT|HIDEHAIR
 	flags_cover = HEADCOVERSEYES
 	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES
 	block2add = FOV_BEHIND
@@ -746,7 +757,7 @@
 	armor = ARMOR_HEAD_HELMET_VISOR
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/ComponentInitialize()
-	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), null, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Sallet. Does not hide anything when opened.
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), HIDEHAIR, null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Sallet. Does not hide anything when opened.
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored/attackby(obj/item/W, mob/living/user, params)
 	..()
@@ -1429,7 +1440,7 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	icon_state = "volfhead"
 	item_state = "volfhead"
-	armor = ARMOR_HEAD_CLOTHING
+	armor = ARMOR_HEAD_HELMET_BAD
 	max_integrity = 100
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST)
 	anvilrepair = null
