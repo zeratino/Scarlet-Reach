@@ -242,8 +242,8 @@
 	// Honey types system
 	var/list/pollen_sources = list() // Tracks which plants were pollinated
 	var/list/honey_types = list(
-		"default" = /obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey,
-		"addictive" = /obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/healing,
+		"default" = /obj/item/reagent_containers/food/snacks/rogue/honey,
+		"addictive" = /obj/item/reagent_containers/food/snacks/rogue/honey/healing,
 	)
 
 
@@ -884,25 +884,25 @@
 	treatment_type = "wax_moths"
 	treatment_strength = 40
 
-/obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/ambrosia
+/obj/item/reagent_containers/food/snacks/rogue/honey/ambrosia
 	name = "relaxing honey"
 	desc = "Sweet honey with subtle relaxing properties."
 	icon_state = "honey_green"
 	list_reagents = list(/datum/reagent/consumable/honey = 5, /datum/reagent/consumable/nutriment = 3, /datum/reagent/drug/space_drugs = 2)
 
-/obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/healing
+/obj/item/reagent_containers/food/snacks/rogue/honey/healing
 	name = "medicinal honey"
 	desc = "Sweet honey with healing properties."
 	icon_state = "honey_red"
 	list_reagents = list(/datum/reagent/consumable/honey = 5, /datum/reagent/consumable/nutriment = 3)
 
-/obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/toxic
+/obj/item/reagent_containers/food/snacks/rogue/honey/toxic
 	name = "strange honey"
 	desc = "This honey has an unusual smell and appearance."
 	icon_state = "honey_toxic"
 	list_reagents = list(/datum/reagent/consumable/honey = 5, /datum/reagent/toxin = 2)
 
-/obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/luminescent
+/obj/item/reagent_containers/food/snacks/rogue/honey/luminescent
 	name = "glowing honey"
 	desc = "This honey gives off a soft bioluminescent glow."
 	icon_state = "honey_glowing"
@@ -1061,7 +1061,7 @@
 
 	if(protected && prob(30))
 		to_chat(user, span_notice("You manage to extract some honey!"))
-		new /obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/wild(get_turf(src))
+		new /obj/item/reagent_containers/food/snacks/rogue/honey/wild(get_turf(src))
 
 /obj/structure/beehive/wild/proc/agitate_bees(mob/target)
 	visible_message(span_danger("Bees swarm out of [src] angrily!"))
@@ -1143,7 +1143,7 @@
 	home_hive.bee_objects -= src
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/rogue/spiderhoney/honey/wild
+/obj/item/reagent_containers/food/snacks/rogue/honey/wild
 	name = "wild honey"
 	desc = "Sweet wild honey. It has a more complex flavor than regular honey."
 	icon_state = "honey_wild"
