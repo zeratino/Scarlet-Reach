@@ -1,3 +1,5 @@
+#define RURAL_TAX 50 // Free money. A small safety pool for lowpop mostly
+#define TREASURY_TICK_AMOUNT 6 MINUTES
 
 /proc/send_ooc_note(msg, name, job)
 	var/list/names_to = list()
@@ -35,7 +37,7 @@ SUBSYSTEM_DEF(treasury)
 	var/list/log_entries = list()
 	var/economic_output = 0
 	var/total_deposit_tax = 0
-	var/total_vault_income = 0
+	var/total_rural_tax = 0
 	var/total_noble_income = 0
 	var/total_import = 0
 	var/total_export = 0
@@ -56,7 +58,7 @@ SUBSYSTEM_DEF(treasury)
 
 /datum/controller/subsystem/treasury/fire(resumed = 0)
 	if(world.time > next_treasury_check)
-		next_treasury_check = world.time + rand(5 MINUTES, 8 MINUTES)
+		next_treasury_check = world.time + TREASURY_TICK_AMOUNT
 		if(SSticker.current_state == GAME_STATE_PLAYING)
 			for(var/datum/roguestock/X in stockpile_datums)
 				if(!X.stable_price && !X.mint_item)
@@ -71,6 +73,8 @@ SUBSYSTEM_DEF(treasury)
 		for(var/obj/structure/roguemachine/vaultbank/VB in A)
 			if(istype(VB))
 				VB.update_icon()
+		give_money_treasury(RURAL_TAX, "Rural Tax Collection") //Give the King's purse to the treasury
+		total_rural_tax += RURAL_TAX
 
 /datum/controller/subsystem/treasury/proc/create_bank_account(name, initial_deposit)
 	if(!name)

@@ -395,7 +395,7 @@
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a><BR>"
 			contents += "<center>Statistics:<BR>"
 			contents += "Known Economic Output: [SStreasury.economic_output]m<BR>"
-			contents += "Total Vault Income: [SStreasury.total_vault_income]m<BR>"
+			contents += "Total Rural Tax: [SStreasury.total_rural_tax]m<BR>"
 			contents += "Total Deposit Tax: [SStreasury.total_deposit_tax]m<BR>"
 			contents += "Total Noble Estate Income: [SStreasury.total_noble_income]m<BR>"
 			contents += "Total Import: [SStreasury.total_import]m<BR>"
