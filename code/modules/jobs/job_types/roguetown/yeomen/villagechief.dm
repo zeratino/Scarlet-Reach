@@ -64,7 +64,6 @@
 	id = /obj/item/scomstone/bad//He is meant to be helping people around - hard to do when he can't hear their calls
 	backpack_contents = list(/obj/item/storage/keyring/velder  = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1)
 	if(H.mind)
-		H.verbs += /mob/living/carbon/human/proc/elderannouncement // I still feel uncomfortable with this being a verb, but it'll do for now.
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
@@ -86,13 +85,13 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/ceramics, 3, TRUE)
-		H.change_stat("perception", 2)
-		H.change_stat("endurance", 2)
-		H.change_stat("speed", -1)
-		H.change_stat("constitution", 1)
-		H.change_stat("intelligence", 3)
-		ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
-		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
+	H.change_stat("perception", 2)
+	H.change_stat("endurance", 2)
+	H.change_stat("speed", -1)
+	H.change_stat("constitution", 1)
+	H.change_stat("intelligence", 3)
+	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
+	ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 	if(should_wear_femme_clothes(H))//Village grandma look.
 		head = /obj/item/clothing/head/roguetown/shawl
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress
