@@ -268,7 +268,10 @@
 		if(prob(used))
 			if((zone_precise == BODY_ZONE_PRECISE_STOMACH) && !resistance)
 				attempted_wounds += /datum/wound/slash/disembowel
-			attempted_wounds += /datum/wound/artery
+			if(HAS_TRAIT(owner, TRAIT_CRITICAL_WEAKNESS))
+				attempted_wounds += /datum/wound/artery/chest
+			else
+				attempted_wounds += /datum/wound/artery
 
 	for(var/wound_type in shuffle(attempted_wounds))
 		var/datum/wound/applied = add_wound(wound_type, silent, crit_message)

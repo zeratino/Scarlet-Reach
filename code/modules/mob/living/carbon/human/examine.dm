@@ -191,12 +191,6 @@
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_redtext("[m1] repulsive!")
 
-		if (HAS_TRAIT(src, TRAIT_CRITICAL_WEAKNESS))
-			if(isliving(user))
-				var/mob/living/L = user
-				if(L.STAINT > 9 && L.STAPER > 9)
-					. += span_redtext("<i>[m1] critically fragile!</i>")
-
 	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
 		var/atom/item = get_most_expensive()
 		if(item)
