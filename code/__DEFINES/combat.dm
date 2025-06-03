@@ -67,6 +67,8 @@
 #define CLICK_CD_RESIST 20
 #define CLICK_CD_GRABBING 10
 
+#define EXTRA_STAMDRAIN_SWIFSTRONG 10
+
 //Cuff resist speeds
 #define FAST_CUFFBREAK 1
 #define INSTANT_CUFFBREAK 2
