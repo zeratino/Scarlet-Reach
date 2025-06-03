@@ -44,6 +44,7 @@
 	icon_state = "honeycakeuncook"
 	slices_num = 0
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/hcake
+	cooked_smell = /datum/pollutant/food/honey_cake
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	w_class = WEIGHT_CLASS_NORMAL
 	foodtype = GRAIN | DAIRY | SUGAR
@@ -89,6 +90,7 @@
 	icon_state = "cheesecakeuncook"
 	slices_num = 0
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/ccake
+	cooked_smell = /datum/pollutant/food/cheese_cake
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	foodtype = GRAIN | DAIRY | SUGAR
 	w_class = WEIGHT_CLASS_NORMAL
