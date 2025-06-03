@@ -1035,8 +1035,7 @@
 /obj/structure/fluff/psycross/zizocross
 	name = "inverted cross"
 	desc = "An unholy symbol. Blasphemy for most, reverence for few."
-	icon_state = "zizoinvertedcross"
-	attacked_sound = list("sound/combat/hits/onmetal/metalimpact (1).ogg", "sound/combat/hits/onmetal/metalimpact (2).ogg")
+	icon_state = "invertedcross"
 	divine = FALSE
 
 /obj/structure/fluff/psycross/attackby(obj/item/W, mob/user, params)
