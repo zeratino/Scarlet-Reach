@@ -34906,6 +34906,10 @@
 /obj/structure/table/wood{
 	icon_state = "longtable"
 	},
+/obj/item/clothing/head/roguetown/beekeeper,
+/obj/item/clothing/head/roguetown/beekeeper{
+	pixel_y = 5
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "lTn" = (
