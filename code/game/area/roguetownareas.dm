@@ -191,7 +191,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	ceiling_protected = TRUE
 
 /area/rogue/outdoors/rtfield
-	name = "azure basin"
+	name = "black basin"
 	icon_state = "rtfield"
 	soundenv = 19
 	ambush_times = list("night")
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/carbon/human/species/skeleton/npc/ambush = 50,
 				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30,
 				/mob/living/carbon/human/species/npc/deadite = 30)
-	first_time_text = "AZURE BASIN"
+	first_time_text = "BLACK BASIN"
 	droning_sound = 'sound/music/area/field.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
@@ -255,7 +255,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/carbon/human/species/npc/deadite = 10,
 				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30,
 				/mob/living/carbon/human/species/goblin/npc/ambush = 30)
-	first_time_text = "THE AZURE GROVE"
+	first_time_text = "THE BLACKMOOR GROVE"
 	converted_type = /area/rogue/indoors/shelter/woods
 
 /area/rogue/indoors/shelter/woods
@@ -354,7 +354,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 				/mob/living/carbon/human/species/human/northern/searaider/ambush = 10,
 				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30,
 				/mob/living/carbon/human/species/goblin/npc/ambush/sea = 40)
-	first_time_text = "THE AZURE COAST"
+	first_time_text = "THE BLACKMOOR COAST"
 	converted_type = /area/rogue/indoors/shelter/woods
 
 //// UNDER AREAS (no indoor rain sound usually)
@@ -684,7 +684,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = null
 	droning_sound_night = null
 	converted_type = /area/rogue/outdoors/exposed/manorgarri
-	first_time_text = "THE KEEP OF AZURE PEAK"
+	first_time_text = "THE KEEP OF BLACKMOOR"
 	keep_area = TRUE
 
 /area/rogue/outdoors/exposed/manorgarri
@@ -861,7 +861,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
 	droning_sound_night = 'sound/music/area/sleeping.ogg'
 	converted_type = /area/rogue/indoors/shelter/town
-	first_time_text = "THE CITY OF AZURE PEAK"
+	first_time_text = "THE CITY OF BLACKMOOR"
 	town_area = TRUE
 
 /area/rogue/indoors/shelter/town

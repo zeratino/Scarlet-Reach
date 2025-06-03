@@ -90,7 +90,7 @@
 			patron = initial(living.patron.name)
 		body += "<br><br>Current Patron: [patron]"
 
-		//Azure port. Incompatibility.
+		//Blackmoor port. Incompatibility.
 		/*var/curse_string = ""
 		if(ishuman(M))
 			var/mob/living/carbon/human/living = M
