@@ -444,6 +444,8 @@
 	//Dual wielder is there to stand-in for ambidextrous in case they activate their sword in their off-hand.
 	virtue_restrictions = list(/datum/virtue/utility/noble, /datum/virtue/combat/rotcured, /datum/virtue/utility/deadened, /datum/virtue/utility/deathless, /datum/virtue/heretic/seer, /datum/virtue/combat/dualwielder)
 
+/datum/outfit/job/roguetown/martyr
+	job_bitflag = BITFLAG_CHURCH
 
 /datum/outfit/job/roguetown/martyr/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -592,7 +594,7 @@
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_armor.dmi'
 	sleevetype = "silverarmor"
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
-	armor = list("blunt" = 10, "slash" = 100, "stab" = 80, "piercing" = 10, "fire" = 0, "acid" = 0)
+	armor = ARMOR_PLATE
 	sellprice = 1000
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 4
@@ -606,7 +608,7 @@
 	sleevetype = "silverlegs"
 	icon_state = "silverlegs"
 	item_state = "silverlegs"
-	armor = list("blunt" = 10, "slash" = 100, "stab" = 80, "piercing" = 10, "fire" = 0, "acid" = 0)
+	armor = ARMOR_PLATE
 	sellprice = 1000
 	smeltresult = /obj/item/ingot/silver
 	smelt_bar_num = 3

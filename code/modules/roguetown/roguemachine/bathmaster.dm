@@ -4,7 +4,7 @@
 	name = "BRASSFACE"
 	desc = "Sweet, sweet, addiction. Love in the veins, comfort in my heart."
 	icon = 'icons/roguetown/misc/machines.dmi'
-	icon_state = "streetvendor1"
+	icon_state = "brassface"
 	density = TRUE
 	blade_dulling = DULLING_BASH
 	max_integrity = 0
@@ -70,6 +70,7 @@
 	. = ..()
 	if(!ishuman(usr))
 		return
+	var/mob/living/carbon/human/human_mob = usr
 	if(!usr.canUseTopic(src, BE_CLOSE) || locked)
 		return
 	if(href_list["buy"])
@@ -88,6 +89,8 @@
 			budget -= cost
 			if(!(upgrade_flags & UPGRADE_NOTAX))
 				SStreasury.give_money_treasury(tax_amt, "brassface import tax")
+				record_featured_stat(FEATURED_STATS_TAX_PAYERS, human_mob, tax_amt)
+				GLOB.azure_round_stats[STATS_TAXES_COLLECTED] += tax_amt
 		else
 			say("Not enough!")
 			return
