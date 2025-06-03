@@ -224,6 +224,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	/// Number of torn sleves, important for salvaging calculations and examine text
 	var/torn_sleeve_number = 0
+	
+	/// Angle of the icon, these are used for attack animations.
+	var/icon_angle = 50 // most of our icons are angled
+
+	/// Angle of the icon while wielded, these are used for attack animations. Generally it's flat, but not always.
+	var/icon_angle_wielded = 0
 
 /obj/item/Initialize()
 	. = ..()
@@ -1207,6 +1213,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		to_chat(user, "<span class='notice'>I wield [src] normally.</span>")
 	if(user.get_active_held_item() == src)
 		user.update_a_intents()
+	icon_angle = initial(icon_angle)
 	return
 
 /obj/item/proc/altgrip(mob/living/carbon/user)
@@ -1244,6 +1251,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			return
 	user.update_a_intents()
 	user.update_inv_hands()
+	icon_angle = icon_angle_wielded
 
 /obj/item/attack_self(mob/user)
 	. = ..()

@@ -33,6 +33,14 @@
 						user.put_in_hands(I)
 			return
 
+/obj/structure/flora/roguetree/attacked_by(obj/item/I, mob/living/user)
+	var/was_destroyed = obj_destroyed
+	. = ..()
+	if(.)
+		if(!was_destroyed && obj_destroyed)
+			record_featured_stat(FEATURED_STATS_TREE_FELLERS, user)
+			GLOB.azure_round_stats[STATS_TREES_CUT]++
+
 /obj/structure/flora/roguetree/spark_act()
 	fire_act()
 
@@ -96,23 +104,50 @@
 
 /obj/structure/flora/roguetree/evil
 	var/datum/looping_sound/boneloop/soundloop
-	var/datum/spacevine_controller/controller
+	var/datum/vine_controller/controller
 
 /obj/structure/flora/roguetree/wise
 	name = "sacred tree"
 	desc = "A blessed primordial tree, ancient beyond years. Said to be the very embodiment of the Tree Father himself—whose presence alone imbues druids with wild energies."
 	icon_state = "mystical"
 	max_integrity = 400
+	var/activated = FALSE
+	var/cooldown = FALSE
+	var/retaliation_messages = list(
+		"LEAVE FOREST ALONE!",
+		"DENDOR PROTECTS!",
+		"NATURE'S WRATH!",
+		"BEGONE, INTERLOPER!"
+	)
 
 /obj/structure/flora/roguetree/wise/Initialize()
 	. = ..()
 	icon_state = "mystical"
 
+/obj/structure/flora/roguetree/wise/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(activated && !cooldown)
+		retaliate(user)
+
+
+/obj/structure/flora/roguetree/wise/proc/retaliate(mob/living/target)
+	if(cooldown || !istype(target) || !activated)
+		return
+
+	cooldown = TRUE
+	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 SECONDS)
+
+	var/message = pick(retaliation_messages)
+	say(span_danger("[message]"))
+
+	var/atom/throw_target = get_edge_target_turf(src, get_dir(src, target))
+	target.throw_at(throw_target, 4, 2)
+	target.adjustBruteLoss(8)
+
 /obj/structure/flora/roguetree/wise/examine(mob/user)
 	. = ..()
 	SEND_SOUND(usr, sound(null))
 	playsound(user, 'sound/music/tree.ogg', 80)
-
 
 /obj/structure/flora/roguetree/burnt
 	name = "burnt tree"
