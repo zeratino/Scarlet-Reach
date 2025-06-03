@@ -532,6 +532,11 @@
 	if(blessed_time > 0 || fertilized_time > 0)
 		growth_multiplier *= 2.0
 		nutriment_eat_mutliplier *= 0.4
+
+	if(pollination_time > 0)
+		growth_multiplier *= 1.75
+		nutriment_eat_mutliplier *= 0.6
+
 	if(has_world_trait(/datum/world_trait/dendor_fertility))
 		growth_multiplier *= 2.0
 		nutriment_eat_mutliplier *= 0.4
