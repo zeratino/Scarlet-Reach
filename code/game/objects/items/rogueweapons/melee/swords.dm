@@ -321,16 +321,13 @@
 /obj/item/rogueweapon/sword/long/judgement
 	name = "\"Judgement\""
 	desc = "An intricately forged longsword, it's blade is made from Aavnr's finest Vyšvou steel - held from an ornate carved ivory grip from the region's \"Mamük\" megafauna. A sight that's truly unique."
-	force = 40
-	force_wielded = 55
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "judgement"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "judgement"
 	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	swingsound = BLADEWOOSH_LARGE
+	wbalance = WBALANCE_HEAVY
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
 	wlength = WLENGTH_LONG
@@ -1123,8 +1120,6 @@
 	name = "Oathkeeper"
 	desc = "An ornate golden longsword with a ruby embedded in the hilt, given to the Knight Commander for their valiant service to the crown."
 	sellprice = 140
-	force = 26
-	force_wielded = 35
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	icon_state = "kingslayer"
 
