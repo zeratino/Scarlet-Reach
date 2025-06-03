@@ -146,7 +146,7 @@
 	name = "Toxophilite"
 	desc = "I've had an interest in archery from a young age, and I always keep a spare bow and quiver around."
 	custom_text = "+1 to Bows, Up to Legendary, Minimum Apprentice"
-	added_stashed_items = list("Selfbow" = /obj/item/gun/ballistic/revolver/grenadelauncher/bow,
+	added_stashed_items = list("Selfbow" = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve,
 								"Quiver (Arrows)" = /obj/item/quiver/arrows
 	)
 
