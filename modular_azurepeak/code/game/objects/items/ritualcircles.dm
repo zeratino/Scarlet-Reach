@@ -477,3 +477,4 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	gloves = /obj/item/clothing/gloves/roguetown/plate/matthios
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/matthios
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
+	backr = /obj/item/rogueweapon/flail/peasantwarflail/matthios
