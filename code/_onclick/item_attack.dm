@@ -67,7 +67,7 @@
 	if(istype(user.rmb_intent, /datum/rmb_intent/aimed))
 		adf = round(adf * 1.25)
 	if(istype(user.rmb_intent, /datum/rmb_intent/swift))
-		adf = max(round(adf * 0.75), CLICK_CD_FAST)
+		adf = max(round(adf * 0.75), CLICK_CD_INTENTCAP)
 	user.changeNext_move(adf)
 	return I.attack(src, user)
 
@@ -128,7 +128,7 @@
 	if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 		rmb_stam_penalty = EXTRA_STAMDRAIN_SWIFSTRONG
 	if(istype(user.rmb_intent, /datum/rmb_intent/swift))
-		if(user.used_intent.clickcd > CLICK_CD_FAST)	//If we're on Swift and our intent is not already at the cap by default, we consume extra stamina.
+		if(user.used_intent.clickcd > CLICK_CD_INTENTCAP)	//If we're on Swift and our intent is not already at the cap by default, we consume extra stamina.
 			rmb_stam_penalty = EXTRA_STAMDRAIN_SWIFSTRONG
 	// Release drain on attacks besides unarmed attacks/grabs is 1, so it'll just be whatever the penalty is + 1.
 	// Unarmed attacks are the only ones right now that have differing releasedrain, see unarmed attacks for their calc.
