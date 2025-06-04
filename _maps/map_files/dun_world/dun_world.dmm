@@ -3183,6 +3183,10 @@
 	icon_state = "vertw"
 	},
 /area/rogue/outdoors/town)
+"bcd" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/rogue/tile/harem,
+/area/rogue/indoors/town/bath)
 "bcl" = (
 /obj/structure/mineral_door/wood/deadbolt,
 /turf/open/floor/rogue/dirt,
@@ -20034,16 +20038,16 @@
 /area/rogue/outdoors/town/roofs)
 "gPt" = (
 /obj/item/roguekey/nightmaiden{
-	name = "room I key";
+	name = "suite I key";
 	lockid = "bath1"
 	},
 /obj/item/roguekey/nightmaiden{
 	lockid = "bath2";
-	name = "room II key"
+	name = "suite II key"
 	},
 /obj/item/roguekey/nightmaiden{
 	lockid = "bath3";
-	name = "room III key"
+	name = "suite III key"
 	},
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/effect/decal/carpet/square/black{
@@ -23143,8 +23147,7 @@
 	icon_state = "map3"
 	},
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish{
-	name = "royal elvish dagger";
-	sellprice = 150
+	name = "royal elvish dagger"
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
@@ -26230,7 +26233,7 @@
 	name = "pewter bowl";
 	pixel_x = 3;
 	pixel_y = 5;
-	sellprice = 30
+	sellprice = 0
 	},
 /turf/open/floor/rogue/tile{
 	icon_state = "bfloorz"
@@ -31760,9 +31763,7 @@
 /area/rogue/indoors/town)
 "kLU" = (
 /obj/structure/table/wood,
-/obj/item/cooking/platter/gold{
-	sellprice = 50
-	},
+/obj/item/cooking/platter/gold,
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/manor)
 "kLZ" = (
@@ -32364,7 +32365,7 @@
 /obj/structure/mineral_door/wood/fancywood{
 	lockid = "bath1";
 	locked = 1;
-	name = "room I"
+	name = "suite I"
 	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
@@ -41136,7 +41137,8 @@
 "nXK" = (
 /obj/structure/mineral_door/wood/fancywood{
 	locked = 1;
-	lockid = "nightman"
+	lockid = "nightman";
+	name = "bathmaster's bedroom"
 	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
@@ -45386,7 +45388,7 @@
 	name = "pewter bowl";
 	pixel_x = 3;
 	pixel_y = 5;
-	sellprice = 30
+	sellprice = 0
 	},
 /obj/item/candle/candlestick/silver/single/lit{
 	pixel_x = 10;
@@ -49589,7 +49591,7 @@
 /obj/structure/mineral_door/wood/fancywood{
 	lockid = "bath2";
 	locked = 1;
-	name = "room II"
+	name = "suite II"
 	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
@@ -52621,7 +52623,8 @@
 "rRg" = (
 /obj/structure/mineral_door/wood/fancywood{
 	lockid = "nightmaiden";
-	locked = 1
+	locked = 1;
+	name = "bathworker quarters"
 	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
@@ -62658,20 +62661,16 @@
 /obj/item/reagent_containers/glass/bowl,
 /obj/item/reagent_containers/glass/bowl,
 /obj/item/reagent_containers/glass/bowl/iron{
-	name = "pewter bowl";
-	sellprice = 30
+	name = "pewter bowl"
 	},
 /obj/item/reagent_containers/glass/bowl/iron{
-	name = "pewter bowl";
-	sellprice = 30
+	name = "pewter bowl"
 	},
 /obj/item/reagent_containers/glass/bowl/iron{
-	name = "pewter bowl";
-	sellprice = 30
+	name = "pewter bowl"
 	},
 /obj/item/reagent_containers/glass/bowl/iron{
-	name = "pewter bowl";
-	sellprice = 30
+	name = "pewter bowl"
 	},
 /obj/item/cooking/platter,
 /obj/item/cooking/platter,
@@ -71445,7 +71444,7 @@
 /obj/structure/mineral_door/wood/fancywood{
 	lockid = "bath3";
 	locked = 1;
-	name = "room III"
+	name = "suite III"
 	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
@@ -129637,7 +129636,7 @@ mfq
 rqY
 rqY
 vWM
-brW
+bcd
 avO
 rqY
 rqY
