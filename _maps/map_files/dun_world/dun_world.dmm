@@ -43727,11 +43727,6 @@
 	dir = 1
 	},
 /area/rogue/under/cave/dukecourt)
-"oQw" = (
-/turf/open/water/river{
-	icon_state = "rockwd"
-	},
-/area/rogue/outdoors/town/roofs)
 "oQB" = (
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/church/chapel)
@@ -504840,7 +504835,7 @@ bGf
 bGf
 bGf
 bGf
-oQw
+bGf
 bGf
 bGf
 bGf
