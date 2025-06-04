@@ -28376,6 +28376,10 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
+"jBY" = (
+/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/turf/open/floor/rogue/tile/brownbrick,
+/area/rogue/indoors/town/bath)
 "jCd" = (
 /obj/structure/vine,
 /turf/open/water/swamp/deep,
@@ -130533,7 +130537,7 @@ uZz
 rqY
 egF
 ati
-qDj
+jBY
 brW
 brW
 jPP
