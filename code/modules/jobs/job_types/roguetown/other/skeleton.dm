@@ -93,6 +93,8 @@
 	H.STASTR = 10
 	H.STASPD = rand(7,10)
 	H.STAINT = 1
+	if(prob(2))	//hehe funni skelington.......
+		H.STAINT = 20
 	H.STACON = 3
 	var/datum/antagonist/new_antag = new /datum/antagonist/skeleton()
 	H.mind.add_antag_datum(new_antag)
