@@ -3,7 +3,7 @@
 	button_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "explosion"
 	desc = "Chucks a stone at someone"
-	cooldown_time = 15 SECONDS
+	cooldown_time = 20 SECONDS
 	var/cast_time	= 3 SECONDS
 	var/range = 8
 	var/def_zone = BODY_ZONE_CHEST
