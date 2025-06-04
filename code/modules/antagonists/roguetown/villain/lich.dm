@@ -53,7 +53,7 @@
 	return ..()
 
 /datum/antagonist/lich/greet()
-	to_chat(owner.current, span_userdanger("The secret of immortality is mine, but this is not enough. The Azurean lands need a new ruler. One that will reign eternal."))
+	to_chat(owner.current, span_userdanger("An immortal king cries for new subjects. Subdue and conquer."))
 	owner.announce_objectives()
 	..()
 
@@ -85,7 +85,6 @@
 		owner.become_unknown_to(MF)
 
 	var/mob/living/carbon/human/L = owner.current
-
 	L.cmode_music = 'sound/music/combat_cult.ogg'
 	L.faction = list("undead")
 
@@ -100,7 +99,6 @@
 
 	equip_and_traits()
 	L.equipOutfit(/datum/outfit/job/roguetown/lich)
-
 	L.set_patron(/datum/patron/inhumen/zizo)
 
 
@@ -161,13 +159,12 @@
 	H.equip_to_slot_or_del(new_phylactery,SLOT_IN_BACKPACK, TRUE)
 
 /datum/antagonist/lich/proc/consume_phylactery(timer = 10 SECONDS)
-	if(phylacteries.len == 0)
-		return FALSE
-	else
+	if(phylacteries.len)
 		for(var/obj/item/phylactery/phyl in phylacteries)
 			phyl.be_consumed(timer)
 			phylacteries -= phyl
 			return TRUE
+	return FALSE
 
 
 ///Called post death to equip new body with armour and stats. Order of equipment matters
@@ -246,8 +243,6 @@
 		qdel(old_body)
 
 
-
-
 /obj/item/phylactery
 	name = "phylactery"
 	desc = "Looks like it is filled with some intense power."
@@ -263,7 +258,6 @@
 	light_color = "#e62424"
 
 	var/datum/antagonist/lich/possessor
-
 	var/datum/mind/mind
 
 /obj/item/phylactery/Initialize(mapload, datum/mind/newmind)
@@ -279,3 +273,53 @@
 		possessor.owner.current.forceMove(get_turf(src))
 		possessor.rise_anew()
 		qdel(src)
+
+/obj/effect/proc_holder/spell/invoked/raise_undead
+	name = "Raise Greater Undead"
+	desc = ""
+	clothes_req = FALSE
+	range = 7
+	overlay_state = "animate"
+	sound = list('sound/magic/magnet.ogg')
+	releasedrain = 40
+	chargetime = 60
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	charging_slowdown = 1
+	chargedloop = /datum/looping_sound/invokegen
+	gesture_required = TRUE // Summon spell
+	associated_skill = /datum/skill/magic/arcane
+	recharge_time = 60 SECONDS
+
+/obj/effect/proc_holder/spell/invoked/raise_undead/cast(list/targets, mob/living/user)
+	..()
+
+	var/turf/T = get_turf(targets[1])
+	if(!isopenturf(T))
+		to_chat(user, span_warning("The targeted location is blocked. My summon fails to come forth."))
+		revert_cast()
+		return FALSE
+
+	var/list/candidates = pollGhostCandidates("Do you want to play as a Lich's skeleton?", ROLE_LICH_SKELETON, null, null, 10 SECONDS, POLL_IGNORE_LICH_SKELETON)
+	if(!LAZYLEN(candidates))
+		to_chat(user, span_warning("The depths are hollow."))
+		revert_cast()
+		return FALSE
+
+	var/mob/C = pick(candidates)
+	if(!C || !istype(C, /mob/dead))
+		revert_cast()
+		return FALSE
+
+	if (istype(C, /mob/dead/new_player))
+		var/mob/dead/new_player/N = C
+		N.close_spawn_windows()
+
+	var/mob/living/carbon/human/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
+	target.key = C.key
+	SSjob.EquipRank(target, "Greater Skeleton", TRUE)
+	target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "GREATER SKELETON"), 3 SECONDS)
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_pronouns_and_body)), 7 SECONDS)
+	target.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb/lesser)
+	return TRUE

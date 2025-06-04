@@ -13,7 +13,7 @@
 	base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/unarmed/claw)
 	a_intent = INTENT_HELP
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
-	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/aimed, /datum/rmb_intent/strong, /datum/rmb_intent/weak)
+	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/aimed, /datum/rmb_intent/weak)
 	possible_rmb_intents = list()
 	stand_attempts = 4
 	cmode_music = FALSE
@@ -164,15 +164,26 @@
 
 /datum/outfit/job/roguetown/greater_skeleton/pre_equip(mob/living/carbon/human/H) //equipped onto Summon Greater Undead player skeletons only after the mind is added
 	..()
+
+	H.set_patron(/datum/patron/inhumen/zizo)
+
+	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
+	/datum/rmb_intent/aimed,\
+	/datum/rmb_intent/riposte,\
+	/datum/rmb_intent/strong,\
+	/datum/rmb_intent/weak)
+	H.swap_rmb_intent(num=1) //dont want to mess with base NPCs too much out of fear of breaking them so I assigned the intents in the outfit
+
+/datum/outfit/job/roguetown/greater_skeleton/necro
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
-	if(prob(50))
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant
-	else
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/l
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 	head = /obj/item/clothing/head/roguetown/helmet/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots
+
+/datum/outfit/job/roguetown/greater_skeleton/necro/pre_equip(mob/living/carbon/human/H)
+	shirt = prob(50) ? /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant : /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/l
+	r_hand = prob(50) ? /obj/item/rogueweapon/sword : /obj/item/rogueweapon/stoneaxe/woodcut
 
 	H.STASTR = rand(14,16)
 	H.STASPD = 8
@@ -196,22 +207,6 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-
-	H.set_patron(/datum/patron/inhumen/zizo)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-
-	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
-	/datum/rmb_intent/aimed,\
-	/datum/rmb_intent/strong,\
-	/datum/rmb_intent/swift,\
-	/datum/rmb_intent/riposte,\
-	/datum/rmb_intent/weak)
-	H.swap_rmb_intent(num=1) //dont want to mess with base NPCs too much out of fear of breaking them so I assigned the intents in the outfit
-
-	if(prob(50))
-		r_hand = /obj/item/rogueweapon/sword
-	else
-		r_hand = /obj/item/rogueweapon/stoneaxe/woodcut
 
 /mob/living/carbon/human/species/skeleton/npc/no_equipment
     skel_outfit = null
