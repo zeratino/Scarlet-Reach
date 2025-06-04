@@ -6018,6 +6018,7 @@
 /obj/item/clothing/suit/roguetown/armor/corset,
 /obj/item/clothing/suit/roguetown/armor/corset,
 /obj/structure/closet/crate/roguecloset/inn,
+/obj/machinery/light/rogue/wallfire/candle/blue,
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "bZT" = (
@@ -28377,7 +28378,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/orcdungeon)
 "jBY" = (
-/obj/machinery/light/rogue/wallfire/candle/blue/r,
+/obj/structure/fluff/wallclock/r,
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "jCd" = (
@@ -128738,7 +128739,7 @@ lZr
 brW
 brW
 gej
-rqY
+bcd
 rqY
 ogs
 qHj
@@ -129191,7 +129192,7 @@ brW
 brW
 wxV
 rqY
-ogs
+rqY
 ogs
 ogs
 ogs
@@ -129640,7 +129641,7 @@ mfq
 rqY
 rqY
 vWM
-bcd
+brW
 avO
 rqY
 rqY
