@@ -96,7 +96,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
 	tastes = list("savory sausage" = 1, "cabbage" = 1)
 	name = "wiener on cabbage"
-	desc = "A rich and heavy meal, perfect for a soldier on the march."
+	desc = "A rich and hearty meal, perfect for a soldier on the march."
 	faretype = FARE_NEUTRAL
 	portable = FALSE
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat_meal.dmi'
