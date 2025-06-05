@@ -64,7 +64,7 @@
 			H.cmode_music = 'sound/music/combat_vagarian.ogg'
 		if("Shaman")
 			H.set_blindness(0)
-			to_chat(H, span_warning(You are a Shaman of the Fjall, The Northern Empty. Savage combatants who commune with the Ecclesical Beast gods through ritualistic violence, rather than idle prayer."))
+			to_chat(H, span_warning("You are a Shaman of the Fjall, The Northern Empty. Savage combatants who commune with the Ecclesical Beast gods through ritualistic violence, rather than idle prayer."))
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
@@ -112,7 +112,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/atgervi
 	name = "shamanic coat"
-	desc = "A furred protective coat, It embodies the second trial of the Iskarn shamans. To honor the leopard is too desire for more."
+	desc = "A furred protective coat, Often made by hand it embodies the second trial of the Iskarn Shamans. To honor the leopard is too desire for more."
 	icon_state = "atgervi_shaman_coat"
 	item_state = "atgervi_shaman_coat"
 
@@ -147,7 +147,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/leather/saiga/atgervi
 	name = "moose hood"
-	desc = "A deceptively strong hood of hide with a pair of large heavy antlers. It is the fourth trial of the Iskarn Shamans, To slay a Grinning moose in the final hunt alone."
+	desc = "A deceptively strong hood of hide with a pair of large heavy antlers. It is the reward of the fourth trial of the Iskarn Shamans, To slay a Grinning moose in the final hunt alone and fashion a hood from it's head."
 	icon_state = "atgervi_shaman"
 	item_state = "atgervi_shaman"
 	flags_inv = HIDEEARS|HIDEFACE
@@ -160,8 +160,8 @@
 	experimental_onhip = FALSE
 
 /obj/item/clothing/shoes/roguetown/boots/leather/atgervi
-	name = "heavy leather boots"
-	desc = "A pair of strong leather boots, designed to endure battle and the chill of the north both."
+	name = "hardened leather boots"
+	desc = "A pair of strong leather boots, designed to endure battle and the chill of the frozen north both."
 	icon_state = "atgervi_boots"
 	item_state = "atgervi_boots"
 
