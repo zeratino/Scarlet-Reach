@@ -431,6 +431,7 @@
 #include "code\datums\actions\action_cooldown.dm"
 #include "code\datums\actions\mobs\dragon_leap.dm"
 #include "code\datums\actions\mobs\dragonbreath.dm"
+#include "code\datums\actions\mobs\stone_throw.dm"
 #include "code\datums\ai\_ai_behavior.dm"
 #include "code\datums\ai\_ai_controller.dm"
 #include "code\datums\ai\_ai_idle_behavior.dm"
