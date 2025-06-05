@@ -15,6 +15,7 @@
 	H.mind.adjust_skillrank(/datum/skill/magic/holy, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
@@ -24,7 +25,7 @@
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 	H.set_blindness(0)
-	var/weapons = list("Bastard Sword","Mace","Flail")
+	var/weapons = list("Bastard Sword","Mace","Flail", "Axe")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Bastard Sword")
@@ -36,6 +37,9 @@
 		if("Flail")
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 			beltr = /obj/item/rogueweapon/flail/sflail
+		if("Axe")
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 	H.change_stat("strength", 2)  // Heretic is by far the best class with access to rituals (as long as they play a god with ritual), holy and heavy armor. So they keep 7 points.
 	H.change_stat("constitution", 2)
 	H.change_stat("endurance", 1)
