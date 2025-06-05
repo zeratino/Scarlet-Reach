@@ -418,7 +418,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	if(ssaddle)
 		ssaddle.forceMove(get_turf(src))
 		ssaddle = null
-	var/list/butcher
+	var/list/butcher = list()
 	var/butchery_skill_level = user.mind.get_skill_level(/datum/skill/labor/butchering)
 	var/botch_chance = 0
 	if(length(botched_butcher_results) && butchery_skill_level < SKILL_LEVEL_JOURNEYMAN)
@@ -437,8 +437,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	butcher = butcher_results
 	if(prob(botch_chance))
 		butcher = botched_butcher_results
+		to_chat(user, "<span class='smallred'>I BOTCHED THE BUTCHERY! ([botch_chance]%!)</span>")
 	else if(prob(perfect_chance))
 		butcher = perfect_butcher_results
+		to_chat(user,"<span class='smallgreen'>My butchering was perfect! ([perfect_chance]%!)</span>")
 	if(guaranteed_butcher_results)
 		butcher += guaranteed_butcher_results
 	
