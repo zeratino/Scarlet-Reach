@@ -21,27 +21,26 @@
 	cmode_music = 'sound/music/combat_old.ogg'//He is old so he gets old
 
 
-// The following is slightly edited Freekycode. If it sucks, I'm sorry.
-/mob/living/carbon/human/var/last_elder_announce = 0 // Inits variable for later.
+GLOBAL_VAR_INIT(last_elder_announce, -50000) // Inits variable for later
 
 /mob/living/carbon/human/proc/elderannouncement()
 	set name = "Announcement" // MAKE THOSE WHIPPERSNAPPERS LISTEN.
 	set category = "ELDER"
 	if(stat)
 		return
-	var/announcementinput = input("Bellow to the Peaks", "Elder's Call") as text|null
+	var/announcementinput = input("Bellow to the Peaks", "Make an Announcement") as text|null
 	if(announcementinput)
 		if(!src.can_speak_vocal())
 			to_chat(src,span_warning("I can't speak!"))
 			return FALSE
-		if(world.time < last_elder_announce + 600 SECONDS)
-			to_chat(src, span_warning("You must wait [round((last_elder_announce + 600 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
+		if(world.time < GLOB.last_elder_announce + 600 SECONDS)
+			to_chat(src, span_warning("You must wait [round((GLOB.last_elder_announce + 600 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
 			return FALSE
 		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement.."))
 		if(do_after(src, 15 SECONDS, target = src)) // Reduced to 15 seconds from 30 on the original Herald PR. 15 is well enough time for sm1 to shove you.
 			say(announcementinput)
 			priority_announce("[announcementinput]", "The Elder Decrees", 'sound/misc/bell.ogg')
-			last_elder_announce = world.time
+			GLOB.last_elder_announce = world.time
 		else
 			to_chat(src, span_warning("Your announcement was interrupted!"))
 			return FALSE
@@ -64,6 +63,7 @@
 	id = /obj/item/scomstone/bad//He is meant to be helping people around - hard to do when he can't hear their calls
 	backpack_contents = list(/obj/item/storage/keyring/velder  = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1)
 	if(H.mind)
+		H.verbs += /mob/living/carbon/human/proc/elderannouncement
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
