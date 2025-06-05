@@ -72,6 +72,29 @@
 				/obj/item/natural/fibers = 1)
 	craftdiff = 1
 
+/datum/crafting_recipe/roguetown/sewing/clothbedsheet
+	name = "bedsheet, cloth (1 fibers, 2 cloth)"
+	result = list(/obj/item/bedsheet/rogue/cloth)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1)
+	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/sewing/fabricbedsheet // cloth bedsheet's fancier looking cousin
+	name = "bedsheet, fabric (1 fibers, 2 cloth, 1 silk)"
+	result = list(/obj/item/bedsheet/rogue/fabric)
+	reqs = list(/obj/item/natural/cloth = 2,
+				/obj/item/natural/fibers = 1,
+				/obj/item/natural/silk = 1)
+	craftdiff = 1
+
+/datum/crafting_recipe/roguetown/sewing/doublefabricbedsheet
+	name = "bedsheet, double fabric (2 fibers, 4 cloth), 2 silk"
+	result = list(/obj/item/bedsheet/rogue/fabric_double)
+	reqs = list(/obj/item/natural/cloth = 4,
+				/obj/item/natural/fibers = 2,
+				/obj/item/natural/silk = 2)
+	craftdiff = 1
+
 /datum/crafting_recipe/roguetown/sewing/brimmed
 	name = "brimmed hat (2 fibers, 1 cloth)"
 	result = list(/obj/item/clothing/head/roguetown/brimmed)
