@@ -230,6 +230,9 @@
 	icon_state = "skirt"
 	item_state = "skirt"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/pants.dmi'
+	sleevetype = "skirt"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
+	alternate_worn_layer = (SHOESLEEVE_LAYER-1)
 
 /obj/item/clothing/under/roguetown/skirt/random
 	name = "skirt"
