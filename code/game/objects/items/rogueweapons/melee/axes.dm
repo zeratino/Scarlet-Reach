@@ -408,3 +408,20 @@
 	icon_state = "doublegreataxe"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
+
+
+/obj/item/rogueweapon/greataxe/steel/doublehead/graggar
+	name = "vicious greataxe"
+	desc = "A greataxe who's edge thrums with the motive force, violence, oh, sweet violence!"
+	icon_state = "graggargaxe"
+	force = 20
+	force_wielded = 40
+	icon = 'icons/roguetown/weapons/64.dmi'
+
+/obj/item/rogueweapon/greataxe/steel/doublehead/graggar/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_HORDE))
+		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS AXE, CEASE OR BE PUNISHED!</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()

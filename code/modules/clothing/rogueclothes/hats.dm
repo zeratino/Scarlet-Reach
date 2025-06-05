@@ -890,6 +890,20 @@
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
 
+/obj/item/clothing/head/roguetown/helmet/heavy/graggar
+	name = "vicious helmet"
+	desc = "A rugged helmet which stirs with the same violence which drives our world."
+	icon_state = "graggarplatehelm"
+	max_integrity = 600
+	flags_inv = HIDEEARS|HIDEFACE|HIDESNOUT|HIDEHAIR|HIDEFACIALHAIR
+
+/obj/item/clothing/head/roguetown/helmet/heavy/graggar/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_HORDE))
+		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS HELM, CEASE OR BE RENDED ASUNDER!</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()
 
 /obj/item/clothing/head/roguetown/helmet/heavy/matthios/pickup(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_COMMIE))
