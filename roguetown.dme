@@ -951,6 +951,7 @@
 #include "code\game\objects\lighting\_base_roguestreet.dm"
 #include "code\game\objects\lighting\lantern_post.dm"
 #include "code\game\objects\lighting\rogue_fires.dm"
+#include "code\game\objects\structures\apiary.dm"
 #include "code\game\objects\structures\artstuff.dm"
 #include "code\game\objects\structures\barricades.dm"
 #include "code\game\objects\structures\bearpelt.dm"

@@ -1095,3 +1095,10 @@
 	tools = list(/obj/item/needle)
 	craftdiff = 6
 	sellprice = 20
+
+/datum/crafting_recipe/roguetown/sewing/beekeeper
+	name = "beekeeper's hood (4 fibers, 3 cloth)"
+	result = list(/obj/item/clothing/head/roguetown/beekeeper)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 4)
+	craftdiff = 2
