@@ -1,8 +1,8 @@
 /particles/hotspring_steam
 	icon = 'icons/effects/particles/smoke.dmi'
-
+	icon_state	= list("steam_cloud_1"=5, "steam_cloud_2"=5, "steam_cloud_3"=5, "steam_cloud_4"=5, "steam_cloud_5"=5)
 	color = "#FFFFFF8A"
-	count = 5
+	count = 2
 	spawning = 0.3
 	lifespan = 3 SECONDS
 	fade = 1.2 SECONDS
