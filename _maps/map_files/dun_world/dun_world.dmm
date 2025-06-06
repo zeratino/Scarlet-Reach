@@ -1028,6 +1028,20 @@
 /area/rogue/indoors/shelter/mountains)
 "aqx" = (
 /obj/structure/rack/rogue/shelf/biggest,
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = 6;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = -7;
+	pixel_y = 13
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = 7
+	},
+/obj/item/reagent_containers/glass/cup/wooden{
+	pixel_x = -4
+	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "aqz" = (
@@ -7390,6 +7404,7 @@
 /obj/item/kitchen/spoon/iron,
 /obj/item/kitchen/spoon/iron,
 /obj/item/kitchen/spoon/iron,
+/obj/item/flint,
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "cBO" = (
@@ -17858,6 +17873,9 @@
 	base_icon_state = "woodchestalt";
 	icon_state = "woodchestalt"
 	},
+/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
+/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
+/obj/item/reagent_containers/food/snacks/grown/cabbage/rogue,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town/bath)
 "gem" = (
