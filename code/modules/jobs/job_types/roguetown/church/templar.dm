@@ -56,6 +56,8 @@
 		if(/datum/patron/divine/abyssor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
 			cloak = /obj/item/clothing/cloak/abyssortabard
+		if(/datum/patron/divine/xylix)
+			cloak = /obj/item/clothing/cloak/templar/xylixian
 		if(/datum/patron/divine/dendor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
 			cloak = /obj/item/clothing/cloak/tabard/crusader/dendor
@@ -92,7 +94,6 @@
 			/obj/item/clothing/neck/roguetown/psicross/wood
 			)
 			neck = pick(psicross_options) // Random psicross, as cleric.
-			cloak = /obj/item/clothing/cloak/templar/xylix
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	belt = /obj/item/storage/belt/rogue/leather/rope
@@ -176,6 +177,9 @@
 			wrists = /obj/item/clothing/neck/roguetown/psicross/abyssor
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
 			cloak = /obj/item/clothing/cloak/abyssortabard
+		if(/datum/patron/divine/xylix)
+			cloak = /obj/item/clothing/cloak/templar/xylixian
+			head = /obj/item/clothing/head/roguetown/helmet/heavy/xylixhelm
 		if(/datum/patron/divine/dendor)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
