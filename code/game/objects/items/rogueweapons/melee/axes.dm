@@ -20,6 +20,7 @@
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	penfactor = 35
 	swingdelay = 10
+	clickcd = 14
 	item_d_type = "slash"
 
 /datum/intent/axe/chop/scythe
