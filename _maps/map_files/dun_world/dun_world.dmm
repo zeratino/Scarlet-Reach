@@ -5470,18 +5470,6 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
-"bRe" = (
-/obj/structure/roguewindow/harem3{
-	opacity = 1
-	},
-/obj/structure/table/wood{
-	dir = 8;
-	icon_state = "largetable"
-	},
-/obj/item/cooking/platter,
-/obj/item/kitchen/fork,
-/turf/open/floor/rogue/tile,
-/area/rogue/under/town/sewer)
 "bRh" = (
 /obj/structure/mineral_door/wood/red{
 	locked = 1
@@ -35716,9 +35704,6 @@
 	base_icon_state = "woodchestalt";
 	icon_state = "woodchestalt"
 	},
-/obj/item/reagent_containers/food/snacks/grown/potato/rogue,
-/obj/item/reagent_containers/food/snacks/grown/onion/rogue,
-/obj/item/reagent_containers/food/snacks/grown/cabbage/rogue,
 /turf/open/floor/rogue/tile/harem,
 /area/rogue/indoors/town/bath)
 "mdN" = (
@@ -42319,6 +42304,7 @@
 	icon_state = "longtable";
 	dir = 1
 	},
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/town/sewer)
 "oth" = (
@@ -50514,11 +50500,6 @@
 /obj/item/rogueweapon/huntingknife/cleaver,
 /obj/item/kitchen/rollingpin,
 /obj/item/storage/roguebag,
-/obj/merge_conflict_marker{
-	name = "---Merge Conflict Marker---";
-	
-	desc = "A best-effort merge was performed. You must resolve this conflict yourself (manually) and remove this object once complete."
-	},
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/item/reagent_containers/glass/cup/wooden{
 	pixel_x = 6;
@@ -68140,6 +68121,7 @@
 	},
 /obj/machinery/light/rogue/wallfire/candle/blue,
 /obj/item/rogueweapon/huntingknife/stoneknife,
+/obj/item/kitchen/rollingpin,
 /turf/open/floor/rogue/tile,
 /area/rogue/under/town/sewer)
 "wRQ" = (
@@ -148259,7 +148241,7 @@ xPZ
 ylh
 mMx
 dlK
-bRe
+hvw
 hvw
 spI
 ouk
