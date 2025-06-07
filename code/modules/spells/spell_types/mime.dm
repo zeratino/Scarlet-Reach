@@ -20,7 +20,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_wall/Click()
 	if(usr && usr.mind)
 		if(!HAS_TRAIT(usr, TRAIT_PERMAMUTE)) // If somehow someone gets ahold of this spell...
-			to_chat(usr, "<span class='warning'>I am not a mute!</span>")
+			to_chat(usr, span_warning("I am not a mute!"))
 			return
 		invocation = "<B>[usr.real_name]</B> looks as if a wall is in front of [usr.p_them()]."
 	else
@@ -50,7 +50,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/mime_chair/Click()
 	if(usr && usr.mind)
 		if(!HAS_TRAIT(usr, TRAIT_PERMAMUTE))
-			to_chat(usr, "<span class='warning'>I am not a mute!</span>")
+			to_chat(usr, span_warning("I am not a mute!"))
 			return
 		invocation = "<B>[usr.real_name]</B> pulls out an invisible chair and sits down."
 	else
