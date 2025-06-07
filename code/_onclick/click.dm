@@ -123,9 +123,9 @@
 			if(used_intent.no_early_release && client?.chargedprog < 100)
 				var/adf = used_intent.clickcd
 				if(istype(rmb_intent, /datum/rmb_intent/aimed))
-					adf = round(adf * 1.4)
+					adf = round(adf * CLICK_CD_MOD_AIMED)
 				if(istype(rmb_intent, /datum/rmb_intent/swift))
-					adf = round(adf * 0.6)
+					adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 				changeNext_move(adf,used_hand)
 				return
 	if(modifiers["right"] && oactive && atkswinging == "right")
@@ -309,9 +309,9 @@
 							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
 							var/adf = used_intent.clickcd
 							if(istype(rmb_intent, /datum/rmb_intent/aimed))
-								adf = round(adf * 1.4)
+								adf = round(adf * CLICK_CD_MOD_AIMED)
 							if(istype(rmb_intent, /datum/rmb_intent/swift))
-								adf = round(adf * 0.6)
+								adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 							changeNext_move(adf)
 						else
 							playsound(get_turf(src), used_intent.miss_sound, 100, FALSE)
@@ -347,9 +347,9 @@
 		if(ismob(A))
 			var/adf = used_intent.clickcd
 			if(istype(rmb_intent, /datum/rmb_intent/aimed))
-				adf = round(adf * 1.4)
+				adf = round(adf * CLICK_CD_MOD_AIMED)
 			if(istype(rmb_intent, /datum/rmb_intent/swift))
-				adf = round(adf * 0.6)
+				adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 			changeNext_move(adf)
 		UnarmedAttack(A,1,params)
 	if(mob_timers[MT_INVISIBILITY] > world.time)			
