@@ -208,6 +208,20 @@
 		compact = !compact
 	if(href_list["changecat"])
 		current_category = href_list["changecat"]
+	if(href_list["changeautoexport"])
+		if(!usr.canUseTopic(src, BE_CLOSE) || locked)
+			return
+		var/new_autoexport = input(usr, "Set a new autoexport percentage between 0 and 100", src, SStreasury.autoexport_percentage * 100) as null|num
+		if(!new_autoexport && new_autoexport != 0)
+			return
+		if(findtext(num2text(new_autoexport), "."))
+			return
+		if(new_autoexport < 0 || new_autoexport > 100)
+			to_chat(usr, span_warning("Invalid autoexport percentage. Must be between 0 and 100."))
+			return
+		new_autoexport = round(new_autoexport)
+		SStreasury.autoexport_percentage = new_autoexport * 0.01
+	
 	return attack_hand(usr)
 
 /obj/structure/roguemachine/steward/proc/do_import(datum/roguestock/D,number)
@@ -291,6 +305,8 @@
 				contents += "Treasury: [SStreasury.treasury_value]m"
 				contents += " / Lord's Tax: [SStreasury.tax_value*100]%"
 				contents += " / Guild's Tax: [SStreasury.queens_tax*100]%</center><BR>"
+				contents += "<center>Auto Export Stockpile Above: "
+				contents += "<a href='?src=\ref[src];changeautoexport=1'>[SStreasury.autoexport_percentage * 100]%</a></center><BR>"
 				var/selection = "<center>Categories: "
 				for(var/category in categories)
 					if(category == current_category)

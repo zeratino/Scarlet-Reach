@@ -1,5 +1,6 @@
 #define RURAL_TAX 50 // Free money. A small safety pool for lowpop mostly
-#define TREASURY_TICK_AMOUNT 6 MINUTES
+#define TREASURY_TICK_AMOUNT 1 MINUTES
+#define EXPORT_ANNOUNCE_THRESHOLD 100
 
 /proc/send_ooc_note(msg, name, job)
 	var/list/names_to = list()
@@ -76,6 +77,7 @@ SUBSYSTEM_DEF(treasury)
 				VB.update_icon()
 		give_money_treasury(RURAL_TAX, "Rural Tax Collection") //Give the King's purse to the treasury
 		total_rural_tax += RURAL_TAX
+		auto_export()
 
 /datum/controller/subsystem/treasury/proc/create_bank_account(name, initial_deposit)
 	if(!name)
@@ -214,7 +216,7 @@ SUBSYSTEM_DEF(treasury)
 		else
 			give_money_account(how_much, welfare_dependant, "Noble Estate")
 
-/datum/controller/subsystem/treasury/proc/do_export(var/datum/roguestock/D)
+/datum/controller/subsystem/treasury/proc/do_export(var/datum/roguestock/D, silent = FALSE)
 	if((D.held_items[1] < D.importexport_amt))
 		return FALSE
 	var/amt = D.get_export_price()
@@ -227,7 +229,23 @@ SUBSYSTEM_DEF(treasury)
 	SStreasury.treasury_value += amt
 	SStreasury.total_export += amt
 	SStreasury.log_to_steward("+[amt] exported [D.name]")
-	if(amt >= 100) //Only announce big spending.
+	if(!silent && amt >= EXPORT_ANNOUNCE_THRESHOLD) //Only announce big spending.
 		scom_announce("Azure Peak exports [D.name] for [amt] mammon.")
 	D.lower_demand()
-	return TRUE
+	return amt
+
+/datum/controller/subsystem/treasury/proc/auto_export()
+	var/total_value_exported = 0 
+	for(var/datum/roguestock/D in stockpile_datums)
+		if(!D.importexport_amt)
+			continue
+		if((autoexport_percentage * D.stockpile_limit) >= D.held_items[1])
+			continue // We only auto export if above the auto export percentage.
+		// We don't want to auto export if it is not profitable at all.
+		if(D.get_export_price() <= (D.payout_price * D.importexport_amt))
+			continue
+		if(D.held_items[1] >= D.importexport_amt)
+			var/exported = do_export(D, TRUE)
+			total_value_exported += exported
+	if(total_value_exported >= EXPORT_ANNOUNCE_THRESHOLD)
+		scom_announce("Azure Peak exports [total_value_exported] mammons of surplus goods.")
