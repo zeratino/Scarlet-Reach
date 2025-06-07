@@ -215,17 +215,14 @@ SUBSYSTEM_DEF(treasury)
 			give_money_account(how_much, welfare_dependant, "Noble Estate")
 
 /datum/controller/subsystem/treasury/proc/do_export(var/datum/roguestock/D)
-	if((D.held_items[1] + D.held_items[2]) < D.importexport_amt)
+	if((D.held_items[1] < D.importexport_amt))
 		return FALSE
 	var/amt = D.get_export_price()
 
-	// Try to export everything from town stockpile
+	// You should only export from town stockpiles, not from remote. Remote is meant
+	// To fulfill local economic shortfall and not to make $$ for the steward.
 	if(D.held_items[1] >= D.importexport_amt)
 		D.held_items[1] -= D.importexport_amt
-	// If not possible, first pull form town stockpile, then bog stockpile
-	else
-		D.held_items[2] -= (D.importexport_amt - D.held_items[1])
-		D.held_items[1] = 0
 
 	SStreasury.treasury_value += amt
 	SStreasury.total_export += amt
