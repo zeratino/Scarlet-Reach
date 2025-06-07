@@ -340,6 +340,8 @@
 							dam2take = dam2take * 0.25
 						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
 							dam2take = dam2take * intenty.masteritem?.intdamage_factor
+						if(dam2take > 0 && intenty.intdamage_factor)
+							dam2take = dam2take * intenty.intdamage_factor
 						used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
 					return TRUE
 				else

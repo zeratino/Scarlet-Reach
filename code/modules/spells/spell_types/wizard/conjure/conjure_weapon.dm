@@ -46,7 +46,7 @@
 	var/list/steel_weapons = list(
 		"Steel Sabre" = /obj/item/rogueweapon/sword/sabre,
 		"Steel Rapier" = /obj/item/rogueweapon/sword/rapier,
-		"Bastard Sword" = /obj/item/rogueweapon/sword/long,
+		"Longsword" = /obj/item/rogueweapon/sword/long,
 		"Zweihander" = /obj/item/rogueweapon/greatsword/grenz,
 		"Battle Axe" = /obj/item/rogueweapon/stoneaxe/battle,
 		"Steel Dagger" = /obj/item/rogueweapon/huntingknife/idagger/steel,
