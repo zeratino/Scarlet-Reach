@@ -85,25 +85,9 @@
 		var/datum/roguestock/D = locate(href_list["export"]) in SStreasury.stockpile_datums
 		if(!D)
 			return
-		if((D.held_items[1] + D.held_items[2]) < D.importexport_amt)
+		if(!SStreasury.do_export(D))
 			say("Insufficient stock.")
 			return
-		var/amt = D.get_export_price()
-
-		// Try to export everything from town stockpile
-		if(D.held_items[1] >= D.importexport_amt)
-			D.held_items[1] -= D.importexport_amt
-		// If not possible, first pull form town stockpile, then bog stockpile
-		else
-			D.held_items[2] -= (D.importexport_amt - D.held_items[1])
-			D.held_items[1] = 0
-
-		SStreasury.treasury_value += amt
-		SStreasury.total_export += amt
-		SStreasury.log_to_steward("+[amt] exported [D.name]")
-		if(amt >= 100) //Only announce big spending.
-			scom_announce("Azure Peak exports [D.name] for [amt] mammon.")
-		D.lower_demand()
 	if(href_list["togglewithdraw"])
 		var/datum/roguestock/D = locate(href_list["togglewithdraw"]) in SStreasury.stockpile_datums
 		if(!D)

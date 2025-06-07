@@ -26,10 +26,11 @@ SUBSYSTEM_DEF(treasury)
 	wait = 1
 	priority = FIRE_PRIORITY_WATER_LEVEL
 	var/tax_value = 0.11
-	var/queens_tax = 0.15
+	var/queens_tax = 0.10
 	var/treasury_value = 0
 	var/mint_multiplier = 0.8 // 1x is meant to leave a margin after standard 80% collectable. Less than Bathmatron.
 	var/minted = 0
+	var/autoexport_percentage = 0.6 // Percentage above which stockpiles will automatically export  
 	var/list/bank_accounts = list()
 	var/list/noble_incomes = list()
 	var/list/stockpile_datums = list()
@@ -212,3 +213,24 @@ SUBSYSTEM_DEF(treasury)
 			give_money_account(how_much, welfare_dependant, "The Guild")
 		else
 			give_money_account(how_much, welfare_dependant, "Noble Estate")
+
+/datum/controller/subsystem/treasury/proc/do_export(var/datum/roguestock/D)
+	if((D.held_items[1] + D.held_items[2]) < D.importexport_amt)
+		return FALSE
+	var/amt = D.get_export_price()
+
+	// Try to export everything from town stockpile
+	if(D.held_items[1] >= D.importexport_amt)
+		D.held_items[1] -= D.importexport_amt
+	// If not possible, first pull form town stockpile, then bog stockpile
+	else
+		D.held_items[2] -= (D.importexport_amt - D.held_items[1])
+		D.held_items[1] = 0
+
+	SStreasury.treasury_value += amt
+	SStreasury.total_export += amt
+	SStreasury.log_to_steward("+[amt] exported [D.name]")
+	if(amt >= 100) //Only announce big spending.
+		scom_announce("Azure Peak exports [D.name] for [amt] mammon.")
+	D.lower_demand()
+	return TRUE
