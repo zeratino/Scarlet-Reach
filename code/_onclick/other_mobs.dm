@@ -100,7 +100,7 @@
 //		return
 	user.face_atom(src)
 	if(user.cmode)
-		if(user.rmb_intent)
+		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
 	else
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -110,7 +110,7 @@
 	. = ..()
 	user.face_atom(src)
 	if(user.cmode)
-		if(user.rmb_intent)
+		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
 	else
 		user.changeNext_move(CLICK_CD_MELEE)
