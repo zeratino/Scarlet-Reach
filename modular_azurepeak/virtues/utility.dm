@@ -353,3 +353,7 @@
 	desc = "After years of training in the wilds, I've learned to traverse the woods confidently, without breaking any twigs. I can even step lightly on leaves without falling, and I can gather twice as many things from bushes."
 	added_traits = list(TRAIT_WOODWALKER, TRAIT_OUTDOORSMAN)
 
+/datum/virtue/heretic/zchurch_keyholder
+	name = "Heresiarch"
+	desc = "The 'Holy' See has their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods- and I've stashed away a key to the conclave, for my own use- or to be given to someone else. Secrecy is paramount. If found out, I will surely be killed."
+	added_stashed_items = list("Ancient Key" = /obj/item/roguekey/inhumen)
