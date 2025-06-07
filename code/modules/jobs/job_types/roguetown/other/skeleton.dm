@@ -2,6 +2,7 @@
 	title = "Skeleton"
 	flag = SKELETON
 	department_flag = SLOP
+	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0
 	min_pq = null //no pq
