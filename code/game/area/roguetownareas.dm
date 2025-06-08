@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 
 /area/rogue/outdoors/rtfield/eora
 	name = "eoran shrine"
-	icon_state = "rtfield"
+	icon_state = "eora"
 	soundenv = 19
 	ambush_times = list("night")
 	ambush_mobs = list(
