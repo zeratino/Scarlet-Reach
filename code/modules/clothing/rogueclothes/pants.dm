@@ -165,6 +165,8 @@
 	detail_tag = "_detail"
 	var/picked = FALSE
 	armor_class = ARMOR_CLASS_LIGHT
+	color = "#262927"
+	detail_color = "#FFFFFF"
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants/attack_right(mob/user)
 	..()
