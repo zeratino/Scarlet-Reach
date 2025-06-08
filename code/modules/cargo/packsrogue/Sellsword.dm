@@ -129,8 +129,8 @@
 	cost = 20
 	contains = list(/obj/item/rogueweapon/sword)
 
-/datum/supply_pack/rogue/Sellsword/bsword
-	name = "Bastard Sword"
+/datum/supply_pack/rogue/Sellsword/lsword
+	name = "Longsword"
 	cost = 20
 	contains = list(/obj/item/rogueweapon/sword/long)
 
