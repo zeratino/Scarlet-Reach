@@ -11,6 +11,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	grid_height = 32
 	grid_width = 32
+	dropshrink = 0.6
 	var/obj/item/reagent_containers/food/snacks/food = null // The food item wrapped in the ration
 
 /obj/item/ration/attackby(obj/item/I, mob/user)
@@ -30,11 +31,14 @@
 				name = "large ration pack ([food.name])"
 				desc = "A large ration pack containing a [food.name]."
 				icon_state = "ration_large"
+				dropshrink = 1
 				// No need to change grid size cuz cakes are 1x1 huh??
 			else
 				name = "small ration pack ([food.name])"
 				desc = "A small ration pack containing a [food.name]."
 				icon_state = "ration_small"
+				dropshrink = 1
+			update_icon()
 
 /obj/item/ration/attack_self(mob/user)
 	. = ..()
