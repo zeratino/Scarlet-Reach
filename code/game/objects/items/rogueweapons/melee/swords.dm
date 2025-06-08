@@ -35,6 +35,9 @@
 	swingdelay = 0
 	item_d_type = "stab"
 
+/datum/intent/sword/thrust/krieg
+	damfactor = 0.9
+
 /datum/intent/sword/strike
 	name = "pommel strike"
 	icon_state = "instrike"
@@ -84,6 +87,15 @@
 
 /datum/intent/sword/chop/falx
 	penfactor = 40
+
+/datum/intent/sword/cut/krieg
+	clickcd = 10
+
+/datum/intent/sword/thrust/krieg
+	damfactor = 0.8
+
+/datum/intent/rend/krieg
+	intdamage_factor = 0.6
 
 //sword objs ฅ^•ﻌ•^ฅ
 
@@ -321,16 +333,13 @@
 /obj/item/rogueweapon/sword/long/judgement
 	name = "\"Judgement\""
 	desc = "An intricately forged longsword, it's blade is made from Aavnr's finest Vyšvou steel - held from an ornate carved ivory grip from the region's \"Mamük\" megafauna. A sight that's truly unique."
-	force = 40
-	force_wielded = 55
-	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
 	icon_state = "judgement"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	item_state = "judgement"
 	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	swingsound = BLADEWOOSH_LARGE
+	wbalance = WBALANCE_HEAVY
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
 	wlength = WLENGTH_LONG
@@ -1123,8 +1132,6 @@
 	name = "Oathkeeper"
 	desc = "An ornate golden longsword with a ruby embedded in the hilt, given to the Knight Commander for their valiant service to the crown."
 	sellprice = 140
-	force = 26
-	force_wielded = 35
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	icon_state = "kingslayer"
 
@@ -1246,3 +1253,21 @@
 				"eastabove" = 1,
 				"westabove" = 0,
 				)
+
+/obj/item/rogueweapon/sword/long/kriegmesser
+	name = "kriegmesser"
+	desc = "A large two-handed sword with a single-edged blade, a crossguard and a knife-like hilt. \
+	It is meant to be wielded with both hands and is a popular weapon amongst Grenzelhoftian mercenaries."
+	icon = 'icons/roguetown/weapons/swords64.dmi'
+	icon_state = "kriegmesser"
+	possible_item_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/chop/falx, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
+	alt_intents = null // Can't mordhau this
+	smeltresult = /obj/item/ingot/steel
+
+/obj/item/rogueweapon/sword/long/dec
+	name = "decorated longsword"
+	desc = "A valuable ornate longsword made for the purpose of ceremonial fashion, with a fine leather grip and a carefully engraved golden crossguard. \
+	Its blade bears twin inscriptions on either side. One reads, \"THY KINGDOM COME\" while the obverse reads, \"THY WILL BE DONE\"."
+	icon_state = "declongsword"
+	sellprice = 140

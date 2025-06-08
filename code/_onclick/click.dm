@@ -17,10 +17,10 @@
 // eg: 10*0.5 = 5 deciseconds of delay
 // DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK
 
-/mob/proc/changeNext_move(num, hand)
+/mob/proc/changeNext_move(num, hand, override = FALSE)
 	next_move = world.time + ((num+next_move_adjust)*next_move_modifier)
 
-/mob/living/changeNext_move(num, hand)
+/mob/living/changeNext_move(num, hand, override = FALSE)
 	var/mod = next_move_modifier
 	var/adj = next_move_adjust
 	for(var/i in status_effects)
@@ -28,13 +28,21 @@
 		mod *= S.nextmove_modifier()
 		adj += S.nextmove_adjust()
 	if(!hand)
-		next_move = world.time + ((num + adj)*mod)
+		var/check_move = world.time + ((num + adj)*mod)
+		if((check_move >= next_move) || override)
+			next_move = check_move
 		hud_used?.cdmid?.mark_dirty()
 		return
 	if(hand == 1)
+		var/check_move = world.time + ((num + adj)*mod)
+		if((check_move >= next_lmove) || override)
+			next_lmove = check_move
 		next_lmove = world.time + ((num + adj)*mod)
 		hud_used?.cdleft?.mark_dirty()
 	else
+		var/check_move = world.time + ((num + adj)*mod)
+		if((check_move >= next_rmove) || override)
+			next_rmove = check_move
 		next_rmove = world.time + ((num + adj)*mod)
 		hud_used?.cdright?.mark_dirty()
 
@@ -115,9 +123,9 @@
 			if(used_intent.no_early_release && client?.chargedprog < 100)
 				var/adf = used_intent.clickcd
 				if(istype(rmb_intent, /datum/rmb_intent/aimed))
-					adf = round(adf * 1.4)
+					adf = round(adf * CLICK_CD_MOD_AIMED)
 				if(istype(rmb_intent, /datum/rmb_intent/swift))
-					adf = round(adf * 0.6)
+					adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 				changeNext_move(adf,used_hand)
 				return
 	if(modifiers["right"] && oactive && atkswinging == "right")
@@ -301,9 +309,9 @@
 							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
 							var/adf = used_intent.clickcd
 							if(istype(rmb_intent, /datum/rmb_intent/aimed))
-								adf = round(adf * 1.4)
+								adf = round(adf * CLICK_CD_MOD_AIMED)
 							if(istype(rmb_intent, /datum/rmb_intent/swift))
-								adf = round(adf * 0.6)
+								adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 							changeNext_move(adf)
 						else
 							playsound(get_turf(src), used_intent.miss_sound, 100, FALSE)
@@ -339,9 +347,9 @@
 		if(ismob(A))
 			var/adf = used_intent.clickcd
 			if(istype(rmb_intent, /datum/rmb_intent/aimed))
-				adf = round(adf * 1.4)
+				adf = round(adf * CLICK_CD_MOD_AIMED)
 			if(istype(rmb_intent, /datum/rmb_intent/swift))
-				adf = round(adf * 0.6)
+				adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 			changeNext_move(adf)
 		UnarmedAttack(A,1,params)
 	if(mob_timers[MT_INVISIBILITY] > world.time)			
