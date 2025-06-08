@@ -28,6 +28,9 @@
 	if(target.stat < DEAD)
 		to_chat(user, "They're not dead!")
 		return FALSE
+	if (!target.getorganslot(/obj/item/organ/heart))
+		to_chat(user, "They are missing a heart!")
+		return FALSE
 	if(target.mind && !target.mind.active)
 		to_chat(user, "[target]'s heart is inert. Maybe it will respond later?")
 		return FALSE
