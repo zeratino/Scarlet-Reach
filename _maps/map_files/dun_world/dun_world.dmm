@@ -19840,7 +19840,10 @@
 /obj/structure/fluff/railing/border{
 	dir = 10
 	},
-/turf/open/floor/rogue/grassyel,
+/obj/effect/decal/cobbleedge{
+	dir = 6
+	},
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "gLM" = (
 /obj/structure/chair/wood/rogue/fancy{
@@ -26387,9 +26390,6 @@
 "iSG" = (
 /turf/closed/wall/mineral/rogue/decostone/center,
 /area/rogue/under/cave/licharena)
-"iSH" = (
-/turf/open/floor/rogue/tile/harem,
-/area/rogue/outdoors/town/roofs)
 "iSP" = (
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
@@ -62111,13 +62111,6 @@
 /obj/machinery/light/rogue/hearth,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
-"uVs" = (
-/obj/effect/decal/cobbleedge{
-	dir = 6
-	},
-/obj/structure/fluff/railing/border,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/outdoors/town)
 "uVz" = (
 /obj/structure/closet/dirthole/closed/loot,
 /obj/structure/gravemarker,
@@ -64360,10 +64353,6 @@
 /obj/machinery/light/rogue/firebowl/off,
 /turf/open/floor/rogue/cobble,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
-"vHY" = (
-/obj/structure/fluff/railing/border,
-/turf/open/floor/rogue/grassyel,
-/area/rogue/outdoors/town)
 "vHZ" = (
 /obj/structure/chair/bench/couchablack/r,
 /turf/open/floor/rogue/tile/harem1,
@@ -255350,7 +255339,7 @@ sns
 sns
 sns
 qfA
-sns
+qfA
 oYq
 cns
 fLM
@@ -255801,8 +255790,8 @@ xYz
 rUQ
 sns
 sns
+rUQ
 sns
-sZS
 oYq
 tYE
 tSq
@@ -256254,8 +256243,8 @@ btK
 sns
 sns
 sns
-sZS
-uVs
+sns
+hpr
 cns
 cGN
 rbu
@@ -256703,11 +256692,11 @@ qyR
 qyR
 wyE
 fpx
-bMf
+sns
 sns
 nvQ
 sns
-vHY
+hpr
 fge
 iPZ
 rbu
@@ -257155,7 +257144,7 @@ bHc
 qyR
 qyR
 fpx
-fpx
+sns
 xab
 sns
 sns
@@ -257607,7 +257596,7 @@ qyR
 fkV
 fpx
 fpx
-fpx
+bMf
 sns
 sns
 sns
@@ -480021,7 +480010,7 @@ bGf
 bGf
 bGf
 bGf
-iSH
+bGf
 nUS
 bGf
 bGf
