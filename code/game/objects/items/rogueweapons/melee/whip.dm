@@ -80,7 +80,7 @@
 	force = 24
 
 /obj/item/rogueweapon/whip/antique
-	force = 29
+	force = 25
 	name = "Repenta En"
 	desc = "An extremely well maintained whip, with a polished steel tip and gilded handle"
 	minstr = 11
