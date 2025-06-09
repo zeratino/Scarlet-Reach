@@ -31,6 +31,7 @@
 
 /datum/outfit/job/roguetown/lady
 	job_bitflag = BITFLAG_ROYALTY
+
 /datum/advclass/lady/envoy
 	name = "Envoy"
 	tutorial = "You're a graceful envoy - fluent in flattery, courtesy, and calculated sincerity. You'll charm your way into the Duke's heart, winning favor with warmth, wit, and well-timed smiles."
@@ -44,7 +45,7 @@
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 		belt = /obj/item/storage/belt/rogue/leather/cloth/lady
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
-		armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress
+		armor = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
 		pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/random
 		backr = /obj/item/storage/backpack/rogue/satchel
