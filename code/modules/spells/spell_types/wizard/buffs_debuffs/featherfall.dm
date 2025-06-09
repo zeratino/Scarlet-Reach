@@ -1,12 +1,12 @@
 /obj/effect/proc_holder/spell/invoked/featherfall
 	name = "Featherfall"
 	desc = "Grant yourself and any creatures adjacent to you some defense against falls."
-	cost = 1
+	cost = 2
 	xp_gain = TRUE
 	school = "transmutation"
 	releasedrain = 50
 	chargedrain = 0
-	chargetime = 10 SECONDS
+	chargetime = 1 SECONDS
 	recharge_time = 2 MINUTES
 	warnie = "spellwarning"
 	no_early_release = TRUE

@@ -1,11 +1,11 @@
 /obj/effect/proc_holder/spell/invoked/leap
 	name = "Leap"
 	desc = "You empower your target's legs to allow them to leap to great heights. This allows your target to jump up floor levels, however does not prevent the damage from falling down one."
-	cost = 1
+	cost = 2
 	releasedrain = 35
 	chargedrain = 1
-	chargetime = 30
-	recharge_time = 120 SECONDS
+	chargetime = 1 SECONDS
+	recharge_time = 2 MINUTES
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE

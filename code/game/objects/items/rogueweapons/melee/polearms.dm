@@ -122,6 +122,62 @@
 	damfactor = 2
 	reach = 2
 
+/datum/intent/rend/reach/partizan
+	name = "rending thrust"
+	attack_verb = list("skewers")
+	blade_class = BCLASS_STAB
+	chargetime = 10
+	swingdelay = 8
+	misscost = 20
+	damfactor = 1.8
+	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
+	item_d_type = "stab"
+	no_early_release = TRUE
+	intdamage_factor = 0.6
+
+/datum/intent/partizan/peel
+	name = "armor peel"
+	icon_state = "inpeel"
+	attack_verb = list("snags")
+	animname = "cut"
+	blade_class = BCLASS_PEEL
+	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
+	chargetime = 2
+	penfactor = 200
+	swingdelay = 5
+	damfactor = 0.05
+	item_d_type = "slash"
+	peel_divisor = 4
+	reach = 2
+
+/datum/intent/spear/bash/ranged/quarterstaff
+	damfactor = 1
+
+/datum/intent/spear/thrust/quarterstaff
+	blade_class = BCLASS_BLUNT
+	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
+	penfactor = BLUNT_DEFAULT_PENFACTOR
+	damfactor = 1.3 // Adds up to be slightly stronger than an unenhanced ebeak strike.
+	chargetime = 6 // Meant to be stronger than a bash, but with a delay.
+
+/datum/intent/spear/thrust/lance
+	damfactor = 1.5 // Turns its base damage into 30 on the 2hand thrust. It keeps the spear thrust one handed.
+
+/datum/intent/lance/
+	name = "lance"
+	icon_state = "inlance"
+	attack_verb = list("lances", "runs through", "skewers")
+	animname = "stab"
+	item_d_type = "stab"
+	penfactor = BLUNT_DEFAULT_PENFACTOR // Not a mistake, to prevent it from nuking through armor.
+	chargetime = 4 SECONDS
+	damfactor = 4 // 80 damage on hit. It is gonna hurt.
+	reach = 3 // Yep! 3 tiles
+	intdamage_factor = 2 // 4 hits to break coat of plate normally.
+
+/datum/intent/lance/onehand
+	chargetime = 5 SECONDS
+
 //polearm objs ฅ^•ﻌ•^ฅ
 
 /obj/item/rogueweapon/woodstaff
@@ -130,7 +186,7 @@
 	possible_item_intents = list(SPEAR_BASH)
 	gripped_intents = list(SPEAR_BASH,/datum/intent/mace/smash/wood)
 	name = "wooden staff"
-	desc = "Not so heavy, perfect for beggars, pilgrims and mages."
+	desc = "A solid dependable walking stick that allows one to traverse rough terrain with ease, keep the weight off an injured leg, or reliably fend off incoming blows. Perfect for beggars, pilgrims, and mages."
 	icon_state = "woodstaff"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	wlength = WLENGTH_LONG
@@ -163,11 +219,11 @@
 
 /obj/item/rogueweapon/woodstaff/wise
 	name = "wise staff"
-	desc = "A staff for keeping the volfs at bay..."
+	desc = "A staff for keeping the volves at bay..."
 
 /obj/item/rogueweapon/woodstaff/aries
 	name = "staff of the shepherd"
-	desc = "This staff makes you look important to any peasante."
+	desc = "This staff makes you look important to any peasant."
 	force = 25
 	force_wielded = 28
 	icon_state = "aries"
@@ -191,12 +247,12 @@
 
 
 /obj/item/rogueweapon/spear
-	force = 18
+	force = 20
 	force_wielded = 30
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, SPEAR_CUT, SPEAR_BASH)
 	name = "spear"
-	desc = "This iron spear is great to impale goblins. However its lack of reinforcements means it is ill prepared for combat against someone aiming to hew it in two!"
+	desc = "One of the oldest weapons still in use today, second only to the club. The lack of reinforcements along the shaft leaves it vulnerable to being split in two."
 	icon_state = "spear"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -552,7 +608,7 @@
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(SPEAR_THRUST, /datum/intent/spear/cut/halberd, /datum/intent/sword/chop, SPEAR_BASH)
 	name = "halberd"
-	desc = "A steel halberd, the pinnacle of all cumulative melee weapon knowledge to some, but commonly seen in a guardsman's hands none-the-less. The reinforcements along the shaft provide greater durability."
+	desc = "A steel halberd, the pinnacle of all cumulative melee weapon knowledge. The only downside is the cost, so it's rarely seen outside of the guardsmans' hands. The reinforcements along the shaft provide greater durability."
 	icon_state = "halberd"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	pixel_y = -16
@@ -626,7 +682,7 @@
 
 /obj/item/rogueweapon/halberd/psyhalberd
 	name = "Stigmata"
-	desc = "Christened in the Siege of Rockhill, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as a bulwark for the defenseless."
+	desc = "Christened in the Siege of Lirvas, these silver-tipped poleaxes - wielded by a lonesome contingent of Saint Eora's paladins - kept the horrors at bay for forty daes-and-nites. Long-since-recovered from the rubble, this relic now serve as a bulwark for the defenseless."
 	icon_state = "psyhalberd"
 
 /obj/item/rogueweapon/halberd/psyhalberd/ComponentInitialize()
@@ -681,7 +737,7 @@
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	walking_stick = TRUE
 	wdefense = 5
-	wbalance = -1
+	wbalance = WBALANCE_HEAVY
 	sellprice = 60
 	intdamage_factor = 1.2
 
@@ -736,7 +792,7 @@
 	possible_item_intents = list(/datum/intent/sword/chop,/datum/intent/sword/strike) //bash is for nonlethal takedowns, only targets limbs
 	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/sword/chop, /datum/intent/sword/thrust/zwei, /datum/intent/sword/peel/big)
 	alt_intents = list(/datum/intent/effect/daze, /datum/intent/sword/strike, /datum/intent/sword/bash)
-	armor = list("blunt" = 50, "slash" = 50, "stab" = 50, "piercing" = 0)
+	armor = ARMOR_GREATSWORD
 	name = "greatsword"
 	desc = "Might be able to chop anything in half!"
 	icon_state = "gsw"
@@ -928,17 +984,6 @@
 			if("wielded")
 				return list("shrink" = 0.8,"sx" = 8,"sy" = 0,"nx" = -1,"ny" = 0,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
 
-
-/datum/intent/spear/bash/ranged/quarterstaff
-	damfactor = 1
-
-/datum/intent/spear/thrust/quarterstaff
-	blade_class = BCLASS_BLUNT
-	hitsound = list('sound/combat/hits/blunt/bluntsmall (1).ogg', 'sound/combat/hits/blunt/bluntsmall (2).ogg')
-	penfactor = BLUNT_DEFAULT_PENFACTOR
-	damfactor = 1.3 // Adds up to be slightly stronger than an unenhanced ebeak strike.
-	chargetime = 6 // Meant to be stronger than a bash, but with a delay.
-
 /obj/item/rogueweapon/woodstaff/quarterstaff
 	name = "wooden quarterstaff"
 	desc = "A staff that makes any journey easier. Durable and swift, capable of bludgeoning stray volves and ruffians alike. Its length allow it to be used for a thrusting attack."
@@ -969,3 +1014,54 @@
 	max_integrity = 500
 	blade_dulling = DULLING_SHAFT_REINFORCED
 	intdamage_factor = 1.2
+
+/obj/item/rogueweapon/spear/partizan
+	name = "partizan"
+	desc = "A reinforced spear-like polearm of disputed origin: A studded shaft fitted with a steel spearhead with protrusions to aid in parrying. An extremely recent invention that is seeing increasingly more usage in the Western lands."
+	force = 8	//Not a possible one-handed weapon. Also too heavy!
+	force_wielded = 30
+	possible_item_intents = list(SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(SPEAR_THRUST, PARTIZAN_REND, PARTIZAN_PEEL)
+	icon_state = "partizan"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	minstr = 10
+	max_blade_int = 200
+	wdefense = 6
+	throwforce = 12	//Not a throwing weapon. Too heavy!
+	blade_dulling = DULLING_SHAFT_REINFORCED
+	icon_angle_wielded = 50
+
+/obj/item/rogueweapon/spear/partizan/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = 2,"nx" = 8,"ny" = 2,"wx" = -4,"wy" = 2,"ex" = 1,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 300,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 100,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+
+/obj/item/rogueweapon/spear/boar
+	name = "boar spear"
+	desc = "A spear with a wide head and a pair of wings below the head. The wings are designed to prevent a boar from charging past the spearhead. \
+	It is also useful for parrying and stopping a charging opponent."
+	icon = 'icons/roguetown/weapons/polearms64.dmi'
+	icon_state = "boarspear"
+	force_wielded = 33 // 10% base damage increase
+	wdefense = 6 // A little bit extra
+	max_blade_int = 150 // 50% more sharpness but it barely matter lol
+
+/obj/item/rogueweapon/spear/lance
+	name = "lance"
+	desc = "A long polearm designed to be used from horseback, couched under the arm. It has a vambrace to prevent the arm sliding up \
+	the shaft on impact. "
+	icon = 'icons/roguetown/weapons/polearms64.dmi'
+	icon_state = "lance"
+	force = 15 // Its gonna sucks for 1 handed use
+	force_wielded = 20 // Lower damage because a 3 tiles thrust without full charge time still deal base damage. 
+	wdefense = 4 // 2 Lower than spear
+	max_integrity = 200
+	max_blade_int = 200 // Better sharpness
+	possible_item_intents = list(SPEAR_THRUST, /datum/intent/lance/onehand, SPEAR_BASH) //bash is for nonlethal takedowns, only targets limbs
+	gripped_intents = list(/datum/intent/spear/thrust/lance, /datum/intent/lance, SPEAR_BASH)
+	resistance_flags = null
+	blade_dulling = DULLING_SHAFT_REINFORCED

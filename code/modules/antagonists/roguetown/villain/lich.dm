@@ -42,8 +42,7 @@
 	var/STAPER = 10
 
 /datum/antagonist/lich/on_gain()
-	var/datum/game_mode/C = SSticker.mode
-	C.liches |= owner
+	SSmapping.retainer.liches |= owner
 	. = ..()
 	owner.special_role = name
 	skele_look()
@@ -122,7 +121,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H.mind.adjust_spellpoints(8)
+	H.mind.adjust_spellpoints(27)
 
 	// Give it decent combat stats to make up for loss of 2 extra lives
 	H.change_stat("strength", 3)

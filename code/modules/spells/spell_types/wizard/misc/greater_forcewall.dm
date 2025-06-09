@@ -3,12 +3,12 @@
 	desc = "Conjure a 5x1 wall of arcyne force, preventing anyone and anything other than you from moving through it."
 	overlay_state = "forcewall"
 	spell_tier = 3 // Full Mage only.
-	invocation = "Murus Magnus!"
+	invocation = "Murus Maior!" // Make a greater barrier
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_HIGH
 	wall_type = /obj/structure/forcefield_weak
-	cost = 2
+	cost = 4 // Forcewall is 3, this is 4 since it doesn't offer that much more
 
 /obj/effect/proc_holder/spell/invoked/forcewall/greater/cast(list/targets,mob/user = usr)
 	var/turf/front = get_turf(targets[1])

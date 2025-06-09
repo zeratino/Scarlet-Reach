@@ -8,8 +8,6 @@
 	sewn_clotting_rate = 0.02
 	clotting_threshold = 0.2
 	sewn_clotting_threshold = 0.1
-	woundpain = 0
-	sewn_woundpain = 0
 	sew_threshold = 50
 	mob_overlay = "cut"
 	can_sew = TRUE
@@ -119,3 +117,17 @@
 /datum/wound/slash/incision/cauterize_wound()
 	qdel(src)
 	return TRUE
+
+/datum/wound/slash/vein
+	name= "vein"
+	check_name = span_bloody("<B>VEIN</B")
+	severity = WOUND_SEVERITY_LIGHT
+	whp = 40
+	sewn_whp = 12
+	bleed_rate = 5
+	sewn_bleed_rate = 0.15
+	clotting_rate = null
+	clotting_threshold = null
+	sew_threshold = 75
+	passive_healing = 0
+	sleep_healing = 0

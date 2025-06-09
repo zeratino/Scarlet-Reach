@@ -22,6 +22,12 @@
 	round_contrib_points = 2
 	cmode_music = 'sound/music/combat_bandit_mage.ogg'
 
+	// Can't get very far as a magician if you can't chant spells now can you?
+	vice_restrictions = list(/datum/charflaw/mute)
+
+/datum/outfit/job/roguetown/magician
+	job_bitflag = BITFLAG_ROYALTY
+
 /datum/outfit/job/roguetown/magician/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/talkstone
@@ -62,14 +68,14 @@
 		H.change_stat("strength", -1)
 		H.change_stat("constitution", -1)
 		H.change_stat("intelligence", 4)
-		H.mind.adjust_spellpoints(11)
+		H.mind.adjust_spellpoints(36)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		if(H.age == AGE_OLD)
 			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 			H.change_stat("speed", -1)
 			H.change_stat("intelligence", 1)
 			H.change_stat("perception", 1)
-			H.mind.adjust_spellpoints(2)
+			H.mind.adjust_spellpoints(6)
 			if(ishumannorthern(H))
 				belt = /obj/item/storage/belt/rogue/leather/plaquegold
 				cloak = null

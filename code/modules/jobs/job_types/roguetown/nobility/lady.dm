@@ -29,6 +29,8 @@
 		Q.invisibility = INVISIBILITY_MAXIMUM
 		Q.become_blind("advsetup")
 
+/datum/outfit/job/roguetown/lady
+	job_bitflag = BITFLAG_ROYALTY
 /datum/advclass/lady/envoy
 	name = "Envoy"
 	tutorial = "You're a graceful envoy - fluent in flattery, courtesy, and calculated sincerity. You'll charm your way into the Duke's heart, winning favor with warmth, wit, and well-timed smiles."

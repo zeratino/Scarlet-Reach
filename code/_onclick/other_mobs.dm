@@ -28,11 +28,21 @@
 	if(SEND_SIGNAL(src, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, A, proximity) & COMPONENT_NO_ATTACK_HAND)
 		return
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A, proximity)
+	var/rmb_stam_penalty = 1
+	if(istype(rmb_intent, /datum/rmb_intent/strong) || istype(rmb_intent, /datum/rmb_intent/swift))
+		rmb_stam_penalty = 1.5	//Uses a modifer instead of a flat addition, less than weapons no matter what rn. 50% extra stam cost basically.
 	if(isliving(A))
 		var/mob/living/L = A
 		if(!used_intent.noaa)
 			playsound(get_turf(src), pick(GLOB.unarmed_swingmiss), 100, FALSE)
 //			src.emote("attackgrunt")
+		if(used_intent.releasedrain)
+			rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+		if(L.has_status_effect(/datum/status_effect/buff/clash) && L.get_active_held_item() && ishuman(L))
+			var/mob/living/carbon/human/H = L
+			var/obj/item/IM = L.get_active_held_item()
+			H.process_clash(src, IM)
+			return
 		if(L.checkmiss(src))
 			return
 		if(!L.checkdefense(used_intent, src))
@@ -45,10 +55,13 @@
 			if(I.w_class < WEIGHT_CLASS_GIGANTIC)
 				item_skip = TRUE
 		if(!item_skip)
+			if(used_intent.releasedrain && !used_intent.type == INTENT_GRAB)
+				rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 			if(used_intent.type == INTENT_GRAB)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					start_pulling(A) //add params to grab bodyparts based on loc
+					rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 					return
 			if(used_intent.type == INTENT_DISARM)
 				var/obj/AM = A
@@ -85,21 +98,22 @@
 	. = ..()
 //	if(!user.Adjacent(src)) //alreadyu checked in rmb_on
 //		return
-	user.changeNext_move(CLICK_CD_MELEE)
 	user.face_atom(src)
 	if(user.cmode)
-		if(user.rmb_intent)
+		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
 	else
+		user.changeNext_move(CLICK_CD_MELEE)
 		ongive(user, params)
 
 /turf/attack_right(mob/user, params)
 	. = ..()
-	user.changeNext_move(CLICK_CD_MELEE)
 	user.face_atom(src)
 	if(user.cmode)
-		if(user.rmb_intent)
+		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
+	else
+		user.changeNext_move(CLICK_CD_MELEE)
 
 /atom/proc/ongive(mob/user, params)
 	return
@@ -267,7 +281,15 @@
 				if(!A.Adjacent(src))
 					return
 				if(A == src)
-					return
+					var/list/mobs_here = list()
+					for(var/mob/M in get_turf(src))
+						if(M.invisibility || M == src)
+							continue
+						mobs_here += M
+					if(mobs_here.len)
+						A = pick(mobs_here)
+					if(A == src) //auto aim couldn't select another target
+						return
 				if(IsOffBalanced())
 					to_chat(src, span_warning("I haven't regained my balance yet."))
 					return
@@ -282,6 +304,12 @@
 						playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
 
 						sleep(src.used_intent.swingdelay)
+						if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
+							var/mob/living/carbon/human/H = src
+							H.bad_guard(span_warning("The kick throws my stance off!"))
+						if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
+							var/mob/living/carbon/human/HT = M
+							HT.bad_guard(span_warning("The kick throws my stance off!"))
 						if(QDELETED(src) || QDELETED(M))
 							return
 						if(!M.Adjacent(src))
@@ -397,7 +425,7 @@
 				if(ishuman(A))
 					var/mob/living/carbon/human/U = src
 					var/mob/living/carbon/human/V = A
-					var/thiefskill = src.mind.get_skill_level(/datum/skill/misc/stealing)
+					var/thiefskill = src.mind.get_skill_level(/datum/skill/misc/stealing) + (has_world_trait(/datum/world_trait/matthios_fingers) ? 1 : 0)
 					var/stealroll = roll("[thiefskill]d6")
 					var/targetperception = (V.STAPER)
 					var/list/stealablezones = list("chest", "neck", "groin", "r_hand", "l_hand")
@@ -445,6 +473,11 @@
 									to_chat(src, span_green("I stole [picked]!"))
 									V.log_message("has had \the [picked] stolen by [key_name(U)]", LOG_ATTACK, color="white")
 									U.log_message("has stolen \the [picked] from [key_name(V)]", LOG_ATTACK, color="white")
+									if(V.client && V.stat != DEAD)
+										SEND_SIGNAL(U, COMSIG_ITEM_STOLEN, V)
+										record_featured_stat(FEATURED_STATS_THIEVES, U)
+										record_featured_stat(FEATURED_STATS_CRIMINALS, U)
+										GLOB.azure_round_stats[STATS_ITEMS_PICKPOCKETED]++
 								else
 									exp_to_gain /= 2 // these can be removed or changed on reviewer's discretion
 									to_chat(src, span_warning("I didn't find anything there. Perhaps I should look elsewhere."))
@@ -487,6 +520,7 @@
 	. = FALSE
 	if(!(interaction_flags_atom & INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND))
 		add_fingerprint(user)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_RIGHT, user)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
 	if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)

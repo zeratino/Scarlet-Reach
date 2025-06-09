@@ -291,9 +291,14 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		if(miracle && !H.devotion?.check_devotion(src))
 			to_chat(H, span_warning("I don't have enough devotion!"))
 			return FALSE
-		if(H.handcuffed && gesture_required)
-			to_chat(user, span_warning("[name] cannot be cast with my hands tied up!"))
-			return FALSE
+		if(gesture_required)
+			if(H.handcuffed)
+				to_chat(user, span_warning("[name] cannot be cast with my hands tied up!"))
+				return FALSE
+			if(!H.has_active_hand())
+				to_chat(user, span_warning("I can't cast this without functional hands!"))
+				return FALSE
+
 	else
 		if(clothes_req || human_req)
 			to_chat(user, span_warning("This spell can only be cast by humans!"))
@@ -330,6 +335,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 				adjust_var(user, holder_var_type, holder_var_amount)
 	if(action)
 		action.UpdateButtonIcon()
+	record_featured_stat(FEATURED_STATS_MAGES, user)
 	return TRUE
 
 /obj/effect/proc_holder/spell/proc/charge_check(mob/user, silent = FALSE)
@@ -448,6 +454,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		if(sound)
 			playMagSound()
 		after_cast(targets, user = user)
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.has_status_effect(/datum/status_effect/buff/clash))
+				var/mob/living/carbon/human/H = user
+				H.bad_guard(span_warning("I can't focus while casting spells!"), cheesy = TRUE)
 		if(action)
 			action.UpdateButtonIcon()
 		return TRUE
@@ -684,8 +695,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	if(ishuman(user)) // Make the button red out and unselectable
 		var/mob/living/carbon/human/H = user
-		if(H.handcuffed && gesture_required)
-			return FALSE
+		if(gesture_required)
+			if(H.handcuffed)
+				return FALSE
+			if(!H.has_active_hand())
+				return FALSE
 	
 	if((invocation_type == "whisper" || invocation_type == "shout") && isliving(user))
 		var/mob/living/living_user = user

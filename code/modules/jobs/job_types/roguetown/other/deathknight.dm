@@ -21,9 +21,8 @@
 	cmode_music = 'sound/music/combat_weird.ogg'
 
 /datum/job/roguetown/deathknight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	var/datum/game_mode/chaosmode/C = SSticker.mode
-	C.deathknightspawn = FALSE
-	C.deathknights |= L.mind
+	SSmapping.find_and_remove_world_trait(/datum/world_trait/death_knight)
+	SSmapping.retainer.death_knights |= L.mind
 	..()
 	if(L)
 		var/mob/living/carbon/human/H = L
@@ -88,7 +87,7 @@
 	H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
-	H.mind.adjust_spellpoints(5)
+	H.mind.adjust_spellpoints(18)
 
 
 	belt = /obj/item/storage/belt/rogue/leather

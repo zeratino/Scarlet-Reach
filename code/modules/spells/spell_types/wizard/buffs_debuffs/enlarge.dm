@@ -1,11 +1,11 @@
 /obj/effect/proc_holder/spell/invoked/enlarge
 	name = "Enlarge Person"
 	desc = "For a time, enlarges your target to a giant hulking version of themselves capable of bashing into doors. Does not work on folk who are already large."
-	cost = 1
+	cost = 2
 	releasedrain = 35
 	chargedrain = 1
-	chargetime = 30
-	recharge_time = 120 SECONDS
+	chargetime = 1 SECONDS
+	recharge_time = 2 MINUTES
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE

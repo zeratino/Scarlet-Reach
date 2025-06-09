@@ -13,7 +13,7 @@
 	warnie = "spellwarning"
 	antimagic_allowed = FALSE
 	charging_slowdown = 3
-	cost = 1
+	cost = 3
 	spell_tier = 2 // Spellblade tier.
 
 	invocation = "Valtarem!"
@@ -47,7 +47,7 @@
 	throw_speed = 4
 	armor_penetration = 30 // From iron tossblade
 	wdefense = 0
-	wbalance = 0
+	wbalance = WBALANCE_NORMAL
 	max_integrity = 50 // Don't parry with it lol
 	slot_flags = ITEM_SLOT_MOUTH
 	obj_flags = null

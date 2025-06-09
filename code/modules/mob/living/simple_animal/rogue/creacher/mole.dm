@@ -19,14 +19,16 @@
 						/obj/item/natural/bone = 3, 
 						/obj/item/alch/sinew = 3, 
 						/obj/item/alch/bone = 1, 
-						/obj/item/alch/viscera = 1)
+						/obj/item/alch/viscera = 1,
+						/obj/item/natural/head/mole = 1)
 	perfect_butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 5,
 						/obj/item/natural/hide = 3,
 						/obj/item/natural/fur = 2,
 						/obj/item/natural/bone = 3, 
 						/obj/item/alch/sinew = 3, 
 						/obj/item/alch/bone = 1, 
-						/obj/item/alch/viscera = 1)
+						/obj/item/alch/viscera = 1,
+						/obj/item/natural/head/mole = 1)
 	faction = list("wolfs")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	health = MOLE_HEALTH
@@ -58,7 +60,7 @@
 	aggressive = 1
 //	stat_attack = UNCONSCIOUS
 	remains_type = /obj/effect/decal/remains/mole
-	rot_type = null
+	
 
 //new ai, old ai off
 	AIStatus = AI_OFF

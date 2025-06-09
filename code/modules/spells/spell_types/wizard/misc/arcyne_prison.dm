@@ -5,12 +5,12 @@
 	school = "transmutation"
 	releasedrain = 50
 	spell_tier = 4 // Trolling spell, CM only.
-	invocation = "Carcer Arcana!"
+	invocation = "Mysticus Carcer!" // Magical Prison of Mysterious Magic.
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_HIGH
 	wall_type = /obj/structure/forcefield_weak/arcyne_prison
-	cost = 2
+	cost = 6
 
 /obj/effect/proc_holder/spell/invoked/forcewall/arcyne_prison/cast(list/targets,mob/user = usr)
 	var/turf/target = get_turf(targets[1])

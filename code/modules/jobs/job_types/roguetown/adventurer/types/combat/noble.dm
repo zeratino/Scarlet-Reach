@@ -90,7 +90,7 @@
 			shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
 			shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-			belt = /obj/item/storage/belt/rogue/leather/plaquegold
+			belt = /obj/item/storage/belt/rogue/leather/steel/tasset
 			backl = /obj/item/storage/backpack/rogue/satchel
 			beltl = /obj/item/flashlight/flare/torch/lantern
 			backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/recipe_book/survival = 1)
@@ -114,10 +114,10 @@
 			H.set_blindness(0)
 			ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-			var/weapons = list("Bastard Sword","Mace + Shield","Flail + Shield","Billhook","Battle Axe","Greataxe")
+			var/weapons = list("Longsword","Mace + Shield","Flail + Shield","Billhook","Battle Axe","Greataxe")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
-				if("Bastard Sword")
+				if("Longsword")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 					beltr = /obj/item/rogueweapon/sword/long
 				if("Mace + Shield")

@@ -8,7 +8,7 @@
 	overlay_state = "force_dart"
 	sound = list('sound/magic/vlightning.ogg')
 	active = FALSE
-	releasedrain = 15
+	releasedrain = 20
 	chargedrain = 1
 	chargetime = 0
 	recharge_time = 4 SECONDS
@@ -23,7 +23,7 @@
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	cost = 1
+	cost = 3
 
 /obj/projectile/energy/rogue3
 	name = "Arcyne Bolt"
