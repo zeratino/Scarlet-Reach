@@ -126,8 +126,8 @@
 		SSticker.rulermob = HU
 		var/dispjob = mind.assigned_role
 		removeomen(OMEN_NOLORD)
-		say("By the authority of the gods, I pronounce you Ruler of all Azuria!")
-		priority_announce("[real_name] the [dispjob] has named [HU.real_name] the inheritor of AZURE PEAK!", title = "Long Live [HU.real_name]!", sound = 'sound/misc/bell.ogg')
+		say("By the authority of the gods, I pronounce you Ruler of all Blackmoor!")
+		priority_announce("[real_name] the [dispjob] has named [HU.real_name] the inheritor of BLACKMOOR!", title = "Long Live [HU.real_name]!", sound = 'sound/misc/bell.ogg')
 
 /mob/living/carbon/human/proc/churchexcommunicate()
 	set name = "Curse"
@@ -163,7 +163,7 @@
 	set category = "Priest"
 	if(stat)
 		return
-	var/inputty = input("Make an announcement", "ROGUETOWN") as text|null
+	var/inputty = input("Make an announcement", "BLACKMOOR") as text|null
 	if(inputty)
 		if(!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
 			to_chat(src, span_warning("I need to do this from the chapel."))

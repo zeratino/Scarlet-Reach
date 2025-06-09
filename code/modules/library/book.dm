@@ -33,7 +33,7 @@
 
 //Destroyer of knowledge - for storytellers
 /obj/item/book/fire_act()
-	GLOB.azure_round_stats[STATS_BOOKS_BURNED]++
+	GLOB.blackmoor_round_stats[STATS_BOOKS_BURNED]++
 	..()
 
 
