@@ -188,7 +188,7 @@
 
 /obj/item/reagent_containers/glass/bottle/claybottle/water
 	list_reagents = list(/datum/reagent/water = 65)
-	desc = "A clay bottle that with no markings."
+	desc = "A clay bottle with no markings."
 
 /obj/item/reagent_containers/glass/bottle/claybottle/beer
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 65)
