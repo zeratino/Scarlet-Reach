@@ -45,8 +45,7 @@
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 		belt = /obj/item/storage/belt/rogue/leather/cloth/lady
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
-		armor = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
+		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
 		pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/random
 		backr = /obj/item/storage/backpack/rogue/satchel
 		id = /obj/item/clothing/ring/signet
@@ -82,6 +81,7 @@
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)
 		var/datum/antagonist/new_antag = new /datum/antagonist/suitor()
 		H.mind.add_antag_datum(new_antag)
 
@@ -112,10 +112,10 @@
 		H.change_stat("fortune", 1)
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 		pants = /obj/item/clothing/under/roguetown/tights/black
-		cloak = /obj/item/clothing/cloak/matron
-		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/black
+		armor = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 		shoes = /obj/item/clothing/shoes/roguetown/boots
 		belt = /obj/item/storage/belt/rogue/leather/black
@@ -152,6 +152,7 @@
 		H.change_stat("fortune", 1)
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 		ADD_TRAIT (H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC) //Doesn't start with any medium armor, but is trained to wear it.
+		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
@@ -159,7 +160,7 @@
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 		belt = /obj/item/storage/belt/rogue/leather
 		beltl = /obj/item/roguekey/manor
-		beltr = /obj/item/rogueweapon/sword/rapier
+		beltr = /obj/item/rogueweapon/sword/sabre/dec
 		backr = /obj/item/storage/backpack/rogue/satchel
 		id = /obj/item/clothing/ring/silver
 		backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/mid = 1)
