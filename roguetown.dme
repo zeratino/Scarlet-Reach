@@ -2235,6 +2235,7 @@
 #include "modular\Neu_Food\code\cookware\peppermill.dm"
 #include "modular\Neu_Food\code\cookware\platter.dm"
 #include "modular\Neu_Food\code\cookware\pot.dm"
+#include "modular\Neu_Food\code\cookware\ration.dm"
 #include "modular\Neu_Food\code\cookware\spoon.dm"
 #include "modular\Neu_Food\code\drinks\drinks_reagents.dm"
 #include "modular\Neu_Food\code\drinks\stew.dm"
