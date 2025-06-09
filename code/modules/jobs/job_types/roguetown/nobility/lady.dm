@@ -65,8 +65,8 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 3, TRUE)
@@ -101,7 +101,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
 		H.change_stat("intelligence", 1)
 		H.change_stat("perception", 1)
 		H.change_stat("endurance", 2)
@@ -141,7 +141,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
 		H.change_stat("intelligence", 2)
 		H.change_stat("perception", 2)
 		H.change_stat("endurance", 2)
@@ -151,7 +151,6 @@
 		ADD_TRAIT (H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC) //Doesn't start with any medium armor, but is trained to wear it.
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 		pants = /obj/item/clothing/under/roguetown/tights/black
-		mask = /obj/item/clothing/head/roguetown/roguehood/random
 		armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot

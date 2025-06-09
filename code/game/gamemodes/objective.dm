@@ -320,8 +320,8 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 
 /datum/objective/marry
 	name = "marry"
-	explanation_text = "Secure a marriage with the local Duke/Duchess."
-	team_explanation_text = "Secure a marriage with the local Duke/Duchess."
+	explanation_text = "Secure a marriage with the local Duke/Duchess - or alternatively marry one of the royal heirs and ensure they are coronated by the week's end."
+	team_explanation_text = "Secure a marriage with the local Duke/Duchess - or alternatively marry one of the royal heirs and ensure they are coronated by the week's end."
 
 /datum/objective/marry/check_completion()
 	for(var/datum/mind/M in get_owners())
