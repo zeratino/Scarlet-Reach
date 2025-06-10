@@ -181,18 +181,18 @@
 	else if(slot == SLOT_RING)
 		active_item = TRUE
 		to_chat(user, span_notice("Here be dragons."))
-		user.change_stat("strength", 2)
-		user.change_stat("constitution", 2)
-		user.change_stat("endurance", 2)
+		user.change_stat("strength", 5)
+		user.change_stat("constitution", 5)
+		user.change_stat("endurance", 5)
 	return
 
 /obj/item/clothing/ring/dragon_ring/dropped(mob/living/user)
 	..()
 	if(active_item)
 		to_chat(user, span_notice("Gone is thy hoard."))
-		user.change_stat("strength", -2)
-		user.change_stat("constitution", -2)
-		user.change_stat("endurance", -2)
+		user.change_stat("strength", -5)
+		user.change_stat("constitution", -5)
+		user.change_stat("endurance", -5)
 		active_item = FALSE
 	return
 
