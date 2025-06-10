@@ -120,9 +120,9 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
 		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
 		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
-		pants = /obj/item/clothing/under/roguetown/platelegs/aalloy
+		pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
 		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
-		neck = /obj/item/clothing/neck/roguetown/gorget/aalloy
+		neck = /obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
 		gloves = /obj/item/clothing/gloves/roguetown/chain/aalloy
 		l_hand = /obj/item/rogueweapon/shield/tower/metal/alloy
 		if(prob(33))
@@ -138,9 +138,9 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
 		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy
 		wrists = /obj/item/clothing/wrists/roguetown/bracers/aalloy
-		pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/aalloy
+		pants = /obj/item/clothing/under/roguetown/platelegs/aalloy
 		shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
-		neck = /obj/item/clothing/neck/roguetown/gorget/aalloy
+		neck = /obj/item/clothing/neck/roguetown/zcross/aalloy
 		gloves = /obj/item/clothing/gloves/roguetown/chain/aalloy
 		r_hand = /obj/item/rogueweapon/sword/sabre/alloy
 		l_hand = /obj/item/rogueweapon/sword/sabre/alloy
