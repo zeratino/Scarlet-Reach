@@ -113,7 +113,7 @@
 	desc = span_boldred("Oh no! I've received divine punishment!")
 
 /datum/stressevent/virginchurch
-	timer = 15 MINUTES
+	timer = 20 MINUTES
 	stressadd = 10
 	desc = span_boldred("I have broken my oath of chastity to The Gods!")
 
@@ -260,7 +260,7 @@
 /datum/stressevent/noble_desperate
 	stressadd = 3
 	desc = span_boldred("What level of desperation have I fallen to?")
-	timer = 5 MINUTES
+	timer = 15 MINUTES
 
 /datum/stressevent/noble_bland_food
 	stressadd = 1
