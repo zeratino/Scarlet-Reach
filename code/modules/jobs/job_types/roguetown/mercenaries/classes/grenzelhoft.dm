@@ -45,7 +45,7 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Zweihander")
-					r_hand = /obj/item/rogueweapon/greatsword/zwei
+					r_hand = /obj/item/rogueweapon/greatsword/grenz
 				if("Kriegmesser & Buckler") // Buckler cuz they have no shield skill.
 					r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
 					l_hand = /obj/item/rogueweapon/shield/buckler
