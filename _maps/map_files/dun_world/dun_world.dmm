@@ -8270,6 +8270,7 @@
 /obj/item/reagent_containers/glass/cup/wooden{
 	pixel_x = -6
 	},
+/obj/item/reagent_containers/glass/bottle/claybottle/wine,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/town)
 "cSN" = (
@@ -36649,12 +36650,8 @@
 	dir = 1;
 	icon_state = "longtable"
 	},
-/obj/item/paper,
-/obj/item/paper{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/natural/feather,
+/obj/item/natural/clay/glassbatch,
+/obj/item/natural/clay/glassbatch,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
 "myg" = (
@@ -48346,6 +48343,16 @@
 /obj/effect/decal/cobbleedge{
 	dir = 8
 	},
+/obj/item/storage/roguebag/ash,
+/obj/item/natural/clay,
+/obj/item/natural/clay,
+/obj/item/natural/clay,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
+/obj/item/natural/stone,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
 "quQ" = (
@@ -56802,6 +56809,18 @@
 /obj/structure/closet/crate/roguecloset,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
+"tmQ" = (
+/obj/structure/table/wood{
+	icon_state = "tablewood1"
+	},
+/obj/item/natural/feather,
+/obj/item/paper{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/roguestatue/glass,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town)
 "tmS" = (
 /obj/structure/stairs,
 /turf/open/floor/rogue/blocks,
@@ -64986,7 +65005,7 @@
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/under/cave/scarymaze)
 "vVV" = (
-/obj/machinery/light/rogue/smelter,
+/obj/machinery/light/rogue/oven/west,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "vVX" = (
@@ -277714,7 +277733,7 @@ exD
 exD
 exD
 ydb
-gXS
+dyE
 dyE
 mye
 uBc
@@ -278168,7 +278187,7 @@ exD
 mGM
 dyE
 dyE
-dyE
+gXS
 uBc
 cDX
 gyu
@@ -390713,7 +390732,7 @@ bGf
 bGf
 bGf
 vUD
-cMj
+tmQ
 oZe
 fQi
 fQi
