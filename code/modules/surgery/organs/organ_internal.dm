@@ -160,7 +160,7 @@
 		eat_effect = /datum/status_effect/buff/foodbuff
 	if(bitecount >= bitesize)
 		record_featured_stat(FEATURED_STATS_CRIMINALS, eater)
-		GLOB.azure_round_stats[STATS_ORGANS_EATEN]++
+		GLOB.blackmoor_round_stats[STATS_ORGANS_EATEN]++
 		check_culling(eater)
 		SEND_SIGNAL(eater, COMSIG_ORGAN_CONSUMED, src.type)
 	. = ..()

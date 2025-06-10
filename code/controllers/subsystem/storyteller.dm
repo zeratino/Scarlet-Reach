@@ -1106,54 +1106,54 @@ SUBSYSTEM_DEF(gamemode)
 	GLOB.patron_follower_counts.Cut()
 
 	// General / Patron count
-	GLOB.azure_round_stats[STATS_TOTAL_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_PSYCROSS_USERS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_NOBLES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_GARRISON] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_CLERGY] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_TRADESMEN] = 0
-	GLOB.azure_round_stats[STATS_WEREVOLVES] = 0
-	GLOB.azure_round_stats[STATS_BANDITS] = 0
-	GLOB.azure_round_stats[STATS_VAMPIRES] = 0
-	GLOB.azure_round_stats[STATS_DEADITES_ALIVE] = 0
-	GLOB.azure_round_stats[STATS_CLINGY_PEOPLE] = 0
-	GLOB.azure_round_stats[STATS_ALCOHOLICS] = 0
-	GLOB.azure_round_stats[STATS_JUNKIES] = 0
-	GLOB.azure_round_stats[STATS_GREEDY_PEOPLE] = 0
-	GLOB.azure_round_stats[STATS_PLEASURES] = 0
+	GLOB.blackmoor_round_stats[STATS_TOTAL_POPULATION] = 0
+	GLOB.blackmoor_round_stats[STATS_PSYCROSS_USERS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_NOBLES] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_GARRISON] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_CLERGY] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_TRADESMEN] = 0
+	GLOB.blackmoor_round_stats[STATS_WEREVOLVES] = 0
+	GLOB.blackmoor_round_stats[STATS_BANDITS] = 0
+	GLOB.blackmoor_round_stats[STATS_VAMPIRES] = 0
+	GLOB.blackmoor_round_stats[STATS_DEADITES_ALIVE] = 0
+	GLOB.blackmoor_round_stats[STATS_CLINGY_PEOPLE] = 0
+	GLOB.blackmoor_round_stats[STATS_ALCOHOLICS] = 0
+	GLOB.blackmoor_round_stats[STATS_JUNKIES] = 0
+	GLOB.blackmoor_round_stats[STATS_GREEDY_PEOPLE] = 0
+	GLOB.blackmoor_round_stats[STATS_PLEASURES] = 0
 
 	// Gender count
-	GLOB.azure_round_stats[STATS_MALE_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_FEMALE_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_OTHER_GENDER] = 0
+	GLOB.blackmoor_round_stats[STATS_MALE_POPULATION] = 0
+	GLOB.blackmoor_round_stats[STATS_FEMALE_POPULATION] = 0
+	GLOB.blackmoor_round_stats[STATS_OTHER_GENDER] = 0
 
 	// Age count
-	GLOB.azure_round_stats[STATS_ADULT_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_MIDDLEAGED_POPULATION] = 0
-	GLOB.azure_round_stats[STATS_ELDERLY_POPULATION] = 0
+	GLOB.blackmoor_round_stats[STATS_ADULT_POPULATION] = 0
+	GLOB.blackmoor_round_stats[STATS_MIDDLEAGED_POPULATION] = 0
+	GLOB.blackmoor_round_stats[STATS_ELDERLY_POPULATION] = 0
 
 	// Races count
-	GLOB.azure_round_stats[STATS_ALIVE_NORTHERN_HUMANS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_DWARVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_DARK_ELVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_WOOD_ELVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_HALF_ELVES] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_HALF_ORCS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_GOBLINS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_KOBOLDS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_LIZARDS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_AASIMAR] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_TIEFLINGS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_HALFKIN] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_WILDKIN] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_CONSTRUCTS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_VERMINFOLK] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_DRACON] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_AXIAN] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_TABAXI] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_VULPS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_LUPIANS] = 0
-	GLOB.azure_round_stats[STATS_ALIVE_MOTHS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_NORTHERN_HUMANS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_DWARVES] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_DARK_ELVES] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_WOOD_ELVES] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_HALF_ELVES] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_HALF_ORCS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_GOBLINS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_KOBOLDS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_LIZARDS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_AASIMAR] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_TIEFLINGS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_HALFKIN] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_WILDKIN] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_CONSTRUCTS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_VERMINFOLK] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_DRACON] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_AXIAN] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_TABAXI] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_VULPS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_LUPIANS] = 0
+	GLOB.blackmoor_round_stats[STATS_ALIVE_MOTHS] = 0
 
 	for(var/client/client in GLOB.clients)
 		if(roundstart)
@@ -1169,96 +1169,96 @@ SUBSYSTEM_DEF(gamemode)
 			if(living.patron)
 				GLOB.patron_follower_counts[living.patron.name]++
 				if(living.job == "Grand Duke")
-					GLOB.azure_round_stats[STATS_MONARCH_PATRON] = "[living.patron.name]"
+					GLOB.blackmoor_round_stats[STATS_MONARCH_PATRON] = "[living.patron.name]"
 		if(living.mind.has_antag_datum(/datum/antagonist/bandit))
-			GLOB.azure_round_stats[STATS_BANDITS]++
+			GLOB.blackmoor_round_stats[STATS_BANDITS]++
 		if(living.mind.has_antag_datum(/datum/antagonist/werewolf))
-			GLOB.azure_round_stats[STATS_WEREVOLVES]++
+			GLOB.blackmoor_round_stats[STATS_WEREVOLVES]++
 		if(living.mind.has_antag_datum(/datum/antagonist/vampire))
-			GLOB.azure_round_stats[STATS_VAMPIRES]++
+			GLOB.blackmoor_round_stats[STATS_VAMPIRES]++
 		if(living.mind.has_antag_datum(/datum/antagonist/zombie) || living.mind.has_antag_datum(/datum/antagonist/skeleton) || living.mind.has_antag_datum(/datum/antagonist/lich))
-			GLOB.azure_round_stats[STATS_DEADITES_ALIVE]++
+			GLOB.blackmoor_round_stats[STATS_DEADITES_ALIVE]++
 		if(ishuman(living))
 			var/mob/living/carbon/human/human_mob = client.mob
-			GLOB.azure_round_stats[STATS_TOTAL_POPULATION]++
+			GLOB.blackmoor_round_stats[STATS_TOTAL_POPULATION]++
 			for(var/obj/item/clothing/neck/current_item in human_mob.get_equipped_items(TRUE))
 				if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
-					GLOB.azure_round_stats[STATS_PSYCROSS_USERS]++
+					GLOB.blackmoor_round_stats[STATS_PSYCROSS_USERS]++
 					break
 			switch(human_mob.gender)
 				if(MALE)
-					GLOB.azure_round_stats[STATS_MALE_POPULATION]++
+					GLOB.blackmoor_round_stats[STATS_MALE_POPULATION]++
 				if(FEMALE)
-					GLOB.azure_round_stats[STATS_FEMALE_POPULATION]++
+					GLOB.blackmoor_round_stats[STATS_FEMALE_POPULATION]++
 				else
-					GLOB.azure_round_stats[STATS_OTHER_GENDER]++
+					GLOB.blackmoor_round_stats[STATS_OTHER_GENDER]++
 			switch(human_mob.age)
 				if(AGE_ADULT)
-					GLOB.azure_round_stats[STATS_ADULT_POPULATION]++
+					GLOB.blackmoor_round_stats[STATS_ADULT_POPULATION]++
 				if(AGE_MIDDLEAGED)
-					GLOB.azure_round_stats[STATS_MIDDLEAGED_POPULATION]++
+					GLOB.blackmoor_round_stats[STATS_MIDDLEAGED_POPULATION]++
 				if(AGE_OLD)
-					GLOB.azure_round_stats[STATS_ELDERLY_POPULATION]++
+					GLOB.blackmoor_round_stats[STATS_ELDERLY_POPULATION]++
 			if(human_mob.is_noble())
-				GLOB.azure_round_stats[STATS_ALIVE_NOBLES]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_NOBLES]++
 			if(human_mob.mind.assigned_role in GLOB.garrison_positions)
-				GLOB.azure_round_stats[STATS_ALIVE_GARRISON]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_GARRISON]++
 			if(human_mob.mind.assigned_role in GLOB.church_positions)
-				GLOB.azure_round_stats[STATS_ALIVE_CLERGY]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_CLERGY]++
 			if((human_mob.mind.assigned_role in GLOB.yeoman_positions) || (human_mob.mind.assigned_role in GLOB.peasant_positions) || (human_mob.mind.assigned_role in GLOB.mercenary_positions))
-				GLOB.azure_round_stats[STATS_ALIVE_TRADESMEN]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_TRADESMEN]++
 			if(human_mob.has_flaw(/datum/charflaw/clingy))
-				GLOB.azure_round_stats[STATS_CLINGY_PEOPLE]++
+				GLOB.blackmoor_round_stats[STATS_CLINGY_PEOPLE]++
 			if(human_mob.has_flaw(/datum/charflaw/addiction/alcoholic))
-				GLOB.azure_round_stats[STATS_ALCOHOLICS]++
+				GLOB.blackmoor_round_stats[STATS_ALCOHOLICS]++
 			if(human_mob.has_flaw(/datum/charflaw/addiction/junkie))
-				GLOB.azure_round_stats[STATS_JUNKIES]++
+				GLOB.blackmoor_round_stats[STATS_JUNKIES]++
 			if(human_mob.has_flaw(/datum/charflaw/greedy))
-				GLOB.azure_round_stats[STATS_GREEDY_PEOPLE]++
+				GLOB.blackmoor_round_stats[STATS_GREEDY_PEOPLE]++
 
 			// Races - proper alive checking (We have so fucking many, kill me..)
 			if(ishumannorthern(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_NORTHERN_HUMANS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_NORTHERN_HUMANS]++
 			if(isdwarf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_DWARVES]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_DWARVES]++
 			if(isdarkelf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_DARK_ELVES]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_DARK_ELVES]++
 			if(iswoodelf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_WOOD_ELVES]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_WOOD_ELVES]++
 			if(ishalfelf(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_HALF_ELVES]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_HALF_ELVES]++
 			if(ishalforc(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_HALF_ORCS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_HALF_ORCS]++
 			if(isgoblinp(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_GOBLINS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_GOBLINS]++
 			if(iskobold(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_KOBOLDS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_KOBOLDS]++
 			if(islizard(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_LIZARDS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_LIZARDS]++
 			if(isaasimar(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_AASIMAR]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_AASIMAR]++
 			if(istiefling(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_TIEFLINGS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_TIEFLINGS]++
 			if(ishalfkin(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_HALFKIN]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_HALFKIN]++
 			if(iswildkin(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_WILDKIN]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_WILDKIN]++
 			if(isconstruct(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_CONSTRUCTS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_CONSTRUCTS]++
 			if(isvermin(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_VERMINFOLK]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_VERMINFOLK]++
 			if(isdracon(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_DRACON]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_DRACON]++
 			if(isaxian(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_AXIAN]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_AXIAN]++
 			if(istabaxi(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_TABAXI]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_TABAXI]++
 			if(isvulp(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_VULPS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_VULPS]++
 			if(islupian(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_LUPIANS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_LUPIANS]++
 			if(ismoth(human_mob))
-				GLOB.azure_round_stats[STATS_ALIVE_MOTHS]++
+				GLOB.blackmoor_round_stats[STATS_ALIVE_MOTHS]++
 
 
 /// Returns total follower influence for the given storyteller
@@ -1296,7 +1296,7 @@ SUBSYSTEM_DEF(gamemode)
 		return
 
 	var/influence = 0
-	var/stat_value = GLOB.azure_round_stats[statistic]
+	var/stat_value = GLOB.blackmoor_round_stats[statistic]
 	var/list/factors = initalized_storyteller.influence_factors[statistic]
 	var/modifier = factors["points"]
 	var/capacity = factors["capacity"]
