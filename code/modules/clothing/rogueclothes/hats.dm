@@ -1051,10 +1051,10 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle
 	name = "slitted kettle helm"
-	desc = "A reinforced Eisenhut that's been extended downwards to cover the face, fully protecting the wearer but limiting his field of view."
+	desc = "A reinforced Eisenhut that's been extended downwards to cover the face, fully protecting the wearer but limiting his field of view. Pairs well with a bevor."
 	icon_state = "skettle"
 	item_state = "skettle"
-	adjustable = FALSE
+	adjustable = CANT_CADJUST
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle/attackby(obj/item/W, mob/living/user, params)
 	..()
