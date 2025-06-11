@@ -116,7 +116,7 @@
 		"Etruscan Swamps" = SKIN_COLOR_ETRUSCAN_SWAMPS,
 		"Shalvine Forests" = SKIN_COLOR_SHALVINE_FORESTS,
 		"Lalvestine Thickets" = SKIN_COLOR_LALVE_STEPPES,
-		"Naledi Coverts"	= SKIN_COLOR_NALEDI_COAST
+		"Ebon Coverts"	= SKIN_COLOR_EBON_COAST
 	)
 
 /datum/species/elf/wood/get_hairc_list()

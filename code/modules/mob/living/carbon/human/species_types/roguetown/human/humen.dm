@@ -86,7 +86,7 @@
 		"North Raneshen (Chorodiaki)" = SKIN_COLOR_GIZA,
 		"West Raneshen (Vrdaqnan)" = SKIN_COLOR_SHALVISTINE,
 		"East Raneshen (Nshkormh)" = SKIN_COLOR_LALVESTINE,
-		"Naledi" = SKIN_COLOR_NALEDI,
+		"Ebon" = SKIN_COLOR_EBON,
 		"Kazengun" = SKIN_COLOR_KAZENGUN
 	)
 

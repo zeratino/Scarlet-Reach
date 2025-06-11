@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(youngfolk_positions, list(
 	"Clerk",
 	"Apothecary",
 	"Smithy Apprentice",
-	"Magicians Associate",
+	"Magos Thrall",
 	"Churchling",
 	"Servant",
 	"Shophand",
