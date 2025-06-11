@@ -53,7 +53,7 @@
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
-	craftdiff = 5
+	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/engineering/passage
 	name = "passage"
