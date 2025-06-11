@@ -5,10 +5,9 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = RACES_NEUTRAL_UP
+	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
-
 	display_order = JDO_DUNGEONEER
 
 	tutorial = "Sometimes at night you stare into the vacant room and feel the loneliness of your existence crawl into whatever remains of your loathsome soul. \

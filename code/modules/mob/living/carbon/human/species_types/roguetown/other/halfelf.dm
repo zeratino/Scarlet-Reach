@@ -98,7 +98,7 @@
 		"Giza-Azure" = SKIN_COLOR_GIZA_AZURE,
 		"Walnut-Stine" = SKIN_COLOR_WALNUT_STINE,
 		"Etrustcan-Dandelion" = SKIN_COLOR_ETRUSTCAN_DANDELION,
-		"Naledi-Born" = SKIN_COLOR_NALEDI_BORN,
+		"Ebon-Born" = SKIN_COLOR_EBON_BORN,
 		"Kaze-Lotus" = SKIN_COLOR_KAZE_LOTUS,
 		"Grenzel-Azuria" = SKIN_COLOR_GRENZEL_WOODS,
 		"Etrusca-Lirvas" = SKIN_COLOR_ETRUSCA_LIRVAS,
@@ -106,7 +106,7 @@
 		"Avar Borne"	= SKIN_COLOR_AVAR_BORNE,
 		"Shalvine Roamer" = SKIN_COLOR_SHALVINE_AZURE,
 		"Lalve-Steppes" = SKIN_COLOR_LALVE_NALEDI,
-		"Naledi-Otava" = SKIN_COLOR_NALEDI_OTAVA,
+		"Ebon-Otava" = SKIN_COLOR_EBON_OTAVA,
 		"Grezel-Avar" = SKIN_COLOR_GRENZEL_AVAR,
 		"Hammer-Gronn" = SKIN_COLOR_HAMMER_GRONN,
 		"Commorah-kin" = SKIN_COLOR_COMMORAH,
@@ -119,7 +119,7 @@
 	)
 
 /datum/species/human/halfelf/proc/languages(mob/living/carbon/human/literally_him)
-	if(literally_him.skin_tone == SKIN_COLOR_NALEDI_BORN)
+	if(literally_him.skin_tone == SKIN_COLOR_EBON_BORN)
 		literally_him.grant_language(/datum/language/celestial)
 
 /datum/species/human/halfelf/get_hairc_list()

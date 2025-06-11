@@ -122,44 +122,52 @@
 )
 
 #define RACES_RESPECTED \
-	/datum/species/human/northern,\
-	/datum/species/elf/wood,\
-	/datum/species/human/halfelf,\
-	/datum/species/dwarf/mountain,\
-	/datum/species/aasimar,\
-	/datum/species/lupian,\
-	/datum/species/vulpkanin,\
-	/datum/species/moth,\
-	/datum/species/dracon,
+    /datum/species/human/northern,\
+    /datum/species/elf/wood,\
 
 #define RACES_TOLERATED \
-	/datum/species/elf/dark,\
-	/datum/species/tieberian,\
-	/datum/species/lizardfolk,\
-	/datum/species/tabaxi,\
-	/datum/species/akula,\
-	/datum/species/anthromorph,\
-	/datum/species/demihuman,\
+    /datum/species/human/halfelf,\
+    /datum/species/demihuman,\
+    /datum/species/dwarf/mountain,\
 
+#define RACES_NEUTRAL \
+    /datum/species/construct/metal,\
+    /datum/species/aasimar,\
 
 #define RACES_SHUNNED \
-	/datum/species/halforc,\
-	/datum/species/anthromorphsmall,\
-	/datum/species/kobold,\
+    /datum/species/vulpkanin,\
+    /datum/species/lupian,\
+    /datum/species/anthromorphsmall,\
+    /datum/species/kobold,\
+    /datum/species/moth,\
+    /datum/species/anthromorph,\
+    /datum/species/tabaxi,\
+    /datum/species/lizardfolk,\
+    /datum/species/dracon,\
+    /datum/species/akula,\
 
 #define RACES_DESPISED \
-	/datum/species/goblinp,\
+    /datum/species/goblinp,\
+    /datum/species/halforc,\
+    /datum/species/tieberian,\
+    /datum/species/elf/dark,\
 
 #define RACES_CONSTRUCT \
 	/datum/species/construct/metal,\
 
-#define RACES_ALL_KINDS list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED, RACES_CONSTRUCT)
-
-#define RACES_NO_CONSTRUCT list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
-
-#define RACES_SHUNNED_UP list(RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
+#define RACES_RESPECTED_UP list(RACES_RESPECTED)
 
 #define RACES_TOLERATED_UP list(RACES_TOLERATED, RACES_RESPECTED)
+
+#define RACES_NEUTRAL_UP list(RACES_RESPECTED, RACES_TOLERATED, RACES_NEUTRAL)
+
+#define RACES_SHUNNED_UP list(RACES_RESPECTED, RACES_TOLERATED, RACES_NEUTRAL, RACES_SHUNNED)
+
+#define RACES_DESPIED_UP list(RACES_RESPECTED, RACES_TOLERATED, RACES_NEUTRAL, RACES_SHUNNED, RACES_DESPISED)
+
+#define RACES_ALL_KINDS list(RACES_DESPISED, RACES_SHUNNED, RACES_NEUTRAL, RACES_TOLERATED, RACES_RESPECTED, RACES_CONSTRUCT)
+
+#define RACES_NO_CONSTRUCT list(RACES_DESPISED, RACES_SHUNNED, RACES_TOLERATED, RACES_RESPECTED)
 
 #define NOBLE_RACES_TYPES list(\
 	/datum/species/human/northern,\

@@ -5,9 +5,10 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-
-	allowed_races = RACES_NO_CONSTRUCT	//No noble constructs.
+	allowed_races = RACES_TOLERATED_UP	//No noble constructs.
+	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
+	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
 	outfit = /datum/outfit/job/roguetown/hand
 	advclass_cat_rolls = list(CTAG_HAND = 20)
 	display_order = JDO_HAND
