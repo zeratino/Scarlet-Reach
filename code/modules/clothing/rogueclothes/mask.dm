@@ -209,7 +209,7 @@
 		var/timer = 5 MINUTES //Base timer is 5 minutes, additional time added per bounty amount
 
 		if(bounty_amount >= 10)
-			var/additional_time = bounty_amount * 0.1 // 100 mammon = 10 minutes
+			var/additional_time = bounty_amount * 0.1 // 10 mammon = 1 minute
 			additional_time = round(additional_time)
 			timer += additional_time MINUTES
 
