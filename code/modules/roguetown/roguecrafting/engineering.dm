@@ -49,7 +49,7 @@
 /datum/crafting_recipe/roguetown/engineering/freedomchair
 	name = "LIBERTAS"
 	result = /obj/structure/chair/freedomchair/crafted
-	reqs = list(/obj/item/ingot/blacksteel = 1, /obj/item/roguegear = 3)
+	reqs = list(/obj/item/ingot/gold = 1, /obj/item/roguegear = 3)
 	verbage_simple = "engineer"
 	verbage = "engineers"
 	skillcraft = /datum/skill/craft/engineering
