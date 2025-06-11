@@ -127,7 +127,7 @@
 	if(guy.has_status_effect(/datum/status_effect/debuff/postcooldown))
 		to_chat(guy, span_warning("I must wait a time until my next posting..."))
 		return
-	var/inputtitle = input(guy, "What shall the title of my posting be?", "NOTICEBOARD", null)
+	var/inputtitle = stripped_input(guy, "What shall the title of my posting be?", "NOTICEBOARD", null)
 	if(!inputtitle)
 		return
 	if(length(inputtitle) > 50)
@@ -140,13 +140,13 @@
 			return
 	else
 		return
-	var/inputname = input(guy, "What name shall I use on the posting?", "NOTICEBOARD", null)
+	var/inputname = stripped_input(guy, "What name shall I use on the posting?", "NOTICEBOARD", null)
 	if(!inputname)
 		return
 	if(length(inputname) > 50)
 		to_chat(guy, span_warning("Too long! You shall surely overburden the zad with this novel!"))
 		return
-	var/inputrole = input(guy, "What personal title shall I use on the posting?", "NOTICEBOARD", null)
+	var/inputrole = stripped_input(guy, "What personal title shall I use on the posting?", "NOTICEBOARD", null)
 	if(length(inputrole) > 50)
 		to_chat(guy, span_warning("Too long! You shall surely overburden the zad with this novel!"))
 		return
