@@ -130,17 +130,26 @@
 	var/inputtitle = input(guy, "What shall the title of my posting be?", "NOTICEBOARD", null)
 	if(!inputtitle)
 		return
+	if(length(inputtitle) > 50)
+		to_chat(guy, span_warning("Too long! You shall surely overburden the zad with this novel!"))
+		return
 	var/inputmessage = stripped_multiline_input(guy, "What shall I write for this posting?", "NOTICEBOARD", no_trim=TRUE)
 	if(inputmessage)
 		if(length(inputmessage) > 2000)
-			to_chat(guy, span_warning("Too long! You shall surely overburden the with this novel!"))
+			to_chat(guy, span_warning("Too long! You shall surely overburden the zad with this novel!"))
 			return
 	else
 		return
 	var/inputname = input(guy, "What name shall I use on the posting?", "NOTICEBOARD", null)
 	if(!inputname)
 		return
+	if(length(inputname) > 50)
+		to_chat(guy, span_warning("Too long! You shall surely overburden the zad with this novel!"))
+		return
 	var/inputrole = input(guy, "What personal title shall I use on the posting?", "NOTICEBOARD", null)
+	if(length(inputrole) > 50)
+		to_chat(guy, span_warning("Too long! You shall surely overburden the zad with this novel!"))
+		return
 	add_post(inputmessage, inputtitle, inputname, inputrole, guy.real_name, FALSE)
 	guy.apply_status_effect(/datum/status_effect/debuff/postcooldown)
 	message_admins("[ADMIN_LOOKUPFLW(guy)] has made a notice board post. The message was: [inputmessage]")
