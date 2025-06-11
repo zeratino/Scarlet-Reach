@@ -47,7 +47,7 @@
 	if(!ishuman(user)) return
 	var/mob/living/carbon/human/guy = user
 	var/list/noticemenu = list("Check Posts", "Make a Posting", "Remove Posting")
-	if(HAS_TRAIT(user, TRAIT_GUARDSMAN || TRAIT_INQUISITION))
+	if(user.job in list("Man at Arms","Inquisitor", "Knight", "Sergeant", "Knight Captain", "Orthodoxist"))
 		noticemenu += "Authoritative Removal"
 	if(user.job in list("Bathmaster","Merchant", "Innkeeper", "Steward", "Court Magician"))
 		noticemenu += "Make a Premium Posting"
@@ -78,7 +78,7 @@
 				check_menu += saved_post.banner
 				post_found = TRUE
 			if(post_found)
-				var/datum/browser/popup = new(user, "COMMUNITY POSTS", "", 500, 300)
+				var/datum/browser/popup = new(user, "COMMUNITY POSTS", "", 800, 500)
 				popup.set_content(check_menu)
 				popup.open()
 			else
@@ -88,7 +88,7 @@
 				check_menu += saved_post.banner
 				post_found = TRUE
 			if(post_found)
-				var/datum/browser/popup = new(user, "PREMIUM POSTS", "", 500, 300)
+				var/datum/browser/popup = new(user, "PREMIUM POSTS", "", 800, 500)
 				popup.set_content(check_menu)
 				popup.open()
 			else
