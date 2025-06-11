@@ -3,23 +3,25 @@
 	flag = BOGGUARD
 	department_flag = GARRISON
 	faction = "Station"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 6
+	spawn_positions = 6
 	selection_color = JCOLOR_SOLDIER
 
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "Typically a denizen of the sparsely populated Azure woods, you volunteered up with the wardens--a group of ranger types who keep a vigil over the untamed wilds. \
-				While Wardens have no higher authority, operating as a fraternity of rangers, you will be called upon as members of the garrison by the Marshal or the Crown. \
-				Serve their will and recieve what a ranger craves the most - freedom and safety."
+	tutorial = "The downtrodden, the disgraced and the disorderly. Either by choice or against your will, you have taken the oath and now vigilantly protect the cursed lands from bandits, \
+				necromancers, and all manner of vile creatures. While the men-at-arms and knights are afforded authority in Blackmoor, you are the closest thing the wilds has to any \
+				semblance of law. \
+				\
+				While you are afforded a relative degree of freedom in the pursuit of justice, you ultimately answer to the Marshal and the Crown."
 	display_order = JDO_TOWNGUARD
 	whitelist_req = TRUE
 
 	outfit = /datum/outfit/job/roguetown/bogguardsman
 	advclass_cat_rolls = list(CTAG_WARDEN = 20)
 
-	give_bank_account = 16
+	give_bank_account = 50
 	min_pq = 0
 	max_pq = null
 	round_contrib_points = 2
