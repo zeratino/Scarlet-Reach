@@ -165,6 +165,7 @@
 /obj/item/clothing/mask/rogue/facemask/prisoner
 	name = "cursed mask"
 	desc = "An iron mask that seals around the head, making it impossible to remove. It seems to be enchanted with some kind of vile magic..."
+	body_parts_covered = NONE //So that surgery can be done through the mask.
 	var/active_item
 	var/bounty_amount
 
