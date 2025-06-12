@@ -264,12 +264,3 @@
 	desc = "Part robe, part butcher's apron."
 	icon_state = "surgrobe"
 	item_state = "surgrobe"
-
-/obj/item/clothing/suit/roguetown/shirt/robe/chokha
-	name = "layed steppes chokha"
-	desc = "A light yet warm woolen coat layered with silk robes underneath of it; able to withstand punishment while retaining its style."
-	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT	//No cloak slot.
-	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
-	armor = ARMOR_PADDED_GOOD
-	icon_state = "chokha"
-	item_state = "chokha"
