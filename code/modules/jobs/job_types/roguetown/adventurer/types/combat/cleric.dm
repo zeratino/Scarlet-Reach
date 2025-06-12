@@ -147,7 +147,7 @@
 					cloak = /obj/item/clothing/cloak/templar/eora
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/eoran
 				if (/datum/patron/divine/ravox)
-					cloak = /obj/item/clothing/cloak/templar/ravox
+					cloak = /obj/item/clothing/cloak/cleric/ravox
 					head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
 				if (/datum/patron/divine/xylix)
 					cloak = /obj/item/clothing/cloak/templar/xylix
