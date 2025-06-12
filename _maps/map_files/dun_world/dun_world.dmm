@@ -8551,14 +8551,6 @@
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/beach/forest)
-"cXA" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/flora/newleaf,
-/obj/structure/flora/newbranch/leafless{
-	dir = 4
-	},
-/turf/open/transparent/openspace,
-/area/rogue/outdoors/town/roofs)
 "cXD" = (
 /obj/structure/roguemachine/scomm/r,
 /turf/open/floor/rogue/cobble,
@@ -491889,7 +491881,7 @@ bGf
 bGf
 bGf
 bGf
-cXA
+bGf
 bGf
 bGf
 bGf
