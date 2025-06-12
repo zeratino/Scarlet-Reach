@@ -194,17 +194,17 @@ LICH SKELETONS
 			r_hand = /obj/item/rogueweapon/greatsword/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Bardiche")
-			beltr = /obj/item/rogueweapon/halberd/bardiche/paalloy
+			r_hand = /obj/item/rogueweapon/halberd/bardiche/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 		if("Grand Mace")
-			beltr = /obj/item/rogueweapon/mace/goden/steel/paalloy
+			r_hand = /obj/item/rogueweapon/mace/goden/steel/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Spear")
-			beltr = /obj/item/rogueweapon/spear/paalloy
+			r_hand = /obj/item/rogueweapon/spear/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 		if("Warhammer + Shield")
-			beltr = /obj/item/rogueweapon/mace/warhammer/steel/paalloy
-			backr = /obj/item/rogueweapon/shield/wood
+			r_hand = /obj/item/rogueweapon/mace/warhammer/steel/paalloy
+			l_hand = /obj/item/rogueweapon/shield/wood
 			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
 
