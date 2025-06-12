@@ -251,6 +251,17 @@
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
 
+/obj/item/clothing/head/roguetown/roguehood/ravoxgorget
+	name = "ravox's tabard gorget"
+	color = null
+	icon_state = "ravoxgorget"
+	item_state = "ravoxgorget"
+	body_parts_covered = NECK
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
+	flags_inv = HIDENECK
+	dynamic_hair_suffix = ""
+	sewrepair = TRUE
+
 /obj/item/clothing/head/roguetown/priestmask
 	name = "solar visage"
 	desc = "The sanctified helm of the most devoted. Thieves beware."
@@ -1312,6 +1323,31 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
+	name = "justice eagle"
+	desc = "Forged in reverence to Ravox, this helm bears the stylized visage of an eagle, symbol of unyielding judgment and divine vigilance. Its hollow eyes see not just foes, but the truth behind every deed."
+	icon_state = "ravoxhelmet"
+	item_state = "ravoxhelmet"
+	emote_environment = 3
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	block2add = FOV_BEHIND
+	smeltresult = /obj/item/ingot/steel
+	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm/attackby(obj/item/W, mob/living/user, params)
+	..()
+	if(istype(W, /obj/item/natural/feather) && !detail_tag)
+		var/choice = input(user, "Choose a color.", "Plume") as anything in colorlist
+		detail_color = colorlist[choice]
+		detail_tag = "_detail"
+		user.visible_message(span_warning("[user] adds [W] to [src]."))
+		user.transferItemToLoc(W, src, FALSE, FALSE)
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_head()
+
 
 /obj/item/clothing/head/roguetown/helmet/bascinet
 	name = "bascinet"

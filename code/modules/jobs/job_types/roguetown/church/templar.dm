@@ -75,7 +75,7 @@
 			cloak = /obj/item/clothing/cloak/tabard/crusader/noc
 		if(/datum/patron/divine/ravox)
 			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-			cloak = /obj/item/clothing/cloak/tabard/crusader/ravox
+			cloak = /obj/item/clothing/cloak/templar/ravox
 		if(/datum/patron/divine/malum)
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
@@ -202,8 +202,9 @@
 			cloak = /obj/item/clothing/cloak/tabard/crusader/noc
 		if(/datum/patron/divine/ravox)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/ravox
-			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
-			cloak = /obj/item/clothing/cloak/tabard/crusader/ravox
+			head = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
+			cloak = /obj/item/clothing/cloak/templar/ravox
+			mask = /obj/item/clothing/head/roguetown/roguehood/ravoxgorget
 		if(/datum/patron/divine/malum)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
