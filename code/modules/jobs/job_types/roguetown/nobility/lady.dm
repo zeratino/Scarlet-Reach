@@ -9,14 +9,13 @@
 	allowed_races = RACES_TOLERATED_UP
 	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "Picked out of your political value rather than likely any form of love, you have become the Grand Duke's most trusted confidant--and likely friend--throughout \
-				your marriage. Your loyalty and perhaps even your love will be tested this day... for the daggers that threaten your beloved are as equally pointed at your own throat."
+	tutorial = "Picked out of your political value rather than likely any form of love, you have become the Grand Duke's most trusted confidant--and likely friend--throughout your marriage. Your loyalty and perhaps even your love will be tested this day... for the daggers that threaten your beloved are as equally pointed at your own throat."
 	spells = list(/obj/effect/proc_holder/spell/self/convertrole/servant,
 	/obj/effect/proc_holder/spell/self/grant_nobility)
 	outfit = /datum/outfit/job/roguetown/lady
 	display_order = JDO_LADY
 	give_bank_account = 50
-	noble_income = 25
+	noble_income = 22
 	min_pq = 5
 	max_pq = null
 	round_contrib_points = 3
@@ -84,7 +83,7 @@
 	recruitment_message = "Serve the crown, %RECRUIT!"
 	accept_message = "FOR THE CROWN!"
 	refuse_message = "I refuse."
-	recharge_time = 50
+	recharge_time = 100
 
 /obj/effect/proc_holder/spell/self/convertrole/mercenary
 	name = "Recruit Mercenary"
@@ -93,7 +92,7 @@
 	recruitment_message = "Serve the Guild, %RECRUIT!"
 	accept_message = "FOR THE GUILD!"
 	refuse_message = "I refuse."
-	recharge_time = 50
+	recharge_time = 100
 
 /obj/effect/proc_holder/spell/self/convertrole/bog
 	name = "Recruit Warden"
