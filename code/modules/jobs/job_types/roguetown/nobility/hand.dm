@@ -57,7 +57,21 @@
 		for(var/name in GLOB.court_agents)
 			to_chat(H, span_notice(name))
 
-
+/mob/living/carbon/human/proc/request_law()
+	set name = "Request Law"
+	set category = "Voice of Command"
+	if(stat)
+		return
+	var/inputty = input("Write a new law", "HAND") as text|null
+	if(inputty)
+		if(hasomen(OMEN_NOLORD))
+			make_law(inputty)
+		else
+			var/lord = find_lord()
+			if(lord)
+				INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(lord_law_requested), src, lord, inputty)
+			else
+				make_law(inputty)
 
 /datum/advclass/hand/hand
 	name = "Hand"

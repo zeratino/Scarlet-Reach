@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	desc = "Grant someone a title of honor... Or shame."
 	overlay_state = "recruit_titlegrant"
 	antimagic_allowed = TRUE
-	recharge_time = 100
+	recharge_time = 50
 	/// Maximum range for title granting
 	var/title_range = 3
 	/// Maximum length for the title
@@ -226,7 +226,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	desc = "Make someone a noble, or strip them of their nobility."
 	overlay_state = "recruit_titlegrant"
 	antimagic_allowed = TRUE
-	recharge_time = 100
+	recharge_time = 50
 	/// Maximum range for nobility granting
 	var/nobility_range = 3
 
