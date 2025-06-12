@@ -1,5 +1,5 @@
 /datum/element/tipped_item
-	element_flags = COMSIG_ELEMENT_DETACH
+	element_flags = NONE
 
 /datum/element/tipped_item/Attach(atom/movable/target, amount)
 	. = ..()
