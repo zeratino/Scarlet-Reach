@@ -124,7 +124,7 @@
 		var/mob/living/carbon/human/human_owner = owner
 		if(human_owner.checkcritarmor(zone_precise, bclass))
 			return FALSE
-		if(owner.mind && (get_damage() < max_damage)) //No crits unless the damage is maxed out.
+		if(owner.mind && (get_damage() <= (max_damage * 0.9))) //No crits unless the damage is maxed out.
 			if(owner.mobility_flags & MOBILITY_STAND && !owner.buckled) //Unless they're buckled or lying down.
 				do_crit = FALSE
 	if(user)
