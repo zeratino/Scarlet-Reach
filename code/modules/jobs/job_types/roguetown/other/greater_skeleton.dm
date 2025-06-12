@@ -1,275 +1,92 @@
-//Lich skeletons.
-/datum/job/roguetown/skeleton_greater
+/datum/job/roguetown/greater_skeleton
 	title = "Greater Skeleton"
 	flag = SKELETON
 	department_flag = SLOP
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0
-	
-	advclass_cat_rolls = list(CTAG_SKELETON = 20)
+	min_pq = null //no pq
+	max_pq = null
+	announce_latejoin = FALSE
 
-	tutorial = "You are bygone. Your will belongs to your master. Fulfil and kill."
+	advclass_cat_rolls = list(CTAG_NSKELETON = 20)
 
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich
+	tutorial = "You are bygone. A wandering has-been. But maybe your luck has not run out, yet.."
+
+	outfit = /datum/outfit/job/roguetown/greater_skeleton/necro
 	show_in_credits = FALSE
 	give_bank_account = FALSE
+	hidden_job = TRUE
 
-	cmode_music = 'sound/music/combat_weird.ogg'
-
-/datum/job/roguetown/skeleton_greater/lich/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+/datum/outfit/job/roguetown/greater_skeleton/pre_equip(mob/living/carbon/human/H)
 	..()
+
+	H.set_patron(/datum/patron/inhumen/zizo)
+
+	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
+	/datum/rmb_intent/aimed,\
+	/datum/rmb_intent/riposte,\
+	/datum/rmb_intent/strong,\
+	/datum/rmb_intent/weak)
+	H.swap_rmb_intent(num=1)
+
+	var/datum/antagonist/new_antag = new /datum/antagonist/skeleton()
+	H.mind.add_antag_datum(new_antag)
+
+/datum/job/roguetown/greater_skeleton/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+	..()
+
 	var/mob/living/carbon/human/H = L
 	H.advsetup = TRUE
 	H.invisibility = INVISIBILITY_MAXIMUM
 	H.become_blind("advsetup")
 
-/datum/outfit/job/roguetown/greater_skeleton/lich
-	cloak = /obj/item/clothing/cloak/half	//starts black, so they can be identified.
-	belt = /obj/item/storage/belt/rogue/leather/black
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
-	backl = /obj/item/storage/backpack/rogue/satchel
-	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
 
-// Melee goon w/ javelins. All-rounder.
-/datum/advclass/greater_skeleton/legionnaire
-	name = "Ancient Legionnaire"
-	tutorial = "A veteran lineman. How far you've fallen."
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/legionnaire
+/*
+NECRO SKELETONS
+*/
 
-	category_tags = list(CTAG_SKELETON)
 
-/datum/outfit/job/roguetown/greater_skeleton/lich/legionnaire/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/greater_skeleton/necro
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
+	head = /obj/item/clothing/head/roguetown/helmet/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+
+/datum/advclass/greater_skeleton/necro/shambler
+	name = "Decrepit Shambler"
+	tutorial = "One of many to come. One of many to go."
+	outfit = /datum/outfit/job/roguetown/greater_skeleton/necro/shambler
+
+	category_tags = list(CTAG_NSKELETON)
+
+/datum/outfit/job/roguetown/greater_skeleton/necro/shambler/pre_equip(mob/living/carbon/human/H)
 	..()
-	// Assign stats first.
-	H.STASTR = 12
-	H.STASPD = 8
-	H.STACON = 9
-	H.STAEND = 12
-	H.STAINT = 3
-	H.STAPER = 11	//Base min to hit aimed hits accurately.
-	// Now comes their skills.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	//Extra skills because no intel i guess.
-	H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-	// Now comes the loadout armor.
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/aalloy
-	// Now weapons and misc gear.
-	backr = /obj/item/rogueweapon/shield/wood	//all of them get the wood shield
-	beltl = /obj/item/quiver/javelin/paalloy	//all of them get a javelin bag of STEEL javelins which are stupid strong but whatever
-	H.adjust_blindness(-3)
-	var/weapons = list("Gladius","Kopesh","Shortsword","Axe", "Flail")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Gladius")
-			beltr = /obj/item/rogueweapon/sword/iron/short/gladius/pagladius
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		if("Kopesh")
-			beltr = /obj/item/rogueweapon/sword/sabre/palloy
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		if("Shortsword")
-			beltr = /obj/item/rogueweapon/sword/short/pashortsword
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		if("Axe")
-			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel/paaxe
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
-		if("Flail")
-			beltr = /obj/item/rogueweapon/flail/sflail/paflail
-			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
 
-// Ranged goon w/ a dumb bow. Ranger, what else is there to say.
-/datum/advclass/greater_skeleton/ballistiares
-	name = "Ancient Ballistiares"
-	tutorial = "Your frame has wept off your skin. Your fingers are mere peaks. Yet your aim remains true."
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/ballistiares
-
-	category_tags = list(CTAG_SKELETON)
-
-/datum/outfit/job/roguetown/greater_skeleton/lich/ballistiares/pre_equip(mob/living/carbon/human/H)
-	..()
-	// Assign stats first.
-	H.STASTR = 10
-	H.STASPD = 10
-	H.STACON = 7
-	H.STAEND = 14
-	H.STAINT = 6
-	H.STAPER = 15	//For bow skill, maybe tune down if too strong w/ longbows or shit.
-	// Now comes their skills.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	H.mind.adjust_skillrank(/datum/skill/combat/bows , 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/slings, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	//Extra skills because no intel i guess.
-	H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-	// Now comes the loadout armor.
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/aalloy
-	// Now weapons and misc gear.
-	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
-	H.adjust_blindness(-3)
-	var/weapons = list("Recurve Bow","Yew Longbow","Crossbow","Sling")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Recurve Bow")
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			beltl = /obj/item/quiver/bodkin/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
-		if("Yew Longbow")
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
-			beltl = /obj/item/quiver/bodkin/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
-		if("Crossbow")
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			beltl = /obj/item/quiver/bolts/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
-		if("Sling")
-			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
-			backr = /obj/item/quiver/sling/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
-
-// Heavy/Tanky goon. Not heavy armor but due to the steel + weapons they'll fare just fine.
-/datum/advclass/greater_skeleton/bulwark
-	name = "Ancient Death Bulwark"
-	tutorial = "All throughout, you've borne the brunt. And even in death, will you continue."
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/bulwark
-
-	category_tags = list(CTAG_SKELETON)
-
-/datum/outfit/job/roguetown/greater_skeleton/lich/bulwark/pre_equip(mob/living/carbon/human/H)
-	..()
-	// Assign god stats first.
-	H.STASTR = 14
-	H.STASPD = 5
-	H.STACON = 11
-	H.STAEND = 10
+	H.STASTR = prob(2) ? 20 : rand(12,14)
+	H.STAPER = rand(10,12)
+	H.STASPD = rand(8,10)
+	H.STACON = rand(9,11)
+	H.STAEND = rand(12,15)
 	H.STAINT = 1
-	H.STAPER = 10	//Woe be upon ye. Not terrible, not good. Get fucked.
 
-	// Now comes their skills.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+	//light labor skills for skeleton manual labor and some warrior-adventurer skills, equipment is still bad probably
+	H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/masonry, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-	//Extra skills because no intel i guess.
-	H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-	// Now comes the loadout armor.
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/half/paalloy
-	neck = /obj/item/clothing/neck/roguetown/gorget/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
-	// Now weapons and misc gear.
-	H.adjust_blindness(-3)
-	var/weapons = list("Greatsword","Bardiche","Grand Mace","Spear", "Warhammer + Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-	H.set_blindness(0)
-	switch(weapon_choice)
-		if("Greatsword")
-			backr = /obj/item/rogueweapon/greatsword/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		if("Bardiche")
-			beltr = /obj/item/rogueweapon/halberd/bardiche/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-		if("Grand Mace")
-			beltr = /obj/item/rogueweapon/mace/goden/steel/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		if("Spear")
-			beltr = /obj/item/rogueweapon/spear/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-		if("Warhammer + Shield")
-			beltr = /obj/item/rogueweapon/mace/warhammer/steel/paalloy
-			backr = /obj/item/rogueweapon/shield/wood
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
-
-// non-Combat crafter goon. Worse weapons + armor but does base-building. Fortnite.
-/datum/advclass/greater_skeleton/sapper
-	name = "Broken-Bone Sapper"
-	tutorial = "Simple. Obedient. Like an ant in a colony."
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/sapper
-
-	category_tags = list(CTAG_SKELETON)
-
-/datum/outfit/job/roguetown/greater_skeleton/lich/sapper/pre_equip(mob/living/carbon/human/H)
-	..()
-	// Assign god + stats first.
-	H.set_patron(/datum/patron/inhumen/zizo)
-	H.STASTR = 10
-	H.STASPD = 6
-	H.STACON = 9
-	H.STAEND = 10
-	H.STAINT = 6
-	H.STAPER = 10
-	// Now comes their skills.
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)	//Fuck it, they can keep it cus their stats are ass.
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/bows , 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/slings, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	//Good non-combat skills for shit. They get shit intel and no level ups so good crafting stats.
-	H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/masonry, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/misc/sewing, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/traps, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/craft/engineering, 4, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/labor/mining, 4, TRUE)			//Good miner.
-	H.mind.adjust_skillrank(/datum/skill/labor/lumberjacking, 3, TRUE)
-	// Now comes the loadout armor.
-	head = /obj/item/clothing/head/roguetown/helmet/kettle/minershelm
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	neck = /obj/item/clothing/neck/roguetown/coif
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/aalloy
-	backl = /obj/item/storage/backpack/rogue/satchel
-	// Now weapons and misc gear.
-	beltr = /obj/item/rogueweapon/stoneaxe/woodcut
-	beltl = /obj/item/rogueweapon/pick/copper
-	
+	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
+
+	shirt = prob(50) ? /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant : /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/l
+	r_hand = prob(50) ? /obj/item/rogueweapon/sword : /obj/item/rogueweapon/stoneaxe/woodcut

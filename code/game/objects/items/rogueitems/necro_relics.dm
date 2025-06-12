@@ -51,9 +51,9 @@
 		var/mob/dead/new_player/N = C
 		N.close_spawn_windows()
 
-	var/mob/living/carbon/human/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
+	var/mob/living/carbon/human/species/skeleton/no_equipment/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
 	target.key = C.key
-	target.equipOutfit(/datum/outfit/job/roguetown/greater_skeleton/necro)
+	SSjob.EquipRank(target, "Greater Skeleton", TRUE)
 	target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
 
 	target.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb/lesser)

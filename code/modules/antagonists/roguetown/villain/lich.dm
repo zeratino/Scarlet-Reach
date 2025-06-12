@@ -315,11 +315,11 @@
 		var/mob/dead/new_player/N = C
 		N.close_spawn_windows()
 
-	var/mob/living/carbon/human/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
+	var/mob/living/carbon/human/species/skeleton/no_equipment/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
 	target.key = C.key
-	SSjob.EquipRank(target, "Greater Skeleton", TRUE)
+	SSjob.EquipRank(target, "Fortified Skeleton", TRUE)
 	target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
-	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "GREATER SKELETON"), 3 SECONDS)
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "FORTIFIED SKELETON"), 3 SECONDS)
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_pronouns_and_body)), 7 SECONDS)
 	target.mind.AddSpell(new /obj/effect/proc_holder/spell/self/suicidebomb/lesser)
 	return TRUE

@@ -329,7 +329,8 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_PURITAN		"CAT_PURITAN"		// For Inquisitor subclasses
 #define CTAG_COURTAGENT		"CAT_COURTAGENT"	// Court agent classes
 #define CTAG_WRETCH			"CAT_WRETCH"		// Wretch classes untethered from adventurer
-#define CTAG_SKELETON		"CAT_SKELETON"		// Lich Greater Skeleton classes
+#define CTAG_LSKELETON		"CAT_LSKELETON"		// Lich Fortified Skeleton classes
+#define CTAG_NSKELETON		"CAT_NSKELETON"		// Necromancer Greater Skeleton classes
 
 #define CTAG_WARDEN			"CAT_WARDEN"		// Warden class - Handles warden class selector.
 #define CTAG_WATCH			"CAT_WATCH"			// Watch class - Handles Town Watch class selector
