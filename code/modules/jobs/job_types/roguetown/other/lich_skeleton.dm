@@ -102,6 +102,8 @@ LICH SKELETONS
 	H.STAINT = 6
 	H.STAPER = 15
 
+	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+
 	H.mind.adjust_skillrank(/datum/skill/combat/bows , 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/slings, 4, TRUE)
@@ -131,20 +133,20 @@ LICH SKELETONS
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Recurve Bow")
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			beltl = /obj/item/quiver/bodkin/paalloy
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+			beltl = /obj/item/quiver/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		if("Yew Longbow")
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
-			beltl = /obj/item/quiver/bodkin/paalloy
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/longbow
+			beltl = /obj/item/quiver/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		if("Crossbow")
-			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 			beltl = /obj/item/quiver/bolts/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)
 		if("Sling")
-			beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
-			backr = /obj/item/quiver/sling/paalloy
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
+			beltl = /obj/item/quiver/sling/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
 
 // Heavy/Tanky goon. Not heavy armor but due to the steel + weapons they'll fare just fine.
@@ -164,6 +166,8 @@ LICH SKELETONS
 	H.STAEND = 10
 	H.STAINT = 1
 	H.STAPER = 10
+
+	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
@@ -198,7 +202,7 @@ LICH SKELETONS
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 		if("Grand Mace")
 			r_hand = /obj/item/rogueweapon/mace/goden/steel/paalloy
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 		if("Spear")
 			r_hand = /obj/item/rogueweapon/spear/paalloy
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
