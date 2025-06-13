@@ -43,7 +43,7 @@
 		if(used.blocksound)
 			playsound(loc, get_armor_sound(used.blocksound, blade_dulling), 100)
 		var/intdamage = damage
-		if(intdamfactor)
+		if(intdamfactor != 1)
 			intdamage *= intdamfactor
 		if(d_type == "blunt")
 			if(used.armor?.getRating("blunt") > 0)
@@ -194,6 +194,8 @@
 			return spec_return
 	var/obj/item/I
 	var/throwpower = 30
+	if(has_status_effect(/datum/status_effect/buff/clash))
+		bad_guard(span_warning("The thrown object ruins my focus!"))
 	if(istype(AM, /obj/item))
 		I = AM
 		throwpower = I.throwforce

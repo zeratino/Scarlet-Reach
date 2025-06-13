@@ -1141,7 +1141,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return
 
 		var/damage = user.get_punch_dmg()
-
+		if(target.has_status_effect(/datum/status_effect/buff/clash) && target.get_active_held_item() && ishuman(user))
+			var/obj/item/IM = target.get_active_held_item()
+			target.process_clash(user, IM)
+			return
 /*		var/miss_chance = 100//calculate the odds that a punch misses entirely. considers stamina and brute damage of the puncher. punches miss by default to prevent weird cases
 		if(user.dna.species.punchdamagelow)
 			if(atk_verb == ATTACK_EFFECT_KICK) //kicks never miss (provided my species deals more than 0 damage)
@@ -1394,6 +1397,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 			if(!nodmg)
 				playsound(target, 'sound/combat/hits/kick/stomp.ogg', 100, TRUE, -1)
+
 			return TRUE
 		else
 			to_chat(user, span_warning("I'm too close to get a good kick in."))
@@ -1401,7 +1405,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	else
 		if(!target.kick_attack_check(user))
 			return 0
-
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
 		playsound(target, 'sound/combat/hits/kick/kick.ogg', 100, TRUE, -1)
 
@@ -1490,6 +1493,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.mind.attackedme[user.real_name] = world.time
 		user.rogfat_add(15)
 		target.forcesay(GLOB.hit_appends)
+		if(user.has_status_effect(/datum/status_effect/buff/clash))
+			user.bad_guard(span_warning("The kick throws my stance off!"))
+		if(target.has_status_effect(/datum/status_effect/buff/clash))
+			target.bad_guard(span_warning("The kick throws my stance off!"))
 
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	return
@@ -1574,7 +1581,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/bladec = user.used_intent.blade_class
 	if(H == user && bladec == BCLASS_PEEL)
 		bladec = BCLASS_BLUNT
-	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor, intdamfactor = user.used_intent.masteritem?.intdamage_factor)
+	
+	var/higher_intfactor = max(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
+	var/lowest_intfactor = min(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
+	var/used_intfactor = 1
+	if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
+		used_intfactor = lowest_intfactor
+	if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
+		used_intfactor = higher_intfactor
+	
+	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=user.used_intent.blade_class, peeldivisor = user.used_intent.peel_divisor, intdamfactor = used_intfactor)
 
 	var/nodmg = FALSE
 

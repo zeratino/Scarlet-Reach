@@ -50,7 +50,9 @@
 #define HEALTH_THRESHOLD_NEARDEATH -90 //Not used mechanically, but to determine if someone is so close to death they hear the other side
 
 #define DAMAGE_THRESHOLD_FIRE_CRIT 150
-
+#define STRENGTH_SOFTCAP 14	//STR value past which we get diminishing returns in our damage calculations.
+#define STRENGTH_MULT 0.1	//STR multiplier per STR point up to the softcap. Works as a %-age. 0.1 = 10% per point.
+#define STRENGTH_CAPPEDMULT 0.034	//STR multiplier per STR point past the softcap
 //Actual combat defines
 
 //click cooldowns, in tenths of a second, used for various combat actions
@@ -59,6 +61,7 @@
 #define CLICK_CD_SLEUTH 10
 #define CLICK_CD_MELEE 12
 #define CLICK_CD_FAST 8
+#define CLICK_CD_INTENTCAP 6
 #define CLICK_CD_RANGE 4
 #define CLICK_CD_RAPID 2
 #define CLICK_CD_CLICK_ABILITY 6
@@ -67,9 +70,19 @@
 #define CLICK_CD_RESIST 20
 #define CLICK_CD_GRABBING 10
 
+//Aimed / Swift defines
+#define EXTRA_STAMDRAIN_SWIFSTRONG 10
+#define CLICK_CD_MOD_SWIFT 0.75
+#define CLICK_CD_MOD_AIMED 1.25
+
 //Cuff resist speeds
 #define FAST_CUFFBREAK 1
 #define INSTANT_CUFFBREAK 2
+
+// animation types
+#define ATTACK_ANIMATION_BONK "bonk"
+#define ATTACK_ANIMATION_SWIPE "swipe"
+#define ATTACK_ANIMATION_THRUST "thrust"
 
 //Grab levels
 #define GRAB_PASSIVE				0

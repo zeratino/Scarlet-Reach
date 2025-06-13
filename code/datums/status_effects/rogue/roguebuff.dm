@@ -889,3 +889,82 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
 	effectedstats = list("intelligence" = 2, "endurance" = 4, "speed" = -3)
 	duration = 20 SECONDS
+
+
+/datum/status_effect/buff/clash
+	id = "clash"
+	duration = 6 SECONDS
+	var/dur
+	alert_type = /atom/movable/screen/alert/status_effect/buff/clash
+
+/datum/status_effect/buff/clash/on_apply()
+	. = ..()
+	if(!ishuman(owner))
+		return
+	dur = world.time
+	var/mob/living/carbon/human/H = owner
+	H.play_overhead_indicator('icons/mob/overhead_effects.dmi', prob(50) ? "clash" : "clashr", duration, OBJ_LAYER, soundin = 'sound/combat/clash_initiate.ogg', y_offset = 28)
+
+/datum/status_effect/buff/clash/tick()
+	if(!owner.get_active_held_item() || !(owner.mobility_flags & MOBILITY_STAND))
+		var/mob/living/carbon/human/H = owner
+		H.bad_guard()
+
+/datum/status_effect/buff/clash/on_remove()
+	. = ..()
+	owner.apply_status_effect(/datum/status_effect/debuff/clashcd)
+	var/newdur = world.time - dur
+	var/mob/living/carbon/human/H = owner
+	if(newdur > (duration - 0.3 SECONDS))	//Not checking exact duration to account for lag and any other tick / timing inconsistencies.
+		H.bad_guard(span_warning("I held my focus for too long. It's left me drained."))
+	var/mutable_appearance/appearance = H.overlays_standing[OBJ_LAYER]
+	H.clear_overhead_indicator(appearance)
+
+
+/atom/movable/screen/alert/status_effect/buff/clash
+	name = "Ready to Clash"
+	desc = span_notice("I am on guard, and ready to clash. If I am hit, I will successfully defend. Attacking will make me lose my focus.")
+	icon_state = "clash"
+
+#define BLOODRAGE_FILTER "bloodrage"
+
+/atom/movable/screen/alert/status_effect/buff/graggar_bloodrage
+	name = "BLOODRAGE"
+	desc = "GRAGGAR! GRAGGAR! GRAGGAR!"
+	icon_state = "bloodrage"
+
+/datum/status_effect/buff/bloodrage
+	id = "bloodrage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/graggar_bloodrage
+	var/outline_color = "#ad0202"
+	duration = 15 SECONDS
+
+/datum/status_effect/buff/bloodrage/on_apply()
+	ADD_TRAIT(owner, TRAIT_STRENGTH_UNCAPPED, TRAIT_MIRACLE)
+	var/holyskill = owner.mind?.get_skill_level(/datum/skill/magic/holy)
+	duration = ((15 SECONDS) * holyskill)
+	var/filter = owner.get_filter(BLOODRAGE_FILTER)
+	if(!filter)
+		owner.add_filter(BLOODRAGE_FILTER, 2, list("type" = "outline", "color" = outline_color, "alpha" = 60, "size" = 2))
+	if(!HAS_TRAIT(owner, TRAIT_DODGEEXPERT))
+		if(owner.STASTR < STRENGTH_SOFTCAP)
+			effectedstats = list("strength" = (STRENGTH_SOFTCAP - owner.STASTR))
+			. = ..()
+			return TRUE
+	if(holyskill >= SKILL_LEVEL_APPRENTICE)
+		effectedstats = list("strength" = 2)
+	else
+		effectedstats = list("strength" = 1)
+	. = ..()
+	return TRUE
+
+/datum/status_effect/buff/bloodrage/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_STRENGTH_UNCAPPED, TRAIT_MIRACLE)
+	owner.visible_message(span_warning("[owner] wavers, their rage simmering down."))
+	owner.OffBalance(3 SECONDS)
+	owner.remove_filter(BLOODRAGE_FILTER)
+	owner.emote("breathgasp", forced = TRUE)
+	owner.Slowdown(3)
+
+#undef BLOODRAGE_FILTER

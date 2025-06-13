@@ -159,6 +159,8 @@
 				. += span_secradio("[m1] marked by scars inflicted for pleasure. A delectable target for my urges.")
 			if(has_flaw(/datum/charflaw/addiction/sadist) && user.has_flaw(/datum/charflaw/masochist))
 				. += span_secradio("[m1] looking with eyes filled with a desire to inflict pain. So exciting.")
+			if(HAS_TRAIT(user, TRAIT_EMPATH) && HAS_TRAIT(src, TRAIT_PERMAMUTE))
+				. += span_notice("[m1] lacks a voice. [m1] is a mute!")
 
 		var/villain_text = get_villain_text(user)
 		if(villain_text)
@@ -190,12 +192,6 @@
 					. += span_redtext("[m1] repugnant!")
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_redtext("[m1] repulsive!")
-
-		if (HAS_TRAIT(src, TRAIT_CRITICAL_WEAKNESS))
-			if(isliving(user))
-				var/mob/living/L = user
-				if(L.STAINT > 9 && L.STAPER > 9)
-					. += span_redtext("<i>[m1] critically fragile!</i>")
 
 	if(user != src && HAS_TRAIT(user, TRAIT_MATTHIOS_EYES))
 		var/atom/item = get_most_expensive()

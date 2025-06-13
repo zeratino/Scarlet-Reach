@@ -347,7 +347,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 			to_chat(current, span_nicegreen("My [S.name] grows to [SSskills.level_names[known_skills[S]]]!"))
 			SEND_SIGNAL(current, COMSIG_SKILL_RANK_INCREASED, S, known_skills[S], old_level)
 			GLOB.azure_round_stats[STATS_SKILLS_LEARNED]++
-			S.skill_level_effect(src, known_skills[S])
+			S.skill_level_effect(known_skills[S], src)
 			if(istype(known_skills, /datum/skill/combat))
 				GLOB.azure_round_stats[STATS_COMBAT_SKILLS]++
 			if(istype(known_skills, /datum/skill/craft))
@@ -856,13 +856,16 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 //To remove a specific spell from a mind
 /datum/mind/proc/RemoveSpell(obj/effect/proc_holder/spell/spell)
+	var/success = FALSE
 	if(!spell)
-		return
+		return FALSE
 	for(var/X in spell_list)
 		var/obj/effect/proc_holder/spell/S = X
 		if(istype(S, spell))
 			spell_list -= S
 			qdel(S)
+			success = TRUE // won't return here because of possibility of duplicate spells in spell_list
+	return success
 
 /datum/mind/proc/RemoveAllSpells()
 	for(var/obj/effect/proc_holder/S in spell_list)

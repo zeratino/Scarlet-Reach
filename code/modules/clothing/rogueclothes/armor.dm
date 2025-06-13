@@ -54,6 +54,50 @@
 /obj/item/clothing/suit/roguetown/armor/armordress/alt
 	icon_state = "armordressalt"
 
+//................ Winter Dress ............... //
+/obj/item/clothing/suit/roguetown/armor/armordress/winterdress
+	name = "winter dress"
+	icon = 'icons/roguetown/clothing/shirts_royalty.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts_royalty.dmi'
+	desc = "A thick, padded, and comfortable dress popular amongst nobility during winter."
+	body_parts_covered = COVERAGE_FULL
+	icon_state = "winterdress"
+	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts_royalty.dmi'
+	boobed = TRUE
+	detail_tag = "_detail"
+	detail_color = CLOTHING_BLACK
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+
+/obj/item/clothing/suit/roguetown/armor/armordress/winterdress/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+/obj/item/clothing/suit/roguetown/armor/armordress/winterdress/monarch //For the duchess nobody else
+	desc = "A thick, padded, and comfortable dress to maintain both temperature and safety when leaving the keep."
+	armor = ARMOR_PADDED_GOOD
+
+/obj/item/clothing/suit/roguetown/armor/armordress/winterdress/monarch/lordcolor(primary,secondary)
+	detail_color = primary
+	update_icon()
+
+/obj/item/clothing/suit/roguetown/armor/armordress/winterdress/monarch/Initialize()
+	. = ..()
+	if(GLOB.lordprimary)
+		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
+	else
+		GLOB.lordcolor += src
+
+/obj/item/clothing/suit/roguetown/armor/armordress/winterdress/monarch/Destroy()
+	GLOB.lordcolor -= src
+	return ..()
+
 //otavan brute skin
 /obj/item/clothing/suit/roguetown/armor/skin_armor/monk_skin/Initialize(mapload)
 	. = ..()
@@ -136,13 +180,20 @@
 			return
 
 
-
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 	name = "fencer gambeson"
 	desc = "A large shirt with heavy padding meant to be used below armor. Will probably stop an arrow, unlikely to stop a bolt."
 	icon_state = "fancygamb"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	color = "#FFFFFF"
+	shiftable = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/chargah
+	name = "steppesman chargah robe"
+	desc = "A light yet thick robe padded with fine silks and cloth, acting as a mix of traditional gambeson and imported silks of the east. Popular among Aavnr steppesmen."
+	icon_state = "chargah"
+	color = "#864a4a"
+	boobed = TRUE
 	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
@@ -158,7 +209,8 @@
 	max_integrity = 250 // Slightly stronger than base, a reward for unique drip
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
-	color = "#FFFFFF"
+	color = "#1d1d22"
+	detail_color = "#FFFFFF"
 	var/picked = FALSE
 	shiftable = FALSE
 
@@ -186,72 +238,6 @@
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
 	color = "#646464"
-
-//................ Winter Dress ............... //
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress
-	name = "winter dress"
-	icon = 'icons/roguetown/clothing/shirts_royalty.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts_royalty.dmi'
-	desc = "A thick, padded, and comfortable dress to maintain both temperature and safety when leaving the keep."
-	body_parts_covered = COVERAGE_FULL
-	icon_state = "winterdress"
-	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts_royalty.dmi'
-	boobed = TRUE
-	detail_tag = "_detail"
-	detail_color = CLOTHING_BLACK
-	r_sleeve_status = SLEEVE_NORMAL
-	l_sleeve_status = SLEEVE_NORMAL
-	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
-	shiftable = FALSE
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress/update_icon()
-	cut_overlays()
-	if(get_detail_tag())
-		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
-		pic.appearance_flags = RESET_COLOR
-		if(get_detail_color())
-			pic.color = get_detail_color()
-		add_overlay(pic)
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress/lordcolor(primary,secondary)
-	detail_color = primary
-	update_icon()
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress/Initialize()
-	. = ..()
-	if(GLOB.lordprimary)
-		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
-	else
-		GLOB.lordcolor += src
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/winterdress/Destroy()
-	GLOB.lordcolor -= src
-	return ..()
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/wintercommon
-	name = "winter dress"
-	icon = 'icons/roguetown/clothing/shirts_royalty.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts_royalty.dmi'
-	desc = "A thick, padded, and comfortable dress to maintain both temperature and safety when leaving the keep."
-	body_parts_covered = COVERAGE_FULL
-	icon_state = "winterdress"
-	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts_royalty.dmi'
-	boobed = TRUE
-	detail_tag = "_detail"
-	detail_color = CLOTHING_BLACK
-	r_sleeve_status = SLEEVE_NORMAL
-	l_sleeve_status = SLEEVE_NORMAL
-	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
-	shiftable = FALSE
-
-/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/wintercommon/update_icon()
-	cut_overlays()
-	if(get_detail_tag())
-		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
-		pic.appearance_flags = RESET_COLOR
-		if(get_detail_color())
-			pic.color = get_detail_color()
-		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest/winterjacket
 	name = "winter jacket"
@@ -409,6 +395,12 @@
 	max_integrity = 300
 	sellprice = 25
 
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
+	name = "fur-woven hatanga coat"
+	desc = "A finely woven hatagna coat, replacing much of its scaled armor with fine furs and reinforced padding for lighter rides."
+	icon_state = "hatangafur"
+	item_state = "hatangafur"
+
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket
 	name = "hardened leather jacket"
 	desc = "A heavy leather jacket that covers the arms and protects the vitals."
@@ -499,7 +491,7 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest/hand
-	name = "Hand's vest"
+	name = "hand's vest"
 	desc = "A soft vest of finest fabric."
 	icon_state = "handcoat"
 	color = null
@@ -719,7 +711,6 @@
 	icon_state = "ancientcuirass"
 	smeltresult = /obj/item/ingot/aaslag
 
-
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
 	icon_state = "flutedcuirass"
@@ -774,6 +765,13 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
+/obj/item/clothing/suit/roguetown/armor/plate/scale/steppe
+	name = "steel steppesman hatanga"
+	desc = "A set of steel-scaled hatanga armor hailing from the southern steppes."
+	icon_state = "hudesutu"
+	max_integrity = 250		//Grenzel gets 100+ integrity, I don't see why not give a +50 here.
+
+
 //HEAVY ARMOR//
 
 /obj/item/clothing/suit/roguetown/armor/plate
@@ -826,6 +824,22 @@
 
 	max_integrity = 600
 	body_parts_covered = COVERAGE_SHIRT
+
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar
+	name = "vicious half-plate"
+	desc = "A fluted half-plate armour-set which stirs with the same violence driving our world. This inner motive makes it far less restrictive."
+	armor_class = ARMOR_CLASS_MEDIUM
+	max_integrity = 500 // We are probably one of the best medium armor sets. At higher integ than most(heavy armor levels, pretty much. But worse resistances, we get the bonus over the other sets of being medium and being unequippable.)
+	icon_state = "graggarplate"
+	armor = ARMOR_CUIRASS
+
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_HORDE))
+		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS ARMOR, CEASE OR BE RENDED ASUNDER!</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 	name = "psydonite half-plate"
