@@ -36,11 +36,6 @@
 	feature_slot = BODYPART_FEATURE_FACE_DETAIL
 	body_zone = BODY_ZONE_HEAD
 
-/datum/bodypart_feature/face_detail2
-	name = "Face Detail (2)"
-	feature_slot = BODYPART_FEATURE_FACE_DETAIL
-	body_zone = BODY_ZONE_HEAD
-
 /datum/bodypart_feature/accessory
 	name = "Accessory"
 	feature_slot = BODYPART_FEATURE_ACCESSORY
