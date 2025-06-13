@@ -101,7 +101,7 @@
 
 
 	H.change_stat("strength", 3) //Heavy hitters. Less con/end, high strength.
-	H.change_stat("intelligence", 3)
+	H.change_stat("intelligence", 4)
 	H.change_stat("constitution", 1)
 	H.change_stat("endurance", 1)
 	H.change_stat("speed", -1)
@@ -189,7 +189,7 @@
 	H.change_stat("strength", 1) //Tanky, less strength, but high con/end.
 	H.change_stat("constitution", 3)
 	H.change_stat("endurance", 3)
-	H.change_stat("intelligence", 1)
+	H.change_stat("intelligence", 3)
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Longsword","Flail","Warhammer","Sabre")
@@ -267,7 +267,7 @@
 	H.change_stat("endurance", 1)
 	H.change_stat("constitution", 1)
 	H.change_stat("perception", 2)
-	H.change_stat("intelligence", 1)
+	H.change_stat("intelligence", 3)
 
 	H.adjust_blindness(-3)
 	var/weapons = list(
@@ -364,7 +364,7 @@
 	H.change_stat("strength", 1)
 	H.change_stat("endurance", 2)
 	H.change_stat("speed", 2)
-	H.change_stat("intelligence", 1)
+	H.change_stat("intelligence", 3)
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Rapier + Longbow","Estoc + Recurve Bow","Sabre + Buckler","Whip + Crossbow","Greataxe + Sling")
