@@ -33,7 +33,7 @@
 	attacker.visible_message(span_danger("[attacker] is dipping \the [dipper] in [attacked_container]!"), "You dip \the [dipper] in \the [attacked_container]!", vision_distance = 2)
 	if(!do_after(attacker, 2 SECONDS, target = attacked_container))
 		return
-	attacked_container.reagents.trans_to(dipper, 0.5, transfered_by = attacker)
+	attacked_container.reagents.trans_to(dipper, 1, transfered_by = attacker)
 	attacker.visible_message(span_danger("[attacker] dips \the [dipper] in \the [attacked_container]!"), "You dip \the [dipper] in \the [attacked_container]!", vision_distance = 2)
 	log_combat(attacker, dipper, "poisoned", addition="with [reagentlog]")
 
