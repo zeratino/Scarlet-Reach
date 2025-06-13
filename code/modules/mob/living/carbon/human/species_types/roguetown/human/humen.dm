@@ -83,9 +83,9 @@
 		"Otava" = SKIN_COLOR_OTAVA,
 		"Etrusca" = SKIN_COLOR_ETRUSCA,
 		"Gronn" = SKIN_COLOR_GRONN,
-		"North Raneshen (Chorodiaki)" = SKIN_COLOR_GIZA,
-		"West Raneshen (Vrdaqnan)" = SKIN_COLOR_SHALVISTINE,
-		"East Raneshen (Nshkormh)" = SKIN_COLOR_LALVESTINE,
+		"Giza" = SKIN_COLOR_GIZA,
+		"Shalvistine" = SKIN_COLOR_SHALVISTINE,
+		"Lalvestine" = SKIN_COLOR_LALVESTINE,
 		"Ebon" = SKIN_COLOR_EBON,
 		"Kazengun" = SKIN_COLOR_KAZENGUN
 	)
