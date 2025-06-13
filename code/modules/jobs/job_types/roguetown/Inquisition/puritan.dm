@@ -78,7 +78,7 @@
 	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PURITAN, JOB_TRAIT)
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
-	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon //these will be renamed to show that Psydon is dead after the next knife update
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
