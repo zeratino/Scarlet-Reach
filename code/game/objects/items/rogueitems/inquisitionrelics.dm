@@ -1,6 +1,6 @@
 // Reliquary Box and key - The Box Which contains these
 /obj/structure/reliquarybox
-	name = "Otavan Reliquary"
+	name = "Holy-See Reliquary"
 	desc = "A foreboding red chest with a intricate lock design. It seems to only fit a very specific key. Choose wisely."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "chestweird1"
@@ -275,7 +275,7 @@ Inquisitorial armory down here
 
 /obj/item/flashlight/flare/torch/lantern/psycenser
 	name = "Golgatha"
-	desc = "A masterfully-crafted thurible that, when opened, emits a ghastly perfume that reinvigorates the flesh-and-steel of Psydonites. It is said to contain a volatile fragment of the Comet Syon, which - if mishandled - can lead to unforeseen consequences."
+	desc = "A masterfully-crafted thurible that, when opened, emits a ghastly perfume that reinvigorates the flesh-and-steel of the Ten. It is said to contain a volatile fragment of the Comet Syon, which - if mishandled - can lead to unforeseen consequences."
 	icon_state = "psycenser"
 	item_state = "psycenser"
 	light_outer_range = 8
@@ -289,7 +289,7 @@ Inquisitorial armory down here
 /obj/item/flashlight/flare/torch/lantern/psycenser/examine(mob/user)
 	. = ..()
 	if(fuel > 0)
-		. += span_info("If opened, it may bless Psydon weapons and those of Psydon faith.")
+		. += span_info("If opened, it may bless Holy weapons and those of true Faith.")
 		. += span_warning("Smashing a creature with it open will create a devastating explosion and render it useless.")
 	if(fuel <= 0)
 		. += span_info("It is gone.")
