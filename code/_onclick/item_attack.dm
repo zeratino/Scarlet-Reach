@@ -405,7 +405,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	var/newforce = get_complex_damage(I, user, blade_dulling)
+	var/newforce = (get_complex_damage(I, user, blade_dulling) * I.demolition_mod)
 	if(!newforce)
 		testing("dam33")
 		return 0
