@@ -108,6 +108,8 @@
 	name = "solar vestments"
 	desc = "Holy vestments sanctified by divine hands. Caution is advised if not a faithful."
 	icon_state = "priestrobe"
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	armor = ARMOR_PADDED	//Equal to gamby
 	color = null
 
 /obj/item/clothing/suit/roguetown/shirt/robe/priest/pickup(mob/living/user)
@@ -138,6 +140,8 @@
 	desc = "Holy vestments worn by the most faithful."
 	icon_state = "monkvestments"
 	item_state = "monkvestments"
+	armor = ARMOR_PADDED	//Equal to gamby
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
 
 /obj/item/clothing/suit/roguetown/shirt/robe/monk/equipped(mob/living/user, slot)
 	..()
