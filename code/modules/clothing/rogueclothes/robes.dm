@@ -119,6 +119,40 @@
 				user.IgniteMob()
 	..()
 
+/obj/item/clothing/suit/roguetown/shirt/robe/priest/equipped(mob/living/user, slot)
+	..()
+	if(slot != SLOT_ARMOR)
+		return
+	if(!HAS_TRAIT(user, TRAIT_CHOSEN))	//Requires this cus it's a priest-only thing.
+		return
+	ADD_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
+	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigerous - empowered by the gods!"))
+
+/obj/item/clothing/suit/roguetown/shirt/robe/priest/dropped(mob/living/user)
+	..()
+	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
+	to_chat(user, span_notice("I must lay down my robes and rest; even god's chosen must rest.."))
+
+/obj/item/clothing/suit/roguetown/shirt/robe/monk
+	name = "monk vestments"
+	desc = "Holy vestments worn by the most faithful."
+	icon_state = "monkvestments"
+	item_state = "monkvestments"
+
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/equipped(mob/living/user, slot)
+	..()
+	if(slot != SLOT_ARMOR)
+		return
+	if(!HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN))	//Requires this cus it's a monk-only thing.
+		return
+	ADD_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
+	to_chat(user, span_notice("With my vows to poverty and my vestments, I feel vigerous - empowered by the gods!"))
+
+/obj/item/clothing/suit/roguetown/shirt/robe/monk/dropped(mob/living/user)
+	..()
+	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
+	to_chat(user, span_notice("I must lay down my robes and rest; even god's chosen must rest.."))
+
 /obj/item/clothing/suit/roguetown/shirt/robe/courtmage
 	color = "#6c6c6c"
 
