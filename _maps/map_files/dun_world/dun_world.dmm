@@ -28228,10 +28228,6 @@
 /obj/item/flashlight/flare/torch/metal,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement/keep)
-"jAi" = (
-/obj/structure/closet/crate/drawer,
-/turf/open/floor/carpet/red,
-/area/rogue/indoors/town/church/basement)
 "jAo" = (
 /obj/structure/closet/crate/chest/lootbox,
 /turf/open/floor/rogue/naturalstone,
@@ -42492,6 +42488,10 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/beach/forest)
+"oxE" = (
+/obj/structure/closet/crate/drawer,
+/turf/open/floor/carpet/red,
+/area/rogue/indoors/town/church/basement)
 "oxH" = (
 /turf/open/floor/carpet/red,
 /area/rogue/under/cave/mazedungeon)
@@ -142726,7 +142726,7 @@ fQE
 llO
 jCS
 jtr
-jAi
+oxE
 rvc
 idG
 ogs
@@ -144534,7 +144534,7 @@ llO
 llO
 jCS
 jtr
-jAi
+oxE
 rvc
 idG
 ogs

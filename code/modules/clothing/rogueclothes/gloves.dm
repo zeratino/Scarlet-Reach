@@ -140,7 +140,7 @@
 
 /obj/item/clothing/gloves/roguetown/otavan/inqgloves
 	name = "inquisitorial leather gloves"
-	desc = "Masterfully crafted leather gloves, psycross included."
+	desc = "Masterfully crafted leather gloves, silver cross included."
 	icon_state = "inqgloves"
 	item_state = "inqgloves"
 	salvage_result = /obj/item/natural/hide/cured

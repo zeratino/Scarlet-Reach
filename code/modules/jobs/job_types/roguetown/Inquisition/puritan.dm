@@ -87,7 +87,6 @@
 	beltr = /obj/item/quiver/bolts
 	head = /obj/item/clothing/head/roguetown/inqhat
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
-	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	beltl = /obj/item/rogueweapon/sword/rapier
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/grapplinghook = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1) //these will be renamed to show that Psydon is dead after the next knife update
@@ -140,7 +139,6 @@
 	belt = /obj/item/storage/belt/rogue/leather/steel
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots
-	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt
 	cloak = /obj/item/clothing/cloak/cape/puritan
 	backr = /obj/item/storage/backpack/rogue/satchel/black
