@@ -6,7 +6,7 @@
 	total_positions = 8
 	spawn_positions = 8
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_TOLERATED_UP
+	allowed_races = RACES_NEUTRAL_UP
 	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
 	tutorial = "Having proven yourself loyal and capable, you are entrusted to defend the town and enforce its laws. \
@@ -64,12 +64,12 @@
 
 /datum/outfit/job/roguetown/manorguard/footsman/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
@@ -102,19 +102,19 @@
 		if("Warhammer & Shield")
 			beltr = /obj/item/rogueweapon/mace/warhammer
 			backl = /obj/item/rogueweapon/shield/wood
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 		if("Axe & Shield")
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 			backl = /obj/item/rogueweapon/shield/wood
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
 		if("Halberd")
 			r_hand = /obj/item/rogueweapon/halberd
 			backl = /obj/item/gwstrap
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 		if("Greataxe")
 			r_hand = /obj/item/rogueweapon/greataxe
 			backl = /obj/item/gwstrap
-			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardcastle)
 	H.verbs |= /mob/proc/haltyell
 
@@ -143,9 +143,9 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE) 		// Still have a cugel.
-	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)		//Only effects draw and reload time.
-	H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)			//Only effects draw times.
-	H.mind.adjust_skillrank(/datum/skill/combat/slings, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)		//Only effects draw and reload time.
+	H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)			//Only effects draw times.
+	H.mind.adjust_skillrank(/datum/skill/combat/slings, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) // A little better; run fast, weak boy.
@@ -176,15 +176,15 @@
 		if("Crossbow")
 			beltr = /obj/item/quiver/bolts
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)	
+			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE)	
 		if("Bow") // They can head down to the armory to sideshift into one of the other bows.
 			beltr = /obj/item/quiver/arrows
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)	
+			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)	
 		if("Sling")
 			beltr = /obj/item/quiver/sling/iron
 			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling // Both are belt slots and it's not worth setting where the cugel goes for everyone else, sad.
-			H.mind.adjust_skillrank(/datum/skill/combat/slings, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/slings, 1, TRUE)
 
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardcastle)
 	H.verbs |= /mob/proc/haltyell
@@ -211,8 +211,8 @@
 
 /datum/outfit/job/roguetown/manorguard/cavalry/pre_equip(mob/living/carbon/human/H)
 	..()
-	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-	H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
+	H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE) 		// Still have a cugel.
 	H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
@@ -249,11 +249,11 @@
 		if("Bardiche")
 			r_hand = /obj/item/rogueweapon/halberd/bardiche
 			backl = /obj/item/gwstrap
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 		if("Sword & Shield")
 			beltr = /obj/item/rogueweapon/sword/sabre
 			backl = /obj/item/rogueweapon/shield/wood
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 	
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/keyring/guardcastle)
 	H.verbs |= /mob/proc/haltyell
