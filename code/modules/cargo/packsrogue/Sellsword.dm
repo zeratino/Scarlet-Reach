@@ -5,7 +5,7 @@
 	crate_type = /obj/structure/closet/crate/chest/merchant
 
 /datum/supply_pack/rogue/Sellsword/dridersword
-	name = "Old Ranesheni package..."
+	name = "Old Shalvistine package..."
 	cost = 10
 	contains = list(/obj/item/rogueweapon/sword/sabre/shamshir)
 
