@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NOFATIGUE = span_notice ("I don't need rest; I won't ever feel fatigue."),
 	TRAIT_PERMAMUTE = span_notice("I am a mute. I cannot speak."),
   TRAIT_STRENGTH_UNCAPPED = span_warning("MY STRENGTH IS UNBOUND!"),
-	TRAIT_MONK_ROBE = span_notice("I feel closer to the gods in my meger robes.. I feel vigerous, empowered by their light!")
+	TRAIT_MONK_ROBE = span_notice("I feel closer to the gods in my meager robes.. I feel vigorous, empowered by their light!")
 ))
 
 // trait accessor defines

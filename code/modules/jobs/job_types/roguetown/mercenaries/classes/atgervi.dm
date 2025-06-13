@@ -168,7 +168,7 @@
 	experimental_onhip = FALSE
 
 /obj/item/clothing/shoes/roguetown/boots/leather/atgervi
-	name = "atgrervi leather boots"
+	name = "atgervi leather boots"
 	desc = "A pair of strong leather boots, designed to endure battle and the chill of the frozen north both."
 	icon_state = "atgervi_boots"
 	item_state = "atgervi_boots"

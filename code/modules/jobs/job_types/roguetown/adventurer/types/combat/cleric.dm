@@ -35,6 +35,7 @@
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are a wandering acolyte, versed in both miracles and martial arts. You forego the heavy armor paladins wear in favor of a more nimble approach to combat, utilizing your fists."))
 			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk
 			pants = /obj/item/clothing/under/roguetown/tights/black
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 			shoes = /obj/item/clothing/shoes/roguetown/sandals
