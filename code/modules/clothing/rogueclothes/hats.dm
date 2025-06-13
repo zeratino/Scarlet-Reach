@@ -962,7 +962,7 @@
 		desc = "A darksteel froggemund. Called forth from the edge of what should be known. In Her name."
 		flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS 
 		body_parts_covered = HEAD|EARS|HAIR
-		adjustable = FALSE
+		adjustable = CANT_CADJUST
 	else
 		icon_state = "zizobarbute"
 		name = "darksteel barbute"
