@@ -1765,8 +1765,8 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/head/roguetown/roguehood/psydon
-	name = "psydonian hood"
-	desc = "A hood worn by Psydon's disciples, oft-worn in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."
+	name = "Orthodox hood"
+	desc = "A hood worn by the tens' disciples, oft-worn in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."
 	icon_state = "psydonhood"
 	item_state = "psydonhood"
 	color = null
