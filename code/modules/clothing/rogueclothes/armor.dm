@@ -635,7 +635,7 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	armor_class = ARMOR_CLASS_HEAVY
 	armor = ARMOR_CUIRASS
-	name = "psydonite hauberk"
+	name = "Silver hauberk"
 	desc = "An ornate steel cuirass with tassets, worn atop thick chainmaille. While it falters against arrows and bolts, \
 			these interlinked layers are superb at warding off the blows of inhumen claws and axes."
 	icon_state = "ornatehauberk"
@@ -707,9 +707,9 @@
 	max_integrity = 350
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
-	name = "psydonite cuirass"
+	name = "Silver cuirass"
 	icon_state = "ornatecuirass"
-	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. \
+	desc = "An ornate steel cuirass with tassets, favored by both the Holy Inquisition and the Order of the Silver cross. \
 			Made to endure."
 	
 	max_integrity = 300
@@ -822,9 +822,9 @@
 	..()
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
-	name = "psydonite half-plate"
+	name = "Silver half-plate"
 	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
-			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
+			Favored by both the Holy Inquisition and the Order of Silver cross. It smells of the madness of an enduring God."
 	icon_state = "ornatehalfplate"
 
 	max_integrity = 400
@@ -870,9 +870,9 @@
 	max_integrity = 600
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
-	name = "psydonite plate"
+	name = "Silver plate"
 	desc = "A sturdily made fluted full-plate. Heavy-duty, and made to deflect blows from blades and arrows. \
-			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
+			Favored by both the Holy Inquisition and the Order of Silver. It smells of the madness of an enduring Gods."
 	icon_state = "ornateplate"
 
 	max_integrity = 500

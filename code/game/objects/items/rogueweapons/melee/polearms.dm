@@ -293,8 +293,8 @@
 
 
 /obj/item/rogueweapon/spear/psyspear
-	name = "psydonian spear"
-	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never forget that you are why Psydon wept."
+	name = "Silver spear"
+	desc = "An ornate spear, plated in a ceremonial veneer of silver. The barbs pierce your palm, and - for just a moment - you see red. Never forget that you are why the ten wept."
 	icon_state = "psyspear"
 	resistance_flags = FIRE_PROOF	//It's meant to be smacked by a "lamptern", and is special enough to warrant overriding the spear weakness
 

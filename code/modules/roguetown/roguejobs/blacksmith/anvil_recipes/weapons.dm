@@ -996,7 +996,7 @@
 */
 //Psydonian weapon smithing
 /datum/anvil_recipe/weapons/psy/axe
-	name = "Psydonian War Axe (+1 B. Silver, +1 Stick)"
+	name = "Silver War Axe (+1 B. Silver, +1 Stick)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/stoneaxe/battle/psyaxe
@@ -1004,7 +1004,7 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/mace
-	name = "Psydonian Mace (+1 B. Silver, +1 Stick)"
+	name = "Silver Mace (+1 B. Silver, +1 Stick)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/mace/goden/psymace
@@ -1012,7 +1012,7 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/spear
-	name = "Psydonian Spear (+1 Small Log)"
+	name = "Silver Spear (+1 Small Log)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/spear/psyspear
@@ -1020,14 +1020,14 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/dagger
-	name = "Psydonian Dagger"
+	name = "Silver Dagger"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/halberd
-	name = "Psydonian Halberd (+1 B. Silver, +1 Small Log)"
+	name = "Silver Halberd (+1 B. Silver, +1 Small Log)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/halberd/psyhalberd
@@ -1035,7 +1035,7 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/gsword
-	name = "Psydonian Greatsword (+1 B. Silver, +1 H. Steel)"
+	name = "Silver Greatsword (+1 B. Silver, +1 H. Steel)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	created_item = /obj/item/rogueweapon/greatsword/psygsword
@@ -1043,7 +1043,7 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/psy/sword
-	name = "Psydonian Sword (+1 B. Silver)"
+	name = "Silver Sword (+1 B. Silver)"
 	req_bar = /obj/item/ingot/silverblessed
 	craftdiff = 3
 	additional_items = list(/obj/item/ingot/silverblessed)

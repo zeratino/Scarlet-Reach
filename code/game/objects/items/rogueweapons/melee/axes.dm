@@ -333,7 +333,7 @@
 	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe
-	name = "psydonian war axe"
+	name = "Silver war axe"
 	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
 	smeltresult = /obj/item/ingot/steel

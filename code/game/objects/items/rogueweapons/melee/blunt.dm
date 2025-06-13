@@ -385,7 +385,7 @@
 
 
 /obj/item/rogueweapon/mace/goden/psymace
-	name = "psydonian mace"
+	name = "Silver mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
 	force = 25
