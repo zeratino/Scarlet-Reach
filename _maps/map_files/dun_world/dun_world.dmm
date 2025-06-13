@@ -15162,7 +15162,7 @@
 /obj/structure/roguewindow/openclose/reinforced{
 	dir = 1
 	},
-/turf/closed,
+/turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town)
 "fiP" = (
 /obj/structure/closet/crate/drawer/random,
@@ -23986,6 +23986,7 @@
 /obj/effect/decal/cleanable/dirt/cobweb{
 	dir = 1
 	},
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/rogue/blocks/newstone/alt,
 /area/rogue/indoors/town)
 "ifN" = (
