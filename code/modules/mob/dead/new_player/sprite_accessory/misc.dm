@@ -51,36 +51,6 @@
 	icon_state = "mangled"
 	layer = BODY_LAYER
 
-/datum/sprite_accessory/face_detail/warpaint_blue
-	name = "Warpaint (Blue)"
-	icon_state = "warpaint_blue"
-	layer = BODY_LAYER
-
-/datum/sprite_accessory/face_detail/warpaint_red
-	name = "Warpaint (Red)"
-	icon_state = "warpaint_red"
-	layer = BODY_LAYER
-
-/datum/sprite_accessory/face_detail/warpaint_green
-	name = "Warpaint (Green)"
-	icon_state = "warpaint_green"
-	layer = BODY_LAYER
-
-/datum/sprite_accessory/face_detail/warpaint_purple
-	name = "Warpaint (Purple)"
-	icon_state = "warpaint_purple"
-	layer = BODY_LAYER
-
-/datum/sprite_accessory/face_detail/warpaint_black
-	name = "Warpaint (Black)"
-	icon_state = "warpaint_black"
-	layer = BODY_LAYER
-
-/datum/sprite_accessory/face_detail/harlequin
-	name = "Harlequin"
-	icon_state = "harlequin"
-	layer = BODY_LAYER
-
 /datum/sprite_accessory/face_detail/tattoo_lips
 	name = "Tattoo (Lips)"
 	icon_state = "tattoo_lips"
@@ -175,3 +145,33 @@
 	name = "Neckband (E)"
 	icon_state = "chokere"
 	layer = BODY_LAYER
+
+/datum/sprite_accessory/accessory/harlequin
+	name = "Harlequin"
+	icon_state = "harlequin"
+	layer = BODY_LAYER
+
+/datum/sprite_accessory/accessory/warpaint_blue
+	name = "Warpaint (Blue)"
+	icon_state = "warpaint_blue"
+	layer = BODY_FRONT_LAYER
+
+/datum/sprite_accessory/accessory/warpaint_red
+	name = "Warpaint (Red)"
+	icon_state = "warpaint_red"
+	layer = BODY_FRONT_LAYER
+
+/datum/sprite_accessory/accessory/warpaint_green
+	name = "Warpaint (Green)"
+	icon_state = "warpaint_green"
+	layer = BODY_FRONT_LAYER
+
+/datum/sprite_accessory/accessory/warpaint_purple
+	name = "Warpaint (Purple)"
+	icon_state = "warpaint_purple"
+	layer = BODY_FRONT_LAYER
+
+/datum/sprite_accessory/accessory/warpaint_black
+	name = "Warpaint (Black)"
+	icon_state = "warpaint_black"
+	layer = BODY_FRONT_LAYER
