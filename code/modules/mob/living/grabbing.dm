@@ -499,6 +499,7 @@
 /obj/item/grabbing/bite
 	name = "bite"
 	icon_state = "bite"
+	d_type = "stab"
 	slot_flags = ITEM_SLOT_MOUTH
 	bleed_suppressing = 1
 	var/last_drink
