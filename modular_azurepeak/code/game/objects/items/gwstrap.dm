@@ -37,6 +37,8 @@
 					LAZYSET(I.onprop, "onback", getonmobprop("onback"))
 					user.update_inv_back()
 					name = "greatweapon strap ([A.name])"
+					if(A.sheathe_sound)
+						playsound(src, A.sheathe_sound, 100)
 		else
 			to_chat(loc, span_warning("The holster already holds a weapon!"))
 		return

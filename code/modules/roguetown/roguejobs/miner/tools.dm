@@ -17,6 +17,13 @@
 	smeltresult = /obj/item/ingot/iron
 	grid_width = 64
 	grid_height = 64
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_gen.ogg'
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
+
+/obj/item/rogueweapon/pick/equipped(mob/user, slot, initial = FALSE)
+	pickup_sound = pick("modular_helmsguard/sound/sheath_sounds/draw_polearm.ogg", "modular_helmsguard/sound/sheath_sounds/draw_gen.ogg") //adds more variety of sound at every interaction
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
+	. = ..()
 
 /obj/item/rogueweapon/pick/getonmobprop(tag)
 	. = ..()
