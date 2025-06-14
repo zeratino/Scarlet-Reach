@@ -44,9 +44,9 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(ooc_extra)
 			dat += "[ooc_extra]"
 		if(nsfw_headshot_link)
-			dat += "<div align='center'><b>NSFW</b></div>"
+			dat += "<div align='center'><b>NSFW</b></div><br>"
 		if(nsfw_headshot_link && !wear_armor && !wear_shirt)
-			dat += ("<div align='center'><img src='[nsfw_headshot_link]'></div>")
+			dat += ("<br><div align='center'><img src='[nsfw_headshot_link]' width='425px' height='475px'></div>")
 		else if(nsfw_headshot_link && (wear_armor || wear_shirt))
 			dat += "<br><center><i><font color = '#9d0080'; font size = 10>There is more to see but they are not naked...</font></i></center>"
 		var/datum/browser/popup = new(user, "[src]", nwidth = 700, nheight = 800)

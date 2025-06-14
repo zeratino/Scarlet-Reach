@@ -446,10 +446,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
 			if(headshot_link != null)
-				dat += "<br><img src='[headshot_link]' width='250px' height='300px'>"
+				dat += "<br><img src='[headshot_link]' width='150px' height='200px'>"
 			dat += "<br><b>NSFW Headshot:</b> <a href='?_src_=prefs;preference=nsfw_headshot;task=input'>Change</a>"
 			if(nsfw_headshot_link != null)
-				dat += "<br><img src='[nsfw_headshot_link]' width='225px' height='275px'>"
+				dat += "<br><img src='[nsfw_headshot_link]' width='125px' height='175px'>"
 			if(is_legacy)
 				dat += "<br><i><font size = 1>(Legacy)<a href='?_src_=prefs;preference=legacyhelp;task=input'>(?)</a></font></i>"
 

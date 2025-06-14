@@ -777,7 +777,11 @@
 
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
 		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
-
+		//tiny picture when you are not examining closer, shouldnt take too much space.
+		if(headshot_link && ((wear_shirt || wear_armor) || !nsfw_headshot_link))
+			msg += "<span class='info'><img src=[headshot_link] width=100 height=150/></span>"
+		if(nsfw_headshot_link && !wear_armor && !wear_shirt)
+			msg += "<span class='info'><img src=[nsfw_headshot_link] width=125 height=175/></span>"
 	var/list/lines = build_cool_description(get_mob_descriptors(obscure_name, user), src)
 	for(var/line in lines)
 		. += span_info(line)
