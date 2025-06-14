@@ -352,7 +352,7 @@
 							var/mob/living/simple_animal/SM = user
 							dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
 							dam2take *= (SM.STASTR / 10)
-							dam2take *= 0.4
+							dam2take *= 0.25
 							switch(used_weapon.blade_dulling)
 								if(DULLING_SHAFT_CONJURED)
 									dam2take *= 1.3
@@ -692,7 +692,7 @@
 						var/mob/living/simple_animal/SM = user
 						dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
 						dam2take *= (SM.STASTR / 10)
-						dam2take *= 0.4
+						dam2take *= 0.25
 						switch(IS.blade_dulling)
 							if(DULLING_SHAFT_CONJURED)
 								dam2take *= 1.3
