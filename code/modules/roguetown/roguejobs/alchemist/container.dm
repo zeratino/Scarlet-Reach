@@ -31,16 +31,16 @@
 	list_reagents = list(/datum/reagent/medicine/strong_antidote = 48)
 
 /obj/item/reagent_containers/glass/bottle/rogue/berrypoison
-	list_reagents = list(/datum/reagent/berrypoison = 15)
+	list_reagents = list(/datum/reagent/toxin/berrypoison = 15)
 
 /obj/item/reagent_containers/glass/bottle/rogue/strongpoison
-	list_reagents = list(/datum/reagent/strongpoison = 15)
+	list_reagents = list(/datum/reagent/toxin/strongpoison = 15)
 
 /obj/item/reagent_containers/glass/bottle/rogue/stampoison
-	list_reagents = list(/datum/reagent/stampoison = 15)
+	list_reagents = list(/datum/reagent/toxin/stampoison = 15)
 
 /obj/item/reagent_containers/glass/bottle/rogue/strongstampoison
-	list_reagents = list(/datum/reagent/strongstampoison = 15)
+	list_reagents = list(/datum/reagent/toxin/strongstampoison = 15)
 
 /obj/item/reagent_containers/glass/bottle/alchemical/strpot
 	list_reagents = list(/datum/reagent/buff/strength = 27)

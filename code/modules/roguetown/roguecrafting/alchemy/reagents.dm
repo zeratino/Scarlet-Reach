@@ -131,10 +131,8 @@
 /datum/reagent/medicine/antidote/on_mob_life(mob/living/carbon/M)
 	if(volume > 0.99)
 		M.adjustToxLoss(-4, 0)
-	for(var/datum/reagent/R in M.reagents.reagent_list)
-		if(R.harmful)
-			holder.remove_reagent(R.type, 1)
-
+	for(var/datum/reagent/toxin/R in M.reagents.reagent_list)
+		holder.remove_reagent(R.type, 1)
 	..()
 	. = 1
 
@@ -258,36 +256,25 @@ still is dangerous. Toxloss of 3 at metabolism 0.1 puts you in dying early stage
 A dose of ingested potion is defined as 5u, projectile deliver at most 2u, you already do damage with projectile, a bolt can only feasible hold a tiny amount of poison, so much easier to deliver than ingested and so on.
 If you want to expand on poisons theres tons of fun effects TG chemistry has that could be added, randomzied damage values for more unpredictable poison, add trait based resists instead of the clunky race check etc.*/
 
-/datum/reagent/berrypoison	// Weaker poison, balanced to make you wish for death and incapacitate but not kill
+/datum/reagent/toxin/berrypoison	// Weaker poison, balanced to make you wish for death and incapacitate but not kill
 	name = "Berry Poison"
 	description = ""
 	reagent_state = LIQUID
 	color = "#47b2e0"
 	taste_description = "bitterness"
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM
-	harmful = TRUE
 
-/datum/reagent/berrypoison/on_mob_life(mob/living/carbon/M)
-	if(volume > 0.09)
-		if(isdwarf(M))
-			M.add_nausea(1)
-			M.adjustToxLoss(0.5)
-		else
-			M.add_nausea(3) // so one berry or one dose (one clunk of extracted poison, 5u) will make you really sick and a hair away from crit.
-			M.adjustToxLoss(2)
-	return ..()
+/datum/reagent/toxin/berrypoison/on_mob_life(mob/living/carbon/M)
+	if(!HAS_TRAIT(M, TRAIT_NASTY_EATER))
+		return ..()
 
-
-/datum/reagent/strongpoison		// Strong poison, meant to be somewhat difficult to produce using alchemy or spawned with select antags. Designed to kill in one full dose (5u) better drink antidote fast
+/datum/reagent/toxin/strongpoison		// Strong poison, meant to be somewhat difficult to produce using alchemy or spawned with select antags. Designed to kill in one full dose (5u) better drink antidote fast
 	name = "Strong Poison"
 	description = ""
 	reagent_state = LIQUID
 	color = "#1a1616"
 	taste_description = "burning"
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM
-	harmful = TRUE
 
-/datum/reagent/strongpoison/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/strongpoison/on_mob_life(mob/living/carbon/M)
 	testing("Someone was poisoned")
 	if(volume > 0.09)
 		if(isdwarf(M))
@@ -298,64 +285,54 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 			M.adjustToxLoss(4.5) // just enough so 5u will kill you dead with no help
 	return ..()
 
-/datum/reagent/organpoison
+/datum/reagent/toxin/organpoison
 	name = "Organ Poison"
 	description = ""
 	reagent_state = LIQUID
 	color = "#2c1818"
 	taste_description = "sour meat"
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM
-	harmful = TRUE
 
+/datum/reagent/toxin/organpoison/on_mob_life(mob/living/carbon/M)
+	if(!HAS_TRAIT(M, TRAIT_NASTY_EATER) && !HAS_TRAIT(M, TRAIT_ORGAN_EATER) && !HAS_TRAIT(M, TRAIT_WILD_EATER))
+		return ..()
 
-/datum/reagent/organpoison/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M, TRAIT_NASTY_EATER) && !HAS_TRAIT(M, TRAIT_ORGAN_EATER))
-		M.add_nausea(9)
-		M.adjustToxLoss(2)
-	return ..()
-
-/datum/reagent/stampoison
+/datum/reagent/toxin/stampoison
 	name = "Stamina Poison"
 	description = ""
 	reagent_state = LIQUID
 	color = "#083b1c"
 	taste_description = "breathlessness"
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM * 3
-	harmful = TRUE
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM * 3
+	toxpwr = 0
 
 
-/datum/reagent/stampoison/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/stampoison/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
 		M.rogstam_add(-45) //Slowly leech stamina
 	return ..()
 
-/datum/reagent/strongstampoison
+/datum/reagent/toxin/strongstampoison
 	name = "Strong Stamina Poison"
 	description = ""
 	reagent_state = LIQUID
 	color = "#041d0e"
 	taste_description = "frozen air"
-	metabolization_rate = 0.1 * REAGENTS_METABOLISM * 9
-	harmful = TRUE
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM * 9
+	toxpwr = 0
 
 
-/datum/reagent/strongstampoison/on_mob_life(mob/living/carbon/M)
+/datum/reagent/toxin/strongstampoison/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
 		M.rogstam_add(-180) //Rapidly leech stamina
 	return ..()
 
 /datum/reagent/toxin/killersice
 	name = "Killer's Ice"
-	description = "c8c9e9"
+	description = ""
 	reagent_state = LIQUID
-	color = "#FFFFFF"
-	metabolization_rate = 0.1
-	toxpwr = 0
-	harmful = TRUE
-
-/datum/reagent/toxin/killersice/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(10, 0)
-	return ..()
+	color = "#c8c9e9"
+	taste_description = "cold needles"
+	toxpwr = 10
 
 //Potion reactions
 /datum/chemical_reaction/alch/stronghealth
@@ -381,16 +358,16 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 
 /datum/chemical_reaction/alch/strongpoison
 	name = "Strong Health Poison"
-	id = /datum/reagent/strongpoison
-	results = list(/datum/reagent/strongpoison = 1)
-	required_reagents = list(/datum/reagent/berrypoison = 1, /datum/reagent/additive = 1)
+	id = /datum/reagent/toxin/strongpoison
+	results = list(/datum/reagent/toxin/strongpoison = 1)
+	required_reagents = list(/datum/reagent/toxin/berrypoison = 1, /datum/reagent/additive = 1)
 	mix_message = "The cauldron glows for a moment."
 
 /datum/chemical_reaction/alch/strongstampoison
 	name = "Strong Stamina Leech Potion"
-	id = /datum/reagent/strongstampoison
-	results = list(/datum/reagent/strongstampoison = 1)
-	required_reagents = list(/datum/reagent/stampoison = 1, /datum/reagent/additive = 1)
+	id = /datum/reagent/toxin/strongstampoison
+	results = list(/datum/reagent/toxin/strongstampoison = 1)
+	required_reagents = list(/datum/reagent/toxin/stampoison = 1, /datum/reagent/additive = 1)
 	mix_message = "The cauldron glows for a moment."
 
 
@@ -412,7 +389,6 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	reagent_state = LIQUID
 	color = "#ffc400"
 	metabolization_rate = 0.5
-	harmful = TRUE
 
 /datum/reagent/toxin/fyritiusnectar/on_mob_life(mob/living/carbon/M)
 	if(volume > 0.49)
