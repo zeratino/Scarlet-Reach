@@ -48,4 +48,4 @@ combat_shaman2.ogg. Heilung - Elddansurin
 combat_berserker.ogg: Mikolai Stroinski - Eyes of the Wolf
 combat_graggar.ogg: T87-Sulfurhead - Black Powder [https://www.youtube.com/@T87-Sulfurhead]
 combat_baotha.ogg: T87-Sulfurhead - Love Within You (Rough Mix) [https://www.youtube.com/@T87-Sulfurhead]
-combat_heretic.ogg: Flleeppyy - Veil of Heresy [https://flleeppyy.bandcamp.com/album/monkestation-lobby-jams-vol-1]
+combat_heretic.ogg: T87-Sulfurhead - DEMESNE [https://www.youtube.com/@T87-Sulfurhead]
