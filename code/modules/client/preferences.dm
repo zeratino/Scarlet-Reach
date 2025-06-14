@@ -160,6 +160,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/update_mutant_colors = TRUE
 
 	var/headshot_link
+	
+	var/nsfw_headshot_link
+	
 	var/ooc_extra_link
 	var/ooc_extra
 	var/list/descriptor_entries = list()
@@ -225,6 +228,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 		to_chat(user, "<font color='red'>Classes reset.</font>")
 	random_character(gender)
 	accessory = "Nothing"
+
+	nsfw_headshot_link = null
 
 	customizer_entries = list()
 	validate_customizer_entries()
@@ -442,6 +447,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
 			if(headshot_link != null)
 				dat += "<br><img src='[headshot_link]' width='100px' height='100px'>"
+			dat += "<br><b>NSFW Headshot:</b> <a href='?_src_=prefs;preference=nsfw_headshot;task=input'>Change</a>"
+			if(nsfw_headshot_link != null)
+				dat += "<br><img src='[nsfw_headshot_link]' width='250px' height='250px'>"
 			if(is_legacy)
 				dat += "<br><i><font size = 1>(Legacy)<a href='?_src_=prefs;preference=legacyhelp;task=input'>(?)</a></font></i>"
 
@@ -1663,6 +1671,24 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ShowChoices(user)
 						return
 					ooc_notes = new_ooc_notes
+				if("nsfw_headshot")
+					to_chat(user, "<span class='notice'>Finally a place to show it all.</span>")
+					var/new_nsfw_headshot_link = input(user, "Input the nsfw headshot link (https, hosts: gyazo, discord, lensdump, imgbox, catbox):", "NSFW Headshot", nsfw_headshot_link) as text|null
+					if(new_nsfw_headshot_link == null)
+						return
+					if(new_nsfw_headshot_link == "")
+						nsfw_headshot_link = null
+						ShowChoices(user)
+						return
+					if(!valid_nsfw_headshot_link(user, new_nsfw_headshot_link))
+						nsfw_headshot_link = null
+						ShowChoices(user)
+						return
+					nsfw_headshot_link = new_nsfw_headshot_link
+					to_chat(user, "<span class='notice'>Successfully updated NSFW Headshot picture</span>")
+					log_game("[user] has set their NSFW Headshot image to '[nsfw_headshot_link]'.")
+		
+
 					var/ooc = ooc_notes
 					ooc = html_encode(ooc)
 					ooc = replacetext(parsemarkdown_basic(ooc), "\n", "<BR>")
@@ -2417,6 +2443,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	character.headshot_link = headshot_link
 
+
+	character.nsfw_headshot_link = nsfw_headshot_link
+
 	character.statpack = statpack
 
 	character.flavortext = flavortext
@@ -2542,6 +2571,38 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		return FALSE
 	return TRUE
 
+/proc/valid_nsfw_headshot_link(mob/user, value, silent = FALSE)
+	var/static/link_regex = regex("i.gyazo.com|a.l3n.co|b.l3n.co|c.l3n.co|images2.imgbox.com|thumbs2.imgbox.com|files.catbox.moe") //gyazo, discord, lensdump, imgbox, catbox
+	var/static/list/valid_extensions = list("jpg", "png", "jpeg") // Regex works fine, if you know how it works
+
+	if(!length(value))
+		return FALSE
+
+	var/find_index = findtext(value, "https://")
+	if(find_index != 1)
+		if(!silent)
+			to_chat(user, "<span class='warning'>Your link must be https!</span>")
+		return FALSE
+
+	if(!findtext(value, "."))
+		if(!silent)
+			to_chat(user, "<span class='warning'>Invalid link!</span>")
+		return FALSE
+	var/list/value_split = splittext(value, ".")
+
+	// extension will always be the last entry
+	var/extension = value_split[length(value_split)]
+	if(!(extension in valid_extensions))
+		if(!silent)
+			to_chat(usr, "<span class='warning'>The image must be one of the following extensions: '[english_list(valid_extensions)]'</span>")
+		return FALSE
+
+	find_index = findtext(value, link_regex)
+	if(find_index != 9)
+		if(!silent)
+			to_chat(usr, "<span class='warning'>The image must be hosted on one of the following sites: 'Gyazo, Lensdump, Imgbox, Catbox'</span>")
+		return FALSE
+	return TRUE
 /datum/preferences/proc/is_active_migrant()
 	if(!migrant)
 		return FALSE
