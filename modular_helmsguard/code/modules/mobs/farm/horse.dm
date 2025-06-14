@@ -309,7 +309,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/horse/find_food()
 	..()
-	var/obj/structure/spacevine/SV = locate(/obj/structure/spacevine) in loc
+	var/obj/structure/vine/SV = locate(/obj/structure/vine) in loc
 	if(SV)
 		SV.eat(src)
 		food = max(food + 30, 100)
@@ -338,7 +338,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/rogue/horse/eat_plants()
 	//..()
-	var/obj/structure/spacevine/SV = locate(/obj/structure/spacevine) in loc
+	var/obj/structure/vine/SV = locate(/obj/structure/vine) in loc
 	if(SV)
 		SV.eat(src)
 		food = max(food + 30, 100)
@@ -401,3 +401,6 @@
 	candodge = TRUE
 	canparry = TRUE
 	item_d_type = "blunt"
+	clickcd = SAIGA_ATTACK_SPEED
+
+
