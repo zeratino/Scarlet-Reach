@@ -1,0 +1,199 @@
+We will organize areas into commented headers for our own logical convenience.
+
+Sundmark's geography lends itself to ringed domains and areas will reflect that.
+
+The principle concern of areas is warhorn alarm reports being informative.
+The secondary concern of areas is sound design and lighting.
+The tertriary concern of areas is admin logs being more readable at a glance than XY coords.
+	That is, a review of the logs should quickly show if someone's in a secure area or running from a confrontation.
+
+All roof/sky needs some windy ambiance that is uniform across all types.
+
+Put a star to prioritize the most important things to make NOW and expand out the details when you have time.
+
+keep_area = TRUE
+
+soundenv = 2 (outdoors?)
+soundenv = 8 (some cave?)
+soundenv = 17 (mountains?)
+soundenv = 15 (forest?)
+
+	ambientsounds = AMB_FORESTDAY
+	ambientnight = AMB_FORESTNIGHT
+	spookysounds = SPOOKY_CROWS
+	spookynight = SPOOKY_FOREST
+
+
+
+Keep
+	Keep Rooftops
+	Keep Sky
+	Castle Gatehouse*
+	Keep Interior*				Sundberg Keep
+		Markgraf's Chambers
+		Throne Room
+		
+		Servant's Chambers
+		Keep Cellars
+		
+	Don't touch the Vault until you want to mess with treasury.dm again.
+		
+	Steward's Tower
+		Castle Gatehouse
+	Knight's Tower
+		Town Gatehouse
+	
+		
+
+Castle
+	Castle Courtyard*
+	Castle Rooftops*
+	Castle Sky*
+	Castle Wall*				The Sundberg
+		Castle Wall Covered*
+	Armory Tower				Armory Tower
+		Armory
+	Dungeon Tower				Tower of Woe	(needs Salt Mine and a whole floorplan rework)
+		Dungeon Depths
+	Noble's Tower				Tower of Nobles
+		Noble Baths?							(Can't think of what to stick here)
+
+Town Walls
+	Walls Sky
+	City Walls					Sundberg Walls
+		High Street Wall
+		Church Street Wall
+		Low Street Wall
+		Gate Wall
+	City Wall Towers
+		City Tower Roof
+	Gatehouse					Gates of Sundberg
+		Gatehouse Roof
+		Gatehouse Battlement
+
+Sundberg Streets
+	Streets Sky
+	Gate Street					Gate Street
+	High Street					High Street
+		High street Alley
+	Church Street				Church Street
+		Church Street Alley
+	Low Street					Low Street
+		Low Street Alley
+	The Backways				The Backways
+
+Guild House
+	Guildhouse Roof*			Rooftops
+		Guildhouse Sky
+	Merchant Shop*				Guildhouse
+		Merchant Attic
+		Merchant Residence
+		Merchant Shop
+		Merchant Lobby
+		Merchant Basement
+	Smith Shop*					Guildhouse
+		Smith Attic
+		Smith Residence
+		Smith Forge
+		Smith Lobby
+	Tailor Shop*				Guildhouse
+		Tailor Attic
+		Tailor Residence
+		Tailor Shop
+		Tailor Lobby
+
+Public House
+	Public House Roof			Rooftops
+		Public House Sky
+	Courthouse*
+		Courthouse				Courthouse
+		Courthouse Lobby
+		Gaol					Gaol
+		Watch-House Tower		Watch-house
+		Watch-House Bunks
+		Watch-House 
+	Coach Stables*
+	Butcher Shop*
+		Butcher Lobby
+	Inn*						The Golden Goblet
+		Inn Rooms
+		Inn Parlor
+		Inn Public
+		Inn Bar
+		Inn Kitchen
+		Inn Residence
+	Mercenary Guild				Mercenary's Guild
+
+Church
+	Church Roof*
+		Church Sky
+	Church Grounds*
+		Church Walkway
+	Cathedral*					Church of the Shepherd
+		Cathedral Apse
+		Cathedral Nave
+		Cathedral Gallery
+		Cathedral Undercroft
+		Cathedral Crypt
+	Chapter House*
+		Chapter Dorms
+		Chapter Commons
+		Hospital
+		Hospital Cellar
+		Hospital Kitchen
+	Monestary*					Monestary
+		Cloister Basement
+		Cloister Commons
+		Cloister Dorms
+	
+Town Houses
+	Town House Roof*
+	Stables*
+		Stable
+	Split House*
+		West Split House
+		East Split House
+	Back House*
+	Ruined House*
+	Overstreet House*
+		North Overstreet House
+		South Overstreet House
+	Stone House*
+	Gateside House*
+	
+Bath and Bawdy Werks
+	Bawdy Roof*
+		Bawdy Sky
+		Thief's Den
+	Bawdyhouse*
+		Bawdy Baths
+		Bathing Rooms
+		Bawdy Rooms
+		Bawdy Private
+		Bawdy Public
+	Bawdymaster*
+		Bawdy Master Suite
+		Bawdy Dungeon
+		Bawdy Hidden Suite
+
+Sundmark Outskirts
+	Farmlands*
+		Farmland House
+		Farmland Barn
+	Wall Outskirts*
+		Gate Road
+		Wall Road
+	Sundberg Bridge			Sundberg Bridge
+	River Barge Interior
+		River Barge Deck
+		River Barge Import
+
+Ambush Wilderness
+	River
+		River Shore (running water ambiance?, lower ambush?)
+	Lake
+		Lake Shore
+	Lowlands
+	Highlands
+	Mountains
+	Wild Woods
