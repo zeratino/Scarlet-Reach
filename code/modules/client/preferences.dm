@@ -446,7 +446,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
 			if(headshot_link != null)
-				dat += "<br><img src='[headshot_link]' width='150px' height='200px'>"
+				dat += "<br><img src='[headshot_link]' width='150px' height='175px'>"
 			dat += "<br><b>NSFW Headshot:</b> <a href='?_src_=prefs;preference=nsfw_headshot;task=input'>Change</a>"
 			if(nsfw_headshot_link != null)
 				dat += "<br><img src='[nsfw_headshot_link]' width='125px' height='175px'>"
@@ -1671,9 +1671,17 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ShowChoices(user)
 						return
 					ooc_notes = new_ooc_notes
+
+					var/ooc = ooc_notes
+					ooc = html_encode(ooc)
+					ooc = replacetext(parsemarkdown_basic(ooc), "\n", "<BR>")
+					ooc_notes_display = ooc
+					is_legacy = FALSE
+					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
+					log_game("[user] has set their OOC notes'.")
 				if("nsfw_headshot")
 					to_chat(user, "<span class='notice'>Finally a place to show it all.</span>")
-					var/new_nsfw_headshot_link = input(user, "Input the nsfw headshot link (https, hosts: gyazo, discord, lensdump, imgbox, catbox):", "NSFW Headshot", nsfw_headshot_link) as text|null
+					var/new_nsfw_headshot_link = input(user, "Input the nsfw headshot link (https, hosts: gyazo, lensdump, imgbox, catbox):", "NSFW Headshot", nsfw_headshot_link) as text|null
 					if(new_nsfw_headshot_link == null)
 						return
 					if(new_nsfw_headshot_link == "")
@@ -1687,15 +1695,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					nsfw_headshot_link = new_nsfw_headshot_link
 					to_chat(user, "<span class='notice'>Successfully updated NSFW Headshot picture</span>")
 					log_game("[user] has set their NSFW Headshot image to '[nsfw_headshot_link]'.")
-		
-
-					var/ooc = ooc_notes
-					ooc = html_encode(ooc)
-					ooc = replacetext(parsemarkdown_basic(ooc), "\n", "<BR>")
-					ooc_notes_display = ooc
-					is_legacy = FALSE
-					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
-					log_game("[user] has set their OOC notes'.")
 				if("ooc_preview")	//Unashamedly copy pasted from human_topic.dm L:7. Sorry!
 					var/list/dat = list()
 					dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[real_name]</b></font></div>"
@@ -1715,7 +1714,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if(is_legacy)
 						dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
 					if(valid_headshot_link(null, headshot_link, TRUE))
-						dat += ("<div align='center'><img src='[headshot_link]' width='325px' height='325px'></div>")
+						dat += ("<div align='center'><img src='[headshot_link]' width='350px' height='350px'></div>")
 					if(flavortext && flavortext_display)
 						dat += "<div align='left'>[flavortext_display]</div>"
 					if(ooc_notes && ooc_notes_display)
@@ -1725,9 +1724,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if(ooc_extra)
 						dat += "[ooc_extra]"
 					if(nsfw_headshot_link)
-						dat += "<div align='center'><b>NSFW</b></div>"
-						dat += ("<div align='center'><img src='[nsfw_headshot_link]'></div>")
-					var/datum/browser/popup = new(user, "[real_name]", nwidth = 600, nheight = 800)
+						dat += "<br><div align='center'><b>NSFW</b></div>"
+						dat += ("<br><div align='center'><img src='[nsfw_headshot_link]' width='600px' height='725px'></div>")
+					var/datum/browser/popup = new(user, "[real_name]", nwidth = 700, nheight = 800)
 					popup.set_content(dat.Join())
 					popup.open(FALSE)
 				if("ooc_extra")
