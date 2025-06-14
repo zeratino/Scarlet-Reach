@@ -82,7 +82,7 @@
 	user.update_inv_armor()
 
 /obj/item/clothing/cloak/psydontabard
-	name = "psydonian tabard"
+	name = "Inquisitori tabard"
 	desc = "A tabard worn by Psydon's disciples. Delicate stitchwork professes the psycross with pride."
 	color = null
 	icon_state = "psydontabard"
@@ -110,7 +110,7 @@
 
 
 /obj/item/clothing/cloak/psydontabard/alt
-	name = "opened psydonian tabard"
+	name = "open inquisitori tabard"
 	desc = "A tabard worn by Psydon's disciples, peeled back to reveal its enduring innards."
 	body_parts_covered = GROIN
 	icon_state = "psydontabardalt"
@@ -133,7 +133,7 @@
 /obj/item/clothing/cloak/psydontabard/attack_right(mob/user)
 	switch(open_wear)
 		if(FALSE)
-			name = "opened psydonian tabard"
+			name = "opened inquisitori tabard"
 			desc = "A tabard worn by Psydon's disciples, peeled back to reveal its enduring innards."
 			body_parts_covered = GROIN
 			icon_state = "psydontabardalt"
@@ -142,7 +142,7 @@
 			flags_inv = HIDECROTCH // BARE YOUR CHEST, NOT YOUR WEEN!
 			to_chat(usr, span_warning("ENDURING, like the MARTYRS who'll guide the faithful-and-pious to PARADISE."))
 		if(TRUE)
-			name = "psydonian tabard"
+			name = "inquisitori tabard"
 			desc = "A tabard worn by Psydon's disciples. Delicate stitchwork professes the psycross with pride."
 			body_parts_covered = CHEST|GROIN
 			icon_state = "psydontabard"
