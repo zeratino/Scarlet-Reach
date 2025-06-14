@@ -91,7 +91,7 @@
 		return
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner.stat && prob(5))
-		carbon_owner.vomit(1, blood = TRUE, stun = TRUE)
+		carbon_owner.vomit(1, blood = TRUE, stun = FALSE)
 
 /datum/wound/artery/reattachment
 	name = "replantation"
