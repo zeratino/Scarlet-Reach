@@ -28,8 +28,11 @@
 	var/obscure_name = FALSE
 	var/race_name = dna.species.name
 	var/datum/antagonist/maniac/maniac = user.mind?.has_antag_datum(/datum/antagonist/maniac)
+	var/datum/antagonist/skeleton/skeleton = user.mind?.has_antag_datum(/datum/antagonist/skeleton)
 	if(maniac && (user != src))
 		race_name = "disgusting pig"
+	if(skeleton && (user != src))
+		race_name = "[pick("shambling", "taut", "decrepit")]"
 
 	var/m1 = "[t_He] [t_is]"
 	var/m2 = "[t_his]"
