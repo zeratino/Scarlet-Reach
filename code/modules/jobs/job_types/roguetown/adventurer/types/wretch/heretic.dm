@@ -69,7 +69,7 @@
 	wretch_select_bounty(H)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
-			H.cmode_music = 'sound/music/combat_cult.ogg'
+			H.cmode_music = 'sound/music/combat_heretic.ogg'
 		if(/datum/patron/inhumen/matthios)
 			H.cmode_music = 'sound/music/Iconoclast.ogg'
 		if(/datum/patron/inhumen/baotha)
