@@ -138,11 +138,18 @@
 	wdefense = 4
 	grid_width = 32
 	grid_height = 64
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_sword.ogg'
+	sheathe_sound = 'modular_helmsguard/sound/sheath_sounds/put_back_sword.ogg'
 
 /obj/item/rogueweapon/sword/Initialize()
 	. = ..()
 	if(icon_state == "sword1")
 		icon_state = "sword[rand(1,3)]"
+
+/obj/item/rogueweapon/sword/equipped(mob/user, slot, initial = FALSE)
+	pickup_sound = pick("modular_helmsguard/sound/sheath_sounds/draw_sword.ogg", "modular_helmsguard/sound/sheath_sounds/draw_sword2.ogg", "modular_helmsguard/sound/sheath_sounds/draw_sword3.ogg")
+	sheathe_sound = pick("modular_helmsguard/sound/sheath_sounds/put_back_sword.ogg", "modular_helmsguard/sound/sheath_sounds/put_back_sword2.ogg")
+	. = ..()
 
 /obj/item/rogueweapon/sword/falchion
 	name = "falchion"
@@ -254,6 +261,14 @@
 	thrown_bclass = BCLASS_CUT
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_greatsword.ogg'
+	sheathe_sound = 'modular_helmsguard/sound/sheath_sounds/put_back_sword2.ogg'
+
+
+/obj/item/rogueweapon/sword/long/equipped(mob/user, slot, initial = FALSE)
+	pickup_sound = pickup_sound
+	sheathe_sound = pick("sound/foley/equip/swordlarge1.ogg", "sound/foley/equip/swordlarge2.ogg")
+	. = ..()
 
 /obj/item/rogueweapon/sword/long/death
 	color = CLOTHING_BLACK
@@ -307,7 +322,6 @@
 	lefthand_file = 'icons/mob/inhands/weapons/roguebig_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	swingsound = BLADEWOOSH_LARGE
-	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
 	wlength = WLENGTH_LONG
 	gripsprite = TRUE
@@ -340,7 +354,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/roguebig_righthand.dmi'
 	swingsound = BLADEWOOSH_LARGE
 	wbalance = WBALANCE_HEAVY
-	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
 	wlength = WLENGTH_LONG
 	gripsprite = TRUE

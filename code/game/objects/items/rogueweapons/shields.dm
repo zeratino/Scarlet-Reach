@@ -34,7 +34,8 @@
 	blade_dulling = DULLING_BASHCHOP
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	COOLDOWN_DECLARE(shield_bang)
-
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_shield.ogg'
+	sheathe_sound = 'modular_helmsguard/sound/sheath_sounds/put_back_shield.ogg'
 
 /obj/item/rogueweapon/shield/attackby(obj/item/attackby_item, mob/user, params)
 
