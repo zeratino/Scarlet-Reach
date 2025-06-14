@@ -22,6 +22,8 @@
 	grid_width = 32
 	grid_height = 96
 	intdamage_factor = 1.1
+	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
 
 /datum/intent/flail/strike
 	name = "strike"
@@ -194,6 +196,8 @@
 	minstr = 6
 	grid_width = 32
 	grid_height = 64
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_gen.ogg'
+	sheathe_sound = 'modular_helmsguard/sound/sheath_sounds/put_back_to_leather.ogg'
 
 /obj/item/rogueweapon/whip/getonmobprop(tag)
 	. = ..()
