@@ -2,6 +2,9 @@
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot
 	list_reagents = list(/datum/reagent/medicine/healthpot = 48)
 
+/obj/item/reagent_containers/glass/bottle/rogue/minorhealthpot
+	list_reagents = list(/datum/reagent/medicine/minorhealthpot = 45)
+
 /obj/item/reagent_containers/glass/bottle/rogue/healthpotnew
 	list_reagents = list(/datum/reagent/medicine/stronghealth = 48)
 
