@@ -88,8 +88,8 @@
 	spawn_positions = 0
 
 /mob/living/carbon/human/proc/change_miracle_set(mob/living/user)
-set name = "Change Miracle Set"
-    set category = "Priest"
+	set name = "Change Miracle Set"
+	set category = "Priest"
 	if(!mind)
 		return
 	var/list/god_choice = list()
@@ -105,9 +105,13 @@ set name = "Change Miracle Set"
 	mind.RemoveAllSpells()
 	var/datum/devotion/patrondev = new /datum/devotion(src, god)
 	patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = FALSE)
-	to_chat(src, "<font color='yellow'>THOU WIELDETH NOWE THE POWERS OF [string_choice].</font>")
-	THING THAT LETS ME DO THIS
+	if(string_choice == "Astrata")
+		to_chat(src, "<font color='yellow'>THOU WIELDETH NOWE THE POWERS OF [string_choice].</font>")
+	else
 		to_chat(src, "<font color='yellow'>HEAVEN SHALL THEE RECOMPENSE. THOU BEARS MYNE POWER ONCE MORE.</font>")
+	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/cure_rot) 
+	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/monk) 
+	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/templar)
 
 /mob/living/carbon/human/proc/coronate_lord()
 	set name = "Coronate"

@@ -186,7 +186,7 @@
 /datum/status_effect/buff/infestation
 	id = "infestation"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/infestation
-	duration = 5 SECONDS
+	duration = 10 SECONDS
 	effectedstats = list("constitution" = -2)
 	var/static/mutable_appearance/rotten = mutable_appearance('icons/roguetown/mob/rotten.dmi', "rotten")
 
@@ -232,7 +232,7 @@
 		M.add_nausea(pick(10,20))
 		to_chat(target, span_warning(message))
 
-/atom/movable/screen/alert/status_effect/buff/infestation5e
+/atom/movable/screen/alert/status_effect/buff/infestation
 	name = "Infestation"
 	desc = "Pestilent vermin bite and chew at my skin."
 	icon_state = "debuff"
