@@ -246,6 +246,11 @@
 			effective = max(I.minstr / 2, 1)
 		if(effective > user.STASTR)
 			newforce = max(newforce*0.3, 1)
+			if(prob(33))
+				if(I.wielded)
+					to_chat(user, span_info("I am too weak to wield this weapon properly with both hands."))
+				else
+					to_chat(user, span_info("I am too weak to wield this weapon properly with one hand."))
 
 	switch(blade_dulling)
 		if(DULLING_CUT) //wooden that can't be attacked by clubs (trees, bushes, grass)
