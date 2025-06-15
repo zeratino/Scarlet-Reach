@@ -6,7 +6,7 @@
 	total_positions = 8
 	spawn_positions = 8
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_NEUTRAL_UP
+	allowed_races = RACES_SHUNNED_UP
 	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
 	tutorial = "Having proven yourself loyal and capable, you are entrusted to defend the town and enforce its laws. \
