@@ -167,6 +167,7 @@
 		)
 	trapped = user
 	contents.Add(user)
+	user.add_client_colour(/datum/client_colour/monochrome)
 	time_id = addtimer(CALLBACK(src, PROC_REF(spitout_mob), user, null), 5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // 5 mins timer else its spitting you out where the necran is.
 	return TRUE
 
@@ -183,6 +184,7 @@
 		span_revenwarning("[user] slips out from the whispering portal. Shadow roils off their form like smoke."),
 		span_purple("I am pulled from Necra's realm. Air fills my lungs, my heart starts beating- I live.")
 		)
+	user.remove_client_colour(/datum/client_colour/monochrome)
 	return TRUE
 
 /obj/structure/underworld_portal/container_resist(mob/living/user)

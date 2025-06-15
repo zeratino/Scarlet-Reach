@@ -105,10 +105,11 @@
 	mind.RemoveAllSpells()
 	var/datum/devotion/patrondev = new /datum/devotion(src, god)
 	patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = FALSE)
-	if(string_choice == "Astrata")
-		to_chat(src, "<font color='yellow'>THOU WIELDETH NOWE THE POWERS OF [string_choice].</font>")
-	else
+	if (string_choice == "Astrata")
 		to_chat(src, "<font color='yellow'>HEAVEN SHALL THEE RECOMPENSE. THOU BEARS MYNE POWER ONCE MORE.</font>")
+	else
+		to_chat(src, "<font color='yellow'>Thou wieldeth now the power of [string_choice].</font>")
+	to_chat(src, "<font color='yellow'>TThe strain of changing your miracles has consumed all your devotion.</font>")
 	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/cure_rot) 
 	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/monk) 
 	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/templar)
