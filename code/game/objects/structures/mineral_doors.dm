@@ -490,7 +490,8 @@
 			return
 		trykeylock(found_key || found_keyring, user)
 	else
-		return ..()
+		to_chat(user, span_warning("I don't have the right key for this door."))
+		return
 
 /obj/structure/mineral_door/proc/trykeylock(obj/item/I, mob/user, autobump = FALSE)
 	if(door_opened || isSwitchingStates)
@@ -869,7 +870,8 @@
 			return
 		trykeylock(found_key || found_keyring, user)
 	else
-		return ..()
+		to_chat(user, span_warning("I don't have the right key for this door."))
+		return
 
 /obj/structure/mineral_door/wood/donjon
 	desc = "A solid metal door with a slot to peek through."
@@ -963,7 +965,8 @@
 			return
 		trykeylock(found_key || found_keyring, user)
 	else
-		return ..()
+		to_chat(user, span_warning("I don't have the right key for this door."))
+		return
 
 /obj/structure/mineral_door/wood/donjon/stone/view_toggle(mob/user)
 	return
