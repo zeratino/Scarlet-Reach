@@ -1,5 +1,6 @@
 /datum/job/roguetown/niteman
 	title = "Bathmaster"
+	f_Title = "Bathmistress"
 	flag = NITEMASTER
 	department_flag = YEOMEN
 	faction = "Station"
