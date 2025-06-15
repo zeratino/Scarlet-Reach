@@ -1030,6 +1030,9 @@
 	inhand_mod = FALSE
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 
+	/obj/item/clothing/cloak/cape/purple
+	color = "#663584"
+
 /obj/item/clothing/cloak/cape/knight
 	color = CLOTHING_WHITE
 
