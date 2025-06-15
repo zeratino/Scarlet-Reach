@@ -440,12 +440,55 @@
 /obj/structure/mineral_door/attack_right(mob/user)
 	user.changeNext_move(CLICK_CD_FAST)
 	var/obj/item = user.get_active_held_item()
-	if(istype(item, /obj/item/roguekey) || istype(item, /obj/item/storage/keyring))
-		if(locked)
-			to_chat(user, span_warning("It won't turn this way. Try turning to the left."))
-			door_rattle()
+	var/obj/item/roguekey/found_key = null
+	var/obj/item/storage/keyring/found_keyring = null
+
+	// Check held item first
+	if(istype(item, /obj/item/roguekey))
+		found_key = item
+	else if(istype(item, /obj/item/storage/keyring))
+		found_keyring = item
+
+	// If no key in hand, check all storage items
+	if(!found_key && !found_keyring)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			var/list/checked_items = list()
+			var/list/to_check = H.get_all_slots()
+			
+			while(to_check.len)
+				var/obj/item/I = to_check[1]
+				to_check -= I
+				if(I in checked_items)
+					continue
+				checked_items += I
+				
+				if(istype(I, /obj/item/roguekey))
+					var/obj/item/roguekey/K = I
+					if(K.lockhash == lockhash || istype(K, /obj/item/roguekey/lord))
+						found_key = K
+						break
+				if(istype(I, /obj/item/storage/keyring))
+					var/obj/item/storage/keyring/R = I
+					for(var/obj/item/roguekey/K in R.contents)
+						if(K.lockhash == lockhash || istype(K, /obj/item/roguekey/lord))
+							found_keyring = R
+							break
+					if(found_keyring)
+						break
+				if(istype(I, /obj/item/storage))
+					var/obj/item/storage/S = I
+					to_check += S.contents
+
+	if(found_key || found_keyring)
+		if(!keylock)
+			return ..()
+		if(door_opened || isSwitchingStates)
+			return ..()
+		if(lockbroken)
+			to_chat(user, span_warning("The lock to this door is broken."))
 			return
-		trykeylock(item, user)
+		trykeylock(found_key || found_keyring, user)
 	else
 		return ..()
 
