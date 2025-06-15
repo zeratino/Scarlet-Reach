@@ -45,6 +45,12 @@
 	icon_state = "shalal"
 	sellprice = 5
 
+/obj/item/storage/belt/rogue/leather/shalal/purple
+	name = "purple shalal belt"
+	icon_state = "shalal"
+	color = CLOTHING_PURPLE
+	sellprice = 5
+
 /obj/item/storage/belt/rogue/leather/black
 	name = "black belt"
 	icon_state = "blackbelt"
