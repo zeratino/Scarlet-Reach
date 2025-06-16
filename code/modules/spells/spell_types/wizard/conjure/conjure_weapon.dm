@@ -7,7 +7,7 @@
 
 	releasedrain = 60
 	chargedrain = 1
-	chargetime = 10 SECONDS // This is meant to make mid-combat summoning harder.
+	chargetime = 2 SECONDS
 	no_early_release = TRUE
 	recharge_time = 5 MINUTES // Not meant to be spammed or used as a mega support spell to outfit an entire party
 
