@@ -133,8 +133,8 @@
 		say("By the authority of the gods, I pronounce you Ruler of all Azuria!")
 		priority_announce("[real_name] the [dispjob] has named [HU.real_name] the inheritor of AZURE PEAK!", title = "Long Live [HU.real_name]!", sound = 'sound/misc/bell.ogg')
 		var/datum/job/roguetown/nomoredukes = SSjob.GetJob("Grand Duke")
-		if(nomoredukes?.total_positions == 1)
-			nomoredukes.total_positions = 0 //We got what we got now.
+		if(nomoredukes)
+			nomoredukes.total_positions = -1000 //We got what we got now.
 
 
 /mob/living/carbon/human/proc/churchexcommunicate()
