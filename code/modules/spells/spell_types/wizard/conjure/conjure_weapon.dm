@@ -28,7 +28,7 @@
 
 	var/list/iron_weapons = list(
 		"Iron Short Sword" = /obj/item/rogueweapon/sword/iron/short,
-		"Iron Messer" = /obj/item/rogueweapon/sword/iron/messer/,
+		"Iron Messer" = /obj/item/rogueweapon/sword/iron/messer,
 		"Zweihander" = /obj/item/rogueweapon/greatsword/zwei,
 		"Cudgel" = /obj/item/rogueweapon/mace/cudgel,
 		"Iron Warhammer" = /obj/item/rogueweapon/mace/warhammer,
