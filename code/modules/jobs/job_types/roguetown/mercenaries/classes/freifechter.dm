@@ -8,15 +8,15 @@
 	traits_applied = list(TRAIT_OUTLANDER)
 	cmode_music = 'sound/music/combat_noble.ogg'	
 	classes = list("Fencer" = "You are a master in the arts of the longsword. Wielder of Psydonia's most versatile and noble weapon, you needn't anything else.",
-					"Lancer" = "You put complete trust in your polearm, the most effective weapon the world has seen. Why wear armour when you cannot be hit?",
-					"Cortador" = "You completely forego long arms, having proven yourself effective in the teachings of the Etruscan knife-fighting masters of old. Your knife and traditionally decorated cloth shield are unrivaled.")
+					"Lancer" = "You put complete trust in your polearm, the most effective weapon the world has seen. Why wear armour when you cannot be hit?")
+					//"Cortador" = "You completely forego long arms, having proven yourself effective in the teachings of the Etruscan knife-fighting masters of old. Your knife and traditionally decorated cloth shield are unrivaled.")
 
 /datum/outfit/job/roguetown/mercenary/freelancer/pre_equip(mob/living/carbon/human/H)
 	..()
 
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)
-	var/classes = list("Fencer","Lancer", "Cortador")
+	var/classes = list("Fencer","Lancer")/*, "Cortador")*/
 	var/classchoice = input("Which master did you train under?", "Available archetypes") as anything in classes
 
 	switch(classchoice)
@@ -27,7 +27,7 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.change_stat("perception", 2)
 			H.change_stat("constitution", 2)
 			H.change_stat("endurance", 2)
@@ -36,21 +36,27 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Etruscan Longsword")
-					r_hand = /obj/item/rogueweapon/sword/long/freelancer
+					r_hand = /obj/item/rogueweapon/sword/long/etruscan
+					beltr = /obj/item/rogueweapon/huntingknife/idagger/navaja
 				if("Kriegsmesser")
 					r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
+					beltr = /obj/item/rogueweapon/huntingknife/idagger
 				if("Common Longsword")	
 					r_hand = /obj/item/rogueweapon/sword/long
+					beltr = /obj/item/rogueweapon/huntingknife/idagger
 		if("Lancer")
 			H.set_blindness(0)
 			to_chat(H, span_warning("You put complete trust in your polearm, the most effective weapon the world has seen. Why wear armour when you cannot be hit? You can choose your polearm, and are exceptionally accurate."))
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.change_stat("strength", 2)
 			H.change_stat("perception", 3)
 			H.change_stat("constitution", 3)
 			H.change_stat("speed", -1)
+			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fencer
+			beltr = /obj/item/rogueweapon/huntingknife/idagger
 			var/weapons = list("Steel Spear", "Lucerne")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
@@ -58,14 +64,14 @@
 					r_hand = /obj/item/rogueweapon/spear/boar
 				if("Lucerne")
 					r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
-		if("Cortador")
+/*		if("Cortador")								TBA
 			H.set_blindness(0)
 			to_chat(H, span_warning("You completely forego long arms, having proven yourself effective in the teachings of the Etruscan knife-fighting masters of old. You are a master knife fighter and your \"shield\" can daze opponents easily."))
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.change_stat("speed", 2)
 			H.change_stat("perception", 1)
 			H.change_stat("constitution", 1)
@@ -77,4 +83,17 @@
 				if("Common Dagger")
 					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel
 				if("Facón Dagger")
-					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/freelancer
+					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/freelancer	*/
+
+//Gear regardless of class. This will be changed when Cortador is finished.
+	belt = /obj/item/storage/belt/rogue/leather
+	beltl = /obj/item/flashlight/flare/torch/lantern
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
+	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+
+	backpack_contents = list(/obj/item/roguekey/mercenary)
+
+	H.grant_language(/datum/language/aavnic)
