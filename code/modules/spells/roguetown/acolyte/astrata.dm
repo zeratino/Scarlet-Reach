@@ -23,6 +23,7 @@
 
 /obj/projectile/magic/lightning/astratablast/on_hit(target)
 	. = ..()
+
 	if(ismob(target))
 		var/mob/living/M = target
 		if(M.anti_magic_check())
@@ -35,7 +36,6 @@
 			M.adjust_fire_stacks(4)
 			M.IgniteMob()
 			visible_message(span_warning("[src] ignites [target] in holy flame!"))
-
 
 
 /obj/effect/proc_holder/spell/invoked/revive

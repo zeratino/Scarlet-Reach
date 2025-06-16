@@ -146,7 +146,7 @@
 	icon_state = "gambesonp"
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
 	armor = ARMOR_PADDED_GOOD
-	sellprice = 30
+	sellprice = 25
 	color = "#976E6B"
 	var/shiftable = TRUE
 	var/shifted = FALSE
@@ -180,13 +180,21 @@
 			return
 
 
-
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 	name = "fencer gambeson"
 	desc = "A large shirt with heavy padding meant to be used below armor. Will probably stop an arrow, unlikely to stop a bolt."
 	icon_state = "fancygamb"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	color = "#FFFFFF"
+	shiftable = FALSE
+	sellprice = 30
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/chargah
+	name = "steppesman chargah robe"
+	desc = "A light yet thick robe padded with fine silks and cloth, acting as a mix of traditional gambeson and imported silks of the east. Popular among Aavnr steppesmen."
+	icon_state = "chargah"
+	color = "#864a4a"
+	boobed = TRUE
 	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
@@ -202,7 +210,9 @@
 	max_integrity = 250 // Slightly stronger than base, a reward for unique drip
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
-	color = "#FFFFFF"
+	color = "#1d1d22"
+	detail_color = "#FFFFFF"
+	sellprice = 40
 	var/picked = FALSE
 	shiftable = FALSE
 
@@ -374,7 +384,7 @@
 	armor = ARMOR_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = 300
-	sellprice = 25
+	sellprice = 20
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	name = "hardened leather coat"
@@ -386,6 +396,12 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = 300
 	sellprice = 25
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
+	name = "fur-woven hatanga coat"
+	desc = "A finely woven hatagna coat, replacing much of its scaled armor with fine furs and reinforced padding for lighter rides."
+	icon_state = "hatangafur"
+	item_state = "hatangafur"
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket
 	name = "hardened leather jacket"
@@ -697,7 +713,6 @@
 	icon_state = "ancientcuirass"
 	smeltresult = /obj/item/ingot/aaslag
 
-
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
 	icon_state = "flutedcuirass"
@@ -751,6 +766,13 @@
 	equip_delay_self = 4 SECONDS
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+
+/obj/item/clothing/suit/roguetown/armor/plate/scale/steppe
+	name = "steel steppesman hatanga"
+	desc = "A set of steel-scaled hatanga armor hailing from the southern steppes."
+	icon_state = "hudesutu"
+	max_integrity = 250		//Grenzel gets 100+ integrity, I don't see why not give a +50 here.
+
 
 //HEAVY ARMOR//
 
@@ -1134,6 +1156,31 @@
 	equip_delay_self = 40
 	armor_class = ARMOR_CLASS_MEDIUM
 	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/attack_right(mob/user)
+	if(detail_tag)
+		return
+	var/the_time = world.time
+	var/pickedcolor = input(user, "Select a color.","Brigandine Color") as null|anything in CLOTHING_COLOR_NAMES
+	if(!pickedcolor)
+		return
+	if(world.time > (the_time + 30 SECONDS))
+		return
+	detail_tag = "_detail"
+	detail_color = clothing_color2hex(pickedcolor)
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_armor()
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	slot_flags = ITEM_SLOT_ARMOR

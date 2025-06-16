@@ -95,7 +95,7 @@
 	damfactor = 0.8
 
 /datum/intent/rend/krieg
-	intdamage_factor = 0.6
+	intent_intdamage_factor = 0.2
 
 //sword objs ฅ^•ﻌ•^ฅ
 
@@ -524,7 +524,8 @@
 	name = "executioners sword"
 	desc = "A longsword with extra heft to its blade, reinforced."
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
-	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/axe/chop)
+	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	alt_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/rend)
 	icon_state = "exe"
 	minstr = 12
 	slot_flags = ITEM_SLOT_BACK //Too big for hip
@@ -654,6 +655,14 @@
 	minstr = 4
 	wdefense = 2
 
+/obj/item/rogueweapon/sword/iron/messer/virtue
+	name = "dueling messer"
+	desc = "A basic single-edge iron hunting sword that has been modified for the express purpose of dueling, with an added guard and a leaner grip for comfort and speed."
+	icon_state = "dmesser"
+	swingsound = BLADEWOOSH_SMALL
+	wdefense = 3
+	wbalance = WBALANCE_SWIFT
+
 // This typepath is so fucked bruh but I am not repeating code and not dropping a massive merge conflict for now
 /obj/item/rogueweapon/sword/iron/messer/copper 
 	name = "copper messer"
@@ -674,6 +683,7 @@
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/axe/chop, /datum/intent/sword/peel)
 	gripped_intents = null
 	minstr = 5
+	wdefense = 4
 
 /obj/item/rogueweapon/sword/sabre
 	name = "sabre"

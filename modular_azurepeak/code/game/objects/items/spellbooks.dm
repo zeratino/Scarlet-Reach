@@ -119,18 +119,22 @@ decreases charge time if held opened in hand, for pure mage build + aesthetics.
 	if(!resettable_spells.len)
 		to_chat(user, span_warning("I have no spells to unbind!"))
 		return
+	user_mind.has_changed_spell = TRUE //To pre-empt a halting duplication in the for loop here
+	var/unlearn_success = FALSE
 	for(var/i = 1, i <= 2, i++)
 		var/choice = input(user, "Choose up to two spells to unbind. Cancel both to not use up your daily unbinding.") as null|anything in resettable_spells
 		var/obj/effect/proc_holder/spell/item = resettable_spells[choice]
 		if(!item)
-			continue
+			break
 		if(!resettable_spells.len)
 			return
+		if(user_mind.RemoveSpell(item))
+			user_mind.used_spell_points -= item.cost
+			unlearn_success = TRUE
 		resettable_spells.Remove(choice)
-		user_mind.used_spell_points -= item.cost
-		user_mind.RemoveSpell(item)
 		user_mind.check_learnspell()
-		user_mind.has_changed_spell = TRUE
+	if(!unlearn_success)
+		user_mind.has_changed_spell = FALSE //If we didn't unlearn anything, reset
 
 /obj/item/book/spellbook/proc/get_cdr()
 	if(born_of_rock)

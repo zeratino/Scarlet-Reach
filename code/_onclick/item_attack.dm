@@ -103,10 +103,11 @@
 //	if(force)
 //		user.emote("attackgrunt")
 	var/datum/intent/cached_intent = user.used_intent
-	if(user.used_intent.swingdelay)
-		if(!user.used_intent.noaa)
-			if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
-				user.do_attack_animation(M, user.used_intent.animname, user.used_intent.masteritem, used_intent = user.used_intent, simplified = TRUE)
+	if(isnull(user.mind))	//for AI only
+		if(user.used_intent.swingdelay)
+			if(!user.used_intent.noaa)
+				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
+					user.do_attack_animation(M, user.used_intent.animname, user.used_intent.masteritem, used_intent = user.used_intent, simplified = TRUE)
 		sleep(user.used_intent.swingdelay)
 	if(user.a_intent != cached_intent)
 		return
@@ -228,9 +229,15 @@
 		used_str++
 	if(istype(user.rmb_intent, /datum/rmb_intent/weak))
 		used_str--
-	used_str = CLAMP(used_str, 1, 20)
 	if(used_str >= 11)
-		newforce = newforce + (newforce * ((used_str - 10) * 0.1))
+		var/strmod
+		if(used_str > STRENGTH_SOFTCAP && !HAS_TRAIT(user, TRAIT_STRENGTH_UNCAPPED))
+			strmod = ((STRENGTH_SOFTCAP - 10) * STRENGTH_MULT)
+			var/strcappedmod = ((used_str - STRENGTH_SOFTCAP) * STRENGTH_CAPPEDMULT)
+			strmod += strcappedmod
+		else
+			strmod = ((used_str - 10) * STRENGTH_MULT)
+		newforce = newforce + (newforce * strmod)
 	else if(used_str <= 9)
 		newforce = newforce - (newforce * ((10 - used_str) * 0.1))
 
@@ -240,6 +247,11 @@
 			effective = max(I.minstr / 2, 1)
 		if(effective > user.STASTR)
 			newforce = max(newforce*0.3, 1)
+			if(prob(33))
+				if(I.wielded)
+					to_chat(user, span_info("I am too weak to wield this weapon properly with both hands."))
+				else
+					to_chat(user, span_info("I am too weak to wield this weapon properly with one hand."))
 
 	switch(blade_dulling)
 		if(DULLING_CUT) //wooden that can't be attacked by clubs (trees, bushes, grass)
@@ -393,7 +405,8 @@
 					dullfactor = 1
 				if(BCLASS_PICK)
 					dullfactor = 0.5
-	newforce = (newforce * user.used_intent.damfactor) * dullfactor
+	var/newdam = (I.force * user.used_intent.damfactor) - I.force
+	newforce = (newforce + newdam) * dullfactor
 	if(user.used_intent.get_chargetime() && user.client?.chargedprog < 100)
 		newforce = newforce * 0.5
 	if(!(user.mobility_flags & MOBILITY_STAND))
@@ -405,7 +418,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	user.changeNext_move(CLICK_CD_MELEE)
-	var/newforce = get_complex_damage(I, user, blade_dulling)
+	var/newforce = (get_complex_damage(I, user, blade_dulling) * I.demolition_mod)
 	if(!newforce)
 		testing("dam33")
 		return 0
