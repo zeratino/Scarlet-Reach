@@ -161,8 +161,9 @@
 	desc = "A pair of loose breeches with leather reinforcements on the waist and legs. Worn with a cup."
 	max_integrity = 170
 	icon_state = "fencingbreeches"
+	detail_tag = "_detail"
 	color = "#FFFFFF"
-	detail_color = "#29201f"
+	detail_color = "#3b2b29"
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic/update_icon()
 	cut_overlays()

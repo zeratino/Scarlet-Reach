@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/freelancer
 	name = "Freifechter"
-	tutorial = "You are a signee of the Aavnic Freifechters - \"Freelancers\" - the Potentate's largest fighting guild, recognized as an encomium to Ravox by decree of the Holy See. It has formed in recent years, but its visitors come from all over Western Psydonia. You have swung one weapon ten-thousand times, and not the other way around. Your trust is placed in your skills, not your equipment."
+	tutorial = "You are a graduate of the Aavnic Freifechters - \"Freelancers\" - the Potentate's largest fighting guild, recognized as an encomium to Ravox by decree of the Holy See. It has formed in recent years, but its visitors come from all over Western Psydonia. You have swung one weapon ten-thousand times, and not the other way around. Your trust is placed in your skills, not your equipment."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/mercenary/freelancer
@@ -24,7 +24,7 @@
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are a master in the arts of the longsword. Wielder of Psydonia's most versatile and noble weapon, you needn't anything else. You can choose a regional longsword."))
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
@@ -47,7 +47,8 @@
 		if("Lancer")
 			H.set_blindness(0)
 			to_chat(H, span_warning("You put complete trust in your polearm, the most effective weapon the world has seen. Why wear armour when you cannot be hit? You can choose your polearm, and are exceptionally accurate."))
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)		//Master polearms is not a super bright idea, maybe.
+			H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
@@ -86,14 +87,14 @@
 					r_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/freelancer	*/
 
 //Gear regardless of class. This will be changed when Cortador is finished.
-	belt = /obj/item/storage/belt/rogue/leather
+	belt = /obj/item/storage/belt/rogue/leather/sash
 	beltl = /obj/item/flashlight/flare/torch/lantern
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic
-	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced/short
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
-	backr = /obj/item/storage/backpack/rogue/satchel/black
+	backr = /obj/item/storage/backpack/rogue/satchel/short
 
 	backpack_contents = list(/obj/item/roguekey/mercenary)
 
-	H.grant_language(/datum/language/aavnic)
+	H.grant_language(/datum/language/aavnic)		//Your character could not have possibly "graduated" without atleast some basic knowledge of Aavnic.

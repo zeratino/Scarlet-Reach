@@ -193,8 +193,10 @@
 	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It lasts quite a bit less than a regular padded gambeson and won't cover your legs."
 	max_integrity = 150
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS
+	detail_tag = "_detail"
+	altdetail_tag = "_detailalt"
 	color = "#FFFFFF"
-	detail_color = "#29201f"
+	detail_color = "#3b2b29"
 	altdetail_color = "#c29057"
 	icon_state = "fencingshirt"
 
@@ -727,6 +729,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/half/fencer
 	name = "fencer's cuirass"
 	desc = "An expertly smithed form-fitting steel cuirass that is much lighter and agile, but breaks with much more ease. It's thinner, but backed with silk and leather."
+	armor = ARMOR_LIGHTCUIRASS
 	armor_class = ARMOR_CLASS_LIGHT
 	max_integrity = 170
 	smelt_bar_num = 1
