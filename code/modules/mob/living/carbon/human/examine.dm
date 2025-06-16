@@ -64,7 +64,7 @@
 		on_examine_face(user)
 		var/used_name = name
 		var/used_title = get_role_title()
-		if(SSticker.regentmob == user)
+		if(SSticker.regentmob == src)
 			used_title = "[used_title]" + " Regent"
 		var/display_as_wanderer = FALSE
 		var/is_returning = FALSE
