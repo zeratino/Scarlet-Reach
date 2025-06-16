@@ -748,11 +748,17 @@
 		if(heart?.inscryption && (heart.inscryption_key in maniac.key_nums))
 			. += span_danger("[t_He] know[p_s()] [heart.inscryption_key], I AM SURE OF IT!")
 
+/* includes nsfw preview
 	if(!obscure_name || client?.prefs.masked_examine)
 		if(headshot_link && ((wear_shirt || wear_armor) || !nsfw_headshot_link))
 			. += "<span class='info'><img src=[headshot_link] width=100 height=100/></span>"
 		if(nsfw_headshot_link && !wear_armor && !wear_shirt)
 			. += "<span class='info'><img src=[nsfw_headshot_link] width=100 height=150/></span>"
+*/
+
+	if(!obscure_name || client?.prefs.masked_examine)
+		if(headshot_link)
+			. += "<span class='info'><img src=[headshot_link] width=100 height=100/></span>"
 
 	if(Adjacent(user))
 		if(observer_privilege)
