@@ -95,6 +95,7 @@
 			)
 			neck = pick(psicross_options) // Random psicross, as cleric.
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
+	armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
