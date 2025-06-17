@@ -2186,6 +2186,7 @@
 	},
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
+/obj/item/ingot/bronze,
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/orcdungeon)
 "aKL" = (
@@ -8284,6 +8285,10 @@
 /mob/living/simple_animal/hostile/rogue/skeleton/guard,
 /turf/open/floor/rogue/metal/barograte/open,
 /area/rogue/under/cavewet/bogcaves/sunkencity)
+"cQt" = (
+/obj/structure/fluff/railing/fence,
+/turf/open/floor/rogue/cobble,
+/area/rogue/under/cave/orcdungeon)
 "cQz" = (
 /obj/structure/chair/wood/rogue{
 	dir = 4
@@ -43001,6 +43006,12 @@
 /obj/structure/roguewindow/stained/silver,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
+"oxX" = (
+/obj/structure/fluff/railing/fence{
+	dir = 4
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/cave)
 "oxY" = (
 /obj/structure/bars/passage{
 	max_integrity = 9000;
@@ -44276,6 +44287,8 @@
 /obj/machinery/light/rogue/torchholder/c,
 /obj/effect/spawner/lootdrop/heavy_armor_spawner,
 /obj/effect/spawner/lootdrop/medium_armor_spawner,
+/obj/item/ingot/blacksteel,
+/obj/item/ingot/blacksteel,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/orcdungeon)
 "oTr" = (
@@ -169076,7 +169089,7 @@ nYS
 ujm
 jDM
 mMU
-mMU
+cQt
 anL
 jDM
 ujm
@@ -169528,7 +169541,7 @@ ujm
 ujm
 jDM
 mDm
-mMU
+cQt
 anL
 jDM
 ujm
@@ -176770,9 +176783,9 @@ ujm
 qPv
 qPv
 qPv
-fnC
-fnC
-fnC
+oxX
+oxX
+oxX
 qPv
 qPv
 qPv

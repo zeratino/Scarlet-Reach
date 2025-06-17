@@ -28,13 +28,12 @@
 /datum/mapGeneratorModule/beachgrass
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/floor/rogue/grass)
-	spawnableAtoms = list(/obj/structure/flora/newtree = 15,
-							/obj/structure/flora/roguegrass/bush = 5,
-							/obj/structure/flora/roguegrass = 20,
+	spawnableAtoms = list(/obj/structure/flora/roguegrass/bush = 5,
+							/obj/structure/flora/roguegrass = 35,
 							/obj/structure/flora/roguegrass/maneater = 4,
-							/obj/item/natural/stone = 6,
+							/obj/item/natural/stone = 8,
 							/obj/item/natural/rock = 2,
-							/obj/item/grown/log/tree/stick = 8)
+							/obj/item/grown/log/tree/stick = 10)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=5)
 	allowed_areas = list(/area/rogue/outdoors/beach/forest)
 
