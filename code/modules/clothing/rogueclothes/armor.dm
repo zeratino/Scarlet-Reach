@@ -735,6 +735,8 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	max_integrity = 170
 	smelt_bar_num = 1
+	icon_state = "fencercuirass"
+	item_state = "fencercuirass"
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
 	name = "decrepit cuirass"

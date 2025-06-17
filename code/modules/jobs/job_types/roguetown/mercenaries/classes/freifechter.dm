@@ -57,6 +57,7 @@
 			H.change_stat("speed", -1)
 			armor = /obj/item/clothing/suit/roguetown/armor/plate/half/fencer
 			beltr = /obj/item/rogueweapon/huntingknife/idagger
+			backl = /obj/item/gwstrap
 			var/weapons = list("Steel Spear", "Lucerne")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
