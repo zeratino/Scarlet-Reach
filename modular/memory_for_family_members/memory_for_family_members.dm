@@ -70,8 +70,3 @@
 			to_chat(user, "I have been with my spouse!")
 			user.adjust_triumphs(3)
 
-// Детальный отчёт о причинах провала подбора семьи
-/datum/family/proc/detailed_log(var/mob/living/carbon/human/target, var/message)
-	if(!target.client?.prefs?.detailed_family_loging)
-		return
-	to_chat(target, span_small("Family Log: [message]")) 

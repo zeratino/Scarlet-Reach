@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/family_surname = null
 	var/list/family_genitals = list("Male", "Female", "Futa", "Cuntboy")
 	var/allow_latejoin_family = TRUE
-	var/detailed_family_loging = TRUE
+
 	var/list/family_gender = list()
 	var/list/family_species = list()
 
@@ -214,7 +214,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	//Set the race to properly run race setter logic
 	set_new_race(pref_species, null)
 	
-	// Enable all races, genders, and genitals for family preferences by default
 	family_species = list()
 	var/list/available_species = get_selectable_species()
 	for(var/species_name in available_species)
@@ -634,7 +633,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<b>Play Admin MIDIs:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>Detailed Family:</b> <a href='?_src_=prefs;preference=detailed_family'>[(detailed_family_loging) ? "Yes":"No"]</a><br>"
+	
 			dat += "<br>"
 
 
@@ -2341,12 +2340,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
 
-				if("detailed_family")
-					detailed_family_loging = !detailed_family_loging
-					if(detailed_family_loging)
-						to_chat(user, span_notice("Detailed family logging enabled."))
-					else
-						to_chat(user, span_notice("Detailed family logging disabled."))
+
 
 				if("allow_midround_antag")
 					toggles ^= MIDROUND_ANTAG

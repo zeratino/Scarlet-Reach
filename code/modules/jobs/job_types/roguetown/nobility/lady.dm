@@ -22,6 +22,14 @@
 	ruler_family = TRUE
 	lord_rel_type = REL_TYPE_SPOUSE
 
+/datum/job/roguetown/lady/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	if(L)
+		var/mob/living/carbon/human/H = L
+		// Give consort the duke's surname if he has one
+		if(GLOB.lordsurname)
+			give_lord_surname(H)
+
 /datum/job/roguetown/exlady //just used to change the ladys title
 	title = "Consort Dowager"
 	flag = LADY

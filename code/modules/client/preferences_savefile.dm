@@ -183,7 +183,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["prefer_old_chat"]	>> prefer_old_chat
 	
 	// family_changes
-	S["detailed_family_loging"] >> detailed_family_loging
+
 
 
 	S["default_slot"]		>> default_slot
@@ -329,7 +329,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["prefer_old_chat"], prefer_old_chat)
 	
 	// family_changes
-	WRITE_FILE(S["detailed_family_loging"], detailed_family_loging)
+
 	
 	return TRUE
 
