@@ -24,13 +24,12 @@
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are a master in the arts of the longsword. Wielder of Psydonia's most versatile and noble weapon, you needn't anything else. You can choose a regional longsword."))
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.change_stat("perception", 2)
-			H.change_stat("constitution", 2)
-			H.change_stat("endurance", 2)
+			H.change_stat("constitution", 4)	//+2 CON in place of END, sorry staminachuds!
 			H.change_stat("intelligence", 3)	//To give you an edge in specialty moves like feints and stop you from being feinted
 			var/weapons = list("Etruscan Longsword", "Kriegsmesser", "Common Longsword")
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
