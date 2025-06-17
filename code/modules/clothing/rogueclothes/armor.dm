@@ -148,6 +148,9 @@
 	armor = ARMOR_PADDED_GOOD
 	sellprice = 30
 	color = "#976E6B"
+	sewrepair = TRUE
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
 	var/shiftable = TRUE
 	var/shifted = FALSE
 
@@ -186,6 +189,22 @@
 	desc = "A large shirt with heavy padding meant to be used below armor. Will probably stop an arrow, unlikely to stop a bolt."
 	icon_state = "fancygamb"
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	color = "#FFFFFF"
+	shiftable = FALSE
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/royal
+	name = "royal gambeson"
+	desc = "A fancy gambeson for royalty. Adorned with extra details and padded for extra protection."
+	icon_state = "royalgamb"
+	allowed_race = NON_DWARVEN_RACE_TYPES
+	color = CLOTHING_AZURE
+	sellprice = 50
+	detail_tag = "_detail"
+	detail_color = "#c9a134"
+	max_integrity = 250 //Same as grenzelshirt
+	boobed = TRUE
+	r_sleeve_status = SLEEVE_NORMAL
+	l_sleeve_status = SLEEVE_NORMAL
 	color = "#FFFFFF"
 	shiftable = FALSE
 

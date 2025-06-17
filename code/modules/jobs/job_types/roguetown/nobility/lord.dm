@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
+		armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/royal
 		shoes = /obj/item/clothing/shoes/roguetown/boots
 		if(H.mind)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
