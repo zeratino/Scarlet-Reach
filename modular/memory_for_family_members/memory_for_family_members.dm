@@ -10,6 +10,61 @@
 
 
 /datum/controller/subsystem/family/proc/SetupFamilies_Short(mob/living/carbon/human/newcomer)
+	// Check if this is a royal family member
+	var/datum/job/newcomer_job = SSjob.GetJob(newcomer.job)
+	if(newcomer_job?.ruler_family)
+		// Case 1: Lord late-joining - gather existing royal family members
+		if(istype(newcomer_job, /datum/job/roguetown/lord))
+			var/list/existing_royal_family = list()
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				if(!H.client || H == newcomer)
+					continue
+				var/datum/job/J = SSjob.GetJob(H.job)
+				if(J?.ruler_family)
+					existing_royal_family += H
+			
+			if(length(existing_royal_family))
+				// Create lord's family and add existing royal members
+				var/datum/family/lord_family = SSfamily.makeFamily(newcomer, GLOB.lordsurname)
+				for(var/mob/living/carbon/human/royal_member in existing_royal_family)
+					// Don't change existing players' names mid-round - just add them to family
+					lord_family.addMember(royal_member)
+					var/datum/job/J = SSjob.GetJob(royal_member.job)
+					var/rel_type = J.lord_rel_type
+					// Fix: newcomer is the Duke, royal_member is the family member
+					lord_family.addRel(royal_member, newcomer, rel_type, TRUE)  // Family member -> Duke
+					lord_family.addRel(newcomer, royal_member, getMatchingRel(rel_type), TRUE)  // Duke -> Family member
+				
+				// Set up relationships between family members using shared function
+				SSfamily.setupRoyalFamilyRelationships(lord_family, newcomer)
+				return
+		
+		// Case 2: Other royal family member joining existing lord's family
+		else
+			for(var/mob/living/carbon/human/H in GLOB.mob_list)
+				if(!H.client || !H.family)
+					continue
+				var/datum/job/J = SSjob.GetJob(H.job)
+				if(istype(J, /datum/job/roguetown/lord))
+					// Handle surname like regular family members
+					if(GLOB.lordsurname)
+						for(var/datum/mind/MF in get_minds()) // Remove from memory since they were known by different name at round start
+							newcomer.mind.become_unknown_to(MF)
+						
+						newcomer.real_name = "[newcomer.old_real_name] [GLOB.lordsurname]" // Change name to original name + lord's surname
+						for(var/X in SSjob.GetJob(newcomer.job).peopleknowme) // Add new name to lists
+							for(var/datum/mind/MF in get_minds(X))
+								newcomer.mind.person_knows_me(MF)
+					
+					H.family.addMember(newcomer)
+					var/rel_type = newcomer_job.lord_rel_type
+					H.family.addRel(newcomer, H, rel_type, TRUE)
+					H.family.addRel(H, newcomer, getMatchingRel(rel_type), TRUE)
+					
+					// Set up relationships between family members using shared function
+					SSfamily.setupRoyalFamilyRelationships(H.family, H)
+					return
+	
 	var/add_to_potentials_poll = TRUE
 	var/datum/family/F = new() // Виртуальная семья, нужная только для сравнения кандидатов на совместимость
 	for(var/mob/living/carbon/human/candidate in family_candidates)

@@ -31,12 +31,11 @@
 	. = ..()
 	if(ishuman(H))
 		var/mob/living/carbon/human/Q = H
-		// Give prince the duke's surname if he has one
-		if(GLOB.lordsurname)
-			give_lord_surname(Q)
 		Q.advsetup = 1
 		Q.invisibility = INVISIBILITY_MAXIMUM
 		Q.become_blind("advsetup")
+
+
 
 /datum/advclass/heir/daring
 	name = "Daring Twit"

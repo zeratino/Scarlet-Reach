@@ -176,46 +176,50 @@ SUBSYSTEM_DEF(family)
 		var/datum/job/J = SSjob.GetJob(H.job)
 		var/rel_type = J.lord_rel_type
 		
+		// Royal family relationships are predetermined by job, no compatibility checks needed
 		// Force consort to always be spouse, regardless of compatibility checks
 		if(istype(J, /datum/job/roguetown/lady))
 			rel_type = REL_TYPE_SPOUSE
-		else if(rel_type != REL_TYPE_SPOUSE) //Genitals are already checked when the job is assigned. Ane we ignore both the Lord's & Consort's attraction prefs.
-			if(!ruler_family.checkFamilyCompat(H,ruler,J.lord_rel_type)) //They're not suitible for their assigned relation type.
-				if(rel_type == REL_TYPE_OFFSPRING && ruler_family.checkFamilyCompat(H,ruler,REL_TYPE_SIBLING)) //Fallback, if they can't be children. Check if they can be siblings.
-					rel_type = REL_TYPE_SIBLING
-				else
-					rel_type = REL_TYPE_RELATIVE
+		// For royal families, use the job's predetermined relationship type without compatibility checks
 
 		ruler_family.addRel(H,ruler,rel_type,TRUE)
 		ruler_family.addRel(ruler,H,getMatchingRel(rel_type),TRUE)
 
 
-	for(var/ref in ruler_family.members) //loop through all other members and connect them.
-		if(ref == ruler_family.members[1]) //skip the lord.
+	SSfamily.setupRoyalFamilyRelationships(ruler_family, ruler)
+
+/datum/controller/subsystem/family/proc/setupRoyalFamilyRelationships(datum/family/family, mob/living/carbon/human/ruler)
+	// Sets up relationships between royal family members with explicit, known relationship patterns
+	var/list/spouses = list()
+	var/list/children = list()
+	
+	// Categorize family members by their job relationship to the ruler
+	for(var/name in family.members)
+		var/mob/living/carbon/human/member = family.members[name]:resolve()
+		if(!member || member == ruler)
 			continue
-		var/mob/living/carbon/human/H = ruler_family.members[ref]:resolve()
-		var/datum/relation/H_rel = ruler_family.getTrueRel(ruler,H)
-
-		for(var/ref2 in ruler_family.members)
-			if(ref2 == ruler_family.members[1] || ref2 == ref) //skip the lord and first member.
-				continue
-			var/mob/living/carbon/human/HH = ruler_family.members[ref2]:resolve()
-			var/datum/relation/HH_rel = ruler_family.getTrueRel(ruler,HH)
-
-			var/new_rel = REL_TYPE_RELATIVE
-			switch(H_rel.rel_type)
-				if(REL_TYPE_SPOUSE)
-					switch(HH_rel.rel_type)
-						if(REL_TYPE_OFFSPRING)
-							new_rel = REL_TYPE_PARENT
-				if(REL_TYPE_OFFSPRING)
-					switch(HH_rel.rel_type)
-						if(REL_TYPE_OFFSPRING)
-							new_rel = REL_TYPE_SIBLING
-						if(REL_TYPE_SPOUSE)
-							new_rel = REL_TYPE_OFFSPRING
-
-			ruler_family.addRel(H,HH,new_rel,TRUE)
+		
+		var/datum/job/job = SSjob.GetJob(member.job)
+		if(!job)
+			continue
+			
+		switch(job.lord_rel_type)
+			if(REL_TYPE_SPOUSE)
+				spouses += member
+			if(REL_TYPE_OFFSPRING)
+				children += member
+	
+	// Set up spouse-child relationships (parent-child)
+	for(var/mob/living/carbon/human/spouse in spouses)
+		for(var/mob/living/carbon/human/child in children)
+			family.addRel(child, spouse, REL_TYPE_OFFSPRING, TRUE)  // Child sees spouse as parent
+			family.addRel(spouse, child, REL_TYPE_PARENT, TRUE)    // Spouse sees child as their child
+	
+	// Set up sibling relationships between children
+	for(var/mob/living/carbon/human/child1 in children)
+		for(var/mob/living/carbon/human/child2 in children)
+			if(child1 != child2)
+				family.addRel(child1, child2, REL_TYPE_SIBLING, TRUE)  // Children see each other as siblings
 
 /datum/family
 	var/name = "ERROR"

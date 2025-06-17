@@ -351,7 +351,9 @@ SUBSYSTEM_DEF(ticker)
 				if(SSfamily.special_role_blacklist.Find(H.mind.special_role))
 					continue
 				if(H.client.prefs.family == FAMILY_FULL)
-					if(!(H.mind.assigned_role in list("Heir", "Grand Duke Consort", "Grand Duke"))) // prevent duke family from having 2 members if they enable family preferences
+					// Exclude all royal family members from regular family processing
+					var/datum/job/job = SSjob.GetJob(H.job)
+					if(!job?.ruler_family)
 						SSfamily.family_candidates += H
 
 		SSfamily.SetupLordFamily()
