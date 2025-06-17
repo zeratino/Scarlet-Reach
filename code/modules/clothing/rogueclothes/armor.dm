@@ -196,16 +196,16 @@
 	name = "royal gambeson"
 	desc = "A fancy gambeson for royalty. Adorned with extra details and padded for extra protection."
 	icon_state = "royalgamb"
-	allowed_race = NON_DWARVEN_RACE_TYPES
-	color = CLOTHING_AZURE
-	sellprice = 50
-	detail_tag = "_detail"
-	detail_color = "#c9a134"
-	max_integrity = 250 //Same as grenzelshirt
-	boobed = TRUE
-	r_sleeve_status = SLEEVE_NORMAL
-	l_sleeve_status = SLEEVE_NORMAL
 	color = "#FFFFFF"
+	allowed_race = NON_DWARVEN_RACE_TYPES
+	sellprice = 50
+	boobed = TRUE
+	nodismemsleeves = TRUE
+	sleeved_detail = TRUE
+	boobed_detail = FALSE
+	detail_tag = "_detail"
+	detail_color = "#e2ab32"
+	max_integrity = 250 //Same as grenzelshirt
 	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
