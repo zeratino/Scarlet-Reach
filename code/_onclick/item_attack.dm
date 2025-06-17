@@ -103,10 +103,11 @@
 //	if(force)
 //		user.emote("attackgrunt")
 	var/datum/intent/cached_intent = user.used_intent
-	if(user.used_intent.swingdelay)
-		if(!user.used_intent.noaa)
-			if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
-				user.do_attack_animation(M, user.used_intent.animname, user.used_intent.masteritem, used_intent = user.used_intent, simplified = TRUE)
+	if(isnull(user.mind))	//for AI only
+		if(user.used_intent.swingdelay)
+			if(!user.used_intent.noaa)
+				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
+					user.do_attack_animation(M, user.used_intent.animname, user.used_intent.masteritem, used_intent = user.used_intent, simplified = TRUE)
 		sleep(user.used_intent.swingdelay)
 	if(user.a_intent != cached_intent)
 		return
@@ -246,6 +247,11 @@
 			effective = max(I.minstr / 2, 1)
 		if(effective > user.STASTR)
 			newforce = max(newforce*0.3, 1)
+			if(prob(33))
+				if(I.wielded)
+					to_chat(user, span_info("I am too weak to wield this weapon properly with both hands."))
+				else
+					to_chat(user, span_info("I am too weak to wield this weapon properly with one hand."))
 
 	switch(blade_dulling)
 		if(DULLING_CUT) //wooden that can't be attacked by clubs (trees, bushes, grass)
