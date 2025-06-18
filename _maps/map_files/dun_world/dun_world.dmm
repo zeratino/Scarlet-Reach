@@ -2442,7 +2442,7 @@
 /area/rogue/indoors/town)
 "aQb" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - NORTH"
+	name = "BLACKMOOR - NORTH"
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
@@ -5076,7 +5076,7 @@
 /area/rogue/under/town/basement/keep)
 "bJP" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - EAST"
+	name = "BLACKMOOR - EAST"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
@@ -5814,7 +5814,7 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/goblindungeon)
 "bXy" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame,
+/mob/living/simple_animal/hostile/retaliate/rogue/horse/black/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "bXG" = (
@@ -6113,6 +6113,14 @@
 /obj/structure/roguewindow/stained/zizo,
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/shelter/mountains)
+"cdB" = (
+/obj/machinery/light/rogue/torchholder/c,
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/retaliate/rogue/horse/brown/tame,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/town)
 "cdI" = (
 /obj/structure/stairs,
 /obj/machinery/light/rogue/wallfire/candle/l,
@@ -20511,10 +20519,7 @@
 	},
 /area/rogue/outdoors/town)
 "gZM" = (
-/obj/structure/fluff/railing/border{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
+/mob/living/simple_animal/hostile/retaliate/rogue/horse/male/black/tame,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town)
 "gZP" = (
@@ -22755,7 +22760,7 @@
 /area/rogue/indoors/town/bath)
 "hJB" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - EAST"
+	name = "BLACKMOOR - EAST"
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains)
@@ -30309,9 +30314,9 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/shelter/mountains/decap)
 "kor" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
+/mob/living/simple_animal/hostile/retaliate/rogue/horse/male/white/tame,
 /turf/open/floor/rogue/dirt/road,
-/area/rogue/indoors/town)
+/area/rogue/indoors/town/garrison)
 "koA" = (
 /obj/structure/stairs{
 	dir = 1
@@ -38387,9 +38392,9 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/under/cave)
 "ndH" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame,
+/mob/living/simple_animal/hostile/retaliate/rogue/horse/white/tame,
 /turf/open/floor/rogue/dirt/road,
-/area/rogue/indoors/town)
+/area/rogue/indoors/town/garrison)
 "ndJ" = (
 /obj/structure/closet/crate/drawer,
 /obj/item/roguekey/tavern,
@@ -41732,7 +41737,7 @@
 /area/rogue/indoors/town)
 "okN" = (
 /obj/structure/fluff/walldeco/goblet{
-	name = "Azurian Pints Inn and Bath"
+	name = "Blackmoorian Pints Inn and Bath"
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/tavern)
@@ -68825,7 +68830,7 @@
 /area/rogue/indoors/town/physician)
 "xkL" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - NORTH"
+	name = "BLACKMOOR - NORTH"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
@@ -70094,6 +70099,14 @@
 /obj/item/rogueweapon/tongs,
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors/shelter)
+"xIb" = (
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/obj/machinery/light/rogue/torchholder/c,
+/mob/living/simple_animal/hostile/retaliate/rogue/horse/male/brown/tame,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors/town)
 "xIc" = (
 /obj/effect/decal/cobbleedge{
 	dir = 1
@@ -256795,8 +256808,8 @@ uBc
 bXy
 hzG
 uBc
+gZM
 hzG
-ndH
 uBc
 wwO
 exD
@@ -259584,10 +259597,10 @@ ets
 cDX
 phl
 uBc
-avp
-gZM
+xIb
+fVX
 uBc
-xBp
+cdB
 fVX
 tOB
 ezl
@@ -260040,7 +260053,7 @@ hzG
 hzG
 uBc
 hzG
-kor
+hzG
 tOB
 pWT
 sns
@@ -281705,7 +281718,7 @@ weQ
 suJ
 wta
 kPX
-kPX
+kor
 kPX
 hrE
 kSN
@@ -284417,7 +284430,7 @@ weQ
 kyN
 wta
 kPX
-kPX
+ndH
 kPX
 jWw
 fnZ
