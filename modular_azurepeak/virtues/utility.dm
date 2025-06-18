@@ -166,6 +166,15 @@
 						list(/datum/skill/craft/smelting, 2, 2)
 	)
 
+	/datum/virtue/utility/potter
+	name = "Potter's Apprentice"
+	desc = "In my youth, I trained under a skilled potter, learning how to shape clay and blow glass."
+	added_skills = list(list(/datum/skill/craft/crafting, 2, 2),
+						list(/datum/skill/craft/masonry, 2, 2),
+						list(/datum/skill/craft/carpentry, 2, 2),
+						list(/datum/skill/misc/ceramics, 2, 2),
+	)
+
 /datum/virtue/utility/hunter
 	name = "Hunter's Apprentice"
 	desc = "In my youth, I trained under a skilled hunter, learning how to butcher animals and work with leather/hide."
