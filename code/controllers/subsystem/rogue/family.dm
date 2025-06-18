@@ -63,9 +63,7 @@ SUBSYSTEM_DEF(family)
 	return F
 
 /datum/controller/subsystem/family/proc/SetupFamilies()
-	message_admins("SetupFamilies called with [length(family_candidates)] candidates")
 	if(!length(family_candidates))
-		message_admins("No family candidates found, returning")
 		return
 	var/total_families
 	var/reserved_family_candidates = family_candidates // REDMOON ADD - family_changes
@@ -74,14 +72,11 @@ SUBSYSTEM_DEF(family)
 	var/list/head_candidates = list()
 	for(var/c in family_candidates)
 		var/mob/living/carbon/human/H = c
-		message_admins("Checking head candidate: [H.real_name] - Penis: [H.getorganslot(ORGAN_SLOT_PENIS) ? "Yes" : "No"], Family surname: '[H.family_surname]'")
 		if(H.getorganslot(ORGAN_SLOT_PENIS)) // REDMOON EDIT - family_changes - фута может образовывать семью
 			head_candidates += H
-			message_admins("Added [H.real_name] as head candidate")
 
 	family_candidates = shuffle(family_candidates)
 	total_families = max(1,round(length(family_candidates)/2)) //Since we're currently only matching spouses. Just assume we want enough families for groups of two.
-	message_admins("Head candidates found: [length(head_candidates)], Total families to create: [total_families]")
 	while(total_families && length(head_candidates)) //Construct families.
 		var/mob/living/carbon/head = pick(head_candidates)
 
@@ -104,7 +99,6 @@ SUBSYSTEM_DEF(family)
 					var/rel_type = F.tryConnect(H,connecting_member)
 					var/compat1 = F.checkFamilyCompat(H,connecting_member,rel_type)
 					var/compat2 = F.checkFamilyCompat(connecting_member,H,rel_type)
-					message_admins("Family compatibility: [H.real_name] -> [connecting_member.real_name]: [compat1], [connecting_member.real_name] -> [H.real_name]: [compat2]")
 					if(compat1 && compat2) //suitable. Add them to the family and connect them. (Note using checkFamilyCompat for both falls apart for anything other than spouses. The checks should be moved to a different proc at some point.)
 						// BLUEMOON ADD START - family_changes - присвоение фамилий
 						var/family_surname = connecting_member.family_surname
@@ -121,7 +115,6 @@ SUBSYSTEM_DEF(family)
 						F.addMember(H)
 						F.addRel(H,connecting_member,getMatchingRel(rel_type),TRUE)
 						F.addRel(connecting_member,H,rel_type,TRUE)
-						message_admins("Family created: [H.real_name] married to [connecting_member.real_name]")
 
 						current_families -= F
 						family_candidates -= H // Remove the matched candidate
@@ -323,10 +316,8 @@ SUBSYSTEM_DEF(family)
 			/ REDMOON REMOVAL END*/
 
 			//Check species.
-			message_admins("Species check: [member.real_name] has family_species: [json_encode(member.client.prefs.family_species)] vs [target.real_name] species: [target.dna.species.id]")
 			if(!member.client.prefs.family_species.Find(target.dna.species.id))
-				message_admins("Species compatibility failed for [member.real_name] and [target.real_name]")
-				return FALSE
+			return FALSE
 			/* REDMOON REMOVAL START - family_changes 
 			- Перенесено в проверку согласия на гениталии
 			//Check sex.
