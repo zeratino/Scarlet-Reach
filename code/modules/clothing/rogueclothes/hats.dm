@@ -1724,7 +1724,7 @@
 /obj/item/clothing/head/roguetown/helmet/tricorn
 	slot_flags = ITEM_SLOT_HEAD
 	name = "tricorn"
-	desc = "A hat worn by sailers, fencers, muskeeters and gentleman alike."
+	desc = "A hat worn by sailors, fencers, musketeers and gentleman alike."
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "tricorn"
 	armor = ARMOR_HEAD_CLOTHING
