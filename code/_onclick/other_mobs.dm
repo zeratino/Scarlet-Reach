@@ -576,7 +576,6 @@
 		OffBalance(30)
 		jadded = 45
 		jrange = 3
-		jextra = TRUE
 
 		if(!HAS_TRAIT(src, TRAIT_LEAPER))// The Jester lands where the Jester wants.
 			jextra = TRUE
