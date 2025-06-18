@@ -498,7 +498,7 @@
 	name = "fencing shirt (6 cloth, 2 cured leather)"
 	result = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
 	reqs = list(/obj/item/natural/cloth = 6,
-				/obj/item/natural/leather/cured = 2)
+				/obj/item/natural/hide/cured = 2)
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/sewing/chaperon
