@@ -152,7 +152,7 @@
 
 //			L.adjustFireLoss(50)
 			if(L) //mobs turning into object corpses could get deleted here.
-				L.adjustFireLoss(10)
+				L.adjustFireLoss(40)
 				L.adjust_fire_stacks(100)
 				L.IgniteMob()
 
