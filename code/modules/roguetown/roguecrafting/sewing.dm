@@ -494,6 +494,13 @@
                 /obj/item/natural/fibers = 4)
     craftdiff = 3
 
+/datum/crafting_recipe/roguetown/sewing/hgambeson/fencer
+	name = "fencing shirt (6 cloth, 2 cured leather)"
+	result = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
+	reqs = list(/obj/item/natural/cloth = 6,
+				/obj/item/natural/leather/cured = 2)
+	craftdiff = 4
+
 /datum/crafting_recipe/roguetown/sewing/chaperon
 	name = "chaperon hat (1 fibers, 2 cloth)"
 	result = list(/obj/item/clothing/head/roguetown/chaperon)

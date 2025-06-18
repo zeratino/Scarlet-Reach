@@ -191,8 +191,8 @@
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
 	name = "padded fencing shirt"
-	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It lasts quite a bit less than a regular padded gambeson and won't cover your legs."
-	max_integrity = 150
+	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It lasts a bit less than a regular padded gambeson and won't cover your legs."
+	max_integrity = 200		//Back to default. I think it's right if it doesn't stop you from getting legshotted.
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS
 	detail_tag = "_detail"
 	altdetail_tag = "_detailalt"
