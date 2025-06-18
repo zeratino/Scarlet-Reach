@@ -155,8 +155,6 @@
 				L.adjustFireLoss(10)
 				L.adjust_fire_stacks(100)
 				L.IgniteMob()
-				if(L.health <= 0)
-					L.dust(drop_items = TRUE)
 
 /turf/open/lava/onbite(mob/user)
 	if(isliving(user))
