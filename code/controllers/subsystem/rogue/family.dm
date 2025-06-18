@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(family)
 	for(var/c in family_candidates)
 		var/mob/living/carbon/human/H = c
 		message_admins("Checking head candidate: [H.real_name] - Penis: [H.getorganslot(ORGAN_SLOT_PENIS) ? "Yes" : "No"], Family surname: '[H.family_surname]'")
-		if(H.getorganslot(ORGAN_SLOT_PENIS)) // REDMOON EDIT - family_changes - фута может образовывать семью WAS if(H.gender == MALE)
+		if(H.getorganslot(ORGAN_SLOT_PENIS)) // REDMOON EDIT - family_changes - фута может образовывать семью
 			head_candidates += H
 			message_admins("Added [H.real_name] as head candidate")
 
@@ -107,8 +107,12 @@ SUBSYSTEM_DEF(family)
 					message_admins("Family compatibility: [H.real_name] -> [connecting_member.real_name]: [compat1], [connecting_member.real_name] -> [H.real_name]: [compat2]")
 					if(compat1 && compat2) //suitable. Add them to the family and connect them. (Note using checkFamilyCompat for both falls apart for anything other than spouses. The checks should be moved to a different proc at some point.)
 						// BLUEMOON ADD START - family_changes - присвоение фамилий
-						if(connecting_member.family_surname)
-							H.real_name = "[H.client.prefs.real_name] [connecting_member.family_surname]"
+						var/family_surname = connecting_member.family_surname
+						if(!family_surname)
+							// If family head has no surname, create "of [firstname]" like duke system
+							var/list/head_name_parts = splittext(connecting_member.real_name, " ")
+							family_surname = "of [head_name_parts[1]]"
+						H.real_name = "[H.client.prefs.real_name] [family_surname]"
 						if(H.family)
 							current_families -= H.family
 							qdel(H.family)
@@ -299,7 +303,7 @@ SUBSYSTEM_DEF(family)
 				to_chat(holder, "[target.p_their(TRUE)] genitals are... Uncommon.")
 			// REDMOON ADD END
 
-		R.onConnect(holder,target) //Bit of hack to have this here. But it stops church marriages from being given rings.
+		//R.onConnect(holder,target) //Bit of hack to have this here. But it stops church marriages from being given rings. - COMMENTED OUT: No ring sprite
 
 /datum/family/proc/tryConnect(mob/living/carbon/human/target, mob/living/carbon/human/member) //Gets the rel_type for the targets. For now, it only returns spouse.
 	return REL_TYPE_SPOUSE
@@ -311,7 +315,7 @@ SUBSYSTEM_DEF(family)
 			if(member == target) // REDMOON ADD START - family_changes - из-за того, что глава семьи тоже ролится в списках на семейство, необходимое дополнение
 				return FALSE // REDMOON ADD END
 			if(!member.client)
-				return
+				return FALSE
 			/* REDMOON REMOVAL START - family_changes - мешает проверкам на гениталии ниже
 			//Check gender.
 			if(!member.client.prefs.family_gender.Find(target.gender))
@@ -336,11 +340,11 @@ SUBSYSTEM_DEF(family)
 				return FALSE
 			REDMOON REMOVAL END */
 
-			if(HAS_TRAIT(target, TRAIT_NOBLE) && !HAS_TRAIT(member, TRAIT_NOBLE))
-				return
+			/*if(HAS_TRAIT(target, TRAIT_NOBLE) && !HAS_TRAIT(member, TRAIT_NOBLE))
+				return FALSE
 
 			if(HAS_TRAIT(member, TRAIT_NOBLE) && !HAS_TRAIT(target, TRAIT_NOBLE))
-				return
+				return FALSE*/
 
 			// REDMOON ADD START - family_changes
 			// Свадьба без возможности деторождения не поддерживается Эорой
@@ -493,6 +497,7 @@ proc/getMatchingRel(var/rel_type)
 			return "Wife"
 	return "Spouse"
 
+/*
 /datum/relation/spouse/onConnect(mob/living/carbon/human/holder, mob/living/carbon/human/target)
 	var/datum/job/holder_job = SSjob.GetJob(holder.job)
 
@@ -518,6 +523,7 @@ proc/getMatchingRel(var/rel_type)
 				else
 					holder.dropItemToGround(holder.wear_ring)
 					to_chat(holder, span_warning("I had to drop my old ring."))
+*/
 
 
 /datum/relation/sibling

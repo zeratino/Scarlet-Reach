@@ -357,6 +357,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<BR>"
 			dat += "<b>Nickname:</b> "
 			dat += "<a href='?_src_=prefs;preference=nickname;task=input'>[nickname]</a><BR>"
+			dat += "<b>Surname/Title:</b> <a href='?_src_=prefs;preference=familypref;res=surname'>[family_surname ? family_surname : "(None)"]</a><BR>"
 			// LETHALSTONE EDIT BEGIN: add pronoun prefs
 			dat += "<b>Pronouns:</b> <a href='?_src_=prefs;preference=pronouns;task=input'>[pronouns]</a><BR>"
 			// LETHALSTONE EDIT END
@@ -411,7 +412,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				dat += " <small><a href='?_src_=prefs;preference=familypref;res=race'><b>Race</b></a></small>"
 				dat += "<BR>"
 				dat += " <small><a href='?_src_=prefs;preference=familypref;res=ckey'><b>Spouse soul: [spouse_ckey ? spouse_ckey : "(Random)"]</b></a></small><BR>"
-				dat += " <small><a href='?_src_=prefs;preference=familypref;res=surname'><b>Family surname: [family_surname ? family_surname : "(None)"]</b></a></small><BR>"
 				dat += " <small><a href='?_src_=prefs;preference=familypref;res=genitals'><b>Partner's beginning</b></a></small><BR>"
 				dat += " <small><a href='?_src_=prefs;preference=familypref;res=latejoin'><b>Latejoin: [allow_latejoin_family ? "Allowed" : "No"]</b></a></small><BR>"
 			dat += "<b>Dominance:</b> <a href='?_src_=prefs;preference=domhand'>[domhand == 1 ? "Left-handed" : "Right-handed"]</a><BR>"

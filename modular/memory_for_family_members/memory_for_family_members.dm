@@ -25,7 +25,12 @@
 			
 			if(length(existing_royal_family))
 				// Create lord's family and add existing royal members
-				var/datum/family/lord_family = SSfamily.makeFamily(newcomer, GLOB.lordsurname)
+				var/duke_surname = newcomer.family_surname
+				if(!duke_surname)
+					// If duke has no surname, create "of [duke's firstname]"
+					var/list/duke_name_parts = splittext(newcomer.real_name, " ")
+					duke_surname = "of [duke_name_parts[1]]"
+				var/datum/family/lord_family = SSfamily.makeFamily(newcomer, duke_surname)
 				for(var/mob/living/carbon/human/royal_member in existing_royal_family)
 					// Don't change existing players' names mid-round - just add them to family
 					lord_family.addMember(royal_member)
@@ -47,11 +52,19 @@
 				var/datum/job/J = SSjob.GetJob(H.job)
 				if(istype(J, /datum/job/roguetown/lord))
 					// Handle surname like regular family members
-					if(GLOB.lordsurname)
+					var/duke_surname = H.family_surname
+					if(!duke_surname)
+						// If duke has no surname, create "of [duke's firstname]"
+						var/list/duke_name_parts = splittext(H.real_name, " ")
+						duke_surname = "of [duke_name_parts[1]]"
+					
+					if(duke_surname)
 						for(var/datum/mind/MF in get_minds()) // Remove from memory since they were known by different name at round start
 							newcomer.mind.become_unknown_to(MF)
 						
-						newcomer.real_name = "[newcomer.old_real_name] [GLOB.lordsurname]" // Change name to original name + lord's surname
+						var/list/name_parts = splittext(newcomer.old_real_name, " ")
+						newcomer.real_name = "[name_parts[1]] [duke_surname]" // Change name to first name + duke's surname
+						newcomer.name = newcomer.real_name
 						for(var/X in SSjob.GetJob(newcomer.job).peopleknowme) // Add new name to lists
 							for(var/datum/mind/MF in get_minds(X))
 								newcomer.mind.person_knows_me(MF)

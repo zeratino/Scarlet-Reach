@@ -729,10 +729,11 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	. = H
 	new_character = .
 
-	// family_changes - фамилии для семей
+	// Apply family surname if set
 	H.old_real_name = H.real_name
-	if(client.prefs.family_surname && client.prefs.family == FAMILY_FULL)
+	if(client.prefs.family_surname)
 		H.real_name = "[H.real_name] [client.prefs.family_surname]"
+		H.name = H.real_name
 
 	H.after_creation()
 

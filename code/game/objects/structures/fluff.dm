@@ -1076,6 +1076,16 @@
 						if(!F)
 							return
 
+						// Handle surname change for bride like regular family system
+						var/groom_surname = thegroom.family_surname
+						if(!groom_surname)
+							// If groom has no surname, create "of [firstname]"
+							var/list/groom_name_parts = splittext(thegroom.real_name, " ")
+							groom_surname = "of [groom_name_parts[1]]"
+						// Apply surname to bride (first name + groom's surname)
+						var/list/bride_name_parts = splittext(thebride.real_name, " ")
+						thebride.real_name = "[bride_name_parts[1]] [groom_surname]"
+
 						F.addMember(thebride)
 						F.addRel(thegroom,thebride,REL_TYPE_SPOUSE)
 						F.addRel(thebride,thegroom,REL_TYPE_SPOUSE)
