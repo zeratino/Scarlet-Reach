@@ -29,7 +29,7 @@
 		if(type_override)
 			emote_type = type_override
 
-	user.log_message("SUBTLE - " + message, LOG_EMOTE)
+	//user.log_message("SUBTLE - " + message, LOG_EMOTE) - Unlogged for player privacy
 	message = "<b>[user]</b> " + message
 /*
 	for(var/mob/M in GLOB.dead_mob_list)
