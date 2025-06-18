@@ -1050,24 +1050,26 @@
 						var/mob/living/carbon/human/thegroom
 						var/mob/living/carbon/human/thebride
 						
-						for(var/mob/M in viewers(src, 7))
+						// Find people by bite order, not random viewer order
+						for(var/bite_name in A.bitten_names)
+							for(var/mob/M in viewers(src, 7))
+								if(!ishuman(M))
+									continue
+								var/mob/living/carbon/human/C = M
+								if(C.stat == DEAD)
+									continue
+								if(!C.client)
+									continue
+								if(C.family)
+									continue
+								if(C.real_name == bite_name)
+									if(!thegroom)
+										thegroom = C  // First bite = groom
+									else if(!thebride)
+										thebride = C  // Second bite = bride
+									break
 							if(thegroom && thebride)
 								break
-							if(!ishuman(M))
-								continue
-							var/mob/living/carbon/human/C = M
-							if(C.stat == DEAD)
-								continue
-							if(!C.client)
-								continue
-							if(C.family)
-								continue
-
-							if(C.real_name in A.bitten_names)
-								if(!thegroom)
-									thegroom = C
-								else if(!thebride)
-									thebride = C
 
 						if(!thegroom || !thebride)
 							return
