@@ -2392,6 +2392,12 @@
 /obj/item/rogueweapon/pick,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
+"aPe" = (
+/obj/structure/fluff/railing/fence{
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt,
+/area/rogue/under/cave/orcdungeon)
 "aPf" = (
 /obj/structure/closet/crate/chest/old_crate,
 /obj/item/rogueore/coal,
@@ -15400,10 +15406,6 @@
 /obj/structure/fluff/walldeco/psybanner,
 /turf/closed/wall/mineral/rogue/decostone/center,
 /area/rogue/indoors/town/church/chapel)
-"fkh" = (
-/obj/item/restraints/legcuffs/beartrap/armed/camouflage,
-/turf/open/floor/rogue/dirt,
-/area/rogue/under/cave/orcdungeon)
 "fkk" = (
 /obj/structure/fluff/railing/border{
 	dir = 1
@@ -22680,6 +22682,12 @@
 "hBS" = (
 /turf/closed/mineral/random/rogue/med,
 /area/rogue/outdoors/woods)
+"hBT" = (
+/mob/living/carbon/human/species/goblin/npc/sea{
+	faction = list("orcs")
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/under/cave/orcdungeon)
 "hBV" = (
 /obj/structure/fluff/railing/border{
 	dir = 10
@@ -51770,7 +51778,7 @@
 	},
 /area/rogue/indoors/town/manor)
 "roJ" = (
-/obj/structure/trap/wall_projectile/frostbolt{
+/obj/structure/trap/wall_projectile{
 	dir = 8
 	},
 /turf/open/floor/rogue/wood,
@@ -57253,6 +57261,12 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"teh" = (
+/obj/structure/fluff/railing/fence{
+	dir = 4
+	},
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/under/cave/orcdungeon)
 "tei" = (
 /obj/structure/fluff/railing/wood{
 	dir = 4
@@ -277586,8 +277600,8 @@ jDM
 jDM
 jDM
 jDM
-wXK
-qNO
+teh
+aPe
 jDM
 ujm
 qPv
@@ -278488,7 +278502,7 @@ xQI
 xQI
 eSC
 xQI
-fkh
+qNO
 qNO
 qNO
 wXK
@@ -279846,7 +279860,7 @@ emg
 mMU
 eSe
 jDM
-fkh
+qNO
 qNO
 rIN
 jDM
@@ -282106,7 +282120,7 @@ mMU
 wvN
 mMU
 jDM
-wXK
+hBT
 wXK
 jDM
 ujm
