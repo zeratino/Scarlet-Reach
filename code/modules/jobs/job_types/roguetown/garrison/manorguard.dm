@@ -1,5 +1,6 @@
 /datum/job/roguetown/manorguard
 	title = "Man at Arms"
+	f_title = "Woman at Arms"
 	flag = MANATARMS
 	department_flag = GARRISON
 	faction = "Station"
@@ -160,7 +161,10 @@
 	H.change_stat("speed", 2)
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord			// Cant wear chainmail anymoooree
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		//Helps against arrows; makes sense for a ranged-type role.
+	if(should_wear_femme_clothes(H))
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/bikini		//Helps against arrows; makes sense for a ranged-type role.
+	else
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/studded		//Helps against arrows; makes sense for a ranged-type role.
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 
