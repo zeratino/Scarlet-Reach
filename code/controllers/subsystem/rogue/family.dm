@@ -315,9 +315,9 @@ SUBSYSTEM_DEF(family)
 				return FALSE 
 			/ REDMOON REMOVAL END*/
 
-			//Check species.
+					//Check species.
 			if(!member.client.prefs.family_species.Find(target.dna.species.id))
-			return FALSE
+				return FALSE
 			/* REDMOON REMOVAL START - family_changes 
 			- Перенесено в проверку согласия на гениталии
 			//Check sex.
@@ -411,7 +411,7 @@ SUBSYSTEM_DEF(family)
 					// halfchild_types disabled for Blackmoor-hold compatibility
 					allowed_species |= spouse.dna.species.type
 
-			if(!target.dna.species.type in allowed_species)
+			if(!(target.dna.species.type in allowed_species))
 				return FALSE
 			return TRUE
 
