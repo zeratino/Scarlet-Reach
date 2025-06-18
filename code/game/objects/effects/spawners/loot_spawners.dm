@@ -426,6 +426,7 @@
 
 /obj/effect/spawner/lootdrop/general_loot_low/x3
 	name = "low tier general loot spawnerx3"
+	icon_state = "genlowx3"
 	lootcount = 3
 
 /obj/effect/spawner/lootdrop/general_loot_mid/x3
