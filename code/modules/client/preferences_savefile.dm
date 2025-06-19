@@ -399,6 +399,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (loadout_type3)
 		loadout3 = new loadout_type3()
 
+/datum/preferences/proc/_load_height(S)
+	var/preview_height
+	S["body_height"] >> preview_height
+	if (preview_height)
+		preview_height = new preview_height()
 
 /datum/preferences/proc/_load_appearence(S)
 	S["real_name"]			>> real_name
@@ -431,7 +436,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["voice_type"]			>> voice_type
 	S["nickname"]			>> nickname
 	S["highlight_color"]	>> highlight_color
-	S["body_size"]			>> body_size
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
@@ -479,6 +483,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Character
 	_load_appearence(S)
+	_load_height(S)
 
 	var/patron_typepath
 	S["selected_patron"]	>> patron_typepath
@@ -524,7 +529,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	S["pronouns"] >> pronouns
 	S["voice_type"] >> voice_type
-	S["body_size"] >> body_size
+	S["body_size"] >> features["body_size"]
+	if (!features["body_size"])
+		features["body_size"] = BODY_SIZE_NORMAL
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_character(needs_update, S)		//needs_update == savefile_version if we need an update (positive integer)
@@ -681,7 +688,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["statpack"] , statpack.type)
 	WRITE_FILE(S["virtue"] , virtue.type)
 	WRITE_FILE(S["virtuetwo"], virtuetwo.type)
-	WRITE_FILE(S["body_size"] , body_size)
+	WRITE_FILE(S["body_size"] , features["body_size"])
 	if(loadout)
 		WRITE_FILE(S["loadout"] , loadout.type)
 	else
