@@ -1503,7 +1503,8 @@
 #include "code\modules\jobs\job_types\roguetown\nobility\captain.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\hand.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\knight.dm"
-#include "code\modules\jobs\job_types\roguetown\nobility\lady.dm"
+#include "code\modules\jobs\job_types\roguetown\nobility\consort.dm"
+#include "code\modules\jobs\job_types\roguetown\nobility\suitor.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\lord.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\steward.dm"
 #include "code\modules\jobs\job_types\roguetown\other\deathknight.dm"
@@ -2361,5 +2362,6 @@
 #include "modular_hearthstone\code\modules\mob\living\simple_animal\rogue\rogue_corpse.dm"
 #include "modular_hearthstone\code\modules\reagents\reagent_containers\lux.dm"
 #include "code\modules\antagonists\roguetown\roleobjs\suitor.dm"
+#include "code\__HELPERS\lordmarriage.dm"
 // END_INCLUDE
 

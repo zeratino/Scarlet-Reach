@@ -1,19 +1,19 @@
-/datum/job/roguetown/lady
+/datum/job/roguetown/suitor
 	title = "Suitor"
-	flag = LADY
+	flag = SUITOR
 	department_flag = NOBLEMEN
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 0
+	spawn_positions = 0
 
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_NO_CONSTRUCT
 	advclass_cat_rolls = list(CTAG_CONSORT = 20)
 	tutorial = "You are a noble from a foreign court who has travelled to Azure Peak in order to win the hand of Azuria's most eligible bachelor and secure a political ally for your house. Competition is fierce, and it seems you're not the only one vying for the duke's favor..."
 
-	outfit = /datum/outfit/job/roguetown/lady
+	outfit = /datum/outfit/job/roguetown/suitor
 
-	display_order = JDO_LADY
+	display_order = JDO_SUITOR
 	give_bank_account = 40
 	noble_income = 20
 	min_pq = 3
@@ -21,7 +21,7 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
 
-/datum/job/roguetown/lady/after_spawn(mob/living/H, mob/M, latejoin)
+/datum/job/roguetown/suitor/after_spawn(mob/living/H, mob/M, latejoin)
 	. = ..()
 	if(ishuman(H))
 		var/mob/living/carbon/human/Q = H
@@ -29,16 +29,16 @@
 		Q.invisibility = INVISIBILITY_MAXIMUM
 		Q.become_blind("advsetup")
 
-/datum/outfit/job/roguetown/lady
+/datum/outfit/job/roguetown/suitor
 	job_bitflag = BITFLAG_ROYALTY
 
-/datum/advclass/lady/envoy
+/datum/advclass/suitor/envoy
 	name = "Envoy"
 	tutorial = "You're a graceful envoy - fluent in flattery, courtesy, and calculated sincerity. You'll charm your way into the Duke's heart, winning favor with warmth, wit, and well-timed smiles."
-	outfit = /datum/outfit/job/roguetown/lady/envoy
+	outfit = /datum/outfit/job/roguetown/suitor/envoy
 	category_tags = list(CTAG_CONSORT)
 
-/datum/outfit/job/roguetown/lady/envoy/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/suitor/envoy/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(should_wear_femme_clothes(H))
 		neck = /obj/item/roguekey/manor
@@ -90,13 +90,13 @@
 		var/datum/antagonist/new_antag = new /datum/antagonist/suitor()
 		H.mind.add_antag_datum(new_antag)
 
-/datum/advclass/lady/schemer
+/datum/advclass/suitor/schemer
 	name = "Schemer"
 	tutorial = "You're a silver-tongued snake - master of whispers, poison, and perfectly timed accidents. Why win hearts when you can twist them? With rivals removed and secrets weaponized, the Duke will have no choice but to choose you."
-	outfit = /datum/outfit/job/roguetown/lady/schemer
+	outfit = /datum/outfit/job/roguetown/suitor/schemer
 	category_tags = list(CTAG_CONSORT)
 
-/datum/outfit/job/roguetown/lady/schemer/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/suitor/schemer/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
@@ -136,13 +136,13 @@
 		var/datum/antagonist/new_antag = new /datum/antagonist/suitor()
 		H.mind.add_antag_datum(new_antag)
 
-/datum/advclass/lady/gallant
+/datum/advclass/suitor/gallant
 	name = "Gallant"
 	tutorial = "With honor and the flash of your steel, you meet your rivals in open challenge. You'll win the Duke's favor not with whispers or warmth, but with roaring applause."
-	outfit = /datum/outfit/job/roguetown/lady/gallant
+	outfit = /datum/outfit/job/roguetown/suitor/gallant
 	category_tags = list(CTAG_CONSORT)
 
-/datum/outfit/job/roguetown/lady/gallant/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/suitor/gallant/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)

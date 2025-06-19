@@ -44053,6 +44053,10 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/beach)
+"paH" = (
+/obj/effect/landmark/start/suitor,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "paJ" = (
 /obj/effect/roguerune{
 	color = "#61190b";
@@ -407516,11 +407520,11 @@ vmi
 vmi
 vxe
 sOq
-eoH
+paH
 fAA
 vxe
 sOq
-eoH
+paH
 fAA
 vxe
 oIo
@@ -516443,7 +516447,7 @@ hAe
 trl
 xAj
 fAA
-fAA
+eoH
 fAA
 fAA
 vxe
@@ -516895,7 +516899,7 @@ hAe
 vxe
 tGW
 fAA
-mSd
+fAA
 fAA
 fAA
 mYs
@@ -517347,7 +517351,7 @@ hAe
 trl
 lXR
 fAA
-fAA
+mSd
 fAA
 fAA
 vxe
