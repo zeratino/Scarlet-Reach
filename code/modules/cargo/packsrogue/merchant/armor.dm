@@ -26,19 +26,12 @@
 					/obj/item/clothing/head/roguetown/helmet/heavy/knight,
 				)
 
-/datum/supply_pack/rogue/armor/coif/leather
-	name = "Leather Coif"
-	cost = 15
-	contains = list(
-					/obj/item/clothing/neck/roguetown/coif,
-				)
-
-/datum/supply_pack/rogue/armor/coif/cloth
+/datum/supply_pack/rogue/armor/coif
 	name = "Cloth Coif"
 	cost = 10
 	contains = list(
-					/obj/item/clothing/neck/roguetown/coif/clothcoif,
-				)	
+					/obj/item/clothing/neck/roguetown/coif,
+				)
 
 /datum/supply_pack/rogue/armor/coif/steel
 	name = "Steel Coif"
@@ -63,7 +56,7 @@
 
 /datum/supply_pack/rogue/armor/leather
 	name = "Leather Armor"
-	cost = 20
+	cost = 10
 	contains = list(
 					/obj/item/clothing/suit/roguetown/armor/leather,
 				)
@@ -168,3 +161,4 @@
 	contains = list(
 					/obj/item/clothing/shoes/roguetown/boots/armor,
 				)
+
