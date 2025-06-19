@@ -188,6 +188,7 @@
 	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
 	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
 	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"Studded Leather Hood" 	= /obj/item/clothing/head/roguetown/helmet/leather/armorhood/advanced
 	"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
@@ -255,6 +256,7 @@
 	"Bascinet Helmet"		= /obj/item/clothing/head/roguetown/helmet/bascinet,
 	"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
 	"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+	"Studded Leather Hood" 	= /obj/item/clothing/head/roguetown/helmet/leather/armorhood/advanced
 	"None"
 	)
 	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets

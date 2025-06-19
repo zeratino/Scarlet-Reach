@@ -6,8 +6,8 @@
 /obj/item/clothing/head/roguetown/helmet/leather/armorhood
 	name = "padded leather hood"
 	desc = "A padded leather hood with buckles."
-	icon = 'modular_stonehedge/icons/armor/head.dmi'
-	mob_overlay_icon = 'modular_stonehedge/icons/armor/onmob/head.dmi'
+	icon = 'modular_stonehedge/icons/clothing/armor/head.dmi'
+	mob_overlay_icon = 'modular_stonehedge/icons/clothing/armor/onmob/head.dmi'
 	icon_state = "studhood"
 	item_state = "studhood"
 	flags_inv = HIDEHAIR
