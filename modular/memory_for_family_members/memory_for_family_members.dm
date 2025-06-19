@@ -95,8 +95,15 @@
 		// Чтобы бандит или заключенный не имели семью кроме случаев, когда это предусмотрено наличием spouse_ckey
 		if(!candidate.allow_latejoin_family)
 			continue
-		if(SSjob.GetJob(newcomer.job).family_blacklisted && !newcomer.client.prefs.spouse_ckey)
+		if(SSjob.GetJob(newcomer.job).family_blacklisted)
 			break
+		if(newcomer_job?.ruler_family)
+			break 
+		if(SSjob.GetJob(candidate.job).family_blacklisted)
+			continue 
+		var/datum/job/candidate_job = SSjob.GetJob(candidate.job)
+		if(candidate_job?.ruler_family)
+			continue 
 		// Такая же проверка, как при создании семьи. На всякий случай, чтобы избежать знать в браке с простолюдинами и другие проблемы
 		if(F.checkFamilyCompat(candidate,newcomer,REL_TYPE_SPOUSE) && F.checkFamilyCompat(newcomer,candidate,REL_TYPE_SPOUSE))
 			var/mob/family_head = candidate
