@@ -35,7 +35,7 @@
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			backpack_contents = list(/obj/item/lockpick = 1, /obj/item/rogueweapon/huntingknife = 1, /obj/item/recipe_book/survival = 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
@@ -87,7 +87,7 @@
 			backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 2, /obj/item/lockpickring/mundane = 1, /obj/item/recipe_book/survival = 1)
 			H.cmode_music = 'sound/music/combat_rogue.ogg'
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
