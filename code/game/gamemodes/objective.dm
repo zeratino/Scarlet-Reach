@@ -341,8 +341,12 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		var/mob/living/carbon/human/marriagepartner = M.current
 		marriagepartner = marriagepartner.marriedto
 		var/mob/living/carbon/human/the_duke = SSticker.rulermob
-		if(the_duke.real_name == marriagepartner)
-			return TRUE
+		if(the_duke)
+			var/duke_name = the_duke.real_name
+			if(duke_name && the_duke.real_name == marriagepartner)
+				testing("[duke_name] is duke, marriage partner is [marriagepartner]")
+				return TRUE
+	testing("duke is not marriagepartner")
 	return FALSE
 
 /datum/objective/dungeoneer

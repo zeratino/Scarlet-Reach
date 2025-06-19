@@ -41,11 +41,14 @@
 /datum/outfit/job/roguetown/lady/envoy/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(should_wear_femme_clothes(H))
-		beltl = /obj/item/roguekey/manor
+		neck = /obj/item/roguekey/manor
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 		belt = /obj/item/storage/belt/rogue/leather/cloth/lady
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
+		backl = /obj/item/rogue/instrument/harp
+		beltl = /obj/item/flashlight/flare/torch/lantern
+		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 		pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/random
 		backr = /obj/item/storage/backpack/rogue/satchel
 		id = /obj/item/clothing/ring/signet
@@ -55,9 +58,11 @@
 		pants = /obj/item/clothing/under/roguetown/tights
 		armor = /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut
+		backl = /obj/item/rogue/instrument/lute
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 		belt = /obj/item/storage/belt/rogue/leather
-		beltl = /obj/item/roguekey/manor
+		neck = /obj/item/roguekey/manor
+		beltl = /obj/item/flashlight/flare/torch/lantern
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 		backr = /obj/item/storage/backpack/rogue/satchel
 		id = /obj/item/clothing/ring/signet
@@ -73,9 +78,9 @@
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 3, TRUE)
 		H.change_stat("intelligence", 3)
-		H.change_stat("perception", 2)
+		H.change_stat("perception", 3)
 		H.change_stat("endurance", 1)
-		H.change_stat("speed", 2)
+		H.change_stat("speed", 1)
 		H.change_stat("fortune", 1)
 		ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
@@ -94,32 +99,33 @@
 /datum/outfit/job/roguetown/lady/schemer/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/traps, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
 		H.change_stat("intelligence", 1)
 		H.change_stat("perception", 1)
-		H.change_stat("endurance", 2)
+		H.change_stat("endurance", 1)
 		H.change_stat("speed", 3)
 		H.change_stat("fortune", 1)
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		armor = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-		shoes = /obj/item/clothing/shoes/roguetown/boots
+		shoes = /obj/item/clothing/shoes/roguetown/shortboots
 		belt = /obj/item/storage/belt/rogue/leather/black
-		beltl = /obj/item/roguekey/manor
+		neck = /obj/item/roguekey/manor
+		beltl = /obj/item/flashlight/flare/torch/lantern
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 		backr = /obj/item/storage/backpack/rogue/satchel
 		id = /obj/item/clothing/ring/silver
@@ -145,24 +151,33 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
+		H.change_stat("strength", 1)
 		H.change_stat("intelligence", 2)
-		H.change_stat("perception", 2)
-		H.change_stat("endurance", 2)
-		H.change_stat("speed", 2)
+		H.change_stat("perception", 1)
+		H.change_stat("constutition", 1)
+		H.change_stat("endurance", 1)
+		H.change_stat("speed", 1)
 		H.change_stat("fortune", 1)
 		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-		ADD_TRAIT (H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC) //Doesn't start with any medium armor, but is trained to wear it.
+		ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
+		mask = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/gallant
 		pants = /obj/item/clothing/under/roguetown/tights/black
+		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 		armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+		shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 		belt = /obj/item/storage/belt/rogue/leather
-		beltl = /obj/item/roguekey/manor
+		neck = /obj/item/roguekey/manor
+		beltl = /obj/item/flashlight/flare/torch/lantern
 		beltr = /obj/item/rogueweapon/sword/sabre/dec
 		backr = /obj/item/storage/backpack/rogue/satchel
 		id = /obj/item/clothing/ring/silver
 		backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/mid = 1)
 		var/datum/antagonist/new_antag = new /datum/antagonist/suitor()
 		H.mind.add_antag_datum(new_antag)
+
+
+/obj/item/clothing/head/roguetown/roguehood/shalal/hijab/gallant
+	color = "#384d8a"
