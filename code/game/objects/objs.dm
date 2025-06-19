@@ -270,5 +270,5 @@
 /obj/merge_conflict_marker
 	name = "---Merge Conflict Marker---"
 	desc = "Mapping helper."
-	icon = 'icons/obj/merge_conflict_marker'
-	icon_state = 'merge_conflict_marker'
+	icon = 'icons/obj/merge_conflict_marker.dmi'
+	icon_state = "merge_conflict_marker"
