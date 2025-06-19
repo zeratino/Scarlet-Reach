@@ -96,6 +96,8 @@
 		if(!candidate.allow_latejoin_family)
 			continue
 		if(SSjob.GetJob(newcomer.job).family_blacklisted)
+			break
+		if(newcomer_job?.ruler_family)
 			break 
 		if(SSjob.GetJob(candidate.job).family_blacklisted)
 			continue 
