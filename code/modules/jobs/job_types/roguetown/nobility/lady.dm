@@ -119,16 +119,19 @@
 		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)
 		head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 		pants = /obj/item/clothing/under/roguetown/tights/black
-		armor = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress
 		wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
-		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-		shoes = /obj/item/clothing/shoes/roguetown/shortboots
+		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
+		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 		belt = /obj/item/storage/belt/rogue/leather/black
 		neck = /obj/item/roguekey/manor
-		beltl = /obj/item/flashlight/flare/torch/lantern
+		beltl = /obj/item/rogueweapon/huntingknife/idagger/steel
 		beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
 		backr = /obj/item/storage/backpack/rogue/satchel
 		id = /obj/item/clothing/ring/silver
+		if(should_wear_femme_clothes(H))
+			armor = /obj/item/clothing/suit/roguetown/armor/armordress/winterdress
+		if(should_wear_masc_clothes(H))
+			armor = /obj/item/clothing/suit/roguetown/armor/longcoat
 		backpack_contents = list(/obj/item/reagent_containers/glass/bottle/rogue/poison = 1, /obj/item/lockpick = 1)
 		var/datum/antagonist/new_antag = new /datum/antagonist/suitor()
 		H.mind.add_antag_datum(new_antag)
