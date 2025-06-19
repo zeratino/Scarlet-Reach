@@ -47,3 +47,10 @@
 	H.mind.add_antag_datum(new_antag)
 	H.grant_language(/datum/language/thievescant)
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "BANDIT"), 5 SECONDS)
+	var/wanted = list("Yes I am", "No")
+	var/wanted_choice = input("Are you a known criminal?") as anything in wanted
+	switch(wanted_choice)
+		if("Yes I am") //You are known so you get bit of a reward for it
+			ADD_TRAIT(H, TRAIT_KNOWNCRIMINAL, TRAIT_GENERIC)
+		if("No") //Nothing ever happens
+			return
