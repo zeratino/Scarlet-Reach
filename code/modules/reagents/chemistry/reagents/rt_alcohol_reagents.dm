@@ -11,7 +11,7 @@
 
 /datum/reagent/consumable/ethanol/rum
 	name = "Rum"
-	description = "where has the rum gone?"
+	description = "Where has the rum gone?"
 	color = "#5f3b23" // rgb: 102, 67, 0
 	boozepwr = 25
 	taste_description = "rum"
@@ -19,7 +19,7 @@
 /datum/reagent/consumable/ethanol/cider
 	name = "Apple Cider"
 	boozepwr = 40
-	taste_description = "crips freshness of apple"
+	taste_description = "crisp freshness of apple"
 	glass_name = "glass of cider"
 	color = "#6aa945"
 	quality = DRINK_NICE
