@@ -12,7 +12,7 @@
 	item_state = "studhood"
 	flags_inv = HIDEHAIR
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
-	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES|MOUTH|NECK
+	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES|NECK
 	//Something between leather and metal helmet, worse than metal helmet by far.
 	armor = list("blunt" = 70, "slash" = 65, "stab" = 60, "piercing" = 20, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
