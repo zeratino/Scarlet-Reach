@@ -27760,6 +27760,10 @@
 /obj/structure/fluff/walldeco/artificerflag,
 /turf/closed/wall/mineral/rogue/wooddark,
 /area/rogue/indoors/town)
+"jli" = (
+/obj/effect/landmark/start/suitor,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "jlj" = (
 /obj/effect/decal/cobbleedge{
 	dir = 9
@@ -408746,11 +408750,11 @@ vmi
 vmi
 vxe
 sOq
-fAA
+jli
 fAA
 vxe
 sOq
-fAA
+jli
 fAA
 vxe
 oIo
