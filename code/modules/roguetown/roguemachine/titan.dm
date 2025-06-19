@@ -250,6 +250,11 @@ GLOBAL_LIST_INIT(laws_of_the_land, initialize_laws_of_the_land())
 					say("You need the crown.")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 					return
+				if(SSticker.rulermob && SSticker.rulermob == H) //failsafe for edge cases
+					say("No others share the throne with you, master.")
+					playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
+					SSticker.regentmob = null
+					return
 				if(SSticker.rulermob != null)
 					say("The true lord is already present in the realm.")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
