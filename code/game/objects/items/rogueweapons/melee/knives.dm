@@ -278,7 +278,9 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying //direct upgrade but more costly.
 	name = "steel parrying dagger"
-	desc = "This is a parrying dagger made of solid steel, used to catch opponent's weapons in the handguard."
+	desc = "This is a parrying dagger made of solid steel, used to catch opponent's weapons in the handguard, but it's not as good for actual stabbing work."
+	force = 15
+	throwforce = 15
 	icon_state = "spdagger"
 	wdefense = 6
 
@@ -286,6 +288,8 @@
 	name = "sail dagger"
 	desc = "An exceptionally protective parrying dagger popular in the Etruscan Isles, this dagger features a plain metal guard in the shape of a ship's sail."
 	wdefense = 7
+	force = 17
+	throwforce = 17
 	icon_state = "sail_dagger"
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/special
