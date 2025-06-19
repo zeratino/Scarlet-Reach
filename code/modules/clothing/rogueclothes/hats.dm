@@ -1488,6 +1488,8 @@
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
 	name = "leather helmet"
 	desc = "A helmet made of leather."
+	icon = 'modular_stonehedge/icons/clothing/armor/head.dmi'
+	mob_overlay_icon = 'modular_stonehedge/icons/clothing/armor/onmob/head.dmi'
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "leatherhelm"
 	armor = ARMOR_HEAD_HELMET_BAD
