@@ -4,7 +4,6 @@
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
-	stand_attempts = 6
 	a_intent = INTENT_HELP
 	m_intent = MOVE_INTENT_SNEAK
 	d_intent = INTENT_DODGE

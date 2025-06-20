@@ -15,7 +15,6 @@
 	possible_mmb_intents = list(INTENT_STEAL, INTENT_JUMP, INTENT_KICK, INTENT_BITE)
 	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/swift, /datum/rmb_intent/riposte, /datum/rmb_intent/weak)
 	flee_in_pain = TRUE
-	stand_attempts = 6
 	vitae_pool = 250 // Small, frail creechers with not so much vitality to gain from.
 
 /mob/living/carbon/human/species/goblin/npc
@@ -23,7 +22,9 @@
 	mode = NPC_AI_IDLE
 	dodgetime = 30 //they can dodge easily, but have a cooldown on it
 	flee_in_pain = TRUE
-
+	npc_jump_chance = 60
+	npc_jump_distance = 3 // this might make them concheck more often, but it'll also mean it's easier to kick their legs out from under them
+	rude = TRUE
 	wander = FALSE
 
 /mob/living/carbon/human/species/goblin/npc/ambush
@@ -287,10 +288,20 @@
 /datum/outfit/job/roguetown/npc/goblin/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.STASTR = 8
+	var/chance_zjumper = 5
+	var/chance_treeclimber = 30
 	if(is_species(H, /datum/species/goblin/moon))
 		H.STASPD = 16
+		chance_zjumper = 20
+		chance_treeclimber = 70
 	else
 		H.STASPD = 14
+	if(prob(chance_zjumper))
+		ADD_TRAIT(H, TRAIT_ZJUMP, TRAIT_GENERIC)
+		H.find_targets_above = TRUE
+	if(prob(chance_treeclimber))
+		H.tree_climber = TRUE
+		H.find_targets_above = TRUE // so they can taunt
 	H.STACON = 6
 	H.STAEND = 15
 	if(is_species(H, /datum/species/goblin/moon))

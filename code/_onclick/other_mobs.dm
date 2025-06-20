@@ -311,30 +311,6 @@
 		return FALSE
 	return TRUE
 
-/mob/living/proc/try_jump(atom/A)
-	if(!can_jump(A))
-		return FALSE
-	changeNext_move(mmb_intent.clickcd)
-	face_atom(A)
-	emote((m_intent == MOVE_INTENT_RUN) ? "leap" : "jump", forced = TRUE)
-	var/jrange = get_jump_range()
-	OffBalance(get_jump_offbalance_time())
-	if(stamina_add(get_jump_stam_cost()))
-		throw_at(A, jrange, 1, src, spin = FALSE)
-		while(src.throwing)
-			sleep(1)
-		// If sprinting, you have extra momentum.
-		if(m_intent == MOVE_INTENT_RUN && !HAS_TRAIT(src, TRAIT_LEAPER)) // The Jester lands where the Jester wants.
-			throw_at(get_step(src, src.dir), 1, 1, src, spin = FALSE)
-		if(isopenturf(src.loc))
-			var/turf/open/T = src.loc
-			if(T.landsound)
-				playsound(T, T.landsound, 100, FALSE)
-			T.Entered(src)
-	else
-		throw_at(A, 1, 1, src, spin = FALSE)
-	return TRUE
-
 /mob/living/proc/can_kick(atom/A, do_message = TRUE)
 	if(get_num_legs() < 2)
 		return FALSE
@@ -348,12 +324,22 @@
 		if(do_message)
 			to_chat(src, span_warning("I haven't regained my balance yet."))
 		return FALSE
-	if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
-		var/mob/living/carbon/human/H = src
-		H.bad_guard(span_warning("The kick throws my stance off!"))
-	if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
-		var/mob/living/carbon/human/HT = M
-		HT.bad_guard(span_warning("The kick throws my stance off!"))
+	if(ismob(A))
+		var/mob/living/M = A
+		if(src.used_intent)
+			src.do_attack_animation(M, visual_effect_icon = src.used_intent.animname)
+			playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
+			sleep(src.used_intent.swingdelay)
+			if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.bad_guard(span_warning("The kick throws my stance off!"))
+			if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
+				var/mob/living/carbon/human/HT = M
+				HT.bad_guard(span_warning("The kick throws my stance off!"))
+			if(M.checkmiss(src))
+				return
+			if(M.checkdefense(src.used_intent, src))
+				return
 	if(QDELETED(src) || QDELETED(A))
 		return FALSE
 	return TRUE

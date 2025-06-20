@@ -92,17 +92,28 @@
 	if(!newloc || !AM)
 		return ..()
 	var/moved = get_dir(src, newloc)
-	if(moved == dir)
-		if(stair_ascend(AM,moved))
-			return FALSE
-	if(moved == turn(dir, 180))
-		if(stair_descend(AM,moved))
-			return FALSE
+	if(user_walk_into_target_loc(AM, moved))
+		return FALSE
 	return ..()
 
 /// From a cardinal direction, returns the resulting turf we'll end up at if we're uncrossing the stairs. Used for pathfinding, mostly.
 /obj/structure/stairs/proc/get_transit_destination(dirmove)
 	return get_target_loc(dirmove) || get_step(src, dirmove) // just normal movement if we failed to find a matching stair
+
+/obj/structure/stairs/proc/get_target_loc(dirmove)
+	var/turf/zturf
+	if(dirmove == dir)
+		zturf = GET_TURF_ABOVE(get_turf(src))
+	else if(dirmove == GLOB.reverse_dir[dir])
+		zturf = GET_TURF_BELOW(get_turf(src))
+	if(!zturf)
+		return	// not moving up or down
+	var/turf/newtarg = get_step(zturf, dirmove)
+	if(!newtarg)
+		return	// nowhere to move to???
+	for(var/obj/structure/stairs/partner in newtarg)
+		if(partner.dir == dir)	//partner matches our dir
+			return newtarg
 
 /obj/structure/stairs/proc/user_walk_into_target_loc(atom/movable/AM, dirmove, turf/target)
 	var/based = FALSE

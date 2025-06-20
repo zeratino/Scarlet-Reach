@@ -32,7 +32,7 @@
 	if (QDELETED(src))
 		return 0
 
-	if(. && (mode != NPC_NPC_AI_OFF))
+	if(. && (mode != NPC_AI_OFF))
 		handle_ai()
 
 	if(advsetup)

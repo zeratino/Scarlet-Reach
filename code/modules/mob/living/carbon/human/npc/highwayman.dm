@@ -2,12 +2,12 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 
 /mob/living/carbon/human/species/human/northern/highwayman
 	aggressive=1
+	rude = TRUE
 	mode = NPC_AI_IDLE
 	faction = list("viking", "station")
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
-	stand_attempts = 6
 	possible_rmb_intents = list()
 	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 

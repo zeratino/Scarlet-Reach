@@ -1,7 +1,9 @@
 /mob/living/carbon/human/species/npc/deadite
-
 	aggressive = TRUE
 	mode = NPC_AI_IDLE
+	npc_jump_chance = 0
+	rude = FALSE // don't taunt people as a deadite
+	tree_climber = FALSE // or climb trees
 	dodgetime = 8 
 	flee_in_pain = FALSE
 	ambushable = FALSE
@@ -34,6 +36,7 @@
 	equipOutfit(new /datum/outfit/job/roguetown/deadite)
 	//Make sure deadite NPCs don't show up in the antag listings
 	GLOB.antagonists -= zombie_antag
+	update_body()
 
 /datum/outfit/job/roguetown/deadite/pre_equip(mob/living/carbon/human/H)
 	..()
