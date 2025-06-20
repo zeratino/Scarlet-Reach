@@ -259,10 +259,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "Nightswain"
 	icon_state = "arrow"
 
-/obj/effect/landmark/start/grabber
-	name = "Henchman"
-	icon_state = "arrow"
-
 /obj/effect/landmark/start/merchant
 	name = "Merchant"
 	icon_state = "arrow"
