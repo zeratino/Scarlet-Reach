@@ -1476,6 +1476,7 @@
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\forlorn.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\grenzelhoft.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\grudgebearer.dm"
+#include "code\modules\jobs\job_types\roguetown\mercenaries\classes\merch_merc.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\routier.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\steppesman.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\underdweller.dm"
@@ -2342,6 +2343,5 @@
 #include "modular_helmsguard\code\modules\mobs\farm\horse.dm"
 #include "modular_helmsguard\code\modules\mobs\farm\wraiths.dm"
 #include "modular_stonehedge\code\modules\clothing\rogueclothes\hats.dm"
-#include "code\modules\jobs\job_types\roguetown\mercenaries\classes\merch_merc.dm"
 // END_INCLUDE
 
