@@ -65,7 +65,7 @@
 						var/list/name_parts = splittext(newcomer.old_real_name, " ")
 						newcomer.real_name = "[name_parts[1]] [duke_surname]" // Change name to first name + duke's surname
 						newcomer.name = newcomer.real_name
-						for(var/X in SSjob.GetJob(newcomer.job).peopleknowme) // Add new name to lists
+						for(var/X in J.peopleknowme) // Add new name to lists
 							for(var/datum/mind/MF in get_minds(X))
 								newcomer.mind.person_knows_me(MF)
 					
@@ -95,13 +95,13 @@
 		// Чтобы бандит или заключенный не имели семью кроме случаев, когда это предусмотрено наличием spouse_ckey
 		if(!candidate.allow_latejoin_family)
 			continue
-		if(SSjob.GetJob(newcomer.job).family_blacklisted)
+		if(newcomer_job?.family_blacklisted)
 			break
 		if(newcomer_job?.ruler_family)
 			break 
-		if(SSjob.GetJob(candidate.job).family_blacklisted)
-			continue 
 		var/datum/job/candidate_job = SSjob.GetJob(candidate.job)
+		if(candidate_job?.family_blacklisted)
+			continue 
 		if(candidate_job?.ruler_family)
 			continue 
 		// Такая же проверка, как при создании семьи. На всякий случай, чтобы избежать знать в браке с простолюдинами и другие проблемы
@@ -113,7 +113,7 @@
 					newcomer.mind.become_unknown_to(MF)
 				
 				newcomer.real_name = "[newcomer.old_real_name] [candidate.family_surname]" // Меняем имя на имя + фамилия у главы семьи
-				for(var/X in SSjob.GetJob(newcomer.job).peopleknowme) // добавляем новое имя в списки
+				for(var/X in newcomer_job.peopleknowme) // добавляем новое имя в списки
 					for(var/datum/mind/MF in get_minds(X))
 						newcomer.mind.person_knows_me(MF)
 			else
