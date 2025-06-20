@@ -1,6 +1,6 @@
 /obj/item/rogueweapon/whip
 	force = 21
-	possible_item_intents = list(/datum/intent/whip/crack, /datum/intent/whip/lash)
+	possible_item_intents = list(/datum/intent/whip/lash, /datum/intent/whip/crack, /datum/intent/whip/punish)
 	name = "whip"
 	desc = "A leather whip. Built to last, with a sharp stone for a tip."
 	icon_state = "whip"
@@ -29,6 +29,7 @@
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
+//Lash = default, can't dismember, so more range and some pen.
 /datum/intent/whip/lash
 	name = "lash"
 	blade_class = BCLASS_LASHING
@@ -36,22 +37,37 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
 	recovery = 7
-	penfactor = BLUNT_DEFAULT_PENFACTOR	//No pen, used for non-armored enemies / punishing players.
-	damfactor = 1.1
-	reach = 2
+	penfactor = 30
+	reach = 3
 	icon_state = "inlash"
 	item_d_type = "slash"
 
+//Crack = cut damage, can dismember, so lower range.
 /datum/intent/whip/crack
 	name = "crack"
-	blade_class = BCLASS_LASHING
+	blade_class = BCLASS_CUT				//Lets you dismember
 	attack_verb = list("cracks", "strikes") //something something dwarf fotresss
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
 	recovery = 10
+	damfactor = 1.1
 	penfactor = 20
-	reach = 3
+	reach = 2
 	icon_state = "incrack"
+	item_d_type = "slash"
+
+//Punish = Non-lethal sorta damage.
+/datum/intent/whip/punish
+	name = "punish"
+	blade_class = BCLASS_LASHING
+	attack_verb = list("lashes", "cracks")
+	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
+	chargetime = 0
+	recovery = 5
+	damfactor = 1.2							//No range, gets bonus damage - using this even on weak SHOULD let you get perma-scars then.
+	penfactor = BLUNT_DEFAULT_PENFACTOR		//No pen cus punishment intent.
+	reach = 1								//No range, cus not meant to be a flat-out combat intent.
+	icon_state = "inpunish"
 	item_d_type = "slash"
 
 //Ranged mace-like mode - merc unique for Nagaika (steppesman)
