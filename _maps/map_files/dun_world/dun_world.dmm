@@ -44434,7 +44434,7 @@
 /area/rogue/indoors/town)
 "pgj" = (
 /obj/structure/roguemachine/atm{
-	location_tag = "the Bathhouse";
+	location_tag = "the Brothel";
 	mammonsiphoned = 250;
 	pixel_x = 32;
 	pixel_y = 0
