@@ -36,6 +36,7 @@
 	ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_CICERONE, TRAIT_GENERIC)
 	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/prostitute)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
@@ -59,3 +60,12 @@
 		H.dna.species.soundpack_m = new /datum/voicepack/male/zeth()
 	else if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt
+
+/obj/effect/proc_holder/spell/self/convertrole/prostitute
+	name = "Hire Prostitute"
+	new_role = "Nightswain"
+	overlay_state = "recruit_servant"
+	recruitment_faction = "Prostitute"
+	recruitment_message = "Work for me, %RECRUIT."
+	accept_message = "I will."
+	refuse_message = "I refuse."
