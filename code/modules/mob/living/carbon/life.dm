@@ -650,4 +650,4 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 	// Leaning against a wall: slowly regain stamina
 	if(mobility_flags & MOBILITY_STAND && wallpressed && !IsSleeping() && !buckled && !lying)
-		rogstam_add(3)
+		rogstam_add(9)
