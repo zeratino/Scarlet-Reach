@@ -7,7 +7,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	allowed_races = RACES_ALL_KINDS
-	tutorial = "You are own the brotheol in the city. You provide security for the nightmaidens and help them to find work--when you're not being a trouble-making rake that others suffer to tolerate."
+	tutorial = "You own the brothel in the city. You provide security to the nightmaidens and help them to find work-- when you're not being a trouble-making rake that others suffer to tolerate."
 	allowed_sexes = list(MALE, FEMALE)
 	outfit = /datum/outfit/job/roguetown/niteman
 	display_order = JDO_NITEMASTER
