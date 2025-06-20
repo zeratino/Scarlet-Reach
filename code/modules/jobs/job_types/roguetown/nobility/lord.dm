@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	selection_color = JCOLOR_NOBLE
 	allowed_races = RACES_NO_CONSTRUCT
 	allowed_sexes = list(MALE, FEMALE)
+	advclass_cat_rolls = list(CTAG_LORD = 20)
 
 	spells = list(
 		/obj/effect/proc_holder/spell/self/grant_title,
@@ -32,24 +33,17 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	give_bank_account = 1000
 	required = TRUE
 	cmode_music = 'sound/music/combat_noble.ogg'
-	//allowed_patrons = NON_PSYDON_PATRONS		//No Psydonites - Lore reason: Town is Astratan town, you are crowned by Astrata for right to rule. (Inhumen people pose as Ten worshipers.) - Commented out for now, we now have storyteller tension to cause issues for psydonites.
-
-/datum/job/roguetown/exlord //just used to change the lords title
-	title = "Duke Emeritus"
-	f_title = "Duchess Emeritus"
-	flag = LORD
-	department_flag = NOBLEMEN
-	faction = "Station"
-	total_positions = 0
-	spawn_positions = 0
-	display_order = JDO_LADY
-	give_bank_account = TRUE
 
 /datum/outfit/job/roguetown/lord
 	job_bitflag = BITFLAG_ROYALTY
 
 /datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/Q = L
+		Q.advsetup = 1
+		Q.invisibility = INVISIBILITY_MAXIMUM
+		Q.become_blind("advsetup")
 	if(L)
 		var/list/chopped_name = splittext(L.real_name, " ")
 		if(length(chopped_name) > 1)
@@ -71,6 +65,14 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		if(STATION_TIME_PASSED() <= 10 MINUTES) //Late to the party? Stuck with default colors, sorry!
 			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, lord_color_choice)), 50)
 
+/datum/outfit/job/roguetown/lord
+	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
+	cloak = /obj/item/clothing/cloak/lordcloak
+	belt = /obj/item/storage/belt/rogue/leather/plaquegold
+	beltl = /obj/item/storage/keyring/lord
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
+	id = /obj/item/scomstone/garrison
+
 /datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(SSroguemachine.crown == null || (QDELETED(SSroguemachine.crown)))
@@ -78,13 +80,6 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		head = /obj/item/clothing/head/roguetown/crown/serpcrown
 	else
 		to_chat(H, span_warning("My crown must be yet in the realm. I shall search it out."))
-	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
-	cloak = /obj/item/clothing/cloak/lordcloak
-	belt = /obj/item/storage/belt/rogue/leather/plaquegold
-	beltl = /obj/item/storage/keyring/lord
-	l_hand = /obj/item/rogueweapon/lordscepter
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
-	id = /obj/item/scomstone/garrison
 	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
@@ -92,54 +87,11 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		cloak = /obj/item/clothing/cloak/lordcloak/ladycloak
 		wrists = /obj/item/clothing/wrists/roguetown/royalsleeves
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
-		if(H.mind)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-			if(H.age == AGE_OLD)
-				H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			H.change_stat("strength", 1)
-			H.change_stat("intelligence", 3)
-			H.change_stat("endurance", 3)
-			H.change_stat("speed", 1)
-			H.change_stat("perception", 2)
-			H.change_stat("fortune", 5)
-		H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
 	else if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 		shoes = /obj/item/clothing/shoes/roguetown/boots
-		if(H.mind)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-			if(H.age == AGE_OLD)
-				H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-			H.change_stat("strength", 1)
-			H.change_stat("intelligence", 3)
-			H.change_stat("endurance", 3)
-			H.change_stat("speed", 1)
-			H.change_stat("perception", 2)
-			H.change_stat("fortune", 5)
 	if(H.wear_mask)
 		if(istype(H.wear_mask, /obj/item/clothing/mask/rogue/eyepatch))
 			qdel(H.wear_mask)
@@ -147,10 +99,42 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		if(istype(H.wear_mask, /obj/item/clothing/mask/rogue/eyepatch/left))
 			qdel(H.wear_mask)
 			mask = /obj/item/clothing/mask/rogue/lordmask/l
-
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+
 //	SSticker.rulermob = H
+
+/datum/advclass/lord/warrior
+	name = "Valiant Warrior"
+	tutorial = "You're a noble warrior. You rose to your rank through your own strength and skill, whether by leading your men or by fighting alongside them. Or perhaps you are none of that, but simply a well-trained heir elevated to the position of Lord. You're trained in the usage of heavy armor, and knows swordsmanship well."
+	outfit = /datum/outfit/job/roguetown/lord/warrior
+	category_tags = list(CTAG_LORD)
+
+/datum/outfit/job/roguetown/lord/warrior/pre_equip(mob/living/carbon/human/H)
+	..()
+	l_hand = /obj/item/rogueweapon/lordscepter // If you put something in l hand with a mother outfit
+	// It will dupe
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
+		if(H.age == AGE_OLD)
+			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+	H.change_stat("strength", 1)
+	H.change_stat("intelligence", 3)
+	H.change_stat("endurance", 3)
+	H.change_stat("speed", 1)
+	H.change_stat("perception", 2)
+	H.change_stat("fortune", 5)
+	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 
 /datum/outfit/job/roguetown/lord/visuals/pre_equip(mob/living/carbon/human/H)
 	..()
