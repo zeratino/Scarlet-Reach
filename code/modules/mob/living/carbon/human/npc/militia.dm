@@ -2,7 +2,7 @@
 
 /mob/living/carbon/human/species/human/northern/militia //weak peasant infantry. Neutral but can be given factions for events. doesn't attack players. 
 	aggressive=1 //they attack things. INCLUDING SAIGAS (THIS MEANS THEY WILL AGGRO ON PEOPLES MOUNTS)
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	faction = list("neutral")
 	ambushable = FALSE
 	dodgetime = 30
@@ -48,7 +48,6 @@
 	job = "Militia"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/militia)
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
@@ -74,7 +73,7 @@
 		face_atom(get_step(src,pick(GLOB.cardinals)))
 
 /* /mob/living/carbon/human/species/human/northern/militia/handle_combat()
-	if(mode == AI_HUNT)
+	if(mode == NPC_AI_HUNT)
 		if(prob(5)) // do not make this big or else they NEVER SHUT UP
 			emote("laugh")
 	. = ..() */

@@ -19,7 +19,7 @@
 	possible_rmb_intents = list()
 	stand_attempts = 4
 	aggressive = 1
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	wander = FALSE
 	cmode_music = FALSE
 

@@ -157,7 +157,7 @@
 		zombie.base_intents = base_intents
 		zombie.update_a_intents()
 		zombie.aggressive = FALSE
-		zombie.mode = AI_OFF
+		zombie.mode = NPC_AI_OFF
 		if(zombie.charflaw)
 			zombie.charflaw.ephemeral = FALSE
 		zombie.update_body()
@@ -236,7 +236,7 @@
 	zombie.base_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_GRAB, /datum/intent/unarmed/claw)
 	zombie.update_a_intents()
 	zombie.aggressive = TRUE
-	zombie.mode = AI_IDLE
+	zombie.mode = NPC_AI_IDLE
 	zombie.handle_ai()
 	ambushable = zombie.ambushable
 	zombie.ambushable = FALSE
@@ -294,42 +294,6 @@
 	to_chat(owner.current, span_userdanger("Death is not the end..."))
 	return ..()
 
-/datum/antagonist/zombie/on_life(mob/user)
-	if(!user || user.stat >= DEAD || !has_turned)
-		return
-	var/mob/living/carbon/human/zombie = user
-	if(world.time > next_idle_sound)
-		zombie.emote("idle")
-		next_idle_sound = world.time + rand(5 SECONDS, 10 SECONDS)
-
-	// Only client-less (no player) zombies do automatic biting
-	if(!zombie.client)
-		try_bite_nearby_person(zombie)
-
-/datum/antagonist/zombie/proc/try_bite_nearby_person(mob/living/carbon/human/zombie)
-	// Check cooldown
-	if(world.time - last_bite < 10 SECONDS)
-		return FALSE
-	// If we’re already biting, chew on the target
-	var/obj/item/grabbing/bite/bite = zombie.get_item_by_slot(SLOT_MOUTH)
-	if(istype(bite))
-		bite.bitelimb(zombie)
-		last_bite = world.time
-		return TRUE
-	// Find a valid target
-	for(var/mob/living/carbon/human/human in view(1, zombie))
-		if(human.stat >= DEAD)
-			continue
-		if(human.mob_biotypes & MOB_UNDEAD)
-			continue
-		if(("undead" in human.faction) || ("zombie" in human.faction))
-			continue
-		// Bite the mob
-		human.onbite(zombie)
-		last_bite = world.time
-		return TRUE
-	return FALSE
-
 /*
 	Check for zombie infection post bite
 		Bite chance is checked here
@@ -366,12 +330,6 @@
 //Delay on waking up as a zombie. /proc/wake_zombie(mob/living/carbon/zombie, infected_wake = FALSE, converted = FALSE)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wake_zombie), victim, FALSE, TRUE), wake_delay, TIMER_STOPPABLE)
 	return zombie_antag
-
-/*
-
-*/
-/mob/living/carbon/human/proc/zombie_infect_attempt()
-	return attempt_zombie_infection(usr, "bite", ZOMBIE_BITE_CONVERSION_TIME)
 
 /*
 	Proc for our newly infected to wake up as a zombie

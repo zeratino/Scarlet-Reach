@@ -100,27 +100,9 @@
 			return FALSE
 	return ..()
 
-/obj/structure/stairs/proc/stair_ascend(atom/movable/AM, dirmove)
-	var/turf/checking = get_step_multiz(get_turf(src), UP)
-	if(!istype(checking))
-		return
-//	if(!checking.zPassIn(AM, UP, get_turf(src)))
-//		return
-	var/turf/target = get_step_multiz(get_turf(src), UP)
-	if(!istype(target))
-		return
-	return user_walk_into_target_loc(AM, dirmove, target)
-
-/obj/structure/stairs/proc/stair_descend(atom/movable/AM, dirmove)
-	var/turf/checking = get_step_multiz(get_turf(src), DOWN)
-	if(!istype(checking))
-		return
-//	if(!checking.zPassIn(AM, DOWN, get_turf(src)))
-//		return
-	var/turf/target = get_step_multiz(get_turf(src), DOWN)
-	if(!istype(target))
-		return
-	return user_walk_into_target_loc(AM, dirmove, target)
+/// From a cardinal direction, returns the resulting turf we'll end up at if we're uncrossing the stairs. Used for pathfinding, mostly.
+/obj/structure/stairs/proc/get_transit_destination(dirmove)
+	return get_target_loc(dirmove) || get_step(src, dirmove) // just normal movement if we failed to find a matching stair
 
 /obj/structure/stairs/proc/user_walk_into_target_loc(atom/movable/AM, dirmove, turf/target)
 	var/based = FALSE
