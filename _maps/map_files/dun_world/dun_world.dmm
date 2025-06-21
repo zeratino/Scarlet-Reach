@@ -2470,7 +2470,8 @@
 /turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/town/roofs)
 "aQl" = (
-/turf/closed/wall/mineral/rogue/stone/moss,
+/obj/effect/spawner/roguemap/stump,
+/turf/open/floor/rogue/grassred,
 /area/rogue/outdoors/town)
 "aQp" = (
 /obj/structure/stairs{
@@ -32018,6 +32019,9 @@
 /obj/structure/closet/crate/chest,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/cave)
+"kKI" = (
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/town)
 "kKK" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -295796,7 +295800,7 @@ aQl
 phl
 pwl
 phl
-uqB
+mgq
 nwG
 rni
 pqC
@@ -296245,9 +296249,9 @@ gyu
 gyu
 cDX
 phl
+pLh
 jdu
-jdu
-jdu
+pLh
 phl
 gyu
 gyu
@@ -296698,7 +296702,7 @@ jdu
 jdu
 pDf
 jdu
-cDX
+jdu
 jdu
 pDf
 jdu
@@ -297149,9 +297153,9 @@ gyu
 gyu
 cDX
 pLh
-jdu
+pLh
 tSF
-jdu
+pLh
 phl
 gyu
 gyu
@@ -297600,11 +297604,11 @@ asY
 asY
 bNc
 moR
-pLh
+bZZ
 pLh
 pLh
 phl
-pLh
+hzG
 rZO
 rZO
 rZO
@@ -297612,11 +297616,11 @@ ebU
 ebU
 ebU
 aoe
-pLh
+kKI
 phl
 phl
 phl
-pLh
+kKI
 aoe
 aoe
 rZO
@@ -411053,11 +411057,11 @@ bGf
 bGf
 bGf
 bGf
-fWe
+bGf
 jWw
 eps
 jWw
-vLA
+vmi
 vmi
 vmi
 vmi
@@ -412861,11 +412865,10 @@ aBB
 aBB
 aBB
 aBB
-sqG
+aBB
 hrE
 iVE
 jWw
-sqG
 aBB
 aBB
 aBB
@@ -412873,11 +412876,12 @@ aBB
 aBB
 aBB
 aBB
-sqG
+aBB
+aBB
 jWw
 iVE
 jWw
-sqG
+aBB
 aBB
 aBB
 aBB
