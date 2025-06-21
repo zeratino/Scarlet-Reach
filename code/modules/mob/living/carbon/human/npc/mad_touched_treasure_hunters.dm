@@ -65,6 +65,9 @@
 	if(prob(50))
 		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+	belt = /obj/item/storage/belt/rogue/leather
+	if(prob(33))
+		beltl = /obj/item/reagent_containers/glass/bottle/alchemical/healthpot
 	head = /obj/item/clothing/head/roguetown/menacing/mad_touched_treasure_hunter
 	neck = /obj/item/clothing/neck/roguetown/coif
 	gloves = /obj/item/clothing/gloves/roguetown/angle
