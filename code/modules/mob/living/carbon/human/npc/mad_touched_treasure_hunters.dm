@@ -14,7 +14,7 @@
 	possible_rmb_intents = list()
 
 /mob/living/carbon/human/species/human/northern/mad_touched_teasure_hunter/ambush
-	aggressive=1
+	aggressive = 1
 	wander = TRUE
 
 /mob/living/carbon/human/species/human/northern/mad_touched_teasure_hunter/Initialize()
