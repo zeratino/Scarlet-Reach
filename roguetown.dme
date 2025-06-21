@@ -1022,6 +1022,7 @@
 #include "code\game\objects\structures\roguetown\redstone.dm"
 #include "code\game\objects\structures\roguetown\rogueflora.dm"
 #include "code\game\objects\structures\roguetown\telescope.dm"
+#include "code\game\objects\structures\roguetown\traps.dm"
 #include "code\game\turfs\baseturf_skipover.dm"
 #include "code\game\turfs\change_turf.dm"
 #include "code\game\turfs\turf.dm"
