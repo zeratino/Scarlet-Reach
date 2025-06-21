@@ -13,6 +13,7 @@
 
 /obj/projectile/magic/lightning/astratablast
 	damage = 10 
+	name = "ray of holy fire"
 	damage_type = BURN
 	flag = "magic"
 	light_color = "#a98107"
@@ -36,7 +37,41 @@
 			M.adjust_fire_stacks(4)
 			M.IgniteMob()
 			visible_message(span_warning("[src] ignites [target] in holy flame!"))
+	return FALSE
 
+/obj/effect/proc_holder/spell/invoked/ignition
+	name = "Ignition"
+	desc = "Ignite a flammable object at range."
+	overlay_state = "sacredflame"
+	releasedrain = 30
+	chargedrain = 0
+	chargetime = 0
+	range = 15
+	warnie = "sydwarning"
+	movement_interrupt = FALSE
+	chargedloop = null
+	sound = 'sound/magic/heal.ogg'
+	invocation = null
+	invocation_type = null
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	recharge_time = 5 SECONDS
+	miracle = TRUE
+	devotion_cost = 10
+
+/obj/effect/proc_holder/spell/invoked/sacred_flame_rogue/cast(list/targets, mob/user = usr)
+	. = ..()
+	// Spell interaction with ignitable objects (burn wooden things, light torches up)
+	if(isobj(targets[1]))
+		var/obj/O = targets[1]
+		if(O.fire_act())
+			user.visible_message("<font color='yellow'>[user] points at [O], igniting it with sacred flames!</font>")
+			return TRUE
+		else
+			to_chat(user, span_warning("You point at [O], but it fails to catch fire."))
+			return FALSE
+	revert_cast()
+	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/revive
 	name = "Anastasis"

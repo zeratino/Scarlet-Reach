@@ -100,7 +100,7 @@
 	antimagic_allowed = TRUE
 	recharge_time = 180 SECONDS
 	miracle = TRUE
-	devotion_cost = 100
+	devotion_cost = 30
 
 /obj/effect/proc_holder/spell/invoked/deaths_door/cast(list/targets, mob/living/user)
 	..()
@@ -112,7 +112,7 @@
 		if(istype(e_portal))
 			e_portal.spitout_mob(user, T)
 	if(!locate(/obj/structure/underworld_portal) in T)
-		var/obj/structure/underworld_portal/portal = new /obj/structure/underworld_portal
+		var/obj/structure/underworld_portal/portal = new /obj/structure/underworld_portal(T)
 		portal.caster = user
 		return TRUE
 
@@ -143,11 +143,31 @@
 		for (var/thing in contents)
 			if (istype(thing, /mob/living/carbon))
 				caster.contents.Add(src)
+				user.visible_message(
+					span_revenwarning("[user] dispels the doorway with a touch."),
+					span_purple("I close the gateway. Opening it again will release whatever is inside.")
+					)
 				return TRUE
 		qdel(src)
 		return TRUE
-
+	if(!do_after(user, 2 SECONDS, src))
+		return
 	gobble_mob(user, caster)
+	return TRUE
+
+/obj/structure/underworld_portal/MouseDrop_T(atom/movable/O, mob/living/user)
+	if(!isliving(O))
+		return
+	if(!istype(user) || user.incapacitated())
+		return
+	if(!Adjacent(user) || !user.Adjacent(O))
+		return
+	if(!do_after_mob(user, O, 5 SECONDS))
+		return
+	gobble_mob(O)
+	user.visible_message(
+		span_warning("[user] forces [O] into the portal!")
+	)
 	return TRUE
 
 /obj/structure/underworld_portal/proc/gobble_mob(mob/living/carbon/user, mob/living/carbon/caster)
@@ -166,7 +186,9 @@
 		span_purple("I touch the doorway. I slip through, and the world is silent and dark. I hear the distant rattle of a passing carriage.")
 		)
 	trapped = user
-	contents.Add(user)
+	user.forceMove(src)
+	ADD_TRAIT(user, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+	ADD_TRAIT(user, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
 	user.add_client_colour(/datum/client_colour/monochrome)
 	time_id = addtimer(CALLBACK(src, PROC_REF(spitout_mob), user, null), 5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // 5 mins timer else its spitting you out where the necran is.
 	return TRUE
@@ -185,6 +207,8 @@
 		span_purple("I am pulled from Necra's realm. Air fills my lungs, my heart starts beating- I live.")
 		)
 	user.remove_client_colour(/datum/client_colour/monochrome)
+	REMOVE_TRAIT(user, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(user, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
 	return TRUE
 
 /obj/structure/underworld_portal/container_resist(mob/living/user)
