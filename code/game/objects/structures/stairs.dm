@@ -115,24 +115,18 @@
 		if(partner.dir == dir)	//partner matches our dir
 			return newtarg
 
-/obj/structure/stairs/proc/user_walk_into_target_loc(atom/movable/AM, dirmove, turf/target)
-	var/based = FALSE
-	var/turf/newtarg = get_step(target, dirmove)
-	for(var/obj/structure/stairs/S in newtarg.contents)
-		if(S.dir == dir)
-			based = TRUE
-	if(based)
-		if(isliving(AM))
-			mob_move_travel_z_level(AM, newtarg)
-		else
-			AM.forceMove(newtarg)
+/obj/structure/stairs/proc/user_walk_into_target_loc(atom/movable/AM, dirmove)
+	var/turf/newtarg = get_target_loc(dirmove)
+	if(newtarg)
+		movable_travel_z_level(AM, newtarg)
 		return TRUE
 	return FALSE
 
-/obj/structure/stairs/intercept_zImpact(atom/movable/AM, levels = 1)
-	. = ..()
-
-/proc/mob_move_travel_z_level(mob/living/L, turf/newtarg)
+/proc/movable_travel_z_level(atom/movable/AM, turf/newtarg)
+	if(!isliving(AM))
+		AM.forceMove(newtarg)
+		return
+	var/mob/living/L = AM
 	var/atom/movable/pulling = L.pulling
 	var/was_pulled_buckled = FALSE
 	if(pulling)
@@ -143,9 +137,5 @@
 		L.stop_pulling()
 		pulling.forceMove(newtarg)
 		L.start_pulling(pulling, supress_message = TRUE)
-		if(was_pulled_buckled) 
-			var/mob/living/M = pulling
-			if(M.mobility_flags & MOBILITY_STAND)	// piggyback carry
-				L.buckle_mob(pulling, TRUE, TRUE, FALSE, 0, 0)
-			else				// fireman carry
-				L.buckle_mob(pulling, TRUE, TRUE, 90, 0, 0)
+		if(was_pulled_buckled) // Assume this was a fireman carry since piggybacking is not a thing
+			L.buckle_mob(pulling, TRUE, TRUE, 90, 0, 0)
