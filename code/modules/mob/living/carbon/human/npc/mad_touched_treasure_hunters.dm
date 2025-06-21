@@ -29,6 +29,9 @@
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/mad_touched_teasure_hunter)
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
 	if(organ_eyes)
@@ -67,14 +70,14 @@
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	cloak = /obj/item/clothing/cloak/wickercloak
 	if(prob(50))
-		r_hand = /obj/item/rogueweapon/estoc
+		r_hand = /obj/item/rogueweapon/greatsword/paalloy
 	else
-		r_hand = /obj/item/rogueweapon/sword/rapier
-		l_hand = /obj/item/rogueweapon/shield/buckler
+		r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow //they're too stupid to use this but it makes the sprite look cool +  simplemobs are lame
+		l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
-	H.STASTR = rand(13,15)
-	H.STASPD = 15
-	H.STACON = rand(11,12)
+	H.STASTR = rand(14,16)
+	H.STASPD = 18 //you will regret telling me that bows are good for pve
+	H.STACON = rand(14,18)
 	H.STAEND = 13
 	H.STAPER = 10
 	H.STAINT = 14
