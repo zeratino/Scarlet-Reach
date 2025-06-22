@@ -169,13 +169,14 @@
 	l = user.get_active_held_item()
 	r = user.get_inactive_held_item()
 	if(extended)
-		if(istype(user.get_active_held_item(), /obj/item/rogueweapon/saiga_hoof))
+		if(istype(l, /obj/item/rogueweapon/saiga_hoof))
 			user.dropItemToGround(l, TRUE)
-			user.dropItemToGround(r, TRUE)
 			qdel(l)
+		if(istype(r, /obj/item/rogueweapon/saiga_hoof))
+			user.dropItemToGround(r, TRUE)
 			qdel(r)
-			//user.visible_message("Your claws retract.", "You feel your claws retracting.", "You hear a sound of claws retracting.")
-			extended = FALSE
+		//user.visible_message("Your claws retract.", "You feel your claws retracting.", "You hear a sound of claws retracting.")
+		extended = FALSE
 	else
 		l = new(user,1)
 		r = new(user,2)
