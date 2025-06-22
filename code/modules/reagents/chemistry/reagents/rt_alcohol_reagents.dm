@@ -183,12 +183,19 @@
 	color = "#5D8A8A"
 	quality = DRINK_GOOD
 
-/datum/reagent/consumable/ethanol/voddena // Not vodka. Trust me.
+/datum/reagent/consumable/ethanol/voddena // Definitely Actually Just Vodka Now. 
 	name = "Voddena"
-	boozepwr = 55  // holy shit
-	taste_description = "burning starchy wet dirt"
+	boozepwr = 40  // now it's just vodka
+	taste_description = "clean liquor"
 	color = "#a1a1a1"
 	quality = DRINK_NICE
+
+/datum/reagent/consumable/ethanol/sazdistal // Definitely Not Vodka. 
+	name = "Saz Distal"
+	boozepwr = 55  // holy shit
+	taste_description = "spicy chilis, ginger, and dirt"
+	color = "#2D1D1D"
+	quality = DRINK_GOOD	
 
 /datum/reagent/consumable/ethanol/limoncello
 	name = "Limoncello"

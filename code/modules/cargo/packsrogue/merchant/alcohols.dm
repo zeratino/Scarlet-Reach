@@ -49,9 +49,14 @@
 	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/beer/stonebeardreserve)
 
 /datum/supply_pack/rogue/alcohol/voddena
-	name = "Dwarven Voddena"
+	name = "Hammerhold Voddena"
 	cost = 25
 	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/beer/voddena)
+
+/datum/supply_pack/rogue/alcohol/sazdistal
+	name = "Saz Distal Chili Liqueur"
+	cost = 30
+	contains = list(/obj/item/reagent_containers/glass/bottle/rogue/beer/sazdistal)
 
 /datum/supply_pack/rogue/alcohol/wineraneshen
 	name = "Ranesheni Wine"

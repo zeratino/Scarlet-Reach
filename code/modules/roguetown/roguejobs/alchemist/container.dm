@@ -104,9 +104,13 @@
 	list_reagents = list(/datum/reagent/consumable/ethanol/stonebeards = 48)
 	desc = "A bottle with the House Stoutenson cork-seal. Stonebeards Reserve is one of the most legendary beers in existence, with only a few hundred barrels made every year."
 
+/obj/item/reagent_containers/glass/bottle/rogue/beer/sazdistal
+	list_reagents = list(/datum/reagent/consumable/ethanol/sazdistal = 48)
+	desc = "A bottle with the House Stoutenson cork-seal. This strange liquid is considered as the most spicy and alcoholic drink in all the Mountainhomes. Bought by nobles of all ages, mostly those with a deathwish."	
+
 /obj/item/reagent_containers/glass/bottle/rogue/beer/voddena
 	list_reagents = list(/datum/reagent/consumable/ethanol/voddena = 48)
-	desc = "A bottle with the House Stoutenson cork-seal. This strange liquid is considered as the most spicy and alcoholic drink in all the Mountainhomes. Bought by nobles of all ages, mostly those with a deathwish."
+	desc = "A bottle with the City of Norwandine cork-seal. It contains a respectably pure, clean voddena."
 
 // WINES - Expensive, Nobleblooded
 /obj/item/reagent_containers/glass/bottle/rogue/wine
