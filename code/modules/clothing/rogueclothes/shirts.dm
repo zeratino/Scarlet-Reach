@@ -559,7 +559,6 @@
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_shirts_royalty.dmi'
 	boobed = TRUE
 	detail_tag = "_detail"
-	detail_color = CLOTHING_GOLD
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 
