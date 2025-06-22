@@ -667,6 +667,26 @@
 	craftdiff = 5
 	sellprice = 30
 
+/datum/crafting_recipe/roguetown/sewing/nobledress
+	name = "noble dress (3 fibers, 4 cloth, 3 silk)"
+	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/noble)
+	reqs = list(/obj/item/natural/cloth = 4,
+				/obj/item/natural/fibers = 3,
+				/obj/item/natural/silk = 3)
+	tools = list(/obj/item/needle)
+	craftdiff = 6
+	sellprice = 55
+
+/datum/crafting_recipe/roguetown/sewing/velvetdress
+	name = "velvet dress (4 fibers, 5 cloth, 4 silk)"
+	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/velvet)
+	reqs = list(/obj/item/natural/cloth = 5,
+				/obj/item/natural/fibers = 4,
+				/obj/item/natural/silk = 4)
+	tools = list(/obj/item/needle)
+	craftdiff = 7
+	sellprice = 65
+
 /datum/crafting_recipe/roguetown/sewing/regalrobes
 	name = "regal silks (2 fibers, 2 cloth, 2 silk)"
 	result = list(/obj/item/clothing/suit/roguetown/shirt/vampire)
