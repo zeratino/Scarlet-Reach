@@ -324,22 +324,6 @@
 		if(do_message)
 			to_chat(src, span_warning("I haven't regained my balance yet."))
 		return FALSE
-	if(ismob(A))
-		var/mob/living/M = A
-		if(src.used_intent)
-			src.do_attack_animation(M, visual_effect_icon = src.used_intent.animname)
-			playsound(src, pick(PUNCHWOOSH), 100, FALSE, -1)
-			sleep(src.used_intent.swingdelay)
-			if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
-				var/mob/living/carbon/human/H = src
-				H.bad_guard(span_warning("The kick throws my stance off!"))
-			if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
-				var/mob/living/carbon/human/HT = M
-				HT.bad_guard(span_warning("The kick throws my stance off!"))
-			if(M.checkmiss(src))
-				return
-			if(M.checkdefense(src.used_intent, src))
-				return
 	if(QDELETED(src) || QDELETED(A))
 		return FALSE
 	return TRUE
@@ -359,6 +343,12 @@
 	if(ismob(A) && mmb_intent)
 		var/mob/living/M = A
 		sleep(mmb_intent.swingdelay)
+		if(has_status_effect(/datum/status_effect/buff/clash) && ishuman(src))
+			var/mob/living/carbon/human/H = src
+			H.bad_guard(span_warning("The kick throws my stance off!"))
+		if(M.has_status_effect(/datum/status_effect/buff/clash) && ishuman(M))
+			var/mob/living/carbon/human/HT = M
+			HT.bad_guard(span_warning("The kick throws my stance off!"))
 		if(QDELETED(src) || QDELETED(M))
 			return FALSE
 		if(!M.Adjacent(src))
@@ -666,7 +656,7 @@
 	var/flip_direction = FLIP_DIRECTION_CLOCKWISE
 	var/prev_pixel_z = pixel_z
 	var/prev_transform = transform
-	if(mind.get_skill_level(/datum/skill/misc/athletics) > 4)
+	if(mind && mind.get_skill_level(/datum/skill/misc/athletics) > 4)
 		do_a_flip = TRUE
 		if((dir & SOUTH) || (dir & WEST))
 			flip_direction = FLIP_DIRECTION_ANTICLOCKWISE
