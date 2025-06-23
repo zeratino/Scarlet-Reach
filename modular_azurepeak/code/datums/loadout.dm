@@ -27,6 +27,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Farkle Dice Container"
 	path = /obj/item/storage/pill_bottle/dice/farkle
 
+/datum/loadout_item/tarot_deck
+	name = "Tarot Deck"
+	path = /datum/crafting_recipe/roguetown/survival/tarot_deck
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"
