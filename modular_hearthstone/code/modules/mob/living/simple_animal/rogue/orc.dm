@@ -230,7 +230,7 @@
 	health = ORC_HEALTH * 0.5
 
 	can_have_ai = FALSE //disable native ai
-	AIStatus = NPC_AI_OFF
+	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/orc_ranged
 
 /mob/living/simple_animal/hostile/retaliate/rogue/orc/ranged/Initialize()
