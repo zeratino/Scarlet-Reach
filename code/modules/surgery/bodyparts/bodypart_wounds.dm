@@ -340,7 +340,7 @@
 		if(user)
 			if(istype(user.rmb_intent, /datum/rmb_intent/strong) || (user.m_intent == MOVE_INTENT_SNEAK))
 				used += 10
-		if(!owner.stat && !resistance && (zone_precise in knockout_zones) && (bclass != BCLASS_CHOP|BCLASS_PIERCE) && prob(used))
+		if(!owner.stat && !resistance && (zone_precise in knockout_zones) && (bclass != BCLASS_CHOP && bclass != BCLASS_PIERCE) && prob(used))
 			owner.next_attack_msg += " <span class='crit'><b>Critical hit!</b> [owner] is knocked out[from_behind ? " FROM BEHIND" : ""]!</span>"
 			owner.flash_fullscreen("whiteflash3")
 			owner.Unconscious(5 SECONDS + (from_behind * 10 SECONDS))
