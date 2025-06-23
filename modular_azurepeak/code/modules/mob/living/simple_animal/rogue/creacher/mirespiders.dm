@@ -47,7 +47,7 @@
 	retreat_health = 0
 	food = 0
 
-	AIStatus = NPC_AI_OFF
+	AIStatus = AI_OFF
 	can_have_ai = FALSE
 	ai_controller = /datum/ai_controller/mirespider
 
