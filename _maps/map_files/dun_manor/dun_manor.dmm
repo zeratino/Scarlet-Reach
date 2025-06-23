@@ -13646,7 +13646,7 @@
 "jKm" = (
 /obj/structure/roguemachine/atm{
 	mammonsiphoned = 250;
-	location_tag = "the Bathhouse"
+	location_tag = "the Brothel"
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/bath)
@@ -14528,7 +14528,7 @@
 /area/rogue/under/town/basement)
 "kpv" = (
 /obj/structure/roguemachine/mail{
-	mailtag = "Bathhouse"
+	mailtag = "Brothel"
 	},
 /obj/structure/table/wood{
 	dir = 1;

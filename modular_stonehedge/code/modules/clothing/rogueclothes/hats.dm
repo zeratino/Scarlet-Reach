@@ -10,9 +10,9 @@
 	mob_overlay_icon = 'modular_stonehedge/icons/clothing/armor/onmob/head.dmi'
 	icon_state = "studhood"
 	item_state = "studhood"
-	flags_inv = HIDEHAIR
+	flags_inv =	HIDEHAIR|HIDEEARS|HIDEFACE
 	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HEAD
-	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES|MOUTH|NECK
+	body_parts_covered = HEAD|EARS|HAIR|NOSE|EYES|NECK
 	//Something between leather and metal helmet, worse than metal helmet by far.
 	armor = list("blunt" = 70, "slash" = 65, "stab" = 60, "piercing" = 20, "fire" = 0, "acid" = 0)
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
@@ -44,7 +44,7 @@
 				H.update_inv_neck()
 		else if(adjustable == CADJUSTED)
 			ResetAdjust(user)
-			flags_inv = HIDEHAIR|HIDEEARS|HIDEFACE
+			flags_inv =	initial(flags_inv)
 			if(user)
 				if(ishuman(user))
 					var/mob/living/carbon/H = user
