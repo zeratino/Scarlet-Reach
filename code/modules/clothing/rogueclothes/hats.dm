@@ -566,7 +566,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/clothing/head/roguetown/nyle/consortcrown
-	name = "consort crown"
+	name = "gem-encrusted crown"
 	icon_state = "consortcrown"
 	item_state = "consortcrown"
 	sellprice = 100
