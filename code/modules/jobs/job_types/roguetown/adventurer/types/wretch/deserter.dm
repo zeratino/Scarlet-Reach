@@ -127,7 +127,7 @@
 					backl = /obj/item/rogueweapon/shield/wood
 				if("Axe & Shield")
 					beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
-					/obj/item/rogueweapon/shield/iron
+					backl = /obj/item/rogueweapon/shield/iron
 				if("Billhook")
 					r_hand = /obj/item/rogueweapon/spear/billhook 
 					backl = /obj/item/gwstrap
