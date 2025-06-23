@@ -75,7 +75,7 @@
 	remains_type = /obj/effect/decal/remains/troll
 	
 	can_have_ai = FALSE //disable native ai
-	AIStatus = NPC_AI_OFF
+	AIStatus = AI_OFF
 	ai_controller = /datum/ai_controller/troll
 	melee_cooldown = TROLL_ATTACK_SPEED
 
