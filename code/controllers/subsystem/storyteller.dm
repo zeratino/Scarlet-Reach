@@ -166,7 +166,7 @@ SUBSYSTEM_DEF(gamemode)
 	var/church = 0
 
 	/// Is storyteller secret or not
-	var/secret_storyteller = FALSE
+	var/secret_storyteller = TRUE
 
 	/// List of new player minds we currently want to give our roundstart antag to
 	var/list/roundstart_antag_minds = list()

@@ -70,7 +70,13 @@
 	blade_dulling = DULLING_SHAFT_METAL
 	intdamage_factor = 1.35
 	icon_angle_wielded = 50
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_blunt.ogg'
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
 
+/obj/item/rogueweapon/mace/equipped(mob/user, slot, initial = FALSE)
+	pickup_sound = pick("modular_helmsguard/sound/sheath_sounds/draw_blunt.ogg", "modular_helmsguard/sound/sheath_sounds/draw_mace.ogg", "modular_helmsguard/sound/sheath_sounds/draw_blunt2.ogg")
+	. = ..()
+	
 /obj/item/rogueweapon/mace/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -385,7 +391,7 @@
 
 
 /obj/item/rogueweapon/mace/goden/psymace
-	name = "psydonian mace"
+	name = "Silver mace"
 	desc = "An ornate mace, plated in a ceremonial veneer of silver. Even the unholy aren't immune to discombobulation."
 	icon_state = "psymace"
 	force = 25

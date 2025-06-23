@@ -119,7 +119,8 @@
 	color = "#b8252c"
 	icon_state = "shalal"
 	item_state = "shalal"
-	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDEEARS
+	flags_inv = HIDEHAIR|HIDEFACIALHAIR
+	flags_inv = HIDEHAIR
 	sleevetype = null
 	sleeved = null
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -127,20 +128,35 @@
 	alternate_worn_layer  = 8.9 //On top of helmet
 	body_parts_covered = HEAD|HAIR|EARS|NECK
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
-	armor = ARMOR_HEAD_CLOTHING
+	armor = list("blunt" = 20, "slash" = 20, "stab" = 15, "bullet" = 1, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	dynamic_hair_suffix = ""
 	edelay_type = 1
 	adjustable = CAN_CADJUST
 	toggle_icon_state = TRUE
-	hidesnoutADJ = TRUE
 	blocksound = SOFTHIT
 	max_integrity = 100
 	sewrepair = TRUE
-	mask_override = TRUE
-	overarmor = FALSE
+
+/obj/item/clothing/head/roguetown/roguehood/shalal/AdjustClothes(mob/user)
+	if(loc == user)
+		if(adjustable == CAN_CADJUST)
+			adjustable = CADJUSTED
+			icon_state = "shalal_t"
+			body_parts_covered = HEAD|EARS|HAIR|NECK|NOSE|MOUTH
+			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+			flags_cover = null
+			if(ishuman(user))
+				var/mob/living/carbon/H = user
+				H.update_inv_head()
+			block2add = null
+		else if(adjustable == CADJUSTED)
+			ResetAdjust(user)
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
+
+/obj/item/clothing/head/roguetown/roguehood/shalal/purple
+	color = CLOTHING_PURPLE
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
 	name = "hijab"
@@ -689,6 +705,7 @@
 	name = "horned cap"
 	desc = "An iron helmet with two horns poking out of the sides."
 	icon_state = "hornedcap"
+	max_integrity = 225
 	body_parts_covered = HEAD|HAIR
 	smeltresult = /obj/item/ingot/iron
 
@@ -696,6 +713,7 @@
 	name = "winged cap"
 	desc = "A helmet with two wings on its sides."
 	icon_state = "wingedcap"
+	max_integrity = 225
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -705,6 +723,7 @@
 	name = "kettle helmet"
 	desc = "A steel helmet which protects the top and sides of the head."
 	icon_state = "kettle"
+	max_integrity = 215
 	body_parts_covered = HEAD|HAIR|EARS
 	armor = ARMOR_HEAD_HELMET
 
@@ -739,6 +758,7 @@
 	name = "sallet"
 	icon_state = "sallet"
 	desc = "A steel helmet which protects the ears."
+	max_integrity = 215
 	smeltresult = /obj/item/ingot/steel
 	body_parts_covered = HEAD|HAIR|EARS
 
@@ -766,8 +786,9 @@
 
 /obj/item/clothing/head/roguetown/helmet/sallet/visored
 	name = "visored sallet"
-	desc = "A steel helmet which protects the ears, nose, and eyes."
+	desc = "A steel helmet which protects the ears, and when the visor is flipped it includes the nose, and eyes at the cost of situational awareness."
 	icon_state = "sallet_visor"
+	max_integrity = 285
 	adjustable = CAN_CADJUST
 	flags_inv = HIDEFACE|HIDESNOUT|HIDEHAIR
 	flags_cover = HEADCOVERSEYES
@@ -846,7 +867,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PICK)
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
-	max_integrity = 400
+	max_integrity = 350
 
 /obj/item/clothing/head/roguetown/helmet/heavy/aalloy
 	name = "decrepit barbute"
@@ -1017,7 +1038,7 @@
 	emote_environment = 3
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	block2add = FOV_BEHIND
-	max_integrity = 300
+	max_integrity = 325
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
@@ -1051,7 +1072,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet
 	name = "armet"
-	desc = "Holy lamb, sacrificial hero, blessed idiot - Psydon endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
+	desc = "Holy lamb, sacrificial hero, blessed idiot - The ten endures. Will you endure alongside them, as a knight of humenity, or crumble before temptation?"
 	icon_state = "armet"
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/ComponentInitialize()
@@ -1112,6 +1133,7 @@
 	desc = "A helmet which covers the whole of the head. Offers excellent protection."
 	icon_state = "topfhelm"
 	item_state = "topfhelm"
+	max_integrity = 335
 	emote_environment = 3
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
 	block2add = FOV_BEHIND
@@ -1167,8 +1189,8 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute
-	name = "psydonian barbute"
-	desc = "A ceremonial barbute, masterfully forged to represent Psydon's divine authority. The Order of Saint Malum's artisans have chiseled this pronged visage into more statues than you could possibly imagine."
+	name = "Silver barbute"
+	desc = "A ceremonial barbute, masterfully forged to represent Tens' divine authority. The Order of Saint Malum's artisans have chiseled this pronged visage into more statues than you could possibly imagine."
 	icon_state = "psydonbarbute"
 	item_state = "psydonbarbute"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
@@ -1182,7 +1204,7 @@
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
-	name = "psydonian armet"
+	name = "Ornate armet"
 	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
 	icon_state = "psydonarmet"
 	item_state = "psydonarmet"
@@ -1292,7 +1314,7 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	flags_inv = HIDEEARS|HIDEHAIR
 	block2add = FOV_BEHIND
-	max_integrity = 300
+	max_integrity = 250
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface
@@ -1300,6 +1322,7 @@
 	desc = "A steel bascinet helmet with a pigface visor that protects the entire head and face. Add a feather to show the colors of your family or allegiance."
 	icon_state = "hounskull"
 	item_state = "hounskull"
+	max_integrity = 325
 	adjustable = CAN_CADJUST
 	emote_environment = 3
 	body_parts_covered = FULL_HEAD
@@ -1457,17 +1480,6 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
-/obj/item/clothing/head/roguetown/helmet/bascinet
-	name = "bascinet"
-	desc = "A steel bascinet helmet. Though it lacks a visor for the face, it still protects the head and ears."
-	icon_state = "bascinet_novisor"
-	item_state = "bascinet_novisor"
-	emote_environment = 3
-	body_parts_covered = HEAD|HAIR|EARS
-	flags_inv = HIDEHAIR
-	block2add = null
-	smeltresult = /obj/item/ingot/steel
-
 /obj/item/clothing/head/roguetown/helmet/leather
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
 	name = "leather helmet"
@@ -1490,7 +1502,7 @@
 	icon_state = "volfhead"
 	item_state = "volfhead"
 	armor = ARMOR_HEAD_HELMET_BAD
-	max_integrity = 100
+	max_integrity = 200
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST)
 	anvilrepair = null
 	sewrepair = TRUE
@@ -1712,7 +1724,7 @@
 /obj/item/clothing/head/roguetown/helmet/tricorn
 	slot_flags = ITEM_SLOT_HEAD
 	name = "tricorn"
-	desc = ""
+	desc = "A hat worn by sailors, fencers, musketeers and gentleman alike."
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "tricorn"
 	armor = ARMOR_HEAD_CLOTHING
@@ -1735,7 +1747,7 @@
 /obj/item/clothing/head/roguetown/helmet/bandana
 	slot_flags = ITEM_SLOT_HEAD
 	name = "bandana"
-	desc = ""
+	desc = "Worn by sword fighters, thugs and pirates."
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "bandana"
 	armor = ARMOR_HEAD_CLOTHING
@@ -1765,8 +1777,8 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/head/roguetown/roguehood/psydon
-	name = "psydonian hood"
-	desc = "A hood worn by Psydon's disciples, oft-worn in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."
+	name = "Orthodox hood"
+	desc = "A hood worn by the tens' disciples, oft-worn in conjunction with its matching tabard. Made with spell-laced fabric to provide some protection."
 	icon_state = "psydonhood"
 	item_state = "psydonhood"
 	color = null
@@ -1824,6 +1836,7 @@
 	desc = "A steel bascinet helmet with a volfish visor protecting the head, ears, eyes, nose and mouth."
 	icon_state = "volfplate"
 	item_state = "volfplate"
+	max_integrity = 325
 	adjustable = CAN_CADJUST
 	emote_environment = 3
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT

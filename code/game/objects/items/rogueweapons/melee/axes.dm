@@ -76,7 +76,14 @@
 	gripped_intents = list(/datum/intent/axe/chop/stone)
 	resistance_flags = FLAMMABLE
 	blade_dulling = DULLING_SHAFT_WOOD
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_polearm.ogg'
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
 
+
+/obj/item/rogueweapon/stoneaxe/equipped(mob/user, slot, initial = FALSE)
+	pickup_sound = pick("modular_helmsguard/sound/sheath_sounds/draw_polearm.ogg", "modular_helmsguard/sound/sheath_sounds/draw_spear.ogg") //adds more variety of sound at every interaction
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
+	. = ..()
 
 /obj/item/rogueweapon/stoneaxe/getonmobprop(tag)
 	if(tag)
@@ -156,6 +163,7 @@
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 	return ..()
 
+
 /obj/item/rogueweapon/stoneaxe/oath
 	force = 30
 	force_wielded = 40
@@ -189,6 +197,8 @@
 			if("onbelt")
 				return list("shrink" = 0.5,"sx" = 1,"sy" = -1,"nx" = 1,"ny" = -1,"wx" = 4,"wy" = -1,"ex" = -1,"ey" = -1,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0,)
 
+
+
 /obj/item/rogueweapon/stoneaxe/woodcut
 	name = "axe"
 	force = 20
@@ -200,6 +210,8 @@
 	smeltresult = /obj/item/ingot/iron
 	gripped_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
 	wdefense = 2
+
+
 
 /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 	name = "decrepit axe"
@@ -233,6 +245,12 @@
 	smeltresult = /obj/item/ingot/steel
 	wlength = WLENGTH_NORMAL
 	toolspeed = 2
+
+
+/obj/item/rogueweapon/stoneaxe/handaxe/equipped(mob/user, slot, initial = FALSE)
+	pickup_sound = pick("modular_helmsguard/sound/sheath_sounds/draw_polearm.ogg", "modular_helmsguard/sound/sheath_sounds/draw_spear.ogg")
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
+	. = ..()
 
 
 // Copper Hatchet
@@ -333,7 +351,7 @@
 	blade_dulling = DULLING_SHAFT_METAL
 
 /obj/item/rogueweapon/stoneaxe/battle/psyaxe
-	name = "psydonian war axe"
+	name = "Silver war axe"
 	desc = "An ornate battle axe, plated in a ceremonial veneer of silver. The premiere instigator of conflict against elven attachees."
 	icon_state = "psyaxe"
 	smeltresult = /obj/item/ingot/steel
@@ -374,6 +392,12 @@
 	associated_skill = /datum/skill/combat/axes
 	blade_dulling = DULLING_SHAFT_WOOD
 	wdefense = 6
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_greatsword.ogg'
+	sheathe_sound = 'modular_helmsguard/sound/sheath_sounds/put_back_to_leather.ogg'
+
+/obj/item/rogueweapon/greataxe/equipped(mob/user, slot, initial = FALSE)
+	pickup_sound = pick("modular_helmsguard/sound/sheath_sounds/draw_polearm.ogg", "modular_helmsguard/sound/sheath_sounds/draw_greatsword.ogg", "modular_helmsguard/sound/sheath_sounds/draw_spear.ogg")
+	. = ..()
 
 /obj/item/rogueweapon/greataxe/getonmobprop(tag)
 	. = ..()

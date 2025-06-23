@@ -22,6 +22,8 @@
 	grid_width = 32
 	grid_height = 96
 	intdamage_factor = 1.1
+	pickup_sound = 'sound/foley/equip/equip_armor_chain.ogg'
+	sheathe_sound = 'sound/items/wood_sharpen.ogg'
 
 /datum/intent/flail/strike
 	name = "strike"
@@ -194,6 +196,8 @@
 	minstr = 6
 	grid_width = 32
 	grid_height = 64
+	pickup_sound = 'modular_helmsguard/sound/sheath_sounds/draw_gen.ogg'
+	sheathe_sound = 'modular_helmsguard/sound/sheath_sounds/put_back_to_leather.ogg'
 
 /obj/item/rogueweapon/whip/getonmobprop(tag)
 	. = ..()
@@ -237,12 +241,12 @@
 
 /obj/item/rogueweapon/whip/antique/psywhip
 	name = "Daybreak"
-	desc = "Holding the blessed silver evokes a memory of the Grand Otavan Cathedral, a testament to humenity's faith. There, upon the ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness."
+	desc = "Holding the blessed silver evokes a memory of the Grand Otavan Cathedral, a testament to humenity's faith. There, upon the ceiling, was painted a scene-most-beautiful: of a robed, long dead Psydon standing before the Archdevil, parting the nite's sky with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness."
 	icon_state = "psywhip"
 	is_silver = TRUE
 
 /obj/item/rogueweapon/whip/psywhip_lesser
-	name = "psydonite whip"
+	name = "holy whip"
 	desc = "An ornate whip, plated in a ceremonial veneer of silver. Crack the leather and watch as the apostates clammer aside."
 	icon_state = "psywhip_lesser"
 
