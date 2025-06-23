@@ -441,6 +441,18 @@ GLOBAL_LIST_EMPTY(loadout_items)
     name = "Noble's Chaperon"
     path = /obj/item/clothing/head/roguetown/chaperon/noble
 
+/datum/loadout_item/jesterhat
+    name = "Jester's Hat"
+    path = /obj/item/clothing/head/roguetown/jester
+
+/datum/loadout_item/jestertunick
+    name = "Jester's Tunick"
+    path = /obj/item/clothing/suit/roguetown/shirt/jester
+
+/datum/loadout_item/jestershoes
+    name = "Jester's Shoes"
+    path = /obj/item/clothing/shoes/roguetown/jester
+
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.
