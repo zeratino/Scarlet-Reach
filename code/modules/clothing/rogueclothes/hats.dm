@@ -93,6 +93,26 @@
 	. = ..()
 	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/cloak (3).ogg', null, (UPD_HEAD|UPD_MASK))	//Standard hood
 
+/obj/item/clothing/head/roguetown/beekeeper
+	name = "beekeeper's hood"
+	desc = ""
+	flags_inv = HIDEEARS|HIDEHAIR
+	icon_state = "beekeeper"
+	item_state = "beekeeper"
+	icon = 'icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi'
+	alternate_worn_layer  = 8.9 //On top of helmet
+	body_parts_covered = HEAD|HAIR|EARS|NECK
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
+	sleevetype = null
+	sleeved = null
+	dynamic_hair_suffix = ""
+	edelay_type = 1
+	adjustable = CANT_CADJUST
+	toggle_icon_state = FALSE
+	max_integrity = 100
+	sewrepair = TRUE
+
 /obj/item/clothing/head/roguetown/roguehood/shalal
 	name = "keffiyeh"
 	desc = "A protective covering worn by those native to the desert."
@@ -231,6 +251,17 @@
 	dynamic_hair_suffix = ""
 	sewrepair = TRUE
 
+/obj/item/clothing/head/roguetown/roguehood/ravoxgorget
+	name = "ravox's tabard gorget"
+	color = null
+	icon_state = "ravoxgorget"
+	item_state = "ravoxgorget"
+	body_parts_covered = NECK
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
+	flags_inv = HIDENECK
+	dynamic_hair_suffix = ""
+	sewrepair = TRUE
+
 /obj/item/clothing/head/roguetown/priestmask
 	name = "solar visage"
 	desc = "The sanctified helm of the most devoted. Thieves beware."
@@ -320,6 +351,15 @@
 /obj/item/clothing/head/roguetown/jester/jester/Destroy()
 	GLOB.lordcolor -= src
 	return ..()
+
+/obj/item/clothing/head/roguetown/jester/MiddleClick(mob/user)
+	if(!ishuman(user))
+		return
+	if(flags_inv & HIDE_HEADTOP)
+		flags_inv &= ~HIDE_HEADTOP
+	else
+		flags_inv |= HIDE_HEADTOP
+	user.update_inv_head()
 
 /obj/item/clothing/head/roguetown/strawhat
 	name = "straw hat"
@@ -535,7 +575,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/clothing/head/roguetown/nyle/consortcrown
-	name = "consort crown"
+	name = "gem-encrusted crown"
 	icon_state = "consortcrown"
 	item_state = "consortcrown"
 	sellprice = 100
@@ -890,6 +930,20 @@
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
 
+/obj/item/clothing/head/roguetown/helmet/heavy/graggar
+	name = "vicious helmet"
+	desc = "A rugged helmet which stirs with the same violence which drives our world."
+	icon_state = "graggarplatehelm"
+	max_integrity = 600
+	flags_inv = HIDEEARS|HIDEFACE|HIDESNOUT|HIDEHAIR|HIDEFACIALHAIR
+
+/obj/item/clothing/head/roguetown/helmet/heavy/graggar/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_HORDE))
+		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS HELM, CEASE OR BE RENDED ASUNDER!</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()
 
 /obj/item/clothing/head/roguetown/helmet/heavy/matthios/pickup(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_COMMIE))
@@ -917,7 +971,7 @@
 		desc = "A darksteel froggemund. Called forth from the edge of what should be known. In Her name."
 		flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS 
 		body_parts_covered = HEAD|EARS|HAIR
-		adjustable = FALSE
+		adjustable = CANT_CADJUST
 	else
 		icon_state = "zizobarbute"
 		name = "darksteel barbute"
@@ -1015,6 +1069,36 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle
+	name = "slitted kettle helm"
+	desc = "A reinforced Eisenhut that's been extended downwards to cover the face, fully protecting the wearer but limiting his field of view. Pairs well with a bevor."
+	icon_state = "skettle"
+	item_state = "skettle"
+	adjustable = CANT_CADJUST
+
+/obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle/attackby(obj/item/W, mob/living/user, params)
+	..()
+	if(istype(W, /obj/item/natural/feather) && !detail_tag)
+		var/choice = input(user, "Choose a color.", "Plume") as anything in colorlist
+		user.visible_message(span_warning("[user] adds [W] to [src]."))
+		user.transferItemToLoc(W, src, FALSE, FALSE)
+		detail_color = colorlist[choice]
+		detail_tag = "_detail"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_head()
+	if(istype(W, /obj/item/natural/cloth) && !altdetail_tag)
+		var/choicealt = input(user, "Choose a color.", "Orle") as anything in colorlist
+		user.visible_message(span_warning("[user] adds [W] to [src]."))
+		user.transferItemToLoc(W, src, FALSE, FALSE)
+		altdetail_color = colorlist[choicealt]
+		altdetail_tag = "_detailalt"
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_head()
+
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet
 	name = "armet"
 	desc = "Holy lamb, sacrificial hero, blessed idiot - Psydon endures. Will you endure alongside Him, as a knight of humenity, or crumble before temptation?"
@@ -1105,6 +1189,21 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+/obj/item/clothing/head/roguetown/helmet/heavy/xylixhelm
+	name = "xylixian helmet"
+	desc = "I dance, I sing! I'll be your fool!"
+	icon_state = "xylixhelmet"
+	item_state = "xylixhelmet"
+	emote_environment = 3
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
+	block2add = FOV_BEHIND
+	smeltresult = /obj/item/ingot/steel
+	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/xylixhelm/Initialize()
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_JINGLE_BELLS, 2)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm
 	name = "astrata helmet"
@@ -1233,6 +1332,31 @@
 	block2add = FOV_BEHIND
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
+	name = "justice eagle"
+	desc = "Forged in reverence to Ravox, this helm bears the stylized visage of an eagle, symbol of unyielding judgment and divine vigilance. Its hollow eyes see not just foes, but the truth behind every deed."
+	icon_state = "ravoxhelmet"
+	item_state = "ravoxhelmet"
+	emote_environment = 3
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	block2add = FOV_BEHIND
+	smeltresult = /obj/item/ingot/steel
+	smelt_bar_num = 2
+
+/obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm/attackby(obj/item/W, mob/living/user, params)
+	..()
+	if(istype(W, /obj/item/natural/feather) && !detail_tag)
+		var/choice = input(user, "Choose a color.", "Plume") as anything in colorlist
+		detail_color = colorlist[choice]
+		detail_tag = "_detail"
+		user.visible_message(span_warning("[user] adds [W] to [src]."))
+		user.transferItemToLoc(W, src, FALSE, FALSE)
+		update_icon()
+		if(loc == user && ishuman(user))
+			var/mob/living/carbon/H = user
+			H.update_inv_head()
+
 
 /obj/item/clothing/head/roguetown/helmet/bascinet
 	name = "bascinet"
@@ -1426,6 +1550,7 @@
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "leatherhelm"
 	armor = ARMOR_HEAD_HELMET_BAD
+	sellprice = 10
 	prevent_crits = list(BCLASS_BLUNT, BCLASS_TWIST)
 	anvilrepair = null
 	smeltresult = null
@@ -1596,6 +1721,7 @@
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/stonekeep_merc.dmi'
 	slot_flags = ITEM_SLOT_HEAD
 	detail_tag = "_detail"
+	altdetail_tag = "_detailalt"
 	dynamic_hair_suffix = ""
 	max_integrity = 150
 	body_parts_covered = HEAD|HAIR|EARS
@@ -1603,6 +1729,9 @@
 	armor = ARMOR_SPELLSINGER // spellsinger hat stats
 	sewrepair = TRUE
 	var/picked = FALSE
+	color = "#262927"
+	detail_color = "#FFFFFF"
+	altdetail_color = "#9c2525"
 
 /obj/item/clothing/head/roguetown/grenzelhofthat/attack_right(mob/user)
 	..()
@@ -1625,6 +1754,13 @@
 		if(get_detail_color())
 			pic.color = get_detail_color()
 		add_overlay(pic)
+
+	if(get_altdetail_tag())
+		var/mutable_appearance/pic2 = mutable_appearance(icon(icon, "[icon_state][altdetail_tag]"))
+		pic2.appearance_flags = RESET_COLOR
+		if(get_altdetail_color())
+			pic2.color = get_altdetail_color()
+		add_overlay(pic2)
 
 //Eora content from Stonekeep
 
@@ -1790,6 +1926,7 @@
 	desc = "Sturdy, durable, flexible. A comfortable and reliable hood made of hardened leather."
 	icon_state = "leatherhelm"
 	max_integrity = 250
+	sellprice = 15
 	body_parts_covered = HEAD|EARS|HAIR|NOSE
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_HEAD_LEATHER

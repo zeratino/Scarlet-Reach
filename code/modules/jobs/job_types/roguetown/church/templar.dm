@@ -56,6 +56,8 @@
 		if(/datum/patron/divine/abyssor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
 			cloak = /obj/item/clothing/cloak/abyssortabard
+		if(/datum/patron/divine/xylix)
+			cloak = /obj/item/clothing/cloak/templar/xylixian
 		if(/datum/patron/divine/dendor)
 			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
 			cloak = /obj/item/clothing/cloak/tabard/crusader/dendor
@@ -73,7 +75,7 @@
 			cloak = /obj/item/clothing/cloak/tabard/crusader/noc
 		if(/datum/patron/divine/ravox)
 			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
-			cloak = /obj/item/clothing/cloak/tabard/crusader/ravox
+			cloak = /obj/item/clothing/cloak/templar/ravox
 		if(/datum/patron/divine/malum)
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
@@ -92,8 +94,8 @@
 			/obj/item/clothing/neck/roguetown/psicross/wood
 			)
 			neck = pick(psicross_options) // Random psicross, as cleric.
-			cloak = /obj/item/clothing/cloak/templar/xylix
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
+	armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
@@ -122,6 +124,8 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 1, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 1, TRUE)
+		if(H.patron?.type == /datum/patron/divine/necra)
+			H.mind.AddSpell(/obj/effect/proc_holder/spell/targeted/abrogation)
 		H.cmode_music = 'sound/music/combat_holy.ogg'
 		H.change_stat("strength", 3)
 		H.change_stat("constitution", 2)
@@ -176,6 +180,9 @@
 			wrists = /obj/item/clothing/neck/roguetown/psicross/abyssor
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/abyssorgreathelm
 			cloak = /obj/item/clothing/cloak/abyssortabard
+		if(/datum/patron/divine/xylix)
+			cloak = /obj/item/clothing/cloak/templar/xylixian
+			head = /obj/item/clothing/head/roguetown/helmet/heavy/xylixhelm
 		if(/datum/patron/divine/dendor)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 			head = /obj/item/clothing/head/roguetown/helmet/heavy/dendorhelm
@@ -198,8 +205,9 @@
 			cloak = /obj/item/clothing/cloak/tabard/crusader/noc
 		if(/datum/patron/divine/ravox)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/ravox
-			head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gold
-			cloak = /obj/item/clothing/cloak/tabard/crusader/ravox
+			head = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
+			cloak = /obj/item/clothing/cloak/templar/ravox
+			mask = /obj/item/clothing/head/roguetown/roguehood/ravoxgorget
 		if(/datum/patron/divine/malum)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
@@ -224,9 +232,9 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
@@ -241,6 +249,8 @@
 			H.mind.adjust_skillrank(/datum/skill/craft/armorsmithing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/weaponsmithing, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/craft/smelting, 2, TRUE)
+		if(H.patron?.type == /datum/patron/divine/necra)
+			H.mind.AddSpell(/obj/effect/proc_holder/spell/targeted/abrogation)
 		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)	//May tone down to 2; seems OK.
 		H.cmode_music = 'sound/music/combat_holy.ogg'
 		H.change_stat("strength", 2)
@@ -256,7 +266,7 @@
 
 /datum/outfit/job/roguetown/templar/crusader/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
-	var/weapons = list("Bastard Sword","Flail","Mace","Battle Axe")
+	var/weapons = list("Longsword","Flail","Mace","Battle Axe")
 	switch(H.patron?.type)
 		if(/datum/patron/divine/astrata) //Unique patron weapons, more can be added here if wanted.
 			weapons += "Solar Judgement"
@@ -278,7 +288,7 @@
 			weapons += "The Heartstring"
 	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
-		if("Bastard Sword")
+		if("Longsword")
 			H.put_in_hands(new /obj/item/rogueweapon/sword/long(H), TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
 		if("Flail")

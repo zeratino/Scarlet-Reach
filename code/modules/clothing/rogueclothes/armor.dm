@@ -146,7 +146,7 @@
 	icon_state = "gambesonp"
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_CHOP)
 	armor = ARMOR_PADDED_GOOD
-	sellprice = 30
+	sellprice = 25
 	color = "#976E6B"
 	var/shiftable = TRUE
 	var/shifted = FALSE
@@ -180,13 +180,49 @@
 			return
 
 
-
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 	name = "fencer gambeson"
 	desc = "A large shirt with heavy padding meant to be used below armor. Will probably stop an arrow, unlikely to stop a bolt."
 	icon_state = "fancygamb"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	color = "#FFFFFF"
+	shiftable = FALSE
+	sellprice = 30
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
+	name = "padded fencing shirt"
+	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It lasts a bit less than a regular padded gambeson and won't cover your legs."
+	max_integrity = 200		//Back to default. I think it's right if it doesn't stop you from getting legshotted.
+	body_parts_covered = COVERAGE_ALL_BUT_LEGS
+	detail_tag = "_detail"
+	altdetail_tag = "_detailalt"
+	color = "#FFFFFF"
+	detail_color = "#3b2b29"
+	altdetail_color = "#c29057"
+	icon_state = "fencingshirt"
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
+	if(get_altdetail_tag())
+		var/mutable_appearance/pic2 = mutable_appearance(icon(icon, "[icon_state][altdetail_tag]"))
+		pic2.appearance_flags = RESET_COLOR
+		if(get_altdetail_color())
+			pic2.color = get_altdetail_color()
+		add_overlay(pic2)
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/chargah
+	name = "steppesman chargah robe"
+	desc = "A light yet thick robe padded with fine silks and cloth, acting as a mix of traditional gambeson and imported silks of the east. Popular among Aavnr steppesmen."
+	icon_state = "chargah"
+	color = "#864a4a"
+	boobed = TRUE
 	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
@@ -202,7 +238,9 @@
 	max_integrity = 250 // Slightly stronger than base, a reward for unique drip
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
-	color = "#FFFFFF"
+	color = "#1d1d22"
+	detail_color = "#FFFFFF"
+	sellprice = 40
 	var/picked = FALSE
 	shiftable = FALSE
 
@@ -374,7 +412,7 @@
 	armor = ARMOR_LEATHER_GOOD
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = 300
-	sellprice = 25
+	sellprice = 20
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	name = "hardened leather coat"
@@ -386,6 +424,12 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = 300
 	sellprice = 25
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
+	name = "fur-woven hatanga coat"
+	desc = "A finely woven hatagna coat, replacing much of its scaled armor with fine furs and reinforced padding for lighter rides."
+	icon_state = "hatangafur"
+	item_state = "hatangafur"
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket
 	name = "hardened leather jacket"
@@ -684,6 +728,16 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
+/obj/item/clothing/suit/roguetown/armor/plate/half/fencer
+	name = "fencer's cuirass"
+	desc = "An expertly smithed form-fitting steel cuirass that is much lighter and agile, but breaks with much more ease. It's thinner, but backed with silk and leather."
+	armor = ARMOR_LIGHTCUIRASS
+	armor_class = ARMOR_CLASS_LIGHT
+	max_integrity = 170
+	smelt_bar_num = 1
+	icon_state = "fencercuirass"
+	item_state = "fencercuirass"
+
 /obj/item/clothing/suit/roguetown/armor/plate/half/aalloy
 	name = "decrepit cuirass"
 	desc = "A withered cuirass. Aeon's grasp is upon its form."
@@ -696,7 +750,6 @@
 	desc = "A cuirass of ancient alloys. Aeon's grasp lifted from its form."
 	icon_state = "ancientcuirass"
 	smeltresult = /obj/item/ingot/aaslag
-
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted
 	name = "fluted cuirass"
@@ -752,6 +805,13 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 
+/obj/item/clothing/suit/roguetown/armor/plate/scale/steppe
+	name = "steel steppesman hatanga"
+	desc = "A set of steel-scaled hatanga armor hailing from the southern steppes."
+	icon_state = "hudesutu"
+	max_integrity = 250		//Grenzel gets 100+ integrity, I don't see why not give a +50 here.
+
+
 //HEAVY ARMOR//
 
 /obj/item/clothing/suit/roguetown/armor/plate
@@ -804,6 +864,22 @@
 
 	max_integrity = 600
 	body_parts_covered = COVERAGE_SHIRT
+
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar
+	name = "vicious half-plate"
+	desc = "A fluted half-plate armour-set which stirs with the same violence driving our world. This inner motive makes it far less restrictive."
+	armor_class = ARMOR_CLASS_MEDIUM
+	max_integrity = 500 // We are probably one of the best medium armor sets. At higher integ than most(heavy armor levels, pretty much. But worse resistances, we get the bonus over the other sets of being medium and being unequippable.)
+	icon_state = "graggarplate"
+	armor = ARMOR_CUIRASS
+
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_HORDE))
+		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS ARMOR, CEASE OR BE RENDED ASUNDER!</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
 	name = "psydonite half-plate"
@@ -1118,6 +1194,31 @@
 	equip_delay_self = 40
 	armor_class = ARMOR_CLASS_MEDIUM
 	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/attack_right(mob/user)
+	if(detail_tag)
+		return
+	var/the_time = world.time
+	var/pickedcolor = input(user, "Select a color.","Brigandine Color") as null|anything in CLOTHING_COLOR_NAMES
+	if(!pickedcolor)
+		return
+	if(world.time > (the_time + 30 SECONDS))
+		return
+	detail_tag = "_detail"
+	detail_color = clothing_color2hex(pickedcolor)
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_armor()
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	slot_flags = ITEM_SLOT_ARMOR

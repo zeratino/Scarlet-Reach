@@ -53,10 +53,11 @@
 	desc = ""
 	icon_state = "angle"
 	armor = ARMOR_GLOVES_LEATHER_GOOD
-	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_TWIST)
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT
 	max_integrity = 300
+	sellprice = 12
 	blade_dulling = DULLING_BASHCHOP
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
@@ -176,6 +177,20 @@
 	desc = "Ancient plate gauntlets. Aeon's grasp lifed from them."
 	icon_state = "agauntlets"
 	smeltresult = /obj/item/ingot/aaslag
+
+/obj/item/clothing/gloves/roguetown/plate/graggar
+	name = "vicious gauntlets"
+	desc = "Plate gauntlets which carry the motive force of this world, violence."
+	max_integrity = 500
+	icon_state = "graggarplategloves"
+
+/obj/item/clothing/gloves/roguetown/plate/graggar/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_HORDE))
+		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS ARMOR, CEASE OR BE RENDED ASUNDER!</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()
 
 /obj/item/clothing/gloves/roguetown/plate/matthios
 	name = "gilded gauntlets"

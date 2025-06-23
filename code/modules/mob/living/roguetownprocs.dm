@@ -157,11 +157,11 @@
 			if(mainhand)
 				if(mainhand.can_parry)
 					mainhand_defense += (H.mind ? (H.mind.get_skill_level(mainhand.associated_skill) * 20) : 20)
-					mainhand_defense += (mainhand.wdefense * 10)
+					mainhand_defense += (mainhand.wdefense_dynamic * 10)
 			if(offhand)
 				if(offhand.can_parry)
 					offhand_defense += (H.mind ? (H.mind.get_skill_level(offhand.associated_skill) * 20) : 20)
-					offhand_defense += (offhand.wdefense * 10)
+					offhand_defense += (offhand.wdefense_dynamic * 10)
 
 			if(mainhand_defense >= offhand_defense)
 				highest_defense += mainhand_defense
@@ -338,9 +338,43 @@
 					if(dam2take)
 						if(!user.mind)
 							dam2take = dam2take * 0.25
-						if(dam2take > 0 && intenty.masteritem?.intdamage_factor)
-							dam2take = dam2take * intenty.masteritem?.intdamage_factor
-						used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
+						if(dam2take > 0 && (intenty.masteritem?.intdamage_factor != 1 || intenty.intent_intdamage_factor != 1))
+							var/higher_intfactor = max(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
+							var/lowest_intfactor = min(intenty.masteritem?.intdamage_factor, intenty.intent_intdamage_factor)
+							var/used_intfactor
+							if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
+								used_intfactor = lowest_intfactor
+							if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
+								used_intfactor = higher_intfactor
+							dam2take *= used_intfactor
+					else	//This is normally handled in get_complex_damage, but it doesn't support simple mobs... at all, so we do a clunky mini-version of it.
+						if(istype(user, /mob/living/simple_animal))
+							var/mob/living/simple_animal/SM = user
+							dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
+							dam2take *= (SM.STASTR / 10)
+							dam2take *= 0.25
+							switch(used_weapon.blade_dulling)
+								if(DULLING_SHAFT_CONJURED)
+									dam2take *= 1.3
+								if(DULLING_SHAFT_METAL)
+									switch(SM.d_type)
+										if("slash")
+											dam2take *= 0.5
+										if("blunt")
+											dam2take *= 1.5
+								if(DULLING_SHAFT_WOOD)
+									switch(SM.d_type)
+										if("slash")
+											dam2take *= 1.5
+										if("blunt")
+											dam2take *= 0.5
+								if(DULLING_SHAFT_REINFORCED)
+									switch(SM.d_type)
+										if("slash")
+											dam2take *= 0.75
+										if("stab")
+											dam2take *= 1.5
+					used_weapon.take_damage(max(dam2take,1), BRUTE, used_weapon.d_type)
 					return TRUE
 				else
 					return FALSE
@@ -644,8 +678,42 @@
 			if(dam2take)
 				if(!user.mind)
 					dam2take = dam2take * 0.25
-				if(dam2take > 0 && IU.intdamage_factor != 0)
-					dam2take = dam2take * IU.intdamage_factor
+				if(dam2take > 0 && (user.used_intent.masteritem?.intdamage_factor != 1 || user.used_intent.intent_intdamage_factor != 1))
+					var/higher_intfactor = max(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
+					var/lowest_intfactor = min(user.used_intent.masteritem?.intdamage_factor, user.used_intent.intent_intdamage_factor)
+					var/used_intfactor
+					if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
+						used_intfactor = lowest_intfactor
+					if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
+						used_intfactor = higher_intfactor
+					dam2take *= used_intfactor
+				else
+					if(istype(user, /mob/living/simple_animal))
+						var/mob/living/simple_animal/SM = user
+						dam2take = rand(SM.melee_damage_lower, SM.melee_damage_upper)
+						dam2take *= (SM.STASTR / 10)
+						dam2take *= 0.25
+						switch(IS.blade_dulling)
+							if(DULLING_SHAFT_CONJURED)
+								dam2take *= 1.3
+							if(DULLING_SHAFT_METAL)
+								switch(SM.d_type)
+									if("slash")
+										dam2take *= 0.5
+									if("blunt")
+										dam2take *= 1.5
+							if(DULLING_SHAFT_WOOD)
+								switch(SM.d_type)
+									if("slash")
+										dam2take *= 1.5
+									if("blunt")
+										dam2take *= 0.5
+							if(DULLING_SHAFT_REINFORCED)
+								switch(SM.d_type)
+									if("slash")
+										dam2take *= 0.75
+									if("stab")
+										dam2take *= 1.5
 				IS.take_damage(max(dam2take,1), BRUTE, IU.d_type)
 
 			user.visible_message(span_warning("<b>[user]</b> clips [src]'s weapon!"))
@@ -750,9 +818,16 @@
 		clash(user, IM, IU)
 	else	//Otherwise, we just riposte them.
 		var/damage = get_complex_damage(IM, src, IU.blade_dulling)
-		if(IM.intdamage_factor > 0)
-			damage *= IM.intdamage_factor
-		if(IM.wbalance < 0)
+		if(IM.intdamage_factor != 1 || used_intent.intent_intdamage_factor != 1)
+			var/higher_intfactor = max(IM.intdamage_factor, used_intent.intent_intdamage_factor)
+			var/lowest_intfactor = min(IM.intdamage_factor, used_intent.intent_intdamage_factor)
+			var/used_intfactor
+			if(lowest_intfactor < 1)	//Our intfactor multiplier can be either 0 to 1, or 1 to whatever.
+				used_intfactor = lowest_intfactor
+			if(higher_intfactor > 1)	//Make sure to keep your weapon and intent intfactors consistent to avoid problems here!
+				used_intfactor = higher_intfactor
+			damage *= used_intfactor
+		if(IM.wbalance == WBALANCE_HEAVY)
 			damage *= 1.5
 		IU.take_damage(max(damage,1), BRUTE, IM.d_type)
 		visible_message(span_suicide("[src] ripostes [H] with \the [IM]!"))

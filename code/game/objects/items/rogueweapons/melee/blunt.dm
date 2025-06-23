@@ -20,6 +20,7 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.5
 	swingdelay = 10
+	clickcd = 14
 	icon_state = "insmash"
 	item_d_type = "blunt"
 

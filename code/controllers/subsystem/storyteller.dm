@@ -227,7 +227,7 @@ SUBSYSTEM_DEF(gamemode)
 /datum/controller/subsystem/gamemode/fire(resumed = FALSE)
 	if(last_devotion_check < world.time)
 		pick_most_influential()
-		last_devotion_check = world.time + 2 MINUTES
+		last_devotion_check = world.time + 90 MINUTES
 
 	if(SSticker.HasRoundStarted() && (world.time - SSticker.round_start_time) >= ROUNDSTART_VALID_TIMEFRAME)
 		can_run_roundstart = FALSE
@@ -1113,6 +1113,7 @@ SUBSYSTEM_DEF(gamemode)
 	GLOB.azure_round_stats[STATS_ALIVE_CLERGY] = 0
 	GLOB.azure_round_stats[STATS_ALIVE_TRADESMEN] = 0
 	GLOB.azure_round_stats[STATS_WEREVOLVES] = 0
+	GLOB.azure_round_stats[STATS_BANDITS] = 0
 	GLOB.azure_round_stats[STATS_VAMPIRES] = 0
 	GLOB.azure_round_stats[STATS_DEADITES_ALIVE] = 0
 	GLOB.azure_round_stats[STATS_CLINGY_PEOPLE] = 0
@@ -1169,6 +1170,8 @@ SUBSYSTEM_DEF(gamemode)
 				GLOB.patron_follower_counts[living.patron.name]++
 				if(living.job == "Grand Duke")
 					GLOB.azure_round_stats[STATS_MONARCH_PATRON] = "[living.patron.name]"
+		if(living.mind.has_antag_datum(/datum/antagonist/bandit))
+			GLOB.azure_round_stats[STATS_BANDITS]++
 		if(living.mind.has_antag_datum(/datum/antagonist/werewolf))
 			GLOB.azure_round_stats[STATS_WEREVOLVES]++
 		if(living.mind.has_antag_datum(/datum/antagonist/vampire))
@@ -1182,10 +1185,14 @@ SUBSYSTEM_DEF(gamemode)
 				if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/silver, /obj/item/clothing/neck/roguetown/psicross/g))
 					GLOB.azure_round_stats[STATS_PSYCROSS_USERS]++
 					break
-			switch(human_mob.gender)
-				if(MALE)
+			switch(human_mob.pronouns)
+				if(HE_HIM)
 					GLOB.azure_round_stats[STATS_MALE_POPULATION]++
-				if(FEMALE)
+				if(HE_HIM_F)
+					GLOB.azure_round_stats[STATS_MALE_POPULATION]++
+				if(SHE_HER)
+					GLOB.azure_round_stats[STATS_FEMALE_POPULATION]++
+				if(SHE_HER_M)
 					GLOB.azure_round_stats[STATS_FEMALE_POPULATION]++
 				else
 					GLOB.azure_round_stats[STATS_OTHER_GENDER]++

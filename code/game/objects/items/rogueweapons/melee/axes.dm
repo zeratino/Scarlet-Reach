@@ -20,6 +20,7 @@
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	penfactor = 35
 	swingdelay = 10
+	clickcd = 14
 	item_d_type = "slash"
 
 /datum/intent/axe/chop/scythe
@@ -69,6 +70,7 @@
 	max_blade_int = 100
 	minstr = 8
 	wdefense = 1
+	demolition_mod = 1.25
 	w_class = WEIGHT_CLASS_BULKY
 	wlength = WLENGTH_SHORT
 	pickup_sound = 'sound/foley/equip/rummaging-03.ogg'
@@ -373,6 +375,7 @@
 	associated_skill = /datum/skill/combat/axes
 	blade_dulling = DULLING_SHAFT_WOOD
 	wdefense = 6
+	demolition_mod = 1.5
 
 /obj/item/rogueweapon/greataxe/getonmobprop(tag)
 	. = ..()
@@ -408,3 +411,21 @@
 	icon_state = "doublegreataxe"
 	icon = 'icons/roguetown/weapons/64.dmi'
 	minstr = 12
+
+
+/obj/item/rogueweapon/greataxe/steel/doublehead/graggar
+	name = "vicious greataxe"
+	desc = "A greataxe who's edge thrums with the motive force, violence, oh, sweet violence!"
+	icon_state = "graggargaxe"
+	blade_dulling = DULLING_SHAFT_GRAND
+	force = 20
+	force_wielded = 40
+	icon = 'icons/roguetown/weapons/64.dmi'
+
+/obj/item/rogueweapon/greataxe/steel/doublehead/graggar/pickup(mob/living/user)
+	if(!HAS_TRAIT(user, TRAIT_HORDE))
+		to_chat(user, "<font color='red'>UNWORTHY HANDS TOUCHING THIS AXE, CEASE OR BE PUNISHED!</font>")
+		user.adjust_fire_stacks(5)
+		user.IgniteMob()
+		user.Stun(40)
+	..()

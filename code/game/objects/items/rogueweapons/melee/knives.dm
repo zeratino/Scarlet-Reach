@@ -136,7 +136,7 @@
 	name = "cleaver"
 	desc = "Chop, chop, chop!"
 	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver)
-	icon_state = "cleav"
+	icon_state = "cleaver"
 	icon = 'icons/roguetown/weapons/32.dmi'
 	parrysound = list('sound/combat/parry/bladed/bladedmedium (1).ogg','sound/combat/parry/bladed/bladedmedium (2).ogg','sound/combat/parry/bladed/bladedmedium (3).ogg')
 	swingsound = list('sound/combat/wooshes/bladed/wooshmed (1).ogg','sound/combat/wooshes/bladed/wooshmed (2).ogg','sound/combat/wooshes/bladed/wooshmed (3).ogg')
@@ -260,6 +260,10 @@
 	icon_state = "pestrasickle"
 	max_integrity = 200
 
+/*
+	name = "facón"
+	desc = "An ornate traditional Etruscan knife inlaid with silver, passed down through generations of farmhands and warlords alike."
+	icon_state = "facon" */
 
 /obj/item/rogueweapon/huntingknife/idagger/dtace
 	name = "'De Tace'"

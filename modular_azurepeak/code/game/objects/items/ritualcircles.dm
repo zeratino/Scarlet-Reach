@@ -355,6 +355,14 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	var/riteselection = input(user, "Rituals of Progress", src) as null|anything in zizorites
 	switch(riteselection) // put ur rite selection here
 		if("Rite of Armaments")
+			var/onrune = view(1, loc)
+			var/list/folksonrune = list()
+			for(var/mob/living/carbon/human/persononrune in onrune)
+				if(HAS_TRAIT(persononrune, TRAIT_CABAL))
+					folksonrune += persononrune
+			var/target = input(user, "Choose a host") as null|anything in folksonrune
+			if(!target)
+				return
 			if(do_after(user, 50))
 				user.say("ZIZO! ZIZO! DAME OF PROGRESS!!")
 				if(do_after(user, 50))
@@ -364,16 +372,11 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 						if(do_after(user, 50))
 							icon_state = "zizo_active"
 							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
-							zizoarmaments(src)
+							zizoarmaments(target)
 							spawn(120)
 								icon_state = "zizo_chalky"
 
-/obj/structure/ritualcircle/zizo/proc/zizoarmaments(src)
-	var/onrune = view(0, loc)
-	var/list/possible_targets = list()
-	for(var/mob/living/carbon/human/persononrune in onrune)
-		possible_targets += persononrune
-	var/mob/living/carbon/human/target = pick(possible_targets)
+/obj/structure/ritualcircle/zizo/proc/zizoarmaments(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(target, TRAIT_CABAL))
 		loc.visible_message(span_cult("THE RITE REJECTS ONE NOT OF THE CABAL"))
 		return
@@ -428,6 +431,14 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	var/riteselection = input(user, "Rituals of Transaction", src) as null|anything in matthiosrites
 	switch(riteselection) // put ur rite selection here
 		if("Rite of Armaments")
+			var/onrune = view(1, loc)
+			var/list/folksonrune = list()
+			for(var/mob/living/carbon/human/persononrune in onrune)
+				if(HAS_TRAIT(persononrune, TRAIT_COMMIE))
+					folksonrune += persononrune
+			var/target = input(user, "Choose a host") as null|anything in folksonrune
+			if(!target)
+				return
 			if(do_after(user, 50))
 				user.say("Gold and Silver, he feeds!!")
 				if(do_after(user, 50))
@@ -437,16 +448,11 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 						if(do_after(user, 50))
 							icon_state = "matthios_active"
 							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
-							matthiosarmaments(src)
+							matthiosarmaments(target)
 							spawn(120)
 								icon_state = "matthios_chalky"
 
-/obj/structure/ritualcircle/matthios/proc/matthiosarmaments(src)
-	var/onrune = view(0, loc)
-	var/list/possible_targets = list()
-	for(var/mob/living/carbon/human/persononrune in onrune)
-		possible_targets += persononrune
-	var/mob/living/carbon/human/target = pick(possible_targets)
+/obj/structure/ritualcircle/matthios/proc/matthiosarmaments(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(target, TRAIT_COMMIE))
 		loc.visible_message(span_cult("THE RITE REJECTS ONE WITHOUT GREED IN THEIR HEART!!"))
 		return
@@ -478,3 +484,77 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/matthios
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	backr = /obj/item/rogueweapon/flail/peasantwarflail/matthios
+
+
+/obj/structure/ritualcircle/graggar
+	name = "Rune of Violence"
+	desc = "A Holy Rune of Graggar."
+	// icon_state = "graggar_chalky"
+	var/graggarrites = list("Rite of Armaments")
+
+/obj/structure/ritualcircle/graggar/attack_hand(mob/living/user)
+	if((user.patron?.type) != /datum/patron/inhumen/graggar)
+		to_chat(user,span_smallred("I don't know the proper rites for this..."))
+		return
+	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
+		to_chat(user,span_smallred("I don't know the proper rites for this..."))
+		return
+	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
+		to_chat(user,span_smallred("I have performed enough rituals for the day... I must rest before communing more."))
+		return
+	var/riteselection = input(user, "Rituals of Violence", src) as null|anything in graggarrites
+	switch(riteselection) // put ur rite selection here
+		if("Rite of Armaments")
+			var/onrune = view(1, loc)
+			var/list/folksonrune = list()
+			for(var/mob/living/carbon/human/persononrune in onrune)
+				if(HAS_TRAIT(persononrune, TRAIT_HORDE))
+					folksonrune += persononrune
+			var/target = input(user, "Choose a host") as null|anything in folksonrune
+			if(!target)
+				return
+			if(do_after(user, 50))
+				user.say("Motive force, oh, violence!!")
+				if(do_after(user, 50))
+					user.say("A gorgeous buffet of violence, for you, for you!!")
+					if(do_after(user, 50))
+						user.say("A slaughter awaits!!")
+						if(do_after(user, 50))
+							//icon_state = "graggar_active" when we have one
+							user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+							graggararmor(target)
+							//spawn(120)
+								//icon_state = "graggar_chalky" 
+
+/obj/structure/ritualcircle/graggar/proc/graggararmor(mob/living/carbon/human/target)
+	if(!HAS_TRAIT(target, TRAIT_HORDE))
+		loc.visible_message(span_cult("THE RITE REJECTS ONE WITHOUT SLAUGHTER IN THEIR HEART!!"))
+		return
+	target.Stun(60)
+	target.Knockdown(60)
+	to_chat(target, span_userdanger("UNIMAGINABLE PAIN!"))
+	target.emote("Agony")
+	playsound(loc, 'sound/misc/smelter_fin.ogg', 50)
+	loc.visible_message(span_cult("[target]'s lux pours from their nose, into the rune, motive and metals swirl into armor, snug around their form!"))
+	spawn(20)
+		playsound(loc, 'sound/combat/hits/onmetal/grille (2).ogg', 50)
+		target.equipOutfit(/datum/outfit/job/roguetown/viciousrite)
+		target.apply_status_effect(/datum/status_effect/debuff/devitalised)
+		spawn(40)
+			to_chat(target, span_cult("Break them."))
+
+/datum/outfit/job/roguetown/viciousrite/pre_equip(mob/living/carbon/human/H)
+	..()
+	var/list/items = list()
+	items |= H.get_equipped_items(TRUE)
+	for(var/I in items)
+		H.dropItemToGround(I, TRUE)
+	H.drop_all_held_items()
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar
+	pants = /obj/item/clothing/under/roguetown/platelegs/graggar
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/graggar
+	gloves = /obj/item/clothing/gloves/roguetown/plate/graggar
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/graggar
+	neck = /obj/item/clothing/neck/roguetown/gorget/steel
+	cloak = /obj/item/clothing/cloak/graggar
+	r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead/graggar

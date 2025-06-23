@@ -1,16 +1,13 @@
-#define CONJURE_DURATION 15 MINUTES
-
 /obj/effect/proc_holder/spell/invoked/conjure_weapon
 	name = "Conjure Weapon"
-	desc = "Conjure a weapon of your choice in your hand or on the ground.\n\
-	The weapon lasts for 15 minutes - but will refresh its duration infinitely when in the hand of an Arcyne user.\n\
+	desc = "Conjure a weapon of your choice in your hand. The weapon will be unsummoned should you conjure a new one or unbind the spell.\n\
 	At 12 int or above, conjure steel-tier weapons, otherwise conjure iron-tier weapons. Melee weapons only."
 	overlay_state = "conjure_weapon"
 	sound = list('sound/magic/whiteflame.ogg')
 
 	releasedrain = 60
 	chargedrain = 1
-	chargetime = 10 SECONDS // This is meant to make mid-combat summoning harder.
+	chargetime = 2 SECONDS
 	no_early_release = TRUE
 	recharge_time = 5 MINUTES // Not meant to be spammed or used as a mega support spell to outfit an entire party
 
@@ -22,10 +19,12 @@
 	cost = 2
 	spell_tier = 2 // Spellblade tier.
 
-	invocation = "Arma Exoriantur!"
+	invocation = "Conjura Telum!" // I was offered Me Armare (Arm Myself) but Conjura Telum (Conjure Weapon) is more suitable.
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_METAL
 	glow_intensity = GLOW_INTENSITY_LOW
+
+	var/obj/item/rogueweapon/conjured_weapon = null
 
 	var/list/iron_weapons = list(
 		"Iron Short Sword" = /obj/item/rogueweapon/sword/iron/short,
@@ -46,7 +45,7 @@
 	var/list/steel_weapons = list(
 		"Steel Sabre" = /obj/item/rogueweapon/sword/sabre,
 		"Steel Rapier" = /obj/item/rogueweapon/sword/rapier,
-		"Bastard Sword" = /obj/item/rogueweapon/sword/long,
+		"Longsword" = /obj/item/rogueweapon/sword/long,
 		"Zweihander" = /obj/item/rogueweapon/greatsword/grenz,
 		"Battle Axe" = /obj/item/rogueweapon/stoneaxe/battle,
 		"Steel Dagger" = /obj/item/rogueweapon/huntingknife/idagger/steel,
@@ -63,15 +62,27 @@
 	var/weapon_choice = input(user, "Choose a weapon", "Conjure Weapon") as anything in weapons
 	if(!weapon_choice)
 		return
+	if(src.conjured_weapon)
+		qdel(src.conjured_weapon)
+		src.conjured_weapon = null
 	weapon_choice = weapons[weapon_choice]
 
 	var/obj/item/rogueweapon/R = new weapon_choice(user.drop_location())
 	R.blade_dulling = DULLING_SHAFT_CONJURED
-	R.AddComponent(/datum/component/conjured_item, CONJURE_DURATION, TRUE, associated_skill)
+	R.filters += filter(type = "drop_shadow", x=0, y=0, size=1, offset = 2, color = GLOW_COLOR_ARCANE)
+	R.smeltresult = null
+	R.salvage_result = null
+	R.fiber_salvage = FALSE
 	user.put_in_hands(R)
+	src.conjured_weapon = R
 	return TRUE
 
 /obj/effect/proc_holder/spell/invoked/conjure_weapon/miracle
 	associated_skill = /datum/skill/magic/holy
 
-#undef CONJURE_DURATION
+/obj/effect/proc_holder/spell/invoked/conjure_weapon/Destroy()
+	if(src.conjured_weapon)
+		src.visible_message(span_warning("The [src]'s borders begin to shimmer and fade, before it vanishes entirely!"))
+		qdel(src.conjured_weapon)
+		src.conjured_weapon = null
+	return ..()
