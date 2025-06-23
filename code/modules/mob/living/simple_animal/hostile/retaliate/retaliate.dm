@@ -63,7 +63,6 @@
 /mob/living/simple_animal/hostile/retaliate/proc/Retaliate()
 //	var/list/around = view(src, vision_range)
 	toggle_ai(AI_ON)
-	if(!(AIStatus == NPC_AI_OFF))
 		var/list/around = hearers(vision_range, src)
 
 		for(var/atom/movable/A in around)
