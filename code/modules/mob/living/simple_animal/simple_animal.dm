@@ -843,7 +843,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 	LoadComponent(/datum/component/riding)
 
 /mob/living/simple_animal/proc/toggle_ai(togglestatus)
-	if(!can_have_ai && (togglestatus != NPC_AI_OFF))
+	if(!can_have_ai && (togglestatus != AI_OFF))
 		return
 	if (AIStatus != togglestatus)
 		if (togglestatus > 0 && togglestatus < 5)
