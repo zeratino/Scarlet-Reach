@@ -652,7 +652,7 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
 /mob/living/simple_animal/proc/sentience_act() //Called when a simple animal gains sentience via gold slime potion
-	toggle_ai(NPC_AI_OFF) // To prevent any weirdness.
+	toggle_ai(AI_OFF) // To prevent any weirdness.
 	can_have_ai = FALSE
 
 /mob/living/simple_animal/update_sight()
