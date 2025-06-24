@@ -22,7 +22,7 @@
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltl = /obj/item/rogueweapon/mace/warhammer/steel
 	backr = /obj/item/storage/backpack/rogue/satchel
-	backl = /obj/item/rogueweapon/shield/iron
+	backl = /obj/item/rogueweapon/shield/heater
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife, /obj/item/roguekey/mercenary)
 
 	if(H.mind)
