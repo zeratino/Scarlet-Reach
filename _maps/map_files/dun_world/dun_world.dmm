@@ -66937,6 +66937,10 @@
 /obj/machinery/light/rogue/oven/west,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/church)
+"wai" = (
+/obj/structure/fluff/walldeco/sign/merchantsign,
+/turf/open/floor/rogue/cobble,
+/area/rogue/outdoors/town)
 "waG" = (
 /obj/structure/fluff/wallclock,
 /turf/open/floor/rogue/dirt,
@@ -265933,7 +265937,7 @@ sns
 sns
 sns
 ilS
-sns
+wai
 sns
 sns
 nqN
