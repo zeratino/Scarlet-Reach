@@ -48,6 +48,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Bard Hat"
 	path = /obj/item/clothing/head/roguetown/bardhat
 
+/datum/loadout_item/spellcasterhat
+	name = "Spellcaster Hat"
+	path = /obj/item/clothing/head/roguetown/spellcasterhat
+
 /datum/loadout_item/fancyhat
 	name = "Fancy Hat"
 	path = /obj/item/clothing/head/roguetown/fancyhat
@@ -191,6 +195,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Robe"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe
 
+/datum/loadout_item/spellcasterrobe
+	name = "Spellcaster Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/spellcasterrobe
+
 /datum/loadout_item/formalsilks
 	name = "Formal Silks"
 	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
@@ -270,6 +278,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/gown/silkydress
 	name = "Silky Dress"
 	path = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress
+
+/datum/loadout_item/nobledress
+	name = "Noble Dress"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/noble
+
+/datum/loadout_item/velvetdress
+	name = "Velvet Dress"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/velvet
 
 /datum/loadout_item/leathervest
 	name = "Leather Vest"
