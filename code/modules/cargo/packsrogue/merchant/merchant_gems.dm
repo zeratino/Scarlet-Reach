@@ -27,7 +27,7 @@
 
 /datum/supply_pack/rogue/gems/blortz
 	name = "Blortz"
-	cost = 100
+	cost = 130
 	contains = list(/obj/item/roguegem/blue)
 
 /datum/supply_pack/rogue/gems/ruby
