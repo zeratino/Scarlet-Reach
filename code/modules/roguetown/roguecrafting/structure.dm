@@ -561,7 +561,7 @@
 				/obj/item/natural/fibers = 1)
 	verbage_simple = "construct"
 	verbage = "constructs"
- 	skillcraft = /datum/skill/craft/carpentry
+	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/structure/bed
