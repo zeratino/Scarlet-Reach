@@ -25,6 +25,11 @@
 	cost = 89
 	contains = list(/obj/item/roguegem/violet)
 
+/datum/supply_pack/rogue/gems/blortz
+	name = "Blortz"
+	cost = 100
+	contains = list(/obj/item/roguegem/blue)
+
 /datum/supply_pack/rogue/gems/ruby
 	name = "Rontz"
 	cost = 160

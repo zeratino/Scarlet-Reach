@@ -35,6 +35,11 @@
 	/obj/item/reagent_containers/glass/cup/ceramic/fancy,
 	/obj/item/reagent_containers/glass/cup/ceramic/fancy)
 
+/datum/supply_pack/rogue/luxury/silverpsicross
+	name = "Silver Psycross"
+	cost = 200
+	contains = list(/obj/item/clothing/neck/roguetown/psicross/silverr)
+
 /datum/supply_pack/rogue/luxury/silverdagger
 	name = "Silver Dagger"
 	cost = 150
@@ -68,7 +73,7 @@
 
 /datum/supply_pack/rogue/luxury/talkstone
 	name = "Talkstone"
-	cost = 150
+	cost = 100
 	contains = list(/obj/item/clothing/neck/roguetown/talkstone)
 
 /datum/supply_pack/rogue/luxury/circlet
