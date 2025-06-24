@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/tarot_deck
 	name = "Tarot Deck"
-	path = /datum/crafting_recipe/roguetown/survival/tarot_deck
+	path = /obj/item/toy/cards/deck/tarot
 
 //HATS
 /datum/loadout_item/shalal
