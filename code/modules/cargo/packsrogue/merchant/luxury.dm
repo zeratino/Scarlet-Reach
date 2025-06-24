@@ -60,11 +60,6 @@
 	cost = 250
 	contains = list(/obj/item/listenstone)
 
-/datum/supply_pack/rogue/luxury/riddleofsteel
-	name = "Riddle of Steel"
-	cost = 500
-	contains = list(/obj/item/riddleofsteel)
-
 /datum/supply_pack/rogue/luxury/polishing_kit
 	name = "Polishing Kit"
 	no_name_quantity = TRUE

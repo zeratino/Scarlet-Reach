@@ -39,3 +39,9 @@
 	name = "Diamond"
 	cost = 190
 	contains = list(/obj/item/roguegem/diamond)
+
+/datum/supply_pack/rogue/luxury/riddleofsteel
+	name = "Riddle of Steel"
+	cost = 500
+	contains = list(/obj/item/riddleofsteel)
+
