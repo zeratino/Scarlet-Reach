@@ -53,5 +53,4 @@ combat_dungeoneer.ogg: T87-Sulfurhead - RATEATER [https://www.youtube.com/@T87-S
 combat_knight.ogg: T87-Sulfurhead - Durandal [https://www.youtube.com/@T87-Sulfurhead]
 combat_warden.ogg: T87-Sulfurhead - Metamorphosis [https://www.youtube.com/@T87-Sulfurhead]
 combat_ManAtArms.ogg: T87-Sulfurhead - Ready or Not [https://www.youtube.com/@T87-Sulfurhead]
-combat_sergeant.ogg: T87-Sulfurhead - Burning Hovel [https://www.youtube.com/@T87-Sulfurhead]
 combat_veteran.ogg: T87-Sulfurhead - Good Men Die Young [https://www.youtube.com/@T87-Sulfurhead]
