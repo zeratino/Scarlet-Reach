@@ -102,9 +102,10 @@
 /obj/item/clothing/mask/rogue/facemask/steel/paalloy/mad_touched
 	name = "eerie ancient mask"
 
-/obj/item/clothing/mask/rogue/facemask/steel/paalloy/mad_touched/Initialize()
+/obj/item/clothing/mask/rogue/facemask/steel/paalloy/mad_touched/equipped(mob/user, slot)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
+	if(slot == SLOT_WEAR_MASK)
+		ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
 
 /datum/ambush_config/solo_treasure_hunter
 	mob_types = list(
