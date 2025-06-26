@@ -249,7 +249,7 @@
 	wdefense = 11
 	max_integrity = 250 //not fully metal but not fully wood either
 
-/obj/item/rogueweapon/shield/tower/getonmobprop(tag)
+/obj/item/rogueweapon/shield/tower/raneshen/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
