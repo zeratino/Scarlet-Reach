@@ -1274,6 +1274,7 @@
 #include "code\modules\clothing\rogueclothes\quiver.dm"
 #include "code\modules\clothing\rogueclothes\rings.dm"
 #include "code\modules\clothing\rogueclothes\robes.dm"
+#include "code\modules\clothing\rogueclothes\scabbard.dm"
 #include "code\modules\clothing\rogueclothes\shirts.dm"
 #include "code\modules\clothing\rogueclothes\storage.dm"
 #include "code\modules\clothing\rogueclothes\wrists.dm"
@@ -1428,6 +1429,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\antag\sawbones.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\antag\sellsword.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\cleric.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\foreigner.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\mage.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\noble.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\combat\ranger.dm"
@@ -1500,7 +1502,9 @@
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\freifechter.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\grenzelhoft.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\grudgebearer.dm"
+#include "code\modules\jobs\job_types\roguetown\mercenaries\classes\kashira.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\routier.dm"
+#include "code\modules\jobs\job_types\roguetown\mercenaries\classes\rumaclan.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\steppesman.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\underdweller.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\vaquero.dm"
@@ -1998,6 +2002,7 @@
 #include "code\modules\roguetown\roguejobs\cook\tools\oven.dm"
 #include "code\modules\roguetown\roguejobs\cook\tools\skewer.dm"
 #include "code\modules\roguetown\roguejobs\engineer\gadgets.dm"
+#include "code\modules\roguetown\roguejobs\engineer\grappler.dm"
 #include "code\modules\roguetown\roguejobs\engineer\items.dm"
 #include "code\modules\roguetown\roguejobs\engineer\prostheticarm.dm"
 #include "code\modules\roguetown\roguejobs\engineer\anvil_recipes\mechanical.dm"
@@ -2377,4 +2382,3 @@
 #include "modular_hearthstone\code\modules\mob\living\simple_animal\rogue\rogue_corpse.dm"
 #include "modular_hearthstone\code\modules\reagents\reagent_containers\lux.dm"
 // END_INCLUDE
-
