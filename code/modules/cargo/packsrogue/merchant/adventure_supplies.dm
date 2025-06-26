@@ -77,3 +77,11 @@
 	contains = list(/obj/item/needle,
 					/obj/item/needle,
 					/obj/item/needle)
+
+/datum/supply_pack/rogue/adventure_supplies/rationpaper
+	name = "Ration Papers"
+	cost = 20
+	contains = list(
+					/obj/item/ration,
+					/obj/item/ration,
+				)
