@@ -38,6 +38,11 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
+			H.verbs |= list(/mob/living/carbon/human/mind/proc/setorders/wretch)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/retreat)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/bolster)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/brotherhood)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/charge)
 			var/weapons = list(
 				"Estoc",
 				"Mace + Shield",
@@ -108,6 +113,9 @@
 			beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 			backl = /obj/item/storage/backpack/rogue/satchel //gwstraps landing on backr asyncs with backpack_contents
 			backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
+
+			spells = list(/obj/effect/proc_holder/spell/self/convertrole/brotherhood)
+
 			wretch_select_bounty(H)
 
 		if("Abandoned Post") // The dreaded MaA Footman / Cavalryman without town-buffs. HORRIFYING. ZOOOOUNDS, EGAAAADS! - Average armory raider equipment, too. Minus the red. Otherwise, a worse Disgraced.
@@ -197,4 +205,306 @@
 			if(maskchoice != "None")
 				mask = masks[maskchoice]	
 
+			spells = list(/obj/effect/proc_holder/spell/self/convertrole/brother)
+
+
 			wretch_select_bounty(H)
+
+/obj/effect/proc_holder/spell/invoked/order
+	name = ""
+	range = 5
+	associated_skill = /datum/skill/misc/athletics
+	devotion_cost = 0
+	chargedrain = 1
+	chargetime = 15
+	releasedrain = 80 // 
+	recharge_time = 2 MINUTES
+	miracle = FALSE
+	sound = 'sound/magic/inspire_02.ogg'
+
+
+/obj/effect/proc_holder/spell/invoked/order/retreat
+	name = "Tactical Retreat!"
+	overlay_state = "movemovemove"
+
+/obj/effect/proc_holder/spell/invoked/order/retreat/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		var/msg = user.mind.retreattext
+		if(!msg)
+			to_chat(user, span_alert("I must say something to give an order!"))
+			return
+		if(user.job == "Deserter")
+			if(!(target.job in list("Brotherhood")))
+				to_chat(user, span_alert("I cannot order one not of the brotherhood cause!"))
+				return		
+		if(target == user)
+			to_chat(user, span_alert("I cannot order myself!"))
+			return
+		user.say("[msg]")
+		target.apply_status_effect(/datum/status_effect/buff/order/retreat)
+		return TRUE
+	revert_cast()
+	return FALSE
+
+/datum/status_effect/buff/order/retreat/nextmove_modifier()
+	return 0.85
+
+/datum/status_effect/buff/order/retreat
+	id = "movemovemove"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/order/retreat
+	effectedstats = list("speed" = 3)
+	duration = 0.5 / 1 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/order/movemovemove
+	name = "Tactical Retreat"
+	desc = "My commander has ordered me to fall back!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/order/retreat/on_apply()
+	. = ..()
+	to_chat(owner, span_blue("My commander orders me to fall back!"))
+
+/obj/effect/proc_holder/spell/invoked/order/bolster
+	name = "Hold the Line!"
+	overlay_state = "takeaim"
+
+/datum/status_effect/buff/order/bolster
+	id = "takeaim"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/order/bolster
+	effectedstats = list("constitution" = 5)
+	duration = 1 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/order/bolster
+	name = "Hold the Line!"
+	desc = "My commander inspires me to endure, and last a little longer!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/order/bolster/on_apply()
+	. = ..()
+	to_chat(owner, span_blue("My commander orders me to hold the line!"))
+
+/obj/effect/proc_holder/spell/invoked/order/bolster/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		var/msg = user.mind.bolstertext
+		if(!msg)
+			to_chat(user, span_alert("I must say something to give an order!"))
+			return
+		if(user.job == "Deserter")
+			if(!(target.job in list("Brotherhood")))
+				to_chat(user, span_alert("I cannot order one not of the brotherhood cause!"))
+				return		
+		if(target == user)
+			to_chat(user, span_alert("I cannot order myself!"))
+			return
+		user.say("[msg]")
+		target.apply_status_effect(/datum/status_effect/buff/order/bolster)
+		return TRUE
+	revert_cast()
+	return FALSE
+
+/obj/effect/proc_holder/spell/invoked/order/brotherhood
+	name = "For the brotherhood!"
+	overlay_state = "onfeet"
+
+/obj/effect/proc_holder/spell/invoked/order/brotherhood/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		var/msg = user.mind.brotherhoodtext
+		if(!msg)
+			to_chat(user, span_alert("I must say something to give an order!"))
+			return
+		if(user.job == "Deserter")
+			if(!(target.job in list("Brotherhood")))
+				to_chat(user, span_alert("I cannot order one not of the brotherhood cause!"))
+				return		
+		if(target == user)
+			to_chat(user, span_alert("I cannot order myself!"))
+			return
+		user.say("[msg]")
+		target.apply_status_effect(/datum/status_effect/buff/order/brotherhood)
+		if(!(target.mobility_flags & MOBILITY_STAND))
+			target.SetUnconscious(0)
+			target.SetSleeping(0)
+			target.SetParalyzed(0)
+			target.SetImmobilized(0)
+			target.SetStun(0)
+			target.SetKnockdown(0)
+			target.set_resting(FALSE)
+		return TRUE
+	revert_cast()
+	return FALSE
+
+/datum/status_effect/buff/order/brotherhood
+	id = "onfeet"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/order/brotherhood
+	duration = 30 SECONDS
+
+/atom/movable/screen/alert/status_effect/buff/order/brotherhood
+	name = "Stand your ground!"
+	desc = "My commander has ordered me to stand proud for the brotherhood!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/order/brotherhood/on_apply()
+	. = ..()
+	to_chat(owner, span_blue("My commander orders me to stand proud for the brotherhood!"))
+	ADD_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+
+/datum/status_effect/buff/order/onfeet/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_NOPAIN, TRAIT_GENERIC)
+	. = ..()
+
+
+/obj/effect/proc_holder/spell/invoked/order/charge
+	name = "Charge!"
+	overlay_state = "hold"
+
+
+/obj/effect/proc_holder/spell/invoked/order/charge/cast(list/targets, mob/living/user)
+	. = ..()
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		var/msg = user.mind.holdtext
+		if(!msg)
+			to_chat(user, span_alert("I must say something to give an order!"))
+			return
+		if(user.job == "Deserter")
+			if(!(target.job in list("Brotherhood")))
+				to_chat(user, span_alert("I cannot order one not of the brotherhood cause!"))
+				return		
+		if(target == user)
+			to_chat(user, span_alert("I cannot order myself!"))
+			return
+		user.say("[msg]")
+		target.apply_status_effect(/datum/status_effect/buff/order/charge)
+		return TRUE
+	revert_cast()
+	return FALSE
+
+
+/datum/status_effect/buff/order/charge
+	id = "hold"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/order/charge
+	effectedstats = list("strength" = 2, "fortune" = 2)
+	duration = 1 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/order/charge
+	name = "Charge!"
+	desc = "My commander wills it - now is the time to charge!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/order/charge/on_apply()
+	. = ..()
+	to_chat(owner, span_blue("My commander orders me to charge! For the brotherhood!"))
+
+
+
+/mob/living/carbon/human/mind/proc/setorders/wretch()
+	set name = "Rehearse Orders"
+	set category = "Voice of Command"
+	mind.retreattext = input("Send a message.", "Tactical Retreat!!") as text|null
+	if(!mind.retreattext)
+		to_chat(src, "I must rehearse something for this order...")
+		return
+	mind.chargetext = input("Send a message.", "Chaaaaarge!!") as text|null
+	if(!mind.chargetext)
+		to_chat(src, "I must rehearse something for this order...")
+		return
+	mind.bolstertext = input("Send a message.", "Hold the line!!") as text|null
+	if(!mind.bolstertext)
+		to_chat(src, "I must rehearse something for this order...")
+		return
+	mind.brotherhoodtext = input("Send a message.", "Stand proud, for the brotherhood!!") as text|null
+	if(!mind.brotherhoodtext)
+		to_chat(src, "I must rehearse something for this order...")
+		return
+
+
+/obj/effect/proc_holder/spell/self/convertrole/brotherhood
+	name = "Recruit Brotherhood Militia"
+	desc = "Recruit someone to your cause."
+	overlay_state = "recruit_brotherhood"
+	antimagic_allowed = TRUE
+	recharge_time = 100
+	/// Role given if recruitment is accepted
+	var/new_role = "Brotherhood"
+	/// Faction shown to the user in the recruitment prompt
+	var/recruitment_faction = "Brotherhood Militia"
+	/// Message the recruiter gives
+	var/recruitment_message = "You are under my command - serve our cause, %RECRUIT!"
+	/// Range to search for potential recruits
+	var/recruitment_range = 5
+	/// Say message when the recruit accepts
+	var/accept_message = "For the brotherhood."
+	/// Say message when the recruit refuses
+	var/refuse_message = "I refuse."
+
+/obj/effect/proc_holder/spell/self/convertrole/brotherhood/cast(list/targets,mob/user = usr)
+	. = ..()
+	var/list/recruitment = list()
+	for(var/mob/living/carbon/human/recruit in (get_hearers_in_view(recruitment_range, user) - user))
+		//not allowed
+		if(!can_convert(recruit))
+			continue
+		recruitment[recruit.name] = recruit
+	if(!length(recruitment))
+		to_chat(user, span_warning("There are no potential recruits in range."))
+		return
+	var/inputty = input(user, "Select a potential recruit!", "[name]") as anything in recruitment
+	if(inputty)
+		var/mob/living/carbon/human/recruit = recruitment[inputty]
+		if(!QDELETED(recruit) && (recruit in get_hearers_in_view(recruitment_range, user)))
+			INVOKE_ASYNC(src, PROC_REF(convert), recruit, user)
+		else
+			to_chat(user, span_warning("Recruitment failed!"))
+	else
+		to_chat(user, span_warning("Recruitment cancelled."))
+
+/obj/effect/proc_holder/spell/self/convertrole/proc/can_convert(mob/living/carbon/human/recruit)
+	//wtf
+	if(QDELETED(recruit))
+		return FALSE
+	//need a mind
+	if(!recruit.mind)
+		return FALSE
+	//only migrants and peasants
+	if(!(recruit.job in GLOB.peasant_positions) && \
+		!(recruit.job in GLOB.yeoman_positions) && \
+		!(recruit.job in GLOB.allmig_positions) && \
+		!(recruit.job in GLOB.mercenary_positions))
+		return FALSE
+	//need to see their damn face
+	if(!recruit.get_face_name(null))
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/spell/self/convertrole/proc/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
+	if(QDELETED(recruit) || QDELETED(recruiter))
+		return FALSE
+	recruiter.say(replacetext(recruitment_message, "%RECRUIT", "[recruit]"), forced = "[name]")
+	var/prompt = alert(recruit, "Do you wish to become a [new_role]?", "[recruitment_faction] Recruitment", "Yes", "No")
+	if(QDELETED(recruit) || QDELETED(recruiter) || !(recruiter in get_hearers_in_view(recruitment_range, recruit)))
+		return FALSE
+	if(prompt != "Yes")
+		if(refuse_message)
+			recruit.say(refuse_message, forced = "[name]")
+		return FALSE
+	if(accept_message)
+		recruit.say(accept_message, forced = "[name]")
+	if(new_role)
+		recruit.job = new_role
+		SEND_SIGNAL(SSdcs, COMSIG_GLOB_ROLE_CONVERTED, recruiter, recruit, new_role)
+	return TRUE
+
+/obj/effect/proc_holder/spell/self/convertrole/brother
+	name = "Recruit Brother"
+	new_role = "Brother"
+	overlay_state = "recruit_brother"
+	recruitment_faction = "Brother"
+	recruitment_message = "We're in this together now, %RECRUIT!"
+	accept_message = "All for one and one for all!"
+	refuse_message = "I refuse."
