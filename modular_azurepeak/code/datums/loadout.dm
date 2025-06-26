@@ -153,6 +153,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Leather Cloak"
 	path = /obj/item/clothing/cloak/eastcloak2
 
+/datum/loadout_item/thief_cloak
+	name = "Rapscallion's Shawl"
+	path = /obj/item/clothing/cloak/thief_cloak
+
 //SHOES
 /datum/loadout_item/darkboots
 	name = "Dark Boots"
