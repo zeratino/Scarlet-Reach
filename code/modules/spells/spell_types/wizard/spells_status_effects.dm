@@ -27,7 +27,7 @@
 	. = ..()
 
 /datum/status_effect/buff/witherd
-	id = "witherd"
+	id = "withered"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/witherd
 	duration = 30 SECONDS
 	effectedstats = list("speed" = -2,"strength" = -2,"constitution"= -2,"endurance" = -2)
