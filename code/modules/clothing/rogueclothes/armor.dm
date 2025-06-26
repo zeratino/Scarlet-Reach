@@ -266,6 +266,13 @@
 			pic.color = get_detail_color()
 		add_overlay(pic)
 
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/raneshen
+	name = "padded desert coat"
+	desc = "A slim-fitting sherwani, a Ranesheni-styled coat meant to endure in the desert's climate. This one is heavily padded, meant for a warrior to wear."
+	icon_state = "sherwani"
+	color = "#eec39a"
+	shiftable = FALSE
+
 /obj/item/clothing/suit/roguetown/armor/gambeson/councillor
 	color = "#646464"
 
@@ -424,6 +431,12 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = 300
 	sellprice = 25
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/raneshen
+	name = "megarmach scale coat"
+	desc = "A set of lightweight armor fashioned from the scales of the Ranesheni \'megarmach\', an armored reptilian creacher that ambushes prey by the riverside, and drags them deep into Abyssor's domain."
+	icon_state = "pangolin"
+	item_state = "pangolin"
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/steppe
 	name = "fur-woven hatanga coat"
