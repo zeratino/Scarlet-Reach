@@ -28,6 +28,7 @@
 	bleed_rate = 15				// Artery is 20, but doesn't stop.
 	clotting_threshold = 0.25	// Grusome slash is 0.4
 	clotting_rate = 0.60		// Normally it's only 0.02, this is huge compared to that.
+	bypass_bloody_wound_check = TRUE	//We bypass this proc-checkfor fractures.
 
 /datum/wound/fracture/get_visible_name(mob/user)
 	. = ..()
