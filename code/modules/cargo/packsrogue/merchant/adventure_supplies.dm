@@ -61,6 +61,16 @@
 	cost = 15
 	contains = list(/obj/item/flashlight/flare/torch/lantern)
 
+/datum/supply_pack/rogue/adventure_supplies/folding_table
+	name = "Folding Table"
+	cost = 35
+	contains = list(/obj/item/folding_table_stored)
+
+/datum/supply_pack/rogue/adventure_supplies/mess_kit
+	name = "Mess Kit"
+	cost = 60
+	contains = list(/obj/item/storage/gadget/messkit)
+
 /datum/supply_pack/rogue/adventure_supplies/needles
 	name = "Needles"
 	cost = 15
