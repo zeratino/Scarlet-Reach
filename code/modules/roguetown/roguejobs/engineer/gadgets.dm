@@ -12,6 +12,8 @@
 	name = "mess kit"
 	desc = "A small, portable mess kit. It can be used to cook food."
 	slot_flags = ITEM_SLOT_HIP
+	grid_width = 64
+	grid_height = 32
 	icon_state = "messkit"
 	component_type = /datum/component/storage/concrete/roguetown/messkit
 
