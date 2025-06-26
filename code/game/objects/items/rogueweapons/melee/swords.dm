@@ -536,7 +536,8 @@
 
 /datum/intent/sword/thrust/exe
 	swingdelay = 4	//Slight delay to stab; big and heavy.
-	penfactor = 30	//Slightly better pen than base longsword, which is 20. It's a heavy blade so.
+	penfactor = BLUNT_DEFAULT_PENFACTOR //Flat tip? I don't know, man. This intent is won't penetrate anything but it damages armor more.
+	intent_intdamage_factor = 1.3 //This is basically like getting hit by a mace.
 
 /obj/item/rogueweapon/sword/long/exe/astrata
 	name = "\"Solar Judge\""
