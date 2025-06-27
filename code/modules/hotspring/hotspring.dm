@@ -38,14 +38,14 @@
 	var/turf/turf = get_turf(src)
 	turf.turf_flags |= TURF_NO_LIQUID_SPREAD
 	if(!edge)
-		turf.path_weight += 100
+		turf.path_weight += 1
 		AddElement(/datum/element/mob_overlay_effect, 2, -2, 100)
 
 /obj/structure/hotspring/Destroy()
 	var/turf/turf = get_turf(src)
 	turf.turf_flags &= ~TURF_NO_LIQUID_SPREAD
 	if(!edge)
-		turf.path_weight -= 100
+		turf.path_weight -= 1
 	. = ..()
 
 /obj/structure/hotspring/Crossed(atom/movable/AM)
