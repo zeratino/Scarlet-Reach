@@ -261,7 +261,7 @@
 	duration = 0.5 / 1 MINUTES
 
 /atom/movable/screen/alert/status_effect/buff/order/retreat
-	name = "Tactical Retreat"
+	name = "Tactical Retreat!!"
 	desc = "My commander has ordered me to fall back!"
 	icon_state = "buff"
 
@@ -310,7 +310,7 @@
 	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/order/brotherhood
-	name = "For the brotherhood!"
+	name = "For the Brotherhood!"
 	overlay_state = "onfeet"
 
 /obj/effect/proc_holder/spell/invoked/order/brotherhood/cast(list/targets, mob/living/user)
@@ -348,7 +348,7 @@
 	duration = 30 SECONDS
 
 /atom/movable/screen/alert/status_effect/buff/order/brotherhood
-	name = "Stand your ground!"
+	name = "Stand your Ground!"
 	desc = "My commander has ordered me to stand proud for the brotherhood!"
 	icon_state = "buff"
 
