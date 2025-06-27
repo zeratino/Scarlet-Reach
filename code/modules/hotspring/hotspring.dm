@@ -23,7 +23,6 @@
 	plane = FLOOR_PLANE
 	icon = 'icons/obj/structures/hotspring.dmi'
 	icon_state = "hotspring"
-	footstep = FOOTSTEP_WATER
 	object_slowdown = 5
 
 	var/edge = FALSE
