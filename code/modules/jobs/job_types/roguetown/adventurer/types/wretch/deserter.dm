@@ -7,6 +7,7 @@
 	horse = /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled
 	category_tags = list(CTAG_WRETCH)
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_OUTLAW)
+	
 	cmode_music = 'sound/music/combat_bandit.ogg'
 	classes = list("Disgraced" = "You were once a venerated and revered knight - now, a traitor who abandoned your liege. You lyve the lyfe of an outlaw, shunned and looked down upon by society.", 
 	"Abandoned Post" = "You had your post. You had your duty. Dissatisfied, lacking in morale, or simply thinking yourself better than it. - You decided to walk. Now it follows you everywhere you go.")
@@ -38,11 +39,13 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 			H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
-			H.verbs |= list(/mob/living/carbon/human/mind/proc/setorders/wretch)
+			H.verbs |= list(/mob/living/carbon/human/mind/proc/setorderswretch)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/retreat)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/bolster)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/brotherhood)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/charge)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/brotherhood)
+
 			var/weapons = list(
 				"Estoc",
 				"Mace + Shield",
@@ -114,7 +117,6 @@
 			backl = /obj/item/storage/backpack/rogue/satchel //gwstraps landing on backr asyncs with backpack_contents
 			backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1, /obj/item/rope/chain = 1)
 
-			spells = list(/obj/effect/proc_holder/spell/self/convertrole/brotherhood)
 
 			wretch_select_bounty(H)
 
@@ -162,6 +164,8 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE) // That saiga was stolen. Probably.
 			H.mind.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/brother)
+
 
 			// Slightly more rounded. These can be nudged as needed.
 			H.change_stat("strength", 2)
@@ -205,7 +209,6 @@
 			if(maskchoice != "None")
 				mask = masks[maskchoice]	
 
-			spells = list(/obj/effect/proc_holder/spell/self/convertrole/brother)
 
 
 			wretch_select_bounty(H)
@@ -257,7 +260,7 @@
 	effectedstats = list("speed" = 3)
 	duration = 0.5 / 1 MINUTES
 
-/atom/movable/screen/alert/status_effect/buff/order/movemovemove
+/atom/movable/screen/alert/status_effect/buff/order/retreat
 	name = "Tactical Retreat"
 	desc = "My commander has ordered me to fall back!"
 	icon_state = "buff"
@@ -403,7 +406,7 @@
 
 
 
-/mob/living/carbon/human/mind/proc/setorders/wretch()
+/mob/living/carbon/human/mind/proc/setorderswretch()
 	set name = "Rehearse Orders"
 	set category = "Voice of Command"
 	mind.retreattext = input("Send a message.", "Tactical Retreat!!") as text|null
@@ -424,24 +427,15 @@
 		return
 
 
+
 /obj/effect/proc_holder/spell/self/convertrole/brotherhood
 	name = "Recruit Brotherhood Militia"
-	desc = "Recruit someone to your cause."
+	new_role = "Brother"
 	overlay_state = "recruit_brotherhood"
-	antimagic_allowed = TRUE
-	recharge_time = 100
-	/// Role given if recruitment is accepted
-	var/new_role = "Brotherhood"
-	/// Faction shown to the user in the recruitment prompt
-	var/recruitment_faction = "Brotherhood Militia"
-	/// Message the recruiter gives
-	var/recruitment_message = "You are under my command - serve our cause, %RECRUIT!"
-	/// Range to search for potential recruits
-	var/recruitment_range = 5
-	/// Say message when the recruit accepts
-	var/accept_message = "For the brotherhood."
-	/// Say message when the recruit refuses
-	var/refuse_message = "I refuse."
+	recruitment_faction = "Brother"
+	recruitment_message = "We're in this together now, %RECRUIT!"
+	accept_message = "For the Brotherhood!"
+	refuse_message = "I refuse."
 
 /obj/effect/proc_holder/spell/self/convertrole/brotherhood/cast(list/targets,mob/user = usr)
 	. = ..()
@@ -464,41 +458,6 @@
 	else
 		to_chat(user, span_warning("Recruitment cancelled."))
 
-/obj/effect/proc_holder/spell/self/convertrole/proc/can_convert(mob/living/carbon/human/recruit)
-	//wtf
-	if(QDELETED(recruit))
-		return FALSE
-	//need a mind
-	if(!recruit.mind)
-		return FALSE
-	//only migrants and peasants
-	if(!(recruit.job in GLOB.peasant_positions) && \
-		!(recruit.job in GLOB.yeoman_positions) && \
-		!(recruit.job in GLOB.allmig_positions) && \
-		!(recruit.job in GLOB.mercenary_positions))
-		return FALSE
-	//need to see their damn face
-	if(!recruit.get_face_name(null))
-		return FALSE
-	return TRUE
-
-/obj/effect/proc_holder/spell/self/convertrole/proc/convert(mob/living/carbon/human/recruit, mob/living/carbon/human/recruiter)
-	if(QDELETED(recruit) || QDELETED(recruiter))
-		return FALSE
-	recruiter.say(replacetext(recruitment_message, "%RECRUIT", "[recruit]"), forced = "[name]")
-	var/prompt = alert(recruit, "Do you wish to become a [new_role]?", "[recruitment_faction] Recruitment", "Yes", "No")
-	if(QDELETED(recruit) || QDELETED(recruiter) || !(recruiter in get_hearers_in_view(recruitment_range, recruit)))
-		return FALSE
-	if(prompt != "Yes")
-		if(refuse_message)
-			recruit.say(refuse_message, forced = "[name]")
-		return FALSE
-	if(accept_message)
-		recruit.say(accept_message, forced = "[name]")
-	if(new_role)
-		recruit.job = new_role
-		SEND_SIGNAL(SSdcs, COMSIG_GLOB_ROLE_CONVERTED, recruiter, recruit, new_role)
-	return TRUE
 
 /obj/effect/proc_holder/spell/self/convertrole/brother
 	name = "Recruit Brother"
