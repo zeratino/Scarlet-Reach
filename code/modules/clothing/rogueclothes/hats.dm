@@ -151,6 +151,15 @@
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR	//Does not hide face.
 	block2add = null
 
+/obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
+	name = "padded headscarf"
+	desc = "A common sight amongst those travelling the long desert routes, it offers protection from the heat and a modicum of it against the beasts that prowl its more comfortable nites."
+	max_integrity = 100
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
+	armor = ARMOR_HEAD_PSYDON //basically the same as a warscholar hood
+	item_state = "hijab"
+	icon_state = "deserthood"
+	naledicolor = TRUE
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	name = "heavy hood"
@@ -832,6 +841,15 @@
 	icon_state = "bascinet_novisor"
 	item_state = "bascinet_novisor"
 	color = COLOR_ASSEMBLY_GOLD
+
+/obj/item/clothing/head/roguetown/helmet/sallet/raneshen
+	name = "kulah khud"
+	desc = "A sturdy, conical helm that has served the Empire well throughout its many campaigns. It's a sight to see, thousands of these bobbing as an army marches. The only greater humiliation than losing it is losing one's medallion."
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	icon_state = "raneshen"
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	bloody_icon = 'icons/effects/blood64.dmi'
 
 /obj/item/clothing/head/roguetown/helmet/otavan
 	name = "otavan helmet"
