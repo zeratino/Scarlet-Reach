@@ -205,6 +205,8 @@
 	icon = 'icons/obj/structures/sakura_tree.dmi'
 	icon_state = "sakura_tree"
 	obj_flags = CAN_BE_HIT | IGNORE_SINK
+	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE_UPPER
 
 	bound_height = 128
 	bound_width = 128
