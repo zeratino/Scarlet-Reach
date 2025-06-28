@@ -851,3 +851,12 @@
 		to_chat(user, span_info("I need a dirt floor to do this."))
 		return FALSE
 	return TRUE
+
+/datum/crafting_recipe/roguetown/structure/wicker
+	name = "wicker basket"
+	result = /obj/structure/closet/crate/chest/wicker
+	reqs = list(/obj/item/grown/log/tree/stick = 4,
+				/obj/item/natural/fibers = 3)
+	verbage_simple = "weave"
+	verbage = "weaves"
+	craftdiff = 0
