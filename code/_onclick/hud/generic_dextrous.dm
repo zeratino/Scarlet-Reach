@@ -307,10 +307,10 @@
 
 	zone_select.update_icon()
 
-	fats = new /atom/movable/screen/rogfat()
+	fats = new /atom/movable/screen/stamina()
 	infodisplay += fats
 
-	stams = new /atom/movable/screen/rogstam()
+	stams = new /atom/movable/screen/energy()
 	infodisplay += stams
 
 	for(var/atom/movable/screen/inventory/inv in (static_inventory + toggleable_inventory))

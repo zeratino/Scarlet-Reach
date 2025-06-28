@@ -32,7 +32,7 @@
 /datum/reagent/consumable/caffeine/on_mob_life(mob/living/carbon/M)
 	. = ..()
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogstam_add(5) // 1/6th of mana pot
+		M.energy_add(5) // 1/6th of mana pot
 	M.apply_status_effect(/datum/status_effect/buff/vigorized)
 
 /datum/reagent/consumable/caffeine/overdose_process(mob/living/carbon/M)
@@ -67,7 +67,7 @@
 
 /datum/reagent/consumable/golden_calendula_tea/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogstam_add(5)
+		M.energy_add(5)
 	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
 		M.blood_volume = min(M.blood_volume+5, BLOOD_VOLUME_MAXIMUM)
 	var/list/wCount = M.get_wounds()
@@ -89,5 +89,5 @@
 
 /datum/reagent/consumable/soothing_valerian_tea/on_mob_life(mob/living/carbon/M)
 	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
-		M.rogstam_add(3)
+		M.energy_add(3)
 	..()
