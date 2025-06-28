@@ -28,7 +28,6 @@
 			H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
@@ -94,7 +93,7 @@
 			head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
 			neck = /obj/item/clothing/neck/roguetown/leather
 			mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/raneshen
+			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/raneshen
 			wrists = /obj/item/clothing/wrists/roguetown/splintarms
 			gloves = /obj/item/clothing/gloves/roguetown/angle
@@ -150,7 +149,7 @@
 			head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
 			neck = /obj/item/clothing/neck/roguetown/gorget/copper
 			mask = /obj/item/clothing/mask/rogue/facemask/copper
-			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/raneshen
+			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/raneshen
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/copper
 			gloves = /obj/item/clothing/gloves/roguetown/angle

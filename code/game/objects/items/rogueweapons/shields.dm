@@ -307,6 +307,14 @@
 			if("onback")
 				return list("shrink" = 0.6,"sx" = 1,"sy" = 4,"nx" = 1,"ny" = 2,"wx" = 3,"wy" = 3,"ex" = 0,"ey" = 2,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 8,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
+/obj/item/rogueweapon/shield/buckler/palloy
+	name = "ancient buckler"
+	desc = "An object once before its time, now out of it. The artisan's hammerstrikes are still visible in the mottled surface, yet \
+	the encroach of rust and rot threatens even this memory."
+	icon_state = "ancient_buckler"
+	max_integrity = 180
+	smeltresult = /obj/item/ingot/purifiedaalloy
+
 /obj/item/rogueweapon/shield/heater
 	name = "heater shield"
 	desc = "A sturdy wood and leather shield. Made to not be too encumbering while still providing good protection."

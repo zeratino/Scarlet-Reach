@@ -636,7 +636,11 @@
 	if(!T) //if the turf they're headed to is invalid
 		return
 
-	var/light_amount = T?.get_lumcount()
+	// This is hacky but it's the only runtime that fixing decap gives
+	// please forgive me...
+	var/light_amount = 0
+	if(T != null)
+		light_amount = T.get_lumcount()
 	var/used_time = 50
 	if(mind)
 		used_time = max(used_time - (mind.get_skill_level(/datum/skill/misc/sneaking) * 8), 0)
@@ -828,6 +832,20 @@
 		to_chat(src, span_notice("I will hear all now."))
 	else
 		to_chat(src, span_info("I will hear like a mortal."))
+
+/client/proc/hearglobalLOOC()
+	set category = "Prefs - Admin"
+	set name = "Show/Hide Global LOOC"
+	if(!holder)
+		return
+	if(!prefs)
+		return
+	prefs.chat_toggles ^= CHAT_ADMINLOOC
+	prefs.save_preferences()
+	if(prefs.chat_toggles & CHAT_ADMINLOOC)
+		to_chat(src, span_notice("I will now hear all LOOC chatter."))
+	else
+		to_chat(src, span_info("I will now only hear LOOC chatter around me."))
 
 ///Moves a mob upwards in z level
 /mob/proc/ghost_up()

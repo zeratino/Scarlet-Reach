@@ -45,6 +45,31 @@
 	verbage_simple = "construct"
 	verbage = "constructs"
 
+/datum/crafting_recipe/roguetown/structure/psycruci
+	name = "wooden psydonic cross"
+	result = /obj/structure/fluff/psycross/psycrucifix
+	reqs = list(/obj/item/grown/log/tree/small = 1,
+				/obj/item/grown/log/tree/stake = 3) 
+	verbage_simple = "construct"
+	verbage = "constructs"
+
+/datum/crafting_recipe/roguetown/structure/stonepsycruci
+	name = "stone psydonic cross"
+	result = /obj/structure/fluff/psycross/psycrucifix/stone
+	reqs =	list(/obj/item/natural/stone = 3)
+	verbage_simple = "construct"
+	verbage = "constructs"
+
+/datum/crafting_recipe/roguetown/structure/silverpsycruci
+	name = "silver psydonic cross"
+	result = /obj/structure/fluff/psycross/psycrucifix/silver
+	reqs = list(/obj/item/ingot/silverblessed = 1,
+				/obj/item/ingot/steel = 2)	
+	verbage_simple = "construct"
+	verbage = "constructs"	
+	skillcraft = /datum/skill/craft/masonry
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/structure/stonepsycrss
 	name = "stone cross"
 	result = /obj/structure/fluff/psycross
@@ -810,3 +835,28 @@
 	verbage = "builds"
 	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 2
+
+// Here for now until we get a new file for anything trap related.
+/datum/crafting_recipe/roguetown/structure/spike_pit
+	name = "spike pit (3 stakes + Shovel + Dirt Floor)"
+	result = list(/obj/structure/spike_pit)
+	tools = list(/obj/item/rogueweapon/shovel = 1)
+	reqs = list(/obj/item/grown/log/tree/stake = 3)
+	skillcraft = /datum/skill/craft/crafting
+	craftdiff = 1	//Low skill, but at least some. Kinda decently strong after all w/ combat.
+
+/datum/crafting_recipe/roguetown/structure/spike_pit/TurfCheck(mob/user, turf/T)
+	var/turf/to_check = get_step(user.loc, user.dir)
+	if(!istype(to_check, /turf/open/floor/rogue/dirt))
+		to_chat(user, span_info("I need a dirt floor to do this."))
+		return FALSE
+	return TRUE
+
+/datum/crafting_recipe/roguetown/structure/wicker
+	name = "wicker basket"
+	result = /obj/structure/closet/crate/chest/wicker
+	reqs = list(/obj/item/grown/log/tree/stick = 4,
+				/obj/item/natural/fibers = 3)
+	verbage_simple = "weave"
+	verbage = "weaves"
+	craftdiff = 0
