@@ -166,8 +166,11 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Longsword")
+					if(HAS_TRAIT(H, TRAIT_PSYDONITE))
+						beltr = /obj/item/rogueweapon/sword/long/oldpsysword
+					else
+						beltr = /obj/item/rogueweapon/sword/long
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-					beltr = /obj/item/rogueweapon/sword/long
 				if("Mace")
 					H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 					beltr = /obj/item/rogueweapon/mace
