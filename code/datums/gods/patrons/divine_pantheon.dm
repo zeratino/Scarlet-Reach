@@ -140,7 +140,8 @@
 					/obj/effect/proc_holder/spell/self/xylixslip				= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/lesser_heal 			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/wheel					= CLERIC_T1,
-					/obj/effect/proc_holder/spell/invoked/mockery				= CLERIC_T2,
+					/obj/effect/proc_holder/spell/invoked/mockery				= CLERIC_T1,
+					/obj/effect/proc_holder/spell/invoked/mastersillusion		= CLERIC_T2,
 	)
 	confess_lines = list(
 		"ASTRATA IS MY LIGHT!",
@@ -153,6 +154,11 @@
 		"PESTRA SOOTHES ALL ILLS!",
 		"MALUM IS MY MUSE!",
 		"EORA BRINGS US TOGETHER!",
+		"LONG LIVE ZIZO!",
+		"GRAGGAR IS THE BEAST I WORSHIP!",
+		"MATTHIOS IS MY LORD!",
+		"BAOTHA IS MY JOY!",
+		"REBUKE THE HERETICAL- PSYDON ENDURES!",
 	)
 	storyteller = /datum/storyteller/xylix
 

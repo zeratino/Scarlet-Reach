@@ -12,6 +12,9 @@
 			return zone
 	if(!(target.mobility_flags & MOBILITY_STAND))
 		return zone
+	// If you're floored, you will aim feet and legs easily. There's a check for whether the victim is laying down already.
+	if(!(user.mobility_flags & MOBILITY_STAND) && (zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)))
+		return zone
 	if( (target.dir == turn(get_dir(target,user), 180)))
 		return zone
 
@@ -470,6 +473,30 @@
 			else
 				return FALSE
 
+// origin is used for multi-step dodges like jukes
+/mob/living/proc/get_dodge_destinations(mob/living/attacker, atom/origin = src)
+	var/dodge_dir = get_dir(attacker, origin)
+	if(!dodge_dir)
+		return null
+	var/list/dirry = list()
+	// pick a random dir
+	var/list/turf/dodge_candidates = list()
+	for(var/dir_to_check in dirry)
+		var/turf/dodge_candidate = get_step(origin, dir_to_check)
+		if(!dodge_candidate)
+			continue
+		if(dodge_candidate.density)
+			continue
+		var/has_impassable_atom = FALSE
+		for(var/atom/movable/AM in dodge_candidate)
+			if(!AM.CanPass(src, dodge_candidate))
+				has_impassable_atom = TRUE
+				break
+		if(has_impassable_atom)
+			continue
+		dodge_candidates += dodge_candidate
+	return dodge_candidates
+
 /mob/proc/do_parry(obj/item/W, parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -519,6 +546,7 @@
 	var/mob/living/carbon/human/UH
 	var/obj/item/I
 	var/drained = 10
+	var/drained_npc = 5
 	if(ishuman(src))
 		H = src
 	if(ishuman(user))
@@ -642,7 +670,9 @@
 
 		if(!dodge_status)
 			return FALSE
-		if(!H.rogfat_add(max(drained,5)))
+		if(!UH?.mind) // For NPC, reduce the drained to 5 stamina
+			drained = drained_npc
+		if(!H.rogfat_add(drained))
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human

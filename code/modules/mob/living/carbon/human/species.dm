@@ -1868,7 +1868,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/burn_damage
 		var/firemodifier = H.fire_stacks / 50
 		if (H.on_fire)
-			burn_damage = min(5, H.fire_stacks * 2) // Minimum of 5 damage if you are on fire. Otherwise applies 2 per stack, up to 40.
+			burn_damage = 10 + H.fire_stacks * 3 // Minimum of 10 damage if you are on fire. Applies 3 additional per stack.
 		else
 			firemodifier = min(firemodifier, 0)
 			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
@@ -1906,6 +1906,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.remove_movespeed_modifier(MOVESPEED_ID_COLD)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
+
+// A general-purpose proc used to centralise checks to skip turf, movement, step, etc. 
+// For if a mob is floating, flying, intangible, etc.
+/datum/species/proc/is_floor_hazard_immune(mob/living/carbon/human/owner)
+	return FALSE
 
 //////////
 // FIRE //

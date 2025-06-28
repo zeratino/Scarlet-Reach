@@ -249,6 +249,28 @@
 		to_chat(src, span_warning("[L] still has footing! I need a stronger grip!"))
 		return TRUE    
 
+	if(isanimal(mob.pulling))
+		var/mob/living/simple_animal/bound = mob.pulling
+		if(bound.binded)
+			move_delay = world.time + 10
+			to_chat(src, span_warning("[bound] is bound in a summoning circle. I can't move them!"))
+			return TRUE
+
+// similar to the above, but for NPCs mostly
+/mob/proc/is_move_blocked_by_grab()
+	if(pulledby && pulledby != src)
+		return TRUE
+	if(isliving(pulling))
+		var/mob/living/L = pulling
+		if(L.cmode && !L.resting && !L.incapacitated() && grab_state < GRAB_AGGRESSIVE)
+			return TRUE
+		if(buckled)
+			return TRUE
+	if(isanimal(pulling))
+		var/mob/living/simple_animal/bound = pulling
+		if(bound.binded)
+			return TRUE
+
 /**
   * Allows mobs to ignore density and phase through objects
   *
@@ -614,7 +636,11 @@
 	if(!T) //if the turf they're headed to is invalid
 		return
 
-	var/light_amount = T?.get_lumcount()
+	// This is hacky but it's the only runtime that fixing decap gives
+	// please forgive me...
+	var/light_amount = 0
+	if(T != null)
+		light_amount = T.get_lumcount()
 	var/used_time = 50
 	if(mind)
 		used_time = max(used_time - (mind.get_skill_level(/datum/skill/misc/sneaking) * 8), 0)
@@ -807,6 +833,20 @@
 	else
 		to_chat(src, span_info("I will hear like a mortal."))
 
+/client/proc/hearglobalLOOC()
+	set category = "Prefs - Admin"
+	set name = "Show/Hide Global LOOC"
+	if(!holder)
+		return
+	if(!prefs)
+		return
+	prefs.chat_toggles ^= CHAT_ADMINLOOC
+	prefs.save_preferences()
+	if(prefs.chat_toggles & CHAT_ADMINLOOC)
+		to_chat(src, span_notice("I will now hear all LOOC chatter."))
+	else
+		to_chat(src, span_info("I will now only hear LOOC chatter around me."))
+
 ///Moves a mob upwards in z level
 /mob/proc/ghost_up()
 	if(zMove(UP, TRUE))
@@ -836,3 +876,8 @@
 /// Can this mob move between z levels
 /mob/proc/canZMove(direction, turf/target)
 	return FALSE
+
+// Ageneral-purpose proc used to centralize checks to skip turf, movement, step, etc. effects 
+// for mobs that are floating, flying, intangible, etc.
+/mob/proc/is_floor_hazard_immune()
+	return throwing || (movement_type & (FLYING|FLOATING))

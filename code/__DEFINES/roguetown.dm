@@ -25,6 +25,7 @@
 // Heavy AC | Chest
 #define ARMOR_PLATE list("blunt" = 10, "slash" = 100, "stab" = 80, "piercing" = 40, "fire" = 0, "acid" = 0)
 #define ARMOR_PLATE_GOOD list("blunt" = 50, "slash" = 100, "stab" = 80, "piercing" = 80, "fire" = 0, "acid" = 0)
+#define ARMOR_PLATE_BSTEEL list("blunt" = 80, "slash" = 100, "stab" = 90, "piercing" = 80, "fire" = 0, "acid" = 0) // It's EVIL. OH GOD.
 
 // Boot Armor
 #define ARMOR_BOOTS_PLATED list("blunt" = 10, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 0, "acid" = 0)
@@ -346,6 +347,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_HAND			"CAT_HAND"			// Hand class - Handles Hand class selector
 #define CTAG_TEMPLAR		"CAT_TEMPLAR"		// Templar class - Handles Templar class selector
 #define CTAG_HEIR			"CAT_HEIR"			// Prince(cess) class - Handles Heir class selector
+#define CTAG_LORD			"CAT_LORD"			// Lord class - Handles Lord class selector
 #define CTAG_SQUIRE			"CAT_SQUIRE"		// Squire class - Handles Squire class selector
 #define CTAG_VETERAN		"CAT_VETERAN"		// Veteran class - Handles Veteran class selector
 #define CTAG_MARSHAL		"CAT_MARSHAL"		// Marshal class
