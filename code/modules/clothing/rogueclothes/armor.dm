@@ -432,7 +432,7 @@
 	max_integrity = 300
 	sellprice = 25
 
-/obj/item/clothing/suit/roguetown/armor/leather/heavy/raneshen
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
 	name = "megarmach scale coat"
 	desc = "A set of lightweight armor fashioned from the scales of the Ranesheni \'megarmach\', an armored reptilian creacher that ambushes prey by the riverside, and drags them deep into Abyssor's domain."
 	icon_state = "pangolin"
