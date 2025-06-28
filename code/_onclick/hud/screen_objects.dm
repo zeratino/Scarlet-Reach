@@ -1790,13 +1790,13 @@
 
 /atom/movable/screen/stamina
 	name = "stamina"
-	icon_state = "fat100"
+	icon_state = "stam100"
 	icon = 'icons/mob/rogueheat.dmi'
 	screen_loc = rogueui_fat
 
 /atom/movable/screen/energy
 	name = "energy"
-	icon_state = "stam100"
+	icon_state = "energy100"
 	icon = 'icons/mob/rogueheat.dmi'
 	screen_loc = rogueui_fat
 

@@ -29,11 +29,11 @@
 	return
 
 /mob/living/energy_add(added as num)
-	if(HAS_TRAIT(src, TRAIT_NOROGSTAM))
+	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
 		return TRUE
 	//if(HAS_TRAIT(src, TRAIT_NOSLEEP))
 	//	return TRUE
-	if(HAS_TRAIT(src, TRAIT_NOFATIGUE))
+	if(HAS_TRAIT(src, TRAIT_INFINITE_ENERGY))
 		return TRUE
 	if(m_intent == MOVE_INTENT_RUN && isnull(buckled))
 		mind && mind.add_sleep_experience(/datum/skill/misc/athletics, (STAINT*0.02))
@@ -93,7 +93,7 @@
 	return nutrition_amount
 
 /mob/living/stamina_add(added as num, emote_override, force_emote = TRUE) //call update_stamina here and set last_fatigued, return false when not enough fatigue left
-	if(HAS_TRAIT(src, TRAIT_NOROGSTAM))
+	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_FORTITUDE))
 		added = added * 0.5
@@ -145,7 +145,7 @@
 	var/heart_attacking = FALSE
 
 /mob/living/carbon/proc/heart_attack()
-	if(HAS_TRAIT(src, TRAIT_NOROGSTAM))
+	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
 		return
 	if(!heart_attacking)
 		heart_attacking = TRUE

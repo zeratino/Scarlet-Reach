@@ -287,7 +287,7 @@
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 6, FALSE)
 					H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 6, FALSE)
 					H.mind.adjust_skillrank(/datum/skill/misc/athletics, 6, FALSE)
-				ADD_TRAIT(current_holder, TRAIT_NOROGSTAM, TRAIT_GENERIC)
+				ADD_TRAIT(current_holder, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 				current_holder.visible_message(span_warning("[current_holder] rises up, empowered once more!"), span_warningbig("I rise again! I can feel my god flow through me!"))
 				flash_lightning(current_holder)
 				current_holder.revive(full_heal = TRUE, admin_revive = TRUE)

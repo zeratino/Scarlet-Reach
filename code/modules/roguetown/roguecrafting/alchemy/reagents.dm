@@ -69,7 +69,7 @@
 	alpha = 173
 
 /datum/reagent/medicine/manapot/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
 		M.energy_add(30)
 	..()
 
@@ -81,7 +81,7 @@
 	metabolization_rate = REAGENTS_METABOLISM * 3
 
 /datum/reagent/medicine/strongmana/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
 		M.energy_add(120)
 	..()
 
@@ -325,7 +325,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 
 
 /datum/reagent/stampoison/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
 		M.energy_add(-45) //Slowly leech energy
 	return ..()
 
@@ -340,7 +340,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 
 
 /datum/reagent/strongstampoison/on_mob_life(mob/living/carbon/M)
-	if(!HAS_TRAIT(M,TRAIT_NOROGSTAM))
+	if(!HAS_TRAIT(M,TRAIT_INFINITE_STAMINA))
 		M.energy_add(-180) //Rapidly leech energy
 	return ..()
 
