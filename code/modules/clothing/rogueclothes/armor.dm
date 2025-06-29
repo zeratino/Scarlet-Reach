@@ -432,7 +432,7 @@
 	max_integrity = 300
 	sellprice = 25
 
-/obj/item/clothing/suit/roguetown/armor/leather/heavy/raneshen
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
 	name = "megarmach scale coat"
 	desc = "A set of lightweight armor fashioned from the scales of the Ranesheni \'megarmach\', an armored reptilian creacher that ambushes prey by the riverside, and drags them deep into Abyssor's domain."
 	icon_state = "pangolin"
@@ -692,7 +692,7 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	armor_class = ARMOR_CLASS_HEAVY
 	armor = ARMOR_CUIRASS
-	name = "psydonite hauberk"
+	name = "psydonian hauberk"
 	desc = "An ornate steel cuirass with tassets, worn atop thick chainmaille. While it falters against arrows and bolts, \
 			these interlinked layers are superb at warding off the blows of inhumen claws and axes."
 	icon_state = "ornatehauberk"
@@ -773,7 +773,7 @@
 	max_integrity = 350
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
-	name = "psydonite cuirass"
+	name = "psydonian cuirass"
 	icon_state = "ornatecuirass"
 	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. \
 			Made to endure."
@@ -895,7 +895,7 @@
 	..()
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
-	name = "psydonite half-plate"
+	name = "psydonian half-plate"
 	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
 			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
 	icon_state = "ornatehalfplate"
@@ -943,7 +943,7 @@
 	max_integrity = 600
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
-	name = "psydonite plate"
+	name = "psydonian plate"
 	desc = "A sturdily made fluted full-plate. Heavy-duty, and made to deflect blows from blades and arrows. \
 			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
 	icon_state = "ornateplate"
