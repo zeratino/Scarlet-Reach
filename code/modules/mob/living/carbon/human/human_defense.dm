@@ -75,8 +75,8 @@
 						return TRUE
 
 //This proc returns obj/item/clothing, the armor that has "soaked" the crit. Using it for dismemberment check
-/mob/living/carbon/human/proc/checkcritarmorreference(def_zone, d_type)
-	if(!d_type)
+/mob/living/carbon/human/proc/checkcritarmorreference(def_zone, bclass)
+	if(!bclass)
 		return null
 	var/obj/item/clothing/best_armor = null
 	if(isbodypart(def_zone))
@@ -90,7 +90,7 @@
 			var/obj/item/clothing/C = bp
 			if(zone2covered(def_zone, C.body_parts_covered_dynamic))
 				if(C.obj_integrity > 1)
-					if(d_type in C.prevent_crits)
+					if(bclass in C.prevent_crits)
 						if(!best_armor)
 							best_armor = C
 						else if (round(((best_armor.obj_integrity / best_armor.max_integrity) * 100), 1) < round(((C.obj_integrity / C.max_integrity) * 100), 1)) //We want the armor with highest % integrity 
