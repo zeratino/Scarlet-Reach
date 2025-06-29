@@ -113,7 +113,8 @@
 					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
 			H.change_stat("strength", 1)
 			H.change_stat("endurance", 1)
-			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
+			H.change_stat("speed", 1)
 			armor = /obj/item/clothing/suit/roguetown/armor/leather
 			head = /obj/item/clothing/head/roguetown/duelhat
 			mask = /obj/item/clothing/mask/rogue/duelmask
