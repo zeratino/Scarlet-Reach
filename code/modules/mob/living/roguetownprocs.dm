@@ -546,6 +546,7 @@
 	var/mob/living/carbon/human/UH
 	var/obj/item/I
 	var/drained = 10
+	var/drained_npc = 5
 	if(ishuman(src))
 		H = src
 	if(ishuman(user))
@@ -669,6 +670,8 @@
 
 		if(!dodge_status)
 			return FALSE
+		if(!UH?.mind) // For NPC, reduce the drained to 5 stamina
+			drained = drained_npc
 		if(!H.stamina_add(max(drained,5)))
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
