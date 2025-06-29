@@ -8,9 +8,8 @@ GLOBAL_LIST_INIT(zizoconstruct_aggro, world.file2list("strings/rt/zconstructaggr
 	faction = list("dundead")
 	var/zc_outfit = /datum/outfit/job/roguetown/human/species/construct/metal/zizoconstruct
 	ambushable = FALSE
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	wander = FALSE
-	stand_attempts = 6
 	cmode = 1
 	setparrytime = 30
 	a_intent = INTENT_HELP
@@ -44,7 +43,7 @@ GLOBAL_LIST_INIT(zizoconstruct_aggro, world.file2list("strings/rt/zconstructaggr
 	..()
 	job = "Zizo Construct"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_NOROGSTAM, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)

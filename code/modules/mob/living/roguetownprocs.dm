@@ -12,6 +12,9 @@
 			return zone
 	if(!(target.mobility_flags & MOBILITY_STAND))
 		return zone
+	// If you're floored, you will aim feet and legs easily. There's a check for whether the victim is laying down already.
+	if(!(user.mobility_flags & MOBILITY_STAND) && (zone in list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_R_FOOT, BODY_ZONE_PRECISE_L_FOOT)))
+		return zone
 	if( (target.dir == turn(get_dir(target,user), 180)))
 		return zone
 
@@ -470,10 +473,34 @@
 			else
 				return FALSE
 
+// origin is used for multi-step dodges like jukes
+/mob/living/proc/get_dodge_destinations(mob/living/attacker, atom/origin = src)
+	var/dodge_dir = get_dir(attacker, origin)
+	if(!dodge_dir)
+		return null
+	var/list/dirry = list()
+	// pick a random dir
+	var/list/turf/dodge_candidates = list()
+	for(var/dir_to_check in dirry)
+		var/turf/dodge_candidate = get_step(origin, dir_to_check)
+		if(!dodge_candidate)
+			continue
+		if(dodge_candidate.density)
+			continue
+		var/has_impassable_atom = FALSE
+		for(var/atom/movable/AM in dodge_candidate)
+			if(!AM.CanPass(src, dodge_candidate))
+				has_impassable_atom = TRUE
+				break
+		if(has_impassable_atom)
+			continue
+		dodge_candidates += dodge_candidate
+	return dodge_candidates
+
 /mob/proc/do_parry(obj/item/W, parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.rogfat_add(parrydrain))
+		if(H.stamina_add(parrydrain))
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
 			if(src.client)
@@ -494,7 +521,7 @@
 /mob/proc/do_unarmed_parry(parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.rogfat_add(parrydrain))
+		if(H.stamina_add(parrydrain))
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))
 			if(src.client)
@@ -519,13 +546,14 @@
 	var/mob/living/carbon/human/UH
 	var/obj/item/I
 	var/drained = 10
+	var/drained_npc = 5
 	if(ishuman(src))
 		H = src
 	if(ishuman(user))
 		UH = user
 		I = UH.used_intent.masteritem
 	var/prob2defend = U.defprob
-	if(L.rogfat >= L.maxrogfat)
+	if(L.stamina >= L.max_stamina)
 		return FALSE
 	if(L)
 		if(H?.check_dodge_skill())
@@ -642,7 +670,9 @@
 
 		if(!dodge_status)
 			return FALSE
-		if(!H.rogfat_add(max(drained,5)))
+		if(!UH?.mind) // For NPC, reduce the drained to 5 stamina
+			drained = drained_npc
+		if(!H.stamina_add(max(drained,5)))
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human
@@ -832,9 +862,9 @@
 		IU.take_damage(max(damage,1), BRUTE, IM.d_type)
 		visible_message(span_suicide("[src] ripostes [H] with \the [IM]!"))
 		playsound(src, 'sound/combat/clash_struck.ogg', 100)
-		var/rogfatdef = (rogfat * 100) / maxrogfat
-		var/rogfatatt = (H.rogfat * 100) / H.maxrogfat
-		if(rogfatdef > rogfatatt) 
+		var/staminadef = (stamina * 100) / max_stamina
+		var/staminaatt = (H.stamina * 100) / H.max_stamina
+		if(staminadef > staminaatt) 
 			H.apply_status_effect(/datum/status_effect/debuff/exposed, 2 SECONDS)
 			H.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
 			H.Slowdown(3)
@@ -956,9 +986,9 @@
 	apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
 
 /mob/living/carbon/human/proc/bad_guard(msg, cheesy = FALSE)
-	rogfat_add(((maxrogfat * BAD_GUARD_FATIGUE_DRAIN) / 100))
+	stamina_add(((max_stamina * BAD_GUARD_FATIGUE_DRAIN) / 100))
 	if(cheesy)	//We tried to hit someone with Guard up. Unfortunately this must be super punishing to prevent cheese.
-		rogstam_add(-((maxrogstam * BAD_GUARD_FATIGUE_DRAIN) / 100))
+		energy_add(-((max_energy * BAD_GUARD_FATIGUE_DRAIN) / 100))
 		Immobilize(2 SECONDS)
 	if(msg)
 		to_chat(src, msg)
