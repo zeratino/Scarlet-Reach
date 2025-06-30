@@ -1,5 +1,3 @@
-#define CONJURE_DURATION 3 MINUTES
-
 /obj/effect/proc_holder/spell/self/magicians_brick
 	name = "Magician's Brick"
 	desc = "Conjure a magical brick in your hand. Its power scale up to your Intelligence\n\
@@ -26,7 +24,7 @@
 
 /obj/effect/proc_holder/spell/self/magicians_brick/cast(list/targets, mob/living/user = usr)
 	var/obj/item/rogueweapon/R = new /obj/item/rogueweapon/magicbrick(user.drop_location())
-	R.AddComponent(/datum/component/conjured_item, CONJURE_DURATION)
+	R.AddComponent(/datum/component/conjured_item)
 
 	if(user.STAINT > 10)
 		var/int_scaling = user.STAINT - 10
@@ -55,6 +53,3 @@
 	possible_item_intents = list(/datum/intent/mace/strike) // Not giving it smash so it don't become competetive with conjure weapon (as a melee weapon)
 	associated_skill = /datum/skill/combat/maces // If it was tied to Arcyne it'd be too strong
 	hitsound = list('sound/combat/hits/blunt/brick.ogg')
-
-
-#undef CONJURE_DURATION
