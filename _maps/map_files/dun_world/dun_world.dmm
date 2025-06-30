@@ -3570,6 +3570,10 @@
 /obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors/shelter/woods)
+"bhn" = (
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/cave)
 "bhp" = (
 /turf/closed/wall/mineral/rogue/roofwall/middle,
 /area/rogue/indoors)
@@ -58091,6 +58095,13 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/misc,
 /turf/open/water/bloody,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"tdJ" = (
+/obj/machinery/light/rogue/firebowl{
+	light_color = "#b30202"
+	},
+/obj/effect/decal/cleanable/dirt/cobweb,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/shelter/mountains)
 "tdZ" = (
 /obj/structure/mineral_door/wood/window,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -63317,6 +63328,12 @@
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/rtfield/eora)
+"uJN" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/cave)
 "uJY" = (
 /obj/structure/flora/roguegrass/bush/wall/tall,
 /turf/open/floor/rogue/grassred,
@@ -65066,6 +65083,10 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/outdoors/mountains/decap/stepbelow)
+"vpC" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach/forest)
 "vpE" = (
 /obj/effect/decal/cobble/mossy{
 	dir = 8
@@ -72139,7 +72160,7 @@
 	aportalid = "vampexit"
 	},
 /turf/open/floor/rogue/dirt/road,
-/area/rogue/outdoors/beach/forest)
+/area/rogue/under/cave)
 "xDO" = (
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/grass,
@@ -74138,6 +74159,10 @@
 "ylh" = (
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/sewer)
+"yli" = (
+/obj/item/natural/rock/gem,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/outdoors/beach/forest)
 "ylk" = (
 /obj/structure/flora/hotspring_rocks/small/two,
 /turf/open/floor/rogue/grass,
@@ -235671,8 +235696,8 @@ ujm
 ujm
 onF
 tsB
-uus
-fnC
+bhn
+uJN
 fnC
 fnC
 que
@@ -236124,7 +236149,7 @@ ujm
 onF
 tsB
 fnC
-fnC
+uJN
 fnC
 ujm
 ujm
@@ -237027,7 +237052,7 @@ ujm
 ujm
 ujm
 roL
-lJi
+tdJ
 jYP
 jYP
 gYa
@@ -354118,7 +354143,7 @@ roL
 cxA
 fZN
 fZN
-eGx
+fZN
 eGx
 eGx
 eGx
@@ -354570,7 +354595,7 @@ roL
 cxA
 fZN
 fZN
-eGx
+fZN
 eGx
 eGx
 eGx
@@ -479678,7 +479703,7 @@ sJx
 gTH
 yfy
 uIq
-vzI
+gTH
 gTH
 gTH
 sJx
@@ -480130,7 +480155,7 @@ sJx
 gTH
 uIq
 uIq
-uIq
+vpC
 gTH
 gTH
 sJx
@@ -481033,7 +481058,7 @@ sJx
 sJx
 gTH
 gTH
-fqa
+yli
 uIq
 aBx
 sJx
