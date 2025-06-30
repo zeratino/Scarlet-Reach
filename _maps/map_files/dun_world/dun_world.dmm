@@ -61062,10 +61062,6 @@
 /obj/item/toy/cards/deck,
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/garrison)
-"tZG" = (
-/obj/structure/fluff/walldeco/chains,
-/turf/open/water/ocean/deep,
-/area/rogue/outdoors/beach)
 "tZJ" = (
 /obj/item/roguebin/water/gross,
 /turf/open/floor/rogue/naturalstone,
@@ -167120,7 +167116,7 @@ fce
 tXb
 tXb
 tXb
-tZG
+tXb
 tXb
 tXb
 tXb
