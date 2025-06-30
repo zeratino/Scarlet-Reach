@@ -4321,6 +4321,10 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town/magician)
+"buO" = (
+/obj/item/natural/rock,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/cave)
 "buP" = (
 /obj/structure/toilet,
 /turf/open/floor/rogue/dirt,
@@ -25554,10 +25558,6 @@
 	dir = 8
 	},
 /area/rogue/indoors/town/manor)
-"ive" = (
-/obj/machinery/light/rogue/firebowl/standing/blue,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors/cave)
 "ivg" = (
 /mob/living/simple_animal/hostile/rogue/skeleton/guard,
 /turf/open/floor/rogue/dirt,
@@ -35422,6 +35422,11 @@
 /obj/structure/chair/bench/coucha,
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/shelter/mountains/decap)
+"lJi" = (
+/obj/machinery/light/rogue/firebowl,
+/obj/effect/decal/cleanable/dirt/cobweb,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/indoors/shelter/mountains)
 "lJp" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -40536,10 +40541,6 @@
 	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/indoors/town/magician)
-"nuW" = (
-/obj/item/natural/rock,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors/cave)
 "nvg" = (
 /obj/structure/table/wood{
 	icon_state = "longtable"
@@ -62132,6 +62133,10 @@
 	icon_state = "weird1"
 	},
 /area/rogue/under/cave/mazedungeon)
+"uus" = (
+/obj/machinery/light/rogue/firebowl/standing/blue,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/indoors/cave)
 "uux" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	locked = 1
@@ -230565,8 +230570,8 @@ onF
 tsB
 tsB
 tsB
-tsB
-tsB
+mlk
+mlk
 tsB
 que
 que
@@ -232369,7 +232374,7 @@ ujm
 ujm
 onF
 tsB
-tsB
+mlk
 mlk
 mlk
 acF
@@ -232821,7 +232826,7 @@ ujm
 ujm
 onF
 tsB
-tsB
+mlk
 mlk
 mlk
 acF
@@ -233280,7 +233285,7 @@ acF
 fnC
 fnC
 fnC
-nuW
+buO
 tsB
 tsB
 tsB
@@ -235531,7 +235536,7 @@ ujm
 ujm
 onF
 tsB
-ive
+uus
 fnC
 fnC
 fnC
@@ -236887,7 +236892,7 @@ ujm
 ujm
 ujm
 roL
-jYP
+lJi
 jYP
 jYP
 gYa
