@@ -9142,9 +9142,6 @@
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/sewer)
-"cYL" = (
-/turf/closed,
-/area/rogue/outdoors/beach/forest)
 "cYU" = (
 /obj/item/natural/stone,
 /turf/open/water/swamp,
@@ -508577,11 +508574,11 @@ gBM
 gBM
 vMR
 vMR
-cYL
-cYL
-cYL
-cYL
-cYL
+vMR
+vMR
+vMR
+vMR
+vMR
 vMR
 vMR
 vMR
@@ -509029,11 +509026,11 @@ gBM
 gBM
 vMR
 vMR
-cYL
-cYL
-cYL
-cYL
-cYL
+vMR
+vMR
+vMR
+vMR
+vMR
 vMR
 vMR
 vMR
@@ -509481,11 +509478,11 @@ gBM
 gBM
 vMR
 vMR
-cYL
-cYL
-cYL
-cYL
-cYL
+vMR
+vMR
+vMR
+vMR
+vMR
 vMR
 vMR
 vMR
@@ -509933,11 +509930,11 @@ gBM
 gBM
 vMR
 vMR
-cYL
-cYL
-cYL
-cYL
-cYL
+vMR
+vMR
+vMR
+vMR
+vMR
 vMR
 vMR
 vMR
