@@ -21936,7 +21936,7 @@
 "hio" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/cup/skull{
-	list_reagents = list(/datum/reagent/consumable/ethanol/beer/voddena=20);
+	list_reagents = list(/datum/reagent/consumable/ethanol/voddena=20);
 	pixel_x = 6;
 	pixel_y = 7
 	},
