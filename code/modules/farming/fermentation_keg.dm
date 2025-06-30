@@ -368,19 +368,19 @@ GLOBAL_LIST_EMPTY(custom_fermentation_recipes)
 	for(var/obj/item/reagent_containers/food/needed_crop as anything in selected_recipe.needed_crops)
 		if(recipe_crop_stocks[needed_crop] < selected_recipe.needed_crops[needed_crop])
 			if(user)
-				to_chat(user, span_notice("This keg lacks [initial(needed_crop.name)]!"))
+				to_chat(user, span_notice("This keg needs more [initial(needed_crop.name)]!"))
 				ready = FALSE
 
 	for(var/obj/item/needed_item as anything in selected_recipe.needed_items)
 		if(recipe_crop_stocks[needed_item] < selected_recipe.needed_items[needed_item])
 			if(user)
-				to_chat(user, span_notice("This keg lacks [initial(needed_item.name)]!"))
+				to_chat(user, span_notice("This keg needs more [initial(needed_item.name)]!"))
 				ready = FALSE
 
 	for(var/datum/reagent/required_chem as anything in selected_recipe.needed_reagents)
 		if(selected_recipe.needed_reagents[required_chem] > reagents.get_reagent_amount(required_chem))
 			if(user)
-				to_chat(user, span_notice("The keg's unable to brew well lacking [initial(required_chem.name)]!"))
+				to_chat(user, span_notice("This keg needs more [initial(required_chem.name)]!"))
 				ready = FALSE
 
 	return ready
