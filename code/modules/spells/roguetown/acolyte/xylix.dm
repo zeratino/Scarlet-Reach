@@ -22,6 +22,69 @@
 	revert_cast()
 	return FALSE
 
+/obj/effect/proc_holder/spell/invoked/mastersillusion
+	name = "Set Decoy"
+	releasedrain = 10
+	chargedrain = 0
+	chargetime = 0
+	range = 1
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	chargedloop = /datum/looping_sound/invokeholy
+	associated_skill = /datum/skill/magic/holy
+	antimagic_allowed = TRUE
+	recharge_time = 30 SECONDS
+	var/firstcast = TRUE
+
+/obj/effect/proc_holder/spell/invoked/mastersillusion/cast(list/targets, mob/living/carbon/human/user = usr)
+	var/icon/I 
+	if(firstcast)
+		to_chat(user, span_italics("...Oh, oh, thy visage is so grand! Let us prepare it for tricks!"))
+		I = get_flat_human_icon("[user.real_name] decoy", null, null, DUMMY_HUMAN_SLOT_MANIFEST, GLOB.cardinals, TRUE, user) // We can only set our decoy icon once. This proc is sort of expensive on generation.
+		firstcast = FALSE
+		name = "Master's Illusion"
+		to_chat(user, "There we are... Perfect.")
+		return
+	I = get_flat_human_icon("[user.real_name] decoy", null, null, DUMMY_HUMAN_SLOT_MANIFEST, GLOB.cardinals, TRUE, user)
+	var/turf/T = get_turf(user)
+	new /mob/living/simple_animal/hostile/rogue/xylixdouble(T, user, I)
+	animate(user, alpha = 0, time = 0 SECONDS, easing = EASE_IN)
+	user.mob_timers[MT_INVISIBILITY] = world.time + 7 SECONDS
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon/human, update_sneak_invis), TRUE), 7 SECONDS)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/atom/movable, visible_message), span_warning("[user] fades back into view."), span_notice("You become visible again.")), 7 SECONDS)
+	return TRUE
+
+
+/mob/living/simple_animal/hostile/rogue/xylixdouble
+	name = "Xylixian Double - You shouldnt be seeing this."
+	desc = ""
+	gender = NEUTER
+	mob_biotypes = MOB_HUMANOID
+	maxHealth = 20
+	health = 20
+	canparry = TRUE
+	d_intent = INTENT_PARRY
+	defprob = 50
+	footstep_type = FOOTSTEP_MOB_BAREFOOT
+	del_on_death = TRUE
+	loot = list(/obj/item/smokebomb/decoy)
+	can_have_ai = FALSE
+	AIStatus = AI_OFF
+	ai_controller = /datum/ai_controller/mudcrab // doesnt really matter
+
+
+/obj/item/smokebomb/decoy/Initialize()
+	. = ..()
+	playsound(loc, 'sound/magic/decoylaugh.ogg', 50)
+	explode()
+
+/mob/living/simple_animal/hostile/rogue/xylixdouble/Initialize(mapload, mob/living/carbon/human/copycat, icon/I)
+	. = ..()
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal, death), TRUE), 7 SECONDS)
+	icon = I
+	name = copycat.name
+	
+
 /obj/effect/proc_holder/spell/invoked/mockery
 	name = "Vicious Mockery"
 	releasedrain = 50

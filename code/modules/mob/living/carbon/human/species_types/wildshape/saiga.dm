@@ -20,7 +20,7 @@
 
 		src.STASTR = 10
 		src.STACON = 13
-		src.STAEND = 18 //Because I don't want to give it TRAIT_NOROGSTAM
+		src.STAEND = 18 //Because I don't want to give it TRAIT_INFINITE_STAMINA
 		src.STASPD = 13
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/saigahoofs)
@@ -37,7 +37,7 @@
 		TRAIT_HARDDISMEMBER, //Decapping wildshapes causes them to bug out, badly, and need admin intervention to fix. Bandaid fix.
 		TRAIT_PIERCEIMMUNE, //Prevents weapon dusting and caltrop effects when killed/stepping on shards.
 		TRAIT_LONGSTRIDER,
-		TRAIT_NOFATIGUE, //Saiga's gonna run a marathon
+		TRAIT_INFINITE_ENERGY, //Saiga's gonna run a marathon
 		TRAIT_PUSHIMMUNE
 	)
 	inherent_biotypes = MOB_HUMANOID

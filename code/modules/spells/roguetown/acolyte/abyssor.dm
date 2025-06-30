@@ -27,7 +27,7 @@
 			var/mob/living/carbon = target
 			if(carbon.patron?.type != /datum/patron/divine/abyssor)
 				var/fatdrain = user.mind?.get_skill_level(associated_skill) * base_fatdrain
-				carbon.rogfat_add(fatdrain)
+				carbon.stamina_add(fatdrain)
 		target.Dizzy(10)
 		target.blur_eyes(20)
 		target.emote("drown")
@@ -67,8 +67,8 @@
 		H.set_resting(FALSE, FALSE)
 		msg += span_warning("rises and ")
 	var/regen = (stamregenmod / 100) * H.mind?.get_skill_level(associated_skill)
-	H.rogfat_add(-(regen * H.maxrogfat))
-	H.rogstam_add(regen * H.maxrogstam)
+	H.stamina_add(-(regen * H.max_stamina))
+	H.energy_add(regen * H.max_energy)
 	msg += span_warning("becomes invigorated!")
 	H.visible_message(msg)
 	return TRUE
@@ -166,6 +166,11 @@
 	. = ..()
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
+		if(HAS_TRAIT(target, TRAIT_PSYDONITE))
+			target.visible_message(span_info("[target] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
+			playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
+			user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
+			return FALSE
 		if(user.patron?.undead_hater && (target.mob_biotypes & MOB_UNDEAD)) //THE DEEP CALLS- sorry, the pressure of the deep falls upon those of the undead ilk
 			target.visible_message(span_danger("[target] is crushed by divine pressure!"), span_userdanger("I'm crushed by divine pressure!"))
 			target.adjustBruteLoss(30)			
@@ -192,6 +197,7 @@
 			target.adjustFireLoss(-40)
 		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
 		return TRUE
+
 	revert_cast()
 	return FALSE
 //t3 alt, land surf, i just removed it but if this idea is like better... we'll see

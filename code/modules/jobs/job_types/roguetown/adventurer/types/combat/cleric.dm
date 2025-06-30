@@ -96,7 +96,7 @@
 			to_chat(H, span_warning("A holy warrior. Where others of the clergy may have spent their free time studying scriptures, you have instead honed your skills with a blade."))
 			belt = /obj/item/storage/belt/rogue/leather
 			backl = /obj/item/storage/backpack/rogue/satchel
-			backr = /obj/item/rogueweapon/shield/tower
+			backr = /obj/item/rogueweapon/shield/iron
 			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 			wrists = /obj/item/clothing/wrists/roguetown/bracers
@@ -166,8 +166,11 @@
 			var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 			switch(weapon_choice)
 				if("Longsword")
+					if(HAS_TRAIT(H, TRAIT_PSYDONITE))
+						beltr = /obj/item/rogueweapon/sword/long/oldpsysword
+					else
+						beltr = /obj/item/rogueweapon/sword/long
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-					beltr = /obj/item/rogueweapon/sword/long
 				if("Mace")
 					H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
 					beltr = /obj/item/rogueweapon/mace
