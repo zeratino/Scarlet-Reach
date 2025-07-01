@@ -43,7 +43,7 @@
 		revert_cast()
 		return FALSE
 
-	user.visible_message("[conjured_armor] existence briefly jitters, conjuring protection from doomed fates!")
+	user.visible_message("[user]'s existence briefly jitters, conjuring protection from doomed fates!")
 	var/ring = /obj/item/clothing/ring/fate_weaver
 	conjured_armor = new ring(user)
 	user.equip_to_slot_or_del(conjured_armor, SLOT_RING)
