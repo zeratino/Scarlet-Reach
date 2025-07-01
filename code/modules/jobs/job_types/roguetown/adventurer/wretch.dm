@@ -96,8 +96,8 @@
 			H.change_stat("fortune", 1)
 	
 	// Then proceed with normal bounty selection
-	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Blackmoor", "The Grenzelhoftian Holy See", "The Otavan Holy See")
-	if(bounty_poster == "The Justiciary of Blackmoor")
+	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Scarlet Reach", "The Grenzelhoftian Holy See", "The Otavan Holy See")
+	if(bounty_poster == "The Justiciary of Scarlet Reach")
 		GLOB.outlawed_players += H.real_name
 	else
 		GLOB.excommunicated_players += H.real_name
