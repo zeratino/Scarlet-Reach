@@ -6389,6 +6389,13 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/magician)
+"ceJ" = (
+/obj/structure/fluff/railing/border{
+	dir = 9;
+	pixel_y = 6
+	},
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/shop)
 "ceR" = (
 /obj/structure/fluff/railing/border{
 	dir = 8
@@ -14172,20 +14179,8 @@
 /obj/machinery/light/rogue/wallfire{
 	pixel_y = 32
 	},
-/obj/structure/table/wood{
-	icon_state = "tablewood3"
-	},
-/obj/item/reagent_containers/glass/bucket/pot/teapot/fancy{
-	pixel_x = -8;
-	pixel_y = 4
-	},
-/obj/item/reagent_containers/glass/cup/ceramic/fancy{
-	pixel_x = 9;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/glass/cup/ceramic/fancy{
-	pixel_x = -10;
-	pixel_y = -2
+/obj/structure/chair/wood/rogue/chair4{
+	dir = 8
 	},
 /turf/open/floor/carpet/stellar,
 /area/rogue/indoors/town/shop)
@@ -28523,7 +28518,8 @@
 /area/rogue/outdoors/mountains/decap)
 "jlT" = (
 /obj/machinery/light/rogue/wallfire/candle/r,
-/turf/open/floor/rogue/wood,
+/obj/machinery/light/rogue/hearth,
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/shop)
 "jlW" = (
 /obj/structure/chair/bench/coucha/r,
@@ -33506,7 +33502,10 @@
 	pixel_x = 0
 	},
 /obj/machinery/light/rogue/wallfire/candle/l,
-/turf/open/floor/rogue/wood,
+/obj/structure/chair/wood/rogue/chair4{
+	dir = 4
+	},
+/turf/open/floor/carpet/stellar,
 /area/rogue/indoors/town/shop)
 "kYW" = (
 /obj/structure/chair/bench/couch/r,
@@ -40012,8 +40011,20 @@
 /turf/open/transparent/openspace,
 /area/rogue/indoors/town/shop)
 "ngj" = (
-/obj/structure/chair/wood/rogue/chair4{
-	dir = 4
+/obj/structure/table/wood{
+	icon_state = "tablewood3"
+	},
+/obj/item/reagent_containers/glass/cup/ceramic/fancy{
+	pixel_x = -10;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/glass/bucket/pot/teapot/fancy{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/cup/ceramic/fancy{
+	pixel_x = 9;
+	pixel_y = -1
 	},
 /turf/open/floor/carpet/stellar,
 /area/rogue/indoors/town/shop)
@@ -58757,14 +58768,14 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town/magician)
 "toq" = (
-/obj/structure/chair/wood/rogue/chair4{
-	dir = 8
-	},
 /obj/structure/fluff/walldeco/bigpainting{
 	pixel_x = 2;
 	pixel_y = 32
 	},
-/turf/open/floor/carpet/stellar,
+/obj/structure/fluff/railing/border{
+	dir = 8
+	},
+/turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/shop)
 "tor" = (
 /obj/structure/flora/roguegrass/water/reeds,
@@ -382656,7 +382667,7 @@ eKH
 kSK
 eZd
 kYU
-oti
+wCI
 khI
 oen
 eZd
@@ -383108,7 +383119,7 @@ eKH
 kSK
 eZd
 ngj
-wCI
+qpx
 oti
 jrX
 eZd
@@ -383560,7 +383571,7 @@ eKH
 bGf
 ikL
 eJq
-qpx
+wCI
 oti
 vDa
 eZd
@@ -384012,7 +384023,7 @@ eKH
 bGf
 eZd
 toq
-wCI
+ceJ
 oti
 oti
 plC
