@@ -53,6 +53,8 @@
 		return FALSE // If thrower is weaker than average, it bounces off with no effect just for the pun of it.
 
 	var/turf/T = get_turf(src)
+	if(istransparentturf(T))
+		T = GET_TURF_BELOW(src)
 	if(istype(hit_atom) && !(hit_atom.density && !(hit_atom?.pass_flags & LETPASSTHROW) && !(hit_atom?.flags_1 & ON_BORDER_1)))
 		T = get_turf(hit_atom) // No splats under walls and dense atoms
 
