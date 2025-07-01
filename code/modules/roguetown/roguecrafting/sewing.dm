@@ -1125,8 +1125,8 @@ datum/crafting_recipe/roguetown/sewing/Purdress
 	craftdiff = 2
 
 /datum/crafting_recipe/roguetown/sewing/surgicalbag
-	name = "surgical bag (2 fibers, 1 cloth)"
+	name = "surgeon's bag (3 fibers, 1 cloth)"
 	result = list(/obj/item/storage/belt/rogue/surgery_bag/empty)
-	reqs = list(/obj/item/natural/cloth = 1,
-				/obj/item/natural/fibers = 2)
+	reqs = list(/obj/item/natural/cloth = 3,
+				/obj/item/natural/fibers = 1)
 	craftdiff = 4
