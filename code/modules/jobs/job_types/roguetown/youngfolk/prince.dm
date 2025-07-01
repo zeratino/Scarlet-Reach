@@ -93,7 +93,6 @@
 		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/slings, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/firearms, 2, TRUE)
 		
 		// Keep original non-weapon skills
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
