@@ -93,7 +93,7 @@
 	overlay_state = "speakwithdead"
 	chargetime = 2 SECONDS
 	chargedloop = null
-	sound = 'sound/magic/churn.ogg'
+	sound = 'sound/misc/deadbell.ogg'
 	invocation = "Necra, show me my destination!"
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
@@ -110,6 +110,7 @@
 		return FALSE
 	for (var/obj/structure/underworld_portal/e_portal in user.contents) // checks if the portal exists, and shits them out
 		if(istype(e_portal))
+			e_portal.dispelled = FALSE //we are recasting after dispelling, its safe to set this as false.
 			e_portal.spitout_mob(user, T)
 			return TRUE
 	if(!locate(/obj/structure/underworld_portal) in T)
@@ -158,6 +159,12 @@
 	gobble_mob(user, caster)
 	return TRUE
 
+
+/obj/structure/underworld_portal/Destroy()
+	if(dispelled == FALSE)//Only do this if we DON'T close it ourselves,that means something ELSE -FUNNY- happend.
+		visible_message(span_revenwarning("The portal collapses with an angry hiss."))
+		spitout_mob(caster, loc)
+	..()
 
 /obj/structure/underworld_portal/attack_right(mob/living/carbon/user, list/modifiers)
 	..()
@@ -211,9 +218,10 @@
 /obj/structure/underworld_portal/proc/spitout_mob(mob/living/carbon/user, turf/T)
 	if(!trapped)
 		return FALSE
-	if(loc in user.contents)
-		forceMove(T ? T : caster.loc)
-	if(dispelled)//dispelled at the caster
+	if(src in user.contents)
+		forceMove(T)
+
+	if(dispelled == TRUE)//dispelled at the caster, this is the case of we do not recast out dispelled portal and its been five minutes.
 		trapped.forceMove(caster.loc)
 		dispelled = FALSE
 	else
