@@ -1446,6 +1446,7 @@
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\necromancer.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\outlaw.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\poacher.dm"
+#include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\lunacyembracer.dm"
 #include "code\modules\jobs\job_types\roguetown\church\druid.dm"
 #include "code\modules\jobs\job_types\roguetown\church\martyr.dm"
 #include "code\modules\jobs\job_types\roguetown\church\monk.dm"
