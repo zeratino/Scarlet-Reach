@@ -1488,3 +1488,7 @@
 /datum/sprite_accessory/hair/head/playful
 	name = "Playful"
 	icon_state = "playful"
+
+/datum/sprite_accessory/hair/head/heiress
+	name = "Heiress"
+	icon_state = "heiress"
