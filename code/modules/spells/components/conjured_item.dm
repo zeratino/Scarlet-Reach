@@ -1,5 +1,5 @@
-/* Component for adding a generic magical outline to a component, make it disappear if not held / worn 
-by Arcyne user after a duration 
+/* Component for adding a generic magical outline to a component, make it disappear if not held / worn
+by Arcyne user after a duration
 */
 
 /datum/component/conjured_item
@@ -19,9 +19,7 @@ by Arcyne user after a duration
 	I.smeltresult = null
 	I.salvage_result = null
 	I.fiber_salvage = FALSE
-
-/obj/item/I/can_craft_with()
-	return FALSE
+	I.craft_blocked = TRUE
 
 /datum/component/conjured_item/proc/on_examine(datum/source, mob/user, list/examine_list)
 	examine_list += "This item crackles with faint arcyne energy. It seems to be conjured."

@@ -1,9 +1,7 @@
 /obj/effect/proc_holder/spell/self/conjure_armor
 	name = "Conjure Armor"
-	desc = "Conjure a full set of light armor and attempts to equip it on someone \n\
-	The armor lasts for 15 minutes - but will refresh its duration infinitely when equipped on a Arcyne user.\n\
-	At 12 int or above, conjure hardened leather grade armor for the body, otherwise conjure leather armor.\n\
-	Armor will only be conjured where the target is not wearing any. Masks, Cloaks & Mouthpiece not included."
+	desc = "Conjure a fate weaver, a full-body protecting ring that breaks easily. Cannot be summoned if wearing anything heavier than light armor.\n\
+	The ring lasts until it is broken, a new one is summoned, or the spell is forgotten."
 	overlay_state = "conjure_armor"
 	sound = list('sound/magic/whiteflame.ogg')
 
@@ -11,7 +9,7 @@
 	chargedrain = 1
 	chargetime = 3 SECONDS
 	no_early_release = TRUE
-	recharge_time = 10 MINUTES // Not meant to be spammed
+	recharge_time = 5 MINUTES // Not meant to be spammed
 
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -45,9 +43,9 @@
 		revert_cast()
 		return FALSE
 
-	user.visible_message("[user] existence briefly jitters, conjuring protection from doomed fates!")
+	user.visible_message("[conjured_armor] existence briefly jitters, conjuring protection from doomed fates!")
 	var/ring = /obj/item/clothing/ring/fate_weaver
-	var/obj/item/conjured_armor = new ring(user)
+	conjured_armor = new ring(user)
 	user.equip_to_slot_or_del(conjured_armor, SLOT_RING)
 	if(!QDELETED(conjured_armor))
 		conjured_armor.AddComponent(/datum/component/conjured_item, GLOW_COLOR_ARCANE)
@@ -55,3 +53,9 @@
 
 /obj/effect/proc_holder/spell/self/conjure_armor/miracle
 	associated_skill = /datum/skill/magic/holy
+
+/obj/effect/proc_holder/spell/self/conjure_armor/Destroy()
+	if(src.conjured_armor)
+		conjured_armor.visible_message(span_warning("The [conjured_armor]'s borders begin to shimmer and fade, before it vanishes entirely!"))
+		qdel(conjured_armor)
+	return ..()

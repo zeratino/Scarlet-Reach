@@ -68,8 +68,8 @@
 
 	var/obj/item/rogueweapon/R = new weapon_choice(user.drop_location())
 	R.blade_dulling = DULLING_SHAFT_CONJURED
-	if(!QDELETED(conjured_weapon))
-		conjured_weapon.AddComponent(/datum/component/conjured_item, GLOW_COLOR_ARCANE)
+	if(!QDELETED(R))
+		R.AddComponent(/datum/component/conjured_item, GLOW_COLOR_ARCANE)
 	user.put_in_hands(R)
 	src.conjured_weapon = R
 	return TRUE
