@@ -154,8 +154,7 @@
 			H.change_stat("intelligence", 3)
 			H.change_stat("speed", 2)
 			r_hand = /obj/item/rogueweapon/woodstaff/naledi
-			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant
-				color = CLOTHING_GREY
+			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/grey
 			mask = /obj/item/clothing/mask/rogue/lordmask/naledi
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
