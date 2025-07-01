@@ -238,6 +238,7 @@
 		/datum/sprite_accessory/hair/head/pixie,
 		/datum/sprite_accessory/hair/head/pompadour,
 		/datum/sprite_accessory/hair/head/bigpompadour,
+		/datum/sprite_accessory/hair/head/playful,
 		/datum/sprite_accessory/hair/head/ponytail1,
 		/datum/sprite_accessory/hair/head/ponytail2,
 		/datum/sprite_accessory/hair/head/ponytail3,

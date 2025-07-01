@@ -1484,3 +1484,7 @@
 /datum/sprite_accessory/hair/facial/vox/neck
 	name = "Neck Quills"
 	icon_state = "neck"
+
+/datum/sprite_accessory/hair/head/playful
+	name = "Playful"
+	icon_state = "playful"
