@@ -26,8 +26,9 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	// Single archetype, balanced loadout
-	backpack_contents = list(/obj/item/roguekey/inquisition = 1,
-		/obj/item/rogueweapon/shield/tower/metal = 1,
+	backpack_contents = list(
+		/obj/item/roguekey/inquisition = 1,
+		/obj/item/rope/chain = 1,
 	)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/magic/holy, 2, TRUE)
