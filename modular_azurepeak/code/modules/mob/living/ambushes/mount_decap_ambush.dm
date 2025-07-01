@@ -5,7 +5,7 @@
 
 /datum/ambush_config/trio_of_highwaymen
 	mob_types = list(
-		/mob/living/simple_animal/hostile/retaliate/rogue/highwayman = 3
+		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 3
 	)
 
 /datum/ambush_config/singular_minotaur
