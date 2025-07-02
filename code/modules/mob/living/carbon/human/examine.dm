@@ -20,6 +20,7 @@
 
 /mob/living/carbon/human/examine(mob/user)
 	var/observer_privilege = isobserver(user)
+	var/aghost_privilege = isadminobserver(user)
 	var/t_He = p_they(TRUE)
 	var/t_his = p_their()
 //	var/t_him = p_them()
@@ -802,6 +803,17 @@
 	var/trait_exam = common_trait_examine()
 	if(!isnull(trait_exam))
 		. += trait_exam
+	
+	if(aghost_privilege)
+		if(user.client.prefs.toggles & TOGGLE_QUICKID)
+			var/towrite = "ID Status: "
+			if(!src.ckey)
+				towrite += "No key!"
+			if(src.check_agevet())
+				towrite += "Unverified"
+			else
+				towrite += span_notice("Age Verified")
+			. += towrite
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()

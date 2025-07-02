@@ -565,6 +565,17 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	to_chat(usr, "You will [(prefs.toggles & SOUND_PRAYERS) ? "now" : "no longer"] hear a sound when prayers arrive.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Prayer Sounds", "[usr.client.prefs.toggles & SOUND_PRAYERS ? "Enabled" : "Disabled"]"))
 
+/client/proc/togglequickid()
+	set name = "Toggle Quick ID Check"
+	set category = "Prefs - Admin"
+	set desc = ""
+	if(!holder)
+		return
+	prefs.chat_toggles ^= TOGGLE_QUICKID
+	prefs.save_preferences()
+	to_chat(src, "You will [(prefs.toggles & TOGGLE_QUICKID) ? "now" : "no longer"] see ID status when examining humans as an adminghost.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Quick ID Check", "[usr.client.prefs.toggles & TOGGLE_QUICKID ? "Enabled" : "Disabled"]"))
+
 /client/proc/colorasay()
 	set name = "Set Asay Color"
 	set category = "Prefs - Admin"
