@@ -1,5 +1,5 @@
 // This is almost entirely a copy paste of the Ratwood bunker system repurposed for adding in Age vetted people.
-// Agevets matter more than simple whitelist access.
+// Agevets matter more than simple whitelist access, so the approach is a bit different.
 // We currently store age vets in an assoc list locally.
 // The keys: player ckeys, values: the admin who added them.
 

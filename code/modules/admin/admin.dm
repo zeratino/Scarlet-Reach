@@ -93,10 +93,11 @@
 		var/idstatus = "<br>ID Status: "
 		if(!M.ckey)
 			idstatus += "No key!"
-		if(!M.check_agevet())
+		else if(!M.check_agevet())
 			idstatus += "Unverified"
 		else
-			idstatus += "<b>Age Verified</b>"
+			var/vetadmin = LAZYACCESS(GLOB.agevetted_list, M.ckey)
+			idstatus += "<b>Age Verified</b> by [vetadmin]"
 		body += idstatus
 
 
