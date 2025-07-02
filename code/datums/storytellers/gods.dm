@@ -47,6 +47,7 @@
 	desc = "Astrata will provide a balanced and varied experience. Consider this the default experience."
 	weight = 6
 	always_votable = TRUE
+	follower_modifier = LOWER_FOLLOWER_MODIFIER
 	color_theme = "#FFD700"
 
 	influence_factors = list(
@@ -63,6 +64,7 @@
 	welcome_text = "The veil between realms shimmers in your presence."
 	weight = 4
 	always_votable = TRUE
+	follower_modifier = LOWER_FOLLOWER_MODIFIER
 	color_theme = "#F0F0F0"
 
 	tag_multipliers = list(
@@ -296,6 +298,7 @@
 	welcome_text = "You will kneel."
 	weight = 4
 	always_votable = TRUE
+	follower_modifier = LOWER_FOLLOWER_MODIFIER
 	color_theme = "#CC4444"
 
 	tag_multipliers = list(
