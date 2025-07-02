@@ -93,6 +93,7 @@
 	desc = "Pestra knows how many tongues this thing has seen so far."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "mouthpiece"
+	force = 5 // To hit someone with it.
 	possible_item_intents = list(/datum/intent/smoke, INTENT_GENERIC)
 	/// weakref to the hookah this mouthpiece is attached to
 	var/datum/weakref/parent_hookah = null
