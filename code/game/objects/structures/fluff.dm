@@ -1258,24 +1258,6 @@
 	desc = ""
 	icon_state = "clockgolem_dead"
 
-/obj/structure/fluff/statue/shisha
-	name = "shisha pipe"
-	desc = "A traditional shisha pipe, this one is broken."
-	icon = 'icons/roguetown/misc/64x64.dmi'
-	icon_state = "zbuski"
-	density = FALSE
-	anchored = TRUE
-	layer = ABOVE_MOB_LAYER
-	plane = GAME_PLANE_UPPER
-	blade_dulling = DULLING_BASH
-	max_integrity = 300
-
-/obj/structure/fluff/statue/shisha/hookah
-	name = "shisha pipe"
-	desc = "A traditional shisha pipe, this one is broken."
-	icon = 'icons/roguetown/misc/structure.dmi'
-	icon_state = "hookah"
-
 /obj/structure/fluff/headstake
 	name = "head on a stake"
 	desc = ""

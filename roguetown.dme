@@ -987,6 +987,7 @@
 #include "code\game\objects\structures\fluff.dm"
 #include "code\game\objects\structures\guillotine.dm"
 #include "code\game\objects\structures\hell.dm"
+#include "code\game\objects\structures\hookah.dm"
 #include "code\game\objects\structures\kitchen_spike.dm"
 #include "code\game\objects\structures\ladders.dm"
 #include "code\game\objects\structures\life_candle.dm"
