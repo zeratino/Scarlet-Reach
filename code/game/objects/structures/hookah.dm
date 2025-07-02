@@ -1,4 +1,3 @@
-
 /obj/structure/shisha
 	name = "shisha pipe"
 	desc = "A traditional shisha pipe."
