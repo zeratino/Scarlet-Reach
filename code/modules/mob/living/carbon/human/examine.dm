@@ -806,8 +806,8 @@
 	if(!flavorcheck || aghost_privilege) // we show this due to flavortext panel fields all being empty, meaning that panel's age verified text could not otherwise be displayed
 		var/towrite = "ID Status: "
 		if(!src.ckey)
-			towrite += "No key!"
-		if(!src.check_agevet())
+			towrite += "N/A"
+		else if(!src.check_agevet())
 			towrite += "Unverified"
 		else
 			towrite += span_notice("Age Verified")
