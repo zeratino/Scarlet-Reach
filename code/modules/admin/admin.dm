@@ -90,6 +90,17 @@
 			patron = initial(living.patron.name)
 		body += "<br><br>Current Patron: [patron]"
 
+		var/idstatus = "<br>ID Status: "
+		if(!M.ckey)
+			idstatus += "No key!"
+		if(!M.check_agevet())
+			idstatus += "Unverified"
+		else
+			idstatus += "<b>Age Verified</b>"
+		body += idstatus
+
+
+
 		//Blackmoor port. Incompatibility.
 		/*var/curse_string = ""
 		if(ishuman(M))
@@ -102,7 +113,6 @@
 		if(M.client.byond_version)
 			full_version = "[M.client.byond_version].[M.client.byond_build ? M.client.byond_build : "xxx"]"
 		body += "<br>\[<b>Byond version:</b> [full_version]\]<br>"
-
 
 	body += "<br><br>\[ "
 	body += "<a href='?_src_=vars;[HrefToken()];Vars=[REF(M)]'>VV</a> - "

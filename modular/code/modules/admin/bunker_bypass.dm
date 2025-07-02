@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(bunker_bypasses, load_bypasses_from_file())
 		if(ckey in GLOB.bunker_bypasses)
 			to_chat(src, span_warning("Player with ckey [ckey] is already on the list."))
 			return
-		if(alert("Confirm: allow ckey [ckey] to connect?", "", "Yes!", "No") == "Yes!")
+		if(alert("Confirm: allow ckey [selection] to connect?", "", "Yes!", "No") == "Yes!")
 			add_bunker_bypass(selection, ckey)
 
 /proc/add_bunker_bypass(target_ckey, admin_ckey = "SYSTEM")

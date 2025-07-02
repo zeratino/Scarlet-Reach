@@ -14,7 +14,7 @@ GLOBAL_PROTECT(agevetted_list)
 /mob/proc/check_agevet()
 	if(client)
 		return client.check_agevet()
-	if(LAZYACCESS(GLOB.agevetted_list, ckey))
+	if(LAZYACCESS(GLOB.agevetted_list, ckey) || copytext(key,1,2)=="@") //aghosted people stay verified
 		return TRUE
 	return FALSE
 
@@ -27,7 +27,7 @@ GLOBAL_PROTECT(agevetted_list)
 
 	var/selection = input("Who would you like to verify?", "CKEY", "") as text|null
 	if(selection)
-		if(alert(src, "Confirm: [ckey] as being ID verified?", "Age Vetting", "Yes!", "No") == "Yes!")
+		if(alert(src, "Confirm: [selection] as being ID verified?", "Age Vetting", "Yes!", "No") == "Yes!")
 			add_agevet(selection, ckey, src) // keep the client ref to save us a duplicate list call
 
 /proc/add_agevet(target_ckey, admin_ckey = "SYSTEM", clientref)
@@ -78,5 +78,5 @@ GLOBAL_PROTECT(agevetted_list)
 	if(!fexists(csv_file))
 		var/csv_columns = "player_ckey,admin_ckey,datestamp,rogue_round_id"
 		WRITE_FILE(csv_file,csv_columns)
-	csv_file << "[target_ckey],[admin_ckey],[current_date],[GLOB.rogue_round_id]\n"
+	csv_file << "[target_ckey],[admin_ckey],[current_date],[GLOB.rogue_round_id]"
 
