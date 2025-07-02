@@ -62,7 +62,7 @@
 		log_combat(user, target, "tried unwanted ERP menu against")
 		return
 	if(!target.client.check_agevet())
-		to_chat(user, span_warning("[target] is simply not there. I can't do this."))
+		to_chat(user, span_warning("[target] is not ID verified. I cannot."))
 		log_combat(user, target, "tried ERP menu on ID-less")
 		return
 	user.sexcon.start(src)

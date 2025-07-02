@@ -4,7 +4,7 @@
 // The keys: player ckeys, values: the admin who added them.
 
 GLOBAL_LIST_INIT(agevetted_list, load_agevets_from_file())
-//GLOBAL_PROTECT(agevetted_list) // remmember to put this back
+GLOBAL_PROTECT(agevetted_list)
 
 /client/proc/check_agevet()
 	if(LAZYACCESS(GLOB.agevetted_list, ckey) || holder)
@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(agevetted_list, load_agevets_from_file())
 	file_data = GLOB.agevetted_list
 	fdel(json_file)
 	WRITE_FILE(json_file,json_encode(file_data))
-	
+
 // for more convenient host oversight and perhaps an eventual database import. 
 /proc/log_agevet_to_csv(target_ckey, admin_ckey = "SYSTEM")
 	if(IsAdminAdvancedProcCall()) // sorry for using this twice
