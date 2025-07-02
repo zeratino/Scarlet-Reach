@@ -169,7 +169,6 @@
 	set category = "Inquisition"
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
-	var/obj/item/S = get_inactive_held_item()
 	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
@@ -183,9 +182,6 @@
 		return
 	if(!H.restrained())
 		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
-		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
-		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
 	for(var/obj/structure/fluff/psycross/N in oview(5, src))
 		found = N
@@ -209,8 +205,6 @@
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
 
-		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
-		qdel(S)
 		return
 	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
 
@@ -219,7 +213,6 @@
 	set category = "Inquisition"
 	var/obj/item/grabbing/I = get_active_held_item()
 	var/mob/living/carbon/human/H
-	var/obj/item/S = get_inactive_held_item()
 	var/found = null
 	if(!istype(I) || !ishuman(I.grabbed))
 		to_chat(src, span_warning("I don't have a victim in my hands!"))
@@ -230,9 +223,6 @@
 		return
 	if (!H.restrained())
 		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
-		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
-		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
 	for(var/obj/structure/fluff/psycross/N in oview(5, src))
 		found = N
@@ -255,10 +245,8 @@
 		if(!(do_mob(src, H, 10 SECONDS)))
 			return
 
-		src.visible_message(span_warning("[src]'s silver psycross abruptly catches flame, burning away in an instant!"))
 		H.confession_time("patron", src)
 		H.add_stress(/datum/stressevent/tortured)
-		qdel(S)
 		return
 	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
 
