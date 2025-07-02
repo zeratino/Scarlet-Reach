@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	if(prob(25))	
 		l_hand = /obj/item/rogueweapon/shield/wood
 	if(prob(10))
-		l_hand = /obj/item/rogueweapon/shield/buckler
+		l_hand = /obj/item/rogueweapon/shield/buckler/palloy
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	if(prob(30))
 		neck = /obj/item/clothing/neck/roguetown/leather

@@ -43,8 +43,8 @@
 	var/npc_jump_chance = 5
 	/// If the NPC's target is more than this many tiles away, they will try to leap ahead on their path.
 	var/npc_jump_distance = 4
-	/// When above this amount of stamina, the NPC will not attempt to jump.
-	var/npc_max_jump_stamina = 80
+	/// When above this amount of stamina (Stamina is stamina damage), the NPC will not attempt to jump.
+	var/npc_max_jump_stamina = 50
 
 /mob/living/carbon/human/proc/IsStandingStill()
 	return doing || resisting || pickpocketing
@@ -199,6 +199,7 @@
 	if(next_move > world.time) // Jumped too recently!
 		return FALSE
 	if(stamina > npc_max_jump_stamina)
+		NPC_THINK("Too little stamina to jump, skipping! My current stamina is [stamina], max is [npc_max_jump_stamina].")
 		return FALSE
 	var/turf/our_turf = get_turf(src)
 	if(our_turf.Distance_cardinal(get_turf(target), src) <= npc_jump_distance)
@@ -569,7 +570,7 @@
 			// Flee before trying to pick up a weapon.
 			if(flee_in_pain && target && (target.stat == CONSCIOUS))
 				var/paine = get_complex_pain()
-				if(paine >= ((STAEND * 10)*0.75)) // pain threshold decreased from END*10*0.9 due to all NPCs having insane END for some reason
+				if(paine >= ((STAEND * 10)*0.9)) 
 					NPC_THINK("Ouch! Entering flee mode!")
 					mode = NPC_AI_FLEE
 					m_intent = MOVE_INTENT_RUN
