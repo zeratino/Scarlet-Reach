@@ -529,8 +529,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 		if(max_integrity)
 			inspec += "\n<b>DURABILITY:</b> "
-			var/meme = round(((obj_integrity / max_integrity) * 100), 1)
-			inspec += "[meme]%"
+			var/percent = round(((obj_integrity / max_integrity) * 100), 1)
+			inspec += "[percent]% ([obj_integrity])"
 
 		to_chat(usr, "[inspec.Join()]")
 
