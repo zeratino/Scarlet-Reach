@@ -43,10 +43,15 @@ GLOBAL_PROTECT(agevetted_list)
 
 	target_ckey = ckey(target_ckey)
 	GLOB.agevetted_list[target_ckey] = admin_ckey
-	message_admins("AGE VETTING : Added [target_ckey] to the agevetted list[admin_ckey? " by [admin_ckey]":""]")
-	log_admin("AGE VETTING : Added [target_ckey] to the agevetted list[admin_ckey? " by [admin_ckey]":""]")
+	message_admins("ID VETTING: Added [target_ckey] to the agevetted list[admin_ckey? " by [admin_ckey]":""]")
+	log_admin("ID VETTING: Added [target_ckey] to the agevetted list[admin_ckey? " by [admin_ckey]":""]")
 	save_agevets_to_file()
-	log_agevet_to_csv()
+	log_agevet_to_csv(target_ckey, admin_ckey)
+
+	// if they're online, notify
+	var/recipient = LAZYACCESS(GLOB.directory, target_ckey)
+	if(recipient)
+		to_chat(recipient, span_notice("Good news! You are now ID verified."))
 
 // Read/write the assoc list. Player ckey maps to vetting admin ckey.
 /proc/load_agevets_from_file()
@@ -71,7 +76,7 @@ GLOBAL_PROTECT(agevetted_list)
 	var/csv_file = file("data/agevets_log.csv")
 	var/current_date = time2text(world.timeofday, "YYYY-MM-DD")
 	if(!fexists(csv_file))
-		var/csv_columns = "player_ckey,admin_ckey,datestamp,rogue_round_id\n"
+		var/csv_columns = "player_ckey,admin_ckey,datestamp,rogue_round_id"
 		WRITE_FILE(csv_file,csv_columns)
 	csv_file << "[target_ckey],[admin_ckey],[current_date],[GLOB.rogue_round_id]\n"
 
