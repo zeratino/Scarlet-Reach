@@ -44,6 +44,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	job = "Highwayman"
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_INFINITE_ENERGY, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	equipOutfit(new /datum/outfit/job/roguetown/human/species/human/northern/highwayman)
 	var/obj/item/organ/eyes/organ_eyes = getorgan(/obj/item/organ/eyes)
@@ -117,7 +118,7 @@ GLOBAL_LIST_INIT(highwayman_aggro, world.file2list("strings/rt/highwaymanaggroli
 	if(prob(25))	
 		l_hand = /obj/item/rogueweapon/shield/wood
 	if(prob(10))
-		l_hand = /obj/item/rogueweapon/shield/buckler
+		l_hand = /obj/item/rogueweapon/shield/buckler/palloy
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	if(prob(30))
 		neck = /obj/item/clothing/neck/roguetown/leather

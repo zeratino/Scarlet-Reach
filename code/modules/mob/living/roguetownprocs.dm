@@ -195,8 +195,19 @@
 				if(intenty.masteritem)
 					attacker_skill = U.mind.get_skill_level(intenty.masteritem.associated_skill)
 					prob2defend -= (attacker_skill * 20)
-					if((intenty.masteritem.wbalance > 0) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
-						prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 10) )
+					if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
+						var/spdmod = ((user.STASPD - src.STASPD) * 10)
+						var/permod = ((src.STAPER - user.STAPER) * 10)
+						var/intmod = ((src.STAINT - user.STAINT) * 3)
+						if(mind)
+							if(permod > 0)
+								spdmod -= permod
+							if(intmod > 0)
+								spdmod -= intmod
+						var/finalmod = spdmod
+						if(mind)
+							finalmod = clamp(spdmod, 0, 30)
+						prob2defend -= finalmod
 				else
 					attacker_skill = U.mind.get_skill_level(/datum/skill/combat/unarmed)
 					prob2defend -= (attacker_skill * 20)
@@ -500,7 +511,7 @@
 /mob/proc/do_parry(obj/item/W, parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.rogfat_add(parrydrain))
+		if(H.stamina_add(parrydrain))
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
 			if(src.client)
@@ -521,7 +532,7 @@
 /mob/proc/do_unarmed_parry(parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.rogfat_add(parrydrain))
+		if(H.stamina_add(parrydrain))
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))
 			if(src.client)
@@ -553,7 +564,7 @@
 		UH = user
 		I = UH.used_intent.masteritem
 	var/prob2defend = U.defprob
-	if(L.rogfat >= L.maxrogfat)
+	if(L.stamina >= L.max_stamina)
 		return FALSE
 	if(L)
 		if(H?.check_dodge_skill())
@@ -563,9 +574,9 @@
 	if(U)
 		prob2defend = prob2defend - (U.STASPD * 10)
 	if(I)
-		if(I.wbalance > 0 && U.STASPD > L.STASPD) //nme weapon is quick, so they get a bonus based on spddiff
+		if(I.wbalance == WBALANCE_SWIFT && U.STASPD > L.STASPD) //nme weapon is quick, so they get a bonus based on spddiff
 			prob2defend = prob2defend - ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
-		if(I.wbalance < 0 && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
+		if(I.wbalance == WBALANCE_HEAVY && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
 			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
 		if(UH?.mind)
 			prob2defend = prob2defend - (UH.mind.get_skill_level(I.associated_skill) * 10)
@@ -672,7 +683,7 @@
 			return FALSE
 		if(!UH?.mind) // For NPC, reduce the drained to 5 stamina
 			drained = drained_npc
-		if(!H.rogfat_add(drained))
+		if(!H.stamina_add(max(drained,5)))
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human
@@ -862,9 +873,9 @@
 		IU.take_damage(max(damage,1), BRUTE, IM.d_type)
 		visible_message(span_suicide("[src] ripostes [H] with \the [IM]!"))
 		playsound(src, 'sound/combat/clash_struck.ogg', 100)
-		var/rogfatdef = (rogfat * 100) / maxrogfat
-		var/rogfatatt = (H.rogfat * 100) / H.maxrogfat
-		if(rogfatdef > rogfatatt) 
+		var/staminadef = (stamina * 100) / max_stamina
+		var/staminaatt = (H.stamina * 100) / H.max_stamina
+		if(staminadef > staminaatt) 
 			H.apply_status_effect(/datum/status_effect/debuff/exposed, 2 SECONDS)
 			H.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
 			H.Slowdown(3)
@@ -986,9 +997,9 @@
 	apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
 
 /mob/living/carbon/human/proc/bad_guard(msg, cheesy = FALSE)
-	rogfat_add(((maxrogfat * BAD_GUARD_FATIGUE_DRAIN) / 100))
+	stamina_add(((max_stamina * BAD_GUARD_FATIGUE_DRAIN) / 100))
 	if(cheesy)	//We tried to hit someone with Guard up. Unfortunately this must be super punishing to prevent cheese.
-		rogstam_add(-((maxrogstam * BAD_GUARD_FATIGUE_DRAIN) / 100))
+		energy_add(-((max_energy * BAD_GUARD_FATIGUE_DRAIN) / 100))
 		Immobilize(2 SECONDS)
 	if(msg)
 		to_chat(src, msg)

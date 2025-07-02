@@ -54,10 +54,10 @@
 				if("Battle Axe")
 					H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
 					backr = /obj/item/rogueweapon/stoneaxe/battle
-				if("Short Sword & Heater Shield")
+				if("Short Sword & Iron Shield")
 					H.mind.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
 					H.mind.adjust_skillrank(/datum/skill/combat/shields, 1, TRUE)
-					backr = /obj/item/rogueweapon/shield/heater
+					backr = /obj/item/rogueweapon/shield/iron
 					beltr = /obj/item/rogueweapon/sword/iron/short
 			var/armors = list("Chainmaille Set","Iron Breastplate","Gambeson & Helmet")
 			var/armor_choice = input("Choose your armor.", "TAKE UP ARMOR") as anything in armors
@@ -113,7 +113,8 @@
 					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
 			H.change_stat("strength", 1)
 			H.change_stat("endurance", 1)
-			H.change_stat("speed", 2)
+			H.change_stat("intelligence", 2)
+			H.change_stat("speed", 1)
 			armor = /obj/item/clothing/suit/roguetown/armor/leather
 			head = /obj/item/clothing/head/roguetown/duelhat
 			mask = /obj/item/clothing/mask/rogue/duelmask
