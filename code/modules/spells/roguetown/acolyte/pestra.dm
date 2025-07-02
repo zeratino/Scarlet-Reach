@@ -170,7 +170,7 @@
 	antimagic_allowed = TRUE
 	recharge_time = 3 MINUTES /// Scarlet edit. Original: 2 MINUTES
 	miracle = TRUE
-	devotion_cost = 100 /// Scarlet edit. Original 30
+	devotion_cost = 200 /// Scarlet edit. Original 30
 	/// Amount of PQ gained for curing zombos
 	var/unzombification_pq = PQ_GAIN_UNZOMBIFY
 	var/is_lethal = FALSE /// Scarlet edit. Original: TRUE
