@@ -324,7 +324,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(SStriumphs.triumph_buys_enabled)
 				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=triumph_buy_menu'>Triumph Buy</a>"
 			dat += "</td>"
-			var/agevetted = user.client.check_agevet()
+			var/agevetted = user.check_agevet()
 			dat += "<td style='width:33%;text-align:right'>"
 			dat += "<a href='?_src_=prefs;preference=agevet'><b>Age Vetted:</b></a> [agevetted ? "<font color='#1cb308'>Yes!</font>" : "<font color='#aa0202'>No.</font>"]"
 			dat += "</td>"
@@ -1302,7 +1302,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		check_pq_menu(user.ckey)
 
 	else if(href_list["preference"] == "agevet")
-		if(!user.client.check_agevet())
+		if(!user.check_agevet())
 			to_chat(usr, span_warning("You are not Age Verified. To access features like Headshots, OOC Extras, and more, please go into our Discord and make a ticket to verify your age. <b>ID is a requirement.</b>"))
 		else
 			to_chat(usr, span_nicegreen("You are already Age Verified. <b>Yippee!</b>"))
@@ -1692,7 +1692,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					if(new_color)
 						highlight_color = sanitize_hexcolor(new_color)
 				if("headshot")
-					if(!user.client.check_agevet()) return
+					if(!user.check_agevet()) return
 					to_chat(user, "<span class='notice'>Please use a relatively SFW image of the head and shoulder area to maintain immersion level. Lastly, ["<span class='bold'>do not use a real life photo or use any image that is less than serious.</span>"]</span>")
 					to_chat(user, "<span class='notice'>If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser.</span>")
 					to_chat(user, "<span class='notice'>Keep in mind that the photo will be downsized to 325x325 pixels, so the more square the photo, the better it will look.</span>")
@@ -1779,7 +1779,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
 					log_game("[user] has set their OOC notes'.")
 				if("nsfw_headshot")
-					if(!user.client.check_agevet()) return
+					if(!user.check_agevet()) return
 					to_chat(user, "<span class='notice'>Finally a place to show it all.</span>")
 					var/new_nsfw_headshot_link = input(user, "Input the nsfw headshot link (https, hosts: gyazo, lensdump, imgbox, catbox):", "NSFW Headshot", nsfw_headshot_link) as text|null
 					if(new_nsfw_headshot_link == null)
@@ -1796,7 +1796,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					to_chat(user, "<span class='notice'>Successfully updated NSFW Headshot picture</span>")
 					log_game("[user] has set their NSFW Headshot image to '[nsfw_headshot_link]'.")
 				if("ooc_preview")	//Unashamedly copy pasted from human_topic.dm L:7. Sorry!
-					var/agevetted = user.client.check_agevet()
+					var/agevetted = user.check_agevet()
 					var/list/dat = list()
 					dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[real_name]</b></font></div>"
 					var/legacy_check = FALSE
@@ -1831,7 +1831,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					popup.set_content(dat.Join())
 					popup.open(FALSE)
 				if("ooc_extra")
-					if(!user.client.check_agevet()) return
+					if(!user.check_agevet()) return
 					to_chat(user, "<span class='notice'>Add a link from a suitable host (catbox, etc) to an mp3, mp4, or jpg / png file to have it embed at the bottom of your OOC notes.</span>")
 					to_chat(user, "<span class='notice'>If the link doesn't show up properly in-game, ensure that it's a direct link that opens properly in a browser.</span>")
 					to_chat(user, "<span class='notice'>Videos will be shrunk to a ~300x300 square. Keep this in mind.</span>")

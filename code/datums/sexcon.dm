@@ -97,6 +97,23 @@
 	if(!user.can_do_sex())
 		to_chat(user, "<span class='warning'>I can't do this.</span>")
 		return
+	if(!user.check_agevet())
+		to_chat(user, span_warning("Using this menu requires you to get ID verified."))
+		log_combat(user, target, "tried ERP menu without ID on")
+		return
+	if(!target.client || !target.client.prefs)
+		to_chat(user, span_warning("[target] is simply not there. I can't do this."))
+		log_combat(user, target, "tried ERP menu against d/ced")
+		return
+	if(!target.client.prefs.sexable) // Don't bang someone that dosn't want it.
+		to_chat(user, "<span class='warning'>[target] doesn't want to be touched. (Their ERP preference, in the options)</span>")
+		to_chat(target, "<span class='warning'>[user] failed to touch you. (Your ERP preference, in the options)</span>")
+		log_combat(user, target, "tried unwanted ERP menu against")
+		return
+	if(!target.check_agevet())
+		to_chat(user, span_warning("[target] is not ID verified. I cannot."))
+		log_combat(user, target, "tried ERP menu on ID-less")
+		return
 	if(!can_do_sex())
 //		to_chat(user, "<span class='warning'>I can't do this.</span>")
 		return
