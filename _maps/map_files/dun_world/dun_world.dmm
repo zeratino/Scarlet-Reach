@@ -16560,6 +16560,10 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/town/dwarfin)
+"fwl" = (
+/obj/structure/fluff/walldeco/chains,
+/turf/open/water/ocean/deep,
+/area/rogue/outdoors/beach)
 "fwp" = (
 /obj/effect/decal/mossy{
 	dir = 8
@@ -167128,7 +167132,7 @@ tXb
 tXb
 tXb
 tXb
-tXb
+fwl
 tXb
 tXb
 tXb
