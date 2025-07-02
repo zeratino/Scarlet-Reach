@@ -94,7 +94,6 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 			if(supporter)
 				to_chat(supporter, span_userdanger("NEVER DEFY ME AGAIN!"))
 				supporter.electrocute_act(5, astrata)
-				// supporter.add_curse(/datum/curse/astrata) This should IDEALLY give a curse. But we have no god-themed curses. YET.
 
 		cleanup_schism()
 
