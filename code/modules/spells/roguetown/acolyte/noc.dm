@@ -45,8 +45,8 @@
 	name = "Invisibility"
 	overlay_state = "invisibility"
 	desc = "Make another (or yourself) invisible for some time. Duration scales with the arcyne skill. Casting, attacking or being attacked will cancel the duration."
-	releasedrain = 30
-	chargedrain = 5
+	releasedrain = 60
+	chargedrain = 1
 	chargetime = 5
 	clothes_req = FALSE
 	recharge_time = 30 SECONDS
