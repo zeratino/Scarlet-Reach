@@ -1,5 +1,5 @@
 /datum/advclass/foreigner
-	name = "Foreigner"
+	name = "Eastern Traveler"
 	tutorial = "Strangers from relatively obscure lands, with completely different cultures\
 	they usually bring unique and varied fighting styles. They typically originate from Kazengun, or elsewhere."
 	allowed_sexes = list(MALE, FEMALE)
