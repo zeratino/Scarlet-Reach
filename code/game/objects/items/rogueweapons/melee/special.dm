@@ -361,7 +361,7 @@
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 	damfactor = 1.1
 	clickcd = CLICK_CD_MELEE
-	swingdelay = 10
+	swingdelay = 8
 	intent_intdamage_factor = 1.8
 	icon_state = "insmash"
 	item_d_type = "blunt"
