@@ -1,15 +1,15 @@
-/datum/advclass/orthodoxist_spellsword
+/datum/advclass/spellbreaker
 	name = "Spellbreaker"
 	tutorial = "A holy warrior of the Inquisition, dedicated to crushing unholy schools of magic and proving them lesser through the purity and might of their own faith and blade."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
-	outfit = /datum/outfit/job/roguetown/orthodoxist_spellsword
+	outfit = /datum/outfit/job/roguetown/spellbreaker
 	category_tags = list(CTAG_INQUISITION)
 
-/datum/outfit/job/roguetown/orthodoxist_spellsword
+/datum/outfit/job/roguetown/spellbreaker
 	job_bitflag = BITFLAG_CHURCH
 
-/datum/outfit/job/roguetown/orthodoxist_spellsword/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/spellbreaker/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/psicross/noc
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
@@ -25,7 +25,7 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	// Single archetype, balanced loadout
+	
 	backpack_contents = list(
 		/obj/item/roguekey/inquisition = 1,
 		/obj/item/rope/chain = 1,
@@ -56,4 +56,4 @@
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
-		H.cmode_music = 'sound/music/inquisitorcombat.ogg'
+		H.cmode_music = 'sound/music/inquisitorcombat.ogg' 
