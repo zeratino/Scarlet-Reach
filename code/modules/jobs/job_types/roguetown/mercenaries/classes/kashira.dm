@@ -13,7 +13,7 @@
 	..()
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
-	beltl = /obj/item/rogueweapon/shield/scabbard/rumacaptain
+	beltl = /obj/item/scabbard/rumacaptain
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(/obj/item/roguekey/mercenary, /obj/item/flashlight/flare/torch, /obj/item/flashlight/flare/torch/lantern)
 	H.mind.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
