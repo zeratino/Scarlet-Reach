@@ -281,14 +281,14 @@
 /obj/item/clothing/neck/roguetown/gorget/prisoner/Initialize()
 	. = ..()
 	name = "cursed collar"
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-
+	ADD_TRAIT(src, TRAIT_NO_SELF_UNEQUIP, CURSED_ITEM_TRAIT)
+/*
 /obj/item/clothing/neck/roguetown/gorget/prisoner/dropped(mob/living/carbon/human/user)
 	. = ..()
 	if(QDELETED(src))
 		return
 	qdel(src)
-
+*/
 /obj/item/clothing/neck/roguetown/gorget/cursed_collar
 	name = "cursed collar"
 	desc = "A metal collar that seems to radiate an ominous aura."
@@ -299,6 +299,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	max_integrity = 150
 	resistance_flags = FIRE_PROOF
+	ADD_TRAIT(src, TRAIT_NO_SELF_UNEQUIP, CURSED_ITEM_TRAIT)
 	slot_flags = ITEM_SLOT_NECK
 	body_parts_covered = NECK
 	prevent_crits = list()
