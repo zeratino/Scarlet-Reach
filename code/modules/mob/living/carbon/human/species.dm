@@ -990,7 +990,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	switch(H.nutrition)
 //		if(NUTRITION_LEVEL_FAT to INFINITY) //currently disabled/999999 define
-//			if(H.rogstam >= H.maxrogstam)
+//			if(H.energy >= H.max_energy)
 //				H.apply_status_effect(/datum/status_effect/debuff/fat)
 		if(NUTRITION_LEVEL_FAT to INFINITY)
 			H.add_stress(/datum/stressevent/stuffed)
@@ -1378,7 +1378,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(user.check_leg_grabbed(1) || user.check_leg_grabbed(2))
 		to_chat(user, span_notice("I can't move my leg!"))
 		return
-	if(user.rogfat >= user.maxrogfat)
+	if(user.stamina >= user.max_stamina)
 		return FALSE
 	var/stander = TRUE
 	if(!(target.mobility_flags & MOBILITY_STAND))
@@ -1442,7 +1442,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					target_table = locate(/obj/structure/table) in target_shove_turf.contents
 					shove_blocked = TRUE
 			else
-				if((stander && target.rogfat >= target.maxrogfat) || target.IsOffBalanced()) //if you are kicked while fatigued, you are knocked down no matter what
+				if((stander && target.stamina >= target.max_stamina) || target.IsOffBalanced()) //if you are kicked while fatigued, you are knocked down no matter what
 					target.Knockdown(target.IsOffBalanced() ? SHOVE_KNOCKDOWN_SOLID : 100)
 					target.visible_message(span_danger("[user.name] kicks [target.name], knocking them down!"),
 					span_danger("I'm knocked down from a kick by [user.name]!"), span_hear("I hear aggressive shuffling followed by a loud thud!"), COMBAT_MESSAGE_RANGE, user)
@@ -1503,7 +1503,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		target.lastattackerckey = user.ckey
 		if(target.mind)
 			target.mind.attackedme[user.real_name] = world.time
-		user.rogfat_add(15)
+		user.stamina_add(15)
 		target.forcesay(GLOB.hit_appends)
 		if(user.has_status_effect(/datum/status_effect/buff/clash))
 			user.bad_guard(span_warning("The kick throws my stance off!"))
@@ -1868,7 +1868,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/burn_damage
 		var/firemodifier = H.fire_stacks / 50
 		if (H.on_fire)
-			burn_damage = min(5, H.fire_stacks * 2) // Minimum of 5 damage if you are on fire. Otherwise applies 2 per stack, up to 40.
+			burn_damage = 10 + H.fire_stacks * 3 // Minimum of 10 damage if you are on fire. Applies 3 additional per stack.
 		else
 			firemodifier = min(firemodifier, 0)
 			burn_damage = max(log(2-firemodifier,(H.bodytemperature-BODYTEMP_NORMAL))-5,0) // this can go below 5 at log 2.5
@@ -2192,7 +2192,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(istype(starting_turf) && !QDELETED(starting_turf))
 		distance = get_dist(starting_turf, src)
 	if(mind)
-		skill_modifier = mind.get_skill_level(/datum/skill/misc/athletics)
+		skill_modifier = get_skill_level(/datum/skill/misc/athletics)
 	var/modifier = -distance
 	if(!prob(STASPD+skill_modifier+modifier))
 		Paralyze(15)

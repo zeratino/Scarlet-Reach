@@ -570,6 +570,11 @@
 	user.visible_message(span_warning("[user] wipes [src] down with its cloth."),span_notice("I wipe [src] down with its cloth."))
 	return
 
+/obj/item/rogueweapon/sword/long/oldpsysword
+	name = "old psydonian longsword"
+	desc = "A finely made longsword, plated in a worn-down veneer of grubby silver. It's long seen better daes."
+	icon_state = "psysword"
+
 /obj/item/rogueweapon/sword/long/psysword
 	name = "psydonian longsword"
 	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike.\
@@ -579,6 +584,7 @@
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
 	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
 	AddComponent(/datum/component/psyblessed, FALSE, 3, 100, 50, 1, TRUE)
+	
 
 /obj/item/rogueweapon/sword/iron
 	name = "iron arming sword"

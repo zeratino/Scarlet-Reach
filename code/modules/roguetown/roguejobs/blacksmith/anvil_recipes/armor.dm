@@ -391,7 +391,7 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/halfplate/fluted/ornate
-	name = "Psydonite Half-Plate Armour (+ P.Cuirass, +1 Steel, +1 Blessed Silver, +1 Cured Leather)"
+	name = "Psydonian Half-Plate Armour (+ P.Cuirass, +1 Steel, +1 Blessed Silver, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate, /obj/item/ingot/steel, /obj/item/ingot/silverblessed, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
@@ -412,14 +412,14 @@
 	craftdiff = 4
 
 /datum/anvil_recipe/armor/steel/fullplate/fluted/ornate
-	name = "Psydonite Full-Plate Armour (+ P.Half-Plate, +1 Blessed Silver, +1 Cured Leather)"
+	name = "Psydonian Full-Plate Armour (+ P.Half-Plate, +1 Blessed Silver, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate, /obj/item/ingot/silverblessed, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
 	craftdiff = 4
 
 /datum/anvil_recipe/armor/steel/fullplate/fluted/ornate/alt
-	name = "Psydonite Full-Plate Armour (+ P.Hauberk, +1 Steel, +2 Blessed Silver, +1 Cured Leather)"
+	name = "Psydonian Full-Plate Armour (+ P.Hauberk, +1 Steel, +2 Blessed Silver, +1 Cured Leather)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/ornate, /obj/item/ingot/steel, /obj/item/ingot/silverblessed, /obj/item/ingot/silverblessed, /obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
@@ -545,7 +545,7 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/steel/cuirass/fluted/ornate
-	name = "Psydonite Cuirass (+1 Blessed Silver)"
+	name = "Psydonian Cuirass (+1 Blessed Silver)"
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/silverblessed)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate

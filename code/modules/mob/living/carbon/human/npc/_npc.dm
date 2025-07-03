@@ -43,8 +43,8 @@
 	var/npc_jump_chance = 5
 	/// If the NPC's target is more than this many tiles away, they will try to leap ahead on their path.
 	var/npc_jump_distance = 4
-	/// When above this amount of stamina, the NPC will not attempt to jump.
-	var/npc_max_jump_stamina = 80
+	/// When above this amount of stamina (Stamina is stamina damage), the NPC will not attempt to jump.
+	var/npc_max_jump_stamina = 50
 
 /mob/living/carbon/human/proc/IsStandingStill()
 	return doing || resisting || pickpocketing
@@ -198,7 +198,8 @@
 		return FALSE
 	if(next_move > world.time) // Jumped too recently!
 		return FALSE
-	if(rogfat > npc_max_jump_stamina)
+	if(stamina > npc_max_jump_stamina)
+		NPC_THINK("Too little stamina to jump, skipping! My current stamina is [stamina], max is [npc_max_jump_stamina].")
 		return FALSE
 	var/turf/our_turf = get_turf(src)
 	if(our_turf.Distance_cardinal(get_turf(target), src) <= npc_jump_distance)
@@ -569,7 +570,7 @@
 			// Flee before trying to pick up a weapon.
 			if(flee_in_pain && target && (target.stat == CONSCIOUS))
 				var/paine = get_complex_pain()
-				if(paine >= ((STAEND * 10)*0.75)) // pain threshold decreased from END*10*0.9 due to all NPCs having insane END for some reason
+				if(paine >= ((STAEND * 10)*0.9)) 
 					NPC_THINK("Ouch! Entering flee mode!")
 					mode = NPC_AI_FLEE
 					m_intent = MOVE_INTENT_RUN
@@ -722,7 +723,7 @@
 	var/stam_penalty = used_intent.releasedrain
 	if(istype(rmb_intent, /datum/rmb_intent/strong) || istype(rmb_intent, /datum/rmb_intent/swift))
 		stam_penalty += 4 // as opposed to 10 for a weapon; these are your hands, it's easier to move them
-	rogfat_add(stam_penalty)
+	stamina_add(stam_penalty)
 	if(pulling != victim)
 		aftermiss()
 	rog_intent_change(1) // and back to normal intent to avoid getting stuck on grabs
@@ -761,7 +762,7 @@
 		if(prob(use_grab_chance) && the_grab.grabbee == victim) // already pulling, fuck with them a bit
 			swap_hand() // switch to grab
 			if(grab_state < GRAB_AGGRESSIVE && prob(upgrade_grab_chance)) // upgrade!
-				rogfat_add(rand(7,15))
+				stamina_add(rand(7,15))
 				victim.grippedby(src)
 				return TRUE // used our turn
 			npc_try_use_grab(victim, the_grab) // twist, smash, choke, whatever
@@ -878,10 +879,10 @@
 	if(target.mind)
 		if (world.time < target.mob_timers[MT_INVISIBILITY])
 			// we're invisible as per the spell effect, so use the highest of our arcane magic (or holy) skill instead of our sneaking
-			sneak_bonus = (max(target.mind?.get_skill_level(/datum/skill/magic/arcane), target.mind?.get_skill_level(/datum/skill/magic/holy)) * 10)
+			sneak_bonus = (max(target.get_skill_level(/datum/skill/magic/arcane), target.get_skill_level(/datum/skill/magic/holy)) * 10)
 			probby -= 20 // also just a fat lump of extra difficulty for the npc since spells are hard, you know?
 		else
-			sneak_bonus = (target.mind?.get_skill_level(/datum/skill/misc/sneaking) * 5)
+			sneak_bonus = (target.get_skill_level(/datum/skill/misc/sneaking) * 5)
 		probby -= sneak_bonus
 	if(!target.check_armor_skill())
 		probby += 85 //armor is loud as fuck

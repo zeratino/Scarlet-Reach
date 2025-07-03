@@ -181,17 +181,28 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
-	name = "fencer gambeson"
+	name = "fencing gambeson"
 	desc = "A large shirt with heavy padding meant to be used below armor. Will probably stop an arrow, unlikely to stop a bolt."
 	icon_state = "fancygamb"
 	allowed_race = NON_DWARVEN_RACE_TYPES
-	color = "#FFFFFF"
+	color = "#282e83"
+	detail_color = "#c7732f"
 	shiftable = FALSE
 	sellprice = 30
+	detail_tag = "_detail"
+
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
 	name = "padded fencing shirt"
-	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It lasts a bit less than a regular padded gambeson and won't cover your legs."
+	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It won't cover your legs."
 	max_integrity = 200		//Back to default. I think it's right if it doesn't stop you from getting legshotted.
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS
 	detail_tag = "_detail"
@@ -692,7 +703,7 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	armor_class = ARMOR_CLASS_HEAVY
 	armor = ARMOR_CUIRASS
-	name = "psydonite hauberk"
+	name = "psydonian hauberk"
 	desc = "An ornate steel cuirass with tassets, worn atop thick chainmaille. While it falters against arrows and bolts, \
 			these interlinked layers are superb at warding off the blows of inhumen claws and axes."
 	icon_state = "ornatehauberk"
@@ -773,7 +784,7 @@
 	max_integrity = 350
 
 /obj/item/clothing/suit/roguetown/armor/plate/half/fluted/ornate
-	name = "psydonite cuirass"
+	name = "psydonian cuirass"
 	icon_state = "ornatecuirass"
 	desc = "An ornate steel cuirass with tassets, favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. \
 			Made to endure."
@@ -895,7 +906,7 @@
 	..()
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
-	name = "psydonite half-plate"
+	name = "psydonian half-plate"
 	desc = "A sturdily made fluted half-plate armour-set, complete with pauldrons and shoulder-guards. \
 			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
 	icon_state = "ornatehalfplate"
@@ -943,7 +954,7 @@
 	max_integrity = 600
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate
-	name = "psydonite plate"
+	name = "psydonian plate"
 	desc = "A sturdily made fluted full-plate. Heavy-duty, and made to deflect blows from blades and arrows. \
 			Favored by both the Holy Otavan Inquisition and the Order of the Silver Psycross. It smells of the madness of an enduring God."
 	icon_state = "ornateplate"
@@ -1011,7 +1022,7 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
-	name = "full-plate corslet"
+	name = "full-plate corset"
 	desc = "Breastplate, pauldrons, couters, cuisses... did you forget something?"
 	icon_state = "platekini"
 	allowed_sex = list(FEMALE)
@@ -1067,6 +1078,18 @@
 	item_state = "corsethalfplate"
 	adjustable = CAN_CADJUST
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	detail_tag = "_detail"
+	color = "#FFFFFF"
+	detail_color = "#282e83"
+
+/obj/item/clothing/suit/roguetown/armor/plate/otavan/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/armor/plate/otavan/AdjustClothes(mob/user)
 	if(loc == user)

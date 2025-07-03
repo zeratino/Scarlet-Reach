@@ -337,7 +337,7 @@
 /datum/status_effect/buff/magearmor/on_apply()
 	. = ..()
 	playsound(owner, 'sound/magic/magearmordown.ogg', 75, FALSE)
-	duration = (7-owner.mind.get_skill_level(/datum/skill/magic/arcane)) MINUTES
+	duration = (7-owner.get_skill_level(/datum/skill/magic/arcane)) MINUTES
 
 /datum/status_effect/buff/magearmor/on_remove()
 	. = ..()
@@ -485,7 +485,7 @@
 	outline_colour = "#bbbbbb"
 
 /datum/status_effect/buff/healing/necras_vow/on_apply()
-	healing_on_tick = max(owner.mind?.get_skill_level(/datum/skill/magic/holy), 3)
+	healing_on_tick = max(owner.get_skill_level(/datum/skill/magic/holy), 3)
 	return TRUE
 
 /datum/status_effect/buff/healing/necras_vow/tick()
@@ -504,6 +504,45 @@
 		owner.adjustToxLoss(-healing_on_tick, 0)
 		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
 		owner.adjustCloneLoss(-healing_on_tick, 0)
+
+/atom/movable/screen/alert/status_effect/buff/psyhealing
+	name = "Enduring"
+	desc = "I am awash with sentimentality."
+	icon_state = "buff"
+
+#define PSYDON_HEALING_FILTER "psydon_heal_glow"
+
+/datum/status_effect/buff/psyhealing
+	id = "psyhealing"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/psyhealing
+	duration = 15 SECONDS
+	examine_text = "SUBJECTPRONOUN stirs with a sense of ENDURING!"
+	var/healing_on_tick = 1
+	var/outline_colour = "#d3d3d3"
+
+/datum/status_effect/buff/psyhealing/on_creation(mob/living/new_owner, new_healing_on_tick)
+	healing_on_tick = new_healing_on_tick
+	return ..()
+
+/datum/status_effect/buff/psyhealing/on_apply()
+	SEND_SIGNAL(owner, COMSIG_LIVING_MIRACLE_HEAL_APPLY, healing_on_tick, src)
+	var/filter = owner.get_filter(PSYDON_HEALING_FILTER)
+	if (!filter)
+		owner.add_filter(PSYDON_HEALING_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
+	return TRUE
+
+/datum/status_effect/buff/psyhealing/tick()
+	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/psyheal_rogue(get_turf(owner))
+	H.color = "#d3d3d3"
+	var/list/wCount = owner.get_wounds()
+	if(!owner.construct)
+		if(wCount.len > 0)
+			owner.heal_wounds(healing_on_tick * 1.75)
+			owner.update_damage_overlays()
+		owner.adjustOxyLoss(-healing_on_tick, 0)
+		owner.adjustToxLoss(-healing_on_tick, 0)
+		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, -healing_on_tick)
+		owner.adjustCloneLoss(-healing_on_tick, 0)		
 
 /datum/status_effect/buff/rockmuncher
 	id = "rockmuncher"
@@ -532,7 +571,11 @@
 /datum/status_effect/buff/healing/on_remove()
 	owner.remove_filter(MIRACLE_HEALING_FILTER)
 	owner.update_damage_hud()
-	
+
+/datum/status_effect/buff/psyhealing/on_remove()
+	owner.remove_filter(PSYDON_HEALING_FILTER)
+	owner.update_damage_hud()
+
 /atom/movable/screen/alert/status_effect/buff/fortify
 	name = "Fortifying Miracle"
 	desc = "Divine intervention bolsters me and aids my recovery."
@@ -971,7 +1014,7 @@
 
 /datum/status_effect/buff/bloodrage/on_apply()
 	ADD_TRAIT(owner, TRAIT_STRENGTH_UNCAPPED, TRAIT_MIRACLE)
-	var/holyskill = owner.mind?.get_skill_level(/datum/skill/magic/holy)
+	var/holyskill = owner.get_skill_level(/datum/skill/magic/holy)
 	duration = ((15 SECONDS) * holyskill)
 	var/filter = owner.get_filter(BLOODRAGE_FILTER)
 	if(!filter)

@@ -76,7 +76,7 @@
 							water_overlay.layer = BELOW_MOB_LAYER
 							water_overlay.plane = GAME_PLANE
 			var/drained = get_stamina_drain(user, get_dir(src, newloc))
-			if(drained && !user.rogfat_add(drained))
+			if(drained && !user.stamina_add(drained))
 				user.Immobilize(30)
 				addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living, Knockdown), 30), 1 SECONDS)
 
@@ -84,7 +84,6 @@
 	var/const/BASE_STAM_DRAIN = 15
 	var/const/MIN_STAM_DRAIN = 1
 	var/const/STAM_PER_LEVEL = 5
-	var/const/NPC_SWIM_LEVEL = SKILL_LEVEL_APPRENTICE
 	var/const/UNSKILLED_ARMOR_PENALTY = 40
 	if(!isliving(swimmer))
 		return 0
@@ -96,7 +95,7 @@
 		return 0 // going with the flow
 	if(swimmer.buckled)
 		return 0
-	var/swimming_skill_level = swimmer.mind ? swimmer.mind.get_skill_level(/datum/skill/misc/swimming) : NPC_SWIM_LEVEL
+	var/swimming_skill_level = swimmer.get_skill_level(/datum/skill/misc/swimming) 
 	. = max(BASE_STAM_DRAIN - (swimming_skill_level * STAM_PER_LEVEL), MIN_STAM_DRAIN)
 //	. += (swimmer.checkwornweight()*2)
 	if(!swimmer.check_armor_skill())
@@ -115,9 +114,9 @@
 	/// Mobs will heavily avoid pathing through this turf if their stamina is too low.
 	var/const/LOW_STAM_PENALTY = 7 // only go through this if we'd have to go offscreen otherwise
 	. = ..()
-	if(isliving(traverser) && !HAS_TRAIT(traverser, TRAIT_NOROGSTAM))
+	if(isliving(traverser) && !HAS_TRAIT(traverser, TRAIT_INFINITE_STAMINA))
 		var/mob/living/living_traverser = traverser
-		var/remaining_stamina = (living_traverser.maxrogfat - living_traverser.rogfat)
+		var/remaining_stamina = (living_traverser.max_stamina - living_traverser.stamina)
 		if(remaining_stamina < get_stamina_drain(living_traverser, travel_dir)) // not enough stamina reserved to cross
 			. += LOW_STAM_PENALTY // really want to avoid this unless we don't have any better options
 
@@ -237,11 +236,12 @@
 		user.visible_message(span_info("[user] starts to drink from [src]."))
 		if(do_after(L, 25, target = src))
 			var/list/waterl = list()
-			waterl[water_reagent] = 2
+			waterl[water_reagent] = 5
 			var/datum/reagents/reagents = new()
 			reagents.add_reagent_list(waterl)
 			reagents.trans_to(L, reagents.total_volume, transfered_by = user, method = INGEST)
 			playsound(user,pick('sound/items/drink_gen (1).ogg','sound/items/drink_gen (2).ogg','sound/items/drink_gen (3).ogg'), 100, TRUE)
+			onbite(user) // Auto repeat drinking
 		return
 	..()
 
@@ -262,8 +262,7 @@
 
 /turf/open/water/get_slowdown(mob/user)
 	var/returned = slowdown
-	if(user?.mind && swim_skill)
-		returned = returned - (user.mind.get_skill_level(/datum/skill/misc/swimming))
+	returned = returned - (user.get_skill_level(/datum/skill/misc/swimming))
 	return returned
 
 //turf/open/water/Initialize()

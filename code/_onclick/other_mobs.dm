@@ -37,7 +37,7 @@
 			playsound(get_turf(src), pick(GLOB.unarmed_swingmiss), 100, FALSE)
 //			src.emote("attackgrunt")
 		if(used_intent.releasedrain)
-			rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+			stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 		if(L.has_status_effect(/datum/status_effect/buff/clash) && L.get_active_held_item() && ishuman(L))
 			var/mob/living/carbon/human/H = L
 			var/obj/item/IM = L.get_active_held_item()
@@ -69,18 +69,18 @@
 				item_skip = TRUE
 		if(!item_skip)
 			if(used_intent.releasedrain && !used_intent.type == INTENT_GRAB)
-				rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+				stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 			if(used_intent.type == INTENT_GRAB)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					start_pulling(A) //add params to grab bodyparts based on loc
-					rogfat_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+					stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
 					return
 			if(used_intent.type == INTENT_DISARM)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					var/jadded = max(100-(STASTR*10),5)
-					if(rogfat_add(jadded))
+					if(stamina_add(jadded))
 						visible_message(span_info("[src] pushes [AM]."))
 						PushAM(AM, MOVE_FORCE_STRONG)
 					else
@@ -116,7 +116,7 @@
 		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
 	else
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.changeNext_move(CLICK_CD_RAPID)
 		ongive(user, params)
 
 /turf/attack_right(mob/user, params)
@@ -126,7 +126,7 @@
 		if(user.rmb_intent && istype(user.rmb_intent))
 			user.rmb_intent.special_attack(user, src)
 	else
-		user.changeNext_move(CLICK_CD_MELEE)
+		user.changeNext_move(CLICK_CD_RAPID)
 
 /atom/proc/ongive(mob/user, params)
 	return
@@ -424,7 +424,7 @@
 				if(ishuman(A))
 					var/mob/living/carbon/human/U = src
 					var/mob/living/carbon/human/V = A
-					var/thiefskill = src.mind.get_skill_level(/datum/skill/misc/stealing) + (has_world_trait(/datum/world_trait/matthios_fingers) ? 1 : 0)
+					var/thiefskill = src.get_skill_level(/datum/skill/misc/stealing) + (has_world_trait(/datum/world_trait/matthios_fingers) ? 1 : 0)
 					var/stealroll = roll("[thiefskill]d6")
 					var/targetperception = (V.STAPER)
 					var/list/stealablezones = list("chest", "neck", "groin", "r_hand", "l_hand")
@@ -502,7 +502,7 @@
 				if(ranged_ability?.InterceptClickOn(src, params, A))
 					changeNext_move(mmb_intent.clickcd)
 					if(mmb_intent.releasedrain)
-						rogfat_add(mmb_intent.releasedrain)
+						stamina_add(mmb_intent.releasedrain)
 				return
 
 //Return TRUE to cancel other attack hand effects that respect it.
@@ -669,12 +669,12 @@
 	var/flip_direction = FLIP_DIRECTION_CLOCKWISE
 	var/prev_pixel_z = pixel_z
 	var/prev_transform = transform
-	if(mind && mind.get_skill_level(/datum/skill/misc/athletics) > 4)
+	if(get_skill_level(/datum/skill/misc/athletics) > 4)
 		do_a_flip = TRUE
 		if((dir & SOUTH) || (dir & WEST))
 			flip_direction = FLIP_DIRECTION_ANTICLOCKWISE
 
-	if(rogfat_add(min(jadded,100)))
+	if(stamina_add(min(jadded,100)))
 		if(do_a_flip)
 			var/flip_angle = flip_direction ? 120 : -120
 			animate(src, pixel_z = pixel_z + 6, transform = turn(transform, flip_angle), time = 1)
@@ -725,7 +725,7 @@
 			var/obj/structure/AM = A
 			if(istype(AM) && !AM.anchored)
 				var/jadded = max(100-(STASTR*10),5)
-				if(rogfat_add(jadded))
+				if(stamina_add(jadded))
 					visible_message(span_info("[src] pushes [AM]."))
 					PushAM(AM, MOVE_FORCE_STRONG)
 				else
@@ -783,13 +783,6 @@
 			ML.visible_message(span_danger("[src]'s bite misses [ML]!"), \
 							span_danger("I avoid [src]'s bite!"), span_hear("I hear jaws snapping shut!"), COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, span_danger("My bite misses [ML]!"))
-
-/*
-	True Devil
-*/
-
-/mob/living/carbon/true_devil/UnarmedAttack(atom/A, proximity)
-	A.attack_hand(src)
 
 /*
 	Brain
