@@ -1,4 +1,4 @@
-/obj/item/scabbard
+/obj/item/rogueweapon/shield/scabbard
 	name = "simple scabard"
 	desc = ""
 
@@ -20,8 +20,7 @@
 	max_integrity = 150
 	blade_dulling = DULLING_BASHCHOP
 	anvilrepair = /datum/skill/craft/blacksmithing
-	sellprice = 3
-	COOLDOWN_DECLARE(shield_bang)
+	sellprice = 10
 	w_class = WEIGHT_CLASS_BULKY
 	associated_skill = /datum/skill/combat/shields
 	force = 15
@@ -31,14 +30,14 @@
 	var/sheathe_time = 0.1 SECONDS
 	var/spawn_with = FALSE
 
-/obj/item/scabbard/Initialize()
+/obj/item/rogueweapon/shield/scabbard/Initialize()
 	..()
 	if(spawn_with)
 		sheathed = new valid_sword(src)
 	
 	update_icon()
 
-/obj/item/scabbard/attack_turf(turf/T, mob/living/user)
+/obj/item/rogueweapon/shield/scabbard/attack_turf(turf/T, mob/living/user)
 	to_chat(user, span_notice("I search for my sword..."))
 	for(var/obj/item/rogueweapon/sword/sword in T.contents)
 		if(eatsword(user, sword))
@@ -46,7 +45,7 @@
 	
 	..()
 
-/obj/item/scabbard/proc/eatsword(mob/living/user, obj/A)
+/obj/item/rogueweapon/shield/scabbard/proc/eatsword(mob/living/user, obj/A)
 	if(obj_broken)
 		user.visible_message(
 			span_warning("[user] begins to force [A] into [src]!"),
@@ -73,7 +72,7 @@
 	)
 	return TRUE
 
-/obj/item/scabbard/proc/pukesword(mob/living/user)
+/obj/item/rogueweapon/shield/scabbard/proc/pukesword(mob/living/user)
 	if(!sheathed)
 		return FALSE
 	if(obj_broken)
@@ -95,32 +94,33 @@
 		span_warning("[user] draws out of [src]!"),
 		span_notice("I draw out [src].")
 	)
+	playsound(user, 'sound/misc/scabbard_unsheath.ogg', 100, TRUE)
 	return TRUE
 
-/obj/item/scabbard/attack_right(mob/user)
+/obj/item/rogueweapon/shield/scabbard/attack_right(mob/user)
 	if(sheathed)
 		pukesword(user)
+	else
+		..()
 
-	..()
-
-/obj/item/scabbard/attackby(obj/item/I, mob/user, params)
+/obj/item/rogueweapon/shield/scabbard/attackby(obj/item/I, mob/user, params)
 	if(istype(I, valid_sword))
 		eatsword(user, I)
+	else
+		..()
 
-	..()
-
-/obj/item/scabbard/examine(mob/user)
-	..()
+/obj/item/rogueweapon/shield/scabbard/examine(mob/user)
+	. = ..()
 	if(sheathed)
 		. += span_notice("The sheath is occupied by [sheathed].")
 
-/obj/item/scabbard/update_icon()
+/obj/item/rogueweapon/shield/scabbard/update_icon()
 	if(sheathed)
 		icon_state = "[initial(icon_state)]1"
 	else
 		icon_state = "[initial(icon_state)]0"
 
-/obj/item/scabbard/getonmobprop(tag) //NEEDS ADJUSTMENTS
+/obj/item/rogueweapon/shield/scabbard/getonmobprop(tag) //NEEDS ADJUSTMENTS
 	. = ..()
 	if(tag)
 		switch(tag)
@@ -133,21 +133,21 @@
 //MULYEOG
 
 
-/obj/item/scabbard/mulyeog //Empty scabbard.
+/obj/item/rogueweapon/shield/scabbard/mulyeog //Empty scabbard.
 	name = "simple scabbard"
 	desc = "A piece of steel lined with wood. Great for batting away blows."
 	icon_state = "simplescab"
 	item_state = "simplescab"
 	valid_sword = /obj/item/rogueweapon/sword/sabre/mulyeog
 
-/obj/item/scabbard/rumahench
+/obj/item/rogueweapon/shield/scabbard/rumahench
 	name = "lenticular scabbard"
 	desc = "A cloud-patterned scabard with a cloth sash. Used for blocking."
 	icon_state = "steelscab"
 	item_state = "steelscab"
 	valid_sword = /obj/item/rogueweapon/sword/sabre/mulyeog/rumahench
 
-/obj/item/scabbard/rumacaptain
+/obj/item/rogueweapon/shield/scabbard/rumacaptain
 	name = "gold-stained scabbard"
 	desc = "An ornate, wooden scabbard with a sash. Great for parrying."
 	icon_state = "goldscab"
