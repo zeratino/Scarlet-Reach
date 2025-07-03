@@ -1,5 +1,5 @@
 GLOBAL_VAR_INIT(ambush_chance_pct, 20) // Please don't raise this over 100 admins :')
-GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 3 MINUTES) // Cooldown for each individual mob being considered for an ambush
+GLOBAL_VAR_INIT(ambush_mobconsider_cooldown, 5 MINUTES) // Cooldown for each individual mob being considered for an ambush
 
 /mob/living/proc/ambushable()
 	if(stat)
