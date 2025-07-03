@@ -50,10 +50,6 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/axes, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 		H.change_stat("strength", 3)
 		H.change_stat("endurance", 3)
 		H.change_stat("constitution", 3)
@@ -70,17 +66,17 @@
 		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Steel Greataxe")
-				H.mind.adjust_skillrank(/datum/skill/combat/axes, 1, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
 				beltr = /obj/item/rogueweapon/greataxe/steel
 			if("Longsword")
-				H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				beltr = /obj/item/rogueweapon/sword/long
 			if("Steel Mace")
-				H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 				beltr = /obj/item/rogueweapon/mace/steel
 			if("Spear")
-				H.mind.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
-				r_hand = /obj/item/rogueweapon/spear
+				H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+				backr = /obj/item/rogueweapon/spear
 			if ("MY BARE HANDS!!!")
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
