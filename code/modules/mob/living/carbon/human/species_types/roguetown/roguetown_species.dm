@@ -19,6 +19,8 @@
 			return strings("proper_replacement.json", type, convert_HTML = TRUE)
 		if("Lizard accent")
 			return strings("brazillian_replacement.json", type, convert_HTML = TRUE)
+		if("Lupian accent")
+			return strings("polish_replacement.json", type, convert_HTML = TRUE)
 		if("Tiefling accent")
 			return strings("spanish_replacement.json", type, convert_HTML = TRUE)
 		if("Half Orc accent")
