@@ -181,17 +181,28 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
-	name = "fencer gambeson"
+	name = "fencing gambeson"
 	desc = "A large shirt with heavy padding meant to be used below armor. Will probably stop an arrow, unlikely to stop a bolt."
 	icon_state = "fancygamb"
 	allowed_race = NON_DWARVEN_RACE_TYPES
-	color = "#FFFFFF"
+	color = "#282e83"
+	detail_color = "#c7732f"
 	shiftable = FALSE
 	sellprice = 30
+	detail_tag = "_detail"
+
+/obj/item/clothing/suit/roguetown/armor/heavy/otavan/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/freifechter
 	name = "padded fencing shirt"
-	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It lasts a bit less than a regular padded gambeson and won't cover your legs."
+	desc = "A strong quilted shirt that places little weight on the arms, it's worn underneath a strong leather vest. It won't cover your legs."
 	max_integrity = 200		//Back to default. I think it's right if it doesn't stop you from getting legshotted.
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS
 	detail_tag = "_detail"
@@ -1011,7 +1022,7 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
-	name = "full-plate corslet"
+	name = "full-plate corset"
 	desc = "Breastplate, pauldrons, couters, cuisses... did you forget something?"
 	icon_state = "platekini"
 	allowed_sex = list(FEMALE)
@@ -1067,6 +1078,18 @@
 	item_state = "corsethalfplate"
 	adjustable = CAN_CADJUST
 	allowed_race = NON_DWARVEN_RACE_TYPES
+	detail_tag = "_detail"
+	color = "#FFFFFF"
+	detail_color = "#282e83"
+
+/obj/item/clothing/suit/roguetown/armor/plate/otavan/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/armor/plate/otavan/AdjustClothes(mob/user)
 	if(loc == user)
