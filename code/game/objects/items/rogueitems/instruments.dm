@@ -1,7 +1,7 @@
 /datum/looping_sound/instrument
-	mid_length = 2400 // 4 minutes for some reason. better would be each song having a specific length
+	mid_length = 120000 // 20 minutes. Previously 4 minutes for no reason. Songs are restricted to 6 megs. If you have twenty minutes of mono low bitrate or one minute of studio quality orchestra, it makes no difference to the server.
 	volume = 100
-	extra_range = 5
+	extra_range = 10	// Increase sound range.
 	persistent_loop = TRUE
 	var/stress2give = /datum/stressevent/music
 	sound_group = /datum/sound_group/instruments //reserves sound channels for up to 10 instruments at a time
@@ -163,7 +163,7 @@
 				soundloop.cursound = null
 				soundloop.start()
 				user.apply_status_effect(/datum/status_effect/buff/playing_music, stressevent, note_color)
-				GLOB.blackmoor_round_stats[STATS_SONGS_PLAYED]++
+				GLOB.scarlet_round_stats[STATS_SONGS_PLAYED]++
 			else
 				playing = FALSE
 				groupplaying = FALSE

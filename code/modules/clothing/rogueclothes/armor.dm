@@ -321,7 +321,16 @@
 	desc = "A thick robe intervowen with spell-laced fabrics. Thick and protective while remaining light and breezy; the perfect gear for protecting one from the threats of the sun, the desert and the daemons, yet still allowing one to cast spells aptly."
 	naledicolor = TRUE
 	shiftable = FALSE
-
+	
+/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/grey
+	name = "hierophant's shawl"
+	icon_state = "desertrobe"
+	item_state = "desertrobe"
+	desc = "A thick robe intervowen with spell-laced fabrics. Thick and protective while remaining light and breezy; the perfect gear for protecting one from the threats of the sun, the desert and the daemons, yet still allowing one to cast spells aptly."
+	naledicolor = FALSE
+	shiftable = FALSE
+	color = CLOTHING_GREY
+	
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex
 	name = "pontifex's kaftan"
 	icon_state = "monkleather"
@@ -364,7 +373,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/hide/warden
 	name = "forestry armor"
-	desc = "A light armor worn by the Wardens of Blackmoor. Far more durable than leather."
+	desc = "A light armor worn by the Wardens of Scarlet Reach. Far more durable than leather."
 	icon = 'icons/roguetown/clothing/special/warden.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/warden.dmi'
 	icon_state = "foresthide"
@@ -674,6 +683,7 @@
 	armor_class = ARMOR_CLASS_LIGHT //placed in the medium category to keep it with its parent obj
 
 /obj/item/clothing/suit/roguetown/armor/plate/bikini
+	slot_flags = ITEM_SLOT_ARMOR
 	name = "half-plate corslet"
 	desc = "A high breastplate and hip armor allowing flexibility and great protection, save for the stomach."
 	body_parts_covered = CHEST|GROIN
@@ -683,6 +693,8 @@
 	max_integrity = 300	// Identical to steel cuirasss. Same steel price.
 	allowed_sex = list(FEMALE)
 	armor_class = ARMOR_CLASS_MEDIUM
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 
 /obj/item/clothing/suit/roguetown/armor/plate/half
@@ -956,6 +968,7 @@
 
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
+	slot_flags = ITEM_SLOT_ARMOR
 	name = "full-plate corslet"
 	desc = "Breastplate, pauldrons, couters, cuisses... did you forget something?"
 	icon_state = "platekini"
@@ -965,6 +978,8 @@
 	unequip_delay_self = 8 SECONDS
 	equip_delay_other = 3 SECONDS
 	strip_delay = 6 SECONDS
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 3
 
 /obj/item/clothing/suit/roguetown/armor/heartfelt/lord

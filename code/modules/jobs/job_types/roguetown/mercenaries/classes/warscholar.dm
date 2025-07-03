@@ -154,19 +154,18 @@
 			H.change_stat("intelligence", 3)
 			H.change_stat("speed", 2)
 			r_hand = /obj/item/rogueweapon/woodstaff/naledi
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/magered
-
-			mask = /obj/item/clothing/mask/rogue/lordmask/tarnished
+			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/grey
+			mask = /obj/item/clothing/mask/rogue/lordmask/naledi
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
-			pants = /obj/item/clothing/under/roguetown/trou/leather
-			shoes = /obj/item/clothing/shoes/roguetown/boots
-			gloves = /obj/item/clothing/gloves/roguetown/angle
+			pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
+			shoes = /obj/item/clothing/shoes/roguetown/sandals
+			gloves = /obj/item/clothing/gloves/roguetown/angle/pontifex
 			backr = /obj/item/storage/backpack/rogue/satchel/black
 			head = /obj/item/clothing/head/roguetown/roguehood/shalal/black
 			cloak = /obj/item/clothing/cloak/half
 			H.grant_language(/datum/language/celestial)
-			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
+			shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
 
 			backpack_contents = list(/obj/item/roguekey/mercenary,/obj/item/rogueweapon/huntingknife, /obj/item/storage/belt/rogue/surgery_bag)
 			
