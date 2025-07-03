@@ -1009,7 +1009,7 @@
 	buckle_requires_restraints = 1
 	buckle_prevents_pull = 1
 	var/divine = TRUE
-	obj_flags = UNIQUE_RENAME
+	obj_flags = UNIQUE_RENAME | CAN_BE_HIT
 
 /obj/structure/fluff/psycross/post_buckle_mob(mob/living/M)
 	..()
@@ -1174,6 +1174,7 @@
 					A.burn()
 					return
 	return ..()
+
 
 /obj/structure/fluff/psycross/copper/Destroy()
 	addomen("psycross")
