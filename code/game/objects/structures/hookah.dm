@@ -21,7 +21,22 @@
 
 /obj/structure/shisha/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/reagent_containers/food/snacks/grown))
+	if(istype(I, /obj/item/reagent_containers/powder)) // Accepts all powders. Flour included.
+		var/obj/item/reagent_containers/powder/powder = I
+		if(!powder.reagents?.total_volume)
+			to_chat(user, span_notice("[I] is useless for shisha."))
+			return
+
+		if(reagents.maximum_volume < reagents.total_volume + powder.reagents.total_volume)
+			to_chat(user, span_notice("[src] is already tightly packed."))
+			return
+
+		to_chat(user, span_notice("I pack [src] with [powder]."))
+		powder.reagents.trans_to(reagents, powder.reagents.total_volume, transfered_by = user)
+		user.dropItemToGround(powder)
+		qdel(powder)
+
+	else if(istype(I, /obj/item/reagent_containers/food/snacks/grown))
 		var/obj/item/reagent_containers/food/snacks/grown/tobacco = I
 		if(!tobacco.pipe_reagents?.len)
 			to_chat(user, span_notice("[I] is useless for shisha."))
@@ -39,7 +54,7 @@
 		user.dropItemToGround(tobacco)
 		qdel(tobacco)
 
-	if(I == mouthpiece)
+	else if(I == mouthpiece)
 		reattach_mouthpiece()
 
 /obj/structure/shisha/attack_hand(mob/user)
@@ -106,6 +121,7 @@
 	noaa = TRUE
 	candodge = FALSE
 	misscost = 0
+	no_attack = TRUE
 
 /obj/item/hookah_mouthpiece/Initialize(mapload)
 	. = ..()
