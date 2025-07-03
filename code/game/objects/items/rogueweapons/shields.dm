@@ -272,8 +272,8 @@
 	coverage = 10
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
-	max_integrity = 300
-	blade_dulling = DULLING_BASH
+	max_integrity = 180
+	blade_dulling = DULLING_SHAFT_CONJURED
 	associated_skill = /datum/skill/combat/shields
 	grid_width = 32
 	grid_height = 64
