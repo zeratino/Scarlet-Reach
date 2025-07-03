@@ -312,7 +312,7 @@
 	desc = "An object once before its time, now out of it. The artisan's hammerstrikes are still visible in the mottled surface, yet \
 	the encroach of rust and rot threatens even this memory."
 	icon_state = "ancient_buckler"
-	max_integrity = 180
+	max_integrity = 80
 	smeltresult = /obj/item/ingot/purifiedaalloy
 
 /obj/item/rogueweapon/shield/heater
