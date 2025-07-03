@@ -7,7 +7,7 @@
 	category_tags = list(CTAG_WRETCH)
 
 /datum/outfit/job/roguetown/wretch/lunacyembracer/pre_equip(mob/living/carbon/human/H)
-
+	allowed_patrons = list(/datum/patron/divine/dendor)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MAJOR)
 
