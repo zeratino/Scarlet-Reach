@@ -43,7 +43,7 @@
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -78,7 +78,7 @@
 				H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
 				backr = /obj/item/rogueweapon/spear
 			if ("MY BARE HANDS!!!")
-				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 				beltr = /obj/item/rogueweapon/katar
 				backpack_contents += list(/obj/item/rogueweapon/knuckles/eora = 1)
