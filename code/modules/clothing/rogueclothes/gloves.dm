@@ -11,6 +11,9 @@
 	max_heat_protection_temperature = 361
 	experimental_inhand = FALSE
 
+	/// Unarmed damage multiplier (for pure fists / wrestling only)
+	var/unarmed_bonus = 1
+
 /obj/item/clothing/gloves/roguetown/leather
 	name = "leather gloves"
 	desc = ""
@@ -164,6 +167,7 @@
 
 	grid_width = 64
 	grid_height = 32
+	unarmed_bonus = 1.2
 
 /obj/item/clothing/gloves/roguetown/plate/aalloy
 	name = "decrepit plate gauntlets"
