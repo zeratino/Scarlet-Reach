@@ -111,7 +111,12 @@
 		return TRUE
 
 /mob/living/carbon/human/get_punch_dmg()
-	var/damage = STASTR
+
+	var/damage
+	if(STASTR > UNARMED_DAMAGE_DEFAULT || STASTR < 10)
+		damage = STASTR
+	else
+		damage = UNARMED_DAMAGE_DEFAULT
 
 	var/used_str = STASTR
 
