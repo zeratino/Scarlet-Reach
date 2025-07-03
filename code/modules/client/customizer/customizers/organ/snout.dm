@@ -10,7 +10,7 @@
 
 /datum/customizer/organ/snout/lizard
 	allows_disabling = TRUE
-	default_disabled = TRUE
+	default_disabled = FALSE
 	customizer_choices = list(/datum/customizer_choice/organ/snout/lizard)
 
 /datum/customizer_choice/organ/snout/lizard
