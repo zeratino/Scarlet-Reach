@@ -64,7 +64,7 @@
 		/datum/customizer/organ/wings/dracon,
 		/datum/customizer/organ/tail/lizard,
 		/datum/customizer/organ/tail_feature/lizard_spines,
-		/datum/customizer/organ/snout/anthro,
+		/datum/customizer/organ/snout/lizard,
 		/datum/customizer/organ/ears/lizard,
 		/datum/customizer/organ/frills/lizard,
 		/datum/customizer/organ/horns/humanoid,
