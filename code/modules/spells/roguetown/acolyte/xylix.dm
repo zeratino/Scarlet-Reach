@@ -40,7 +40,7 @@
 /obj/effect/proc_holder/spell/invoked/mastersillusion/cast(list/targets, mob/living/carbon/human/user = usr)
 	if(firstcast)
 		to_chat(user, span_italics("...Oh, oh, thy visage is so grand! Let us prepare it for tricks!"))
-		clone_icon = get_flat_human_icon("[user.real_name] decoy", null, user.client?.prefs, DUMMY_HUMAN_SLOT_MANIFEST, GLOB.cardinals, TRUE, user) // We can only set our decoy icon once. This proc is sort of expensive on generation.
+		clone_icon = get_flat_human_icon("[user.real_name] decoy", null, null, DUMMY_HUMAN_SLOT_MANIFEST, GLOB.cardinals, TRUE, user, TRUE) // We can only set our decoy icon once. This proc is sort of expensive on generation.
 		firstcast = FALSE
 		name = "Master's Illusion"
 		to_chat(user, "There we are... Perfect.")

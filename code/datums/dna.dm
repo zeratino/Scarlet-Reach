@@ -48,6 +48,9 @@
 	destination.dna.features = features.Copy()
 	destination.dna.real_name = real_name
 	destination.dna.temporary_mutations = temporary_mutations.Copy()
+	destination.dna.organ_dna = organ_dna.Copy()
+	destination.dna.body_markings = body_markings.Copy()
+	destination.dna.update_body_size()
 
 /datum/dna/proc/copy_dna(datum/dna/new_dna)
 	new_dna.unique_enzymes = unique_enzymes
