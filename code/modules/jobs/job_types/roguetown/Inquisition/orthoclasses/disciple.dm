@@ -71,6 +71,7 @@
 			if("Longsword")
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				beltr = /obj/item/rogueweapon/greatsword/zwei
+				backl = /obj/item/gwstrap
 			if("Steel Mace")
 				H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 				beltr = /obj/item/rogueweapon/mace/steel
