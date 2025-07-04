@@ -1044,19 +1044,15 @@
 	id = "psydonic_endurance"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/psydonic_endurance
 	effectedstats = list("constitution" = 1,"endurance" = 1) 
-	/// Whether we added TRAIT_HEAVYARMOR to the user and need to remove or not.
-	var/added_trait = FALSE
 
 /datum/status_effect/buff/psydonic_endurance/on_apply()
 	. = ..()
 	if(HAS_TRAIT(owner, TRAIT_MEDIUMARMOR) && !HAS_TRAIT(owner, TRAIT_HEAVYARMOR))
-		ADD_TRAIT(owner, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-		added_trait = TRUE
+		ADD_TRAIT(owner, TRAIT_HEAVYARMOR, src)
 
 /datum/status_effect/buff/psydonic_endurance/on_remove()
 	. = ..()
-	if(added_trait)
-		REMOVE_TRAIT(owner, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+	REMOVE_TRAIT(owner, TRAIT_HEAVYARMOR, src)
 
 /atom/movable/screen/alert/status_effect/buff/psydonic_endurance
 	name = "Psydonic Endurance"
