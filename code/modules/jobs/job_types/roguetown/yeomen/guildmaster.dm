@@ -7,7 +7,6 @@
 	spawn_positions = 1
 	min_pq = 0
 	selection_color = JCOLOR_YEOMAN
-	advclass_cat_rolls = list(CTAG_GUILDMASTER = 20)
 
 	allowed_races = RACES_ALL_KINDS
 
