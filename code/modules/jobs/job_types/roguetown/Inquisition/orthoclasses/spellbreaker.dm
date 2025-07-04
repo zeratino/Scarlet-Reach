@@ -51,7 +51,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/counterspell)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/orison)
-		H.mind.adjust_spellpoints(9)
+		H.mind.adjust_spellpoints(12)
 		ADD_TRAIT(H, TRAIT_ARCYNE_T3, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
