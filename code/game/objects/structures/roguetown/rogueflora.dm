@@ -374,7 +374,7 @@
 			user.visible_message(span_warning("[user] searches through [src]."))
 			if(looty.len)
 				attack_hand(user)
-			else
+			if(!looty.len)
 				to_chat(user, span_warning("Picked clean... I should try later."))
 
 /obj/structure/flora/roguegrass/bush/update_icon()
