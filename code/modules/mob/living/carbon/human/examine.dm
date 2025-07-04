@@ -238,7 +238,10 @@
 
 	if(wear_shirt && !(SLOT_SHIRT in obscured))
 		if(!wear_armor)
-			. += "[m3] [wear_shirt.get_examine_string(user)]."
+			var/str = "[m3] [wear_shirt.get_examine_string(user)]."
+			if(!is_stupid)
+				str += " [wear_shirt.integrity_check()]"
+			. += str
 		else
 			if(is_smart)
 				var/str = "[m3] [wear_shirt.get_examine_string(user)]. "
