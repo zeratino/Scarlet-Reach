@@ -611,6 +611,7 @@
 	climbable = FALSE
 	dir = SOUTH
 	debris = list(/obj/item/natural/fibers = 1)
+	max_integrity = 9999 // From base 1. So antag don't get to destroy it easily :).
 	var/list/looty = list()
 	var/bushtype
 	var/res_replenish
