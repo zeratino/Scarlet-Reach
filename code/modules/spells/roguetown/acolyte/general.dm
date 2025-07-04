@@ -331,7 +331,7 @@
 		var/healing = 2.5
 		if(target.has_status_effect(/datum/status_effect/buff/stasis))
 			healing += 2.5
-		
+		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			var/obj/item/bodypart/target_limb = get_most_damaged_limb(H)
@@ -339,10 +339,6 @@
 				// Heal the most damaged/bleeding limb
 				target_limb.heal_damage(healing * 10, healing * 10) // Convert healing to damage values
 				H.update_damage_overlays()
-			else
-				target.apply_status_effect(/datum/status_effect/buff/healing, healing)
-		else
-			target.apply_status_effect(/datum/status_effect/buff/healing, healing)
 		return TRUE
 	revert_cast()
 	return FALSE
