@@ -67,7 +67,7 @@
 		switch(weapon_choice)
 			if("Steel Greataxe")
 				H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-				beltr = /obj/item/rogueweapon/greataxe/steel
+				r_hand = /obj/item/rogueweapon/greataxe/steel
 			if("Longsword")
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				r_hand = /obj/item/rogueweapon/greatsword/zwei
@@ -77,7 +77,7 @@
 				beltr = /obj/item/rogueweapon/mace/steel
 			if("Spear")
 				H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
-				backr = /obj/item/rogueweapon/spear
+				r_hand = /obj/item/rogueweapon/spear
 			if("Sword & Shield")
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
@@ -86,6 +86,7 @@
 			if ("MY BARE HANDS!!!")
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_STRONGBITE, TRAIT_GENERIC)
 				beltr = /obj/item/rogueweapon/katar
 				backpack_contents += list(/obj/item/rogueweapon/knuckles/eora = 1)
 
