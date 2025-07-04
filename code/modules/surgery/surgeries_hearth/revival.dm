@@ -51,7 +51,7 @@
 		return FALSE
 	if(istype(user, /mob/living)) {
 		var/mob/living/LU = user
-		if(ispath(LU.patron?.type, /datum/patron/divine) && target.real_name in GLOB.excommunicated_players) {
+		if(ispath(LU.patron?.type, /datum/patron/divine) && (target.real_name in GLOB.excommunicated_players)) {
 			display_results(user, target,
 				span_warning("The lux recoils! Necra is not willing to return [target]'s soul."),
 				"[user] tries to infuse [target] with lux, but it refuses to take.",
