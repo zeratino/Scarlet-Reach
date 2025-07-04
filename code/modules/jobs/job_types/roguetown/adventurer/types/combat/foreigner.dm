@@ -74,4 +74,6 @@
 			H.set_blindness(0)
 			H.cmode_music = 'sound/music/combat_kazengite.ogg'
 
+	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC) //same thing the merc's have. hopefully this encourages people to keep their eastern look and not just ditch their jacket for a gambeson or leather armor
 	H.grant_language(/datum/language/kazengunese)
