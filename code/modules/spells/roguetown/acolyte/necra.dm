@@ -129,7 +129,7 @@
 	anchored = TRUE
 	density = FALSE
 	var/mob/living/caster // stores the caster. obviously.
-	var/mob/living/trapped // stores the trapped.
+	var/list/trapped = list()// stores the trapped.
 	var/time_id
 	var/dispelled = FALSE //Safety check
 
@@ -163,19 +163,22 @@
 /obj/structure/underworld_portal/Destroy()
 	if(dispelled == FALSE)//Only do this if we DON'T close it ourselves,that means something ELSE -FUNNY- happend.
 		visible_message(span_revenwarning("The portal collapses with an angry hiss."))
-		spitout_mob(caster, loc)
+		if(trapped)
+			for(var/mob/living/inportal in trapped)
+				spitout_mob(inportal, src.loc)
 	..()
 
 /obj/structure/underworld_portal/attack_right(mob/living/carbon/user, list/modifiers)
 	..()
 	if(user == caster)
 		if(trapped)
-			spitout_mob(trapped)
-			user.visible_message(
-						span_revenwarning("[user] gestures thier hand at the gateway to expel what is within."),
-						span_purple("I gesture at the gateway to release whatever is inside.")
-						)
-	return TRUE
+			for(var/mob/living/inportal in trapped)
+				spitout_mob(inportal)
+				user.visible_message(
+							span_revenwarning("[user] gestures thier hand at the gateway to expel what is within."),
+							span_purple("I gesture at the gateway to release whatever is inside.")
+							)
+			return TRUE
 
 /obj/structure/underworld_portal/MouseDrop_T(atom/movable/O, mob/living/user)
 	if(!isliving(O))
@@ -207,7 +210,7 @@
 		span_revenwarning("[user] slips through the portal. Silence follows."),
 		span_purple("I touch the doorway. I slip through, and the world is silent and dark. I hear the distant rattle of a passing carriage.")
 		)
-	trapped = user
+	trapped += user
 	user.forceMove(src)
 	ADD_TRAIT(user, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
 	ADD_TRAIT(user, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
@@ -222,20 +225,20 @@
 		forceMove(T)
 
 	if(dispelled == TRUE)//dispelled at the caster, this is the case of we do not recast out dispelled portal and its been five minutes.
-		trapped.forceMove(caster.loc)
+		user.forceMove(caster.loc)
 		dispelled = FALSE
 	else
-		trapped.forceMove(loc)
+		user.forceMove(loc)
 	if(time_id)
 		deltimer(time_id)
-	trapped.visible_message(
-		span_revenwarning("[trapped] slips out from the whispering portal. Shadow roils off their form like smoke."),
+	user.visible_message(
+		span_revenwarning("[user] slips out from the whispering portal. Shadow roils off their form like smoke."),
 		span_purple("I am pulled from Necra's realm. Air fills my lungs, my heart starts beating- I live.")
 		)
-	trapped.remove_client_colour(/datum/client_colour/monochrome)
-	REMOVE_TRAIT(trapped, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
-	REMOVE_TRAIT(trapped, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
-	trapped = null//user may call the caster at times so we want to call trapped first then null this last thing.
+	user.remove_client_colour(/datum/client_colour/monochrome)
+	REMOVE_TRAIT(user, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+	REMOVE_TRAIT(user, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+	trapped -= user
 	return TRUE
 
 /obj/structure/underworld_portal/container_resist(mob/living/user)
