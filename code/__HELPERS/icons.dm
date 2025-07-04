@@ -1055,7 +1055,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 
 			if(copy_appearance)
 				human_gear_override.dna.transfer_identity(body)
-				body.updateappearance(mutcolor_update=1, mutations_overlay_update=1)
+				body.updateappearance(icon_update=1, mutcolor_update=1)
 		else if(J)
 			J.equip(body, TRUE, FALSE, outfit_override = outfit_override)
 		else if (outfit_override)
