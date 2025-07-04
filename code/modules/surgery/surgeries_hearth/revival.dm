@@ -49,6 +49,13 @@
 			"[user] works the lux into [target]'s innards.",
 			"[user] works the lux into [target]'s innards.")
 		return FALSE
+	if(user.patron?.type in ALL_DIVINE_PATRONS && target.real_name in GLOB.excommunicated_players)
+		display_results(user, target,
+			span_warning("The lux recoils! [target]'s soul is excommunicated and cannot be revived by the Ten."),
+			"[user] tries to infuse [target] with lux, but it refuses to take.",
+			"[user] tries to infuse [target] with lux, but it refuses to take.")
+		target.visible_message(span_danger("[target]'s body convulses violently, rejecting the light!"), span_warning("Something is terribly wrong..."))
+		return FALSE
 	if (target.mind)
 		if(alert(target, "Are you ready to face the world, once more?", "Revival", "I must go on", "Let me rest") != "I must go on")
 			display_results(user, target, span_notice("[target]'s heart refuses the lux. They're only in sweet dreams, now."),
