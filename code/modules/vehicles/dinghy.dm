@@ -18,7 +18,7 @@
 
 /obj/item/rogueweapon/mace/oar
 	name = "oar"
-	desc = "A wooden "
+	desc = "A wooden club with a flattened head for paddling boats about."
 	icon = 'icons/obj/boat_accessories.dmi'
 	icon_state = "oar"
 	gripped_intents = null
@@ -27,7 +27,7 @@
 	smeltresult = null
 
 /datum/crafting_recipe/oar
-	name = "Oar"
+	name = "Oar (1 Log, 2 Fibers)"
 	result = /obj/item/rogueweapon/mace/oar
 	reqs = list(
 		/obj/item/grown/log/tree = 1,
@@ -36,7 +36,7 @@
 	time = 15
 
 /datum/crafting_recipe/boat
-	name = "Dinghy"
+	name = "Dinghy (4 Logs, 3 Ash, 5 Fibers)"
 	result = /obj/vehicle/ridden/dinghy
 	reqs = list(
 		/obj/item/grown/log/tree = 4,
