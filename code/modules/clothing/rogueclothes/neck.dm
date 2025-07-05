@@ -278,17 +278,6 @@
 	max_integrity = 300
 	smeltresult = /obj/item/ingot/aaslag
 
-/obj/item/clothing/neck/roguetown/gorget/prisoner/Initialize()
-	. = ..()
-	name = "cursed collar"
-	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
-
-/obj/item/clothing/neck/roguetown/gorget/prisoner/dropped(mob/living/carbon/human/user)
-	. = ..()
-	if(QDELETED(src))
-		return
-	qdel(src)
-
 /obj/item/clothing/neck/roguetown/gorget/cursed_collar
 	name = "cursed collar"
 	desc = "A metal collar that seems to radiate an ominous aura."
@@ -303,6 +292,18 @@
 	body_parts_covered = NECK
 	prevent_crits = list()
 	blocksound = PLATEHIT
+
+/obj/item/clothing/neck/roguetown/gorget/cursed_collar/Initialize()
+	. = ..()
+	name = "cursed collar"
+	ADD_TRAIT(src, TRAIT_NO_SELF_UNEQUIP, CURSED_ITEM_TRAIT)
+/*
+/obj/item/clothing/neck/roguetown/gorget/cursed_collar/dropped(mob/living/carbon/human/user)
+	. = ..()
+	if(QDELETED(src))
+		return
+	qdel(src)
+*/
 
 /obj/item/clothing/neck/roguetown/psicross
 	name = "psycross"
