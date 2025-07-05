@@ -62,7 +62,7 @@
 		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 		H.grant_language(/datum/language/otavan)
 
-		var/weapons = list("Steel Greataxe", "Longsword", "Steel Mace", "Spear", "MY BARE HANDS!!!")
+		var/weapons = list("Steel Greataxe", "Longsword", "Steel Mace", "Spear", "Sword & Shield", "MY BARE HANDS!!!")
 		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		switch(weapon_choice)
 			if("Steel Greataxe")
