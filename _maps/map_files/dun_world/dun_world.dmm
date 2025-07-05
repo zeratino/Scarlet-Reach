@@ -12814,7 +12814,7 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/beach)
 "emP" = (
-/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/axe,
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/wounded/chained,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/orcdungeon)
 "eng" = (
@@ -49269,6 +49269,10 @@
 /obj/item/reagent_containers/glass/bottle/rogue/water,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
+"qgM" = (
+/mob/living/simple_animal/hostile/retaliate/rogue/minotaur/wounded/chained,
+/turf/open/floor/rogue/hexstone,
+/area/rogue/under/cave/orcdungeon)
 "qgS" = (
 /obj/structure/rack/rogue,
 /obj/item/clothing/suit/roguetown/armor/chainmail,
@@ -274755,7 +274759,7 @@ wCQ
 qAZ
 wXK
 xEa
-utw
+qgM
 olz
 hGM
 wCQ
@@ -276108,7 +276112,7 @@ qPv
 ujm
 xQI
 eSC
-emP
+qNO
 qNO
 xEa
 gph
@@ -277012,7 +277016,7 @@ qPv
 ujm
 wCQ
 wCQ
-qNO
+emP
 qNO
 wCQ
 ujm
