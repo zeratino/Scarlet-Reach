@@ -110,6 +110,12 @@
 		if(alert(target, "They are calling for you. Are you ready?", "Revival", "I need to wake up", "Don't let me go") != "I need to wake up")
 			target.visible_message(span_notice("Nothing happens. They are not being let go."))
 			return FALSE
+		// Block excommunicated targets from receiving divine revival
+		if(ispath(user.patron?.type, /datum/patron/divine) && target.real_name in GLOB.excommunicated_players)
+			to_chat(user, span_danger("The heavens recoil from [target]! Their soul is barred by divine wrath! Flames lick the edges of your vision as the gods reject your plea."))
+			target.visible_message(span_danger("[target]'s body is wracked with searing pain as the gods reject them!"), span_userdanger("I am wracked with pain as the gods reject me!"))
+			revert_cast()
+			return FALSE
 		target.adjustOxyLoss(-target.getOxyLoss()) //Ye Olde CPR
 		if(!target.revive(full_heal = FALSE))
 			to_chat(user, span_warning("Nothing happens."))
