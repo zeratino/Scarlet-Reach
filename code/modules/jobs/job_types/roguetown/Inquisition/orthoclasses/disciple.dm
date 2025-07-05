@@ -67,7 +67,7 @@
 		switch(weapon_choice)
 			if("Steel Greataxe")
 				H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
-				r_hand = /obj/item/rogueweapon/greataxe/steel
+				r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead
 			if("Longsword")
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				r_hand = /obj/item/rogueweapon/greatsword/zwei
