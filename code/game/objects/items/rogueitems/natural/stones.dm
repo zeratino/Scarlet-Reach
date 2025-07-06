@@ -344,7 +344,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 				user.visible_message(span_notice("[user] presses the stone to [user]'s body, and it is absorbed."), span_notice("I absorb the stone."))
 			else
 				user.visible_message(span_notice("[user] presses the stone to [M]'s body, and it is absorbed."), span_notice("I press the stone to [M], and it is absorbed."))
-		else
+		else // if theyre not a construct, but we're not in cmode, beat them 2 death with rocks.
 			return ..()
 	else // if we're in cmode, beat them to death with rocks.
 		return ..()
