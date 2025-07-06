@@ -36,14 +36,14 @@
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T1 miracles.
 
 /datum/outfit/job/roguetown/disciple/proc/brute_equip(mob/living/carbon/human/H)
-	backpack_contents = list(/obj/item/roguekey/inquisition = 1, /obj/item/rogueweapon/knuckles/eora = 1)
+	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -55,13 +55,41 @@
 		H.change_stat("constitution", 3)
 		H.change_stat("intelligence", -2)
 		H.change_stat("speed", -1)
-		ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 		H.grant_language(/datum/language/otavan)
+
+		var/weapons = list("Steel Greataxe", "Longsword", "Steel Mace", "Spear", "Sword & Shield", "MY BARE HANDS!!!")
+		var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Steel Greataxe")
+				H.mind.adjust_skillrank(/datum/skill/combat/axes, 4, TRUE)
+				r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead
+			if("Longsword")
+				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+				r_hand = /obj/item/rogueweapon/greatsword/zwei
+				backl = /obj/item/gwstrap
+			if("Steel Mace")
+				H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
+				beltr = /obj/item/rogueweapon/mace/steel
+			if("Spear")
+				H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+				r_hand = /obj/item/rogueweapon/spear
+			if("Sword & Shield")
+				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
+				H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
+				beltr = /obj/item/rogueweapon/sword/iron
+				backl = /obj/item/rogueweapon/shield/tower/metal
+			if ("MY BARE HANDS!!!")
+				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
+				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+				ADD_TRAIT(H, TRAIT_STRONGBITE, TRAIT_GENERIC)
+				beltr = /obj/item/rogueweapon/katar
+				backpack_contents += list(/obj/item/rogueweapon/knuckles/eora = 1)
+
 
 /datum/outfit/job/roguetown/disciple/proc/naledi_equip(mob/living/carbon/human/H)
 	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
