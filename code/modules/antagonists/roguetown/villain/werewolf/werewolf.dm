@@ -69,6 +69,8 @@
 	return ..()
 
 /datum/antagonist/werewolf/lesser/greet()
+	// leave this empty so that lesser verevolf's dont get the greeting on bite.
+	// there is probably a better way to do this but this works until sm1 smarter inevitably rewrites WW.
 
 /mob/living/carbon/human/proc/can_werewolf()
 	if(!mind)
