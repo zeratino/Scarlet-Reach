@@ -643,10 +643,10 @@
 		light_amount = T.get_lumcount()
 	var/used_time = 50
 	if(mind)
-		used_time = max(used_time - (mind.get_skill_level(/datum/skill/misc/sneaking) * 8), 0)
+		used_time = max(used_time - (get_skill_level(/datum/skill/misc/sneaking) * 8), 0)
 
 	if(rogue_sneaking || reset) //If sneaking, check if they should be revealed
-		if((stat > SOFT_CRIT) || IsSleeping() || (world.time < mob_timers[MT_FOUNDSNEAK] + 30 SECONDS) || !T || reset || (m_intent != MOVE_INTENT_SNEAK) || light_amount >= rogue_sneaking_light_threshhold + (mind?.get_skill_level(/datum/skill/misc/sneaking)/200) )
+		if((stat > SOFT_CRIT) || IsSleeping() || (world.time < mob_timers[MT_FOUNDSNEAK] + 30 SECONDS) || !T || reset || (m_intent != MOVE_INTENT_SNEAK) || light_amount >= rogue_sneaking_light_threshhold + (get_skill_level(/datum/skill/misc/sneaking)/200) )
 			used_time = round(clamp((50 - (used_time*1.75)), 5, 50),1)
 			animate(src, alpha = initial(alpha), time =	used_time) //sneak skill makes you reveal slower but not as drastic as disappearing speed
 			spawn(used_time) regenerate_icons()
@@ -654,7 +654,7 @@
 			return
 
 	else //not currently sneaking, check if we can sneak
-		if(light_amount < rogue_sneaking_light_threshhold + (mind?.get_skill_level(/datum/skill/misc/sneaking)/200) && m_intent == MOVE_INTENT_SNEAK)
+		if(light_amount < rogue_sneaking_light_threshhold + (get_skill_level(/datum/skill/misc/sneaking)/200) && m_intent == MOVE_INTENT_SNEAK)
 			animate(src, alpha = 0, time = used_time)
 			spawn(used_time + 5) regenerate_icons()
 			rogue_sneaking = TRUE
@@ -697,7 +697,7 @@
 					var/mob/living/L = src
 
 					//If mob is trying to switch to run, fail if any of these are true
-					if (L.rogfat >= L.maxrogfat || L.rogstam <= 0 || HAS_TRAIT(L, TRAIT_NORUN))
+					if (L.stamina >= L.max_stamina || L.energy <= 0 || HAS_TRAIT(L, TRAIT_NORUN))
 						if (HAS_TRAIT(L, TRAIT_NORUN)) // If has trait blocker then inform them
 							to_chat(L, span_warning("My joints have decayed too much for running!"))
 						return
@@ -832,6 +832,20 @@
 		to_chat(src, span_notice("I will hear all now."))
 	else
 		to_chat(src, span_info("I will hear like a mortal."))
+
+/client/proc/hearglobalLOOC()
+	set category = "Prefs - Admin"
+	set name = "Show/Hide Global LOOC"
+	if(!holder)
+		return
+	if(!prefs)
+		return
+	prefs.chat_toggles ^= CHAT_ADMINLOOC
+	prefs.save_preferences()
+	if(prefs.chat_toggles & CHAT_ADMINLOOC)
+		to_chat(src, span_notice("I will now hear all LOOC chatter."))
+	else
+		to_chat(src, span_info("I will now only hear LOOC chatter around me."))
 
 ///Moves a mob upwards in z level
 /mob/proc/ghost_up()
