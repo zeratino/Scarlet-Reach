@@ -360,10 +360,8 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(src.loc, "plantcross", 50, FALSE, -1)
 		if(do_after(L, rand(1,5), target = src))
-#ifndef MATURESERVER
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish()
-#endif
 			if(prob(50) && looty.len)
 				if(looty.len == 1)
 					res_replenish = world.time + 8 MINUTES
@@ -374,13 +372,11 @@
 					user.visible_message(span_notice("[user] finds [B] in [src]."))
 					return
 			user.visible_message(span_warning("[user] searches through [src]."))
-#ifdef MATURESERVER
-			if(!looty.len)
-				to_chat(user, span_warning("Picked clean."))
-#else
+			if(looty.len)
+				attack_hand(user)
 			if(!looty.len)
 				to_chat(user, span_warning("Picked clean... I should try later."))
-#endif
+
 /obj/structure/flora/roguegrass/bush/update_icon()
 	icon_state = "bush[rand(2, 4)]"
 
