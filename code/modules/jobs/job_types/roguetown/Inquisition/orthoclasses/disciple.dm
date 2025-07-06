@@ -82,7 +82,7 @@
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
 				beltr = /obj/item/rogueweapon/sword/iron
-				backl = /obj/item/rogueweapon/shield/tower/metal
+				backr = /obj/item/rogueweapon/shield/tower/metal
 			if ("MY BARE HANDS!!!")
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
