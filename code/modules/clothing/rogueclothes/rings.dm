@@ -206,7 +206,7 @@
 	name = "fate weaver"
 	desc = "An arcyne creation first theorized by malcontents with the resolution of Xylix's plays. It protects is wearer by tugging things gently toward less fatal potentials."
 	icon_state = "ring_s"
-	max_integrity = 50
+	max_integrity = 75
 	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET //field covers the whole body
 	armor = ARMOR_MASK_METAL_BAD //even protection against most damage types
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
@@ -214,6 +214,7 @@
 	blocksound = PLATEHIT
 	break_sound = 'sound/foley/breaksound.ogg'
 	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	armor_class = ARMOR_CLASS_LIGHT
 
 /obj/item/clothing/ring/fate_weaver/proc/dispel()
 	if(!QDELETED(src))

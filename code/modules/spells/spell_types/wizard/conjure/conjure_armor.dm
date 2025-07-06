@@ -9,7 +9,7 @@
 	chargedrain = 1
 	chargetime = 3 SECONDS
 	no_early_release = TRUE
-	recharge_time = 5 MINUTES // Not meant to be spammed
+	recharge_time = 3 MINUTES // Not meant to be spammed any lower and it starts to compete with stoneskin
 
 	warnie = "spellwarning"
 	no_early_release = TRUE
