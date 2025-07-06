@@ -81,7 +81,7 @@
 			if("Sword & Shield")
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-				beltr = /obj/item/rogueweapon/sword/iron
+				beltr = /obj/item/rogueweapon/sword/sabre
 				backr = /obj/item/rogueweapon/shield/tower/metal
 			if ("MY BARE HANDS!!!")
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
