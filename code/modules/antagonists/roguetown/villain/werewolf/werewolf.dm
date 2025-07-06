@@ -37,10 +37,11 @@
 				return span_boldwarning("An Ancient Vampire. I must be careful!")
 
 /datum/antagonist/werewolf/on_gain()
+	greet()
 	owner.special_role = name
 	if(increase_votepwr)
 		forge_werewolf_objectives()
-
+	
 	wolfname = "[pick(GLOB.wolf_prefixes)] [pick(GLOB.wolf_suffixes)]"
 	return ..()
 
@@ -64,9 +65,10 @@
 		return
 
 /datum/antagonist/werewolf/greet()
-	to_chat(owner.current, span_userdanger("Ever since that bite, I have been a [name]."))
-	owner.announce_objectives()
+	to_chat(owner.current, span_userdanger("Since a bite long, long ago, Dendor's Madness has welled within me. Before the Moonlight, I will sate my hallowed Hunger."))
 	return ..()
+
+/datum/antagonist/werewolf/lesser/greet()
 
 /mob/living/carbon/human/proc/can_werewolf()
 	if(!mind)
