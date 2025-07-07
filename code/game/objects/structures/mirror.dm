@@ -496,20 +496,6 @@
 							size_num = 8
 						if("I-cup")
 							size_num = 9
-						if("J-cup")
-							size_num = 10
-						if("k-cup")
-							size_num = 11
-						if("L-cup")
-							size_num = 12
-						if("M-cup")
-							size_num = 13
-						if("N-cup")
-							size_num = 14
-						if("O-cup")
-							size_num = 15
-						if("P-cup")
-							size_num = 16
 
 					breasts.breast_size = size_num
 					H.update_body()
