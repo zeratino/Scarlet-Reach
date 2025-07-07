@@ -27,10 +27,18 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Farkle Dice Container"
 	path = /obj/item/storage/pill_bottle/dice/farkle
 
+/datum/loadout_item/tarot_deck
+	name = "Tarot Deck"
+	path = /obj/item/toy/cards/deck/tarot
+
 //HATS
 /datum/loadout_item/shalal
 	name = "Keffiyeh"
 	path = /obj/item/clothing/head/roguetown/roguehood/shalal
+
+/datum/loadout_item/tricorn
+	name = "Tricorn Hat"
+	path = /obj/item/clothing/head/roguetown/helmet/tricorn
 
 /datum/loadout_item/archercap
 	name = "Archer's cap"
@@ -144,6 +152,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/volfmantle
 	name = "Volf Mantle"
 	path = /obj/item/clothing/cloak/volfmantle
+
+/datum/loadout_item/eastcloak2
+	name = "Leather Cloak"
+	path = /obj/item/clothing/cloak/eastcloak2
+
+/datum/loadout_item/thief_cloak
+	name = "Rapscallion's Shawl"
+	path = /obj/item/clothing/cloak/thief_cloak
 
 //SHOES
 /datum/loadout_item/darkboots
@@ -311,7 +327,6 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/eastshirt2
 	name = "White Foreign Shirt"
 	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt2
-	
 //PANTS
 /datum/loadout_item/tights
 	name = "Cloth Tights"
@@ -481,6 +496,18 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/feldcollar
 	name = "Feldsher's Collar"
 	path = /obj/item/clothing/neck/roguetown/collar/feldcollar
+
+/datum/loadout_item/jesterhat
+    name = "Jester's Hat"
+    path = /obj/item/clothing/head/roguetown/jester
+
+/datum/loadout_item/jestertunick
+    name = "Jester's Tunick"
+    path = /obj/item/clothing/suit/roguetown/shirt/jester
+
+/datum/loadout_item/jestershoes
+    name = "Jester's Shoes"
+    path = /obj/item/clothing/shoes/roguetown/jester
 
 //Donator Section
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.

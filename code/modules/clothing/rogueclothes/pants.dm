@@ -131,7 +131,7 @@
 	sewrepair = TRUE
 	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_LEATHER_GOOD
-
+	sellprice = 18
 	blocksound = SOFTHIT
 	max_integrity = 200
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
@@ -156,6 +156,24 @@
 	icon_state = "fencerpants"
 	allowed_race = NON_DWARVEN_RACE_TYPES
 
+/obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic
+	name = "fencing breeches"
+	desc = "A pair of loose breeches with leather reinforcements on the waist and legs. Worn with a cup."
+	max_integrity = 170
+	icon_state = "fencingbreeches"
+	detail_tag = "_detail"
+	color = "#FFFFFF"
+	detail_color = "#3b2b29"
+
+/obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic/update_icon()
+	cut_overlays()
+	if(get_detail_tag())
+		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
+		pic.appearance_flags = RESET_COLOR
+		if(get_detail_color())
+			pic.color = get_detail_color()
+		add_overlay(pic)
+
 /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
 	name = "grenzelhoftian paumpers"
 	desc = "Padded pants for extra comfort and protection, adorned in vibrant colors."
@@ -165,6 +183,8 @@
 	detail_tag = "_detail"
 	var/picked = FALSE
 	armor_class = ARMOR_CLASS_LIGHT
+	color = "#262927"
+	detail_color = "#FFFFFF"
 
 /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants/attack_right(mob/user)
 	..()
@@ -487,8 +507,28 @@
 
 //----------------- BLACKSTEEL---------------------
 
-/obj/item/clothing/under/roguetown/platelegs/blacksteel
+/obj/item/clothing/under/roguetown/platelegs/blacksteel/modern
 	name = "blacksteel plate chausses"
+	desc = "Reinforced leg plates forged of durable blacksteel, using a modern design."
+	gender = PLURAL
+	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
+	sleeved = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
+	icon_state = "bplatelegs"
+	item_state = "bplatelegs"
+	sewrepair = FALSE
+	armor = ARMOR_PLATE_BSTEEL
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
+	blocksound = PLATEHIT
+	max_integrity = 500
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/blacksteel
+	smelt_bar_num = 2
+
+
+/obj/item/clothing/under/roguetown/platelegs/blacksteel
+	name = "ancient blacksteel plate chausses"
 	desc = "Reinforced leg plates forged of durable blacksteel."
 	gender = PLURAL
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
@@ -496,7 +536,7 @@
 	icon_state = "bklegs"
 	item_state = "bklegs"
 	sewrepair = FALSE
-	armor = ARMOR_PLATE_GOOD
+	armor = ARMOR_PLATE_BSTEEL
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
 	blocksound = PLATEHIT
 	max_integrity = 500
