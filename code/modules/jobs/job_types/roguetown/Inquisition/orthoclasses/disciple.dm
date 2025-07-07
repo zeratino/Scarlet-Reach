@@ -71,7 +71,7 @@
 			if("Longsword")
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				r_hand = /obj/item/rogueweapon/greatsword/zwei
-				backl = /obj/item/gwstrap
+				backr = /obj/item/gwstrap
 			if("Steel Mace")
 				H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
 				beltr = /obj/item/rogueweapon/mace/steel
@@ -81,8 +81,8 @@
 			if("Sword & Shield")
 				H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 				H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
-				beltr = /obj/item/rogueweapon/sword/iron
-				backl = /obj/item/rogueweapon/shield/tower/metal
+				beltr = /obj/item/rogueweapon/sword/sabre/shamshir
+				backr = /obj/item/rogueweapon/shield/tower/metal
 			if ("MY BARE HANDS!!!")
 				H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 				ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
