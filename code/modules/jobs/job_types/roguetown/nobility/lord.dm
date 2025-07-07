@@ -13,7 +13,6 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	allowed_races = RACES_TOLERATED_UP
 	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
 
 	spells = list(
 		/obj/effect/proc_holder/spell/self/grant_title,
