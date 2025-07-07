@@ -14,10 +14,10 @@
         "shape of": "forma de",
         "bean": "frijol",
         "beans": "frijoles",
-        "cat": "gato"
+        "cat": "gato",
+        "friend": "amigo"
     },
     "start": {
-        "friend": "amigo",
         "tomato": "tomate",
         "whore": "puta",
         "cheese": "queso"
@@ -31,7 +31,6 @@
         "is": "es",
         "in": "en",
         "r": "rr",
-        "s": "ss",
         "shi": "chee",
         "sh": "ch"
     }
