@@ -178,9 +178,6 @@
 	if(H.stat == DEAD)
 		to_chat(src, span_warning("[H] is dead already..."))
 		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross))
-		to_chat(src, span_warning("I need to be holding a psycross to extract this divination!"))
-		return
 	for(var/obj/structure/fluff/psycross/N in oview(5, src))
 		found = N
 	if(!found)
@@ -207,7 +204,6 @@
 
 		src.visible_message(span_warning("[src]'s psycross abruptly catches flame, burning away in an instant!"))
 		H.confess_sins("antag")
-		qdel(S)
 		return
 	to_chat(src, span_warning("This one is not in a ready state to be questioned..."))
 
@@ -226,9 +222,6 @@
 		return
 	if (!H.restrained())
 		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
-		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross))
-		to_chat(src, span_warning("I need to be holding a psycross to extract this divination!"))
 		return
 	for(var/obj/structure/fluff/psycross/N in oview(5, src))
 		found = N

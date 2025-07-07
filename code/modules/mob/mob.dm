@@ -804,7 +804,7 @@ GLOBAL_VAR_INIT(mobids, 1)
 			if(check_rights(R_ADMIN,0))
 				stat(null, SSmigrants.get_status_line())
 
-	/var/days = "TWILIGHT"
+	var/days = "TWILIGHT"
 	switch(GLOB.dayspassed)
 		if(1)
 			days = "MOON'S DAE"

@@ -1186,7 +1186,7 @@ SUBSYSTEM_DEF(gamemode)
 			GLOB.scarlet_round_stats[STATS_TOTAL_POPULATION]++
 			for(var/obj/item/clothing/neck/current_item in human_mob.get_equipped_items(TRUE))
 				if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver,	/obj/item/clothing/neck/roguetown/psicross/g))
-					GLOB.azure_round_stats[STATS_PSYCROSS_USERS]++
+					GLOB.scarlet_round_stats[STATS_PSYCROSS_USERS]++
 					break
 			switch(human_mob.pronouns)
 				if(HE_HIM)

@@ -27,18 +27,18 @@
 	H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
 	// Weapon choice system
 	H.adjust_blindness(-3)
-	var/weapon_choice = input("Choose your ranged weapon.", "TAKE UP ARMS") as anything in weapons
 	var/weapons = list("Crossbow & Bolts", "Recurve Bow & Arrows")
-	H.set_blindness(0)
-		if("Crossbow & Bolts")
+	var/weapon_choice = input("Choose your ranged weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
-			H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
+		if("Crossbow & Bolts")
+			H.adjust_skillrank(/datum/skill/combat/crossbows, 4, TRUE)
 			beltr = /obj/item/quiver/bolts
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 		if("Recurve Bow & Arrows")
-			H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			beltr = /obj/item/quiver/arrows
+	H.set_blindness(0)		
 	cloak = /obj/item/clothing/suit/roguetown/armor/longcoat
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather

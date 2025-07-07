@@ -133,7 +133,7 @@
 			var/atom/movable/AF = new A(T)
 			AF.throw_at(get_turf(user), 5, 1, null)
 			record_featured_stat(FEATURED_STATS_FISHERS, user)
-			GLOB.azure_round_stats[STATS_FISH_CAUGHT]++
+			GLOB.scarlet_round_stats[STATS_FISH_CAUGHT]++
 			playsound(T, 'sound/foley/footsteps/FTWAT_1.ogg', 100)
 			user.visible_message("<font color='yellow'>[user] makes a beckoning gesture at [T]!</font>")
 			return TRUE
