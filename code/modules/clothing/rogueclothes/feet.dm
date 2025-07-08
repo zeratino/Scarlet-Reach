@@ -314,8 +314,8 @@
 	detail_tag = "_detail"
 	resistance_flags = null
 	sewrepair = TRUE
-	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
+	detail_color = CLOTHING_BLACK
+	color = CLOTHING_SCARLET
 
 /obj/item/clothing/shoes/roguetown/jester/update_icon()
 	cut_overlays()

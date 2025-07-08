@@ -347,9 +347,9 @@
 	dynamic_hair_suffix = "+generic"
 	sewrepair = TRUE
 	flags_inv = HIDEEARS
-	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
-	altdetail_color = CLOTHING_WHITE
+	detail_color = CLOTHING_BLACK
+	color = CLOTHING_SCARLET
+	altdetail_color = CLOTHING_BLACK
 
 /obj/item/clothing/head/roguetown/jester/update_icon()
 	cut_overlays()

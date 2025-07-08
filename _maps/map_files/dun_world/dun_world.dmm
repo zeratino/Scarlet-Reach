@@ -2508,7 +2508,7 @@
 /area/rogue/indoors/town)
 "aQb" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - NORTH"
+	name = "SCARLET REACH - NORTH"
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/woods)
@@ -2697,7 +2697,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/goblindungeon)
 "aTS" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/woodturned,
@@ -5207,7 +5207,7 @@
 /area/rogue/under/town/basement/keep)
 "bJP" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - EAST"
+	name = "SCARLET REACH - EAST"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woods)
@@ -7475,7 +7475,7 @@
 /area/rogue/under/cave/skeletoncrypt)
 "cyn" = (
 /obj/structure/flora/roguegrass,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = 15
 	},
 /turf/open/floor/rogue/grass,
@@ -8147,7 +8147,7 @@
 	dir = 10;
 	icon_state = "cobbleedge-n"
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/grass,
@@ -9488,7 +9488,7 @@
 	name = "outer north gate";
 	redstone_id = "outernorthgate"
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobblerock,
@@ -11098,7 +11098,7 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/cave/skeletoncrypt)
 "dMy" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/transparent/openspace,
@@ -12311,7 +12311,7 @@
 /area/rogue/indoors/shelter/woods)
 "ehv" = (
 /obj/structure/roguewindow,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/concrete,
@@ -12450,7 +12450,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 6
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobblerock,
@@ -12488,7 +12488,7 @@
 /turf/closed/mineral/random/rogue,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
 "ejH" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = 15
 	},
 /turf/open/floor/rogue/grass,
@@ -15307,7 +15307,7 @@
 /area/rogue/under/cave/licharena)
 "feG" = (
 /obj/structure/roguewindow,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/concrete,
@@ -23496,7 +23496,7 @@
 /area/rogue/indoors/town/bath)
 "hJB" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - EAST"
+	name = "SCARLET REACH - EAST"
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains)
@@ -24255,7 +24255,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/basement/keep)
 "hXH" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/grassred,
@@ -24460,7 +24460,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 4
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -28569,7 +28569,7 @@
 "jrv" = (
 /obj/structure/flora/roguegrass,
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/grass,
@@ -29050,7 +29050,7 @@
 /area/rogue/indoors/cave)
 "jAv" = (
 /obj/structure/chair/wood/rogue,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = 15
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -29998,7 +29998,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 10
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobblerock,
@@ -32549,7 +32549,7 @@
 /obj/structure/fluff/railing/border{
 	dir = 8
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -34583,7 +34583,7 @@
 	max_integrity = 2000;
 	name = "reinforced bars"
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobble,
@@ -37376,7 +37376,7 @@
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/outdoors/mountains/decap)
 "mrP" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -37579,7 +37579,7 @@
 	dir = 10;
 	icon_state = "cobbleedge-e"
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -37650,7 +37650,7 @@
 /turf/open/floor/carpet/stellar,
 /area/rogue/indoors/town/manor)
 "mxp" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/dirt,
@@ -38063,7 +38063,7 @@
 /obj/effect/decal/cobbleedge{
 	dir = 8
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobblerock,
@@ -39271,7 +39271,7 @@
 /area/rogue/outdoors/beach/forest)
 "mYS" = (
 /obj/structure/flora/roguegrass,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/grass,
@@ -41813,7 +41813,7 @@
 	max_integrity = 2000;
 	name = "reinforced bars"
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobble/mossy,
@@ -42473,7 +42473,7 @@
 /obj/structure/stairs{
 	dir = 4
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/ruinedwood,
@@ -43068,7 +43068,7 @@
 /area/rogue/indoors/town)
 "okN" = (
 /obj/structure/fluff/walldeco/goblet{
-	name = "Azurian Pints Inn and Bath"
+	name = "Scarlet Pints Inn and Bath"
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/tavern)
@@ -46827,7 +46827,7 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/rtfield)
 "pBg" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobble,
@@ -47988,7 +47988,7 @@
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/town/garrison)
 "pUh" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/grassyel,
@@ -49479,7 +49479,7 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town/garrison)
 "qua" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobblerock,
@@ -51330,7 +51330,7 @@
 	name = "inner north gate";
 	redstone_id = "innernorthgate"
 	},
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobble,
@@ -51746,7 +51746,7 @@
 /area/rogue/under/underdark)
 "rfW" = (
 /obj/structure/mineral_door/bars,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobblerock,
@@ -52204,11 +52204,6 @@
 /obj/effect/spawner/lootdrop/roguetown/dungeon/money,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bog)
-"roL" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/red/long{
-	dir = 1
-	},
-/area/rogue/indoors/shelter/mountains)
 "roT" = (
 /obj/structure/fluff/railing/border{
 	dir = 4
@@ -55361,7 +55356,7 @@
 	},
 /area/rogue/outdoors/beach/forest)
 "spC" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/transparent/openspace,
@@ -58047,7 +58042,7 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/manor)
 "tkR" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/AzureSand,
@@ -59264,7 +59259,7 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cave/goblinfort)
 "tEe" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/grass,
@@ -62700,7 +62695,7 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/town)
 "uIt" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = 15
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -63677,7 +63672,7 @@
 /area/rogue/indoors/town/bath)
 "uZD" = (
 /obj/structure/chair/wood,
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = 15
 	},
 /turf/open/floor/rogue/ruinedwood/herringbone,
@@ -66084,7 +66079,7 @@
 /turf/open/floor/rogue/church,
 /area/rogue/under/cave/goblinfort)
 "vOG" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/cobble,
@@ -66556,7 +66551,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/town)
 "vXh" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/dirt/road,
@@ -70499,7 +70494,7 @@
 /area/rogue/indoors/town/physician)
 "xkL" = (
 /obj/structure/fluff/signage{
-	name = "AZURE PEAK - NORTH"
+	name = "SCARLET REACH - NORTH"
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/rtfield)
@@ -72051,10 +72046,10 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet/bogcaves)
 "xMP" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/fluff/littlebanners{
 	pixel_y = 15
 	},
-/obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town)
 "xMY" = (
@@ -72946,7 +72941,7 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors/town/tavern)
 "ybA" = (
-/obj/structure/fluff/littlebanners/bluewhite{
+/obj/structure/fluff/littlebanners{
 	pixel_y = -6
 	},
 /turf/open/floor/rogue/ruinedwood,
