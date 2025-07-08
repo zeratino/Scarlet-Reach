@@ -478,17 +478,25 @@
 					switch(new_size)
 						if("flat")
 							size_num = 0
-						if("very small")
+						if("A-cup")
 							size_num = 1
-						if("small")
+						if("B-cup")
 							size_num = 2
-						if("average")
+						if("C-cup")
 							size_num = 3
-						if("large")
+						if("D-cup")
 							size_num = 4
-						if("enormous")
+						if("E-cup")
 							size_num = 5
-					
+						if("F-cup")
+							size_num = 6
+						if("G-cup")
+							size_num = 7
+						if("H-cup")
+							size_num = 8
+						if("I-cup")
+							size_num = 9
+
 					breasts.breast_size = size_num
 					H.update_body()
 					should_update = TRUE

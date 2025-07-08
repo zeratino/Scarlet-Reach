@@ -12,11 +12,15 @@ GLOBAL_LIST_INIT(named_ball_sizes, list(
 
 GLOBAL_LIST_INIT(named_breast_sizes, list(
 	"Flat" = 0,
-	"Very Small" = 1,
-	"Small" = 2,
-	"Normal" = 3,
-	"Large" = 4,
-	"Enormous" = 5
+	"A-cup" = 1,
+	"B-cup" = 2,
+	"C-cup" = 3,
+	"D-cup" = 4,
+	"E-cup" = 5,
+	"F-cup" = 6,
+	"G-cup" = 7,
+	"H-cup" = 8,
+	"I-cup" = 9
 ))
 
 GLOBAL_LIST_INIT(customizer_choices, build_customizer_choices())
