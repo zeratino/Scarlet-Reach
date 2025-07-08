@@ -59,7 +59,7 @@
 	color = "#851a16"
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	color = CLOTHING_AZURE
+	color = CLOTHING_SCARLET
 
 /obj/item/clothing/suit/roguetown/shirt/undershirt/guard/Initialize()
 	. = ..()
@@ -137,7 +137,7 @@
 	item_state = "noblecoat"
 	sleevetype = "noblecoat"
 	detail_tag = "_detail"
-	detail_color = CLOTHING_AZURE
+	detail_color = CLOTHING_SCARLET
 	color = CLOTHING_WHITE
 	boobed = TRUE
 	detail_tag = "_detail"
@@ -498,9 +498,9 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	flags_inv = HIDECROTCH|HIDEBOOB
-	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
-	altdetail_color = CLOTHING_WHITE
+	detail_color = CLOTHING_BLACK
+	color = CLOTHING_SCARLET
+	altdetail_color = CLOTHING_BLACK
 
 
 /obj/item/clothing/suit/roguetown/shirt/jester/update_icon()
