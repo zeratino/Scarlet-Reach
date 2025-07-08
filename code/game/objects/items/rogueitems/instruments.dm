@@ -1,7 +1,7 @@
 /datum/looping_sound/instrument
-	mid_length = 2400 // 4 minutes for some reason. better would be each song having a specific length
+	mid_length = 120000 // 20 minutes. Previously 4 minutes for no reason. Songs are restricted to 6 megs. If you have twenty minutes of mono low bitrate or one minute of studio quality orchestra, it makes no difference to the server.
 	volume = 100
-	extra_range = 5
+	extra_range = 10	// Increase sound range.
 	persistent_loop = TRUE
 	var/stress2give = /datum/stressevent/music
 	sound_group = /datum/sound_group/instruments //reserves sound channels for up to 10 instruments at a time
@@ -81,7 +81,7 @@
 				groupplaying = FALSE
 		if(!groupplaying)
 			var/list/options = song_list.Copy()
-			if(user.mind && user.mind.get_skill_level(/datum/skill/misc/music) >= 4)
+			if(user.mind && user.get_skill_level(/datum/skill/misc/music) >= 4)
 				options["Upload New Song"] = "upload"
 			
 			var/choice = input(user, "Which song?", "Music", name) as null|anything in options
@@ -124,7 +124,7 @@
 			if(!user || playing || !(src in user.held_items))
 				return
 			if(user.mind)
-				switch(user.mind.get_skill_level(/datum/skill/misc/music))
+				switch(user.get_skill_level(/datum/skill/misc/music))
 					if(1)
 						stressevent = /datum/stressevent/music
 						soundloop.stress2give = stressevent
