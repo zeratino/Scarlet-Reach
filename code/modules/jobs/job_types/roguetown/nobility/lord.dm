@@ -14,6 +14,8 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	allowed_races = RACES_TOLERATED_UP
 	allowed_patrons = NON_PSYDON_PATRONS
 	advclass_cat_rolls = list(CTAG_LORD = 20)
+	allowed_sexes = list(MALE, FEMALE)
+
 
 	spells = list(
 		/obj/effect/proc_holder/spell/self/grant_title,
