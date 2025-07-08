@@ -136,6 +136,8 @@
 	icon_state = "noblecoat"
 	item_state = "noblecoat"
 	sleevetype = "noblecoat"
+	detail_tag = "_detail"
+	detail_color = CLOTHING_AZURE
 	color = CLOTHING_WHITE
 	boobed = TRUE
 	detail_tag = "_detail"
