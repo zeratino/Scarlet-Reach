@@ -701,7 +701,7 @@
 	to_chat(user, span_warning("I drink from [C]'s [parse_zone(sublimb_grabbed)]."))
 	log_combat(user, C, "drank blood from ")
 
-	if(user.mind && user.mind_has_antag_datum(/datum/antagonist/vampire))
+	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/vampire))
 		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire)
 		if(VDrinker && VDrinker.wretch_antag)
 			VDrinker.vitae = min(VDrinker.vitae + 400, 5000)
@@ -710,7 +710,7 @@
 			to_chat(user, span_warning("This blood is not pure enough to nourish me properly!"))
 		
 
-	if(C.mind && user.mind_has_antag_datum(/datum/antagonist/vampirelord))
+	if(C.mind && user.mind.has_antag_datum(/datum/antagonist/vampirelord))
 		var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
 		if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
 			if(!VDrinker.isspawn)
