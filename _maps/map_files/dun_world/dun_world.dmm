@@ -3030,7 +3030,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town)
 "bat" = (
-/obj/structure/mineral_door/wood/bath/bathmaid,
+/obj/structure/mineral_door/wood/bath/bathmaid{
+	lockid = "nightmaiden"
+	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "bax" = (
@@ -65998,7 +66000,9 @@
 /turf/open/floor/rogue/tile/bath,
 /area/rogue/indoors/town/manor)
 "wlX" = (
-/obj/structure/mineral_door/wood/bath/courtesan,
+/obj/structure/mineral_door/wood/bath/courtesan{
+	lockid = "nightmaiden"
+	},
 /turf/open/floor/rogue/tile/brownbrick,
 /area/rogue/indoors/town/bath)
 "wmb" = (
