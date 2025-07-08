@@ -7,7 +7,7 @@
 	// Someone else balance this, I am here for code, not numbers
 
 //BUCKLING
-/mob/living/carbon/human/species/wildshape/saiga/buckle_mob(mob/living/target, force = TRUE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 1, target_hands_needed = 0)
+/mob/living/carbon/human/species/wildshape/saiga/buckle_mob(mob/living/target, force = TRUE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0)
 	. = ..(target, force, check_loc, lying_buckle, hands_needed, target_hands_needed)
 
 /mob/living/carbon/human/species/wildshape/saiga/gain_inherent_skills()
@@ -20,8 +20,8 @@
 
 		src.STASTR = 10
 		src.STACON = 13
-		src.STAEND = 17 //Because I don't want to give it TRAIT_INFINITE_STAMINA
-		src.STASPD = 14
+		src.STAEND = 16 //Because I don't want to give it TRAIT_INFINITE_STAMINA
+		src.STASPD = 15
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/saigahoofs)
 		real_name = "Saiga ([stored_mob.real_name])" //So we don't get a random name
