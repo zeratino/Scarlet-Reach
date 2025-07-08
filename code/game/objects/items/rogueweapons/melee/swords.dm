@@ -1351,6 +1351,9 @@
 			var/obj/item/organ/liver/liver = user.getorganslot(ORGAN_SLOT_LIVER)
 			if(liver)
 				spilled_organs += liver
+			var/obj/item/organ/heart/heart = user.getorganslot(ORGAN_SLOT_HEART)
+			if(heart)
+				spilled_organs += heart
 			for(var/obj/item/organ/spilled as anything in spilled_organs)
 				spilled.Remove(user)
 				spilled.forceMove(user.drop_location())
