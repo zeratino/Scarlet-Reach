@@ -1332,3 +1332,30 @@
 	icon_state = "eastsword3"
 	max_integrity = 180
 	wdefense = 4
+
+/obj/item/rogueweapon/sword/attack(mob/living/M, mob/living/user)
+	if(user == M && user.used_intent && user.used_intent.blade_class == BCLASS_STAB && istype(user.rmb_intent, /datum/rmb_intent/weak))
+		if(user.zone_selected == BODY_ZONE_PRECISE_STOMACH || user.zone_selected == BODY_ZONE_CHEST)
+			if(user.doing)
+				to_chat(user, span_warning("You're already in the process of disemboweling yourself!"))
+				return
+			user.visible_message(span_danger("[user] presses [src] to their stomach, preparing to disembowel themselves!"), span_notice("You press the blade to your stomach and begin to push..."))
+			if(!do_after(user, 40, 1, user, 1)) // 4 seconds, hand required, target self, show progress
+				to_chat(user, span_warning("You stop before you can disembowel yourself!"))
+				return
+			// Disembowelment success: drop organs
+			var/list/spilled_organs = list()
+			var/obj/item/organ/stomach/stomach = user.getorganslot(ORGAN_SLOT_STOMACH)
+			if(stomach)
+				spilled_organs += stomach
+			var/obj/item/organ/liver/liver = user.getorganslot(ORGAN_SLOT_LIVER)
+			if(liver)
+				spilled_organs += liver
+			for(var/obj/item/organ/spilled as anything in spilled_organs)
+				spilled.Remove(user)
+				spilled.forceMove(user.drop_location())
+			user.visible_message(span_danger("[user] disembowels themselves, their organs spilling out!"), span_notice("You feel a horrible pain as your organs spill out!"))
+			user.emote("scream", null, null, TRUE, TRUE) // forced scream
+			user.overlay_fullscreen("painflash", /atom/movable/screen/fullscreen/painflash)
+			return
+	..()
