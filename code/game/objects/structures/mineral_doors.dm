@@ -869,6 +869,18 @@
 
 /obj/structure/mineral_door/wood/deadbolt/attack_right(mob/user)
 	user.changeNext_move(CLICK_CD_FAST)
+	
+	// If keylock is disabled, implement manual locking behavior
+	if(!keylock)
+		if(get_dir(src,user) == lockdir)
+			if(brokenstate)
+				to_chat(user, span_warning("It's broken, that would be foolish."))
+				return
+			lock_toggle(user)
+		else
+			to_chat(user, span_warning("The deadbolt doesn't toggle from this side."))
+		return
+	
 	var/obj/item = user.get_active_held_item()
 	var/obj/item/roguekey/found_key = null
 	var/obj/item/storage/keyring/found_keyring = null
@@ -911,8 +923,6 @@
 					to_check += S.contents
 
 	if(found_key || found_keyring)
-		if(!keylock)
-			return ..()
 		if(door_opened || isSwitchingStates)
 			return ..()
 		if(lockbroken)
