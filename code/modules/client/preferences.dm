@@ -1827,7 +1827,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						dat += "[ooc_extra]"
 					if(nsfw_headshot_link && agevetted)
 						dat += "<br><div align='center'><b>NSFW</b></div>"
-						dat += ("<br><div align='center'><img src='[nsfw_headshot_link]' width='600px' height='725px'></div>")
+						dat += ("<br><div align='center'><img src='[nsfw_headshot_link]' width='600px'></div>")
 					var/datum/browser/popup = new(user, "[real_name]", nwidth = 700, nheight = 800)
 					popup.set_content(dat.Join())
 					popup.open(FALSE)
