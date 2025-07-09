@@ -113,20 +113,20 @@
 	max_integrity = 100
 	sewrepair = TRUE
 
+
 /obj/item/clothing/head/roguetown/roguehood/shalal
 	name = "keffiyeh"
 	desc = "A protective covering worn by those native to the desert."
 	color = "#b8252c"
 	icon_state = "shalal"
 	item_state = "shalal"
-	flags_inv = HIDEHAIR|HIDEFACIALHAIR
-	flags_inv = HIDEHAIR
+	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDESNOUT
 	sleevetype = null
 	sleeved = null
 	icon = 'icons/roguetown/clothing/head.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' //Overrides slot icon behavior
 	alternate_worn_layer  = 8.9 //On top of helmet
-	body_parts_covered = HEAD|HAIR|EARS|NECK
+	body_parts_covered = HEAD|HAIR|EARS|NECK|MOUTH|NOSE
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	armor = list("blunt" = 20, "slash" = 20, "stab" = 15, "piercing" = 1, "fire" = 0, "acid" = 0)
 	dynamic_hair_suffix = ""
@@ -137,20 +137,23 @@
 	max_integrity = 100
 	sewrepair = TRUE
 
-/obj/item/clothing/head/roguetown/roguehood/shalal/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "shalal_t"
-			body_parts_covered = HEAD|EARS|HAIR|NECK|NOSE|MOUTH
-			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-			flags_cover = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
+/obj/item/clothing/neck/roguetown/roguehood/shalal/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, HEAD|EARS|NECK|HAIR, HIDEHAIR|HIDEFACE, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))
+
+///obj/item/clothing/head/roguetown/roguehood/shalal/AdjustClothes(mob/user)
+//	if(loc == user)
+//		if(adjustable == CAN_CADJUST)
+//			adjustable = CADJUSTED
+//			icon_state = "shalal_t"
+//			body_parts_covered = HEAD|EARS|HAIR|NECK|NOSE|MOUTH
+//			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+//			flags_cover = null
+//			if(ishuman(user))
+//				var/mob/living/carbon/H = user
+//				H.update_inv_head()
+//			block2add = null
+//		else if(adjustable == CADJUSTED)
+//			ResetAdjust(user)
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
@@ -164,8 +167,11 @@
 	item_state = "hijab"
 	icon_state = "deserthood"
 	hidesnoutADJ = FALSE
-	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR	//Does not hide face.
+	flags_inv = HIDEHAIR	//Does not hide face.
 	block2add = null
+
+/obj/item/clothing/neck/roguetown/roguehood/shalal/hijab/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
 	name = "padded headscarf"
@@ -177,13 +183,18 @@
 	icon_state = "deserthood"
 	naledicolor = TRUE
 
+
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	name = "heavy hood"
 	desc = "This thick lump of burlap completely shrouds your head, protecting it from harsh weather and nosey protagonists alike."
 	color = CLOTHING_BROWN
+	body_parts_covered = HEAD|HAIR|EARS|NECK
 	item_state = "heavyhood"
 	icon_state = "heavyhood"
 	hidesnoutADJ = FALSE
+
+/obj/item/clothing/neck/roguetown/roguehood/shalal/heavyhood/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))
 
 /obj/item/clothing/head/roguetown/roguehood/astrata
 	name = "sun hood"
@@ -672,7 +683,7 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	armor = ARMOR_HEAD_BAD
-	prevent_crits = list(BCLASS_CUT)
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	blocksound = SOFTHIT
 	max_integrity = 75
 	color = "#463C2B"
