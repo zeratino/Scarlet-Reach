@@ -469,32 +469,32 @@
 					should_update = TRUE
 
 		if("breast size")
-			var/list/breast_sizes = list("flat", "very small", "small", "average", "large", "enormous")
+			var/list/breast_sizes = list("Flat", "Slight", "Small", "Moderate", "Large", "Generous", "Heavy", "Massive", "Heaping", "Obscene")
 			var/new_size = input(user, "Choose your breast size", "Breast Size") as null|anything in breast_sizes
 			if(new_size)
 				var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
 				if(breasts)
 					var/size_num
 					switch(new_size)
-						if("flat")
+						if("Flat")
 							size_num = 0
-						if("A-cup")
+						if("Slight")
 							size_num = 1
-						if("B-cup")
+						if("Small")
 							size_num = 2
-						if("C-cup")
+						if("Moderate")
 							size_num = 3
-						if("D-cup")
+						if("Large")
 							size_num = 4
-						if("E-cup")
+						if("Generous")
 							size_num = 5
-						if("F-cup")
+						if("Heavy")
 							size_num = 6
-						if("G-cup")
+						if("Massive")
 							size_num = 7
-						if("H-cup")
+						if("Heaping")
 							size_num = 8
-						if("I-cup")
+						if("Obscene")
 							size_num = 9
 
 					breasts.breast_size = size_num

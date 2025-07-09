@@ -179,27 +179,27 @@
 		if(0)
 			adjective = "a flat"
 		if(1)
-			adjective = "an A-cup"
+			adjective = "a slight"
 		if(2)
-			adjective = "a B-cup"
+			adjective = "a small"
 		if(3)
-			adjective = "a C-cup"
+			adjective = "a moderate"
 		if(4)
-			adjective = "a D-cup"
+			adjective = "a large"
 		if(5)
-			adjective = "an E-cup"
+			adjective = "a generous"
 		if(6)
-			adjective = "an F-cup"
+			adjective = "a heavy"
 		if(7)
-			adjective = "a G-cup"
+			adjective = "a massive"
 		if(8)
-			adjective = "an H-cup"
+			adjective = "a heaping"
 		if(9)
-			adjective = "an I-cup"
+			adjective = "an obscene"
 		if(10)
-			adjective = "a J-cup"
+			adjective = "a backbreaking"
 		if(11)
-			adjective = "a K-cup"
+			adjective = "a stomach-hiding"
 		if(12)
-			adjective = "an L-cup"
+			adjective = "a torso-sized"
 	return "[adjective] pair of breasts"
