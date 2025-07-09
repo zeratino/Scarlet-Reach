@@ -53,6 +53,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_SPELLSINGER
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	sewrepair = TRUE
@@ -623,6 +624,7 @@
 	icon_state = "priest"
 	//dropshrink = 0
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	dynamic_hair_suffix = "+generic"
 	sellprice = 77
 	worn_x_dimension = 64
@@ -750,6 +752,7 @@
 	icon_state = "wingedcap"
 	max_integrity = 225
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	body_parts_covered = HEAD|HAIR
@@ -1642,6 +1645,7 @@
 	desc = "Used to distinguish dangerous wizards from senile old men."
 	icon_state = "wizardhat"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	dynamic_hair_suffix = "+generic"
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -1821,6 +1825,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
+	bloody_icon = 'icons/effects/blood64.dmi'
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 	dynamic_hair_suffix = ""
 	resistance_flags = FIRE_PROOF // Made of metal
