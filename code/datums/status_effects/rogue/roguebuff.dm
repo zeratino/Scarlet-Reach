@@ -285,11 +285,12 @@
 
 /atom/movable/screen/alert/status_effect/buff/darkvision
 	name = "Darkvision"
-	desc = "I can see in the dark somewhat."
+	desc = "The darkness no longer hinders me."
 	icon_state = "buff"
 
 /datum/status_effect/buff/darkvision
 	id = "darkvision"
+	effectedstats = list("perception" = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/darkvision
 	duration = 15 MINUTES
 
@@ -297,12 +298,12 @@
 	if(assocskill)
 		duration += 5 MINUTES * assocskill
 	. = ..()
-	to_chat(owner, span_warning("The darkness fades somewhat."))
+	to_chat(owner, span_warning("My senses sharpen. The darkness fades."))
 	ADD_TRAIT(owner, TRAIT_DARKVISION, MAGIC_TRAIT)
 
 /datum/status_effect/buff/darkvision/on_remove()
 	. = ..()
-	to_chat(owner, span_warning("The darkness returns to normal."))
+	to_chat(owner, span_warning("My senses dull. Darkness grasps me again."))
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, MAGIC_TRAIT)
 
 /atom/movable/screen/alert/status_effect/buff/longstrider
