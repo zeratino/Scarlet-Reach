@@ -88,7 +88,7 @@
 			H.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
 			var/obj/item/sword = new /obj/item/rogueweapon/sword/sabre/shamshir(H)
-			H.equip_to_slot(sword, SLOT_BELT)
+			H.equip_to_slot(sword, SLOT_BELT_R)
 			var/obj/item/shield = new /obj/item/rogueweapon/shield/tower/metal(H)
 			H.equip_to_slot(shield, SLOT_BACK_R)
 		if ("MY BARE HANDS!!!")
@@ -96,7 +96,7 @@
 			ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_STRONGBITE, TRAIT_GENERIC)
 			var/obj/item/katar = new /obj/item/rogueweapon/katar(H)
-			H.equip_to_slot(katar, SLOT_BELT)
+			H.equip_to_slot(katar, SLOT_BELT_R)
 			var/obj/item/knuckles = new /obj/item/rogueweapon/knuckles/eora(H)
 			H.equip_to_slot(knuckles, SLOT_IN_BACKPACK)
 
