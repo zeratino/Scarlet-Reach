@@ -105,6 +105,9 @@
 			else
 				. += span_notice("A noble!")
 
+		if(HAS_TRAIT(src, TRAIT_CHOSEN))
+			. += span_notice("The ordained voice of the Ten!")
+
 		if (HAS_TRAIT(src, TRAIT_OUTLANDER) && !HAS_TRAIT(user, TRAIT_OUTLANDER)) 
 			. += span_phobia("A foreigner...")
 
