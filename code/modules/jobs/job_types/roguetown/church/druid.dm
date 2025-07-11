@@ -4,8 +4,8 @@
 	flag = DRUID
 	department_flag = CHURCHMEN
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 4
+	spawn_positions = 4
 
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
