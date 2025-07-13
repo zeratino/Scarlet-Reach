@@ -5,6 +5,7 @@
 /tmp/**/*
 
 #Ignore byond config folder.
+/cfg/**/*
 
 #Ignore compiled files and other files generated during compilation.
 *.mdme
@@ -227,4 +228,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 !/config/title_music/sounds/title1.ogg
 /config/title_screens/images/*
 !/config/title_screens/images/exclude
-cfg/admin.txt
