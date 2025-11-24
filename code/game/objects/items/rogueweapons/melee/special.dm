@@ -9,7 +9,7 @@
 	penfactor = 0
 	chargetime = 0
 	swingdelay = 0
-	damfactor = 1.3
+	damfactor = 1.2
 	clickcd = 10
 	item_d_type = "slash"
 
@@ -20,7 +20,7 @@
 	animname = "stab"
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 40
+	penfactor = 30
 	chargetime = 0
 	clickcd = 8
 	item_d_type = "stab"
@@ -261,7 +261,7 @@
 
 /obj/item/rogueweapon/katar
 	slot_flags = ITEM_SLOT_HIP
-	force = 24
+	force = 22
 	possible_item_intents = list(/datum/intent/katar/cut, /datum/intent/katar/thrust)
 	name = "katar"
 	desc = "A blade that sits above the users fist. Commonly used by those proficient at unarmed fighting"
@@ -301,7 +301,7 @@
 	desc = "A gift from a creature of the sea. The claw is sharpened to a wicked edge."
 	icon = 'icons/roguetown/weapons/misc32.dmi'
 	icon_state = "abyssorclaw"
-	force = 27	//Its thrust will be able to pen 80 stab armor if the wielder has 17 STR. (With softcap)
+	force = 25	
 	max_integrity = 120
 
 /obj/item/rogueweapon/katar/punchdagger
