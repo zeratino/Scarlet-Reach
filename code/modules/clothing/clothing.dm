@@ -71,23 +71,12 @@
 	var/boobed_detail = TRUE
 	var/sleeved_detail = TRUE
 	var/list/original_armor //For restoring broken armor
+	var/shoddy_repair = FALSE // if we've been field repaired by an unskilled person, set this to true
 
 /obj/item/clothing/New()
 	..()
 	if(armor_class)
 		has_inspect_verb = TRUE
-
-/obj/item/clothing/Topic(href, href_list)
-	. = ..()
-	if(href_list["inspect"])
-		if(!usr.canUseTopic(src, be_close=TRUE))
-			return
-		if(armor_class == ARMOR_CLASS_HEAVY)
-			to_chat(usr, "AC: <b>HEAVY</b>")
-		if(armor_class == ARMOR_CLASS_MEDIUM)
-			to_chat(usr, "AC: <b>MEDIUM</b>")
-		if(armor_class == ARMOR_CLASS_LIGHT)
-			to_chat(usr, "AC: <b>LIGHT</b>")
 
 /obj/item/clothing/examine(mob/user)
 	. = ..()
@@ -109,7 +98,7 @@
 /obj/item/proc/get_altdetail_color() //this is for extra layers on clothes
 	return altdetail_color
 
-/obj/item/clothing/MiddleClick(mob/user, params)
+/obj/item/clothing/ShiftRightClick(mob/user, params)
 	..()
 	var/mob/living/L = user
 	var/altheld //Is the user pressing alt?
@@ -537,3 +526,44 @@ BLIND     // can't see anything
 	if(text)
 		filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
 	. = ..()
+
+
+/obj/proc/generate_tooltip(examine_text, showcrits)
+	return examine_text
+
+/obj/item/clothing/generate_tooltip(examine_text, showcrits)
+	if(!armor)	// No armor
+		return examine_text
+
+	// Fake armor
+	if(armor.getRating("slash") == 0 && armor.getRating("stab") == 0 && armor.getRating("blunt") == 0 && armor.getRating("piercing") == 0)
+		return examine_text
+
+	var/str
+	str += "[colorgrade_rating("🔨 BLUNT ", armor.blunt, elaborate = TRUE)] | "
+	str += "[colorgrade_rating("🪓 SLASH ", armor.slash, elaborate = TRUE)]"
+	str += "<br>"
+	str += "[colorgrade_rating("🗡️ STAB ", armor.stab, elaborate = TRUE)] | "
+	str += "[colorgrade_rating("🏹 PIERCE ", armor.piercing, elaborate = TRUE)] "
+
+	if(showcrits && prevent_crits)
+		str += "<br>———————————————<br>"
+		str += "<font color = '#afaeae'><text-align: center>STOPS CRITS: <br>"
+		var/linebreak_count = 0
+		var/index = 0
+		for(var/flag in prevent_crits)
+			index++
+			if(flag == BCLASS_PICK)	//BCLASS_PICK is named "stab", and "stabbing" is its own damage class. Prevents confusion.
+				flag = "pick"
+			str += ("[capitalize(flag)] ")
+			linebreak_count++
+			if(linebreak_count >= 3)
+				str += "<br>"
+				linebreak_count = 0
+			else if(index != length(prevent_crits))
+				str += " | "
+		str += "</font>"
+
+	//This makes it appear a faint off-blue from the rest of examine text. Draws the cursor to it like to a Wetsquires.rt link.
+	examine_text = "<font color = '#aabdbe'>[examine_text]</font>"
+	return SPAN_TOOLTIP_DANGEROUS_HTML(str, examine_text)

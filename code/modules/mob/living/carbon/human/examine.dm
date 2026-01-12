@@ -97,7 +97,8 @@
 				rank_color = "ECB20A"
 			if(SOCIAL_RANK_ROYAL)
 				rank_color = "FFBF00"
-		var/social_strata = "<a href='?src=[REF(src)];social_strata=1'><font color='#[rank_color]'>⚜</font></A>"
+		var/strata_icon = family_datum ? "⛯" : "⛭"
+		var/social_strata = SPAN_TOOLTIP_DANGEROUS_HTML(generate_strata(user), "<font color='#[rank_color]'>[strata_icon]</font></A>")
 		var/display1
 		var/display2 = "[!HAS_TRAIT(usr, TRAIT_OUTLANDER) ? "[social_strata]" : " "]"
 		if(display_as_wanderer)
@@ -107,7 +108,12 @@
 		else
 			display1 = span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name].")
 		. = list("[display1] [display2]")
-		. += span_info("[capitalize(m2)] [dna.species.skin_tone_wording ? lowertext(dna.species.skin_tone_wording) : "skin tone"] originates in [dna.species.origin].")
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(H.dna.species.origin == dna.species.origin && dna.species.region)
+				. += span_info("[capitalize(m2)] [dna.species.skin_tone_wording ? lowertext(dna.species.skin_tone_wording) : "skin tone"] originates in [dna.species.region] of [dna.species.origin].")
+			else
+				. += span_info("[capitalize(m2)] [dna.species.skin_tone_wording ? lowertext(dna.species.skin_tone_wording) : "skin tone"] originates in [dna.species.origin].")
 
 		if(HAS_TRAIT(src, TRAIT_WITCH))
 			if(HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_INQUISITION) || HAS_TRAIT(user, TRAIT_WITCH))
@@ -116,6 +122,9 @@
 				. += span_notice("A practitioner of the old ways.")
 			else
 				. += span_notice("Something about them seems... different.")
+
+		if (HAS_TRAIT(src, TRAIT_AVATAR_GRAGGAR))
+			. += "<span class='big' style='color: #8B4513;'>A MARAUDING OGRE!</span>"
 
 		if(HAS_TRAIT(src, TRAIT_DISGRACED_KNIGHT))
 			. += "<span class='big' style='color: #8B4513;'>DISGRACED KNIGHT!</span>"
@@ -247,7 +256,14 @@
 
 		if(leprosy == 1)
 			. += span_necrosis("A LEPER...")
-	
+
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(family_datum == H.family_datum && family_datum)
+				var/family_text = ReturnRelation(user)
+				if(family_text)
+					. += family_text
+
 		if (HAS_TRAIT(src, TRAIT_BEAUTIFUL))
 			switch (pronouns)
 				if (HE_HIM, SHE_HER_M)
@@ -265,6 +281,17 @@
 					. += span_redtext("[m1] repugnant!")
 				if (THEY_THEM, THEY_THEM_F, IT_ITS)
 					. += span_redtext("[m1] repulsive!")
+
+		// Shouldn't be able to tell they are unrevivable through a mask as a Necran
+		if(HAS_TRAIT(src, TRAIT_DNR) && src != user)
+			if(HAS_TRAIT(user, TRAIT_DEATHSIGHT) || stat == DEAD)
+				. += span_danger("They exude a pale aura. Their soul [stat == DEAD ? "was not" : "is not"] clean. This [stat == DEAD ? "was" : "is"] their only chance at lyfe.")
+
+	// Real medical role can tell at a glance it is a waste of time, but only if the Necra message don't come first.
+
+	if(user.get_skill_level(/datum/skill/misc/medicine) >= SKILL_LEVEL_EXPERT && src.stat == DEAD)
+		if(HAS_TRAIT(src, TRAIT_DNR) && src != user && !HAS_TRAIT(user, TRAIT_DEATHSIGHT)) // A lot of conditional to avoid a redundant message, but we also want unknown DNRs to be covered.
+			. += span_danger("Their body holds not even a glimmer of life. No medicine can bring them back.")
 
 	if (HAS_TRAIT(src, TRAIT_CRITICAL_WEAKNESS) && (!HAS_TRAIT(src, TRAIT_VAMP_DREAMS)))
 		if(isliving(user))
@@ -327,18 +354,11 @@
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	if(wear_shirt && !(SLOT_SHIRT in obscured))
-		if(!wear_armor)
-			var/str = "[m3] [wear_shirt.get_examine_string(user)]."
-			if(!is_stupid)
-				str += " [wear_shirt.integrity_check()]"
-			. += str
-		else
-			if(is_smart)
-				var/str = "[m3] [wear_shirt.get_examine_string(user)]. "
-				str += wear_shirt.integrity_check()
-				. += str
-			else if(!is_stupid && is_normal)
-				. += "[m3] [wear_shirt.get_examine_string(user)]."
+		var/str = "[m3] [wear_shirt.generate_tooltip(wear_shirt.get_examine_string(user), showcrits = (is_normal || is_smart))]. "
+		str += "[wear_shirt.integrity_check(is_smart)]"
+		if(is_stupid)
+			str = "[m3] some kind of shirt!"
+		. += str
 
 	//uniform
 	if(wear_pants && !(SLOT_PANTS in obscured))
@@ -348,54 +368,42 @@
 			var/obj/item/clothing/under/U = wear_pants
 			if(U.attached_accessory)
 				accessory_msg += " with [icon2html(U.attached_accessory, user)] \a [U.attached_accessory]"
-		var/str = "[m3] [wear_pants.get_examine_string(user)][accessory_msg]. "
+		var/str = "[m3] [wear_pants.generate_tooltip(wear_pants.get_examine_string(user), showcrits = (is_normal || is_smart))][accessory_msg]. "
 		if(!wear_armor)
-			if(is_normal && !is_smart)
-				str += "[wear_pants.integrity_check()]"
-			else if(is_stupid)
-				str = "[m3] a pair of some pants! "
-		else if(is_smart)
-			str += "[wear_pants.integrity_check()]"
+			str += wear_pants.integrity_check(is_smart)
+		if(is_stupid)
+			str = "[m3] a pair of some pants! "
 		. += str
 
 
 	//head
 	if(head && !(SLOT_HEAD in obscured))
-		var/str = "[m3] [head.get_examine_string(user)] on [m2] head. "
-		if(is_smart)
-			str += head.integrity_check()
-		else if(is_stupid)
+		var/str = "[m3] [head.generate_tooltip(head.get_examine_string(user), showcrits = (is_normal || is_smart))] on [m2] head. "
+		str += head.integrity_check(is_smart)
+		if(is_stupid)
 			if(istype(head,/obj/item/clothing/head/roguetown/helmet))
 				str = "[m3] some kinda helmet!"
 			else
 				str = "[m3] some kinda hat!"
-		else
-			str += "[head.integrity_check()]"
 		. += str
 
 	//suit/armor
 	if(wear_armor && !(SLOT_ARMOR in obscured))
-		var/str = "[m3] [wear_armor.get_examine_string(user)]. "
-		if(is_smart)
-			str += wear_armor.integrity_check()
+		var/str = "[m3] [wear_armor.generate_tooltip(wear_armor.get_examine_string(user), showcrits = (is_normal || is_smart))]. "
+		if(is_smart || is_normal)
+			str += wear_armor.integrity_check(is_smart)
 		else if (is_stupid)
 			if(istype(wear_armor, /obj/item/clothing/suit/roguetown/armor))
 				var/obj/item/clothing/suit/roguetown/armor/examined_armor = wear_armor
 				switch(examined_armor.armor_class)
 					if(ARMOR_CLASS_LIGHT)
-						. += "[m3] some flimsy leathers!"
+						str = "[m3] some flimsy leathers!"
 					if(ARMOR_CLASS_MEDIUM)
-						if(HAS_TRAIT(user, TRAIT_MEDIUMARMOR))
-							. += "[m3] [wear_armor.get_examine_string(user)]."
-						else
-							. += "[m3] some metal and leather!"
+						if(!HAS_TRAIT(user, TRAIT_MEDIUMARMOR))
+							str = "[m3] some metal and leather!"
 					if(ARMOR_CLASS_HEAVY)
-						if(HAS_TRAIT(user, TRAIT_HEAVYARMOR))
-							. += "[m3] [wear_armor.get_examine_string(user)]."
-						else
-							. += "[m3] some heavy metal stuff!"
-		else
-			str += "[wear_armor.integrity_check()]"
+						if(!HAS_TRAIT(user, TRAIT_HEAVYARMOR))
+							str = "[m3] some heavy metal stuff!"
 		. += str
 		//suit/armor storage
 		if(s_store && !(SLOT_S_STORE in obscured))
@@ -407,55 +415,43 @@
 
 	//cloak
 	if(cloak && !(SLOT_CLOAK in obscured))
-		if(is_smart)
-			var/str = "[m3] [cloak.get_examine_string(user)] on [m2] shoulders. "
-			str += cloak.integrity_check()
-			. += str
-		else if (is_stupid)					//So they can tell the named RG tabards. If they can read them, anyway.
-			if(!istype(cloak, /obj/item/clothing/cloak/stabard) && user.get_skill_level(/datum/skill/misc/reading))
-				. += "[m3] some kinda clothy thing on [m2] shoulders!"
-			else
-				. += "[m3] [cloak.get_examine_string(user)] on [m2] shoulders."
+		var/str
+		if(istype(cloak, /obj/item/clothing))
+			var/obj/item/clothing/CL = cloak
+			str = "[m3] [CL.generate_tooltip(CL.get_examine_string(user), showcrits = (is_normal || is_smart))] on [m2] shoulders. "
 		else
-			. += "[m3] [cloak.get_examine_string(user)] on [m2] shoulders."
+			str = "[m3] [cloak.get_examine_string(user)] on [m2] shoulders. "
+		str += cloak.integrity_check(is_smart)
+		if (is_stupid)					//So they can tell the named RG tabards. If they can read them, anyway.
+			if(!istype(cloak, /obj/item/clothing/cloak/stabard) && user.get_skill_level(/datum/skill/misc/reading) == 0)
+				str = "[m3] some kinda clothy thing on [m2] shoulders!"
+		. += str
 
 	//right back
 	if(backr && !(SLOT_BACK_R in obscured))
-		if(is_smart)
-			var/str = "[m3] [backr.get_examine_string(user)] on [m2] back. "
-			str += backr.integrity_check()
-			. += str
-		else
-			. += "[m3] [backr.get_examine_string(user)] on [m2] back."
+		var/str = "[m3] [backr.get_examine_string(user)] on [m2] back. "
+		str += backr.integrity_check(is_smart)
+		. += str
 
 	//left back
 	if(backl && !(SLOT_BACK_L in obscured))
-		if(is_smart)
-			var/str = "[m3] [backl.get_examine_string(user)] on [m2] back. "
-			str += backl.integrity_check()
-			. += str
-		else
-			. += "[m3] [backl.get_examine_string(user)] on [m2] back."
+		var/str = "[m3] [backl.get_examine_string(user)] on [m2] back. "
+		str += backl.integrity_check(is_smart)
+		. += str
 
 	//Hands
 	for(var/obj/item/I in held_items)
 		if(!(I.item_flags & ABSTRACT))
-			if(is_smart)
-				var/str = "[m1] holding [I.get_examine_string(user)] in [m2] [get_held_index_name(get_held_index_of_item(I))]."
-				str += I.integrity_check()
-				. += str
-			else
-				. += "[m1] holding [I.get_examine_string(user)] in [m2] [get_held_index_name(get_held_index_of_item(I))]."
+			var/str = "[m1] holding [I.get_examine_string(user)] in [m2] [get_held_index_name(get_held_index_of_item(I))]. "
+			str += I.integrity_check(is_smart)
+			. += str
 
 	var/datum/component/forensics/FR = GetComponent(/datum/component/forensics)
 	//gloves
 	if(gloves && !(SLOT_GLOVES in obscured))
-		var/str = "[m3] [gloves.get_examine_string(user)] on [m2] hands. "
-		if(is_smart)
-			str += gloves.integrity_check()
-		else if(!is_stupid)
-			str += "[gloves.integrity_check()]"
-		else
+		var/str = "[m3] [gloves.generate_tooltip(gloves.get_examine_string(user), showcrits = (is_normal || is_smart))] on [m2] hands. "
+		str += gloves.integrity_check(is_smart)
+		if(is_stupid)
 			str = "[m3] a pair of gloves of some kind!"
 		. += str
 	else if(FR && length(FR.blood_DNA))
@@ -468,73 +464,58 @@
 
 	//belt
 	if(belt && !(SLOT_BELT in obscured))
-		if(is_smart)
-			var/str = "[m3] [belt.get_examine_string(user)] about [m2] waist. "
-			str += belt.integrity_check()
-			. += str
-		else
-			. += "[m3] [belt.get_examine_string(user)] about [m2] waist."
+		var/str = "[m3] [belt.get_examine_string(user)] about [m2] waist. "
+		str += belt.integrity_check(is_smart)
+		. += str
+
 
 	//right belt
 	if(beltr && !(SLOT_BELT_R in obscured))
-		if(is_smart)
-			var/str = "[m3] [beltr.get_examine_string(user)] on [m2] belt. "
-			str += beltr.integrity_check()
-			. += str
-		else
-			. += "[m3] [beltr.get_examine_string(user)] on [m2] belt."
+		var/str = "[m3] [beltr.get_examine_string(user)] on [m2] belt. "
+		str += beltr.integrity_check(is_smart)
+		. += str
 
 	//left belt
 	if(beltl && !(SLOT_BELT_L in obscured))
-		if(is_smart)
-			var/str = "[m3] [beltl.get_examine_string(user)] on [m2] belt. "
-			str += beltl.integrity_check()
-			. += str
-		else
-			. += "[m3] [beltl.get_examine_string(user)] on [m2] belt."
+		var/str = "[m3] [beltl.get_examine_string(user)] on [m2] belt. "
+		str += beltl.integrity_check(is_smart)
+		. += str
 
 	//shoes
 	if(shoes && !(SLOT_SHOES in obscured))
-		var/str = "[m3] [shoes.get_examine_string(user)] on [m2] feet. "
-		if(is_smart)
-			str += shoes.integrity_check()
-		else if(!is_stupid)
-			str += "[shoes.integrity_check()]"
-		else
+		var/str = "[m3] [shoes.generate_tooltip(shoes.get_examine_string(user), showcrits = (is_normal || is_smart))] on [m2] feet. "
+		str += shoes.integrity_check(is_smart)
+		if(is_stupid)
 			str = "[m3] some shoes on [m2] feet!"
 		. += str
 
 	//mask
 	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
-		var/str = "[m3] [wear_mask.get_examine_string(user)] on [m2] face. "
-		if(is_smart)
-			str += wear_mask.integrity_check()
-		else if(is_stupid)
+		var/str = "[m3] [wear_mask.generate_tooltip(wear_mask.get_examine_string(user), showcrits = (is_normal || is_smart))] on [m2] face. "
+		str += wear_mask.integrity_check(is_smart)
+		if(is_stupid)
 			str = "[m3] some kinda thing on [m2] face!"
-		else
-			str += wear_mask.integrity_check()
 		. += str
 
 	//mouth
 	if(mouth && !(SLOT_MOUTH in obscured))
-		var/str = "[m3] [mouth.get_examine_string(user)] in [m2] mouth. "
-		if(is_smart)
-			str += mouth.integrity_check()
-		else if(is_stupid)
-			str = "[m3] some kinda thing on [m2] mouth!"
+		var/str
+		if(istype(mouth, /obj/item/clothing))
+			var/obj/item/clothing/CM = mouth
+			str = "[m3] [CM.generate_tooltip(CM.get_examine_string(user), showcrits = (is_normal || is_smart))] in [m2] mouth. "
 		else
-			str += "[mouth.integrity_check()]"
+			"[m3] [mouth.get_examine_string(user)] in [m2] mouth. "
+		str += mouth.integrity_check(is_smart)
+		if(is_stupid)
+			str = "[m3] some kinda thing on [m2] mouth!"
 		. += str
 
 	//neck
 	if(wear_neck && !(SLOT_NECK in obscured))
-		var/str = "[m3] [wear_neck.get_examine_string(user)] around [m2] neck. "
-		if(is_smart)
-			str += wear_neck.integrity_check()
-		else if (is_stupid)
+		var/str = "[m3] [wear_neck.generate_tooltip(wear_neck.get_examine_string(user), showcrits = (is_normal || is_smart))] around [m2] neck. "
+		str += wear_neck.integrity_check(is_smart)
+		if (is_stupid)
 			str = "[m3] something on [m2] neck!"
-		else
-			str += "[wear_neck.integrity_check()]"
 		. += str
 
 	//eyes
@@ -550,29 +531,24 @@
 
 	//ID
 	if(wear_ring && !(SLOT_RING in obscured))
-		if(is_stupid)
-			. += "[m3] some sort of ring!"
-		else if(is_smart && istype(wear_ring, /obj/item/clothing/ring/active))
-			var/str = "[m3] [wear_ring.get_examine_string(user)] on [m2] hands. "
+		var/str = "[wear_ring.generate_tooltip(wear_ring.get_examine_string(user), showcrits = (is_normal || is_smart))] on [m2] hands. "
+		if(is_smart && istype(wear_ring, /obj/item/clothing/ring/active))
 			var/obj/item/clothing/ring/active/AR = wear_ring
 			if(AR.cooldowny)
 				if(world.time < AR.cooldowny + AR.cdtime)
 					str += span_warning("It cannot activate again, yet.")
 				else
 					str += span_warning("It is ready to use.")
-			. += str
-		else
-			. += "[m3] [wear_ring.get_examine_string(user)] on [m2] hands."
+		if(is_stupid)
+			str = "[m3] some sort of ring!"
+		. += str
 
 	//wrists
 	if(wear_wrists && !(SLOT_WRISTS in obscured))
-		var/str = "[m3] [wear_wrists.get_examine_string(user)] on [m2] wrists."
-		if(is_smart)
-			str += wear_wrists.integrity_check()
-		else if (is_stupid)
+		var/str = "[m3] [wear_wrists.generate_tooltip(wear_wrists.get_examine_string(user), showcrits = (is_normal || is_smart))] on [m2] wrists."
+		str += wear_wrists.integrity_check(is_smart)
+		if (is_stupid)
 			str = "[m3] something on [m2] wrists!"
-		else
-			str += "[wear_wrists.integrity_check()]"
 		. += str
 
 	//handcuffed?
@@ -824,10 +800,10 @@
 		. += span_warning("[msg.Join("\n")]")
 
 	// Show especially large embedded objects at a glance
-	for(var/obj/item/bodypart/part in bodyparts)
-		if (LAZYLEN(part.embedded_objects))
-			for(var/obj/item/stuck_thing in part.embedded_objects)
-				if (stuck_thing.w_class >= WEIGHT_CLASS_SMALL)
+	for(var/obj/item/bodypart/part as anything in bodyparts)
+		if(LAZYLEN(part.embedded_objects))
+			for(var/obj/item/stuck_thing as anything in part.embedded_objects)
+				if(stuck_thing.w_class >= WEIGHT_CLASS_SMALL)
 					. += span_bloody("<b>[m3] \a [stuck_thing] stuck in [m2] [part.name]!</b>")
 
 	if(ishuman(user))
@@ -891,6 +867,7 @@
 		if(headshot_link)
 			. += "<span class='info'><img src=[headshot_link] width=100 height=100/></span>"
 
+	var/medical_text
 	if(Adjacent(user))
 		if(observer_privilege)
 			var/static/list/check_zones = list(
@@ -909,9 +886,12 @@
 			. += "<a href='?src=[REF(src)];check_hb=1'>Check Heartbeat</a>"
 		else
 			var/checked_zone = check_zone(user.zone_selected)
-			. += "<a href='?src=[REF(src)];inspect_limb=[checked_zone]'>Inspect [parse_zone(checked_zone)]</a>"
+			var/heartbeat
 			if(!(mobility_flags & MOBILITY_STAND) && user != src && (user.zone_selected == BODY_ZONE_CHEST))
-				. += "<a href='?src=[REF(src)];check_hb=1'>Listen to Heartbeat</a>"
+				heartbeat = "<a href='?src=[REF(src)];check_hb=1'>Listen to Heartbeat</a>"
+			medical_text = "[heartbeat ? "[heartbeat] | " : ""]<a href='?src=[REF(src)];inspect_limb=[checked_zone]'>Inspect [parse_zone(checked_zone)]</a>"
+	if(medical_text)
+		. += medical_text
 
 	if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS) && user != src)
 		if(isliving(user))
@@ -935,6 +915,11 @@
 					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
 					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
 
+	var/showassess = FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
+			showassess = TRUE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -945,8 +930,12 @@
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
 		flavorcheck = TRUE
 	if(flavorcheck)
-		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
+		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a> [showassess ? " | <a href='?src=[REF(src)];task=assess;'>Assess</a>" : ""]"
 		//tiny picture when you are not examining closer, shouldnt take too much space.
+	/// Rumours & Gossip
+	if((!obscure_name) && (length(rumour)) || ((HAS_TRAIT(user, TRAIT_NOBLE) || HAS_TRAIT(user, TRAIT_ROYALSERVANT)) || observer_privilege && length(gossip)))
+		. += "<a href='?src=[REF(src)];task=view_rumours_gossip;'>Recall Rumours & Gossip</a>"
+
 	var/list/lines
 	if((get_face_name() != real_name) && !observer_privilege)
 		lines = build_cool_description_unknown(get_mob_descriptors(obscure_name, user), src)
@@ -1051,6 +1040,15 @@
 
 	return inquisition_text
 
+// Heartfelt examine
+
+/mob/living/proc/get_heartfelt_text(mob/examiner)
+	var/heartfelt_text
+	if(HAS_TRAIT(src, TRAIT_HEARTFELT) && HAS_TRAIT(examiner, TRAIT_HEARTFELT))
+		heartfelt_text = "They serve the interests of Heartfelt."
+
+	return heartfelt_text
+
 /// Returns antagonist-related examine text for the mob, if any. Can return null.
 /mob/living/proc/get_villain_text(mob/examiner)
 	var/villain_text
@@ -1083,3 +1081,62 @@
 			return "[verbose ? "Conjured shaft" : "(C. shaft)"]"
 		else
 			return null
+
+/mob/living/carbon/human/proc/generate_strata(mob/user)
+	var/is_clergy = FALSE
+	var/is_jester = FALSE
+	var/is_druid = FALSE
+	var/output = ""
+	if(job)
+		var/datum/job/J = SSjob.GetJob(job)
+		if(J.department_flag == CHURCHMEN) //There may be a better way to check who is clergy, but this will do for now
+			is_clergy = TRUE
+		if(J.title == "Jester")
+			is_jester = TRUE
+		if(J.title == "Druid")
+			is_druid = TRUE
+	if(social_rank && !HAS_TRAIT(user, TRAIT_OUTLANDER))
+		var/examiner_rank = user.social_rank
+		var/rank_name
+		if(HAS_TRAIT(src, TRAIT_NOBLE) && social_rank < 4) //anyone with the noble trait that wasn't a noble is now at least a minor noble
+			social_rank = SOCIAL_RANK_MINOR_NOBLE
+		switch(social_rank)
+			if(SOCIAL_RANK_DIRT)
+				rank_name = "dirt"
+			if(SOCIAL_RANK_PEASANT)
+				rank_name = "a peasant"
+			if(SOCIAL_RANK_YEOMAN)
+				rank_name = "a yeoman"
+			if(SOCIAL_RANK_MINOR_NOBLE)
+				rank_name = is_clergy ? "low clergy" : "lower nobility"
+			if(SOCIAL_RANK_NOBLE)
+				rank_name = is_clergy ? "clergy" : "nobility"
+			if(SOCIAL_RANK_ROYAL)
+				rank_name = is_clergy ? "head of the clergy" : "upper nobility"
+		if(HAS_TRAIT(src, TRAIT_DISGRACED_NOBLE))
+			rank_name = "a disgraced noble"
+			social_rank = 3
+		if(is_jester)
+			rank_name = "the jester"
+		if(is_druid)
+			rank_name = "a druid"
+		if(social_rank > examiner_rank)
+			output = "This person is <EM>[rank_name]</EM>, they are my better."	
+		if(social_rank == examiner_rank)
+			output = "This person is <EM>[rank_name]</EM>, they are my equal."
+		if(social_rank < examiner_rank)
+			output = "This person is <EM>[rank_name]</EM>, they are my lesser."
+	if(family_datum)
+		var/datum/family_member/FM = family_datum.GetMemberForPerson(src)
+		var/spousetext = ""
+		if(FM && FM.spouses.len)
+			var/list/spouse_list = list()
+			for(var/datum/family_member/S in FM.spouses)
+				if(S.person)
+					var/mob/living/carbon/human/the_person = S.person
+					spouse_list += the_person.real_name
+			if(spouse_list.len)
+				spousetext = jointext(spouse_list, ", ")
+		output += "<BR>They are a member of house [family_datum.housename][spousetext ? ", and are married to [spousetext]." : "."]"
+
+	return output

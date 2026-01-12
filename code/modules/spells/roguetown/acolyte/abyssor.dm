@@ -204,7 +204,7 @@
 		var/healing = 6.5
 		target.adjustFireLoss(-80)
 		if (conditional_buff)
-			to_chat(user, "Calling upon Abyssor's power is easier in these conditions!")
+			to_chat(user, "Calling upon His power is easier in these conditions!")
 			healing += situational_bonus
 			target.adjustFireLoss(-40)
 		target.apply_status_effect(/datum/status_effect/buff/healing, healing)
@@ -337,6 +337,7 @@
 /obj/effect/proc_holder/spell/invoked/abyssal_infusion
 	name = "Abyssal Infusion"
 	overlay_state = "abyssal_infusion"
+	desc = "Sacrifice an anglerfish to bind a fragment of the abyss into another's soul, granting them the Abyssal Strength miracle if they are capable of dreaming."
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1
@@ -364,7 +365,7 @@
 		return FALSE
 
 	if(target.mind.has_spell(/obj/effect/proc_holder/spell/invoked/abyssal_strength))
-		to_chat(user, span_warning("[target] is already blessed with Abyssor's strength."))
+		to_chat(user, span_warning("[target] is already blessed with His strength."))
 		revert_cast()
 		return FALSE
 
@@ -393,6 +394,7 @@
 /obj/effect/proc_holder/spell/invoked/abyssal_strength
 	name = "Abyssal Strength"
 	overlay_state = "abyssal_strength1"
+	desc = "Channel the abyss through your own body, greatly empowering your physique while dulling your senses and risking that a Dreamfiend manifests in reality."
 	range = 7
 	no_early_release = TRUE
 	charging_slowdown = 1

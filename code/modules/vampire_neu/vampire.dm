@@ -23,6 +23,9 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	var/datum/clan/forcing_clan
 	var/generation
 	var/research_points = 10
+	var/research_spent = 0
+	/// List of weak references to thralls created by this vampire
+	var/list/datum/weakref/thralls = list()
 
 /datum/antagonist/vampire/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation)
 	. = ..()
@@ -122,8 +125,10 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	var/datum/clan/custom/new_clan = new /datum/clan/custom()
 	new_clan.name = custom_clan_name
 	switch(vampdude.get_vampire_generation())
-		if(GENERATION_NEONATE, GENERATION_THINBLOOD)
+		if(GENERATION_NEONATE)
 			new_clan.covens_to_select = COVENS_PER_WRETCH_CLAN
+		if(GENERATION_THINBLOOD)
+			new_clan.covens_to_select = COVEN_BLOCKED
 
 	// Apply the custom clan
 	vampdude.set_clan_direct(new_clan)
@@ -149,6 +154,28 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /datum/antagonist/vampire/proc/equip()
 	return
+
+/// Checks if the vampire can convert a new thrall. feedback = TRUE to notify the vampire why they can't.
+/datum/antagonist/vampire/proc/can_convert(feedback = FALSE)
+	if(generation <= GENERATION_THINBLOOD)
+		if(feedback)
+			to_chat(owner.current, span_warning("My generation is too low to sire a new vampire."))
+		return FALSE
+	if(generation == GENERATION_NEONATE)
+		var/living_thralls = 0
+		for(var/datum/weakref/thrall_ref in thralls)
+			var/mob/living/thrall_mob = thrall_ref?.resolve()
+			if(thrall_mob && !QDELETED(thrall_mob) && thrall_mob.stat != DEAD)
+				living_thralls += 1
+			else // Cleaning up weakrefs to dead
+				thralls -= thrall_ref
+				qdel(thrall_ref)
+		if(living_thralls >= THRALLS_PER_NEONATE)
+			if(feedback)
+				to_chat(owner.current, span_warning("I have already sired two thin-blooded thralls. I cannot sire another."))
+			return FALSE
+
+	return TRUE
 
 // Custom clan datum for player-created clans
 /datum/clan/custom
@@ -222,3 +249,17 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 
 /datum/antagonist/vampire/licker/New(incoming_clan = /datum/clan/nosferatu, forced_clan = FALSE, generation = GENERATION_NEONATE)
 	. = ..(incoming_clan, forced_clan, generation)
+
+/// crimsmssieee curseee
+/datum/antagonist/vampire/stray
+	name = "Stray Vampire"
+	antag_hud_type = null
+	antag_hud_name = null
+	default_clan = /datum/clan/strays
+	clan_selected = TRUE
+
+/datum/antagonist/vampire/stray/New(incoming_clan = /datum/clan/strays, forced_clan = FALSE, generation = GENERATION_THINBLOOD)
+	. = ..(incoming_clan, forced_clan, generation)
+
+/datum/antagonist/vampire/stray/add_antag_hud(antag_hud_type, antag_hud_name, mob/living/mob_override)
+	return

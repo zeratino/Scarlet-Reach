@@ -187,7 +187,7 @@
 		return
 	if(!grant_resident_key)
 		return
-	var/spare_key = alert(user, "Have I got an extra spare key?", "Home", "Yes", "No")
+	var/spare_key = alert(user, "Have I got a spare key?", "Home", "Yes", "No")
 	if(!grant_resident_key)
 		return
 	if(spare_key == "Yes")
@@ -209,6 +209,7 @@
 		to_chat(human, span_notice("They're just where I left them..."))
 	else
 		to_chat(human, span_notice("It's just where I left it..."))
+	name = "[user.real_name] the [human.advjob ? human.advjob : human.job]'s house"
 	return TRUE
 
 /obj/structure/mineral_door/Move()
@@ -685,7 +686,7 @@
 				else
 					continue
 			else
-				playsound(loc, 'sound/items/pickbad.ogg', 40, TRUE)
+				playsound(src, 'sound/items/pickbad.ogg', 40, TRUE)
 				I.take_damage(1, BRUTE, "blunt")
 				to_chat(user, "<span class='warning'>Clack.</span>")
 				add_sleep_experience(L, /datum/skill/misc/lockpicking, L.STAINT/4)
@@ -897,6 +898,14 @@
 	desc = ""
 	over_state = "fancy_woodopen"
 	smashable = TRUE
+
+/obj/structure/mineral_door/wood/fancywood/knight
+	locked = TRUE
+	keylock = TRUE
+	grant_resident_key = TRUE
+	resident_key_type = /obj/item/roguekey/knight
+	resident_role = /datum/job/roguetown/knight
+	lockid = null //Will be randomized
 
 /obj/structure/mineral_door/wood/deadbolt
 	desc = "This door comes with a deadbolt."

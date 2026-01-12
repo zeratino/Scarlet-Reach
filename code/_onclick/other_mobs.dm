@@ -30,11 +30,11 @@
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A, proximity)
 	var/rmb_stam_penalty = 1
 	if(istype(rmb_intent, /datum/rmb_intent/strong) || istype(rmb_intent, /datum/rmb_intent/swift))
-		rmb_stam_penalty = 1.5	// Uses a modifer instead of a flat addition, less than weapons no matter what rn. 50% extra stam cost basically.
+		rmb_stam_penalty = 5	// Uses a modifer instead of a flat addition, less than weapons no matter what rn. 50% extra stam cost basically.
 	if(isliving(A))
 		var/mob/living/L = A
 		if(!used_intent.noaa)
-			playsound(get_turf(src), pick(GLOB.unarmed_swingmiss), 100, FALSE)
+			playsound(src, pick(GLOB.unarmed_swingmiss), 100, FALSE)
 			// src.emote("attackgrunt")
 		if(used_intent.releasedrain)
 			stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
@@ -249,7 +249,7 @@
 		do_attack_animation(A, visual_effect_icon = used_intent.animname)
 		changeNext_move(used_intent.clickcd)
 //		src.emote("attackgrunt")
-		playsound(get_turf(src), used_intent.miss_sound, 100, FALSE)
+		playsound(src, used_intent.miss_sound, 100, FALSE)
 		if(used_intent.miss_text)
 			visible_message(span_warning("[src] [used_intent.miss_text]!"), \
 							span_warning("I [used_intent.miss_text]!"))

@@ -96,12 +96,12 @@
 		B.skeletonize(FALSE)
 
 	equip_and_traits()
-	L.equipOutfit(/datum/outfit/job/roguetown/lich)
+	L.equipOutfit(/datum/outfit/job/lich)
 	L.set_patron(/datum/patron/inhumen/zizo)
 	owner.current.forceMove(pick(GLOB.vlord_starts)) // as opposed to spawning at their normal role spot as a skeleton; which is le bad
 
 
-/datum/outfit/job/roguetown/lich/pre_equip(mob/living/carbon/human/H) //Equipment is located below
+/datum/outfit/job/lich/pre_equip(mob/living/carbon/human/H) //Equipment is located below
 	..()
 
 	H.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
@@ -142,7 +142,7 @@
 
 	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "LICH"), 5 SECONDS)
 
-/datum/outfit/job/roguetown/lich/post_equip(mob/living/carbon/human/H)
+/datum/outfit/job/lich/post_equip(mob/living/carbon/human/H)
 	..()
 	var/datum/antagonist/lich/lichman = H.mind.has_antag_datum(/datum/antagonist/lich)
 	// One phylactery instead of 3 so that they don't need to get chased down non-stop.
@@ -341,7 +341,7 @@
 		return FALSE
 	if(alert(user, "Do you wish to sacrifice this vessel in a powerful explosion?", "ELDRITCH BLAST", "Yes", "No") == "No")
 		return FALSE
-	playsound(get_turf(user), 'sound/magic/antimagic.ogg', 100)
+	playsound(user, 'sound/magic/antimagic.ogg', 100)
 	user.visible_message(
 		span_danger("[user] begins to shake violently, a blindingly bright light beginning to emanate from them!"), 
 		span_danger("Powerful energy begins to expand outwards from inside me!")
@@ -353,12 +353,24 @@
 	addtimer(CALLBACK(src, PROC_REF(lichdeath), user), 5 SECONDS)
 
 /obj/effect/proc_holder/spell/self/suicidebomb/proc/lichdeath(mob/living/user)
+	// Check if user is undergoing divine_destruction - if so, trigger calcification override
+	if((user.status_flags & GODMODE) && (user in GLOB.divine_destruction_mobs))
+		// Send signal to trigger calcification override
+		SEND_SIGNAL(user, COMSIG_LIVING_CALCIFICATION_OVERRIDE)
+		// Continue with normal explosion after the 15 second sequence
+		addtimer(CALLBACK(src, PROC_REF(do_explosion), user), 15 SECONDS)
+		return TRUE
+	
+	do_explosion(user)
+	return TRUE
+
+/obj/effect/proc_holder/spell/self/suicidebomb/proc/do_explosion(mob/living/user)
 	var/datum/antagonist/lich/lichman = user.mind.has_antag_datum(/datum/antagonist/lich)
 	explosion(get_turf(user), -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire, soundin = 'sound/misc/explode/incendiary (1).ogg')
 	if(lichman && user.stat != DEAD && lichman.consume_phylactery(0)) // Use phylactery at 0 timer. Die if none.
 		return TRUE
 
-	user.death()
+	user.gib()
 	return TRUE
 
 /obj/effect/proc_holder/spell/self/suicidebomb/lesser

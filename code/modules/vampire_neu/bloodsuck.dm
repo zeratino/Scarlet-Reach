@@ -28,10 +28,6 @@
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
-		if(VDrinker && istype(human_victim.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver))
-			to_chat(src, span_userdanger("SILVER! HISSS!!!"))
-			return
-
 		human_victim.add_bite_animation()
 
 	last_drinkblood_use = world.time
@@ -54,12 +50,31 @@
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 		return
 
+	if(VDrinker && istype(victim.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || HAS_TRAIT(victim, TRAIT_SILVER_BLESSED))
+		to_chat(src, span_userdanger("SILVER! MY BANE!"))
+		src.adjust_fire_stacks(5, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		src.Stun(10)
+		src.ignite_mob()
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(1 SECONDS, 2 SECONDS))
+		return
+
+	if(VDrinker && HAS_TRAIT(victim, TRAIT_SILVER_BLOOD))
+		to_chat(src, span_userdanger("The blood contains traces of silver! It burns!!"))
+		src.adjust_fire_stacks(2, /datum/status_effect/fire_handler/fire_stacks/sunder)
+		src.ignite_mob() //no return, you can still drink them, you just get burnt
+
 	if(victim.mind?.has_antag_datum(/datum/antagonist/werewolf) || (victim.stat != DEAD && victim.mind?.has_antag_datum(/datum/antagonist/zombie)))
 		to_chat(src, span_danger("I'm going to puke..."))
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 		return
 
 	if(VVictim)
+		if(HAS_TRAIT(src, TRAIT_CRIMSON_CURSE))
+			to_chat(src, span_warning("I am too weak to commit Diablerie!."))
+			return
+		if(HAS_TRAIT(victim, TRAIT_CRIMSON_CURSE))
+			to_chat(src, span_warning("Their vitae is too weak for Diablerie!"))
+			return
 		to_chat(src, span_userdanger("<b>YOU TRY TO COMMIT DIABLERIE ON [victim].</b>"))
 
 	var/blood_handle
@@ -96,7 +111,7 @@
 			to_chat(src, span_danger("I have... Consumed my kindred!"))
 			if(VVictim.generation > VDrinker.generation)
 				VDrinker.generation = VVictim.generation
-			VDrinker.research_points += VVictim.research_points
+			VDrinker.research_points += VVictim.research_spent
 			victim.death()
 			victim.adjustBruteLoss(-50, TRUE)
 			victim.adjustFireLoss(-50, TRUE)
@@ -107,7 +122,10 @@
 			victim.death()
 			return
 
-	if(!victim.clan && victim.mind && ishuman(victim) && VDrinker.generation > GENERATION_THINBLOOD && victim.blood_volume <= BLOOD_VOLUME_BAD)
+	if(!victim.clan && victim.mind && ishuman(victim) && victim.blood_volume <= BLOOD_VOLUME_BAD)
+		if(!VDrinker.can_convert(feedback = TRUE))
+			return
+
 		if(alert(src, "Would you like to sire a new spawn?", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
 			to_chat(src, span_warning("I decide [victim] is unworthy."))
 		else
@@ -133,10 +151,11 @@
 		ADD_TRAIT(src, TRAIT_REFUSED_VAMP_CONVERT, REF(sire))
 		return
 
-	fully_heal(TRUE)
+	fully_heal(TRUE, FALSE)
 	visible_message(span_danger("Some dark energy begins to flow from [sire] into [src]..."))
 	visible_message(span_red("[src] rises as a new spawn!"))
 	original_mind?.transfer_to(src, TRUE)
 	var/datum/antagonist/vampire/new_antag = new /datum/antagonist/vampire(incoming_clan = sire.clan, forced_clan = TRUE, generation = VDrinker.generation-1)
+	VDrinker?.thralls |= WEAKREF(src)
 	mind?.add_antag_datum(new_antag)
 	adjust_bloodpool(500)

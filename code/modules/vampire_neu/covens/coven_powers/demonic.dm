@@ -12,7 +12,7 @@
 //SENSE THE SIN
 /datum/coven_power/demonic/deny_the_mother
 	name = "Deny the Mother"
-	desc = "Immunity to being set on fire for twenty seconds."
+	desc = "Become immune to being set on fire for twenty seconds. Become passively, partially resistant to fire."
 
 	level = 1
 	research_cost = 0
@@ -25,17 +25,19 @@
 	ADD_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
 	owner.color = "#884200"
 	owner.add_stress(/datum/stressevent/vampiric_nostalgia)
-	playsound(get_turf(owner), 'sound/misc/carriage4.ogg', 40, TRUE)
+	playsound(owner, 'sound/misc/carriage4.ogg', 40, TRUE)
 	owner.visible_message(span_suicide("Blood departs from [owner]'s body, only to form a armored carapace around them!"))
 
 /datum/coven_power/demonic/deny_the_mother/deactivate()
 	. = ..()
 	owner.color = initial(owner.color)
 	REMOVE_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
-	owner.physiology.burn_mod *= 100
 	owner.add_stress(/datum/stressevent/vampiric_reality)
-	playsound(get_turf(owner), 'sound/misc/carriage2.ogg', 40, TRUE)
+	playsound(owner, 'sound/misc/carriage2.ogg', 40, TRUE)
 
+/datum/coven_power/demonic/deny_the_mother/post_gain() 
+	. = ..()
+	owner.physiology.burn_mod = 0.5
 
 /datum/coven_power/demonic/fear_of_the_void_below
 	name = "Fear of the Void"
@@ -86,7 +88,7 @@
 	owner.put_in_l_hand(new /obj/item/rogueweapon/gangrel(owner))
 	owner.visible_message(
 		span_warning("[owner]'s hands contort, revealing vicious, supernatural claws!"))
-	playsound(get_turf(owner), 'sound/gore/flesh_eat_06.ogg', 40, TRUE)
+	playsound(owner, 'sound/gore/flesh_eat_06.ogg', 40, TRUE)
 
 /datum/coven_power/demonic/conflagration/deactivate()
 	. = ..()
@@ -94,7 +96,7 @@
 		qdel(claws)
 	owner.visible_message(
 		span_warning("[owner]'s hands emit a vicious sound as they return to their normal form."))
-	playsound(get_turf(owner), 'sound/gore/flesh_eat_03.ogg', 40, TRUE)
+	playsound(owner, 'sound/gore/flesh_eat_03.ogg', 40, TRUE)
 
 //PSYCHOMACHIA
 /datum/coven_power/demonic/psychomachia
@@ -138,7 +140,7 @@
 
 /datum/coven_power/demonic/wall_of_fire/activate(atom/target)
 	. = ..()
-	playsound(get_turf(owner), list('sound/misc/explode/incendiary (1).ogg', 'sound/misc/explode/incendiary (2).ogg'), 100, -1, 0)
+	playsound(owner, list('sound/misc/explode/incendiary (1).ogg', 'sound/misc/explode/incendiary (2).ogg'), 100, -1, 0)
 	INVOKE_ASYNC(src, PROC_REF(wall_of_fire))
 
 /datum/coven_power/demonic/wall_of_fire/proc/wall_of_fire()

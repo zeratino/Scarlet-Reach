@@ -15,7 +15,7 @@
 	job_traits = list(TRAIT_PEASANTMILITIA, TRAIT_SEEPRICES_SHITTY, TRAIT_EMPATH)
 	tutorial = "You are as venerable and ancient as the trees themselves, wise even for your years spent with the first Wardens. The people look up to you both as a teacher and a guide to solve lesser issues before violence is involved. Not everything must end in bloodshed, no matter how much the retinue wish it were the case. Lead your fellow townsfolk in these troubling times lest they incur wrath of the nobility with their ignorance."
 	whitelist_req = TRUE
-	outfit = /datum/outfit/job/roguetown/elder
+	outfit = /datum/outfit/job/elder
 	display_order = JDO_CHIEF
 	min_pq = 2 //mentor role, not a high PQ requirement but not zero
 	max_pq = null
@@ -25,11 +25,11 @@
 
 	cmode_music = 'sound/music/combat_old.ogg'//He is old so he gets old
 
-/datum/outfit/job/roguetown/elder
+/datum/outfit/job/elder
 	name = "Town Elder"
 	jobtype = /datum/job/roguetown/elder
 
-/datum/outfit/job/roguetown/elder/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/elder/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/militia)
@@ -93,19 +93,21 @@ GLOBAL_VAR_INIT(last_elder_announcement, -50000) // Inits variable for later, co
 	set category = "ELDER"
 	if(stat)
 		return
+	if(!src.can_speak_vocal())
+		to_chat(src,span_warning("I can't speak!"))
+		return FALSE
+	if(world.time < GLOB.last_elder_announcement + 450 SECONDS)
+		to_chat(src, span_warning("You must wait [round((GLOB.last_elder_announcement + 450 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
+		return FALSE
 	var/announcementinput = input("Bellow to the Peaks", "Make an Announcement") as text|null
 	if(announcementinput)
-		if(!src.can_speak_vocal())
-			to_chat(src,span_warning("I can't speak!"))
-			return FALSE
-		if(world.time < GLOB.last_elder_announcement + 600 SECONDS)
-			to_chat(src, span_warning("You must wait [round((GLOB.last_elder_announcement + 600 SECONDS - world.time)/600, 0.1)] minutes before making another announcement!"))
-			return FALSE
 		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement.."))
 		if(do_after(src, 15 SECONDS, target = src)) // Reduced to 15 seconds from 30 on the original Herald PR. 15 is well enough time for sm1 to shove you.
 			say(announcementinput)
 			priority_announce("[announcementinput]", "The Elder Speaks", 'sound/misc/bell.ogg', sender = src)
-			GLOB.last_guildmaster_announcement = world.time
+			GLOB.last_elder_announcement = world.time
+			spawn(450 SECONDS)
+			to_chat(src, span_notice("I can make an announcement again!"))
 		else
 			to_chat(src, span_warning("Your announcement was interrupted!"))
 			return FALSE

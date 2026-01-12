@@ -21,10 +21,14 @@
 		src.STAPER = 12
 		src.STASPD = 20 //May be overtuned with dodge expert, but this thing is so fragile
 		src.STALUC = 15 //Xylyx's critters
+		update_move_intent_slowdown() // Apply speed changes
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/cabbitclaws)
-		real_name = "Cabbit ([stored_mob.real_name])" //So we don't get a random name
 		faction += "cabbits"
+		if (src.client.prefs?.wildshape_name)
+			real_name = "cabbit ([stored_mob.real_name])"
+		else
+			real_name = "cabbit"
 
 // CABBIT SPECIES DATUM //
 /datum/species/shapecabbit

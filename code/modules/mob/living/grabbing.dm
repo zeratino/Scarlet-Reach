@@ -213,27 +213,32 @@
 				to_chat(user, span_warning("I can't do this while buckled!"))
 				return FALSE
 			if(limb_grabbed && grab_state > 0) //this implies a carbon victim
-				if(iscarbon(M) && M != user)
-					user.stamina_add(rand(1,3))
+				if(iscarbon(M))
+					playsound(src.loc, 'sound/foley/struggle.ogg', 100, FALSE, -1)
+					user.stamina_add(7)
 					var/mob/living/carbon/C = M
-					if(get_location_accessible(C, BODY_ZONE_PRECISE_NECK))
-						if(prob(25) && !HAS_TRAIT(C, TRAIT_NOBREATH))
-							C.emote("choke")
-						var/choke_damage
-						if(user.STASTR > STRENGTH_SOFTCAP)
-							choke_damage = STRENGTH_SOFTCAP
-						else
-							choke_damage = user.STASTR * 0.75
-						if(chokehold)
-							choke_damage *= 1.2		//Slight bonus
-						if(C.pulling == user && C.grab_state >= GRAB_AGGRESSIVE)
-							choke_damage *= 0.95	//Slight malice
-						C.adjustOxyLoss(choke_damage)
-						C.visible_message(span_danger("[user] [pick("chokes", "strangles")] [C][chokehold ? " with a chokehold" : ""]!"), \
-								span_userdanger("[user] [pick("chokes", "strangles")] me[chokehold ? " with a chokehold" : ""]!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE, user)
-						to_chat(user, span_danger("I [pick("choke", "strangle")] [C][chokehold ? " with a chokehold" : ""]!"))
+					var/choke_damage
+					if(user.STASTR > STRENGTH_SOFTCAP)
+						choke_damage = STRENGTH_SOFTCAP
 					else
-						to_chat(user, span_warning("I can't reach [C]'s throat!"))
+						choke_damage = user.STASTR * 0.75
+					if(chokehold)
+						choke_damage *= 1.2		//Slight bonus
+					if(C.pulling == user && C.grab_state >= GRAB_AGGRESSIVE)
+						choke_damage *= 0.95	//Slight malice
+					var/neck_armor = C.run_armor_check(BODY_ZONE_PRECISE_NECK, "slash")
+					var/reduction = (neck_armor / 100) * 0.66
+					reduction = min(max(reduction, 0), 1)
+					choke_damage *= (1 - reduction)
+					if(!HAS_TRAIT(C, TRAIT_NOBREATH))
+						if(C.stamina < C.max_stamina)
+							C.stamina_add(choke_damage*1.5)
+						if(prob(25))
+							C.emote("choke")
+					C.adjustOxyLoss(choke_damage)
+					C.visible_message(span_danger("[user] [pick("chokes", "strangles")] [C][chokehold ? " with a chokehold" : ""]!"), \
+							span_userdanger("[user] [pick("chokes", "strangles")] me[chokehold ? " with a chokehold" : ""]!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE, user)
+					to_chat(user, span_danger("I [pick("choke", "strangle")] [C][chokehold ? " with a chokehold" : ""]!"))
 					user.changeNext_move(CLICK_CD_GRABBING)	//Stops spam for choking.
 		if(/datum/intent/grab/hostage)
 			if(user.buckled)
@@ -356,7 +361,7 @@
 	var/mob/living/carbon/C = grabbed
 	var/armor_block = C.run_armor_check(limb_grabbed, "slash")
 	var/damage = user.get_punch_dmg()
-	playsound(C.loc, "genblunt", 100, FALSE, -1)
+	playsound(C, "genblunt", 100, FALSE, -1)
 	C.next_attack_msg.Cut()
 	if(isdoll(C)) {
 		armor_block = C.getarmor(sublimb_grabbed, "blunt")
@@ -452,7 +457,7 @@
 	var/armor_block_user = H.run_armor_check(Hhead, "blunt")
 	var/damage = H.get_punch_dmg()
 	C.next_attack_msg.Cut()
-	playsound(C.loc, "genblunt", 100, FALSE, -1)
+	playsound(C, "genblunt", 100, FALSE, -1)
 	C.apply_damage(damage*1.5, , Chead, armor_block)
 	Chead.bodypart_attacked_by(BCLASS_SMASH, damage*1.5, H, crit_message=TRUE)
 	H.apply_damage(damage, BRUTE, Hhead, armor_block_user)
@@ -471,7 +476,7 @@
 	var/mob/living/M = grabbed
 	var/damage = rand(5,10)
 	var/obj/item/I = sublimb_grabbed
-	playsound(M.loc, "genblunt", 100, FALSE, -1)
+	playsound(M, "genblunt", 100, FALSE, -1)
 	M.apply_damage(damage, BRUTE, limb_grabbed)
 	M.visible_message(span_danger("[user] twists [I] in [M]'s wound!"), \
 					span_userdanger("[user] twists [I] in my wound!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
@@ -480,7 +485,7 @@
 /obj/item/grabbing/proc/removeembeddeditem(mob/living/user) //implies limb_grabbed and sublimb are things
 	var/mob/living/M = grabbed
 	var/obj/item/bodypart/L = limb_grabbed
-	playsound(M.loc, "genblunt", 100, FALSE, -1)
+	playsound(M, "genblunt", 100, FALSE, -1)
 	log_combat(user, M, "itemremovedgrab [sublimb_grabbed] ")
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
@@ -532,7 +537,7 @@
 							return FALSE
 						if(C.mobility_flags & MOBILITY_STAND)
 							return
-						playsound(C.loc, T.attacked_sound, 100, FALSE, -1)
+						playsound(C, T.attacked_sound, 100, FALSE, -1)
 						smashlimb(T, user)
 				else if(isclosedturf(T))
 					if(iscarbon(grabbed))
@@ -541,7 +546,7 @@
 							return FALSE
 						if(!(C.mobility_flags & MOBILITY_STAND))
 							return
-						playsound(C.loc, T.attacked_sound, 100, FALSE, -1)
+						playsound(C, T.attacked_sound, 100, FALSE, -1)
 						smashlimb(T, user)
 
 /obj/item/grabbing/attack_obj(obj/O, mob/living/user)
@@ -558,7 +563,7 @@
 					var/mob/living/carbon/C = grabbed
 					if(!C.Adjacent(O))
 						return FALSE
-					playsound(C.loc, O.attacked_sound, 100, FALSE, -1)
+					playsound(C, O.attacked_sound, 100, FALSE, -1)
 					smashlimb(O, user)
 
 
@@ -571,7 +576,7 @@
 	C.next_attack_msg.Cut()
 	if(C.apply_damage(damage, BRUTE, limb_grabbed, armor_block))
 		limb_grabbed.bodypart_attacked_by(BCLASS_BLUNT, damage, user, sublimb_grabbed, crit_message = TRUE)
-		playsound(C.loc, "smashlimb", 100, FALSE, -1)
+		playsound(C, "smashlimb", 100, FALSE, -1)
 	else
 		C.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
 	C.visible_message(span_danger("[user] smashes [C]'s [limb_grabbed] into [A]![C.next_attack_msg.Join()]"), \

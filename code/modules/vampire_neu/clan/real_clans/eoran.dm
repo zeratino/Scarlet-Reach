@@ -1,13 +1,14 @@
 /// Toreador from Temu.
 /datum/clan_leader/eoran
 	lord_spells = list(
-		/obj/effect/proc_holder/spell/targeted/shapeshift/cabbit,
+		/obj/effect/proc_holder/spell/targeted/shapeshift/vampire/cabbit
 	)
 	lord_verbs = list(
 		/mob/living/carbon/human/proc/punish_spawn
 	)
-	lord_traits = list(TRAIT_HEAVYARMOR, TRAIT_INFINITE_ENERGY)
+	lord_traits = list(TRAIT_HEAVYARMOR, TRAIT_INFINITE_ENERGY, TRAIT_STRENGTH_UNCAPPED)
 	lord_title = "Elder"
+	vitae_bonus = 500
 
 /datum/clan/eoran
 	name = "Vitabella Family"

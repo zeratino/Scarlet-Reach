@@ -51,6 +51,7 @@
 	AdjustKnockdown(levels * 20)
 
 /mob/living/carbon/swap_hand(held_index)
+	SEND_SIGNAL(src, COMSIG_CARBON_SWAPHANDS)
 	if(!held_index)
 		held_index = (active_hand_index % held_items.len)+1
 
@@ -247,7 +248,7 @@
 		// Admin alert for coin throws
 		if(istype(thrown_thing, /obj/item/roguecoin))
 			var/obj/item/roguecoin/coin = thrown_thing
-			if(coin.quantity > 20) //only alert if more than the intended maximum
+			if(coin.quantity > 20 && !istype(thrown_thing, /obj/item/roguecoin/scrip)) //only alert if more than the intended maximum
 				var/coin_text = coin.quantity > 1 ? "[coin.quantity] [coin.name]" : coin.name
 				message_admins("[ADMIN_LOOKUPFLW(src)] has thrown [coin_text] at [target] ([AREACOORD(target)])")
 				log_admin("[key_name(src)] has thrown [coin_text] at [target] ([AREACOORD(target)])")
@@ -265,7 +266,7 @@
 		changeNext_move(CLICK_CD_MELEE)
 		if(!used_sound)
 			used_sound = pick(PUNCHWOOSH)
-		playsound(get_turf(src), used_sound, 60, FALSE)
+		playsound(src, used_sound, 60, FALSE)
 
 /mob/living/carbon/restrained(ignore_grab = TRUE)
 //	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))
@@ -428,8 +429,8 @@
 	I.item_flags |= BEING_REMOVED
 	breakouttime = I.slipouttime
 	if((STASTR > 10))
-		var/time_mod = (STASTR - 10) * 20 SECONDS
-		breakouttime -= time_mod
+		var/time_mod = breakouttime * (STASTR - 10) * 0.2
+		breakouttime = max(0, breakouttime - time_mod)
 	if(mind && mind.has_antag_datum(/datum/antagonist/zombie))
 		breakouttime = 10 SECONDS
 	if(STASTR > 15)
@@ -584,7 +585,7 @@
 
 /mob/living/carbon
 	var/nausea = 0
-	var/bleeding_tier = 0 
+	var/bleeding_tier = 0
 
 /mob/living/carbon/proc/add_nausea(amt)
 	nausea = clamp(nausea + amt, 0, 300)
@@ -763,7 +764,8 @@
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts) //hardcoded to streamline things a bit
 		if(!(bodypart.body_zone in lethal_zones))
 			continue
-		var/my_burn = abs((bodypart.burn_dam / bodypart.max_damage) * DAMAGE_THRESHOLD_FIRE_CRIT)
+		var/hardcrit_divisor = !mind ? FIRE_HARDCRIT_DIVISOR_MINDLESS : FIRE_HARDCRIT_DIVISOR
+		var/my_burn = abs((bodypart.burn_dam / bodypart.max_damage) * hardcrit_divisor)
 		total_burn = max(total_burn, my_burn)
 		used_damage = max(used_damage, my_burn)
 	if(used_damage < total_tox)
@@ -1120,13 +1122,12 @@
 	update_hud_handcuffed()
 	update_mobility()
 
-/mob/living/carbon/fully_heal(admin_revive = FALSE)
+/mob/living/carbon/fully_heal(admin_revive = FALSE, break_restraints = FALSE)
 	if(reagents)
 		reagents.clear_reagents()
 		for(var/addi in reagents.addiction_list)
 			reagents.remove_addiction(addi)
-	for(var/O in internal_organs)
-		var/obj/item/organ/organ = O
+	for(var/obj/item/organ/organ as anything in internal_organs)
 		organ.setOrganDamage(0)
 	var/obj/item/organ/brain/B = getorgan(/obj/item/organ/brain)
 	if(B)
@@ -1142,17 +1143,18 @@
 		suiciding = FALSE
 		regenerate_limbs()
 		regenerate_organs()
+		if(reagents)
+			reagents.addiction_list = list()
+	if(break_restraints)
 		handcuffed = initial(handcuffed)
 		for(var/obj/item/restraints/R in contents) //actually remove cuffs from inventory
 			qdel(R)
 		update_handcuffed()
-		if(reagents)
-			reagents.addiction_list = list()
 	cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	var/list/wCount = get_wounds()
 	if(wCount.len > 0)
 		heal_wounds(INFINITY)
-	..()
+	. = ..()
 	// heal ears after healing traits, since ears check TRAIT_DEAF trait
 	// when healing.
 	restoreEars()
@@ -1179,10 +1181,9 @@
 
 /mob/living/carbon/extinguish_mob(itemz = TRUE)
 	if(itemz)
-		for(var/X in get_equipped_items())
-			var/obj/item/I = X
+		for(var/obj/item/I as anything in get_equipped_items())
 			if(I.extinguishable)
-				I.extinguish() //extinguishes our clothes
+				I.extinguish()
 			I.acid_level = 0 //washes off the acid on our clothes
 		var/obj/item/I = get_active_held_item()
 		if(I && I.extinguishable)
@@ -1234,8 +1235,7 @@
 		I.Insert(src)
 
 /mob/living/carbon/proc/update_disabled_bodyparts()
-	for(var/B in bodyparts)
-		var/obj/item/bodypart/BP = B
+	for(var/obj/item/bodypart/BP as anything in bodyparts)
 		BP.update_disabled()
 
 /mob/living/carbon/vv_get_dropdown()
@@ -1258,13 +1258,13 @@
 			return
 		var/list/limb_list = list()
 		if(edit_action == "remove" || edit_action == "augment")
-			for(var/obj/item/bodypart/B in bodyparts)
+			for(var/obj/item/bodypart/B as anything in bodyparts)
 				limb_list += B.body_zone
 			if(edit_action == "remove")
 				limb_list -= BODY_ZONE_CHEST
 		else
 			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-			for(var/obj/item/bodypart/B in bodyparts)
+			for(var/obj/item/bodypart/B as anything in bodyparts)
 				limb_list -= B.body_zone
 		var/result = input(usr, "Please choose which body part to [edit_action]","[capitalize(edit_action)] Body Part") as null|anything in sortList(limb_list)
 		if(result)

@@ -132,6 +132,14 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Desert Hood"
 	path = /obj/item/clothing/head/roguetown/deserthood
 
+/datum/loadout_item/rosacrown
+	name = "Rosa Crown"
+	path = /obj/item/flowercrown/rosa
+
+/datum/loadout_item/salviacrown
+	name = "Salvia Crown"
+	path = /obj/item/flowercrown/salvia
+
 
 //CLOAKS
 /datum/loadout_item/tabard
@@ -304,6 +312,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	path = /obj/item/clothing/shoes/roguetown/armor/geta
 
 //SHIRTS
+/datum/loadout_item/corset
+	name = "Corset"
+	path = /obj/item/clothing/suit/roguetown/shirt/undershirt/corset
+
 /datum/loadout_item/longcoat
 	name = "Longcoat"
 	path = /obj/item/clothing/suit/roguetown/armor/longcoat
@@ -311,6 +323,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/robe
 	name = "Robe"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe
+
+/datum/loadout_item/qaba
+	name = "Black Qaba"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/qaba
 
 /datum/loadout_item/spellcasterrobe
 	name = "Tattered Spellcaster Robe"
@@ -339,6 +355,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/velvetcoat
 	name = "Velvet Coat"
 	path = /obj/item/clothing/suit/roguetown/armor/velvetcoat
+
+/datum/loadout_item/fancycoat
+	name = "Fancy Coat"
+	path = /obj/item/clothing/suit/roguetown/shirt/tunic/noblecoat
 
 /datum/loadout_item/priestrobe
 	name = "Undervestments"
@@ -547,6 +567,10 @@ GLOBAL_LIST_EMPTY(loadout_items)
 /datum/loadout_item/dendormask
 	name = "Briar Mask"
 	path = /obj/item/clothing/head/roguetown/dendormask
+
+/datum/loadout_item/dendorbriars
+	name = "Briar thorns"
+	path = /obj/item/clothing/head/roguetown/padded/briarthorns
 
 /datum/loadout_item/exoticsilkmask
 	name = "Exotic Silk Mask"

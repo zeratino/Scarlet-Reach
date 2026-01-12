@@ -8,29 +8,29 @@ LICH SKELETONS
 	advclass_cat_rolls = list(CTAG_LSKELETON = 20)
 	tutorial = "You are bygone. Your will belongs to your master. Fulfil and kill."
 
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich
+	outfit = /datum/outfit/job/greater_skeleton/lich
 
-/datum/outfit/job/roguetown/greater_skeleton/lich
+/datum/outfit/job/greater_skeleton/lich
 	cloak = /obj/item/clothing/cloak/half	//starts black, so they can be identified.
 	belt = /obj/item/storage/belt/rogue/leather/black
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
 	backl = /obj/item/storage/backpack/rogue/satchel
 	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
 
-/datum/outfit/job/roguetown/greater_skeleton/lich/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/greater_skeleton/lich/pre_equip(mob/living/carbon/human/H)
 	..()
 	REMOVE_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	REMOVE_TRAIT(H, TRAIT_EASYDISMEMBER, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 
 // Melee goon w/ javelins. All-rounder.
 /datum/advclass/greater_skeleton/lich/legionnaire
 	name = "Ancient Legionnaire"
 	tutorial = "A veteran lineman. How far you've fallen."
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/legionnaire
+	outfit = /datum/outfit/job/greater_skeleton/lich/legionnaire
 
 	category_tags = list(CTAG_LSKELETON)
 
-/datum/outfit/job/roguetown/greater_skeleton/lich/legionnaire/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/greater_skeleton/lich/legionnaire/pre_equip(mob/living/carbon/human/H)
 	..()
 
 	H.STASTR = 12
@@ -61,7 +61,7 @@ LICH SKELETONS
 
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/full/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/half/paalloy
 	neck = /obj/item/clothing/neck/roguetown/gorget/paalloy
 	shoes = /obj/item/clothing/shoes/roguetown/boots/aalloy
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy
@@ -69,7 +69,7 @@ LICH SKELETONS
 	beltl = /obj/item/quiver/javelin/paalloy
 	H.adjust_blindness(-3)
 	var/weapons = list("Gladius","Kopesh","Shortsword","Axe", "Flail", "Greatsword", "Bardiche", "Mace + Shield", "Spear", "Warhammer + Shield")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Gladius")
@@ -116,11 +116,11 @@ LICH SKELETONS
 /datum/advclass/greater_skeleton/lich/ballistiares
 	name = "Ancient Ballistiares"
 	tutorial = "Your frame has wept off your skin. Your fingers are mere peaks. Yet your aim remains true."
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/ballistiares
+	outfit = /datum/outfit/job/greater_skeleton/lich/ballistiares
 
 	category_tags = list(CTAG_LSKELETON)
 
-/datum/outfit/job/roguetown/greater_skeleton/lich/ballistiares/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/greater_skeleton/lich/ballistiares/pre_equip(mob/living/carbon/human/H)
 	..()
 
 	H.STASTR = 10
@@ -157,7 +157,7 @@ LICH SKELETONS
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	H.adjust_blindness(-3)
 	var/weapons = list("Recurve Bow","Yew Longbow","Sling")
-	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+	var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Recurve Bow")
@@ -177,11 +177,11 @@ LICH SKELETONS
 /datum/advclass/greater_skeleton/lich/sapper
 	name = "Broken-Bone Sapper"
 	tutorial = "Simple. Obedient. Like an ant in a colony."
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/sapper
+	outfit = /datum/outfit/job/greater_skeleton/lich/sapper
 
 	category_tags = list(CTAG_LSKELETON)
 
-/datum/outfit/job/roguetown/greater_skeleton/lich/sapper/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/greater_skeleton/lich/sapper/pre_equip(mob/living/carbon/human/H)
 	..()
 
 	H.STASTR = 10
@@ -229,7 +229,7 @@ LICH SKELETONS
 /datum/job/roguetown/greater_skeleton/lich/besieger
 	title = "Besieger Skeleton"
 	advclass_cat_rolls = list(CTAG_LSKELETON = 20)
-	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich 
+	outfit = /datum/outfit/job/greater_skeleton/lich 
 
 /datum/job/roguetown/greater_skeleton/lich/besieger/after_spawn(mob/living/L, mob/M, client/player_client)
 	..()
@@ -260,6 +260,7 @@ LICH SKELETONS
 	ADD_TRAIT(H, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_EASYDISMEMBER, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_CRITICAL_WEAKNESS, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOBREATH, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_TOXIMMUNE, TRAIT_GENERIC)

@@ -25,8 +25,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	whitelist_req = FALSE
 
 
-	spells = list(/obj/effect/proc_holder/spell/self/convertrole/templar, /obj/effect/proc_holder/spell/self/convertrole/monk)
-	outfit = /datum/outfit/job/roguetown/priest
+	spells = list(/obj/effect/proc_holder/spell/self/convertrole/templar, /obj/effect/proc_holder/spell/self/convertrole/monk, /obj/effect/proc_holder/spell/invoked/sunstrike)
+	outfit = /datum/outfit/job/priest
 
 	display_order = JDO_PRIEST
 	give_bank_account = 115
@@ -40,9 +40,10 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/datum/virtue/utility/noble,
 		/datum/virtue/utility/blueblooded,
 		/datum/virtue/combat/hollow_life,
+		/datum/virtue/combat/crimson_curse,
 	)
 
-	job_traits = list(TRAIT_CHOSEN, TRAIT_RITUALIST, TRAIT_GRAVEROBBER, TRAIT_SOUL_EXAMINE, TRAIT_CLERGY)
+	job_traits = list(TRAIT_CHOSEN, TRAIT_RITUALIST, TRAIT_GRAVEROBBER, TRAIT_SOUL_EXAMINE, TRAIT_CLERGY, TRAIT_TALENTED_ALCHEMIST)
 	advclass_cat_rolls = list(CTAG_BISHOP = 2)
 	job_subclasses = list(
 		/datum/advclass/bishop
@@ -53,7 +54,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	tutorial = "The Divine is all that matters in a world of the immoral. \
 	The Weeping God abandoned us, and in his stead the TEN rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. \
 	It is up to you to shepherd them toward a Gods-fearing future; for you are a Bishop of the Holy See."
-	outfit = /datum/outfit/job/roguetown/priest/basic
+	outfit = /datum/outfit/job/priest/basic
 	category_tags = list(CTAG_BISHOP)
 
 	subclass_stats = list(
@@ -78,13 +79,15 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/datum/skill/craft/alchemy = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/priest
+/datum/outfit/job/priest
 	job_bitflag = BITFLAG_CHURCH
 	allowed_patrons = list(/datum/patron/divine/astrata)	//We lock this cus head of church, acktully
 
-/datum/outfit/job/roguetown/priest/basic/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/priest/basic/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
+	if(H.patron.parentpatron)
+		H.patron = new H.patron.parentpatron
 	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 	head = /obj/item/clothing/head/roguetown/priestmask
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
@@ -155,7 +158,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		mind.active_miracle_set = "Astrata"
 
 	var/list/god_choice = list()
-	for(var/path as anything in GLOB.patrons_by_faith[/datum/faith/divine])
+	for(var/path as anything in GLOB.patrons_by_faith[/datum/faith/divine/standard])
 		var/datum/patron/patron = GLOB.patronlist[path]
 		if(!patron?.name)
 			continue
@@ -173,7 +176,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	// Retrieve the selected patron by searching through patrons_by_faith
 	var/datum/patron/god
-	for(var/path in GLOB.patrons_by_faith[/datum/faith/divine])
+	for(var/path in GLOB.patrons_by_faith[/datum/faith/divine/standard])
 		var/datum/patron/p = GLOB.patronlist[path]
 		if(p?.name == string_choice)
 			god = p
@@ -214,6 +217,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	var/static/list/always_keep_spells = list(
 		/obj/effect/proc_holder/spell/self/convertrole/templar,
 		/obj/effect/proc_holder/spell/self/convertrole/monk,
+		/obj/effect/proc_holder/spell/invoked/sunstrike,
 		/obj/effect/proc_holder/spell/targeted/touch/orison,
 		/obj/effect/proc_holder/spell/invoked/lesser_heal,
 		/obj/effect/proc_holder/spell/invoked/blood_heal,
@@ -314,6 +318,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		//Coronate new King (or Queen)
 		HU.mind.assigned_role = "Grand Duke"
 		HU.job = "Grand Duke"
+		ADD_TRAIT(HU, TRAIT_DNR, TRAIT_GENERIC)
 		if(should_wear_femme_clothes(HU))
 			SSticker.rulertype = "Grand Duchess"
 		else

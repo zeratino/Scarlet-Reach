@@ -696,6 +696,22 @@
 			if("onbelt")
 				return list("shrink" = 0.5,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
+/obj/item/rogueweapon/sword/long/judgement/vlord
+	name = "\"Ichor Fang\""
+	desc = "An unholy longsword made of odd steel. A green crystalline mass covers the blade and pommel, its edges and serrations tougher and sharper than anything forged by a master swordsmith."
+	force = 40
+	force_wielded = 55
+	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/peel, /datum/intent/sword/strike)
+	gripped_intents = list(/datum/intent/sword/cut, /datum/intent/sword/thrust, /datum/intent/sword/strike, /datum/intent/sword/chop)
+	icon_state = "vlord"
+	item_state = "vlord"
+	wbalance = WBALANCE_NORMAL
+	max_integrity = 9999
+	sellprice = 363
+	static_price = TRUE
+	equip_delay_self = 0
+	unequip_delay_self = 0
+
 /obj/item/rogueweapon/sword/long/judgement/vlord/Initialize()
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_NEW_ICHOR_FANG_SPAWNED, src)
@@ -1071,6 +1087,7 @@
 	minstr = 6
 	wdefense = 7.5
 	wbalance = WBALANCE_SWIFT
+	special = /datum/special_intent/piercing_lunge
 
 /obj/item/rogueweapon/sword/rapier/vaquero
 	name = "cup-hilt rapier"
@@ -1166,9 +1183,7 @@
 
 /obj/item/rogueweapon/sword/rapier/dec
 	name = "decorated rapier"
-	desc = "A fine duelist's instrument with a tapered thrusting blade. Its hilt is gilt in gold and inlaid, \
-	and its blade bears twin inscriptions on either side. One reads, \"CAST IN THE NAME OF GODS\" while the \
-	obverse reads, \"YE NOT GUILTY\"."
+	desc = "A strange, cheap ring devoid of purpose, yet carrying an uncanny sense of nostalgia of grand upsets, felled short.\n<i>'You shall know his name. You shall know his purpose. You shall die.'</i>"
 	icon_state = "decrapier"
 	sheathe_icon = "decrapier"
 	sellprice = 140
@@ -1680,10 +1695,10 @@
 			return
 	..()
 
-/obj/item/rogueweapon/sword/capsabre // just a better sabre, unique knight captain weapon
+/obj/item/rogueweapon/sword/championsabre // just a better sabre, unique knight champion weapon
 	name = "'Law'"
-	desc = "A lavish sabre made for the captain, this one of a kind blacksteel beauty is meant to be used to uphold the law."
-	icon_state = "capsabre"
+	desc = "A lavish sabre made for the champion, this one of a kind blacksteel beauty is meant to be used to uphold the law."
+	icon_state = "champsabre"
 	icon = 'icons/roguetown/weapons/swords32.dmi'
 	force = 25 // same as elvish sabre
 	max_integrity = 200 // more integrity because blacksteel, a bit less than the flamberge
@@ -1696,3 +1711,19 @@
 	wbalance = WBALANCE_SWIFT
 	sellprice = 100 // lets not make it too profitable
 	smeltresult = /obj/item/ingot/blacksteel
+
+/obj/item/rogueweapon/sword/short/gronn
+	name = "gronnic hinterblade"
+	desc = "Due to the shortage of forged steel in Gronn, their iron blades have become hardier and thicker than what one may see elsewhere. The favoured weapon of choice for any able-bodied northman of Gronn, the hinterblade is the heftier, unwieldy cousin of the arming sword."
+	possible_item_intents = list(/datum/intent/sword/cut/militia, /datum/intent/sword/chop/militia, /datum/intent/sword/thrust, /datum/intent/sword/peel)
+	icon_state = "gronnsword"
+	sheathe_icon = "swordshort"
+	gripped_intents = null
+	minstr = 10 //NO TWINKS!!
+	wdefense = 3 // Use it with a shield jackass
+	wlength = WLENGTH_SHORT
+	w_class = WEIGHT_CLASS_NORMAL
+	wbalance = WBALANCE_HEAVY
+
+	grid_width = 32
+	grid_height = 96

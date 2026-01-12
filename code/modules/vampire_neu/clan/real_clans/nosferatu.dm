@@ -4,14 +4,14 @@
 
 /datum/clan_leader/nosferatu
 	lord_spells = list(
-		/obj/effect/proc_holder/spell/targeted/shapeshift/rat
+		/obj/effect/proc_holder/spell/targeted/shapeshift/vampire/rat
 	)
 	lord_verbs = list(
 		/mob/living/carbon/human/proc/punish_spawn
 	)
-	lord_traits = list(TRAIT_HEAVYARMOR, TRAIT_INFINITE_ENERGY)
 	lord_title = "Nosferatu"
-
+	lord_traits = list(TRAIT_HEAVYARMOR, TRAIT_INFINITE_ENERGY, TRAIT_STRENGTH_UNCAPPED)
+	vitae_bonus = 500
 
 /datum/clan/nosferatu
 	name = "Nosferatu"
